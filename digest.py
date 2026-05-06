@@ -88,16 +88,16 @@ def generate_digest(articles):
 これらをまとめた記事を書け。
 
 条件:
-・1行目: 見出し（例：{today_str}のAIニュースまとめ｜注目トピックを解説）
+・1行目: 見出し（「〇〇〇〇｜注目トピックを解説【{today_str}】」の形式。「{today_str}のAIニュースまとめ」という表現は使わない）
 ・2行目: 空行
 ・文体: です・ます調
 ・本文800〜1000文字
-・冒頭の第1段落: その日のAIニュース全体の概要を2〜3文で要約する（読者がすぐ内容を把握できるようにする）
-・各トピックを段落ごとに分けて解説する
+・冒頭の第1段落: その日のAIニュース全体の概要を2〜3文で要約する
+・各トピックは「## トピック名」という見出しをつけて段落ごとに分けて解説する（見出しはMarkdown形式のh2を使用）
+・見出し以外のマークダウン記法は禁止（箇条書き・太字・コードブロック等は使わない）
 ・検索ユーザーが知りたい情報（何が・なぜ重要か）を意識して書く
 ・「AI」「人工知能」「最新ニュース」「{today_str}」などのキーワードを自然に含める
-・マークダウン記法一切禁止
-・最後の段落: 「今後のAI動向にも引き続き注目していきましょう。」で締める
+・最後の段落: 「今後のAI動向にも引き続き注目していきましょう。」で締める（見出しなし）
 """
 
     res = client.chat.completions.create(
@@ -126,9 +126,14 @@ def generate_digest(articles):
 # ========================
 def save_digest_markdown(content, meta_description):
     today = datetime.now().strftime("%Y-%m-%d")
+    today_str = datetime.now().strftime("%Y年%m月%d日")
     lines = content.strip().splitlines()
 
+    # 1行目をタイトルに（【日付】が含まれていない場合は追加）
     title = lines[0].strip().lstrip("#").strip()
+    if today_str not in title:
+        title = f"{title}【{today_str}】"
+
     body = "\n".join(lines[1:]).strip()
 
     slug = f"{today}-digest"
