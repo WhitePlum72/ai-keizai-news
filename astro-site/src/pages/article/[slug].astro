@@ -345,10 +345,8 @@ const ogImage = article.data.image_url || 'https://aikeizai.jp/ogp.png';
   <!-- ===== 記事 ===== -->
   <article class="article">
     {article.data.image_url && (
-      <a href={article.data.source_url} target="_blank">
-        <img src={article.data.image_url} alt={article.data.title} />
-      </a>
-    )}
+  <img src={article.data.image_url} alt={article.data.title} />
+)}
 
     <div class="article-body">
       <h1>{article.data.title}</h1>
