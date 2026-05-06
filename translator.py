@@ -87,7 +87,7 @@ def get_articles_to_translate():
         WHERE a.buzz_score > 0
         AND s.article_id IS NULL
         ORDER BY a.buzz_score DESC
-        LIMIT 30
+        LIMIT 10
     """)
     rows = cursor.fetchall()
     conn.close()
@@ -249,6 +249,20 @@ def make_tweet(title, body, category):
     text = f"{prefix}{title}\n{lead}"
     return text[:140 - len(suffix)] + suffix
 
+# ========================
+# カテゴリ分類
+# ========================
+SOURCE_TYPE_TO_CATEGORY = {
+    "model":    "AIモデル",
+    "business": "ビジネス",
+    "research": "研究",
+    "stock":    "AI関連株",
+    "arxiv":    "研究",
+    "hn":       "ビジネス",
+}
+
+def get_category(source_type: str) -> str:
+    return SOURCE_TYPE_TO_CATEGORY.get(source_type, "AI")
 
 # ========================
 # メイン
@@ -258,7 +272,7 @@ def translate_all():
     articles = get_articles_to_translate()
 
     for a in articles:
-        article_id, title, summary, source, _, url = a
+        article_id, title, summary, source, source_type, url = a
 
         title_ja = translate_text(title)
         body = translate_text(summary)
@@ -267,7 +281,7 @@ def translate_all():
         data = split_generated_article(generated, title_ja)
         data["meta_description"] = meta_description
 
-        category = "AI"
+        category = get_category(source_type)
 
         tweet = make_tweet(data["title"], data["body"], category)
 

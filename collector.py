@@ -17,85 +17,192 @@ from typing import List, Dict
 # ==================== 設定 ====================
 
 RSS_SOURCES = {
+    # ==================== 既存フィード（source_type修正） ====================
     "openai": {
         "url": "https://openai.com/news/rss.xml",
         "type": "rss",
+        "source_type": "model",
         "description": "OpenAI",
     },
     "huggingface": {
         "url": "https://huggingface.co/blog/feed.xml",
         "type": "rss",
+        "source_type": "model",
         "description": "Hugging Face",
     },
     "techcrunch": {
         "url": "https://techcrunch.com/feed/",
         "type": "rss",
+        "source_type": "business",
         "description": "TechCrunch",
     },
     "theverge_ai": {
         "url": "https://www.theverge.com/rss/ai-artificial-intelligence/index.xml",
         "type": "rss",
+        "source_type": "business",
         "description": "The Verge AI",
     },
     "venturebeat": {
         "url": "https://venturebeat.com/category/ai/feed/",
         "type": "rss",
+        "source_type": "business",
         "description": "VentureBeat AI",
     },
     "wired_ai": {
         "url": "https://www.wired.com/feed/tag/ai/latest/rss",
         "type": "rss",
+        "source_type": "business",
         "description": "Wired AI",
     },
     "mit_review": {
         "url": "https://www.technologyreview.com/feed/",
         "type": "rss",
+        "source_type": "research",
         "description": "MIT Technology Review",
     },
     "bair": {
         "url": "https://bair.berkeley.edu/blog/feed.xml",
         "type": "rss",
+        "source_type": "research",
         "description": "BAIR Blog",
     },
-    "bloomberg": {
+    "bloomberg_tech": {
         "url": "https://feeds.bloomberg.com/technology/news.rss",
         "type": "rss",
+        "source_type": "stock",
         "description": "Bloomberg Technology",
     },
     "reuters": {
         "url": "https://www.reutersagency.com/feed/?best-topics=tech",
         "type": "rss",
+        "source_type": "stock",
         "description": "Reuters Technology",
     },
     "the_decoder": {
         "url": "https://the-decoder.com/feed/",
         "type": "rss",
+        "source_type": "model",
         "description": "The Decoder",
     },
     "arxiv_cs_ai": {
         "url": "https://arxiv.org/rss/cs.AI",
         "type": "arxiv",
+        "source_type": "research",
         "description": "arXiv CS.AI",
     },
     "arxiv_cs_cl": {
         "url": "https://arxiv.org/rss/cs.CL",
         "type": "arxiv",
+        "source_type": "research",
         "description": "arXiv CS.CL",
     },
-    "yahoo_finance_ai": {
+    "yahoo_finance": {
         "url": "https://finance.yahoo.com/rss/topstories",
         "type": "rss",
+        "source_type": "stock",
         "description": "Yahoo Finance",
     },
     "seeking_alpha": {
         "url": "https://seekingalpha.com/feed.xml",
         "type": "rss",
+        "source_type": "stock",
         "description": "Seeking Alpha",
     },
     "marketwatch_tech": {
         "url": "https://feeds.marketwatch.com/marketwatch/technology/",
         "type": "rss",
+        "source_type": "stock",
         "description": "MarketWatch Tech",
+    },
+
+    # ==================== 新規追加：経済・株式（最優先） ====================
+    "bloomberg_markets": {
+        "url": "https://feeds.bloomberg.com/markets/news.rss",
+        "type": "rss",
+        "source_type": "stock",
+        "description": "Bloomberg Markets",
+    },
+    "wsj_tech": {
+        "url": "https://feeds.content.dowjones.io/public/rss/RSSWSJD",
+        "type": "rss",
+        "source_type": "stock",
+        "description": "WSJ Tech",
+    },
+    "ft_tech": {
+        "url": "https://feeds.ft.com/ft/technology",
+        "type": "rss",
+        "source_type": "stock",
+        "description": "Financial Times Tech",
+    },
+    "reuters_business": {
+        "url": "https://feeds.reuters.com/reuters/businessNews",
+        "type": "rss",
+        "source_type": "stock",
+        "description": "Reuters Business",
+    },
+    "cnbc_tech": {
+        "url": "https://www.cnbc.com/id/19854910/device/rss/rss.html",
+        "type": "rss",
+        "source_type": "stock",
+        "description": "CNBC Technology",
+    },
+    "cnbc_ai": {
+        "url": "https://www.cnbc.com/id/100727362/device/rss/rss.html",
+        "type": "rss",
+        "source_type": "stock",
+        "description": "CNBC AI",
+    },
+
+    # ==================== 新規追加：AI企業公式（一次情報） ====================
+    "microsoft_blog": {
+        "url": "https://blogs.microsoft.com/feed/",
+        "type": "rss",
+        "source_type": "model",
+        "description": "Microsoft Blog",
+    },
+    "google_ai_blog": {
+        "url": "https://blog.google/technology/ai/rss/",
+        "type": "rss",
+        "source_type": "model",
+        "description": "Google AI Blog",
+    },
+    "meta_ai": {
+        "url": "https://ai.meta.com/blog/rss/",
+        "type": "rss",
+        "source_type": "model",
+        "description": "Meta AI Blog",
+    },
+    "nvidia_blog": {
+        "url": "https://blogs.nvidia.com/feed/",
+        "type": "rss",
+        "source_type": "model",
+        "description": "NVIDIA Blog",
+    },
+    "aws_ml": {
+        "url": "https://aws.amazon.com/blogs/machine-learning/feed/",
+        "type": "rss",
+        "source_type": "model",
+        "description": "AWS Machine Learning",
+    },
+
+    # ==================== 新規追加：AI専門メディア ====================
+    "ai_news": {
+        "url": "https://www.artificialintelligence-news.com/feed/",
+        "type": "rss",
+        "source_type": "business",
+        "description": "AI News",
+    },
+    "zdnet_ai": {
+        "url": "https://www.zdnet.com/topic/artificial-intelligence/rss.xml",
+        "type": "rss",
+        "source_type": "business",
+        "description": "ZDNet AI",
+    },
+    "ars_technica": {
+        "url": "https://feeds.arstechnica.com/arstechnica/technology-lab",
+        "type": "rss",
+        "source_type": "business",
+        "description": "Ars Technica",
     },
 }
 
@@ -284,7 +391,7 @@ def parse_generic_rss(feed, source_info: Dict) -> List[Dict]:
             "title": entry.get("title", ""),
             "summary": entry.get("summary", entry.get("description", "")),
             "source": source_info["description"],
-            "source_type": "rss",
+            "source_type": source_info.get("source_type", "business"),  # ← ここを修正
             "author": entry.get("author", ""),
             "published_at": entry.get("published", ""),
             "score": 0,
@@ -333,7 +440,7 @@ def parse_arxiv_feed(feed, source_info: Dict) -> List[Dict]:
             "title": entry.get("title", ""),
             "summary": entry.get("summary", ""),
             "source": source_info["description"],
-            "source_type": "arxiv",
+            "source_type": source_info.get("source_type", "research"),  # ← ここを修正
             "author": ", ".join([a.get("name", "") for a in entry.get("authors", [])]),
             "published_at": entry.get("published", ""),
             "score": 0,
