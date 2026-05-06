@@ -2,10 +2,11 @@
 import { getCollection } from 'astro:content';
 const allArticles = await getCollection('articles');
 const articles = allArticles
-  .filter(a => a.data.category === '研究')
+  .filter(a => a.data.is_digest === true)
   .sort((a, b) => b.data.buzz_score - a.data.buzz_score);
 
 const popularArticles = [...allArticles]
+  .filter(a => !a.data.is_digest)
   .sort((a, b) => b.data.buzz_score - a.data.buzz_score)
   .slice(0, 10);
 
@@ -26,8 +27,8 @@ const getLead = (entry) => ((entry.body || '').replace(/[#\n]/g, ' ').slice(0, 6
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI研究ニュース | AI経済新聞</title>
-  <meta name="description" content="最新AI研究・論文・ベンチマーク情報をお届け。" />
+  <title>AIニュースまとめ | AI経済新聞</title>
+  <meta name="description" content="毎日のAIニュースをまとめてお届け。重要トピックを厳選して解説します。" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
@@ -53,17 +54,17 @@ const getLead = (entry) => ((entry.body || '').replace(/[#\n]/g, ' ').slice(0, 6
     .page-title { font-size: 22px; font-weight: 900; margin-bottom: 4px; }
     .page-desc { font-size: 13px; color: #666; margin-bottom: 20px; }
 
-    /* ===== 記事グリッド ===== */
-    .article-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
-    .article-card { background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
-    .article-card img { width: 100%; height: 160px; object-fit: cover; }
-    .article-card .no-img { width: 100%; height: 100px; background: #eeedfe; display: flex; align-items: center; justify-content: center; font-size: 32px; }
-    .card-body { padding: 12px; }
-    .card-title { font-size: 14px; font-weight: 700; line-height: 1.4; margin-bottom: 6px; }
-    .card-title a { color: #1a1a1a; }
-    .card-title a:hover { color: #003f88; }
-    .card-lead { font-size: 12px; color: #666; line-height: 1.5; margin-bottom: 6px; }
-    .card-meta { font-size: 11px; color: #999; }
+    /* ===== 記事リスト ===== */
+    .article-list { display: flex; flex-direction: column; gap: 16px; }
+    .article-card { background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.08); display: flex; gap: 0; }
+    .article-card-img { width: 200px; height: 130px; object-fit: cover; flex-shrink: 0; }
+    .article-card-no-img { width: 200px; height: 130px; background: #e8f4fd; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 40px; }
+    .article-card-body { padding: 16px; flex: 1; }
+    .article-card-title { font-size: 16px; font-weight: 700; line-height: 1.4; margin-bottom: 8px; }
+    .article-card-title a { color: #1a1a1a; }
+    .article-card-title a:hover { color: #003f88; }
+    .article-card-lead { font-size: 13px; color: #555; line-height: 1.6; margin-bottom: 8px; }
+    .article-card-meta { font-size: 11px; color: #999; }
     .empty { text-align: center; padding: 40px; color: #999; }
 
     /* ===== サイドバー ===== */
@@ -99,6 +100,8 @@ const getLead = (entry) => ((entry.body || '').replace(/[#\n]/g, ' ').slice(0, 6
       .main-grid { grid-template-columns: 1fr; }
       .sidebar { position: static; }
       .also-read-grid { grid-template-columns: 1fr; }
+      .article-card { flex-direction: column; }
+      .article-card-img, .article-card-no-img { width: 100%; height: 160px; }
     }
   </style>
 </head>
@@ -112,41 +115,41 @@ const getLead = (entry) => ((entry.body || '').replace(/[#\n]/g, ' ').slice(0, 6
         {new Date().toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' })}
       </div>
     </div>
-<nav class="header-sub">
-  <a class="nav-item active" href="/">すべて</a>
-  <a class="nav-item" href="/model">モデル</a>
-  <a class="nav-item" href="/business">ビジネス</a>
-  <a class="nav-item" href="/stock">AI関連株</a>
-  <a class="nav-item" href="/research">研究</a>
-  <a class="nav-item" href="/digest">まとめ</a>
-</nav>
+    <nav class="header-sub">
+      <a class="nav-item" href="/">すべて</a>
+      <a class="nav-item" href="/model">モデル</a>
+      <a class="nav-item" href="/business">ビジネス</a>
+      <a class="nav-item" href="/stock">AI関連株</a>
+      <a class="nav-item" href="/research">研究</a>
+      <a class="nav-item active" href="/digest">まとめ</a>
+    </nav>
   </header>
 
   <div class="container">
     <div class="main-grid">
 
       <main>
-        <p class="page-title">🔬 AI研究</p>
-        <p class="page-desc">最新AI研究・論文・ベンチマーク（{articles.length}件）</p>
+        <p class="page-title">📋 AIニュースまとめ</p>
+        <p class="page-desc">毎日のAIニュースを厳選してまとめてお届けします（{articles.length}件）</p>
         {articles.length === 0 ? (
-          <div class="empty">現在研究のニュースはありません</div>
+          <div class="empty">現在まとめ記事はありません</div>
         ) : (
-          <div class="article-grid">
+          <div class="article-list">
             {articles.map(article => (
-              <div class="article-card">
+              <a class="article-card" href={`/article/${article.id}`}>
                 {article.data.image_url ? (
-                  <img src={article.data.image_url} alt={article.data.title} loading="lazy" />
+                  <img class="article-card-img" src={article.data.image_url} alt={article.data.title} loading="lazy" />
                 ) : (
-                  <div class="no-img">🔬</div>
+                  <div class="article-card-no-img">📋</div>
                 )}
-                <div class="card-body">
-                  <div class="card-title">
+                <div class="article-card-body">
+                  <div class="article-card-title">
                     <a href={`/article/${article.id}`}>{article.data.title}</a>
                   </div>
-                  <div class="card-lead">{getLead(article)}</div>
-                  <div class="card-meta">{article.data.source} · {article.data.published_at}</div>
+                  <div class="article-card-lead">{getLead(article)}</div>
+                  <div class="article-card-meta">{article.data.published_at}</div>
                 </div>
-              </div>
+              </a>
             ))}
           </div>
         )}
