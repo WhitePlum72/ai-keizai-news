@@ -1,0 +1,742 @@
+2026-05-06 10:11:40,934 [INFO] ============================================================
+2026-05-06 10:11:40,934 [INFO] 記事公開処理を開始しました
+2026-05-06 10:11:40,935 [INFO] ============================================================
+2026-05-06 10:11:40,939 [INFO] 生成完了: 2026-05-06-1384.md
+2026-05-06 10:11:40,939 [INFO] 生成完了: 2026-05-06-1385.md
+2026-05-06 10:11:40,940 [INFO] 生成完了: 2026-05-06-1387.md
+2026-05-06 10:11:40,940 [INFO] 生成完了: 2026-05-06-1388.md
+2026-05-06 10:11:40,940 [INFO] 生成完了: 2026-05-06-1396.md
+2026-05-06 10:11:40,941 [INFO] 生成完了: 2026-05-06-1397.md
+2026-05-06 10:11:40,941 [INFO] 生成完了: 2026-05-06-1398.md
+2026-05-06 10:11:40,941 [INFO] 生成完了: 2026-05-06-1399.md
+2026-05-06 10:11:40,941 [INFO] 生成完了: 2026-05-06-1400.md
+2026-05-06 10:11:40,941 [INFO] 生成完了: 2026-05-06-1402.md
+2026-05-06 10:11:40,941 [INFO] 生成完了: 2026-05-06-1405.md
+2026-05-06 10:11:40,941 [INFO] 生成完了: 2026-05-06-1407.md
+2026-05-06 10:11:40,944 [INFO] 生成完了: 2026-05-06-1409.md
+2026-05-06 10:11:40,944 [INFO] 生成完了: 2026-05-06-1411.md
+2026-05-06 10:11:40,944 [INFO] 生成完了: 2026-05-06-1413.md
+2026-05-06 10:11:40,945 [INFO] 生成完了: 2026-05-06-1416.md
+2026-05-06 10:11:40,945 [INFO] 生成完了: 2026-05-06-1428.md
+2026-05-06 10:11:40,945 [INFO] 生成完了: 2026-05-06-1431.md
+2026-05-06 10:11:40,946 [INFO] 生成完了: 2026-05-06-1433.md
+2026-05-06 10:11:40,946 [INFO] 生成完了: 2026-05-06-1439.md
+2026-05-06 10:11:40,947 [INFO] 生成完了: 2026-05-06-1442.md
+2026-05-06 10:11:40,947 [INFO] 生成完了: 2026-05-06-1454.md
+2026-05-06 10:11:40,947 [INFO] 生成完了: 2026-05-06-1456.md
+2026-05-06 10:11:40,948 [INFO] 生成完了: 2026-05-06-1460.md
+2026-05-06 10:11:40,948 [INFO] 生成完了: 2026-05-06-1463.md
+2026-05-06 10:11:40,948 [INFO] 生成完了: 2026-05-06-1465.md
+2026-05-06 10:11:40,948 [INFO] 生成完了: 2026-05-06-1466.md
+2026-05-06 10:11:40,949 [INFO] 生成完了: 2026-05-06-1467.md
+2026-05-06 10:11:40,949 [INFO] 生成完了: 2026-05-06-1468.md
+2026-05-06 10:11:40,949 [INFO] 生成完了: 2026-05-06-1469.md
+2026-05-06 10:11:40,949 [INFO] ============================================================
+2026-05-06 10:11:40,949 [INFO] Markdown生成完了: 30件
+2026-05-06 10:11:40,949 [INFO] ============================================================
+2026-05-06 10:11:40,949 [WARNING] Gitリポジトリが見つかりません。Pushをスキップします。
+2026-05-06 10:23:15,589 [INFO] ============================================================
+2026-05-06 10:23:15,589 [INFO] RSS収集を開始しました
+2026-05-06 10:23:15,589 [INFO] ============================================================
+2026-05-06 10:23:15,589 [INFO] データベースを初期化しました: data/articles.db
+2026-05-06 10:23:27,640 [INFO] Anthropicスクレイピング完了: 11件
+2026-05-06 10:23:27,640 [DEBUG] 重複記事をスキップ: Claude Opus 4 7
+2026-05-06 10:23:27,640 [DEBUG] 重複記事をスキップ: Claude Design Anthropic Labs
+2026-05-06 10:23:27,640 [DEBUG] 重複記事をスキップ: Claude Is A Space To Think
+2026-05-06 10:23:29,647 [INFO] 記事を保存: Finance Agents
+2026-05-06 10:23:29,649 [DEBUG] 重複記事をスキップ: Enterprise Ai Services Company
+2026-05-06 10:23:29,649 [DEBUG] 重複記事をスキップ: Claude For Creative Work
+2026-05-06 10:23:29,649 [DEBUG] 重複記事をスキップ: Theo Hourmouzis General Manager Australia New Zeal
+2026-05-06 10:23:29,649 [DEBUG] 重複記事をスキップ: Election Safeguards Update
+2026-05-06 10:23:29,650 [DEBUG] 重複記事をスキップ: Anthropic Nec
+2026-05-06 10:23:29,650 [DEBUG] 重複記事をスキップ: Anthropic Amazon Compute
+2026-05-06 10:23:29,650 [DEBUG] 重複記事をスキップ: Narasimhan Board
+2026-05-06 10:23:29,650 [INFO] RSS取得開始: OpenAI (https://openai.com/news/rss.xml)
+2026-05-06 10:23:30,502 [INFO] RSS取得完了: OpenAI - 記事数: 30
+2026-05-06 10:23:30,899 [INFO] 記事を保存: GPT-5.5 Instant System Card
+2026-05-06 10:23:31,343 [INFO] 記事を保存: GPT-5.5 Instant: smarter, clearer, and more person
+2026-05-06 10:23:31,684 [INFO] 記事を保存: New ways to buy ChatGPT ads
+2026-05-06 10:23:31,689 [DEBUG] 重複記事をスキップ: OpenAI and PwC collaborate to reimagine the office
+2026-05-06 10:23:31,689 [DEBUG] 重複記事をスキップ: How OpenAI delivers low-latency voice AI at scale
+2026-05-06 10:23:31,689 [DEBUG] 重複記事をスキップ: Introducing Advanced Account Security
+2026-05-06 10:23:31,689 [DEBUG] 重複記事をスキップ: Where the goblins came from
+2026-05-06 10:23:31,689 [DEBUG] 重複記事をスキップ: Building the compute infrastructure for the Intell
+2026-05-06 10:23:31,690 [DEBUG] 重複記事をスキップ: Cybersecurity in the Intelligence Age
+2026-05-06 10:23:31,690 [DEBUG] 重複記事をスキップ: OpenAI models, Codex, and Managed Agents come to A
+2026-05-06 10:23:31,690 [DEBUG] 重複記事をスキップ: Our commitment to community safety
+2026-05-06 10:23:31,690 [DEBUG] 重複記事をスキップ: OpenAI available at FedRAMP Moderate
+2026-05-06 10:23:31,690 [DEBUG] 重複記事をスキップ: The next phase of the Microsoft OpenAI partnership
+2026-05-06 10:23:31,690 [DEBUG] 重複記事をスキップ: An open-source spec for orchestration: Symphony
+2026-05-06 10:23:31,691 [DEBUG] 重複記事をスキップ: Choco automates food distribution with AI agents
+2026-05-06 10:23:31,691 [DEBUG] 重複記事をスキップ: Our principles
+2026-05-06 10:23:31,691 [DEBUG] 重複記事をスキップ: Introducing GPT-5.5
+2026-05-06 10:23:31,691 [DEBUG] 重複記事をスキップ: GPT-5.5 System Card
+2026-05-06 10:23:31,691 [DEBUG] 重複記事をスキップ: How to get started with Codex
+2026-05-06 10:23:31,691 [DEBUG] 重複記事をスキップ: What is Codex?
+2026-05-06 10:23:31,692 [DEBUG] 重複記事をスキップ: Automations
+2026-05-06 10:23:31,692 [DEBUG] 重複記事をスキップ: Top 10 uses for Codex at work
+2026-05-06 10:23:31,692 [DEBUG] 重複記事をスキップ: Plugins and skills
+2026-05-06 10:23:31,692 [DEBUG] 重複記事をスキップ: Working with Codex
+2026-05-06 10:23:31,692 [DEBUG] 重複記事をスキップ: Codex settings
+2026-05-06 10:23:31,692 [DEBUG] 重複記事をスキップ: GPT-5.5 Bio Bug Bounty
+2026-05-06 10:23:31,693 [DEBUG] 重複記事をスキップ: Making ChatGPT better for clinicians
+2026-05-06 10:23:31,693 [DEBUG] 重複記事をスキップ: Workspace agents
+2026-05-06 10:23:31,693 [DEBUG] 重複記事をスキップ: Speeding up agentic workflows with WebSockets in t
+2026-05-06 10:23:31,694 [DEBUG] 重複記事をスキップ: Introducing workspace agents in ChatGPT
+2026-05-06 10:23:31,694 [INFO] RSS取得開始: Hugging Face (https://huggingface.co/blog/feed.xml)
+2026-05-06 10:23:32,104 [INFO] RSS取得完了: Hugging Face - 記事数: 30
+2026-05-06 10:23:32,104 [DEBUG] 重複記事をスキップ: Granite 4.1 LLMs: How They’re Built
+2026-05-06 10:23:32,104 [DEBUG] 重複記事をスキップ: DeepInfra on Hugging Face Inference Providers 🔥
+2026-05-06 10:23:32,104 [DEBUG] 重複記事をスキップ: Introducing NVIDIA Nemotron 3 Nano Omni: Long-Cont
+2026-05-06 10:23:32,104 [DEBUG] 重複記事をスキップ: How to build scalable web apps with OpenAI's Priva
+2026-05-06 10:23:32,104 [DEBUG] 重複記事をスキップ: DeepSeek-V4: a million-token context that agents c
+2026-05-06 10:23:32,104 [DEBUG] 重複記事をスキップ: How to Use Transformers.js in a Chrome Extension
+2026-05-06 10:23:32,104 [DEBUG] 重複記事をスキップ: QIMMA قِمّة ⛰: A Quality-First Arabic LLM Leaderbo
+2026-05-06 10:23:32,104 [DEBUG] 重複記事をスキップ: AI and the Future of Cybersecurity: Why Openness M
+2026-05-06 10:23:32,104 [DEBUG] 重複記事をスキップ: Ecom-RLVE: Adaptive Verifiable Environments for E-
+2026-05-06 10:23:32,104 [DEBUG] 重複記事をスキップ: The PR you would have opened yourself
+2026-05-06 10:23:32,104 [DEBUG] 重複記事をスキップ: Training and Finetuning Multimodal Embedding & Rer
+2026-05-06 10:23:32,104 [DEBUG] 重複記事をスキップ: Inside VAKRA: Reasoning, Tool Use, and Failure Mod
+2026-05-06 10:23:32,104 [DEBUG] 重複記事をスキップ: Meet HoloTab by HCompany. Your AI browser companio
+2026-05-06 10:23:32,104 [DEBUG] 重複記事をスキップ: Waypoint-1.5: Higher-Fidelity Interactive Worlds f
+2026-05-06 10:23:32,109 [DEBUG] 重複記事をスキップ: Multimodal Embedding & Reranker Models with Senten
+2026-05-06 10:23:32,109 [DEBUG] 重複記事をスキップ: Safetensors is Joining the PyTorch Foundation
+2026-05-06 10:23:32,109 [DEBUG] 重複記事をスキップ: Welcome Gemma 4: Frontier multimodal intelligence 
+2026-05-06 10:23:32,109 [DEBUG] 重複記事をスキップ: Falcon Perception
+2026-05-06 10:23:32,109 [DEBUG] 重複記事をスキップ: Any Custom Frontend with Gradio's Backend
+2026-05-06 10:23:32,109 [DEBUG] 重複記事をスキップ: Granite 4.0 3B Vision: Compact Multimodal Intellig
+2026-05-06 10:23:32,109 [DEBUG] 重複記事をスキップ: Training mRNA Language Models Across 25 Species fo
+2026-05-06 10:23:32,109 [DEBUG] 重複記事をスキップ: TRL v1.0: Post-Training Library Built to Move with
+2026-05-06 10:23:32,109 [DEBUG] 重複記事をスキップ: Liberate your OpenClaw
+2026-05-06 10:23:32,109 [DEBUG] 重複記事をスキップ: A New Framework for Evaluating Voice Agents (EVA)
+2026-05-06 10:23:32,109 [DEBUG] 重複記事をスキップ: Build a Domain-Specific Embedding Model in Under a
+2026-05-06 10:23:32,109 [DEBUG] 重複記事をスキップ: State of Open Source on Hugging Face: Spring 2026
+2026-05-06 10:23:32,109 [DEBUG] 重複記事をスキップ: Holotron-12B - High Throughput Computer Use Agent
+2026-05-06 10:23:32,109 [DEBUG] 重複記事をスキップ: Introducing Storage Buckets on the Hugging Face Hu
+2026-05-06 10:23:32,109 [DEBUG] 重複記事をスキップ: Keep the Tokens Flowing: Lessons from 16 Open-Sour
+2026-05-06 10:23:32,630 [INFO] 記事を保存: Ulysses Sequence Parallelism: Training with Millio
+2026-05-06 10:23:32,630 [INFO] RSS取得開始: TechCrunch (https://techcrunch.com/feed/)
+2026-05-06 10:23:32,731 [INFO] RSS取得完了: TechCrunch - 記事数: 20
+2026-05-06 10:23:32,994 [INFO] 記事を保存: Nuro receives driverless testing permit ahead of U
+2026-05-06 10:23:33,229 [INFO] 記事を保存: SAP bets $1.16B on 18-month-old German AI lab and 
+2026-05-06 10:23:33,458 [INFO] 記事を保存: Bumble’s paying users are slipping as it bets on a
+2026-05-06 10:23:33,711 [INFO] 記事を保存: Altara secures $7M to bridge the data gap that’s s
+2026-05-06 10:23:33,944 [INFO] 記事を保存: Lucid Motors doesn’t know how many EVs it will bui
+2026-05-06 10:23:34,173 [INFO] 記事を保存: As crypto cools, a16z crypto raises a $2.2B fund
+2026-05-06 10:23:34,411 [INFO] 記事を保存: Apple plans to make iOS 27 a Choose Your Own Adven
+2026-05-06 10:23:34,645 [INFO] 記事を保存: ASML CEO Christophe Fouquet on his company’s monop
+2026-05-06 10:23:34,911 [INFO] 記事を保存: Volkswagen becomes Rivian’s top shareholder, displ
+2026-05-06 10:23:35,143 [INFO] 記事を保存: Threads finally brings messaging to the web
+2026-05-06 10:23:35,373 [INFO] 記事を保存: Airbnb co-founder taps Peter Arnell as first US ch
+2026-05-06 10:23:35,613 [INFO] 記事を保存: Pennsylvania sues Character.AI after a chatbot all
+2026-05-06 10:23:35,859 [INFO] 記事を保存: OpenAI releases GPT-5.5 Instant, a new default mod
+2026-05-06 10:23:36,114 [INFO] 記事を保存: PayPal says it’s ‘becoming a technology company ag
+2026-05-06 10:23:36,344 [INFO] 記事を保存: Etsy launches its app within ChatGPT as it continu
+2026-05-06 10:23:36,587 [INFO] 記事を保存: Kaspersky suspects Chinese hackers planted a backd
+2026-05-06 10:23:36,811 [INFO] 記事を保存: Hackers steal students’ data during breach at educ
+2026-05-06 10:23:37,060 [INFO] 記事を保存: Meta will use AI to analyze height and bone struct
+2026-05-06 10:23:37,291 [INFO] 記事を保存: ElevenLabs lists BlackRock, Jamie Foxx, and Eva Lo
+2026-05-06 10:23:37,520 [INFO] 記事を保存: CopilotKit raises $27M to help devs deploy app-nat
+2026-05-06 10:23:37,520 [INFO] RSS取得開始: The Verge AI (https://www.theverge.com/rss/ai-artificial-intelligence/index.xml)
+2026-05-06 10:23:37,647 [INFO] RSS取得完了: The Verge AI - 記事数: 10
+2026-05-06 10:23:37,961 [INFO] 記事を保存: Google Home&#8217;s Gemini AI can handle more comp
+2026-05-06 10:23:38,275 [INFO] 記事を保存: Apple agrees to pay iPhone owners $250 million for
+2026-05-06 10:23:38,583 [INFO] 記事を保存: Microsoft gives up on Xbox Copilot AI
+2026-05-06 10:23:38,894 [INFO] 記事を保存: Apple could let you pick a favorite AI model in iO
+2026-05-06 10:23:38,894 [DEBUG] 重複記事をスキップ: Live updates from Elon Musk and Sam Altman’s court
+2026-05-06 10:23:39,187 [INFO] 記事を保存: OpenAI claims ChatGPT’s new default model hallucin
+2026-05-06 10:23:39,487 [INFO] 記事を保存: Book publishers sue Meta over AI&#8217;s &#8216;wo
+2026-05-06 10:23:39,778 [INFO] 記事を保存: OpenAI is reportedly launching a phone for ChatGPT
+2026-05-06 10:23:40,111 [INFO] 記事を保存: Google, Microsoft, and xAI will allow the US gover
+2026-05-06 10:23:40,378 [INFO] 記事を保存: What an AI-designed car looks like
+2026-05-06 10:23:40,378 [INFO] RSS取得開始: VentureBeat AI (https://venturebeat.com/category/ai/feed/)
+2026-05-06 10:23:40,794 [INFO] RSS取得完了: VentureBeat AI - 記事数: 7
+2026-05-06 10:23:40,795 [DEBUG] 重複記事をスキップ: Railway secures $100 million to challenge AWS with
+2026-05-06 10:23:40,795 [DEBUG] 重複記事をスキップ: Claude Code costs up to $200 a month. Goose does t
+2026-05-06 10:23:40,795 [DEBUG] 重複記事をスキップ: Listen Labs raises $69M after viral billboard hiri
+2026-05-06 10:23:40,795 [DEBUG] 重複記事をスキップ: Salesforce rolls out new Slackbot AI agent as it b
+2026-05-06 10:23:40,795 [DEBUG] 重複記事をスキップ: Anthropic launches Cowork, a Claude Desktop agent 
+2026-05-06 10:23:40,795 [DEBUG] 重複記事をスキップ: Nous Research's NousCoder-14B is an open-source co
+2026-05-06 10:23:40,795 [DEBUG] 重複記事をスキップ: The creator of Claude Code just revealed his workf
+2026-05-06 10:23:40,795 [INFO] RSS取得開始: Wired AI (https://www.wired.com/feed/tag/ai/latest/rss)
+2026-05-06 10:23:41,080 [INFO] RSS取得完了: Wired AI - 記事数: 10
+2026-05-06 10:23:41,427 [INFO] 記事を保存: ‘I Actually Thought He Was Going to Hit Me,’ OpenA
+2026-05-06 10:23:41,762 [INFO] 記事を保存: Google DeepMind Workers Vote to Unionize Over Mili
+2026-05-06 10:23:42,116 [INFO] 記事を保存: He Couldn’t Land a Job Interview. Was AI to Blame?
+2026-05-06 10:23:42,119 [DEBUG] 重複記事をスキップ: Greg Brockman Defends $30B OpenAI Stake: ‘Blood, S
+2026-05-06 10:23:42,120 [DEBUG] 重複記事をスキップ: Disneyland Now Uses Face Recognition on Visitors
+2026-05-06 10:23:42,120 [DEBUG] 重複記事をスキップ: A Dark-Money Campaign Is Paying Influencers to Fra
+2026-05-06 10:23:42,120 [DEBUG] 重複記事をスキップ: How Shivon Zilis Operated as Elon Musk’s OpenAI In
+2026-05-06 10:23:42,120 [DEBUG] 重複記事をスキップ: Good Luck Getting a Mac Mini for the Next ‘Several
+2026-05-06 10:23:42,120 [DEBUG] 重複記事をスキップ: Musk v. Altman Kicks Off, DOJ Guts Voting Rights U
+2026-05-06 10:23:42,121 [DEBUG] 重複記事をスキップ: Elon Musk Seemingly Admits xAI Has Used OpenAI’s M
+2026-05-06 10:23:42,121 [INFO] RSS取得開始: MIT Technology Review (https://www.technologyreview.com/feed/)
+2026-05-06 10:23:42,229 [INFO] RSS取得完了: MIT Technology Review - 記事数: 10
+2026-05-06 10:23:42,476 [INFO] 記事を保存: The Download: inside the Musk v. Altman trial, and
+2026-05-06 10:23:42,695 [INFO] 記事を保存: A blueprint for using AI to strengthen democracy
+2026-05-06 10:23:42,695 [DEBUG] 重複記事をスキップ: Week one of the Musk v. Altman trial: What it was 
+2026-05-06 10:23:42,695 [DEBUG] 重複記事をスキップ: Tailoring AI solutions for health care needs
+2026-05-06 10:23:42,695 [DEBUG] 重複記事をスキップ: Musk v. Altman week 1: Elon Musk says he was duped
+2026-05-06 10:23:42,695 [DEBUG] 重複記事をスキップ: Cyber-Insecurity in the AI Era
+2026-05-06 10:23:42,695 [DEBUG] 重複記事をスキップ: Operationalizing AI for Scale and Sovereignty
+2026-05-06 10:23:42,695 [DEBUG] 重複記事をスキップ: The Download: a new Christian phone network, and d
+2026-05-06 10:23:42,695 [DEBUG] 重複記事をスキップ: Inexpensive seafloor-hopping submersibles could st
+2026-05-06 10:23:42,695 [DEBUG] 重複記事をスキップ: Trump’s mass firing just dealt another blow to Ame
+2026-05-06 10:23:42,695 [INFO] RSS取得開始: BAIR Blog (https://bair.berkeley.edu/blog/feed.xml)
+2026-05-06 10:23:43,531 [INFO] RSS取得完了: BAIR Blog - 記事数: 10
+2026-05-06 10:23:43,531 [DEBUG] 重複記事をスキップ: Gradient-based Planning for World Models at Longer
+2026-05-06 10:23:43,532 [DEBUG] 重複記事をスキップ: Identifying Interactions at Scale for LLMs
+2026-05-06 10:23:43,532 [DEBUG] 重複記事をスキップ: Information-Driven Design of Imaging Systems
+2026-05-06 10:23:43,532 [DEBUG] 重複記事をスキップ: RL without TD learning
+2026-05-06 10:23:43,532 [DEBUG] 重複記事をスキップ: What exactly does word2vec learn?
+2026-05-06 10:23:43,532 [DEBUG] 重複記事をスキップ: Whole-Body Conditioned Egocentric Video Prediction
+2026-05-06 10:23:43,533 [DEBUG] 重複記事をスキップ: Defending against Prompt Injection with Structured
+2026-05-06 10:23:43,533 [DEBUG] 重複記事をスキップ: Repurposing Protein Folding Models for Generation 
+2026-05-06 10:23:43,533 [DEBUG] 重複記事をスキップ: Scaling Up Reinforcement Learning for Traffic Smoo
+2026-05-06 10:23:43,533 [DEBUG] 重複記事をスキップ: Virtual Personas for Language Models via an Anthol
+2026-05-06 10:23:43,533 [INFO] RSS取得開始: Bloomberg Technology (https://feeds.bloomberg.com/technology/news.rss)
+2026-05-06 10:23:44,392 [INFO] RSS取得完了: Bloomberg Technology - 記事数: 30
+2026-05-06 10:23:44,675 [INFO] 記事を保存: Samsung Hits $1 Trillion Valuation, Joining TSMC i
+2026-05-06 10:23:44,972 [INFO] 記事を保存: Infratil Shares Surge as CDC Signs Monster Data Ce
+2026-05-06 10:23:45,226 [INFO] 記事を保存: Super Micro Jumps on Outlook Signaling Costs Under
+2026-05-06 10:23:45,497 [INFO] 記事を保存: Ousted Fermi CEO Calls for Special Meeting to Expa
+2026-05-06 10:23:45,762 [INFO] 記事を保存: AMD Rallies Anew After AI Demand Fuels Blockbuster
+2026-05-06 10:23:46,012 [INFO] 記事を保存: Oaktree BDC Marks Down Software Loans, Flags 26% A
+2026-05-06 10:23:46,278 [INFO] 記事を保存: AMD Gives Upbeat Forecast, Super Micro Jumps on Ou
+2026-05-06 10:23:46,590 [INFO] 記事を保存: Nvidia Billionaire Mark Stevens Gives $200 Million
+2026-05-06 10:23:46,864 [INFO] 記事を保存: Pimco CEO Roman on Data Center Financing and Debt 
+2026-05-06 10:23:47,130 [INFO] 記事を保存: Early Nvidia Investor Gifts $200 Million to USC
+2026-05-06 10:23:47,130 [DEBUG] 重複記事をスキップ: Alphabet Returns to Euro Debt Market for Latest AI
+2026-05-06 10:23:47,401 [INFO] 記事を保存: SVP's Victor Khosla Sees 'Lots of Pressure' in Cre
+2026-05-06 10:23:47,674 [INFO] 記事を保存: Why China Blocked Meta’s $2 billion Acquisition of
+2026-05-06 10:23:47,966 [INFO] 記事を保存: Beijing’s Veto of Meta’s Manus Deal Signals a Shif
+2026-05-06 10:23:48,229 [INFO] 記事を保存: Goldman's Minnis on How AI Is Impacting Private, P
+2026-05-06 10:23:48,498 [INFO] 記事を保存: Tinder Returns to New User Registration Growth in 
+2026-05-06 10:23:48,778 [INFO] 記事を保存: Intel’s VC Arm Backs QuantWare, a Dutch Startup Ma
+2026-05-06 10:23:49,028 [INFO] 記事を保存: Guggenheim’s Schwartz Warns Power Crunch Imperils 
+2026-05-06 10:23:49,290 [INFO] 記事を保存: Bondholders Move to Resist Covenant Stripping From
+2026-05-06 10:23:49,562 [INFO] 記事を保存: Thoma Bravo Is `Model Agnostic,' Says Boro
+2026-05-06 10:23:49,573 [DEBUG] 重複記事をスキップ: GameStop CEO Sees New Target, Possible Payday in e
+2026-05-06 10:23:49,844 [INFO] 記事を保存: Guggenheim's Schwartz Says US Power Crunch Hurts A
+2026-05-06 10:23:50,119 [INFO] 記事を保存: Pinterest Sees Payoff From Custom AI
+2026-05-06 10:23:50,378 [INFO] 記事を保存: Coinbase CEO Announces Job Cuts, Mallers Backs Twe
+2026-05-06 10:23:50,657 [INFO] 記事を保存: Brockman Says Musk’s Lack of AI Knowledge Was Conc
+2026-05-06 10:23:50,930 [INFO] 記事を保存: PayPal, Coinbase Announce Layoffs as AI Impact Bit
+2026-05-06 10:23:51,231 [INFO] 記事を保存: Berkshire Hathaway Idea for Twenty One Capital: Ma
+2026-05-06 10:23:51,496 [INFO] 記事を保存: Guggenheim's Schwartz Concerned Private Credit Wil
+2026-05-06 10:23:51,790 [INFO] 記事を保存: OpenAI to Spend $50 Billion on Computing in 2026, 
+2026-05-06 10:23:52,095 [INFO] 記事を保存: Tokenized Money Market Growth Will Explode: Kaul
+2026-05-06 10:23:52,095 [INFO] RSS取得開始: Reuters Technology (https://www.reutersagency.com/feed/?best-topics=tech)
+2026-05-06 10:23:52,960 [INFO] RSS取得完了: Reuters Technology - 記事数: 0
+2026-05-06 10:23:52,961 [INFO] RSS取得開始: The Decoder (https://the-decoder.com/feed/)
+2026-05-06 10:23:54,974 [INFO] RSS取得完了: The Decoder - 記事数: 10
+2026-05-06 10:23:57,078 [INFO] 記事を保存: US government now has pre-release access to AI mod
+2026-05-06 10:23:59,104 [INFO] 記事を保存: ChatGPT update rolls out GPT-5.5 Instant with fewe
+2026-05-06 10:24:01,062 [INFO] 記事を保存: OpenAI's first hardware play might be a phone that
+2026-05-06 10:24:03,055 [INFO] 記事を保存: Anthropic ships ten AI agents for finance as both 
+2026-05-06 10:24:05,064 [INFO] 記事を保存: Meta now scans photos for bone structure and body 
+2026-05-06 10:24:07,044 [INFO] 記事を保存: AI is saving pharma billions in manufacturing and 
+2026-05-06 10:24:09,207 [INFO] 記事を保存: SAP's acquisition spree signals the enterprise gia
+2026-05-06 10:24:11,282 [INFO] 記事を保存: Anthropic co-founder maps out how recursive AI imp
+2026-05-06 10:24:13,326 [INFO] 記事を保存: Amazon brings agentic fine-tuning to SageMaker wit
+2026-05-06 10:24:15,830 [INFO] 記事を保存: White House briefed Anthropic, Google, and OpenAI 
+2026-05-06 10:24:15,830 [INFO] RSS取得開始: arXiv CS.AI (https://arxiv.org/rss/cs.AI)
+2026-05-06 10:24:15,893 [INFO] RSS取得完了: arXiv CS.AI - 記事数: 0
+2026-05-06 10:24:15,893 [INFO] RSS取得開始: arXiv CS.CL (https://arxiv.org/rss/cs.CL)
+2026-05-06 10:24:15,930 [INFO] RSS取得完了: arXiv CS.CL - 記事数: 0
+2026-05-06 10:24:15,930 [INFO] RSS取得開始: Yahoo Finance (https://finance.yahoo.com/rss/topstories)
+2026-05-06 10:24:16,197 [INFO] RSS取得完了: Yahoo Finance - 記事数: 30
+2026-05-06 10:24:17,575 [INFO] 記事を保存: Amex GBT agrees to $6.3 billion take-private deal 
+2026-05-06 10:24:19,467 [INFO] 記事を保存: Best CD rates today, May 4, 2026 (Lock in up to 4.
+2026-05-06 10:24:20,559 [INFO] 記事を保存: Chipotle CEO on affordable prices, portion size, a
+2026-05-06 10:24:22,161 [INFO] 記事を保存: The connection between money and mental health: Wh
+2026-05-06 10:24:24,047 [INFO] 記事を保存: Chase Home Loans launches another mortgage rate sa
+2026-05-06 10:24:26,014 [INFO] 記事を保存: Alarm bells raised over fintech firm’s bank purcha
+2026-05-06 10:24:28,780 [INFO] 記事を保存: Big Tech profits are being inflated by stakes in p
+2026-05-06 10:24:30,197 [INFO] 記事を保存: An Analysis of AmpliTech Group (AMPG) as an Emergi
+2026-05-06 10:24:31,347 [INFO] 記事を保存: Ignore the OpenAI Panic and Keep Buying Oracle Sto
+2026-05-06 10:24:33,467 [INFO] 記事を保存: Factbox-Global drugmakers rush to boost US presenc
+2026-05-06 10:24:35,432 [INFO] 記事を保存: S&P 500 Faces Oil-Fueled Sell-off Pressure in Poss
+2026-05-06 10:24:37,564 [INFO] 記事を保存: RBC Bearings (RBC) Gained From Multiple Converging
+2026-05-06 10:24:39,544 [INFO] 記事を保存: Do You Believe in GeneDx Holdings Corp.’s (WGS) Du
+2026-05-06 10:24:40,833 [INFO] 記事を保存: For $200 a month, a startup says you'll never have
+2026-05-06 10:24:42,165 [INFO] 記事を保存: Amcor Stock Outlook: Is Wall Street Bullish or Bea
+2026-05-06 10:24:43,677 [INFO] 記事を保存: Analyst Report: Carvana Co
+2026-05-06 10:24:44,835 [INFO] 記事を保存: Ardea’s Goongarrie Hub selected in Australia-Japan
+2026-05-06 10:24:45,966 [INFO] 記事を保存: Here’s What Triggered Agilysys’ (AGYS) Sharp Sell 
+2026-05-06 10:24:47,996 [INFO] 記事を保存: Stocks Mixed on Middle East Tensions and Solid Cor
+2026-05-06 10:24:49,246 [INFO] 記事を保存: A couple in their 70s sold their home for a $700K 
+2026-05-06 10:24:54,487 [INFO] 記事を保存: Does the IRS owe you a COVID tax refund? Here's wh
+2026-05-06 10:24:56,899 [INFO] 記事を保存: Analyst Report: Altria Group Inc
+2026-05-06 10:24:58,269 [INFO] 記事を保存: Defense Stocks Worth Buying Under $15
+2026-05-06 10:24:59,446 [INFO] 記事を保存: What Makes Cognex Corporation (CGNX) a Compelling 
+2026-05-06 10:25:00,416 [INFO] 記事を保存: Universal Logistics slips to Q1 loss as intermodal
+2026-05-06 10:25:01,917 [INFO] 記事を保存: Bitcoin and ethereum prices today, Monday, May 4, 
+2026-05-06 10:25:03,850 [INFO] 記事を保存: Gold and silver prices today, Monday, May 4: Gold 
+2026-05-06 10:25:05,117 [INFO] 記事を保存: Analyst Report: Regency Centers Corp
+2026-05-06 10:25:06,064 [INFO] 記事を保存: AI-Driven Ad Pricing Could Push Meta Toward $1,000
+2026-05-06 10:25:07,562 [INFO] 記事を保存: HELOC and home equity loan rates, Monday, May 4, 2
+2026-05-06 10:25:07,562 [INFO] RSS取得開始: Seeking Alpha (https://seekingalpha.com/feed.xml)
+2026-05-06 10:25:07,801 [INFO] RSS取得完了: Seeking Alpha - 記事数: 30
+2026-05-06 10:25:08,195 [INFO] 記事を保存: Entravision Communications Corporation (EVC) Q1 20
+2026-05-06 10:25:08,545 [INFO] 記事を保存: Veeco Instruments Inc. 2026 Q1 - Results - Earning
+2026-05-06 10:25:08,574 [DEBUG] 重複記事をスキップ: Compass, Inc. 2026 Q1 - Results - Earnings Call Pr
+2026-05-06 10:25:08,833 [INFO] 記事を保存: Match Group, Inc. (MTCH) Q1 2026 Earnings Call Tra
+2026-05-06 10:25:09,097 [INFO] 記事を保存: Freshworks Inc. 2026 Q1 - Results - Earnings Call 
+2026-05-06 10:25:09,367 [INFO] 記事を保存: InnovAge Holding Corp. (INNV) Q3 2026 Earnings Cal
+2026-05-06 10:25:09,634 [INFO] 記事を保存: DaVita Inc. (DVA) Q1 2026 Earnings Call Transcript
+2026-05-06 10:25:09,900 [INFO] 記事を保存: Advanced Micro Devices, Inc. (AMD) Q1 2026 Earning
+2026-05-06 10:25:10,166 [INFO] 記事を保存: Logitech International S.A. (LOGI) Q4 2026 Earning
+2026-05-06 10:25:10,450 [INFO] 記事を保存: Upstart Holdings, Inc. 2026 Q1 - Results - Earning
+2026-05-06 10:25:10,463 [DEBUG] 重複記事をスキップ: Coupang, Inc. (CPNG) Q1 2026 Earnings Call Transcr
+2026-05-06 10:25:10,480 [DEBUG] 重複記事をスキップ: TransMedics Group, Inc. (TMDX) Q1 2026 Earnings Ca
+2026-05-06 10:25:10,496 [DEBUG] 重複記事をスキップ: DHI Group, Inc. (DHX) Q1 2026 Earnings Call Transc
+2026-05-06 10:25:10,801 [INFO] 記事を保存: Key Tronic Corporation (KTCC) Q3 2026 Earnings Cal
+2026-05-06 10:25:11,174 [INFO] 記事を保存: Super Micro Computer, Inc. (SMCI) Q3 2026 Earnings
+2026-05-06 10:25:11,200 [DEBUG] 重複記事をスキップ: Lucid Group, Inc. (LCID) Q1 2026 Earnings Call Tra
+2026-05-06 10:25:11,469 [INFO] 記事を保存: Atomera Incorporated (ATOM) Q1 2026 Earnings Call 
+2026-05-06 10:25:11,745 [INFO] 記事を保存: Jacobs Solutions Inc. (J) Q2 2026 Earnings Call Tr
+2026-05-06 10:25:12,030 [INFO] 記事を保存: Solventum Corporation (SOLV) Q1 2026 Earnings Call
+2026-05-06 10:25:12,296 [INFO] 記事を保存: Schrödinger, Inc. (SDGR) Q1 2026 Earnings Call Tra
+2026-05-06 10:25:12,318 [DEBUG] 重複記事をスキップ: Strategy Inc 2026 Q1 - Results - Earnings Call Pre
+2026-05-06 10:25:12,805 [INFO] 記事を保存: Accel Entertainment, Inc. (ACEL) Q1 2026 Earnings 
+2026-05-06 10:25:13,196 [INFO] 記事を保存: Raiffeisen Bank International AG (RAIFY) Q1 2026 E
+2026-05-06 10:25:13,582 [INFO] 記事を保存: Apple: iPhone And Services Drive Growth, But Margi
+2026-05-06 10:25:13,597 [DEBUG] 重複記事をスキップ: Workiva Inc. 2026 Q1 - Results - Earnings Call Pre
+2026-05-06 10:25:13,612 [DEBUG] 重複記事をスキップ: Workiva Inc. (WK) Q1 2026 Earnings Call Transcript
+2026-05-06 10:25:14,246 [INFO] 記事を保存: Socket Mobile, Inc. (SCKT) Q1 2026 Earnings Call T
+2026-05-06 10:25:14,635 [INFO] 記事を保存: Talen Energy Corporation (TLN) Q1 2026 Earnings Ca
+2026-05-06 10:25:15,027 [INFO] 記事を保存: American Electric Power Company, Inc. (AEP) Q1 202
+2026-05-06 10:25:15,401 [INFO] 記事を保存: Onto Innovation Inc. (ONTO) Q1 2026 Earnings Call 
+2026-05-06 10:25:15,401 [INFO] RSS取得開始: MarketWatch Tech (https://feeds.marketwatch.com/marketwatch/technology/)
+2026-05-06 10:25:17,010 [INFO] RSS取得完了: MarketWatch Tech - 記事数: 0
+2026-05-06 10:25:17,010 [INFO] ============================================================
+2026-05-06 10:25:17,010 [INFO] RSS収集が完了しました
+2026-05-06 10:25:17,010 [INFO] 新規収集: 129件
+2026-05-06 10:25:17,011 [INFO] 重複排除: 109件
+2026-05-06 10:25:17,011 [INFO] ============================================================
+2026-05-06 10:25:54,749 [INFO] ============================================================
+2026-05-06 10:25:54,749 [INFO] 翻訳・記事生成処理を開始しました
+2026-05-06 10:25:54,749 [INFO] ============================================================
+2026-05-06 10:25:54,751 [INFO] summariesテーブルを確認しました
+2026-05-06 10:25:54,751 [INFO] [1/30] 処理中: The creator of Claude Code just revealed his workf
+2026-05-06 10:25:55,830 [INFO]   本文取得成功: 6620文字
+2026-05-06 10:25:58,941 [INFO]   Qwenで記事生成中...
+2026-05-06 10:28:10,878 [INFO]   Qwen記事生成成功
+2026-05-06 10:28:10,878 [INFO] ✓ 完了: The creator of Claude Code jus → Claude Code の作成者が自身のワークフローを公開、
+2026-05-06 10:28:11,382 [INFO] [2/30] 処理中: Greg Brockman Defends $30B OpenAI Stake: ‘Blood, S
+2026-05-06 10:28:12,515 [INFO]   本文取得成功: 5827文字
+2026-05-06 10:28:16,832 [INFO]   Qwenで記事生成中...
+2026-05-06 10:30:35,773 [INFO]   Qwen記事生成成功
+2026-05-06 10:30:35,785 [INFO] ✓ 完了: Greg Brockman Defends $30B Ope → グレッグ・ブロックマン、300億ドルのOpenAI株式を弁護
+2026-05-06 10:30:36,286 [INFO] [3/30] 処理中: Musk v. Altman week 1: Elon Musk says he was duped
+2026-05-06 10:30:37,371 [INFO]   本文取得成功: 9003文字
+2026-05-06 10:30:42,671 [INFO]   Qwenで記事生成中...
+2026-05-06 10:33:04,977 [INFO]   Qwen記事生成成功
+2026-05-06 10:33:04,994 [INFO] ✓ 完了: Musk v. Altman week 1: Elon Mu → マスク対アルトマン 第 1 週: イーロン・マスク、騙された
+2026-05-06 10:33:05,495 [INFO] [4/30] 処理中: The Download: a new Christian phone network, and d
+2026-05-06 10:33:07,418 [INFO]   本文取得成功: 7905文字
+2026-05-06 10:33:12,458 [INFO]   Qwenで記事生成中...
+2026-05-06 10:34:53,250 [INFO]   Qwen記事生成成功
+2026-05-06 10:34:53,267 [INFO] ✓ 完了: The Download: a new Christian  → ダウンロード: 新しいキリスト教の電話ネットワークと LLM
+2026-05-06 10:34:53,770 [INFO] [5/30] 処理中: Identifying Interactions at Scale for LLMs
+2026-05-06 10:34:55,868 [INFO]   本文取得成功: 10000文字
+2026-05-06 10:35:02,546 [INFO]   Qwenで記事生成中...
+2026-05-06 10:37:10,269 [INFO]   Qwen記事生成成功
+2026-05-06 10:37:10,269 [INFO] ✓ 完了: Identifying Interactions at Sc → LLM の大規模なインタラクションを特定する
+2026-05-06 10:37:10,779 [INFO] [6/30] 処理中: Palantir Raises Revenue Outlook, Misses on Commerc
+2026-05-06 10:37:11,977 [INFO]   本文取得成功: 521文字
+2026-05-06 10:37:13,322 [INFO]   Qwenで記事生成中...
+2026-05-06 10:38:36,270 [INFO]   Qwen記事生成成功
+2026-05-06 10:38:36,286 [INFO] ✓ 完了: Palantir Raises Revenue Outloo → Palantir、収益見通しを引き上げ、商用売上は逃す
+2026-05-06 10:38:36,787 [INFO] [7/30] 処理中: Musk’s Lawyer Pushes OpenAI’s Brockman to Give Bac
+2026-05-06 10:38:37,916 [INFO]   本文取得成功: 521文字
+2026-05-06 10:38:38,727 [INFO]   Qwenで記事生成中...
+2026-05-06 10:40:02,480 [INFO]   Qwen記事生成成功
+2026-05-06 10:40:02,486 [INFO] ✓ 完了: Musk’s Lawyer Pushes OpenAI’s  → マスク氏の弁護士、OpenAIのブロックマン氏に290億ドル
+2026-05-06 10:40:02,986 [INFO] [8/30] 処理中: How Shivon Zilis Operated as Elon Musk’s OpenAI In
+2026-05-06 10:40:05,687 [INFO]   本文取得成功: 8121文字
+2026-05-06 10:40:10,660 [INFO]   Qwenで記事生成中...
+2026-05-06 10:42:12,985 [INFO]   Qwen記事生成成功
+2026-05-06 10:42:13,001 [INFO] ✓ 完了: How Shivon Zilis Operated as E → Shivon Zilis がイーロン・マスクの OpenAI
+2026-05-06 10:42:13,502 [INFO] [9/30] 処理中: Elon Musk Seemingly Admits xAI Has Used OpenAI’s M
+2026-05-06 10:42:15,584 [INFO]   本文取得成功: 2908文字
+2026-05-06 10:42:17,448 [INFO]   Qwenで記事生成中...
+2026-05-06 10:44:31,039 [INFO]   Qwen記事生成成功
+2026-05-06 10:44:31,058 [INFO] ✓ 完了: Elon Musk Seemingly Admits xAI → イーロン・マスク氏、xAIがOpenAIのモデルを使って自身
+2026-05-06 10:44:31,559 [INFO] [10/30] 処理中: OpenAI Rolls Out ‘Advanced’ Security Mode for At-R
+2026-05-06 10:44:33,675 [INFO]   本文取得成功: 2996文字
+2026-05-06 10:44:35,883 [INFO]   Qwenで記事生成中...
+2026-05-06 10:46:32,160 [INFO]   Qwen記事生成成功
+2026-05-06 10:46:32,160 [INFO] ✓ 完了: OpenAI Rolls Out ‘Advanced’ Se → OpenAI、リスクのあるアカウント向けに「高度な」セキュリ
+2026-05-06 10:46:32,669 [INFO] [11/30] 処理中: Anthropic and OpenAI now agree on one thing: selli
+2026-05-06 10:46:35,615 [INFO]   本文取得成功: 1760文字
+2026-05-06 10:46:37,752 [INFO]   Qwenで記事生成中...
+2026-05-06 10:48:47,785 [INFO]   Qwen記事生成成功
+2026-05-06 10:48:47,804 [INFO] ✓ 完了: Anthropic and OpenAI now agree → Anthropic と OpenAI は現在、AI の販売に
+2026-05-06 10:48:48,306 [INFO] [12/30] 処理中: OpenAI raises over $4 billion for new enterprise d
+2026-05-06 10:48:51,083 [INFO]   本文取得成功: 1483文字
+2026-05-06 10:48:53,286 [INFO]   Qwenで記事生成中...
+2026-05-06 10:50:48,961 [INFO]   Qwen記事生成成功
+2026-05-06 10:50:48,961 [INFO] ✓ 完了: OpenAI raises over $4 billion  → OpenAI、新しいエンタープライズ展開ベンチャーのために 
+2026-05-06 10:50:49,472 [INFO] [13/30] 処理中: OpenAI says human attention is the bottleneck, so 
+2026-05-06 10:50:53,341 [INFO]   本文取得成功: 5765文字
+2026-05-06 10:50:57,626 [INFO]   Qwenで記事生成中...
+2026-05-06 10:53:17,804 [INFO]   Qwen記事生成成功
+2026-05-06 10:53:17,812 [INFO] ✓ 完了: OpenAI says human attention is → OpenAIは、人間の注意力がボトルネックであるため、エージ
+2026-05-06 10:53:18,313 [INFO] [14/30] 処理中: Xiaomi's open-weight MiMo-V2.5-Pro takes aim at Cl
+2026-05-06 10:53:21,357 [INFO]   本文取得成功: 7783文字
+2026-05-06 10:53:25,744 [INFO]   Qwenで記事生成中...
+2026-05-06 10:56:06,831 [INFO]   Qwen記事生成成功
+2026-05-06 10:56:06,837 [INFO] ✓ 完了: Xiaomi's open-weight MiMo-V2.5 → Xiaomi のオープンウェイト MiMo-V2.5-Pro
+2026-05-06 10:56:07,341 [INFO] [15/30] 処理中: Claude Opus 4 7
+2026-05-06 10:56:11,064 [INFO]   本文取得成功: 10000文字
+2026-05-06 10:56:18,324 [INFO]   Qwenで記事生成中...
+2026-05-06 10:58:09,144 [INFO]   Qwen記事生成成功
+2026-05-06 10:58:09,159 [INFO] ✓ 完了: Claude Opus 4 7 → クロード 作品4 7
+2026-05-06 10:58:09,659 [INFO] [16/30] 処理中: Claude Design Anthropic Labs
+2026-05-06 10:58:13,357 [INFO]   本文取得成功: 5784文字
+2026-05-06 10:58:18,244 [INFO]   Qwenで記事生成中...
+2026-05-06 11:00:21,211 [INFO]   Qwen記事生成成功
+2026-05-06 11:00:21,220 [INFO] ✓ 完了: Claude Design Anthropic Labs → クロード・デザイン・アンスロピック・ラボ
+2026-05-06 11:00:21,720 [INFO] [17/30] 処理中: Claude Is A Space To Think
+2026-05-06 11:00:26,870 [INFO]   本文取得成功: 7645文字
+2026-05-06 11:00:31,575 [INFO]   Qwenで記事生成中...
+2026-05-06 11:02:45,040 [INFO]   Qwen記事生成成功
+2026-05-06 11:02:45,041 [INFO] ✓ 完了: Claude Is A Space To Think → クロードは考えるための空間です
+2026-05-06 11:02:45,544 [INFO] [18/30] 処理中: Claude For Creative Work
+2026-05-06 11:02:50,608 [INFO]   本文取得成功: 5875文字
+2026-05-06 11:02:55,604 [INFO]   Qwenで記事生成中...
+2026-05-06 11:05:01,066 [INFO]   Qwen記事生成成功
+2026-05-06 11:05:01,082 [INFO] ✓ 完了: Claude For Creative Work → クリエイティブな仕事のためのクロード
+2026-05-06 11:05:01,585 [INFO] [19/30] 処理中: Finance Agents
+2026-05-06 11:05:02,926 [INFO]   本文取得成功: 10000文字
+2026-05-06 11:05:09,290 [INFO]   Qwenで記事生成中...
+2026-05-06 11:07:29,387 [INFO]   Qwen記事生成成功
+2026-05-06 11:07:29,396 [INFO] ✓ 完了: Finance Agents → 金融代理店
+2026-05-06 11:07:29,897 [INFO] [20/30] 処理中: GPT-5.5 Instant System Card
+2026-05-06 11:07:32,069 [INFO]   本文取得成功: 964文字
+2026-05-06 11:07:33,841 [INFO]   Qwenで記事生成中...
+2026-05-06 11:09:37,537 [INFO]   Qwen記事生成成功
+2026-05-06 11:09:37,542 [INFO] ✓ 完了: GPT-5.5 Instant System Card → GPT-5.5 インスタント システム カード
+2026-05-06 11:09:38,042 [INFO] [21/30] 処理中: GPT-5.5 Instant: smarter, clearer, and more person
+2026-05-06 11:09:39,326 [INFO]   本文取得成功: 10000文字
+2026-05-06 11:09:45,877 [INFO]   Qwenで記事生成中...
+2026-05-06 11:12:13,715 [INFO]   Qwen記事生成成功
+2026-05-06 11:12:13,728 [INFO] ✓ 完了: GPT-5.5 Instant: smarter, clea → GPT-5.5 Instant: よりスマート、よりクリア、
+2026-05-06 11:12:14,229 [INFO] [22/30] 処理中: New ways to buy ChatGPT ads
+2026-05-06 11:12:15,677 [INFO]   本文取得成功: 5240文字
+2026-05-06 11:12:20,208 [INFO]   Qwenで記事生成中...
+2026-05-06 11:14:50,313 [INFO]   Qwen記事生成成功
+2026-05-06 11:14:50,319 [INFO] ✓ 完了: New ways to buy ChatGPT ads → ChatGPT 広告を購入する新しい方法
+2026-05-06 11:14:50,821 [INFO] [23/30] 処理中: As crypto cools, a16z crypto raises a $2.2B fund
+2026-05-06 11:14:51,916 [INFO]   本文取得成功: 2534文字
+2026-05-06 11:14:53,424 [INFO]   Qwenで記事生成中...
+2026-05-06 11:16:54,581 [INFO]   Qwen記事生成成功
+2026-05-06 11:16:54,597 [INFO] ✓ 完了: As crypto cools, a16z crypto r → 暗号通貨が冷え込む中、a16z暗号通貨が22億ドルの資金を調
+2026-05-06 11:16:55,102 [INFO] [24/30] 処理中: Etsy launches its app within ChatGPT as it continu
+2026-05-06 11:16:56,244 [INFO]   本文取得成功: 2697文字
+2026-05-06 11:16:58,509 [INFO]   Qwenで記事生成中...
+2026-05-06 11:19:32,585 [INFO]   Qwen記事生成成功
+2026-05-06 11:19:32,585 [INFO] ✓ 完了: Etsy launches its app within C → Etsy は AI の推進を継続しながら ChatGPT 内
+2026-05-06 11:19:33,098 [INFO] [25/30] 処理中: CopilotKit raises $27M to help devs deploy app-nat
+2026-05-06 11:19:34,176 [INFO]   本文取得成功: 6363文字
+2026-05-06 11:19:40,088 [INFO]   Qwenで記事生成中...
+2026-05-06 11:21:53,943 [INFO]   Qwen記事生成成功
+2026-05-06 11:21:53,951 [INFO] ✓ 完了: CopilotKit raises $27M to help → CopilotKit、開発者によるアプリネイティブ AI エ
+2026-05-06 11:21:54,452 [INFO] [26/30] 処理中: Google Home&#8217;s Gemini AI can handle more comp
+2026-05-06 11:21:56,664 [INFO]   本文取得成功: 2422文字
+2026-05-06 11:21:58,078 [INFO]   Qwenで記事生成中...
+2026-05-06 11:23:48,566 [INFO]   Qwen記事生成成功
+2026-05-06 11:23:48,566 [INFO] ✓ 完了: Google Home&#8217;s Gemini AI  → Google Home の Gemini AI はより複雑な
+2026-05-06 11:23:49,078 [INFO] [27/30] 処理中: US government now has pre-release access to AI mod
+2026-05-06 11:23:52,458 [INFO]   本文取得成功: 1399文字
+2026-05-06 11:23:54,056 [INFO]   Qwenで記事生成中...
+2026-05-06 11:25:29,249 [INFO]   Qwen記事生成成功
+2026-05-06 11:25:29,263 [INFO] ✓ 完了: US government now has pre-rele → 米国政府は現在、国家安全保障テストのために 5 つの主要研究
+2026-05-06 11:25:29,764 [INFO] [28/30] 処理中: ChatGPT update rolls out GPT-5.5 Instant with fewe
+2026-05-06 11:25:34,551 [INFO]   本文取得成功: 5375文字
+2026-05-06 11:25:40,628 [INFO]   Qwenで記事生成中...
+2026-05-06 11:27:40,756 [INFO]   Qwen記事生成成功
+2026-05-06 11:27:40,772 [INFO] ✓ 完了: ChatGPT update rolls out GPT-5 → ChatGPT アップデートにより、幻覚が減り、よりパーソナ
+2026-05-06 11:27:41,273 [INFO] [29/30] 処理中: OpenAI's first hardware play might be a phone that
+2026-05-06 11:27:44,350 [INFO]   本文取得成功: 2502文字
+2026-05-06 11:27:46,497 [INFO]   Qwenで記事生成中...
+2026-05-06 11:29:41,735 [INFO]   Qwen記事生成成功
+2026-05-06 11:29:41,745 [INFO] ✓ 完了: OpenAI's first hardware play m → OpenAI の最初のハードウェア プレイは、アプリ グリッ
+2026-05-06 11:29:42,246 [INFO] [30/30] 処理中: Anthropic ships ten AI agents for finance as both 
+2026-05-06 11:29:45,813 [INFO]   本文取得成功: 3452文字
+2026-05-06 11:29:47,671 [INFO]   Qwenで記事生成中...
+2026-05-06 11:31:42,932 [INFO]   Qwen記事生成成功
+2026-05-06 11:31:42,932 [INFO] ✓ 完了: Anthropic ships ten AI agents  → Anthropic と OpenAI の両社が IPO に向
+2026-05-06 11:31:43,443 [INFO] ============================================================
+2026-05-06 11:31:43,443 [INFO] 処理完了: 成功30件 失敗0件
+2026-05-06 11:31:43,443 [INFO] ============================================================
+2026-05-06 11:42:30,726 [INFO] ============================================================
+2026-05-06 11:42:30,727 [INFO] 記事公開処理を開始しました
+2026-05-06 11:42:30,727 [INFO] ============================================================
+2026-05-06 11:42:30,727 [INFO] 生成完了: 2026-05-06-1384.md
+2026-05-06 11:42:30,727 [INFO] 生成完了: 2026-05-06-1385.md
+2026-05-06 11:42:30,727 [INFO] 生成完了: 2026-05-06-1387.md
+2026-05-06 11:42:30,727 [INFO] 生成完了: 2026-05-06-1388.md
+2026-05-06 11:42:30,727 [INFO] 生成完了: 2026-05-06-1396.md
+2026-05-06 11:42:30,727 [INFO] 生成完了: 2026-05-06-1397.md
+2026-05-06 11:42:30,727 [INFO] 生成完了: 2026-05-06-1398.md
+2026-05-06 11:42:30,727 [INFO] 生成完了: 2026-05-06-1399.md
+2026-05-06 11:42:30,727 [INFO] 生成完了: 2026-05-06-1400.md
+2026-05-06 11:42:30,727 [INFO] 生成完了: 2026-05-06-1402.md
+2026-05-06 11:42:30,727 [INFO] 生成完了: 2026-05-06-1405.md
+2026-05-06 11:42:30,727 [INFO] 生成完了: 2026-05-06-1407.md
+2026-05-06 11:42:30,735 [INFO] 生成完了: 2026-05-06-1409.md
+2026-05-06 11:42:30,735 [INFO] 生成完了: 2026-05-06-1411.md
+2026-05-06 11:42:30,735 [INFO] 生成完了: 2026-05-06-1413.md
+2026-05-06 11:42:30,735 [INFO] 生成完了: 2026-05-06-1416.md
+2026-05-06 11:42:30,735 [INFO] 生成完了: 2026-05-06-1428.md
+2026-05-06 11:42:30,735 [INFO] 生成完了: 2026-05-06-1431.md
+2026-05-06 11:42:30,735 [INFO] 生成完了: 2026-05-06-1433.md
+2026-05-06 11:42:30,735 [INFO] 生成完了: 2026-05-06-1439.md
+2026-05-06 11:42:30,735 [INFO] 生成完了: 2026-05-06-1442.md
+2026-05-06 11:42:30,735 [INFO] 生成完了: 2026-05-06-1454.md
+2026-05-06 11:42:30,735 [INFO] 生成完了: 2026-05-06-1456.md
+2026-05-06 11:42:30,735 [INFO] 生成完了: 2026-05-06-1460.md
+2026-05-06 11:42:30,735 [INFO] 生成完了: 2026-05-06-1463.md
+2026-05-06 11:42:30,735 [INFO] 生成完了: 2026-05-06-1465.md
+2026-05-06 11:42:30,735 [INFO] 生成完了: 2026-05-06-1466.md
+2026-05-06 11:42:30,735 [INFO] 生成完了: 2026-05-06-1467.md
+2026-05-06 11:42:30,735 [INFO] 生成完了: 2026-05-06-1468.md
+2026-05-06 11:42:30,735 [INFO] 生成完了: 2026-05-06-1469.md
+2026-05-06 11:42:30,735 [INFO] ============================================================
+2026-05-06 11:42:30,735 [INFO] Markdown生成完了: 30件
+2026-05-06 11:42:30,735 [INFO] ============================================================
+2026-05-06 11:42:30,735 [WARNING] Gitリポジトリが見つかりません。Pushをスキップします。
+2026-05-06 11:50:09,895 [INFO] ============================================================
+2026-05-06 11:50:09,895 [INFO] 記事公開処理を開始しました
+2026-05-06 11:50:09,895 [INFO] ============================================================
+2026-05-06 11:50:09,895 [INFO] 生成完了: 2026-05-06-1384.md
+2026-05-06 11:50:09,895 [INFO] 生成完了: 2026-05-06-1385.md
+2026-05-06 11:50:09,895 [INFO] 生成完了: 2026-05-06-1387.md
+2026-05-06 11:50:09,895 [INFO] 生成完了: 2026-05-06-1388.md
+2026-05-06 11:50:09,895 [INFO] 生成完了: 2026-05-06-1396.md
+2026-05-06 11:50:09,895 [INFO] 生成完了: 2026-05-06-1397.md
+2026-05-06 11:50:09,895 [INFO] 生成完了: 2026-05-06-1398.md
+2026-05-06 11:50:09,895 [INFO] 生成完了: 2026-05-06-1399.md
+2026-05-06 11:50:09,895 [INFO] 生成完了: 2026-05-06-1400.md
+2026-05-06 11:50:09,895 [INFO] 生成完了: 2026-05-06-1402.md
+2026-05-06 11:50:09,895 [INFO] 生成完了: 2026-05-06-1405.md
+2026-05-06 11:50:09,895 [INFO] 生成完了: 2026-05-06-1407.md
+2026-05-06 11:50:09,895 [INFO] 生成完了: 2026-05-06-1409.md
+2026-05-06 11:50:09,895 [INFO] 生成完了: 2026-05-06-1411.md
+2026-05-06 11:50:09,895 [INFO] 生成完了: 2026-05-06-1413.md
+2026-05-06 11:50:09,895 [INFO] 生成完了: 2026-05-06-1416.md
+2026-05-06 11:50:09,895 [INFO] 生成完了: 2026-05-06-1428.md
+2026-05-06 11:50:09,911 [INFO] 生成完了: 2026-05-06-1431.md
+2026-05-06 11:50:09,911 [INFO] 生成完了: 2026-05-06-1433.md
+2026-05-06 11:50:09,911 [INFO] 生成完了: 2026-05-06-1439.md
+2026-05-06 11:50:09,911 [INFO] 生成完了: 2026-05-06-1442.md
+2026-05-06 11:50:09,911 [INFO] 生成完了: 2026-05-06-1454.md
+2026-05-06 11:50:09,911 [INFO] 生成完了: 2026-05-06-1456.md
+2026-05-06 11:50:09,911 [INFO] 生成完了: 2026-05-06-1460.md
+2026-05-06 11:50:09,911 [INFO] 生成完了: 2026-05-06-1463.md
+2026-05-06 11:50:09,911 [INFO] 生成完了: 2026-05-06-1465.md
+2026-05-06 11:50:09,911 [INFO] 生成完了: 2026-05-06-1466.md
+2026-05-06 11:50:09,911 [INFO] 生成完了: 2026-05-06-1467.md
+2026-05-06 11:50:09,911 [INFO] 生成完了: 2026-05-06-1468.md
+2026-05-06 11:50:09,911 [INFO] 生成完了: 2026-05-06-1469.md
+2026-05-06 11:50:09,911 [INFO] ============================================================
+2026-05-06 11:50:09,911 [INFO] Markdown生成完了: 30件
+2026-05-06 11:50:09,911 [INFO] ============================================================
+2026-05-06 11:50:09,911 [WARNING] Gitリポジトリが見つかりません。Pushをスキップします。
+2026-05-06 12:36:50,863 [INFO] ============================================================
+2026-05-06 12:36:50,863 [INFO] 翻訳・記事生成処理を開始しました
+2026-05-06 12:36:50,863 [INFO] ============================================================
+2026-05-06 12:36:50,863 [INFO] summariesテーブルを確認しました
+2026-05-06 12:36:50,863 [INFO] [1/30] 処理中: An open-source spec for orchestration: Symphony
+2026-05-06 12:36:53,120 [INFO]   本文取得成功: 10000文字
+2026-05-06 12:36:59,240 [INFO]   Qwenで記事生成中...
+2026-05-06 12:40:21,632 [INFO]   Qwen記事生成成功
+2026-05-06 12:40:21,639 [INFO] 完了: An open-source spec for orches -> OpenAI、AIエージェント orchestration仕
+2026-05-06 12:40:22,140 [INFO] [2/30] 処理中: Choco automates food distribution with AI agents
+2026-05-06 12:40:24,017 [INFO]   本文取得成功: 5465文字
+2026-05-06 12:40:29,024 [INFO]   Qwenで記事生成中...
+2026-05-06 12:44:18,032 [INFO]   Qwen記事生成成功
+2026-05-06 12:44:18,040 [INFO] 完了: Choco automates food distribut -> Choco、OpenAI APIで食品流通自動化
+2026-05-06 12:44:18,545 [INFO] [3/30] 処理中: Introducing GPT-5.5
+2026-05-06 12:44:20,182 [INFO]   本文取得成功: 10000文字
+2026-05-06 12:44:26,161 [INFO]   Qwenで記事生成中...
+2026-05-06 12:48:03,008 [INFO]   Qwen記事生成成功
+2026-05-06 12:48:03,016 [INFO] 完了: Introducing GPT-5.5 -> OpenAIがGPT-5.5をリリース 自律型AIの新時代到
+2026-05-06 12:48:03,517 [INFO] [4/30] 処理中: GPT-5.5 System Card
+2026-05-06 12:48:05,310 [INFO]   本文取得成功: 1767文字
+2026-05-06 12:48:07,466 [INFO]   Qwenで記事生成中...
+2026-05-06 12:50:45,201 [INFO]   Qwen記事生成成功
+2026-05-06 12:50:45,207 [INFO] 完了: GPT-5.5 System Card -> OpenAI、GPT-5.5公開 自律型AIの新時代
+2026-05-06 12:50:45,709 [INFO] [5/30] 処理中: GPT-5.5 Bio Bug Bounty
+2026-05-06 12:50:47,896 [INFO]   本文取得成功: 2040文字
+2026-05-06 12:50:50,123 [INFO]   Qwenで記事生成中...
+2026-05-06 12:52:30,309 [INFO]   Qwen記事生成成功
+2026-05-06 12:52:30,317 [INFO] 完了: GPT-5.5 Bio Bug Bounty -> OpenAI、GPT-5.5でバイオバグ報奨金実施
+2026-05-06 12:52:30,819 [INFO] [6/30] 処理中: Making ChatGPT better for clinicians
+2026-05-06 12:52:32,488 [INFO]   本文取得成功: 10000文字
+2026-05-06 12:52:39,209 [INFO]   Qwenで記事生成中...
+2026-05-06 12:55:17,156 [INFO]   Qwen記事生成成功
+2026-05-06 12:55:17,161 [INFO] 完了: Making ChatGPT better for clin -> OpenAI、ChatGPT for Cliniciansを
+2026-05-06 12:55:17,667 [INFO] [7/30] 処理中: Workspace agents
+2026-05-06 12:55:19,595 [INFO]   本文取得成功: 10000文字
+2026-05-06 12:55:24,698 [INFO]   Qwenで記事生成中...
+2026-05-06 12:58:46,999 [INFO]   Qwen記事生成成功
+2026-05-06 12:58:47,006 [INFO] 完了: Workspace agents -> OpenAI、ChatGPTで業務自動化の新時代
+2026-05-06 12:58:47,512 [INFO] [8/30] 処理中: Introducing workspace agents in ChatGPT
+2026-05-06 12:58:49,661 [INFO]   本文取得成功: 9980文字
+2026-05-06 12:58:55,427 [INFO]   Qwenで記事生成中...
+2026-05-06 13:02:02,598 [INFO]   Qwen記事生成成功
+2026-05-06 13:02:02,598 [INFO] 完了: Introducing workspace agents i -> ChatGPT、Codex搭載のチーム用AIエージェント発表
+2026-05-06 13:02:03,113 [INFO] [9/30] 処理中: Speeding up agentic workflows with WebSockets in t
+2026-05-06 13:02:05,520 [INFO]   本文取得成功: 9326文字
+2026-05-06 13:02:11,554 [INFO]   Qwenで記事生成中...
+2026-05-06 13:05:51,776 [INFO]   Qwen記事生成成功
+2026-05-06 13:05:51,784 [INFO] 完了: Speeding up agentic workflows  -> OpenAI、Responses APIのWebSocket
+2026-05-06 13:05:52,285 [INFO] [10/30] 処理中: Introducing ChatGPT Images 2.0
+2026-05-06 13:05:53,821 [INFO]   本文取得成功: 206文字
+2026-05-06 13:05:54,617 [INFO]   Qwenで記事生成中...
+2026-05-06 13:07:09,656 [INFO]   Qwen記事生成成功
+2026-05-06 13:07:09,665 [INFO] 完了: Introducing ChatGPT Images 2.0 -> OpenAI、ChatGPTイメージ2.0公開
+2026-05-06 13:07:10,166 [INFO] [11/30] 処理中: Granite 4.1 LLMs: How They’re Built
+2026-05-06 13:07:11,454 [INFO]   本文取得成功: 10000文字
+2026-05-06 13:07:15,786 [INFO]   Qwenで記事生成中...
+2026-05-06 13:08:46,294 [INFO]   Qwen記事生成成功
+2026-05-06 13:08:46,308 [INFO] 完了: Granite 4.1 LLMs: How They’re  -> IBM Granite 4.1 LLM、高品質データで高性能
+2026-05-06 13:08:46,809 [INFO] [12/30] 処理中: Introducing NVIDIA Nemotron 3 Nano Omni: Long-Cont
+2026-05-06 13:08:48,276 [INFO]   本文取得成功: 10000文字
+2026-05-06 13:08:52,476 [INFO]   Qwenで記事生成中...
+2026-05-06 13:13:06,424 [INFO]   Qwen記事生成成功
+2026-05-06 13:13:06,432 [INFO] 完了: Introducing NVIDIA Nemotron 3  -> NVIDIA、Nemotron 3 Nano Omniでマル
+2026-05-06 13:13:06,933 [INFO] [13/30] 処理中: DeepSeek-V4: a million-token context that agents c
+2026-05-06 13:13:08,287 [INFO]   本文取得成功: 9782文字
+2026-05-06 13:13:13,645 [INFO]   Qwenで記事生成中...
+2026-05-06 13:18:10,220 [INFO]   Qwen記事生成成功
+2026-05-06 13:18:10,233 [INFO] 完了: DeepSeek-V4: a million-token c -> DeepSeek-V4、100万トークン対応でエージェント実
+2026-05-06 13:18:10,736 [INFO] [14/30] 処理中: QIMMA قِمّة ⛰: A Quality-First Arabic LLM Leaderbo
+2026-05-06 13:18:12,036 [INFO]   本文取得成功: 10000文字
+2026-05-06 13:18:17,771 [INFO]   Qwenで記事生成中...
+2026-05-06 13:21:51,797 [INFO]   Qwen記事生成成功
+2026-05-06 13:21:51,806 [INFO] 完了: QIMMA قِمّة ⛰: A Quality-First -> QIMMA、アラビア語LLM評価の信頼性向上
+2026-05-06 13:21:52,307 [INFO] [15/30] 処理中: Ecom-RLVE: Adaptive Verifiable Environments for E-
+2026-05-06 13:21:53,652 [INFO]   本文取得成功: 10000文字
+2026-05-06 13:21:57,487 [INFO]   Qwenで記事生成中...
+2026-05-06 13:24:17,847 [INFO]   Qwen記事生成成功
+2026-05-06 13:24:17,847 [INFO] 完了: Ecom-RLVE: Adaptive Verifiable -> Ecom-RLVE、EC会話AIに強化学習適用
+2026-05-06 13:24:18,357 [INFO] [16/30] 処理中: Inside VAKRA: Reasoning, Tool Use, and Failure Mod
+2026-05-06 13:24:19,680 [INFO]   本文取得成功: 10000文字
+2026-05-06 13:24:23,448 [INFO]   Qwenで記事生成中...
+2026-05-06 13:26:59,218 [INFO]   Qwen記事生成成功
+2026-05-06 13:26:59,218 [INFO] 完了: Inside VAKRA: Reasoning, Tool  -> IBM、VAKRAでAIエージェント評価
+2026-05-06 13:26:59,732 [INFO] [17/30] 処理中: A New Framework for Evaluating Voice Agents (EVA)
+2026-05-06 13:27:01,050 [INFO]   本文取得成功: 10000文字
+2026-05-06 13:27:05,970 [INFO]   Qwenで記事生成中...
+2026-05-06 13:30:42,016 [INFO]   Qwen記事生成成功
+2026-05-06 13:30:42,020 [INFO] 完了: A New Framework for Evaluating -> ServiceNow、音声AI評価新基準
+2026-05-06 13:30:42,525 [INFO] [18/30] 処理中: Holotron-12B - High Throughput Computer Use Agent
+2026-05-06 13:30:43,849 [INFO]   本文取得成功: 6369文字
+2026-05-06 13:30:46,410 [INFO]   Qwenで記事生成中...
+2026-05-06 13:34:20,755 [INFO]   Qwen記事生成成功
+2026-05-06 13:34:20,770 [INFO] 完了: Holotron-12B - High Throughput -> Hカンパニー、高スループットAI「Holotron-12B」
+2026-05-06 13:34:21,275 [INFO] [19/30] 処理中: Keep the Tokens Flowing: Lessons from 16 Open-Sour
+2026-05-06 13:34:22,694 [INFO]   本文取得成功: 10000文字
+2026-05-06 13:34:28,394 [INFO]   Qwenで記事生成中...
+2026-05-06 13:37:38,506 [INFO]   Qwen記事生成成功
+2026-05-06 13:37:38,512 [INFO] 完了: Keep the Tokens Flowing: Lesso -> 非同期RLトレーニングでGPU効率化 16ライブラリ分析
+2026-05-06 13:37:39,018 [INFO] [20/30] 処理中: Katie Haun raises $1B for new venture funds
+2026-05-06 13:37:40,094 [INFO]   本文取得成功: 831文字
+2026-05-06 13:37:40,913 [INFO]   Qwenで記事生成中...
+2026-05-06 13:40:19,615 [INFO]   Qwen記事生成成功
+2026-05-06 13:40:19,623 [INFO] 完了: Katie Haun raises $1B for new  -> ケイティ・ホーン、暗号ベンチャーで10億ドル調達
+2026-05-06 13:40:20,124 [INFO] [21/30] 処理中: Sierra raises $950M as the race to own enterprise 
+2026-05-06 13:40:21,153 [INFO]   本文取得成功: 3709文字
+2026-05-06 13:40:22,031 [INFO]   Qwenで記事生成中...
+2026-05-06 13:42:58,857 [INFO]   Qwen記事生成成功
+2026-05-06 13:42:58,865 [INFO] 完了: Sierra raises $950M as the rac -> Sierra、95億ドル調達でエンタープライズAI覇権争い激
+2026-05-06 13:42:59,366 [INFO] [22/30] 処理中: OpenAI’s president does ‘all the things,’ except a
+2026-05-06 13:43:00,698 [INFO]   本文取得成功: 8884文字
+2026-05-06 13:43:17,462 [INFO]   Qwenで記事生成中...
+2026-05-06 13:46:18,825 [INFO]   Qwen記事生成成功
+2026-05-06 13:46:18,833 [INFO] 完了: OpenAI’s president does ‘all t -> OpenAI社長証言、日記で強欲性浮上
+2026-05-06 13:46:19,335 [INFO] [23/30] 処理中: Live updates from Elon Musk and Sam Altman’s court
+2026-05-06 13:46:20,573 [INFO]   本文取得成功: 10000文字
+2026-05-06 13:46:37,987 [INFO]   Qwenで記事生成中...
+2026-05-06 13:49:49,754 [INFO]   Qwen記事生成成功
+2026-05-06 13:49:49,754 [INFO] 完了: Live updates from Elon Musk an -> OpenAI訴訟 マスク対アルトマン 法廷闘争激化
+2026-05-06 13:49:50,264 [INFO] [24/30] 処理中: Pentagon strikes classified AI deals with OpenAI, 
+2026-05-06 13:49:52,473 [INFO]   本文取得成功: 3653文字
+2026-05-06 13:49:53,988 [INFO]   Qwenで記事生成中...
+2026-05-06 13:52:59,566 [INFO]   Qwen記事生成成功
+2026-05-06 13:52:59,566 [INFO] 完了: Pentagon strikes classified AI -> 米国防総省がAnthropicを排除、OpenAIらと機密A
+2026-05-06 13:53:00,076 [INFO] [25/30] 処理中: Microsoft wants lawyers to trust its new AI agent 
+2026-05-06 13:53:01,562 [INFO]   本文取得成功: 2060文字
+2026-05-06 13:53:03,415 [INFO]   Qwenで記事生成中...
+2026-05-06 13:55:02,457 [INFO]   Qwen記事生成成功
+2026-05-06 13:55:02,457 [INFO] 完了: Microsoft wants lawyers to tru -> Microsoft、Wordに法務AIエージェント導入
+2026-05-06 13:55:02,964 [INFO] [26/30] 処理中: Claude Code costs up to $200 a month. Goose does t
+2026-05-06 13:55:04,167 [INFO]   本文取得成功: 10000文字
+2026-05-06 13:55:09,182 [INFO]   Qwenで記事生成中...
+2026-05-06 13:58:18,397 [INFO]   Qwen記事生成成功
+2026-05-06 13:58:18,403 [INFO] 完了: Claude Code costs up to $200 a -> Claude Code高価格化でGooseが注目
+2026-05-06 13:58:18,903 [INFO] [27/30] 処理中: Listen Labs raises $69M after viral billboard hiri
+2026-05-06 13:58:20,060 [INFO]   本文取得成功: 10000文字
+2026-05-06 13:58:24,746 [INFO]   Qwenで記事生成中...
+2026-05-06 14:01:10,099 [INFO]   Qwen記事生成成功
+2026-05-06 14:01:10,099 [INFO] 完了: Listen Labs raises $69M after  -> Listen Labs、6900万ドル調達でAI面接拡大
+2026-05-06 14:01:10,608 [INFO] [28/30] 処理中: Salesforce rolls out new Slackbot AI agent as it b
+2026-05-06 14:01:11,832 [INFO]   本文取得成功: 10000文字
+2026-05-06 14:01:14,876 [INFO]   Qwenで記事生成中...
+2026-05-06 14:02:48,728 [INFO]   Qwen記事生成成功
+2026-05-06 14:02:48,737 [INFO] 完了: Salesforce rolls out new Slack -> Salesforce、SlackbotをAIエージェント化
+2026-05-06 14:02:49,237 [INFO] [29/30] 処理中: Anthropic launches Cowork, a Claude Desktop agent 
+2026-05-06 14:02:50,282 [INFO]   本文取得成功: 10000文字
+2026-05-06 14:02:55,456 [INFO]   Qwenで記事生成中...
+2026-05-06 14:04:14,088 [INFO]   Qwen記事生成成功
+2026-05-06 14:04:14,096 [INFO] 完了: Anthropic launches Cowork, a C -> Anthropic、CoworkでAIエージェント主流へ
+2026-05-06 14:04:14,596 [INFO] [30/30] 処理中: Nous Research's NousCoder-14B is an open-source co
+2026-05-06 14:04:15,645 [INFO]   本文取得成功: 10000文字
+2026-05-06 14:04:19,082 [INFO]   Qwenで記事生成中...
+2026-05-06 14:07:20,134 [INFO]   Qwen記事生成成功
+2026-05-06 14:07:20,139 [INFO] 完了: Nous Research's NousCoder-14B  -> NousCoder-14B、クロードコードに対抗
+2026-05-06 14:07:20,643 [INFO] ============================================================
+2026-05-06 14:07:20,643 [INFO] 処理完了: 成功30件 失敗0件
+2026-05-06 14:07:20,643 [INFO] ============================================================
+2026-05-06 14:10:16,367 [INFO] ============================================================
+2026-05-06 14:10:16,368 [INFO] 記事公開処理を開始しました
+2026-05-06 14:10:16,368 [INFO] ============================================================
+2026-05-06 14:10:16,371 [INFO] 生成完了: 2026-05-06-1384.md
+2026-05-06 14:10:16,372 [INFO] 生成完了: 2026-05-06-1385.md
+2026-05-06 14:10:16,372 [INFO] 生成完了: 2026-05-06-1387.md
+2026-05-06 14:10:16,373 [INFO] 生成完了: 2026-05-06-1388.md
+2026-05-06 14:10:16,373 [INFO] 生成完了: 2026-05-06-1396.md
+2026-05-06 14:10:16,373 [INFO] 生成完了: 2026-05-06-1397.md
+2026-05-06 14:10:16,374 [INFO] 生成完了: 2026-05-06-1398.md
+2026-05-06 14:10:16,374 [INFO] 生成完了: 2026-05-06-1399.md
+2026-05-06 14:10:16,375 [INFO] 生成完了: 2026-05-06-1400.md
+2026-05-06 14:10:16,375 [INFO] 生成完了: 2026-05-06-1402.md
+2026-05-06 14:10:16,375 [INFO] 生成完了: 2026-05-06-1405.md
+2026-05-06 14:10:16,376 [INFO] 生成完了: 2026-05-06-1407.md
+2026-05-06 14:10:16,376 [INFO] 生成完了: 2026-05-06-1409.md
+2026-05-06 14:10:16,376 [INFO] 生成完了: 2026-05-06-1411.md
+2026-05-06 14:10:16,377 [INFO] 生成完了: 2026-05-06-1413.md
+2026-05-06 14:10:16,377 [INFO] 生成完了: 2026-05-06-1416.md
+2026-05-06 14:10:16,378 [INFO] 生成完了: 2026-05-06-1428.md
+2026-05-06 14:10:16,378 [INFO] 生成完了: 2026-05-06-1431.md
+2026-05-06 14:10:16,378 [INFO] 生成完了: 2026-05-06-1433.md
+2026-05-06 14:10:16,379 [INFO] 生成完了: 2026-05-06-1439.md
+2026-05-06 14:10:16,379 [INFO] 生成完了: 2026-05-06-1442.md
+2026-05-06 14:10:16,380 [INFO] 生成完了: 2026-05-06-1454.md
+2026-05-06 14:10:16,380 [INFO] 生成完了: 2026-05-06-1456.md
+2026-05-06 14:10:16,380 [INFO] 生成完了: 2026-05-06-1460.md
+2026-05-06 14:10:16,381 [INFO] 生成完了: 2026-05-06-1463.md
+2026-05-06 14:10:16,381 [INFO] 生成完了: 2026-05-06-1465.md
+2026-05-06 14:10:16,381 [INFO] 生成完了: 2026-05-06-1466.md
+2026-05-06 14:10:16,382 [INFO] 生成完了: 2026-05-06-1467.md
+2026-05-06 14:10:16,382 [INFO] 生成完了: 2026-05-06-1468.md
+2026-05-06 14:10:16,383 [INFO] 生成完了: 2026-05-06-1469.md
+2026-05-06 14:10:16,383 [INFO] ============================================================
+2026-05-06 14:10:16,383 [INFO] Markdown生成完了: 30件
+2026-05-06 14:10:16,383 [INFO] ============================================================
+2026-05-06 14:10:16,383 [WARNING] Gitリポジトリが見つかりません。Pushをスキップします。

@@ -1,0 +1,8 @@
+﻿node_modules/
+astro-site/node_modules/
+astro-site/.astro/
+astro-site/dist/
+data/articles.db
+__pycache__/
+*.pyc
+.env
