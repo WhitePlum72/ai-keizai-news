@@ -64,10 +64,8 @@ def get_articles_to_publish():
     return rows
 
 
-def slugify(text, article_id):
-    today = datetime.now().strftime("%Y-%m-%d")
-    return f"{today}-{article_id}"
-
+def slugify(title, article_id):
+    return f"article-{article_id}"
 
 def remove_output_labels(text):
     if not text:
