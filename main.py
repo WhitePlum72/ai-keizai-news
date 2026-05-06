@@ -15,11 +15,13 @@ from collector import collect_all
 from scorer import calculate_scores
 from translator import translate_all
 from publisher import publish_articles, git_push
+from image_generator import generate_all_images
 
 LOG_DIR = "logs"
 LLAMA_SERVER = r"C:\Users\info\Desktop\dev\tools\llama.cpp\build\bin\Release\llama-server.exe"
 QWEN_MODEL   = r"C:\Users\info\Desktop\dev\tools\models\qwen3.6-27b\Qwen3.6-27B-UD-Q4_K_XL.gguf"
 LLAMA_DIR    = r"C:\Users\info\Desktop\dev\tools\llama.cpp"
+COMFYUI_DIR  = r"C:\Users\info\Desktop\dev\tools\ComfyUI"
 
 def setup_logger():
     logger = logging.getLogger("main")
@@ -82,35 +84,72 @@ def stop_qwen(proc):
     except subprocess.TimeoutExpired:
         proc.kill()
     time.sleep(3)
-    logger.info("Qwen停止完了")
+    logger.info("Qwen停止完了・VRAM解放")
+
+def start_comfyui():
+    logger.info("ComfyUI起動中...")
+    proc = subprocess.Popen(
+        [sys.executable, "main.py", "--listen", "0.0.0.0", "--port", "8188"],
+        cwd=COMFYUI_DIR,
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.DEVNULL,
+    )
+    for i in range(30):
+        time.sleep(2)
+        try:
+            res = requests.get("http://localhost:8188", timeout=3)
+            if res.status_code == 200:
+                logger.info("ComfyUI起動完了（%d秒）", (i + 1) * 2)
+                return proc
+        except Exception:
+            pass
+    logger.warning("ComfyUI起動確認タイムアウト（続行します）")
+    return proc
+
+def stop_comfyui(proc):
+    logger.info("ComfyUI停止中...")
+    proc.terminate()
+    try:
+        proc.wait(timeout=15)
+    except subprocess.TimeoutExpired:
+        proc.kill()
+    logger.info("ComfyUI停止完了")
 
 def run_pipeline():
     logger.info("=" * 60)
     logger.info("パイプライン開始: %s", datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
     logger.info("=" * 60)
 
-    qwen_proc = None
+    qwen_proc    = None
+    comfyui_proc = None
 
     try:
         # Phase1: Qwen起動
         qwen_proc = start_qwen()
 
         # Phase2: 収集・スコアリング・翻訳
-        logger.info("[1/4] RSS収集")
+        logger.info("[1/5] RSS収集")
         collect_all()
 
-        logger.info("[2/4] スコアリング（類似記事除外・上位10件）")
+        logger.info("[2/5] スコアリング（類似記事除外・上位10件）")
         calculate_scores()
 
-        logger.info("[3/4] 翻訳・記事生成（10件）")
+        logger.info("[3/5] 翻訳・記事生成（Qwen）")
         translate_all()
 
-        # Phase3: Qwen停止
+        # Phase3: Qwen停止・VRAM解放
         stop_qwen(qwen_proc)
         qwen_proc = None
 
-        # Phase4: 公開・Push
-        logger.info("[4/4] 記事公開・Git Push")
+        # Phase4: 全記事FLUX生成
+        logger.info("[4/5] 画像生成（全記事・FLUX.1 Schnell）")
+        comfyui_proc = start_comfyui()
+        generate_all_images()
+        stop_comfyui(comfyui_proc)
+        comfyui_proc = None
+
+        # Phase5: 公開・Push
+        logger.info("[5/5] 記事公開・Git Push")
         publish_articles()
         git_push()
 
@@ -122,6 +161,8 @@ def run_pipeline():
     finally:
         if qwen_proc:
             stop_qwen(qwen_proc)
+        if comfyui_proc:
+            stop_comfyui(comfyui_proc)
 
     logger.info("=" * 60)
     logger.info("パイプライン終了: %s", datetime.now().strftime("%Y-%m-%d %H:%M:%S"))

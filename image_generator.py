@@ -115,15 +115,15 @@ def needs_illustration_style(text: str) -> bool:
 # DB操作
 # ========================
 def get_articles_needing_images():
-    """OGP画像がなく未生成の記事を取得"""
+    """当日処理した全記事を取得（毎回FLUX生成）"""
     conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
     cursor.execute("""
         SELECT a.id, s.title_ja, s.category, a.title, a.summary
         FROM articles a
         JOIN summaries s ON a.id = s.article_id
-        WHERE (a.image_url IS NULL OR a.image_url = '')
-        AND a.processed = 1
+        WHERE a.processed = 1
+        AND DATE(a.collected_at) = DATE('now', 'localtime')
         ORDER BY a.buzz_score DESC
     """)
     rows = cursor.fetchall()
@@ -143,15 +143,80 @@ def update_image_url(article_id: int, image_path: str):
 # ========================
 # Qwenでプロンプト生成
 # ========================
+# 人物名リスト
+KNOWN_PERSONS = {
+    "altman": ("Sam Altman", "middle-aged man, short dark hair, casual tech style"),
+    "musk": ("Elon Musk", "tall man, short hair, intense expression, tech entrepreneur"),
+    "zuckerberg": ("Mark Zuckerberg", "young man, curly hair, casual t-shirt"),
+    "pichai": ("Sundar Pichai", "South Asian man, glasses, professional suit"),
+    "nadella": ("Satya Nadella", "South Asian man, glasses, business suit"),
+    "cook": ("Tim Cook", "middle-aged man, glasses, business casual"),
+    "bezos": ("Jeff Bezos", "bald man, athletic build, business casual"),
+    "huang": ("Jensen Huang", "Asian man, leather jacket, tech style"),
+    "lecun": ("Yann LeCun", "older man, beard, academic style"),
+    "hassabis": ("Demis Hassabis", "British man, casual smart"),
+}
+
+# 企業・モデル名リスト
+KNOWN_COMPANIES = {
+    "openai": "futuristic AI lab, dark background, glowing neural network, OpenAI aesthetic",
+    "anthropic": "clean minimal office, purple tones, AI safety research lab",
+    "google": "colorful tech campus, modern architecture, Google colors",
+    "microsoft": "corporate blue tones, Windows interface, enterprise technology",
+    "nvidia": "green circuit boards, GPU chips, data center, NVIDIA green",
+    "apple": "minimalist white design, clean aesthetic, Apple Store atmosphere",
+    "meta": "social network visualization, blue tones, VR headset",
+    "amazon": "warehouse automation, orange robots, AWS cloud infrastructure",
+    "tesla": "electric vehicle, clean energy, Gigafactory",
+    "gpt": "language model visualization, text streams, neural network",
+    "claude": "purple tones, AI assistant interface, clean design",
+    "gemini": "Google colors, multimodal AI, constellation pattern",
+    "llama": "Meta purple, open source code, developer environment",
+}
+
+def detect_person(text: str) -> tuple[str, str] | None:
+    """テキストから人物名を検出して（人物名、外見説明）を返す"""
+    text_lower = text.lower()
+    for key, (name, appearance) in KNOWN_PERSONS.items():
+        if key in text_lower:
+            return name, appearance
+    return None
+
+def detect_company(text: str) -> str | None:
+    """テキストから企業・モデル名を検出してスタイルを返す"""
+    text_lower = text.lower()
+    for key, style in KNOWN_COMPANIES.items():
+        if key in text_lower:
+            return style
+    return None
+
 def generate_flux_prompt(title_ja: str, category: str, title_en: str) -> str:
     """Qwenで記事タイトルからFLUX用英語プロンプトを生成"""
+    text = f"{title_en} {title_ja}"
+
+    # 人物名検出 → イラスト風人物画像
+    person = detect_person(text)
+    if person:
+        name, appearance = person
+        return (
+            f"digital illustration portrait of {name}, {appearance}, "
+            f"flat design style, vector art, professional tech magazine illustration, "
+            f"no realistic photo, stylized character art"
+        )
+
+    # 企業・モデル名検出 → ブランドイメージ画像
+    company_style = detect_company(text)
+    if company_style:
+        return company_style
+
+    # 該当なし → Qwenでプロンプト生成
     client = openai.OpenAI(base_url=QWEN_BASE_URL, api_key="dummy")
 
     system = (
         "You are an expert at writing prompts for AI image generation. "
         "Generate a concise English image prompt (under 50 words) "
         "that visually represents the given news article. "
-        "Focus on objects, scenes, and concepts — never include people or faces. "
+        "Focus on objects, scenes, concepts, and technology — no people or faces. "
         "Output only the prompt, no explanation."
     )
 

@@ -281,30 +281,14 @@ def is_duplicate(url: str, title: str) -> bool:
             return True
     return False
 
-def fetch_ogp_image(url):
-    try:
-        headers = {
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
-            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-            "Referer": "https://www.google.com/",
-        }
-        res = requests.get(url, headers=headers, timeout=5)
-        soup = BeautifulSoup(res.text, 'html.parser')
-        og_image = soup.find('meta', property='og:image')
-        if og_image and og_image.get('content'):
-            return og_image.get('content', '')
-        tw_image = soup.find('meta', attrs={'name': 'twitter:image'})
-        if tw_image and tw_image.get('content'):
-            return tw_image.get('content', '')
-    except Exception:
-        pass
-    return ''
-
 def save_article(article):
     if is_duplicate(article["url"], article["title"]):
         logger.debug("重複記事をスキップ: %s", article["title"][:50])
         return False
-    image_url = fetch_ogp_image(article["url"])
+    
+    # OGP画像取得を無効化（FLUX生成に統一）
+    image_url = ""
+    
     conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
     try:
