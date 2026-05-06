@@ -66,12 +66,16 @@ def init_summaries_table():
             summary_ja TEXT,
             tweet_text TEXT,
             category TEXT,
+            meta_description TEXT,
             created_at TEXT DEFAULT CURRENT_TIMESTAMP
         )
     """)
+    try:
+        cursor.execute("ALTER TABLE summaries ADD COLUMN meta_description TEXT")
+    except:
+        pass
     conn.commit()
     conn.close()
-
 
 def get_articles_to_translate():
     conn = sqlite3.connect(DB_PATH)
@@ -90,15 +94,14 @@ def get_articles_to_translate():
     return rows
 
 
-def save_summary(article_id, title_ja, summary_ja, tweet_text, category):
+def save_summary(article_id, title_ja, summary_ja, tweet_text, category, meta_description=""):
     conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
     cursor.execute("""
         INSERT OR REPLACE INTO summaries
-        (article_id, title_ja, summary_ja, tweet_text, category)
-        VALUES (?, ?, ?, ?, ?)
-    """, (article_id, title_ja, summary_ja, tweet_text, category))
-
+        (article_id, title_ja, summary_ja, tweet_text, category, meta_description)
+        VALUES (?, ?, ?, ?, ?, ?)
+    """, (article_id, title_ja, summary_ja, tweet_text, category, meta_description))
     cursor.execute("UPDATE articles SET processed = 1 WHERE id = ?", (article_id,))
     conn.commit()
     conn.close()
@@ -208,6 +211,7 @@ def generate_article(title_ja, body):
 
 条件:
 ・1行目: 見出し（25文字以内）
+・2行目: 空行
 ・本文500〜700文字
 ・だ・である調
 ・マークダウン禁止
@@ -217,9 +221,21 @@ def generate_article(title_ja, body):
         model=QWEN_MODEL,
         messages=[{"role": "user", "content": prompt}],
         max_tokens=1200,
+        extra_body={"chat_template_kwargs": {"enable_thinking": False}},
     )
 
-    return res.choices[0].message.content
+    article_body = res.choices[0].message.content
+
+    # meta description用の要約を別途生成
+    meta_res = client.chat.completions.create(
+        model=QWEN_MODEL,
+        messages=[{"role": "user", "content": f"以下の記事を120文字以内で要約してください。文末は「。」で終わること。マークダウン禁止。\n\n{article_body[:1000]}"}],
+        max_tokens=200,
+        extra_body={"chat_template_kwargs": {"enable_thinking": False}},
+    )
+    meta_description = meta_res.choices[0].message.content.strip()[:120]
+
+    return article_body, meta_description
 
 
 # ========================
@@ -247,8 +263,9 @@ def translate_all():
         title_ja = translate_text(title)
         body = translate_text(summary)
 
-        generated = generate_article(title_ja, body)
+        generated, meta_description = generate_article(title_ja, body)
         data = split_generated_article(generated, title_ja)
+        data["meta_description"] = meta_description
 
         category = "AI"
 
@@ -259,7 +276,8 @@ def translate_all():
             data["title"],
             data["body"],
             tweet,
-            category
+            category,
+            data["meta_description"]
         )
 
         print(f"完了: {data['title']}")

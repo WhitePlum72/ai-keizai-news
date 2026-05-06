@@ -51,7 +51,8 @@ def get_articles_to_publish():
     cursor.execute("""
         SELECT a.id, a.url, a.source, a.buzz_score, a.published_at,
                s.title_ja, s.summary_ja, s.category, s.tweet_text,
-               COALESCE(a.image_url, '') as image_url
+               COALESCE(a.image_url, '') as image_url,
+               COALESCE(s.meta_description, '') as meta_description
         FROM articles a
         JOIN summaries s ON a.id = s.article_id
         WHERE a.processed = 1
@@ -125,11 +126,17 @@ def yaml_escape(text):
 
 
 def generate_markdown(article):
-    article_id, url, source, buzz_score, published_at, title_ja, summary_ja, category, tweet_text, image_url = article
+    article_id, url, source, buzz_score, published_at, title_ja, summary_ja, category, tweet_text, image_url, meta_description_db = article
 
     title = clean_title(title_ja)
     body = clean_body(title, summary_ja)
-    meta_desc = make_meta_description(body) or title
+
+    # DBにmeta_descriptionがあればそれを優先、なければ本文から生成
+    if meta_description_db and len(meta_description_db) > 10:
+        meta_desc = meta_description_db
+    else:
+        meta_desc = make_meta_description(body) or title
+
     slug = slugify(title, article_id)
     today = datetime.now().strftime("%Y-%m-%d")
 
@@ -186,16 +193,12 @@ def publish_articles():
 
 def git_push():
     try:
-        astro_dir = "./astro-site"
-
-        if not os.path.exists(os.path.join(astro_dir, ".git")):
-            logger.warning("Gitリポジトリが見つかりません。Pushをスキップします。")
-            return
+        root_dir = "."
 
         today = datetime.now().strftime("%Y-%m-%d")
-        subprocess.run(["git", "add", "."], cwd=astro_dir, check=True)
-        subprocess.run(["git", "commit", "-m", f"Auto update {today}"], cwd=astro_dir, check=True)
-        subprocess.run(["git", "push", "origin", "main"], cwd=astro_dir, check=True)
+        subprocess.run(["git", "add", "."], cwd=root_dir, check=True)
+        subprocess.run(["git", "commit", "-m", f"Auto update {today}"], cwd=root_dir, check=True)
+        subprocess.run(["git", "push", "origin", "main"], cwd=root_dir, check=True)
         logger.info("Git Push完了")
 
     except subprocess.CalledProcessError as e:
