@@ -1,0 +1,10 @@
+import sqlite3
+conn = sqlite3.connect('data/articles.db')
+cur = conn.cursor()
+cur.execute("SELECT title_ja FROM summaries WHERE article_id = 1638")
+print('現在:', cur.fetchone())
+cur.execute("UPDATE summaries SET title_ja = 'Thoma Bravo、マルチAI戦略を採用' WHERE article_id = 1638")
+conn.commit()
+cur.execute("SELECT title_ja FROM summaries WHERE article_id = 1638")
+print('修正後:', cur.fetchone())
+conn.close()

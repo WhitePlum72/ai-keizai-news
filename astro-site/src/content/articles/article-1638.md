@@ -1,5 +1,5 @@
 ---
-title: "Thoma Bravo????AI??????Google?OpenAI?Anthropic??????"
+title: "Thoma Bravo、マルチAI戦略を採用"
 source: "Bloomberg Technology"
 source_url: "https://www.bloomberg.com/news/videos/2026-05-05/thoma-bravo-is-model-agnostic-says-boro-video"
 category: "AI"
