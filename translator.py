@@ -1,25 +1,33 @@
 """
-翻訳・記事生成モジュール（最適化版）
-Google翻訳 + QwenでSEO最適化記事＋リード文＋X投稿文を生成
+翻訳・記事生成モジュール（DeepSeek V4 Pro対応版）
+NVIDIA NIM API経由でDeepSeek V4 Proを使用し、英語原文から直接高品質な日本語記事を生成する。
+scorer.py向けのGoogle翻訳（translate_text）は引き続き使用。
 """
 
 import sqlite3
 import logging
 import os
 import sys
-import time
 import re
 import openai
 from datetime import datetime
-from deep_translator import GoogleTranslator
+
+# .envからAPIキーを読み込む（python-dotenv使用）
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass  # .envが使えない環境でも動作するようフォールバック
 
 DB_PATH = "data/articles.db"
 LOG_DIR = "logs"
 DELAY_SECONDS = 0.5
-QWEN_BASE_URL = "http://localhost:8080/v1"
-QWEN_MODEL = "Qwen3.6-27B-UD-Q4_K_XL.gguf"
 
-LABEL_PREFIX_RE = re.compile(r'^\s*(?:[#>*\-]+\s*)?(?:見出し|本文)\s*[:：]\s*')
+NVIDIA_API_KEY  = os.environ.get("NVIDIA_API_KEY")
+NVIDIA_BASE_URL = "https://integrate.api.nvidia.com/v1"
+DEEPSEEK_MODEL  = "deepseek-ai/deepseek-v4-pro"
+
+LABEL_PREFIX_RE   = re.compile(r'^\s*(?:[#>*\-]+\s*)?(?:見出し|本文)\s*[:：]\s*')
 MARKDOWN_HEADING_RE = re.compile(r'^\s*#+\s*')
 
 
@@ -41,7 +49,9 @@ def setup_logger():
     os.makedirs(LOG_DIR, exist_ok=True)
 
     today = datetime.now().strftime("%Y-%m-%d")
-    file_handler = logging.FileHandler(os.path.join(LOG_DIR, f"{today}.log"), encoding="utf-8")
+    file_handler = logging.FileHandler(
+        os.path.join(LOG_DIR, f"{today}.log"), encoding="utf-8"
+    )
     file_handler.setLevel(logging.DEBUG)
     file_handler.setFormatter(logging.Formatter("%(asctime)s [%(levelname)s] %(message)s"))
     logger.addHandler(file_handler)
@@ -72,10 +82,11 @@ def init_summaries_table():
     """)
     try:
         cursor.execute("ALTER TABLE summaries ADD COLUMN meta_description TEXT")
-    except:
+    except Exception:
         pass
     conn.commit()
     conn.close()
+
 
 def get_articles_to_translate():
     conn = sqlite3.connect(DB_PATH)
@@ -85,7 +96,7 @@ def get_articles_to_translate():
         FROM articles a
         LEFT JOIN summaries s ON a.id = s.article_id
         WHERE a.buzz_score > 0
-        AND s.article_id IS NULL
+          AND s.article_id IS NULL
         ORDER BY a.buzz_score DESC
         LIMIT 10
     """)
@@ -99,7 +110,7 @@ def save_summary(article_id, title_ja, summary_ja, tweet_text, category, meta_de
     cursor = conn.cursor()
     cursor.execute("""
         INSERT OR REPLACE INTO summaries
-        (article_id, title_ja, summary_ja, tweet_text, category, meta_description)
+            (article_id, title_ja, summary_ja, tweet_text, category, meta_description)
         VALUES (?, ?, ?, ?, ?, ?)
     """, (article_id, title_ja, summary_ja, tweet_text, category, meta_description))
     cursor.execute("UPDATE articles SET processed = 1 WHERE id = ?", (article_id,))
@@ -114,7 +125,6 @@ def save_summary(article_id, title_ja, summary_ja, tweet_text, category, meta_de
 def clean_html(text):
     if not text:
         return ""
-
     text = re.sub(r"<[^>]+>", " ", text)
     text = re.sub(r"\s+", " ", text).strip()
     return text
@@ -123,12 +133,10 @@ def clean_html(text):
 def remove_output_labels(text):
     if not text:
         return ""
-
     lines = []
     for line in text.split("\n"):
         line = LABEL_PREFIX_RE.sub("", line).strip()
         lines.append(line)
-
     return "\n".join(lines).strip()
 
 
@@ -144,27 +152,23 @@ def clean_title_line(text, fallback_title):
 def make_meta_description(body):
     text = remove_output_labels(clean_html(body))
     sentences = re.split(r'。', text)
-
     desc = ""
     for s in sentences:
         if len(desc) + len(s) <= 140:
             desc += s + "。"
         else:
             break
-
     return desc.strip()
 
 
 def make_lead(body):
     sentences = re.split(r'。', body)
     lead = ""
-
     for s in sentences:
         if len(lead) + len(s) <= 120:
             lead += s + "。"
         else:
             break
-
     return lead.strip()
 
 
@@ -187,51 +191,85 @@ def split_generated_article(text, fallback_title):
 
 
 # ========================
-# 翻訳
+# Google翻訳（scorer.py向けに残存）
 # ========================
 def translate_text(text):
     try:
+        from deep_translator import GoogleTranslator
         return GoogleTranslator(source="en", target="ja").translate(text)
-    except:
+    except Exception:
         return text
 
 
 # ========================
-# Qwen
+# DeepSeek V4 Pro 記事生成
 # ========================
-def generate_article(title_ja, body):
-    client = openai.OpenAI(base_url=QWEN_BASE_URL, api_key="dummy")
+def generate_article(title_en: str, body_en: str) -> tuple[str, str]:
+    """
+    英語の元記事情報からDeepSeek V4 Proで高品質な日本語記事を生成する。
 
-    prompt = f"""
-あなたは日本の新聞記者である。
+    Returns:
+        (article_body, meta_description) のタプル
+    """
+    if not NVIDIA_API_KEY:
+        raise EnvironmentError(
+            "NVIDIA_API_KEY が設定されていません。.env ファイルを確認してください。"
+        )
 
-以下から記事を書け。
-
-{body[:2000]}
-
-条件:
-・1行目: 見出し（25文字以内）
-・2行目: 空行
-・本文500〜700文字
-・だ・である調
-・マークダウン禁止
-"""
-
-    res = client.chat.completions.create(
-        model=QWEN_MODEL,
-        messages=[{"role": "user", "content": prompt}],
-        max_tokens=1200,
-        extra_body={"chat_template_kwargs": {"enable_thinking": False}},
+    client = openai.OpenAI(
+        base_url=NVIDIA_BASE_URL,
+        api_key=NVIDIA_API_KEY,
     )
 
-    article_body = res.choices[0].message.content
+    # ---- 記事本文生成 ----
+    article_prompt = f"""あなたはITmedia・Bloomberg・日経クロステック級の日本人経済記者だ。
+以下のニュース情報を元に、高品質な日本語経済ニュース記事を生成せよ。
 
-    # meta description用の要約を別途生成
+【元記事情報】
+タイトル: {title_en}
+内容: {body_en[:3000]}
+
+【絶対ルール】
+・1行目: タイトル（32〜42文字、重要ワードを前半に、誇張禁止）
+・2行目: 空行
+・本文1200〜1800文字
+・だ・である調
+・マークダウン禁止
+・機械翻訳調禁止
+・同じ論点の繰り返し禁止
+・3〜4文ごとに改行を入れる
+
+【本文構成】
+1. リード文（2〜3文、最重要ポイントを最初に提示）
+2. 何が起きたか（具体的な数字・固有名詞を含める）
+3. なぜ今重要なのか（業界・市場への影響）
+4. 背景と競合状況（他社との比較・業界構造）
+5. 投資家・企業戦略視点での考察
+6. 今後の展望（抽象論禁止・具体的な予測）
+
+【品質基準】
+・数字にはソース感を付ける（「〇〇によると」「アナリスト予測では」等）
+・小見出しを追加（■ 見出し の形式）
+・「今後の動向に注目です」等の締めは禁止
+・日本市場・日本企業への影響を必ず1箇所含める"""
+
+    article_res = client.chat.completions.create(
+        model=DEEPSEEK_MODEL,
+        messages=[{"role": "user", "content": article_prompt}],
+        max_tokens=2500,
+    )
+    article_body = article_res.choices[0].message.content.strip()
+
+    # ---- meta description生成 ----
+    meta_prompt = (
+        "以下の記事を120文字以内で要約してください。"
+        "文末は「。」で終わること。マークダウン禁止。\n\n"
+        f"{article_body[:1000]}"
+    )
     meta_res = client.chat.completions.create(
-        model=QWEN_MODEL,
-        messages=[{"role": "user", "content": f"以下の記事を120文字以内で要約してください。文末は「。」で終わること。マークダウン禁止。\n\n{article_body[:1000]}"}],
+        model=DEEPSEEK_MODEL,
+        messages=[{"role": "user", "content": meta_prompt}],
         max_tokens=200,
-        extra_body={"chat_template_kwargs": {"enable_thinking": False}},
     )
     meta_description = meta_res.choices[0].message.content.strip()[:120]
 
@@ -239,15 +277,15 @@ def generate_article(title_ja, body):
 
 
 # ========================
-# X投稿
+# X投稿文
 # ========================
-def make_tweet(title, body, category):
+def make_tweet(title: str, body: str, category: str) -> str:
     prefix = f"【{category}】"
-    lead = make_lead(body)
+    lead   = make_lead(body)
     suffix = " #AI #LLM"
-
-    text = f"{prefix}{title}\n{lead}"
+    text   = f"{prefix}{title}\n{lead}"
     return text[:140 - len(suffix)] + suffix
+
 
 # ========================
 # カテゴリ分類
@@ -264,6 +302,7 @@ SOURCE_TYPE_TO_CATEGORY = {
 def get_category(source_type: str) -> str:
     return SOURCE_TYPE_TO_CATEGORY.get(source_type, "AI")
 
+
 # ========================
 # メイン
 # ========================
@@ -271,30 +310,36 @@ def translate_all():
     init_summaries_table()
     articles = get_articles_to_translate()
 
+    if not articles:
+        logger.info("翻訳対象の記事がありません。")
+        return
+
     for a in articles:
         article_id, title, summary, source, source_type, url = a
 
-        title_ja = translate_text(title)
-        body = translate_text(summary)
+        try:
+            # Google翻訳は廃止 → 英語原文をそのままDeepSeekに渡す
+            generated, meta_description = generate_article(title, summary)
+            data = split_generated_article(generated, title)
+            data["meta_description"] = meta_description
 
-        generated, meta_description = generate_article(title_ja, body)
-        data = split_generated_article(generated, title_ja)
-        data["meta_description"] = meta_description
+            category = get_category(source_type)
+            tweet    = make_tweet(data["title"], data["body"], category)
 
-        category = get_category(source_type)
+            save_summary(
+                article_id,
+                data["title"],
+                data["body"],
+                tweet,
+                category,
+                data["meta_description"],
+            )
 
-        tweet = make_tweet(data["title"], data["body"], category)
+            logger.info(f"完了 [id={article_id}]: {data['title']}")
 
-        save_summary(
-            article_id,
-            data["title"],
-            data["body"],
-            tweet,
-            category,
-            data["meta_description"]
-        )
-
-        print(f"完了: {data['title']}")
+        except Exception as e:
+            logger.error(f"失敗 [id={article_id}]: {e}")
+            continue
 
 
 if __name__ == "__main__":
