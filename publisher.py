@@ -1,4 +1,4 @@
-"""
+﻿"""
 記事公開モジュール
 翻訳済み記事をMarkdownファイルとして出力しGitにPushする
 """
@@ -56,7 +56,7 @@ def get_articles_to_publish():
         FROM articles a
         JOIN summaries s ON a.id = s.article_id
         WHERE a.processed = 1
-        ORDER BY a.buzz_score DESC
+        AND DATE(s.created_at) = DATE('now', 'localtime')
         LIMIT 30
     """)
     rows = cursor.fetchall()
