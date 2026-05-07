@@ -5,7 +5,7 @@ source_url: "https://www.bloomberg.com/news/articles/2026-05-06/infratil-shares-
 category: "AI"
 published_at: "2026-05-07"
 buzz_score: 38.0
-image_url: ""
+image_url: "/images/articles/article_1621.webp"
 meta_description: "CDCデータセンターズが豪史上最大規模のデータセンター供給契約を締結。クラウドやAI需要増に対応し、収益基盤を強化。最大株主のインフラティルは企業価値向上と株主価値創出が期待され、今後三年間の急成長と長期的な価値創造が予測される。"
 ---
 

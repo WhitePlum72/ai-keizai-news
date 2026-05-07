@@ -1924,3 +1924,127 @@
 2026-05-07 19:45:06,035 [INFO] Markdown生成完了: 20件
 2026-05-07 19:45:06,035 [INFO] ============================================================
 2026-05-07 19:45:08,369 [INFO] Git Push完了
+2026-05-07 19:49:21,719 [INFO] ============================================================
+2026-05-07 19:49:21,719 [INFO] 記事公開処理を開始しました
+2026-05-07 19:49:21,719 [INFO] ============================================================
+2026-05-07 19:49:21,730 [INFO] 生成完了: article-1378.md
+2026-05-07 19:49:21,730 [INFO] 生成完了: article-1437.md
+2026-05-07 19:49:21,730 [INFO] 生成完了: article-1472.md
+2026-05-07 19:49:21,730 [INFO] 生成完了: article-1516.md
+2026-05-07 19:49:21,730 [INFO] 生成完了: article-1526.md
+2026-05-07 19:49:21,730 [INFO] 生成完了: article-1530.md
+2026-05-07 19:49:21,730 [INFO] 生成完了: article-1531.md
+2026-05-07 19:49:21,730 [INFO] 生成完了: article-1536.md
+2026-05-07 19:49:21,730 [INFO] 生成完了: article-1550.md
+2026-05-07 19:49:21,730 [INFO] 生成完了: article-1568.md
+2026-05-07 19:49:21,730 [INFO] 生成完了: article-1577.md
+2026-05-07 19:49:21,730 [INFO] 生成完了: article-1594.md
+2026-05-07 19:49:21,734 [INFO] 生成完了: article-1621.md
+2026-05-07 19:49:21,734 [INFO] 生成完了: article-1624.md
+2026-05-07 19:49:21,735 [INFO] 生成完了: article-1626.md
+2026-05-07 19:49:21,735 [INFO] 生成完了: article-1627.md
+2026-05-07 19:49:21,735 [INFO] 生成完了: article-1632.md
+2026-05-07 19:49:21,735 [INFO] 生成完了: article-1635.md
+2026-05-07 19:49:21,735 [INFO] 生成完了: article-1638.md
+2026-05-07 19:49:21,735 [INFO] 生成完了: article-1642.md
+2026-05-07 19:49:21,735 [INFO] ============================================================
+2026-05-07 19:49:21,735 [INFO] Markdown生成完了: 20件
+2026-05-07 19:49:21,735 [INFO] ============================================================
+2026-05-07 19:49:23,721 [INFO] Git Push完了
+2026-05-07 19:54:10,537 [INFO] 画像生成対象の記事がありません
+2026-05-07 19:55:26,258 [INFO] 画像生成対象の記事がありません
+2026-05-07 19:56:51,582 [INFO] 画像生成開始: 33件
+2026-05-07 19:56:51,582 [INFO] 生成中 [1470]: AI開発革命の幕開け
+2026-05-07 19:56:51,596 [DEBUG] プロンプト: purple tones, AI assistant interface, clean design, artificial intelligence conc
+2026-05-07 19:56:55,646 [ERROR] ComfyUI APIエラー: HTTPConnectionPool(host='localhost', port=8188): Max retries exceeded with url: /prompt (Caused by NewConnectionError("HTTPConnection(host='localhost', port=8188): Failed to establish a new connection: [WinError 10061] 対象のコンピューターによって拒否されたため、接続できませんでした。"))
+2026-05-07 19:56:55,649 [INFO] 生成中 [1552]: 米AI界の暗躍 超PACが中国不安煽る
+2026-05-07 19:58:19,202 [INFO] 画像生成開始: 33件
+2026-05-07 19:58:19,202 [INFO] 生成中 [1470]: AI開発革命の幕開け
+2026-05-07 19:58:19,202 [DEBUG] プロンプト: purple tones, AI assistant interface, clean design, artificial intelligence conc
+2026-05-07 19:58:23,268 [ERROR] ComfyUI APIエラー: HTTPConnectionPool(host='localhost', port=8188): Max retries exceeded with url: /prompt (Caused by NewConnectionError("HTTPConnection(host='localhost', port=8188): Failed to establish a new connection: [WinError 10061] 対象のコンピューターによって拒否されたため、接続できませんでした。"))
+2026-05-07 19:58:23,268 [INFO] 生成中 [1552]: 米AI界の暗躍 超PACが中国不安煽る
+2026-05-07 19:58:37,087 [ERROR] 生成エラー [1552]: Connection error.
+2026-05-07 19:58:37,087 [INFO] 生成中 [1627]: Nvidia取締役夫妻、南カリフォルニア大に2億ドル寄付
+2026-05-07 19:58:37,087 [DEBUG] プロンプト: green circuit boards, GPU chips, data center, NVIDIA green, artificial intellige
+2026-05-07 19:58:39,158 [INFO] キュー送信完了: prompt_id=370f6bce-6945-4236-a313-f3ab80c68df8
+2026-05-07 19:58:53,418 [INFO] ✅ 生成完了: Nvidia取締役夫妻、南カリフォルニア大に2億ドル寄付
+2026-05-07 19:58:55,273 [INFO] 生成中 [1642]: OpenAI創設陣、マスク氏を「愚か者」と批判
+2026-05-07 19:58:55,283 [DEBUG] プロンプト: digital illustration portrait of Elon Musk, tall man, short hair, intense expres
+2026-05-07 19:59:24,791 [INFO] 画像生成開始: 32件
+2026-05-07 19:59:24,791 [INFO] 生成中 [1470]: AI開発革命の幕開け
+2026-05-07 19:59:24,791 [DEBUG] プロンプト: purple tones, AI assistant interface, clean design, artificial intelligence conc
+2026-05-07 19:59:26,861 [INFO] キュー送信完了: prompt_id=3e8bf11c-aa91-4d6c-8a0d-4a392bb61a2f
+2026-05-07 19:59:35,001 [INFO] ✅ 生成完了: AI開発革命の幕開け
+2026-05-07 19:59:35,002 [INFO] 生成中 [1552]: 米AI界の暗躍 超PACが中国不安煽る
+2026-05-07 19:59:48,845 [ERROR] 生成エラー [1552]: Connection error.
+2026-05-07 19:59:48,845 [INFO] 生成中 [1642]: OpenAI創設陣、マスク氏を「愚か者」と批判
+2026-05-07 19:59:48,845 [DEBUG] プロンプト: digital illustration portrait of Elon Musk, tall man, short hair, intense expres
+2026-05-07 19:59:50,915 [INFO] キュー送信完了: prompt_id=5dffe048-41d3-4313-87bf-6bd396910e0c
+2026-05-07 19:59:59,026 [INFO] ✅ 生成完了: OpenAI創設陣、マスク氏を「愚か者」と批判
+2026-05-07 19:59:59,026 [INFO] 生成中 [1943]: AIがマーケティングの中枢に
+2026-05-07 19:59:59,026 [DEBUG] プロンプト: green circuit boards, GPU chips, data center, NVIDIA green, cutting-edge AI tech
+2026-05-07 20:00:01,077 [INFO] キュー送信完了: prompt_id=1d47802e-8a72-4342-96aa-4f3e1ec3b603
+2026-05-07 20:00:09,246 [INFO] ✅ 生成完了: AIがマーケティングの中枢に
+2026-05-07 20:00:09,246 [INFO] 生成中 [1374]: OpenAIとPwC、財務AIでCFO機能刷新
+2026-05-07 20:00:09,246 [DEBUG] プロンプト: futuristic AI lab, dark background, glowing neural network, OpenAI aesthetic, ar
+2026-05-07 20:00:11,312 [INFO] キュー送信完了: prompt_id=27f1608f-668e-4e69-b580-05fc1af2b071
+2026-05-07 20:00:19,430 [INFO] ✅ 生成完了: OpenAIとPwC、財務AIでCFO機能刷新
+2026-05-07 20:00:19,430 [INFO] 生成中 [1380]: OpenAIモデルがAWSで利用可能に
+2026-05-07 20:00:19,430 [DEBUG] プロンプト: futuristic AI lab, dark background, glowing neural network, OpenAI aesthetic, ar
+2026-05-07 20:00:21,468 [INFO] キュー送信完了: prompt_id=97e5e706-7bca-4580-932f-81c3cabd4c71
+2026-05-07 20:00:26,646 [INFO] ✅ 生成完了: OpenAIモデルがAWSで利用可能に
+2026-05-07 20:00:26,646 [INFO] 生成中 [1437]: セレブラス、史上最大級IPOへ 企業価値266億ドル超
+2026-05-07 20:00:26,646 [DEBUG] プロンプト: futuristic AI lab, dark background, glowing neural network, OpenAI aesthetic, ar
+2026-05-07 20:00:28,695 [INFO] キュー送信完了: prompt_id=3c357463-8710-49a3-9106-5d08b1188801
+2026-05-07 20:00:33,763 [INFO] ✅ 生成完了: セレブラス、史上最大級IPOへ 企業価値266億ドル超
+2026-05-07 20:00:33,763 [INFO] 生成中 [1638]: Thoma BravoはAIモデルの選定において特定の企業に依存せず、Googl
+2026-05-07 20:00:33,763 [DEBUG] プロンプト: futuristic AI lab, dark background, glowing neural network, OpenAI aesthetic, ar
+2026-05-07 20:00:35,802 [INFO] キュー送信完了: prompt_id=28c01af3-b8f0-4b89-bb05-6b0e6a7d759b
+2026-05-07 20:00:40,912 [INFO] ✅ 生成完了: Thoma BravoはAIモデルの選定において特定の企業に依存せず、Googl
+2026-05-07 20:00:40,912 [INFO] 生成中 [1378]: OpenAI、Stargate拡大でAGI基盤強化
+2026-05-07 20:00:40,912 [DEBUG] プロンプト: futuristic AI lab, dark background, glowing neural network, OpenAI aesthetic, ar
+2026-05-07 20:00:42,953 [INFO] キュー送信完了: prompt_id=ed3574ee-e48a-4667-80c3-d1b4c1dd6baf
+2026-05-07 20:00:48,082 [INFO] ✅ 生成完了: OpenAI、Stargate拡大でAGI基盤強化
+2026-05-07 20:00:48,082 [INFO] 生成中 [1512]: LLM解釈可能性の限界と複雑性
+2026-05-07 20:01:01,696 [ERROR] 生成エラー [1512]: Connection error.
+2026-05-07 20:01:01,697 [INFO] 生成中 [1533]: ServiceNow、AI牽引で2030年売上300億ドル目標
+2026-05-07 20:01:15,400 [ERROR] 生成エラー [1533]: Connection error.
+2026-05-07 20:01:15,400 [INFO] 生成中 [1571]: AI活用で業務効率化、中小企業の生産性向上に期待
+2026-05-07 20:01:15,400 [DEBUG] プロンプト: clean minimal office, purple tones, AI safety research lab, artificial intellige
+2026-05-07 20:01:17,468 [INFO] キュー送信完了: prompt_id=6d052c07-5aa9-4118-8895-5dd813af1f18
+2026-05-07 20:01:25,599 [INFO] ✅ 生成完了: AI活用で業務効率化、中小企業の生産性向上に期待
+2026-05-07 20:01:25,599 [INFO] 生成中 [1624]: AMD、データセンター投資で新高値
+2026-05-07 20:01:39,183 [ERROR] 生成エラー [1624]: Connection error.
+2026-05-07 20:01:39,183 [INFO] 生成中 [1538]: ミーム株CEO、560億ドルの強引オファー
+2026-05-07 20:01:52,849 [ERROR] 生成エラー [1538]: Connection error.
+2026-05-07 20:01:52,850 [INFO] 生成中 [1587]: SAP、AIスタートアップ買収で戦略強化
+2026-05-07 20:02:06,670 [ERROR] 生成エラー [1587]: Connection error.
+2026-05-07 20:02:06,671 [INFO] 生成中 [1632]: メタ・マヌス協定拒否 中国AI界に衝撃
+2026-05-07 20:02:06,671 [DEBUG] プロンプト: social network visualization, blue tones, VR headset, artificial intelligence co
+2026-05-07 20:02:08,721 [INFO] キュー送信完了: prompt_id=bebf5e7f-bf5d-49d1-99a5-9c4587ce1fc9
+2026-05-07 20:13:50,732 [ERROR] ComfyUI APIエラー: HTTPConnectionPool(host='localhost', port=8188): Max retries exceeded with url: /prompt (Caused by NewConnectionError("HTTPConnection(host='localhost', port=8188): Failed to establish a new connection: [WinError 10061] 対象のコンピューターによって拒否されたため、接続できませんでした。"))
+2026-05-07 20:13:54,796 [ERROR] ComfyUI APIエラー: HTTPConnectionPool(host='localhost', port=8188): Max retries exceeded with url: /prompt (Caused by NewConnectionError("HTTPConnection(host='localhost', port=8188): Failed to establish a new connection: [WinError 10061] 対象のコンピューターによって拒否されたため、接続できませんでした。"))
+2026-05-07 20:13:58,862 [ERROR] ComfyUI APIエラー: HTTPConnectionPool(host='localhost', port=8188): Max retries exceeded with url: /prompt (Caused by NewConnectionError("HTTPConnection(host='localhost', port=8188): Failed to establish a new connection: [WinError 10061] 対象のコンピューターによって拒否されたため、接続できませんでした。"))
+2026-05-07 20:22:40,121 [INFO] キュー送信完了: prompt_id=f8c1fbb8-85e7-4b72-a15e-1cc7b76f9976
+2026-05-07 20:22:56,365 [INFO] キュー送信完了: prompt_id=5e2314e5-4b56-4541-9b8f-6b9c884e505d
+2026-05-07 20:23:03,502 [INFO] キュー送信完了: prompt_id=763194b9-e8f3-4d38-ae7a-563045e9ef38
+2026-05-07 20:23:10,619 [INFO] キュー送信完了: prompt_id=6eadad82-b658-43a5-aa63-9dbbd009a03e
+2026-05-07 20:23:20,801 [INFO] キュー送信完了: prompt_id=f9e9c82b-a3aa-4b7f-92d1-a3438ac1cfbb
+2026-05-07 20:23:27,970 [INFO] キュー送信完了: prompt_id=595fa5a3-3101-4594-b8bf-350df1e6ef7c
+2026-05-07 20:23:35,123 [INFO] キュー送信完了: prompt_id=966be93c-5ad5-47ec-bb2d-f8be5fe41a28
+2026-05-07 20:23:42,284 [INFO] キュー送信完了: prompt_id=810816f6-52a7-4805-85f6-d16c6621625a
+2026-05-07 20:23:52,518 [INFO] キュー送信完了: prompt_id=4aa04a62-1f09-45ca-8ec2-c75ed2a83824
+2026-05-07 20:24:02,705 [INFO] キュー送信完了: prompt_id=2ece9ff9-ee3b-4885-89cc-08cf29b82330
+2026-05-07 20:24:09,905 [INFO] キュー送信完了: prompt_id=ec86996d-abd7-4b4b-924f-385755b0be01
+2026-05-07 20:24:20,072 [INFO] キュー送信完了: prompt_id=c39a5872-3002-4138-97ba-11e0494a867d
+2026-05-07 20:24:30,242 [INFO] キュー送信完了: prompt_id=381d395b-994b-4f79-bb86-919fc406404b
+2026-05-07 20:24:40,433 [INFO] キュー送信完了: prompt_id=ed539536-6a85-4fbc-b362-14260ea841b8
+2026-05-07 20:24:50,648 [INFO] キュー送信完了: prompt_id=036f278d-7976-44b0-abcb-dc45e7e6b50a
+2026-05-07 20:24:57,745 [INFO] キュー送信完了: prompt_id=a3cd5130-efd8-48ec-a0da-521576f851f5
+2026-05-07 20:25:04,875 [INFO] キュー送信完了: prompt_id=f564bc7b-2cba-46d3-aefc-1292dffe76aa
+2026-05-07 20:25:15,077 [INFO] キュー送信完了: prompt_id=cf3b918a-0451-4e8f-8418-ed91ed17c2e0
+2026-05-07 20:25:25,293 [INFO] キュー送信完了: prompt_id=27e93265-b86a-407f-991a-387dc254b4d9
+2026-05-07 20:25:35,426 [INFO] キュー送信完了: prompt_id=74d68476-a7eb-4c44-a17f-45cf979e7973
+2026-05-07 20:25:45,625 [INFO] キュー送信完了: prompt_id=c6e3aa9f-65bb-491f-a001-67be618c37e4
+2026-05-07 20:25:52,816 [INFO] キュー送信完了: prompt_id=12b9eff7-90eb-47df-bfbb-fb8e31ba72cb
+2026-05-07 20:25:59,925 [INFO] キュー送信完了: prompt_id=0a2414ff-3a9b-4bd9-a7c2-a8d8cc295340

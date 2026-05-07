@@ -5,7 +5,7 @@ source_url: "https://www.bloomberg.com/news/articles/2026-05-05/china-blocked-me
 category: "AI"
 published_at: "2026-05-07"
 buzz_score: 39.0
-image_url: ""
+image_url: "/images/articles/article_1632.webp"
 meta_description: "米メタ・マヌス協定を中国が拒否。AI界に亀裂を生み、中国スタートアップは米系インフラから切り離される危機に直面。これにより国内完結型サプライチェーン構築や内需・サウス諸国への軸足移動を余儀なくされ、世界のAI生態系は米中二極化へ向かっている"
 ---
 

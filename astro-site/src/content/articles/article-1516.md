@@ -5,7 +5,7 @@ source_url: "http://bair.berkeley.edu/blog/2025/07/01/peva/"
 category: "AI"
 published_at: "2026-05-07"
 buzz_score: 35.0
-image_url: ""
+image_url: "/images/articles/article_1516.webp"
 meta_description: "米カリフォルニア大学バークレー校が開発した世界モデルPEVAは、人間の視点映像を用いて未来を予測し、ロボットが現実世界で自律行動する基盤となる。具身エージェント向けの設計により、家事支援やVRなどで人間と連携するパートナー型ロボットの実現に"
 ---
 

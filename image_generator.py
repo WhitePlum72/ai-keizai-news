@@ -123,7 +123,7 @@ def get_articles_needing_images():
         FROM articles a
         JOIN summaries s ON a.id = s.article_id
         WHERE a.processed = 1
-        AND DATE(a.collected_at) = DATE('now', 'localtime')
+        AND (a.image_url IS NULL OR a.image_url NOT LIKE '/images/%')
         ORDER BY a.buzz_score DESC
     """)
     rows = cursor.fetchall()

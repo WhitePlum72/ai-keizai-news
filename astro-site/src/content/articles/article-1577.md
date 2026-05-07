@@ -5,7 +5,7 @@ source_url: "https://www.anthropic.com/news/anthropic-nec"
 category: "AI"
 published_at: "2026-05-07"
 buzz_score: 36.0
-image_url: "https://www.anthropic.com/api/opengraph-illustration?name=Hand%20NodeGlobe&backgroundColor=heather"
+image_url: "/images/articles/article_1577.webp"
 meta_description: "東京五輪のレガシー活用は一定の成果があるものの、施設利用のハードルや多様性意識の定着、環境技術の持続可能性など課題が山積している。短期的成果に安住せず、長期的視点に立った継続的な努力が真の活用への鍵となる。"
 ---
 

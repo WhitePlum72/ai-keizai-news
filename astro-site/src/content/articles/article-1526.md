@@ -5,7 +5,7 @@ source_url: "https://www.bloomberg.com/news/articles/2026-05-05/ai-threatens-pri
 category: "AI"
 published_at: "2026-05-07"
 buzz_score: 36.0
-image_url: ""
+image_url: "/images/articles/article_1526.webp"
 meta_description: "AI進展がソフト業界を混乱させ、民間債の健全性を脅かす。既存モデル崩壊で収益低下リスクが高まり、回収不能の可能性も。投資家は利回りだけでなく、企業のAI対応戦略や適応能力を精査し、技術的淘汰リスクを厳しく評価する必要がある。"
 ---
 

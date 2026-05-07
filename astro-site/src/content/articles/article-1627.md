@@ -5,7 +5,7 @@ source_url: "https://www.bloomberg.com/news/articles/2026-05-05/nvidia-billionai
 category: "AI"
 published_at: "2026-05-07"
 buzz_score: 50.0
-image_url: ""
+image_url: "/images/articles/article_1627.webp"
 meta_description: "Nvidia取締役夫妻が南カリフォルニア大に約300億円を寄付。資金はAI研究・教育に充てられ、研究センター設立や人材育成が進む。これは産学連携の画期となり、他社支援を加速させる兆しとして、米国AI教育の質的向上と業界とアカデミアの連携深化"
 ---
 

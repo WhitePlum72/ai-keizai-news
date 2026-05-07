@@ -5,7 +5,7 @@ source_url: "https://www.bloomberg.com/news/articles/2026-05-03/gamestop-making-
 category: "AI"
 published_at: "2026-05-07"
 buzz_score: 35.0
-image_url: ""
+image_url: "/images/articles/article_1531.webp"
 meta_description: "ゲームストップは560億ドルでイーベイ買収を表明した。CEOコーエン氏の主導によるもので、eコマース企業への変革を目指す。既存顧客基盤などを獲得し小売業界の勢力図塗り替えを狙うが、資金調達や承認取得が課題となる。"
 ---
 

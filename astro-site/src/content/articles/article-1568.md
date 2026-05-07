@@ -5,7 +5,7 @@ source_url: "https://the-decoder.com/xiaomis-open-weight-mimo-v2-5-pro-takes-aim
 category: "AI"
 published_at: "2026-05-07"
 buzz_score: 36.0
-image_url: "https://the-decoder.com/wp-content/uploads/2026/03/Xiaomi-MiMo-Explore-and-Love-e1774194951718.jpg"
+image_url: "/images/articles/article_1568.webp"
 meta_description: "小米が新AIモデル「MiMo-V2.5-Pro」をリリース。コーディング性能はClaudeに匹敵し、トークン数を大幅削減。コスト効率と自律性を重視した中国のAI競争激化を象徴し、実用性で米系大手に挑む戦略となる。"
 ---
 

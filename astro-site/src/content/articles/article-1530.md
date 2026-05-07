@@ -5,7 +5,7 @@ source_url: "https://www.bloomberg.com/news/articles/2026-05-04/ios-27-features-
 category: "AI"
 published_at: "2026-05-07"
 buzz_score: 35.0
-image_url: ""
+image_url: "/images/articles/article_1530.webp"
 meta_description: "アップルは次期iOSでウォレットに独自デジタルチケット作成機能を追加。ユーザーがカスタマイズしたギフトカードや招待状などを発行・共有可能になる。セキュリティも確保され、受動的管理から能動的なコンテンツ生成プラットフォームへ進化する転換点とな"
 ---
 

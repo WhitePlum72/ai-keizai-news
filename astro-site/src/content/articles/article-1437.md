@@ -5,7 +5,7 @@ source_url: "https://techcrunch.com/2026/05/04/openais-cozy-partner-cerebras-is-
 category: "AI"
 published_at: "2026-05-07"
 buzz_score: 45.0
-image_url: ""
+image_url: "/images/articles/article_1437.webp"
 meta_description: "米AIチップ企業のセレブラスが企業価値266億ドル超の史上最大級IPOを目指す。OpenAIとの密接な連携や高効率チップの技術優位性が評価され、資金は製造強化に充てられる。激しい競争の中、AIエコシステムの中核として成長が期待される。"
 ---
 

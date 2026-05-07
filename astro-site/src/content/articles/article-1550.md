@@ -5,7 +5,7 @@ source_url: "https://www.bloomberg.com/news/videos/2026-05-04/us-to-add-many-mor
 category: "AI"
 published_at: "2026-05-07"
 buzz_score: 35.0
-image_url: ""
+image_url: "/images/articles/article_1550.webp"
 meta_description: "米国住宅都市開発長官は、供給拡大と規制緩和を柱とした新方針を示した。地方の過度な規制を見直し、開発効率を高めることで手頃な住宅供給を増やし、家計負担軽減とインフレ抑制を目指す。民間活力を最大限に引き出し、経済成長を支える。"
 ---
 

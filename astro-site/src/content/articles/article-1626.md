@@ -5,7 +5,7 @@ source_url: "https://www.bloomberg.com/news/videos/2026-05-05/amd-gives-upbeat-f
 category: "AI"
 published_at: "2026-05-07"
 buzz_score: 36.0
-image_url: ""
+image_url: "/images/articles/article_1626.webp"
 meta_description: "AMDが利益率改善を報告し、AI需要の高まりを反映。これを受け、関連株のSMCIが急伸。半導体とサーバー産業の密接な関係性が浮き彫りになり、業界全体の健全な成長と強気相場が期待されている。"
 ---
 

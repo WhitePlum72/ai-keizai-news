@@ -5,7 +5,7 @@ source_url: "https://www.bloomberg.com/news/articles/2026-05-05/brockman-says-mu
 category: "AI"
 published_at: "2026-05-07"
 buzz_score: 50.0
-image_url: ""
+image_url: "/images/articles/article_1642.webp"
 meta_description: "OpenAI社長が創設者のマスク氏を「愚か者」と批判。モデル開発で研究者を酷評したと証言し、忍耐力の欠如を指摘。社内葛藤やリーダーシップ課題が浮き彫りになり、組織の健全性とガバナンス強化が問われている。"
 ---
 

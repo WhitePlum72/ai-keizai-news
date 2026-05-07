@@ -5,7 +5,7 @@ source_url: "https://www.wired.com/story/meta-quest-promo-code/"
 category: "AI"
 published_at: "2026-05-07"
 buzz_score: 36.0
-image_url: ""
+image_url: "/images/articles/article_1472.webp"
 meta_description: "Meta Quest3とRay-Ban AIメガネは、VRとAIで現実と仮想の境界を曖昧にし、生活を変える。現在、これらの製品が最大20％割引されている。低コストで没入型体験やインビジブルテックを試せる好機だ。未来の生活設計のために、今すぐ"
 ---
 

@@ -5,7 +5,7 @@ source_url: "https://openai.com/index/building-the-compute-infrastructure-for-th
 category: "AI"
 published_at: "2026-05-07"
 buzz_score: 43.0
-image_url: ""
+image_url: "/images/articles/article_1378.webp"
 meta_description: "OpenAIはAGI実現に向け次世代インフラ「Stargate」を大幅に拡大。データセンター増設やエネルギー網整備で計算基盤を強化し、業界の激しい競争の中で事業存続と技術優位性を確保する。環境負荷や規制課題への対応も不可欠とされる。"
 ---
 

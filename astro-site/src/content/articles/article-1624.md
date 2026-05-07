@@ -5,7 +5,7 @@ source_url: "https://www.bloomberg.com/news/articles/2026-05-05/amd-gives-upbeat
 category: "AI"
 published_at: "2026-05-07"
 buzz_score: 41.0
-image_url: ""
+image_url: "/images/articles/article_1624.webp"
 meta_description: "AMDがクラウド企業のデータセンター投資拡大を受け、売上予想を上方修正し株価新高値を更新。エヌビディアの有力ライバルとしてAIチップ需要を捉え、供給体制を整えつつ成長基盤を強化している。"
 ---
 

@@ -5,7 +5,7 @@ source_url: "https://techcrunch.com/2026/05/05/volkswagen-becomes-rivians-top-sh
 category: "AI"
 published_at: "2026-05-07"
 buzz_score: 35.0
-image_url: "https://techcrunch.com/wp-content/uploads/2026/03/R2_CatalinaBlueExterior8.jpg?resize=1200,800"
+image_url: "/images/articles/article_1594.webp"
 meta_description: "VWは米リビアンとの58億ドル規模の合弁事業を軸に、EV分野での技術革新とコスト効率化を実現。収益構造改善と北米市場強化が期待され、投資家の評価向上で株高傾向が続く。課題はあるが、長期的成長エンジンとなり、企業価値の再評価と株価上昇が継続す"
 ---
 

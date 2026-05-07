@@ -16,6 +16,7 @@ def get_all_articles():
         FROM articles a
         JOIN summaries s ON a.id = s.article_id
         WHERE a.processed = 1
+        AND (a.image_url IS NULL OR a.image_url NOT LIKE '/images/%')
         ORDER BY a.buzz_score DESC
     """)
     rows = cursor.fetchall()

@@ -5,7 +5,7 @@ source_url: "https://www.bloomberg.com/news/articles/2026-05-04/former-citadel-c
 category: "AI"
 published_at: "2026-05-07"
 buzz_score: 36.0
-image_url: ""
+image_url: "/images/articles/article_1536.webp"
 meta_description: "シタドル元CTOのサブラマニアン氏が民間投資会社モーティブ・パートナーズに入社、AI戦略の要となる。同氏の参画でデータ活用を強化し、投資判断の精度向上を目指す。これはPE業界でAIが競争優位の源泉となりつつある現状を示す。"
 ---
 
