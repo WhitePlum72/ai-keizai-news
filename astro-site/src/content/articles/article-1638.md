@@ -1,5 +1,5 @@
 ---
-title: "Thoma BravoはAIモデルの選定において特定の企業に依存せず、GoogleだけでなくOpenAIやAnthropicとも多角的な関係性を築いていると、同社のマネージングパートナーであるセス・ボロ氏が明らかにした。ボロ氏はロサンゼルスで開かれたミルケン研究所グローバルカンファレンスにて、ブルームバーグのダニ・バーガー氏と対談し、AI導入におけるサイバーセキュリティの課題やコスト構造について議論を交わした。"
+title: "Thoma Bravo????AI??????Google?OpenAI?Anthropic??????"
 source: "Bloomberg Technology"
 source_url: "https://www.bloomberg.com/news/videos/2026-05-05/thoma-bravo-is-model-agnostic-says-boro-video"
 category: "AI"
