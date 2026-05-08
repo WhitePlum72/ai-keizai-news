@@ -104,3 +104,58 @@
 2026-05-09 00:32:53,815 [INFO] ComfyUIキュー送信完了: 2caf7792-7049-459b-b52f-32661b039a71
 2026-05-09 00:33:01,934 [INFO] ✅ 生成完了 [1622]
 2026-05-09 00:33:01,934 [INFO] 画像生成完了: 成功10件 / 失敗0件
+2026-05-09 00:33:24,680 [INFO] ============================================================
+2026-05-09 00:33:24,680 [INFO] 記事公開処理を開始しました
+2026-05-09 00:33:24,680 [INFO] ============================================================
+2026-05-09 00:33:24,680 [INFO] 公開対象の記事がありません
+2026-05-09 00:33:35,099 [INFO] Git Push完了
+2026-05-09 00:39:37,001 [INFO] 画像生成開始: 10件
+2026-05-09 00:39:37,001 [INFO] 生成中 [1651]: Anthropic、金融特化AIエージェント10種投入 IPO控え収益化競う
+2026-05-09 00:39:37,002 [DEBUG] FLUX Prompt: futuristic AI laboratory, glowing neural networks, dark cinematic atmosphere, cinematic lighting, editorial illustration, ultra detailed, professional business magazine style, no text, artificial inte
+2026-05-09 00:39:39,023 [INFO] ComfyUIキュー送信完了: 619754db-3407-4275-b4c9-af38a3ea8f60
+2026-05-09 00:39:44,203 [DEBUG] オーバーレイ完了: astro-site/public/images/articles\article_1651.webp ['OpenAI', 'Anthropic']
+2026-05-09 00:39:44,203 [INFO] オーバーレイ: ['OpenAI', 'Anthropic']
+2026-05-09 00:39:44,203 [INFO] ✅ 生成完了 [1651]
+2026-05-09 00:39:44,203 [INFO] 生成中 [1646]: OpenAIが2026年に計算資源へ5兆円規模の投資計画、ブロックマン氏が表明
+2026-05-09 00:39:44,218 [DEBUG] FLUX Prompt: futuristic AI laboratory, glowing neural networks, dark cinematic atmosphere, cinematic lighting, editorial illustration, ultra detailed, professional business magazine style, no text, artificial inte
+2026-05-09 00:39:46,236 [INFO] ComfyUIキュー送信完了: df053330-1473-4f13-aac4-f113a49a8481
+2026-05-09 00:39:51,464 [DEBUG] オーバーレイ完了: astro-site/public/images/articles\article_1646.webp ['OpenAI']
+2026-05-09 00:39:51,464 [INFO] オーバーレイ: ['OpenAI']
+2026-05-09 00:39:51,467 [INFO] ✅ 生成完了 [1646]
+2026-05-09 00:39:51,467 [INFO] 生成中 [1434]: AI革命の主役が語る雇用の未来像　フアンCEO「AIは膨大な雇用を生む」
+2026-05-09 00:39:51,468 [DEBUG] FLUX Prompt: editorial illustration of Jensen Huang, Asian man, leather jacket, tech style, futuristic AI technology background, cinematic lighting, digital art, professional magazine illustration, highly detailed
+2026-05-09 00:39:53,515 [INFO] ComfyUIキュー送信完了: 6e109c1a-49ad-42a6-9779-7c8999857f9d
+2026-05-09 00:40:01,646 [INFO] ✅ 生成完了 [1434]
+2026-05-09 00:40:01,646 [INFO] 生成中 [1529]: Apple、米国内生産でインテル・サムスンと協議浮上　TSMC依存の分散図る
+2026-05-09 00:40:01,646 [DEBUG] FLUX Prompt: minimalist white futuristic design, premium technology atmosphere, cinematic lighting, editorial illustration, ultra detailed, professional business magazine style, no text, artificial intelligence co
+2026-05-09 00:40:03,685 [INFO] ComfyUIキュー送信完了: f6a430db-749c-4bb3-abc8-40a497c17037
+2026-05-09 00:40:11,972 [DEBUG] オーバーレイ完了: astro-site/public/images/articles\article_1529.webp ['Apple']
+2026-05-09 00:40:11,972 [INFO] オーバーレイ: ['Apple']
+2026-05-09 00:40:11,980 [INFO] ✅ 生成完了 [1529]
+2026-05-09 00:40:11,980 [INFO] 生成中 [1544]: 米ヤナスCEO、トリアン提携でAI投資加速　グローバルETF投入へ
+2026-05-09 00:40:15,416 [DEBUG] FLUX Prompt: A cinematic wide shot of a sleek data center aisle transforming into a luminous Wall Street trading floor, silicon pathways glowing beneath polished obsidian floors. A radiant phoenix made of circuit 
+2026-05-09 00:40:17,440 [INFO] ComfyUIキュー送信完了: 8eec0c0f-29e3-4c14-8882-4b0952ee97ce
+2026-05-09 00:40:25,609 [INFO] ✅ 生成完了 [1544]
+2026-05-09 00:40:25,610 [INFO] 生成中 [1580]: Google、BroadcomとのAIチップ協業を拡大 TikTokに続く大型ク
+2026-05-09 00:40:25,610 [DEBUG] FLUX Prompt: colorful technology campus, futuristic data systems, modern architecture, cinematic lighting, editorial illustration, ultra detailed, professional business magazine style, no text, artificial intellig
+2026-05-09 00:40:27,661 [INFO] ComfyUIキュー送信完了: fc49be2e-4229-4128-aaf1-fe3a5ca43170
+2026-05-09 00:40:35,910 [DEBUG] オーバーレイ完了: astro-site/public/images/articles\article_1580.webp ['Google']
+2026-05-09 00:40:35,910 [INFO] オーバーレイ: ['Google']
+2026-05-09 00:40:35,918 [INFO] ✅ 生成完了 [1580]
+2026-05-09 00:40:35,918 [INFO] 生成中 [1386]: AGI開発の理念、営利追求を制す
+2026-05-09 00:40:35,919 [DEBUG] FLUX Prompt: editorial illustration of Sam Altman, middle-aged man, short dark hair, casual tech style, futuristic AI technology background, cinematic lighting, digital art, professional magazine illustration, hig
+2026-05-09 00:40:37,956 [INFO] ComfyUIキュー送信完了: 97878bb6-d520-4f6d-a596-1fd6fc465427
+2026-05-09 00:40:46,071 [INFO] ✅ 生成完了 [1386]
+2026-05-09 00:40:46,072 [INFO] 生成中 [1513]: AIが評価する撮像システム、「情報量」で性能を数値化
+2026-05-09 00:40:50,886 [DEBUG] FLUX Prompt: Wide-angle editorial view of a minimalist optical laboratory, seamless fusion of glass optical encoders and floating luminous data particles. Translucent geometric lenses capture beams of golden measu
+2026-05-09 00:40:52,942 [INFO] ComfyUIキュー送信完了: e9fe27af-fa42-4e42-ac97-684d0f75045f
+2026-05-09 00:40:58,069 [INFO] ✅ 生成完了 [1513]
+2026-05-09 00:40:58,069 [INFO] 生成中 [1546]: ピンタレスト株急騰、広告成長が鮮明に 売上高・見通しが予測上回る
+2026-05-09 00:41:01,267 [DEBUG] FLUX Prompt: A sleek metallic rocket emblazoned with the Pinterest logo soars upward through a darkened boardroom, trailing golden data-stream ribbons. Cinematic volumetric light breaks through venetian blinds, il
+2026-05-09 00:41:03,296 [INFO] ComfyUIキュー送信完了: a3f1ea41-027a-4c27-bb1c-e587c66d50bd
+2026-05-09 00:41:11,438 [INFO] ✅ 生成完了 [1546]
+2026-05-09 00:41:11,438 [INFO] 生成中 [1622]: スーパーマイクロ好決算、コスト管理で時間外急伸
+2026-05-09 00:41:15,122 [DEBUG] FLUX Prompt: A sleek metallic supercomputer server levitates inside a glass-walled data center at night, glowing cyan coolant streams circulating like arteries. Reflected in polished floors, stock market arrows su
+2026-05-09 00:41:17,180 [INFO] ComfyUIキュー送信完了: 3f542aa5-c004-48b6-8d4f-0cdf0d854dbd
+2026-05-09 00:41:25,294 [INFO] ✅ 生成完了 [1622]
+2026-05-09 00:41:25,294 [INFO] 画像生成完了: 成功10件 / 失敗0件

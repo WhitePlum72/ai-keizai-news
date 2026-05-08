@@ -186,58 +186,61 @@ def add_text_overlay(image_path: str, labels: list[str]) -> None:
     img = Image.open(image_path).convert("RGBA")
     W, H = img.size
 
-    def fit_font(text: str, target_width: int) -> ImageFont.FreeTypeFont:
-        size = 200
-        while size > 12:
+    target_w = int(W * 2 / 3)
+    MIN_SIZE = 80
+
+    def fit_font(text: str, max_width: int) -> ImageFont.FreeTypeFont:
+        for size in range(300, MIN_SIZE - 1, -4):
             try:
                 f = ImageFont.truetype(FONT_PATH, size)
             except Exception:
                 return ImageFont.load_default()
             dummy = ImageDraw.Draw(Image.new("RGBA", (1, 1)))
             bb = dummy.textbbox((0, 0), text, font=f)
-            if (bb[2] - bb[0]) <= target_width:
+            if (bb[2] - bb[0]) <= max_width:
                 return f
-            size -= 4
         try:
-            return ImageFont.truetype(FONT_PATH, 12)
+            return ImageFont.truetype(FONT_PATH, MIN_SIZE)
         except Exception:
             return ImageFont.load_default()
 
-    target_w = int(W * 2 / 3)
-    GAP = 32
+    GAP = 40
 
     fonts = []
     for i, label in enumerate(labels):
-        tw = target_w if i == 0 else int(target_w * 0.80)
-        fonts.append(fit_font(label, tw))
+        max_w = target_w if i == 0 else int(target_w * 0.80)
+        fonts.append(fit_font(label, max_w))
+
+    # ストローク幅を先に確定してレイアウト計算に含める
+    def get_stroke_w(font):
+        return max(6, int(font.size * 0.08))
 
     sizes = []
     for label, font in zip(labels, fonts):
+        stroke_w = get_stroke_w(font)
         dummy = ImageDraw.Draw(Image.new("RGBA", (1, 1)))
-        bb = dummy.textbbox((0, 0), label, font=font)
+        bb = dummy.textbbox((0, 0), label, font=font, stroke_width=stroke_w)
         sizes.append((bb[2] - bb[0], bb[3] - bb[1]))
 
     total_h = sum(h for _, h in sizes) + GAP * (len(labels) - 1)
-    start_y = H // 2 - total_h // 2
-    cy = start_y
+    cy = H // 2 - total_h // 2
 
     draw = ImageDraw.Draw(img)
 
     for label, font, (tw, th) in zip(labels, fonts, sizes):
-        tx = W // 2 - tw // 2
-        ty = cy
+        stroke_w = get_stroke_w(font)
+        # ストローク込みのbboxで中央揃え
+        dummy = ImageDraw.Draw(Image.new("RGBA", (1, 1)))
+        bb = dummy.textbbox((0, 0), label, font=font, stroke_width=stroke_w)
+        tx = W // 2 - (bb[2] - bb[0]) // 2 - bb[0]
+        ty = cy - bb[1]
 
-        # ストローク幅はフォントサイズの約8%
-        font_size = font.size
-        stroke_w = max(4, int(font_size * 0.08))
-
-        # 黒輪郭
         draw.text(
             (tx, ty), label,
             font=font,
             fill=(255, 255, 255, 255),
             stroke_width=stroke_w,
-            stroke_fill=(0, 0, 0, 230),
+            stroke_fill=(0, 0, 0, 255),
         )
 
         cy += th + GAP
@@ -286,10 +289,16 @@ def generate_flux_prompt(title_ja, summary_ja, category, title_en, summary_en) -
     if person:
         name, appearance = person
         return (
-            f"editorial illustration of {name}, {appearance}, "
+            f"photorealistic editorial portrait of {name}, {appearance}, "
             f"futuristic AI technology background, cinematic lighting, "
             f"digital art, professional magazine illustration, highly detailed, no text"
         )
+    PERSON_QUALITY = (
+    "photorealistic, ultra realistic skin texture, "
+    "professional photography, sharp eyes, "
+    "cinematic portrait lighting, magazine cover photo, "
+    "high facial detail, realistic anatomy"
+)
 
     # 企業・モデル検出（オーバーレイあり → FLUXには文字を含めない）
     companies = detect_companies(text)

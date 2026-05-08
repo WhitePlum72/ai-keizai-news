@@ -6,3 +6,6 @@ data/articles.db
 __pycache__/
 *.pyc
 .env
+
+Noto_Sans_JP.zip
+*.zip
