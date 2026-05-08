@@ -34,7 +34,7 @@ DEEPSEEK_URL     = "https://api.deepseek.com/chat/completions"
 DEEPSEEK_MODEL   = "deepseek-v4-pro"
 
 # フォント（Windows優先、なければNotoSansCJK）
-FONT_PATH_WIN   = "C:/Windows/Fonts/meiryo.ttc"
+FONT_PATH_WIN   = "C:/Windows/Fonts/NotoSansJP-Bold.ttf"
 FONT_PATH_LINUX = "/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc"
 FONT_PATH = FONT_PATH_WIN if os.path.exists(FONT_PATH_WIN) else FONT_PATH_LINUX
 
@@ -186,7 +186,6 @@ def add_text_overlay(image_path: str, labels: list[str]) -> None:
     img = Image.open(image_path).convert("RGBA")
     W, H = img.size
 
-    # ── フォントサイズを「画像幅の2/3」に収まるよう動的計算 ──
     def fit_font(text: str, target_width: int) -> ImageFont.FreeTypeFont:
         size = 200
         while size > 12:
@@ -205,15 +204,12 @@ def add_text_overlay(image_path: str, labels: list[str]) -> None:
             return ImageFont.load_default()
 
     target_w = int(W * 2 / 3)
+    GAP = 32
 
-    # 1枚目は幅2/3フル、2枚目以降は80%に縮小
     fonts = []
     for i, label in enumerate(labels):
         tw = target_w if i == 0 else int(target_w * 0.80)
         fonts.append(fit_font(label, tw))
-
-    # ラベル高さを揃えてレイアウト計算
-    GAP = 28  # ラベル間の余白
 
     sizes = []
     for label, font in zip(labels, fonts):
@@ -223,29 +219,31 @@ def add_text_overlay(image_path: str, labels: list[str]) -> None:
 
     total_h = sum(h for _, h in sizes) + GAP * (len(labels) - 1)
     start_y = H // 2 - total_h // 2
-
-    draw = ImageDraw.Draw(img)
     cy = start_y
 
+    draw = ImageDraw.Draw(img)
+
     for label, font, (tw, th) in zip(labels, fonts, sizes):
-        cx = W // 2
-        tx = cx - tw // 2
+        tx = W // 2 - tw // 2
         ty = cy
 
-        # ── ドロップシャドウ（4方向オフセット＋ぼかし相当の重ね描き）──
-        shadow_color = (0, 0, 0, 180)
-        for ox, oy in [(3, 3), (4, 4), (5, 5), (3, 5), (5, 3)]:
-            draw.text((tx + ox, ty + oy), label, font=font, fill=shadow_color)
+        # ストローク幅はフォントサイズの約8%
+        font_size = font.size
+        stroke_w = max(4, int(font_size * 0.08))
 
-        # ── 本文（白・やや太め感のため1pxずらしで2回描画）──
-        draw.text((tx, ty), label, font=font, fill=(255, 255, 255, 255))
-        draw.text((tx + 1, ty), label, font=font, fill=(255, 255, 255, 200))
+        # 黒輪郭
+        draw.text(
+            (tx, ty), label,
+            font=font,
+            fill=(255, 255, 255, 255),
+            stroke_width=stroke_w,
+            stroke_fill=(0, 0, 0, 230),
+        )
 
         cy += th + GAP
 
     img.convert("RGB").save(image_path, "WEBP", quality=90)
     logger.debug("オーバーレイ完了: %s %s", image_path, labels)
-
 
 # ========================
 # DeepSeek APIでFLUXプロンプト生成
