@@ -34,7 +34,7 @@ DEEPSEEK_URL     = "https://api.deepseek.com/chat/completions"
 DEEPSEEK_MODEL   = "deepseek-v4-pro"
 
 # フォント（Windows優先、なければNotoSansCJK）
-FONT_PATH_WIN   = "C:/Windows/Fonts/NotoSansJP-Bold.ttf"
+FONT_PATH_WIN = "C:/Windows/Fonts/NotoSansJP-ExtraBold.ttf"
 FONT_PATH_LINUX = "/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc"
 FONT_PATH = FONT_PATH_WIN if os.path.exists(FONT_PATH_WIN) else FONT_PATH_LINUX
 
@@ -95,16 +95,16 @@ GLOBAL_NEGATIVE = "text, watermark, logo, letters, blurry, low quality, distorte
 # 人物・企業判定
 # ========================
 KNOWN_PERSONS = {
-    "altman":     ("Sam Altman",     "middle-aged man, short dark hair, casual tech style"),
-    "musk":       ("Elon Musk",      "tall man, short hair, intense expression, tech entrepreneur"),
-    "zuckerberg": ("Mark Zuckerberg","young man, curly hair, casual t-shirt"),
-    "pichai":     ("Sundar Pichai",  "South Asian man, glasses, professional suit"),
-    "nadella":    ("Satya Nadella",  "South Asian man, glasses, business suit"),
-    "cook":       ("Tim Cook",       "middle-aged man, glasses, business casual"),
-    "bezos":      ("Jeff Bezos",     "bald man, athletic build, business casual"),
-    "huang":      ("Jensen Huang",   "Asian man, leather jacket, tech style"),
-    "lecun":      ("Yann LeCun",     "older man, beard, academic style"),
-    "hassabis":   ("Demis Hassabis", "British man, casual smart"),
+    "altman":     ("Sam Altman",     "40s american male, round face, short dark brown hair, clean shaven, warm brown eyes, casual style, slight smile"),
+    "musk":       ("Elon Musk",      "50s american male, tall, square jaw, short dark hair, intense blue eyes, black casual jacket, serious expression"),
+    "zuckerberg": ("Mark Zuckerberg","40s american male, curly dark hair, neutral expression, pale skin, dark eyes, grey t-shirt, youthful appearance"),
+    "pichai":     ("Sundar Pichai",  "50s indian male, black hair with grey temples, warm brown skin, glasses, gentle smile, business suit"),
+    "nadella":    ("Satya Nadella",  "50s indian male, short black hair, brown skin, slim glasses, confident expression, dark business suit"),
+    "cook":       ("Tim Cook",       "60s american male, short silver hair, blue eyes, silver rimmed glasses, business casual, calm expression"),
+    "bezos":      ("Jeff Bezos",     "60s american male, bald head, athletic build, wide smile, strong jaw, business casual shirt"),
+    "huang":      ("Jensen Huang",   "60s taiwanese american male, short black hair with grey, confident smile, signature black leather jacket"),
+    "lecun":      ("Yann LeCun",     "60s french male, grey beard, grey hair, academic style, glasses, thoughtful expression"),
+    "hassabis":   ("Demis Hassabis", "40s british male, dark hair, olive skin, slim build, casual smart, intelligent expression"),
 }
 
 KNOWN_COMPANIES = {
@@ -127,7 +127,14 @@ KNOWN_COMPANIES = {
     "grok":       ("Grok",       "xAI visualization, dark futuristic aesthetic, neural network"),
     "perplexity": ("Perplexity", "search AI visualization, clean minimal design, information flow"),
 }
-
+# KNOWN_COMPANIES の直下に追加
+PERSON_QUALITY = (
+    "2D digital illustration, anime-inspired art style, "
+    "clean line art, flat color with shading, "
+    "professional editorial illustration, "
+    "vibrant colors, sharp details, "
+    "character portrait, centered composition"
+)
 
 # ========================
 # DB
@@ -284,21 +291,20 @@ def call_deepseek(prompt: str, max_tokens: int = 120) -> str:
 def generate_flux_prompt(title_ja, summary_ja, category, title_en, summary_en) -> str:
     text = f"{title_en} {title_ja} {summary_en}"
 
-    # 人物優先（オーバーレイなし）
     person = detect_person(text)
     if person:
         name, appearance = person
         return (
-            f"photorealistic editorial portrait of {name}, {appearance}, "
-            f"futuristic AI technology background, cinematic lighting, "
-            f"digital art, professional magazine illustration, highly detailed, no text"
+            f"2D digital illustration portrait of {name}, "
+            f"{appearance}, "
+            f"futuristic AI technology background, "
+            f"anime-inspired editorial illustration style, "
+            f"clean line art, flat colors with cel shading, "
+            f"vibrant professional illustration, "
+            f"{PERSON_QUALITY}, "
+            f"no photo, no watermark, no text"
         )
-    PERSON_QUALITY = (
-    "photorealistic, ultra realistic skin texture, "
-    "professional photography, sharp eyes, "
-    "cinematic portrait lighting, magazine cover photo, "
-    "high facial detail, realistic anatomy"
-)
+    # 以下は既存コードそのまま
 
     # 企業・モデル検出（オーバーレイあり → FLUXには文字を含めない）
     companies = detect_companies(text)
