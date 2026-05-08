@@ -1,7 +1,9 @@
 """
-翻訳・記事生成モジュール（DeepSeek V4 Pro対応版）
-NVIDIA NIM API経由でDeepSeek V4 Proを使用し、英語原文から直接高品質な日本語記事を生成する。
-scorer.py向けのGoogle翻訳（translate_text）は引き続き使用。
+翻訳・記事生成モジュール（DeepSeek公式API対応版）
+- platform.deepseek.com のAPIを使用
+- thinking無効化でトークン節約
+- 429リトライ・指数バックオフ対応
+- scorer.py向けのGoogle翻訳（translate_text）は引き続き使用
 """
 
 import sqlite3
@@ -9,25 +11,27 @@ import logging
 import os
 import sys
 import re
-import openai
+import time
+import requests
 from datetime import datetime
 
-# .envからAPIキーを読み込む（python-dotenv使用）
 try:
     from dotenv import load_dotenv
-    load_dotenv()
+    load_dotenv(dotenv_path='.env', override=True)
 except ImportError:
-    pass  # .envが使えない環境でも動作するようフォールバック
+    pass
 
 DB_PATH = "data/articles.db"
 LOG_DIR = "logs"
-DELAY_SECONDS = 0.5
 
-NVIDIA_API_KEY  = os.environ.get("NVIDIA_API_KEY")
-NVIDIA_BASE_URL = "https://integrate.api.nvidia.com/v1"
-DEEPSEEK_MODEL  = "deepseek-ai/deepseek-v4-pro"
+DEEPSEEK_API_KEY = os.environ.get("DEEPSEEK_API_KEY")
+DEEPSEEK_URL     = "https://api.deepseek.com/chat/completions"
+DEEPSEEK_MODEL   = "deepseek-v4-pro"
 
-LABEL_PREFIX_RE   = re.compile(r'^\s*(?:[#>*\-]+\s*)?(?:見出し|本文)\s*[:：]\s*')
+# 記事間の待機秒数（レートリミット対策）
+API_INTERVAL = 10
+
+LABEL_PREFIX_RE     = re.compile(r'^\s*(?:[#>*\-]+\s*)?(?:見出し|本文)\s*[:：]\s*')
 MARKDOWN_HEADING_RE = re.compile(r'^\s*#+\s*')
 
 
@@ -37,7 +41,6 @@ MARKDOWN_HEADING_RE = re.compile(r'^\s*#+\s*')
 def setup_logger():
     logger = logging.getLogger("translator")
     logger.setLevel(logging.DEBUG)
-
     if logger.handlers:
         return logger
 
@@ -47,7 +50,6 @@ def setup_logger():
     logger.addHandler(console_handler)
 
     os.makedirs(LOG_DIR, exist_ok=True)
-
     today = datetime.now().strftime("%Y-%m-%d")
     file_handler = logging.FileHandler(
         os.path.join(LOG_DIR, f"{today}.log"), encoding="utf-8"
@@ -55,7 +57,6 @@ def setup_logger():
     file_handler.setLevel(logging.DEBUG)
     file_handler.setFormatter(logging.Formatter("%(asctime)s [%(levelname)s] %(message)s"))
     logger.addHandler(file_handler)
-
     return logger
 
 
@@ -176,16 +177,14 @@ def make_lead(body):
 # 記事分解
 # ========================
 def split_generated_article(text, fallback_title):
-    text = remove_output_labels(text)
+    text  = remove_output_labels(text)
     lines = text.splitlines()
-
     title = clean_title_line(lines[0], fallback_title)
-    body = "\n".join(lines[1:]).strip()
-
+    body  = "\n".join(lines[1:]).strip()
     return {
         "title": title,
-        "lead": make_lead(body),
-        "body": body,
+        "lead":  make_lead(body),
+        "body":  body,
         "meta_description": make_meta_description(body),
     }
 
@@ -202,24 +201,65 @@ def translate_text(text):
 
 
 # ========================
-# DeepSeek V4 Pro 記事生成
+# DeepSeek API呼び出し（requests直接・thinking無効）
+# ========================
+def call_deepseek(prompt: str, max_tokens: int = 2500, max_retries: int = 5) -> str:
+    """
+    DeepSeek公式APIをrequestsで直接呼び出す。
+    - thinking無効化でトークン節約
+    - 429時は指数バックオフでリトライ
+    """
+    if not DEEPSEEK_API_KEY:
+        raise EnvironmentError(
+            "DEEPSEEK_API_KEY が設定されていません。\n"
+            "PowerShellで: $env:DEEPSEEK_API_KEY='sk-...' を実行してください。"
+        )
+
+    headers = {
+        "Authorization": f"Bearer {DEEPSEEK_API_KEY}",
+        "Content-Type": "application/json",
+    }
+    body = {
+        "model": DEEPSEEK_MODEL,
+        "messages": [{"role": "user", "content": prompt}],
+        "max_tokens": max_tokens,
+        "thinking": {"type": "disabled"},  # thinkingを無効化してトークン節約
+    }
+
+    for attempt in range(max_retries):
+        try:
+            res = requests.post(DEEPSEEK_URL, headers=headers, json=body, timeout=60)
+
+            if res.status_code == 429:
+                wait = 60 * (attempt + 1)
+                logger.warning("429 レートリミット、%d秒待機 (%d/%d)", wait, attempt + 1, max_retries)
+                time.sleep(wait)
+                continue
+
+            res.raise_for_status()
+            data = res.json()
+            return data["choices"][0]["message"]["content"].strip()
+
+        except requests.exceptions.Timeout:
+            logger.warning("タイムアウト (%d/%d)、リトライします", attempt + 1, max_retries)
+            time.sleep(10)
+        except Exception as e:
+            if attempt == max_retries - 1:
+                raise
+            logger.warning("APIエラー (%d/%d): %s", attempt + 1, max_retries, e)
+            time.sleep(10)
+
+    raise RuntimeError(f"APIリトライ上限({max_retries}回)に達しました")
+
+
+# ========================
+# 記事生成
 # ========================
 def generate_article(title_en: str, body_en: str) -> tuple[str, str]:
     """
-    英語の元記事情報からDeepSeek V4 Proで高品質な日本語記事を生成する。
-
-    Returns:
-        (article_body, meta_description) のタプル
+    英語の元記事からDeepSeek V4 Proで高品質な日本語記事を生成する。
+    Returns: (article_body, meta_description) のタプル
     """
-    if not NVIDIA_API_KEY:
-        raise EnvironmentError(
-            "NVIDIA_API_KEY が設定されていません。.env ファイルを確認してください。"
-        )
-
-    client = openai.OpenAI(
-        base_url=NVIDIA_BASE_URL,
-        api_key=NVIDIA_API_KEY,
-    )
 
     # ---- 記事本文生成 ----
     article_prompt = f"""あなたはITmedia・Bloomberg・日経クロステック級の日本人経済記者だ。
@@ -253,12 +293,9 @@ def generate_article(title_en: str, body_en: str) -> tuple[str, str]:
 ・「今後の動向に注目です」等の締めは禁止
 ・日本市場・日本企業への影響を必ず1箇所含める"""
 
-    article_res = client.chat.completions.create(
-        model=DEEPSEEK_MODEL,
-        messages=[{"role": "user", "content": article_prompt}],
-        max_tokens=2500,
-    )
-    article_body = article_res.choices[0].message.content.strip()
+    article_body = call_deepseek(article_prompt, max_tokens=2500)
+
+    time.sleep(API_INTERVAL)
 
     # ---- meta description生成 ----
     meta_prompt = (
@@ -266,12 +303,7 @@ def generate_article(title_en: str, body_en: str) -> tuple[str, str]:
         "文末は「。」で終わること。マークダウン禁止。\n\n"
         f"{article_body[:1000]}"
     )
-    meta_res = client.chat.completions.create(
-        model=DEEPSEEK_MODEL,
-        messages=[{"role": "user", "content": meta_prompt}],
-        max_tokens=200,
-    )
-    meta_description = meta_res.choices[0].message.content.strip()[:120]
+    meta_description = call_deepseek(meta_prompt, max_tokens=200)[:120]
 
     return article_body, meta_description
 
@@ -314,11 +346,12 @@ def translate_all():
         logger.info("翻訳対象の記事がありません。")
         return
 
-    for a in articles:
+    logger.info("翻訳開始: %d件", len(articles))
+
+    for i, a in enumerate(articles):
         article_id, title, summary, source, source_type, url = a
 
         try:
-            # Google翻訳は廃止 → 英語原文をそのままDeepSeekに渡す
             generated, meta_description = generate_article(title, summary)
             data = split_generated_article(generated, title)
             data["meta_description"] = meta_description
@@ -335,10 +368,13 @@ def translate_all():
                 data["meta_description"],
             )
 
-            logger.info(f"完了 [id={article_id}]: {data['title']}")
+            logger.info("完了 [id=%d]: %s", article_id, data["title"])
+
+            if i < len(articles) - 1:
+                time.sleep(API_INTERVAL)
 
         except Exception as e:
-            logger.error(f"失敗 [id={article_id}]: {e}")
+            logger.error("失敗 [id=%d]: %s", article_id, e)
             continue
 
 
