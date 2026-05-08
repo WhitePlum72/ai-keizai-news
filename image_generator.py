@@ -186,37 +186,62 @@ def add_text_overlay(image_path: str, labels: list[str]) -> None:
     img = Image.open(image_path).convert("RGBA")
     W, H = img.size
 
-    try:
-        font_primary   = ImageFont.truetype(FONT_PATH, FONT_SIZE_PRIMARY)
-        font_secondary = ImageFont.truetype(FONT_PATH, FONT_SIZE_SECONDARY)
-    except Exception as e:
-        logger.warning("フォント読み込み失敗(%s)、デフォルトフォントを使用", e)
-        font_primary = font_secondary = ImageFont.load_default()
+    # ── フォントサイズを「画像幅の2/3」に収まるよう動的計算 ──
+    def fit_font(text: str, target_width: int) -> ImageFont.FreeTypeFont:
+        size = 200
+        while size > 12:
+            try:
+                f = ImageFont.truetype(FONT_PATH, size)
+            except Exception:
+                return ImageFont.load_default()
+            dummy = ImageDraw.Draw(Image.new("RGBA", (1, 1)))
+            bb = dummy.textbbox((0, 0), text, font=f)
+            if (bb[2] - bb[0]) <= target_width:
+                return f
+            size -= 4
+        try:
+            return ImageFont.truetype(FONT_PATH, 12)
+        except Exception:
+            return ImageFont.load_default()
 
-    total_h = len(labels) * BADGE_SPACING
-    start_y = H // 2 - total_h // 2 + BADGE_SPACING // 2
+    target_w = int(W * 2 / 3)
 
+    # 1枚目は幅2/3フル、2枚目以降は80%に縮小
+    fonts = []
     for i, label in enumerate(labels):
-        font = font_primary if i == 0 else font_secondary
-        cy   = start_y + i * BADGE_SPACING
+        tw = target_w if i == 0 else int(target_w * 0.80)
+        fonts.append(fit_font(label, tw))
 
-        dummy_draw = ImageDraw.Draw(img)
-        bbox = dummy_draw.textbbox((0, 0), label, font=font)
-        tw = bbox[2] - bbox[0]
-        th = bbox[3] - bbox[1]
+    # ラベル高さを揃えてレイアウト計算
+    GAP = 28  # ラベル間の余白
+
+    sizes = []
+    for label, font in zip(labels, fonts):
+        dummy = ImageDraw.Draw(Image.new("RGBA", (1, 1)))
+        bb = dummy.textbbox((0, 0), label, font=font)
+        sizes.append((bb[2] - bb[0], bb[3] - bb[1]))
+
+    total_h = sum(h for _, h in sizes) + GAP * (len(labels) - 1)
+    start_y = H // 2 - total_h // 2
+
+    draw = ImageDraw.Draw(img)
+    cy = start_y
+
+    for label, font, (tw, th) in zip(labels, fonts, sizes):
         cx = W // 2
+        tx = cx - tw // 2
+        ty = cy
 
-        overlay = Image.new("RGBA", img.size, (0, 0, 0, 0))
-        od = ImageDraw.Draw(overlay)
-        od.rounded_rectangle(
-            [cx - tw//2 - BADGE_PAD, cy - th//2 - BADGE_PAD,
-             cx + tw//2 + BADGE_PAD, cy + th//2 + BADGE_PAD],
-            radius=BADGE_RADIUS, fill=(0, 0, 0, BADGE_ALPHA)
-        )
-        img = Image.alpha_composite(img, overlay)
-        ImageDraw.Draw(img).text(
-            (cx - tw//2, cy - th//2), label, font=font, fill=(255, 255, 255, 255)
-        )
+        # ── ドロップシャドウ（4方向オフセット＋ぼかし相当の重ね描き）──
+        shadow_color = (0, 0, 0, 180)
+        for ox, oy in [(3, 3), (4, 4), (5, 5), (3, 5), (5, 3)]:
+            draw.text((tx + ox, ty + oy), label, font=font, fill=shadow_color)
+
+        # ── 本文（白・やや太め感のため1pxずらしで2回描画）──
+        draw.text((tx, ty), label, font=font, fill=(255, 255, 255, 255))
+        draw.text((tx + 1, ty), label, font=font, fill=(255, 255, 255, 200))
+
+        cy += th + GAP
 
     img.convert("RGB").save(image_path, "WEBP", quality=90)
     logger.debug("オーバーレイ完了: %s %s", image_path, labels)
