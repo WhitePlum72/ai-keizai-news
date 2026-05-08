@@ -204,6 +204,51 @@ RSS_SOURCES = {
         "source_type": "business",
         "description": "Ars Technica",
     },
+    # ==================== 追加：一次情報強化 ====================
+"anthropic_blog": {
+    "url": "https://www.anthropic.com/rss.xml",
+    "type": "rss",
+    "source_type": "model",
+    "description": "Anthropic Blog",
+},
+"deepmind": {
+    "url": "https://deepmind.google/blog/rss/",
+    "type": "rss",
+    "source_type": "research",
+    "description": "Google DeepMind",
+},
+"arxiv_cs_lg": {
+    "url": "https://arxiv.org/rss/cs.LG",
+    "type": "arxiv",
+    "source_type": "research",
+    "description": "arXiv CS.LG",
+},
+
+# ==================== 追加：国内一次情報 ====================
+"meti": {
+    "url": "https://www.meti.go.jp/rss/rss.rdf",
+    "type": "rss",
+    "source_type": "business",
+    "description": "経済産業省",
+},
+"ipa": {
+    "url": "https://www.ipa.go.jp/rss/news.rdf",
+    "type": "rss",
+    "source_type": "research",
+    "description": "IPA",
+},
+"nedo": {
+    "url": "https://www.nedo.go.jp/rss/index.xml",
+    "type": "rss",
+    "source_type": "research",
+    "description": "NEDO",
+},
+"prtimes_ai": {
+    "url": "https://prtimes.jp/rss/all.rdf",
+    "type": "rss",
+    "source_type": "business",
+    "description": "PR TIMES",
+},
 }
 
 ARXIV_KEYWORDS = [

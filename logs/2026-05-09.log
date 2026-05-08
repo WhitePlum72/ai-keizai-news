@@ -267,3 +267,570 @@
 2026-05-09 01:17:57,279 [INFO] ============================================================
 2026-05-09 01:17:57,281 [INFO] 公開対象の記事がありません
 2026-05-09 01:18:01,979 [INFO] Git Push完了
+2026-05-09 01:34:12,692 [INFO] ============================================================
+2026-05-09 01:34:12,692 [INFO] 記事公開処理を開始しました
+2026-05-09 01:34:12,693 [INFO] ============================================================
+2026-05-09 01:34:12,695 [INFO] 公開対象の記事がありません
+2026-05-09 01:34:14,647 [INFO] Git Push完了
+2026-05-09 02:07:55,422 [INFO] ============================================================
+2026-05-09 02:07:55,422 [INFO] RSS収集を開始しました
+2026-05-09 02:07:55,422 [INFO] ============================================================
+2026-05-09 02:07:55,423 [INFO] データベースを初期化しました: data/articles.db
+2026-05-09 02:08:08,390 [INFO] Anthropicスクレイピング完了: 11件
+2026-05-09 02:08:08,391 [DEBUG] 重複記事をスキップ: Claude Opus 4 7
+2026-05-09 02:08:08,391 [DEBUG] 重複記事をスキップ: Claude Design Anthropic Labs
+2026-05-09 02:08:08,391 [DEBUG] 重複記事をスキップ: Claude Is A Space To Think
+2026-05-09 02:08:08,392 [DEBUG] 重複記事をスキップ: Higher Limits Spacex
+2026-05-09 02:08:08,392 [DEBUG] 重複記事をスキップ: Finance Agents
+2026-05-09 02:08:08,392 [DEBUG] 重複記事をスキップ: Enterprise Ai Services Company
+2026-05-09 02:08:08,392 [DEBUG] 重複記事をスキップ: Claude For Creative Work
+2026-05-09 02:08:08,392 [DEBUG] 重複記事をスキップ: Theo Hourmouzis General Manager Australia New Zeal
+2026-05-09 02:08:08,393 [DEBUG] 重複記事をスキップ: Election Safeguards Update
+2026-05-09 02:08:08,393 [DEBUG] 重複記事をスキップ: Anthropic Nec
+2026-05-09 02:08:08,393 [DEBUG] 重複記事をスキップ: Anthropic Amazon Compute
+2026-05-09 02:08:08,393 [INFO] RSS取得開始: OpenAI (https://openai.com/news/rss.xml)
+2026-05-09 02:08:08,949 [INFO] RSS取得完了: OpenAI - 記事数: 30
+2026-05-09 02:08:08,950 [DEBUG] 重複記事をスキップ: Scaling Trusted Access for Cyber with GPT-5.5 and 
+2026-05-09 02:08:08,950 [DEBUG] 重複記事をスキップ: Parloa builds service agents customers want to tal
+2026-05-09 02:08:08,950 [DEBUG] 重複記事をスキップ: Advancing voice intelligence with new models in th
+2026-05-09 02:08:08,950 [DEBUG] 重複記事をスキップ: Testing ads in ChatGPT
+2026-05-09 02:08:08,951 [DEBUG] 重複記事をスキップ: Introducing Trusted Contact in ChatGPT
+2026-05-09 02:08:08,952 [DEBUG] 重複記事をスキップ: Simplex rethinks software development with Codex
+2026-05-09 02:08:09,066 [INFO] 記事を保存: How ChatGPT learns about the world while protectin
+2026-05-09 02:08:09,068 [DEBUG] 重複記事をスキップ: Introducing ChatGPT Futures: Class of 2026
+2026-05-09 02:08:09,069 [DEBUG] 重複記事をスキップ: Uber uses OpenAI to help people earn smarter and b
+2026-05-09 02:08:09,069 [DEBUG] 重複記事をスキップ: How frontier firms are pulling ahead
+2026-05-09 02:08:09,069 [DEBUG] 重複記事をスキップ: Singular Bank helps bankers move fast with ChatGPT
+2026-05-09 02:08:09,069 [DEBUG] 重複記事をスキップ: Unlocking large scale AI training networks with MR
+2026-05-09 02:08:09,069 [DEBUG] 重複記事をスキップ: GPT-5.5 Instant: smarter, clearer, and more person
+2026-05-09 02:08:09,070 [DEBUG] 重複記事をスキップ: GPT-5.5 Instant System Card
+2026-05-09 02:08:09,070 [DEBUG] 重複記事をスキップ: New ways to buy ChatGPT ads
+2026-05-09 02:08:09,158 [INFO] 記事を保存: Advancing youth safety and wellbeing in EMEA
+2026-05-09 02:08:09,160 [DEBUG] 重複記事をスキップ: OpenAI and PwC collaborate to reimagine the office
+2026-05-09 02:08:09,160 [DEBUG] 重複記事をスキップ: How OpenAI delivers low-latency voice AI at scale
+2026-05-09 02:08:09,160 [DEBUG] 重複記事をスキップ: Introducing Advanced Account Security
+2026-05-09 02:08:09,160 [DEBUG] 重複記事をスキップ: Where the goblins came from
+2026-05-09 02:08:09,160 [DEBUG] 重複記事をスキップ: Building the compute infrastructure for the Intell
+2026-05-09 02:08:09,161 [DEBUG] 重複記事をスキップ: Cybersecurity in the Intelligence Age
+2026-05-09 02:08:09,161 [DEBUG] 重複記事をスキップ: Our commitment to community safety
+2026-05-09 02:08:09,161 [DEBUG] 重複記事をスキップ: OpenAI models, Codex, and Managed Agents come to A
+2026-05-09 02:08:09,161 [DEBUG] 重複記事をスキップ: OpenAI available at FedRAMP Moderate
+2026-05-09 02:08:09,161 [DEBUG] 重複記事をスキップ: The next phase of the Microsoft OpenAI partnership
+2026-05-09 02:08:09,162 [DEBUG] 重複記事をスキップ: An open-source spec for orchestration: Symphony
+2026-05-09 02:08:09,162 [DEBUG] 重複記事をスキップ: Choco automates food distribution with AI agents
+2026-05-09 02:08:09,162 [DEBUG] 重複記事をスキップ: Our principles
+2026-05-09 02:08:09,162 [DEBUG] 重複記事をスキップ: Introducing GPT-5.5
+2026-05-09 02:08:09,162 [INFO] RSS取得開始: Hugging Face (https://huggingface.co/blog/feed.xml)
+2026-05-09 02:08:09,581 [INFO] RSS取得完了: Hugging Face - 記事数: 30
+2026-05-09 02:08:09,693 [INFO] 記事を保存: EMO: Pretraining mixture of experts for emergent m
+2026-05-09 02:08:09,819 [INFO] 記事を保存: MedQA: Fine-Tuning a Clinical AI on AMD ROCm — No 
+2026-05-09 02:08:09,821 [DEBUG] 重複記事をスキップ: vLLM V0 to V1: Correctness Before Corrections in R
+2026-05-09 02:08:09,821 [DEBUG] 重複記事をスキップ: Adding Benchmaxxer Repellant to the Open ASR Leade
+2026-05-09 02:08:09,821 [DEBUG] 重複記事をスキップ: Granite 4.1 LLMs: How They’re Built
+2026-05-09 02:08:09,822 [DEBUG] 重複記事をスキップ: DeepInfra on Hugging Face Inference Providers 🔥
+2026-05-09 02:08:09,822 [DEBUG] 重複記事をスキップ: Introducing NVIDIA Nemotron 3 Nano Omni: Long-Cont
+2026-05-09 02:08:09,822 [DEBUG] 重複記事をスキップ: How to build scalable web apps with OpenAI's Priva
+2026-05-09 02:08:09,822 [DEBUG] 重複記事をスキップ: DeepSeek-V4: a million-token context that agents c
+2026-05-09 02:08:09,822 [DEBUG] 重複記事をスキップ: How to Use Transformers.js in a Chrome Extension
+2026-05-09 02:08:09,822 [DEBUG] 重複記事をスキップ: QIMMA قِمّة ⛰: A Quality-First Arabic LLM Leaderbo
+2026-05-09 02:08:09,823 [DEBUG] 重複記事をスキップ: AI and the Future of Cybersecurity: Why Openness M
+2026-05-09 02:08:09,823 [DEBUG] 重複記事をスキップ: Ecom-RLVE: Adaptive Verifiable Environments for E-
+2026-05-09 02:08:09,823 [DEBUG] 重複記事をスキップ: The PR you would have opened yourself
+2026-05-09 02:08:09,823 [DEBUG] 重複記事をスキップ: Training and Finetuning Multimodal Embedding & Rer
+2026-05-09 02:08:09,823 [DEBUG] 重複記事をスキップ: Inside VAKRA: Reasoning, Tool Use, and Failure Mod
+2026-05-09 02:08:09,823 [DEBUG] 重複記事をスキップ: Meet HoloTab by HCompany. Your AI browser companio
+2026-05-09 02:08:09,824 [DEBUG] 重複記事をスキップ: Waypoint-1.5: Higher-Fidelity Interactive Worlds f
+2026-05-09 02:08:09,824 [DEBUG] 重複記事をスキップ: Multimodal Embedding & Reranker Models with Senten
+2026-05-09 02:08:09,824 [DEBUG] 重複記事をスキップ: Safetensors is Joining the PyTorch Foundation
+2026-05-09 02:08:09,824 [DEBUG] 重複記事をスキップ: Welcome Gemma 4: Frontier multimodal intelligence 
+2026-05-09 02:08:09,824 [DEBUG] 重複記事をスキップ: Falcon Perception
+2026-05-09 02:08:09,824 [DEBUG] 重複記事をスキップ: Any Custom Frontend with Gradio's Backend
+2026-05-09 02:08:09,825 [DEBUG] 重複記事をスキップ: Granite 4.0 3B Vision: Compact Multimodal Intellig
+2026-05-09 02:08:09,825 [DEBUG] 重複記事をスキップ: Training mRNA Language Models Across 25 Species fo
+2026-05-09 02:08:09,825 [DEBUG] 重複記事をスキップ: TRL v1.0: Post-Training Library Built to Move with
+2026-05-09 02:08:09,825 [DEBUG] 重複記事をスキップ: Liberate your OpenClaw
+2026-05-09 02:08:09,825 [DEBUG] 重複記事をスキップ: A New Framework for Evaluating Voice Agents (EVA)
+2026-05-09 02:08:09,826 [DEBUG] 重複記事をスキップ: Build a Domain-Specific Embedding Model in Under a
+2026-05-09 02:08:09,826 [DEBUG] 重複記事をスキップ: State of Open Source on Hugging Face: Spring 2026
+2026-05-09 02:08:09,826 [INFO] RSS取得開始: TechCrunch (https://techcrunch.com/feed/)
+2026-05-09 02:08:10,004 [INFO] RSS取得完了: TechCrunch - 記事数: 20
+2026-05-09 02:08:10,184 [INFO] 記事を保存: US defense contractor who sold hacking tools to Ru
+2026-05-09 02:08:10,278 [INFO] 記事を保存: Pentagon releases UFO files on new website
+2026-05-09 02:08:10,379 [INFO] 記事を保存: Truecaller slashes 70 jobs amid declining ad sales
+2026-05-09 02:08:10,565 [INFO] 記事を保存: Live only at TechCrunch Disrupt 2026: Why most fou
+2026-05-09 02:08:10,701 [INFO] 記事を保存: Last 24 hours to get 50% off a second pass to Tech
+2026-05-09 02:08:10,808 [INFO] 記事を保存: Lime, the Uber-backed micromobility company, files
+2026-05-09 02:08:10,951 [INFO] 記事を保存: The biggest US power grid is under strain from AI 
+2026-05-09 02:08:11,049 [INFO] 記事を保存: Airbnb says AI now writes 60% of its new code
+2026-05-09 02:08:11,050 [DEBUG] 重複記事をスキップ: The fax machine is the bottleneck in US healthcare
+2026-05-09 02:08:11,050 [DEBUG] 重複記事をスキップ: Ramp in talks to hit $40B+ valuation, 6 months aft
+2026-05-09 02:08:11,051 [DEBUG] 重複記事をスキップ: OpenAI launches new voice intelligence features in
+2026-05-09 02:08:11,051 [DEBUG] 重複記事をスキップ: Kodiak AI raises $100M at a steep discount, sendin
+2026-05-09 02:08:11,051 [DEBUG] 重複記事をスキップ: Disney looking to make a unified ‘super app,’ repo
+2026-05-09 02:08:11,051 [DEBUG] 重複記事をスキップ: Voi founders’ new AI startup Pit has become the la
+2026-05-09 02:08:11,051 [DEBUG] 重複記事をスキップ: Hackers deface school login pages after claiming a
+2026-05-09 02:08:11,052 [DEBUG] 重複記事をスキップ: Gusto hits $1B revenue, a figure that brings it cl
+2026-05-09 02:08:11,052 [DEBUG] 重複記事をスキップ: OpenAI introduces new ‘Trusted Contact’ safeguard 
+2026-05-09 02:08:11,052 [DEBUG] 重複記事をスキップ: Tesla Model Y is first car to meet new US driver a
+2026-05-09 02:08:11,052 [DEBUG] 重複記事をスキップ: Perplexity’s Personal Computer is now available to
+2026-05-09 02:08:11,052 [DEBUG] 重複記事をスキップ: Elon Musk’s lawsuit is putting OpenAI’s safety rec
+2026-05-09 02:08:11,052 [INFO] RSS取得開始: The Verge AI (https://www.theverge.com/rss/ai-artificial-intelligence/index.xml)
+2026-05-09 02:08:11,375 [INFO] RSS取得完了: The Verge AI - 記事数: 10
+2026-05-09 02:08:11,499 [INFO] 記事を保存: PlayStation sees AI as a ‘powerful tool’ to help m
+2026-05-09 02:08:11,638 [INFO] 記事を保存: Microsoft was worried OpenAI would run off to Amaz
+2026-05-09 02:08:11,715 [INFO] 記事を保存: Everybody wants to rule the AI world
+2026-05-09 02:08:11,716 [DEBUG] 重複記事をスキップ: Mira Murati’s deposition pulled back the curtain o
+2026-05-09 02:08:11,716 [DEBUG] 重複記事をスキップ: Apple&#8217;s AirPods with cameras for AI are appa
+2026-05-09 02:08:11,717 [DEBUG] 重複記事をスキップ: SpaceX has a $55 billion plan to build AI chips in
+2026-05-09 02:08:11,717 [DEBUG] 重複記事をスキップ: ChatGPT&#8217;s &#8216;Trusted Contact&#8217; will
+2026-05-09 02:08:11,717 [DEBUG] 重複記事をスキップ: Live updates from Elon Musk and Sam Altman’s court
+2026-05-09 02:08:11,717 [DEBUG] 重複記事をスキップ: OpenClaw and Claude can put your AI-generated podc
+2026-05-09 02:08:11,717 [DEBUG] 重複記事をスキップ: Google’s taking a big swing at AI health with the 
+2026-05-09 02:08:11,717 [INFO] RSS取得開始: VentureBeat AI (https://venturebeat.com/category/ai/feed/)
+2026-05-09 02:08:12,049 [INFO] RSS取得完了: VentureBeat AI - 記事数: 7
+2026-05-09 02:08:12,049 [DEBUG] 重複記事をスキップ: Railway secures $100 million to challenge AWS with
+2026-05-09 02:08:12,050 [DEBUG] 重複記事をスキップ: Claude Code costs up to $200 a month. Goose does t
+2026-05-09 02:08:12,050 [DEBUG] 重複記事をスキップ: Listen Labs raises $69M after viral billboard hiri
+2026-05-09 02:08:12,050 [DEBUG] 重複記事をスキップ: Salesforce rolls out new Slackbot AI agent as it b
+2026-05-09 02:08:12,050 [DEBUG] 重複記事をスキップ: Anthropic launches Cowork, a Claude Desktop agent 
+2026-05-09 02:08:12,050 [DEBUG] 重複記事をスキップ: Nous Research's NousCoder-14B is an open-source co
+2026-05-09 02:08:12,051 [DEBUG] 重複記事をスキップ: The creator of Claude Code just revealed his workf
+2026-05-09 02:08:12,051 [INFO] RSS取得開始: Wired AI (https://www.wired.com/feed/tag/ai/latest/rss)
+2026-05-09 02:08:12,410 [INFO] RSS取得完了: Wired AI - 記事数: 10
+2026-05-09 02:08:12,539 [INFO] 記事を保存: There’s a Long-Shot Proposal to Protect California
+2026-05-09 02:08:12,652 [INFO] 記事を保存: Nick Bostrom Has a Plan for Humanity’s ‘Big Retire
+2026-05-09 02:08:12,730 [INFO] 記事を保存: The New Wild West of AI Kids’ Toys
+2026-05-09 02:08:12,731 [DEBUG] 重複記事をスキップ: Musk v. Altman Evidence Shows What Microsoft Execu
+2026-05-09 02:08:12,731 [DEBUG] 重複記事をスキップ: Trump Pivots on AI Regulation, Worker Ousted by DO
+2026-05-09 02:08:12,731 [DEBUG] 重複記事をスキップ: How to Disable Google's Gemini in Chrome
+2026-05-09 02:08:12,732 [DEBUG] 重複記事をスキップ: ChatGPT Has ‘Goblin’ Mania in the US. In China It 
+2026-05-09 02:08:12,732 [DEBUG] 重複記事をスキップ: Thousands of Vibe-Coded Apps Expose Corporate and 
+2026-05-09 02:08:12,732 [DEBUG] 重複記事をスキップ: This Reggae Band Is in a Nightmare Battle Against 
+2026-05-09 02:08:12,732 [DEBUG] 重複記事をスキップ: Elon Musk’s Last-Ditch Effort to Control OpenAI: R
+2026-05-09 02:08:12,732 [INFO] RSS取得開始: MIT Technology Review (https://www.technologyreview.com/feed/)
+2026-05-09 02:08:12,937 [INFO] RSS取得完了: MIT Technology Review - 記事数: 10
+2026-05-09 02:08:13,079 [INFO] 記事を保存: Here’s what you need to know about the cruise ship
+2026-05-09 02:08:13,169 [INFO] 記事を保存: The Download: AI malaise and babymaking tech
+2026-05-09 02:08:13,257 [INFO] 記事を保存: Here’s how technology transformed babymaking
+2026-05-09 02:08:13,258 [DEBUG] 重複記事をスキップ: The Download: the tech reshaping IVF and the rise 
+2026-05-09 02:08:13,259 [DEBUG] 重複記事をスキップ: The balcony solar boom is coming to the US
+2026-05-09 02:08:13,259 [DEBUG] 重複記事をスキップ: What’s next for IVF
+2026-05-09 02:08:13,259 [DEBUG] 重複記事をスキップ: The Download: seafloor science and military chatbo
+2026-05-09 02:08:13,259 [DEBUG] 重複記事をスキップ: The Download: inside the Musk v. Altman trial, and
+2026-05-09 02:08:13,259 [DEBUG] 重複記事をスキップ: A blueprint for using AI to strengthen democracy
+2026-05-09 02:08:13,259 [DEBUG] 重複記事をスキップ: Week one of the Musk v. Altman trial: What it was 
+2026-05-09 02:08:13,260 [INFO] RSS取得開始: BAIR Blog (https://bair.berkeley.edu/blog/feed.xml)
+2026-05-09 02:08:14,091 [INFO] RSS取得完了: BAIR Blog - 記事数: 10
+2026-05-09 02:08:14,091 [DEBUG] 重複記事をスキップ: Gradient-based Planning for World Models at Longer
+2026-05-09 02:08:14,091 [DEBUG] 重複記事をスキップ: Identifying Interactions at Scale for LLMs
+2026-05-09 02:08:14,092 [DEBUG] 重複記事をスキップ: Information-Driven Design of Imaging Systems
+2026-05-09 02:08:14,092 [DEBUG] 重複記事をスキップ: RL without TD learning
+2026-05-09 02:08:14,092 [DEBUG] 重複記事をスキップ: What exactly does word2vec learn?
+2026-05-09 02:08:14,092 [DEBUG] 重複記事をスキップ: Whole-Body Conditioned Egocentric Video Prediction
+2026-05-09 02:08:14,092 [DEBUG] 重複記事をスキップ: Defending against Prompt Injection with Structured
+2026-05-09 02:08:14,093 [DEBUG] 重複記事をスキップ: Repurposing Protein Folding Models for Generation 
+2026-05-09 02:08:14,093 [DEBUG] 重複記事をスキップ: Scaling Up Reinforcement Learning for Traffic Smoo
+2026-05-09 02:08:14,093 [DEBUG] 重複記事をスキップ: Virtual Personas for Language Models via an Anthol
+2026-05-09 02:08:14,093 [INFO] RSS取得開始: Bloomberg Technology (https://feeds.bloomberg.com/technology/news.rss)
+2026-05-09 02:08:14,858 [INFO] RSS取得完了: Bloomberg Technology - 記事数: 30
+2026-05-09 02:08:14,858 [DEBUG] 重複記事をスキップ: MercadoLibre Dives As Profits Miss on Rapid Growth
+2026-05-09 02:08:14,993 [INFO] 記事を保存: ‘Grand Theft Auto VI’ Publisher Looks to be ‘Smart
+2026-05-09 02:08:14,996 [DEBUG] 重複記事をスキップ: Cloudflare Drops on Sales Forecast Miss, Job Cuts
+2026-05-09 02:08:15,081 [INFO] 記事を保存: Three Mile Island Gets an AI Makeover
+2026-05-09 02:08:15,193 [INFO] 記事を保存: Bradesco BBI Sees Brazil IPO Rebound After Compass
+2026-05-09 02:08:15,321 [INFO] 記事を保存: Yahoo Pays Up to Refinance $1.6 Billion Debt Tied 
+2026-05-09 02:08:15,446 [INFO] 記事を保存: Giant Virginia Data Center Project Upended by Cler
+2026-05-09 02:08:15,574 [INFO] 記事を保存: Some College Finals Delayed After Canvas Online Pl
+2026-05-09 02:08:15,685 [INFO] 記事を保存: Saudi Delivery App Ninja Taps Banks for $1 Billion
+2026-05-09 02:08:15,803 [INFO] 記事を保存: OnlyFans Sells 16% Stake Weeks After Death of Owne
+2026-05-09 02:08:15,913 [INFO] 記事を保存: CoreWeave's Q1 Earnings Were 'Transformational,' C
+2026-05-09 02:08:16,036 [INFO] 記事を保存: US Stocks Near Record High as Chip Stocks Roar, Pa
+2026-05-09 02:08:16,037 [DEBUG] 重複記事をスキップ: Hackers Took Down Canvas Service Used by Thousands
+2026-05-09 02:08:16,136 [INFO] 記事を保存: Akamai Shares Jump on $1.8 Billion AI Cloud Deal
+2026-05-09 02:08:16,267 [INFO] 記事を保存: Siemens Scores Win on EU Push to Streamline Indust
+2026-05-09 02:08:16,269 [DEBUG] 重複記事をスキップ: Airbnb Boosts Annual Sales Outlook While Spending 
+2026-05-09 02:08:16,270 [DEBUG] 重複記事をスキップ: CoreWeave Shares Drop After Forecast Sparks Growth
+2026-05-09 02:08:16,394 [INFO] 記事を保存: Summer Travel Is a Mess. The Points Guy Tells Us H
+2026-05-09 02:08:16,509 [INFO] 記事を保存: Online Mob Fuels 6,000% Stock Rally in Obscure Spa
+2026-05-09 02:08:16,639 [INFO] 記事を保存: Online Mob Fuels 6,000% Rally in Obscure SpaceX Ri
+2026-05-09 02:08:16,640 [DEBUG] 重複記事をスキップ: US Said to Suspect Nvidia Chips Smuggled to Alibab
+2026-05-09 02:08:16,641 [DEBUG] 重複記事をスキップ: Poor Equity Returns, Weak Rupee Drive Indians to F
+2026-05-09 02:08:16,769 [INFO] 記事を保存: ‘Peak Euphoria’ Seen as Small Companies Jump on th
+2026-05-09 02:08:16,891 [INFO] 記事を保存: Hunt for AI Optical Winners Drives Rally in Two Sw
+2026-05-09 02:08:17,024 [INFO] 記事を保存: AI Startup Monk Offers a Year’s Rent for One Good 
+2026-05-09 02:08:17,149 [INFO] 記事を保存: Box Makers Struggle to Pass on War Costs as Demand
+2026-05-09 02:08:17,274 [INFO] 記事を保存: Black Eyed Peas Co-Founder will.i.am Is Also an AI
+2026-05-09 02:08:17,398 [INFO] 記事を保存: Trump Wants to Make H-1B Workers More Expensive fo
+2026-05-09 02:08:17,514 [INFO] 記事を保存: Coinbase Resumes Trading After Seven-Hour Exchange
+2026-05-09 02:08:17,637 [INFO] 記事を保存: Intel CEO Who Won Over Trump and Musk Now Needs a 
+2026-05-09 02:08:17,637 [INFO] RSS取得開始: Reuters Technology (https://www.reutersagency.com/feed/?best-topics=tech)
+2026-05-09 02:08:18,220 [INFO] RSS取得完了: Reuters Technology - 記事数: 0
+2026-05-09 02:08:18,220 [INFO] RSS取得開始: The Decoder (https://the-decoder.com/feed/)
+2026-05-09 02:08:20,496 [INFO] RSS取得完了: The Decoder - 記事数: 10
+2026-05-09 02:08:20,711 [INFO] 記事を保存: SoftBank reportedly slashes OpenAI-backed loan fro
+2026-05-09 02:08:20,845 [INFO] 記事を保存: Anthropic approaches $1 trillion valuation as reve
+2026-05-09 02:08:21,010 [INFO] 記事を保存: AI safety tests have a new problem: Models are now
+2026-05-09 02:08:21,124 [INFO] 記事を保存: OpenAI opens GPT-5.5-Cyber to vetted security rese
+2026-05-09 02:08:21,317 [INFO] 記事を保存: Mozilla's agentic AI pipeline turns Claude Mythos 
+2026-05-09 02:08:21,320 [DEBUG] 重複記事をスキップ: OpenAI's new voice model brings GPT-5-level reason
+2026-05-09 02:08:21,320 [DEBUG] 重複記事をスキップ: Europe's answer to AI regulation complexity is to 
+2026-05-09 02:08:21,320 [DEBUG] 重複記事をスキップ: AI translation company DeepL cuts around 250 jobs 
+2026-05-09 02:08:21,320 [DEBUG] 重複記事をスキップ: How Anthropic's 80x growth blew past its own infra
+2026-05-09 02:08:21,320 [DEBUG] 重複記事をスキップ: AI models follow their values better when they fir
+2026-05-09 02:08:21,320 [INFO] RSS取得開始: arXiv CS.AI (https://arxiv.org/rss/cs.AI)
+2026-05-09 02:08:21,383 [INFO] RSS取得完了: arXiv CS.AI - 記事数: 0
+2026-05-09 02:08:21,383 [INFO] RSS取得開始: arXiv CS.CL (https://arxiv.org/rss/cs.CL)
+2026-05-09 02:08:21,421 [INFO] RSS取得完了: arXiv CS.CL - 記事数: 0
+2026-05-09 02:08:21,421 [INFO] RSS取得開始: Yahoo Finance (https://finance.yahoo.com/rss/topstories)
+2026-05-09 02:08:21,543 [INFO] RSS取得完了: Yahoo Finance - 記事数: 30
+2026-05-09 02:08:21,702 [INFO] 記事を保存: Adobe (ADBE): A New Healthcare Collaboration Signa
+2026-05-09 02:08:21,758 [DEBUG] 重複記事をスキップ: DXC (DXC) Q4 2026 Earnings Call Transcript
+2026-05-09 02:08:21,933 [INFO] 記事を保存: A New Milestone Suggests Microsoft’s (MSFT) AI Eco
+2026-05-09 02:08:22,086 [INFO] 記事を保存: Tyler Technologies (TYL) Gets A Major Target Hike 
+2026-05-09 02:08:22,237 [INFO] 記事を保存: Why Pinnacle Food Group’s (PFAI) Latest Biotech In
+2026-05-09 02:08:22,385 [INFO] 記事を保存: iPower (IPW) Just Created A New Revenue Stream Wit
+2026-05-09 02:08:22,543 [INFO] 記事を保存: Meet the Super Semiconductor Stock Obliterating Nv
+2026-05-09 02:08:22,708 [INFO] 記事を保存: urban-gro (UGRO) Secures Temporary Relief As Inves
+2026-05-09 02:08:22,861 [INFO] 記事を保存: Edible Garden (EDBL) Expands Its Target Partnershi
+2026-05-09 02:08:23,030 [INFO] 記事を保存: Hydrofarm Holdings Group, Inc. (HYFM): 7 Best Vert
+2026-05-09 02:08:23,116 [INFO] 記事を保存: Daily Spotlight: Payrolls Top Consensus
+2026-05-09 02:08:23,307 [INFO] 記事を保存: Is Village Farms International, Inc. (VFF) Among t
+2026-05-09 02:08:23,522 [INFO] 記事を保存: Here is Why The Scotts Miracle-Gro Company (SMG) i
+2026-05-09 02:08:23,523 [DEBUG] 重複記事をスキップ: Tech stocks today: The tech-heavy Nasdaq Composite
+2026-05-09 02:08:23,594 [INFO] 記事を保存: ROAD Q2 2026 Earnings Transcript
+2026-05-09 02:08:23,771 [INFO] 記事を保存: Stock Market Today: Nasdaq Charges Higher On Peace
+2026-05-09 02:08:23,813 [DEBUG] 重複記事をスキップ: Technical Assessment: Bullish in the Intermediate-
+2026-05-09 02:08:23,965 [INFO] 記事を保存: This Growth Stock With A Difference Zooms Past Ent
+2026-05-09 02:08:24,109 [INFO] 記事を保存: Stock Market Soars On Tumbling Oil Prices, Strong 
+2026-05-09 02:08:24,219 [INFO] 記事を保存: Corpay Earnings Demonstrate Shift to Long-Term Com
+2026-05-09 02:08:24,318 [INFO] 記事を保存: Granite Ridge (GRNT) Q1 2026 Earnings Transcript
+2026-05-09 02:08:24,442 [INFO] 記事を保存: Google, Broadcom Drive Delirious Demand. So Do 16 
+2026-05-09 02:08:24,502 [INFO] 記事を保存: Analyst Report: Flex Ltd
+2026-05-09 02:08:24,602 [INFO] 記事を保存: Rocket Lab stock blasts back to record highs
+2026-05-09 02:08:24,763 [INFO] 記事を保存: Stocks mixed as investors digest US job growth, ch
+2026-05-09 02:08:24,940 [INFO] 記事を保存: Bitcoin and ethereum prices today, Friday, May 8, 
+2026-05-09 02:08:25,033 [INFO] 記事を保存: Main Street (MAIN) Q1 2026 Earnings Transcript
+2026-05-09 02:08:25,193 [INFO] 記事を保存: The best balance transfer credit cards for May 202
+2026-05-09 02:08:25,245 [DEBUG] 重複記事をスキップ: Analyst Report: Merck & Co Inc
+2026-05-09 02:08:25,441 [INFO] 記事を保存: Gold and silver prices today, Friday, May 8: Price
+2026-05-09 02:08:25,442 [INFO] RSS取得開始: Seeking Alpha (https://seekingalpha.com/feed.xml)
+2026-05-09 02:08:25,624 [INFO] RSS取得完了: Seeking Alpha - 記事数: 30
+2026-05-09 02:08:25,796 [INFO] 記事を保存: Creative Media & Community Trust Corporation 2026 
+2026-05-09 02:08:25,967 [INFO] 記事を保存: KOID: How This Humanoid Robotics ETF Walked The Re
+2026-05-09 02:08:26,090 [INFO] 記事を保存: Amazon: The $465 Billion Backlog That Silences The
+2026-05-09 02:08:26,238 [INFO] 記事を保存: FIDI Is A Strong International Dividend ETF For Lo
+2026-05-09 02:08:26,341 [INFO] 記事を保存: Embraer S.A. (EMBJ) Q1 2026 Earnings Call Transcri
+2026-05-09 02:08:26,463 [INFO] 記事を保存: Dorel Industries Inc. (DII.B:CA) Q1 2026 Earnings 
+2026-05-09 02:08:26,583 [INFO] 記事を保存: Trisura Group Ltd. (TSU:CA) Q1 2026 Earnings Call 
+2026-05-09 02:08:26,696 [INFO] 記事を保存: Malibu Boats, Inc. (MBUU) Q3 2026 Earnings Call Tr
+2026-05-09 02:08:26,827 [INFO] 記事を保存: Engie Brasil Energia S.A. (EGIEY) Q1 2026 Earnings
+2026-05-09 02:08:26,936 [INFO] 記事を保存: NTT Inc. ADR (NTTYY) Q3 2025 Earnings Call Transcr
+2026-05-09 02:08:27,046 [INFO] 記事を保存: RNP: REIT And Preferred Exposure Providing Monthly
+2026-05-09 02:08:27,168 [INFO] 記事を保存: NTT Inc. ADR (NTTYY) Q3 2025 Press Conference Call
+2026-05-09 02:08:27,252 [INFO] 記事を保存: IREN's Nvidia Deal Changes Everything
+2026-05-09 02:08:27,269 [DEBUG] 重複記事をスキップ: Toast, Inc. (TOST) Q1 2026 Earnings Call Transcrip
+2026-05-09 02:08:27,404 [INFO] 記事を保存: NewLake Capital Partners, Inc. (NLCP) Q1 2026 Earn
+2026-05-09 02:08:27,507 [INFO] 記事を保存: Ferrovial N.V. (FER) Q1 2026 Earnings Call Transcr
+2026-05-09 02:08:27,582 [DEBUG] 重複記事をスキップ: ANI Pharmaceuticals, Inc. (ANIP) Q1 2026 Earnings 
+2026-05-09 02:08:27,703 [INFO] 記事を保存: South Bow Corporation (SOBO:CA) Q1 2026 Earnings C
+2026-05-09 02:08:27,804 [INFO] 記事を保存: TeraWulf Inc. (WULF) Q1 2026 Earnings Call Transcr
+2026-05-09 02:08:27,860 [DEBUG] 重複記事をスキップ: Nephros, Inc. (NEPH) Q1 2026 Earnings Call Transcr
+2026-05-09 02:08:27,974 [INFO] 記事を保存: Back-To-Back U.S. Jobs Gains, But Hiring Caution L
+2026-05-09 02:08:28,128 [INFO] 記事を保存: Canadian Natural Resources: Rising Shareholder Ret
+2026-05-09 02:08:28,356 [INFO] 記事を保存: InflaRx N.V. (IFRX) Discusses Strategic Focus on I
+2026-05-09 02:08:28,467 [DEBUG] 重複記事をスキップ: Arlo Technologies, Inc. (ARLO) Q1 2026 Earnings Ca
+2026-05-09 02:08:28,543 [DEBUG] 重複記事をスキップ: Serve Robotics Inc. (SERV) Q1 2026 Earnings Call T
+2026-05-09 02:08:28,705 [INFO] 記事を保存: Plains All American Pipeline, L.P. Common Units (P
+2026-05-09 02:08:28,838 [INFO] 記事を保存: Oportun Financial Corporation (OPRT) Q1 2026 Earni
+2026-05-09 02:08:28,942 [INFO] 記事を保存: CoreWeave: The AI's Gold Rush's Expensive Shovel
+2026-05-09 02:08:29,033 [DEBUG] 重複記事をスキップ: ANI Pharmaceuticals, Inc. 2026 Q1 - Results - Earn
+2026-05-09 02:08:29,123 [INFO] 記事を保存: Guggenheim High Yield Fund Q1 2026 Commentary
+2026-05-09 02:08:29,123 [INFO] RSS取得開始: MarketWatch Tech (https://feeds.marketwatch.com/marketwatch/technology/)
+2026-05-09 02:08:30,705 [INFO] RSS取得完了: MarketWatch Tech - 記事数: 0
+2026-05-09 02:08:30,705 [INFO] RSS取得開始: Bloomberg Markets (https://feeds.bloomberg.com/markets/news.rss)
+2026-05-09 02:08:31,351 [INFO] RSS取得完了: Bloomberg Markets - 記事数: 30
+2026-05-09 02:08:31,353 [DEBUG] 重複記事をスキップ: US Stocks Get Tech Boost After Strong Jobs Report:
+2026-05-09 02:08:31,486 [INFO] 記事を保存: Goldman Sachs Private Credit Fund’s Share of Bad L
+2026-05-09 02:08:31,609 [INFO] 記事を保存: Health Firms Odyssey, Mobia Slide After $454 Milli
+2026-05-09 02:08:31,703 [INFO] 記事を保存: Market Leadership Still in Tech: Hermann
+2026-05-09 02:08:31,704 [DEBUG] 重複記事をスキップ: Oil Ticks Higher as Gulf Clashes Threaten to Derai
+2026-05-09 02:08:31,832 [INFO] 記事を保存: Venezuela’s Faulty Power Grid Risks Derailing Econ
+2026-05-09 02:08:31,962 [INFO] 記事を保存: Fannie, Freddie’s Latest Bull Says Traders Underpr
+2026-05-09 02:08:32,088 [INFO] 記事を保存: UK Bonds Rally as Starmer Says He’ll Stay as Prime
+2026-05-09 02:08:32,228 [INFO] 記事を保存: US Jobs Data ‘Steady as It Goes,’ Says BlackRock’s
+2026-05-09 02:08:32,356 [INFO] 記事を保存: ECB Is ‘Highly Vigilant’ to Rising Inflation Risks
+2026-05-09 02:08:32,510 [INFO] 記事を保存: Canada Aims to Approve Projects in a Year After Cr
+2026-05-09 02:08:32,641 [INFO] 記事を保存: Rheinmetall Sinks Most Since 2022 After Loss of a 
+2026-05-09 02:08:32,765 [INFO] 記事を保存: Enhanced Games Owner Jumps 27% After Going Public 
+2026-05-09 02:08:32,882 [INFO] 記事を保存: Waste Industry Is Recession-Resilient: Republic Se
+2026-05-09 02:08:32,883 [DEBUG] 重複記事をスキップ: US Stocks Near Record High as Chip Stocks Roar, Pa
+2026-05-09 02:08:32,883 [DEBUG] 重複記事をスキップ: Stellantis Deal Gives China’s Leapmotor Plant, EV 
+2026-05-09 02:08:33,016 [INFO] 記事を保存: Oil’s Price Surge Spurs Nigeria’s Flip From Discou
+2026-05-09 02:08:33,088 [INFO] 記事を保存: How Gen Z Is Changing Charity
+2026-05-09 02:08:33,205 [INFO] 記事を保存: Orange Juice Jumps Most in a Week on Shrinking Bra
+2026-05-09 02:08:33,322 [INFO] 記事を保存: Stock Strength Driven by Earnings, Not Economy: Sa
+2026-05-09 02:08:33,438 [INFO] 記事を保存: Hormuz Transits Halted Since Tuesday as US, Iran C
+2026-05-09 02:08:33,545 [INFO] 記事を保存: How NFL Legend Steve Young Built a $10 Billion Fun
+2026-05-09 02:08:33,546 [DEBUG] 重複記事をスキップ: US Says Iran Should Give Answer Friday as Clashes 
+2026-05-09 02:08:33,577 [DEBUG] 重複記事をスキップ: Bloomberg Surveillance 5/8/2026
+2026-05-09 02:08:33,718 [INFO] 記事を保存: Itau Asset’s Serra Sees Bulk of Brazil Rate Cuts A
+2026-05-09 02:08:33,719 [DEBUG] 重複記事をスキップ: Compass Breaks Brazil IPO Drought With $650 Millio
+2026-05-09 02:08:33,859 [INFO] 記事を保存: University College London Professor on the Cons of
+2026-05-09 02:08:33,997 [INFO] 記事を保存: Treasuries Gain After Mixed Jobs Data Cements Bets
+2026-05-09 02:08:34,127 [INFO] 記事を保存: Hormuz Woes Seen Lingering Into Second Half, Goldm
+2026-05-09 02:08:34,253 [INFO] 記事を保存: Gundlach Takes Longshot Bet in Case of US Debt Res
+2026-05-09 02:08:34,253 [INFO] RSS取得開始: WSJ Tech (https://feeds.content.dowjones.io/public/rss/RSSWSJD)
+2026-05-09 02:08:34,678 [INFO] RSS取得完了: WSJ Tech - 記事数: 30
+2026-05-09 02:08:34,804 [INFO] 記事を保存: Apple, Intel Have Reached Preliminary Chip-Making 
+2026-05-09 02:08:34,923 [INFO] 記事を保存: A Robot You Can Snuggle Debuts at WSJ’s Flagship E
+2026-05-09 02:08:35,049 [INFO] 記事を保存: Trump’s Border Spending Spurs Boom in AI-Infused S
+2026-05-09 02:08:35,050 [DEBUG] 重複記事をスキップ: How Anthropic’s Mythos Threw the White House AI St
+2026-05-09 02:08:35,050 [DEBUG] 重複記事をスキップ: AI Is Distorting Practically Everything About the 
+2026-05-09 02:08:35,050 [DEBUG] 重複記事をスキップ: Elon Musk Summoned to France to Face Criminal Char
+2026-05-09 02:08:35,177 [INFO] 記事を保存: ‘AI for Good’ and ‘I Am Not a Robot’: Learning the
+2026-05-09 02:08:35,178 [DEBUG] 重複記事をスキップ: IMF Warns That Evolving AI Threat Could Upend Fina
+2026-05-09 02:08:35,178 [DEBUG] 重複記事をスキップ: The ChatGPT-ification of American Business
+2026-05-09 02:08:35,179 [DEBUG] 重複記事をスキップ: What Is a ‘Compute Tax’ and Why Is the Idea Gainin
+2026-05-09 02:08:35,179 [DEBUG] 重複記事をスキップ: Elon Musk Wanted Tesla to Take Over OpenAI, Romant
+2026-05-09 02:08:35,311 [INFO] 記事を保存: The New Rules of Sorority Rush, According to a Top
+2026-05-09 02:08:35,312 [DEBUG] 重複記事をスキップ: Fitness Bands Are Losing Screens—and Gaining Fans
+2026-05-09 02:08:35,312 [DEBUG] 重複記事をスキップ: Security Cameras Are Failing Spectacularly at Comm
+2026-05-09 02:08:35,313 [DEBUG] 重複記事をスキップ: The Roomba Guy’s Second Act: A Robot You’ll Want t
+2026-05-09 02:08:35,313 [DEBUG] 重複記事をスキップ: Jet Li Loves Buying in Bulk at Costco
+2026-05-09 02:08:35,313 [DEBUG] 重複記事をスキップ: Bayer to Buy Eye-Drug Developer Perfuse Therapeuti
+2026-05-09 02:08:35,313 [DEBUG] 重複記事をスキップ: UCB to Buy Candid Therapeutics for Up to $2.2 Bill
+2026-05-09 02:08:35,314 [DEBUG] 重複記事をスキップ: The Quest to Use AI to Help Find New Drugs
+2026-05-09 02:08:35,314 [DEBUG] 重複記事をスキップ: FDA Turns to AI to Speed Up Clinical Trials
+2026-05-09 02:08:35,314 [DEBUG] 重複記事をスキップ: FDA Approves First-Ever Gene Therapy to Restore He
+2026-05-09 02:08:35,314 [DEBUG] 重複記事をスキップ: Opinion | The Lawsuits Will Continue Until Morale 
+2026-05-09 02:08:35,314 [DEBUG] 重複記事をスキップ: Opinion | My Family Was on the Front Lines of Pion
+2026-05-09 02:08:35,315 [DEBUG] 重複記事をスキップ: Opinion | We’re Going to Miss Tim Cook
+2026-05-09 02:08:35,315 [DEBUG] 重複記事をスキップ: Opinion | Don’t Stand So Close to ChatGPT
+2026-05-09 02:08:35,315 [DEBUG] 重複記事をスキップ: Opinion | As Warfare Changes, Land Power Remains V
+2026-05-09 02:08:35,315 [DEBUG] 重複記事をスキップ: Opinion | Who Sets Democratic Agenda: Bernie Sande
+2026-05-09 02:08:35,315 [DEBUG] 重複記事をスキップ: Court Strikes Down Trump’s Global Tariffs
+2026-05-09 02:08:35,315 [DEBUG] 重複記事をスキップ: National-Security Contractor HawkEye 360’s Shares 
+2026-05-09 02:08:35,316 [DEBUG] 重複記事をスキップ: SpaceX Tees Up Massive Spending Ahead of IPO
+2026-05-09 02:08:35,316 [INFO] RSS取得開始: Financial Times Tech (https://feeds.ft.com/ft/technology)
+2026-05-09 02:08:35,348 [INFO] RSS取得完了: Financial Times Tech - 記事数: 0
+2026-05-09 02:08:35,348 [INFO] RSS取得開始: Reuters Business (https://feeds.reuters.com/reuters/businessNews)
+2026-05-09 02:08:35,413 [INFO] RSS取得完了: Reuters Business - 記事数: 0
+2026-05-09 02:08:35,413 [INFO] RSS取得開始: CNBC Technology (https://www.cnbc.com/id/19854910/device/rss/rss.html)
+2026-05-09 02:08:35,992 [INFO] RSS取得完了: CNBC Technology - 記事数: 30
+2026-05-09 02:08:36,164 [INFO] 記事を保存: Jim Cramer says this struggling stock could remain
+2026-05-09 02:08:36,331 [INFO] 記事を保存: AWS data center outage hits trading on FanDuel, Co
+2026-05-09 02:08:36,481 [INFO] 記事を保存: Fitness wearable Whoop to offer on-demand clinicia
+2026-05-09 02:08:36,661 [INFO] 記事を保存: Anthropic's Mythos set off a cybersecurity 'hyster
+2026-05-09 02:08:36,849 [INFO] 記事を保存: Jobs report, hostilities in the Strait of Hormuz, 
+2026-05-09 02:08:36,992 [INFO] 記事を保存: Akamai stock soars 20% on earnings, $1.8 billion A
+2026-05-09 02:08:37,153 [INFO] 記事を保存: The Tech Download: Meta, Google enter AI agent rac
+2026-05-09 02:08:37,351 [INFO] 記事を保存: Sony targets double-digit profit growth despite sl
+2026-05-09 02:08:37,352 [DEBUG] 重複記事をスキップ: Nintendo hikes Switch 2 prices and expects console
+2026-05-09 02:08:37,352 [DEBUG] 重複記事をスキップ: Tech stocks could offer their best value in years,
+2026-05-09 02:08:37,353 [DEBUG] 重複記事をスキップ: Nvidia CEO says AI partnership with Corning will '
+2026-05-09 02:08:37,353 [DEBUG] 重複記事をスキップ: Corning CEO to Cramer: Deals with 2 unnamed hypers
+2026-05-09 02:08:37,353 [DEBUG] 重複記事をスキップ: Jim Cramer says the AI boom has 'the power to keep
+2026-05-09 02:08:37,353 [DEBUG] 重複記事をスキップ: Cloudflare stock sinks 24% after earnings as compa
+2026-05-09 02:08:37,354 [DEBUG] 重複記事をスキップ: OpenAI rolls out new model for cybersecurity teams
+2026-05-09 02:08:37,354 [DEBUG] 重複記事をスキップ: IREN inks AI infrastructure deal with Nvidia
+2026-05-09 02:08:37,354 [DEBUG] 重複記事をスキップ: French prosecutors escalate probe of Elon Musk and
+2026-05-09 02:08:37,354 [DEBUG] 重複記事をスキップ: Coinbase posts steep first-quarter loss after slid
+2026-05-09 02:08:37,354 [DEBUG] 重複記事をスキップ: Datadog stock soars 31% on blockbuster earnings as
+2026-05-09 02:08:37,355 [DEBUG] 重複記事をスキップ: CoreWeave stock sinks 10% on weak revenue guidance
+2026-05-09 02:08:37,355 [DEBUG] 重複記事をスキップ: Airbnb tops revenue estimates, but Middle East can
+2026-05-09 02:08:37,355 [DEBUG] 重複記事をスキップ: Paul Tudor Jones says U.S. is late to regulating A
+2026-05-09 02:08:37,355 [DEBUG] 重複記事をスキップ: OpenAI trial: Mother of Musk's children says he of
+2026-05-09 02:08:37,355 [DEBUG] 重複記事をスキップ: AMD's big day, Anthropic-SpaceX deal, the jet fuel
+2026-05-09 02:08:37,355 [DEBUG] 重複記事をスキップ: EU weighs restricting use of U.S. cloud platforms 
+2026-05-09 02:08:37,355 [DEBUG] 重複記事をスキップ: SoftBank shares surge over 18% as Japan tech-fuele
+2026-05-09 02:08:37,356 [DEBUG] 重複記事をスキップ: Arm's quarter shows how it's carving a lucrative p
+2026-05-09 02:08:37,356 [DEBUG] 重複記事をスキップ: Jim Cramer says Big Tech cannot afford to be cheap
+2026-05-09 02:08:37,356 [DEBUG] 重複記事をスキップ: Anthropic CEO says 80-fold growth in first quarter
+2026-05-09 02:08:37,356 [DEBUG] 重複記事をスキップ: Snap issues cautious guidance as Perplexity deal e
+2026-05-09 02:08:37,356 [INFO] RSS取得開始: CNBC AI (https://www.cnbc.com/id/100727362/device/rss/rss.html)
+2026-05-09 02:08:37,598 [INFO] RSS取得完了: CNBC AI - 記事数: 30
+2026-05-09 02:08:37,741 [INFO] 記事を保存: Marco Rubio says U.S. expects Iran response on pea
+2026-05-09 02:08:37,891 [INFO] 記事を保存: U.S. says it struck two Iran-flagged oil tankers t
+2026-05-09 02:08:37,892 [DEBUG] 重複記事をスキップ: Akamai stock soars 20% on earnings, $1.8 billion A
+2026-05-09 02:08:37,892 [DEBUG] 重複記事をスキップ: Anthropic's Mythos set off a cybersecurity 'hyster
+2026-05-09 02:08:37,892 [DEBUG] 重複記事をスキップ: Iran focus at Trump-Xi summit may delay progress o
+2026-05-09 02:08:38,062 [INFO] 記事を保存: Trump threatens EU with ‘much higher’ tariffs if n
+2026-05-09 02:08:38,227 [INFO] 記事を保存: Gilt yields ease as UK PM Starmer says 'tough' ele
+2026-05-09 02:08:38,229 [DEBUG] 重複記事をスキップ: AWS data center outage hits trading on FanDuel, Co
+2026-05-09 02:08:38,229 [DEBUG] 重複記事をスキップ: Toyota fourth-quarter profit misses by wide margin
+2026-05-09 02:08:38,229 [DEBUG] 重複記事をスキップ: France is fan favorite for the FIFA World Cup — bu
+2026-05-09 02:08:38,230 [DEBUG] 重複記事をスキップ: ‘Not a Chance Hormuz Opens’: How Wall Street’s new
+2026-05-09 02:08:38,230 [DEBUG] 重複記事をスキップ: Nintendo hikes Switch 2 prices and expects console
+2026-05-09 02:08:38,230 [DEBUG] 重複記事をスキップ: The Tech Download: Meta, Google enter AI agent rac
+2026-05-09 02:08:38,230 [DEBUG] 重複記事をスキップ: U.S. and Iran trade fire in Strait of Hormuz; each
+2026-05-09 02:08:38,231 [DEBUG] 重複記事をスキップ: Sony targets double-digit profit growth despite sl
+2026-05-09 02:08:38,384 [INFO] 記事を保存: Commerzbank boss pledges to defend shareholders in
+2026-05-09 02:08:38,386 [DEBUG] 重複記事をスキップ: Tech stocks could offer their best value in years,
+2026-05-09 02:08:38,387 [DEBUG] 重複記事をスキップ: How the U.S. military and Maersk got a ship to pas
+2026-05-09 02:08:38,572 [INFO] 記事を保存: Billion-dollar bets: Global investors chase Indian
+2026-05-09 02:08:38,573 [DEBUG] 重複記事をスキップ: CNBC Daily Open: Leadership challenge swirls aroun
+2026-05-09 02:08:38,573 [DEBUG] 重複記事をスキップ: Oil prices rise after U.S. fires on empty Iranian 
+2026-05-09 02:08:38,573 [DEBUG] 重複記事をスキップ: From jewelers to health tech, CEOs want tariff ref
+2026-05-09 02:08:38,574 [DEBUG] 重複記事をスキップ: Japan may have fired its yen bazooka twice, but ma
+2026-05-09 02:08:38,574 [DEBUG] 重複記事をスキップ: Asia-Pacific markets mostly fall as renewed U.S.-I
+2026-05-09 02:08:38,574 [DEBUG] 重複記事をスキップ: Inside India newsletter: Social media is reshaping
+2026-05-09 02:08:38,574 [DEBUG] 重複記事をスキップ: While many international brands retreat, McDonald’
+2026-05-09 02:08:38,575 [DEBUG] 重複記事をスキップ: Gold and silver's historic rally could resume 'as 
+2026-05-09 02:08:38,575 [DEBUG] 重複記事をスキップ: Asian Development Bank's $70 billion energy and di
+2026-05-09 02:08:38,575 [DEBUG] 重複記事をスキップ: Airbnb tops revenue estimates, but Middle East can
+2026-05-09 02:08:38,575 [DEBUG] 重複記事をスキップ: The nuclear option: Atomic energy could offer Euro
+2026-05-09 02:08:38,575 [INFO] RSS取得開始: Microsoft Blog (https://blogs.microsoft.com/feed/)
+2026-05-09 02:08:38,792 [INFO] RSS取得完了: Microsoft Blog - 記事数: 10
+2026-05-09 02:08:38,793 [DEBUG] 重複記事をスキップ: How Frontier Firms are rebuilding the operating mo
+2026-05-09 02:08:38,793 [DEBUG] 重複記事をスキップ: Unlocking human ambition to drive business growth 
+2026-05-09 02:08:38,793 [DEBUG] 重複記事をスキップ: Microsoft Sovereign Private Cloud scales to thousa
+2026-05-09 02:08:38,795 [DEBUG] 重複記事をスキップ: The next phase of the Microsoft-OpenAI partnership
+2026-05-09 02:08:38,795 [DEBUG] 重複記事をスキップ: Accelerating Frontier Transformation with Microsof
+2026-05-09 02:08:38,795 [DEBUG] 重複記事をスキップ: Open to Work: How to Get Ahead in the Age of AI
+2026-05-09 02:08:38,795 [DEBUG] 重複記事をスキップ: Announcing Copilot leadership update
+2026-05-09 02:08:38,796 [DEBUG] 重複記事をスキップ: Microsoft at NVIDIA GTC: New solutions for Microso
+2026-05-09 02:08:38,796 [DEBUG] 重複記事をスキップ: Microsoft announces Experiences + Devices leadersh
+2026-05-09 02:08:38,796 [DEBUG] 重複記事をスキップ: Introducing the First Frontier Suite built on Inte
+2026-05-09 02:08:38,796 [INFO] RSS取得開始: Google AI Blog (https://blog.google/technology/ai/rss/)
+2026-05-09 02:08:39,432 [INFO] RSS取得完了: Google AI Blog - 記事数: 20
+2026-05-09 02:08:39,598 [INFO] 記事を保存: See what happens when creative legends use AI to m
+2026-05-09 02:08:39,600 [DEBUG] 重複記事をスキップ: 5 gardening tips you can try right in Search
+2026-05-09 02:08:39,600 [DEBUG] 重複記事をスキップ: Google is partnering with XPRIZE and Range Media P
+2026-05-09 02:08:39,600 [DEBUG] 重複記事をスキップ: The latest AI news we announced in April 2026
+2026-05-09 02:08:39,600 [DEBUG] 重複記事をスキップ: Reduce friction and latency for long-running jobs 
+2026-05-09 02:08:39,601 [DEBUG] 重複記事をスキップ: Celebrating 20 years of Google Translate: Fun fact
+2026-05-09 02:08:39,601 [DEBUG] 重複記事をスキップ: Join the new AI Agents Vibe Coding Course from Goo
+2026-05-09 02:08:39,601 [DEBUG] 重複記事をスキップ: 8 Gemini tips for organizing your space (and life)
+2026-05-09 02:08:39,601 [DEBUG] 重複記事をスキップ: Here’s how our TPUs power increasingly demanding A
+2026-05-09 02:08:39,601 [DEBUG] 重複記事をスキップ: Elevating Austria: Google invests in its first dat
+2026-05-09 02:08:39,602 [DEBUG] 重複記事をスキップ: We're launching two specialized TPUs for the agent
+2026-05-09 02:08:39,602 [DEBUG] 重複記事をスキップ: 3 new ways Ads Advisor is making Google Ads safer 
+2026-05-09 02:08:39,602 [DEBUG] 重複記事をスキップ: 7 ways to travel smarter this summer, with help fr
+2026-05-09 02:08:39,602 [DEBUG] 重複記事をスキップ: A new way to explore the web with AI Mode in Chrom
+2026-05-09 02:08:39,602 [DEBUG] 重複記事をスキップ: New ways to create personalized images in the Gemi
+2026-05-09 02:08:39,602 [DEBUG] 重複記事をスキップ: Gemini 3.1 Flash TTS: the next generation of expre
+2026-05-09 02:08:39,603 [DEBUG] 重複記事をスキップ: Turn your best AI prompts into one-click tools in 
+2026-05-09 02:08:39,603 [DEBUG] 重複記事をスキップ: Bringing people together at AI for the Economy For
+2026-05-09 02:08:39,603 [DEBUG] 重複記事をスキップ: Create, edit and share videos at no cost in Google
+2026-05-09 02:08:39,603 [DEBUG] 重複記事をスキップ: New ways to balance cost and reliability in the Ge
+2026-05-09 02:08:39,603 [INFO] RSS取得開始: Meta AI Blog (https://ai.meta.com/blog/rss/)
+2026-05-09 02:08:40,165 [INFO] RSS取得完了: Meta AI Blog - 記事数: 0
+2026-05-09 02:08:40,166 [INFO] RSS取得開始: NVIDIA Blog (https://blogs.nvidia.com/feed/)
+2026-05-09 02:08:40,488 [INFO] RSS取得完了: NVIDIA Blog - 記事数: 18
+2026-05-09 02:08:40,489 [DEBUG] 重複記事をスキップ: Powering the Next American Century: US Energy Secr
+2026-05-09 02:08:40,489 [DEBUG] 重複記事をスキップ: Linked and Loaded: Gaijin Single Sign-On Now Avail
+2026-05-09 02:08:40,489 [DEBUG] 重複記事をスキップ: NVIDIA Spectrum-X — the Open, AI-Native Ethernet F
+2026-05-09 02:08:40,490 [DEBUG] 重複記事をスキップ: NVIDIA and ServiceNow Partner on New Autonomous AI
+2026-05-09 02:08:40,490 [DEBUG] 重複記事をスキップ: Nemotron Labs: What OpenClaw Agents Mean for Every
+2026-05-09 02:08:40,490 [DEBUG] 重複記事をスキップ: It’s Gonna Be May: 16 Games Hit the Cloud This Mon
+2026-05-09 02:08:40,490 [DEBUG] 重複記事をスキップ: NVIDIA Launches Nemotron 3 Nano Omni Model, Unifyi
+2026-05-09 02:08:40,491 [DEBUG] 重複記事をスキップ: Into the Omniverse: Manufacturing’s Simulation-Fir
+2026-05-09 02:08:40,491 [DEBUG] 重複記事をスキップ: OpenAI’s New GPT-5.5 Powers Codex on NVIDIA Infras
+2026-05-09 02:08:40,491 [DEBUG] 重複記事をスキップ: Tag, You’re It: GeForce NOW Levels Up Game Discove
+2026-05-09 02:08:40,491 [DEBUG] 重複記事をスキップ: Making Sense of the Early Universe
+2026-05-09 02:08:40,491 [DEBUG] 重複記事をスキップ: From Rainforests to Recycling Plants: 5 Ways NVIDI
+2026-05-09 02:08:40,492 [DEBUG] 重複記事をスキップ: NVIDIA and Google Cloud Collaborate to Advance Age
+2026-05-09 02:08:40,492 [DEBUG] 重複記事をスキップ: Autonomous AI at Scale: Adobe Agents Unlock Breakt
+2026-05-09 02:08:40,492 [DEBUG] 重複記事をスキップ: NVIDIA and Partners Showcase the Future of AI-Driv
+2026-05-09 02:08:40,492 [DEBUG] 重複記事をスキップ: No Need for Space Gear — Capcom’s ‘PRAGMATA’ Joins
+2026-05-09 02:08:40,492 [DEBUG] 重複記事をスキップ: Rethinking AI TCO: Why Cost per Token Is the Only 
+2026-05-09 02:08:40,493 [DEBUG] 重複記事をスキップ: New Adobe Premiere Color Grading Mode Accelerated 
+2026-05-09 02:08:40,493 [INFO] RSS取得開始: AWS Machine Learning (https://aws.amazon.com/blogs/machine-learning/feed/)
+2026-05-09 02:08:40,842 [INFO] RSS取得完了: AWS Machine Learning - 記事数: 20
+2026-05-09 02:08:41,008 [INFO] 記事を保存: Halliburton enhances seismic workflow creation wit
+2026-05-09 02:08:41,009 [DEBUG] 重複記事をスキップ: Secure short-term GPU capacity for ML workloads wi
+2026-05-09 02:08:41,010 [DEBUG] 重複記事をスキップ: Overcoming reward signal challenges: Verifiable re
+2026-05-09 02:08:41,010 [DEBUG] 重複記事をスキップ: Agents that transact: Introducing Amazon Bedrock A
+2026-05-09 02:08:41,010 [DEBUG] 重複記事をスキップ: Cost effective deployment of vision-language model
+2026-05-09 02:08:41,010 [DEBUG] 重複記事をスキップ: How Hapag-Lloyd uses Amazon Bedrock to transform c
+2026-05-09 02:08:41,011 [DEBUG] 重複記事をスキップ: Streamlining generative AI development with MLflow
+2026-05-09 02:08:41,011 [DEBUG] 重複記事をスキップ: Introducing OS Level Actions in Amazon Bedrock Age
+2026-05-09 02:08:41,011 [DEBUG] 重複記事をスキップ: Secure AI agents with Amazon Bedrock AgentCore Ide
+2026-05-09 02:08:41,011 [DEBUG] 重複記事をスキップ: Intelligence-driven message defense and insights u
+2026-05-09 02:08:41,011 [DEBUG] 重複記事をスキップ: Beyond BI: How the Dataset Q&A feature of Amazon Q
+2026-05-09 02:08:41,012 [DEBUG] 重複記事をスキップ: Introducing agent quality optimization in AgentCor
+2026-05-09 02:08:41,012 [DEBUG] 重複記事をスキップ: Agent-guided workflows to accelerate model customi
+2026-05-09 02:08:41,012 [DEBUG] 重複記事をスキップ: Generate dashboards from natural language prompts 
+2026-05-09 02:08:41,012 [DEBUG] 重複記事をスキップ: From data lake to AI-ready analytics: Introducing 
+2026-05-09 02:08:41,012 [DEBUG] 重複記事をスキップ: Introducing Dataset Q&A: Expanding natural languag
+2026-05-09 02:08:41,013 [DEBUG] 重複記事をスキップ: Capacity-aware inference: Automatic instance fallb
+2026-05-09 02:08:41,013 [DEBUG] 重複記事をスキップ: AWS Transform now automates BI migration to Amazon
+2026-05-09 02:08:41,013 [DEBUG] 重複記事をスキップ: Reinforcement fine-tuning with LLM-as-a-judge
+2026-05-09 02:08:41,013 [DEBUG] 重複記事をスキップ: AWS Generative AI Model Agility Solution: A compre
+2026-05-09 02:08:41,013 [INFO] RSS取得開始: AI News (https://www.artificialintelligence-news.com/feed/)
+2026-05-09 02:08:42,851 [INFO] RSS取得完了: AI News - 記事数: 12
+2026-05-09 02:08:42,989 [INFO] 記事を保存: RingCentral adds Shopify, Calendly, and WhatsApp t
+2026-05-09 02:08:42,990 [DEBUG] 重複記事をスキップ: AI helping ease the UK’s NHS burden
+2026-05-09 02:08:42,991 [DEBUG] 重複記事をスキップ: HP and the art of AI and data for the enterprise
+2026-05-09 02:08:42,991 [DEBUG] 重複記事をスキップ: US government increases AI suppliers and rethinks 
+2026-05-09 02:08:42,991 [DEBUG] 重複記事をスキップ: Google tests Remy AI agent for Gemini as focus tur
+2026-05-09 02:08:42,991 [DEBUG] 重複記事をスキップ: Physical AI raises governance questions for autono
+2026-05-09 02:08:42,991 [DEBUG] 重複記事をスキップ: Google made agentic AI governance a product. Enter
+2026-05-09 02:08:42,992 [DEBUG] 重複記事をスキップ: SAP: How enterprise AI governance secures profit m
+2026-05-09 02:08:42,992 [DEBUG] 重複記事をスキップ: Per-token AI charges come to GitHub Copilot
+2026-05-09 02:08:42,992 [DEBUG] 重複記事をスキップ: What LG and NVIDIA’s talks reveal about the future
+2026-05-09 02:08:42,992 [DEBUG] 重複記事をスキップ: A guide to APIs, MCPs, and MCP Gateways
+2026-05-09 02:08:42,992 [DEBUG] 重複記事をスキップ: AI agent governance takes focus as regulators flag
+2026-05-09 02:08:42,992 [INFO] RSS取得開始: ZDNet AI (https://www.zdnet.com/topic/artificial-intelligence/rss.xml)
+2026-05-09 02:08:44,015 [INFO] RSS取得完了: ZDNet AI - 記事数: 20
+2026-05-09 02:08:44,187 [INFO] 記事を保存: Windows rivals to MacBook Neo are arriving - but c
+2026-05-09 02:08:44,362 [INFO] 記事を保存: Flying soon? American Airlines has new portable ba
+2026-05-09 02:08:44,526 [INFO] 記事を保存: Dell vs. Lenovo: I've tested dozens of laptops fro
+2026-05-09 02:08:44,527 [DEBUG] 重複記事をスキップ: After using Lenovo's $2,600 Yoga, I'm taking premi
+2026-05-09 02:08:44,527 [DEBUG] 重複記事をスキップ: Roku apps loading slow? 9 quick fixes I try before
+2026-05-09 02:08:44,527 [DEBUG] 重複記事をスキップ: Google Maps vs. Apple Maps: I compared two of the 
+2026-05-09 02:08:44,528 [DEBUG] 重複記事をスキップ: I started clearing my Roku cache, and it fixed my 
+2026-05-09 02:08:44,528 [DEBUG] 重複記事をスキップ: ReMarkable Paper Pure vs. Amazon Kindle Scribe: I'
+2026-05-09 02:08:44,528 [DEBUG] 重複記事をスキップ: Lost your Roku remote? Here are four ways you can 
+2026-05-09 02:08:44,528 [DEBUG] 重複記事をスキップ: This TCL Mini LED TV is one of the best I've teste
+2026-05-09 02:08:44,528 [DEBUG] 重複記事をスキップ: Hundreds of readers bought this E Ink tablet - and
+2026-05-09 02:08:44,528 [DEBUG] 重複記事をスキップ: Whoop vs. Fitbit Air: I compared Google's new fitn
+2026-05-09 02:08:44,529 [DEBUG] 重複記事をスキップ: 10 secret Netflix codes I use to find hidden movie
+2026-05-09 02:08:44,529 [DEBUG] 重複記事をスキップ: Best travel VPNs of 2026: Expert tested and review
+2026-05-09 02:08:44,529 [DEBUG] 重複記事をスキップ: The best VPN extensions for Chrome in 2026: Expert
+2026-05-09 02:08:44,529 [DEBUG] 重複記事をスキップ: I've fully converted to adaptive chargers from fas
+2026-05-09 02:08:44,529 [DEBUG] 重複記事をスキップ: How I upgraded my Sonos soundbar's audio quality -
+2026-05-09 02:08:44,529 [DEBUG] 重複記事をスキップ: I've tested several ReMarkable tablets, but its ne
+2026-05-09 02:08:44,530 [DEBUG] 重複記事をスキップ: I hand-picked 10 Mother's Day gifts that will arri
+2026-05-09 02:08:44,530 [DEBUG] 重複記事をスキップ: Roku sued for allegedly bricking TVs - see which m
+2026-05-09 02:08:44,530 [INFO] RSS取得開始: Ars Technica (https://feeds.arstechnica.com/arstechnica/technology-lab)
+2026-05-09 02:08:44,776 [INFO] RSS取得完了: Ars Technica - 記事数: 20
+2026-05-09 02:08:44,776 [DEBUG] 重複記事をスキップ: Mozilla says 271 vulnerabilities found by Mythos h
+2026-05-09 02:08:44,777 [DEBUG] 重複記事をスキップ: Ars Asks: Share your shell and show us your tricke
+2026-05-09 02:08:44,777 [DEBUG] 重複記事をスキップ: Widely used Daemon Tools disk app backdoored in mo
+2026-05-09 02:08:44,777 [DEBUG] 重複記事をスキップ: Why Reddit blocked my daily visit to its mobile we
+2026-05-09 02:08:44,777 [DEBUG] 重複記事をスキップ: GameStop offers $56 billion for eBay, struggles to
+2026-05-09 02:08:44,777 [DEBUG] 重複記事をスキップ: Ubuntu infrastructure has been down for more than 
+2026-05-09 02:08:44,778 [DEBUG] 重複記事をスキップ: The most severe Linux threat to surface in years c
+2026-05-09 02:08:44,778 [DEBUG] 重複記事をスキップ: Why a recent supply-chain attack singled out secur
+2026-05-09 02:08:44,778 [DEBUG] 重複記事をスキップ: Open source package with 1 million monthly downloa
+2026-05-09 02:08:44,778 [DEBUG] 重複記事をスキップ: Why are top university websites serving porn? It c
+2026-05-09 02:08:44,778 [DEBUG] 重複記事をスキップ: In a first, a ransomware family is confirmed to be
+2026-05-09 02:08:44,779 [DEBUG] 重複記事をスキップ: Microsoft issues emergency update for macOS and Li
+2026-05-09 02:08:44,779 [DEBUG] 重複記事をスキップ: Contrary to popular superstition, AES 128 is just 
+2026-05-09 02:08:44,779 [DEBUG] 重複記事をスキップ: US-sanctioned currency exchange says $15 million h
+2026-05-09 02:08:44,779 [DEBUG] 重複記事をスキップ: Recent advances push Big Tech closer to the Q-Day 
+2026-05-09 02:08:44,779 [DEBUG] 重複記事をスキップ: “Negative” views of Broadcom driving thousands of 
+2026-05-09 02:08:44,780 [DEBUG] 重複記事をスキップ: Iran-linked hackers disrupt operations at US criti
+2026-05-09 02:08:44,780 [DEBUG] 重複記事をスキップ: Thousands of consumer routers hacked by Russia's m
+2026-05-09 02:08:44,780 [DEBUG] 重複記事をスキップ: OpenClaw gives users yet another reason to be frea
+2026-05-09 02:08:44,780 [DEBUG] 重複記事をスキップ: New Rowhammer attacks give complete control of mac
+2026-05-09 02:08:44,780 [INFO] RSS取得開始: Anthropic Blog (https://www.anthropic.com/rss.xml)
+2026-05-09 02:08:48,754 [INFO] RSS取得完了: Anthropic Blog - 記事数: 0
+2026-05-09 02:08:48,754 [INFO] RSS取得開始: Google DeepMind (https://deepmind.google/blog/rss/)
+2026-05-09 02:08:49,335 [INFO] RSS取得完了: Google DeepMind - 記事数: 0
+2026-05-09 02:08:49,336 [INFO] RSS取得開始: arXiv CS.LG (https://arxiv.org/rss/cs.LG)
+2026-05-09 02:08:49,421 [INFO] RSS取得完了: arXiv CS.LG - 記事数: 0
+2026-05-09 02:08:49,421 [INFO] RSS取得開始: 経済産業省 (https://www.meti.go.jp/rss/rss.rdf)
+2026-05-09 02:08:49,565 [INFO] RSS取得完了: 経済産業省 - 記事数: 0
+2026-05-09 02:08:49,565 [INFO] RSS取得開始: IPA (https://www.ipa.go.jp/rss/news.rdf)
+2026-05-09 02:08:49,760 [INFO] RSS取得完了: IPA - 記事数: 0
+2026-05-09 02:08:49,760 [INFO] RSS取得開始: NEDO (https://www.nedo.go.jp/rss/index.xml)
+2026-05-09 02:08:49,913 [INFO] RSS取得完了: NEDO - 記事数: 0
+2026-05-09 02:08:49,913 [INFO] RSS取得開始: PR TIMES (https://prtimes.jp/rss/all.rdf)
+2026-05-09 02:08:50,061 [INFO] RSS取得完了: PR TIMES - 記事数: 0
+2026-05-09 02:08:50,061 [INFO] ============================================================
+2026-05-09 02:08:50,061 [INFO] RSS収集が完了しました
+2026-05-09 02:08:50,061 [INFO] 新規収集: 147件
+2026-05-09 02:08:50,061 [INFO] 重複排除: 331件
+2026-05-09 02:08:50,061 [INFO] ============================================================
