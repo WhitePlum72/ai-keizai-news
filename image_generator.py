@@ -220,7 +220,7 @@ def add_text_overlay(image_path: str, labels: list[str]) -> None:
 
     # ストローク幅を先に確定してレイアウト計算に含める
     def get_stroke_w(font):
-        return max(6, int(font.size * 0.08))
+        return max(3, int(font.size * 0.04))
 
     sizes = []
     for label, font in zip(labels, fonts):

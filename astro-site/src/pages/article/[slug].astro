@@ -296,19 +296,63 @@ const ogImage = article.data.image_url || 'https://aikeizai.jp/ogp.png';
 }
 /* ===== まとめ記事の見出し ===== */
 .article-body h2 {
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 900;
   color: #003f88;
-  margin-top: 32px;
-  margin-bottom: 12px;
-  padding-bottom: 6px;
-  border-bottom: 2px solid #003f88;
+  margin-top: 40px;
+  margin-bottom: 14px;
+  padding: 10px 14px;
+  background: #f0f4fa;
+  border-left: 4px solid #003f88;
+  border-radius: 0 6px 6px 0;
+  line-height: 1.5;
 }
 
 @media (max-width: 768px) {
   .also-read-grid {
     grid-template-columns: 1fr;
   }
+  @media (max-width: 768px) {
+  .layout {
+    grid-template-columns: 1fr;
+    padding: 12px;
+    gap: 16px;
+  }
+
+  .sidebar {
+    position: static;
+  }
+
+  .article-body {
+    padding: 16px;
+  }
+
+  .article-body h2 {
+    font-size: 15px;
+    padding: 8px 12px;
+  }
+
+  .related-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .also-read-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .header-main {
+    padding: 8px 12px;
+  }
+
+  .logo {
+    font-size: 20px;
+  }
+
+  .card img {
+    width: 70px;
+    height: 50px;
+  }
+}
 }
     /* ===== ヘッダー（index.astroと共通） ===== */
 .header-top { background: #003f88; color: white; padding: 4px 0; text-align: center; font-size: 11px; }
