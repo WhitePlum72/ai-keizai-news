@@ -9,6 +9,8 @@ published_at: "2026-05-09"
 buzz_score: 52.5
 image_url: "/images/articles/article_3052.webp"
 meta_description: "OpenAIはコード生成AI「Codex」の企業向け安全対策を公開し、サンドボックス実行や高リスク操作の事前承認、ネットワーク制限、専用監視基盤による4層防御を確立した。企業の導入障壁となるセキュリティやコンプライアンスの透明性を高め、規制"
+topics_json: ["agents", "alignment", "coding-agent", "openai"]
+companies_json: ["openai"]
 ---
 
 OpenAIはコード生成AI「Codex」のエンタープライズ向け安全運用の詳細を初めて公開した。セキュアなサンドボックス実行や承認フロー、ネットワーク隔離、エージェント特化の監視基盤を組み合わせ、企業がコンプライアンスを維持しつつ自律型コーディングAIを採用できる環境を確立している。

@@ -9,6 +9,8 @@ published_at: "2026-05-09"
 buzz_score: 43.0
 image_url: "/images/articles/article_1378.webp"
 meta_description: "OpenAIはAGI実現に向け次世代インフラ「Stargate」を大幅に拡大。データセンター増設やエネルギー網整備で計算基盤を強化し、業界の激しい競争の中で事業存続と技術優位性を確保する。環境負荷や規制課題への対応も不可欠とされる。"
+topics_json: ["agi", "datacenter", "intel", "openai"]
+companies_json: ["intel", "openai"]
 ---
 
 OpenAIは、人工知能の次世代インフラ構築プロジェクト「Stargate」を大幅に拡張すると発表した。同社は、汎用人工知能（AGI）の実現に向け、膨大な計算リソースを必要とする次世代AIモデルの開発・運用を加速させる。今回の拡張により、増大の一途をたどるAI需要に応えるための新たなデータセンター容量が追加され、世界最大級のコンピューティング基盤が形成される見通しだ。

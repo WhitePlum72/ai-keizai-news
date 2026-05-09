@@ -9,6 +9,8 @@ published_at: "2026-05-09"
 buzz_score: 51.0
 image_url: "/images/articles/article_1469.webp"
 meta_description: "オープンソースAIモデルの新たな台頭 オープンソースAIスタートアップのNous Researchが、Anthropic社の「Claude Code」の急成長に対抗する新たなコーディングモデル「NousCoder-14B」をリリースした。同"
+topics_json: ["anthropic", "coding-agent", "gpu", "llm", "nvidia", "open-source-ai", "reasoning"]
+companies_json: ["anthropic", "nvidia"]
 ---
 
 オープンソースAIモデルの新たな台頭

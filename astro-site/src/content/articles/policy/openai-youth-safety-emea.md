@@ -9,6 +9,8 @@ published_at: "2026-05-09"
 buzz_score: 48.5
 image_url: "/images/articles/article_2906.webp"
 meta_description: "OpenAIが欧州向けに10代の安全なAI利用を促す指針と助成金を発表。年齢確認や出力フィルター、教育者向け教材の提供などが柱で、EU規制を先取りした自主的な未成年保護の枠組みとなる。若年層の利用拡大を背景に、安全設計の国際標準化に向けた転"
+topics_json: ["alignment", "openai"]
+companies_json: ["openai"]
 ---
 
 OpenAIは2025年、欧州・中東・アフリカ地域で10代の若者と家族の安全なAI利用を推進する「European Youth Safety Blueprint」と、総額非公開の助成金プログラム「EMEA Youth & Wellbeing Grants」を発表した。この指針はAI開発企業が自主的に未成年保護の枠組みを地域限定で具体化する初の試みであり、教育現場や家庭での生成AI利用拡大に備えた安全設計の国際標準化競争が本格化する転換点となる。

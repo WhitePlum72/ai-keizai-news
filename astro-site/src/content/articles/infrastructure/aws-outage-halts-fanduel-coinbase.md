@@ -9,6 +9,8 @@ published_at: "2026-05-09"
 buzz_score: 13.5
 image_url: "/images/articles/article_3033.webp"
 meta_description: "AWSのバージニア州データセンターで冷却システム不具合による過熱障害が発生し、EC2などが連鎖停止。CoinbaseやFanDuelで取引不能となり、金融取引のクラウド依存リスクが改めて浮き彫りになった。"
+topics_json: ["alignment", "datacenter"]
+companies_json: []
 ---
 
 米アマゾン・ウェブ・サービス（AWS）は3月17日、バージニア州北部のデータセンターで発生した過熱障害により、暗号資産取引所Coinbaseやスポーツベッティング大手FanDuelを含む複数サービスで取引停止が生じたと明らかにした。復旧には数時間を要する見通しで、金融取引のクラウド依存リスクが改めて浮き彫りとなっている。

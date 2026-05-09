@@ -9,6 +9,8 @@ published_at: "2026-05-09"
 buzz_score: 51.0
 image_url: "/images/articles/article_1396.webp"
 meta_description: "米OpenAIは2026年4月23日、次世代AIモデル「GPT-5.5」を対象としたバイオバグ報奨金プログラムを開始すると発表した。これは、AIが危険な生物学的知識を不正に取得する「ユニバーサル ジェイルブレイク」を検出し、安全性を強化する"
+topics_json: ["alignment", "openai"]
+companies_json: ["openai"]
 ---
 
 米OpenAIは2026年4月23日、次世代AIモデル「GPT-5.5」を対象としたバイオバグ報奨金プログラムを開始すると発表した。これは、AIが危険な生物学的知識を不正に取得する「ユニバーサル ジェイルブレイク」を検出し、安全性を強化するための取り組みである。

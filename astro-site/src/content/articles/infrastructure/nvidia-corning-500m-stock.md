@@ -9,6 +9,8 @@ published_at: "2026-05-09"
 buzz_score: 50.0
 image_url: "/images/articles/article_2027.webp"
 meta_description: "NvidiaがAIインフラ拡大の一環で光ファイバー企業のCorning株5億ドルを購入。高速通信の安定供給と技術革新を確保し、AIデータセンターのボトルネック解消を目指す。これはNvidiaがインフラ全体を支配するプラットフォーム企業へ進化"
+topics_json: ["datacenter", "gpu", "nvidia", "reasoning", "semiconductor"]
+companies_json: ["nvidia"]
 ---
 
 半導体大手のNvidia Corp.は、人工知能（AI）インフラストラクチャの拡大を目的とした広範なパートナーシップの一環として、光ファイバーケーブルメーカーのCorning Inc.の株式を5億ドル相当購入したと発表した。この取引は、両社がAIデータセンターの高速ネットワーク接続において緊密に連携する戦略的深化を示すものであり、業界に大きな衝撃を与えるだろう。

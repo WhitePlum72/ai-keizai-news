@@ -9,6 +9,8 @@ published_at: "2026-05-10"
 buzz_score: 29.5
 image_url: "/images/articles/article_3065.webp"
 meta_description: "OpenAI対マスク氏の裁判は、創業時の「非営利」誓約の有効性と、マスク氏によるAltman CEO引き抜き工作が争点に。OpenAI側は、マスク氏が営利化の可能性を認識していた内部資料を提出し、提訴はxAI立ち上げ後の競争阻害が目的と反論"
+topics_json: ["agi", "microsoft", "openai", "xai"]
+companies_json: ["microsoft", "openai", "xai"]
 ---
 
 OpenAIに対するイーロン・マスク氏の訴訟は第2週に入り、法廷ではマスク氏の提訴動機そのものに厳しい視線が向けられた。Sam Altman CEOらが当初「非営利」を約束しながら営利化を進めたとするマスク氏の主張に対し、OpenAI側は内部資料を提出して反論。さらに、マスク氏がAltman氏を自社に引き抜こうとしていた事実が証言から明らかになり、訴訟の正当性を揺るがす展開となっている。

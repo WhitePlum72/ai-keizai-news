@@ -9,6 +9,8 @@ published_at: "2026-05-09"
 buzz_score: 47.0
 image_url: "/images/articles/article_1374.webp"
 meta_description: "OpenAIとPwCが財務AI提携し、ワークフロー自動化や予測精度向上を実現する。CFOの役割を戦略的意思決定支援へ転換させ、組織変革支援も含む新サービスで業界標準化を目指す。"
+topics_json: ["agents", "agi", "openai", "reasoning"]
+companies_json: ["openai"]
 ---
 
 米人工知能（AI）企業のOpenAIと、英国の大手監査法人PricewaterhouseCoopers（PwC）は、企業の財務部門におけるAI活用を加速させるため、全面的な提携合意を締結した。両社は、最先端のAIエージェント技術を導入することで、従来の手作業に依存していた財務ワークフローの自動化を実現し、予測精度の向上やコンプライアンス管理の強化を図る。この連携は、CFO（最高財務責任者）の役割を単なる数字の処理から、戦略的な意思決定支援へと転換させる画期的な試みとなる。

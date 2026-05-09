@@ -9,6 +9,8 @@ published_at: "2026-05-10"
 buzz_score: 38.5
 image_url: "https://image.cnbcfm.com/api/v1/image/108279129-1773774466063-gettyimages-2266555824-NVIDIA_GTC.jpeg?v=1774007143&w=1920&h=1080"
 meta_description: "エヌビディアがAI分野の戦略投資家へと変貌し、2024年の投資総額が400億ドルを突破した。出資と同時に自社製品の長期商用契約を結ぶ手法で、半導体需要を囲い込みながらAIエコシステム全体への支配拡大を加速させている。"
+topics_json: ["datacenter", "gpu", "llm", "nvidia", "semiconductor"]
+companies_json: ["nvidia"]
 ---
 
 商用契約とセットでエコシステム拡大を加速

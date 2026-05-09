@@ -100,6 +100,12 @@ const getLead = (entry) => ((entry.body || '').replace(/[#\n]/g, ' ').slice(0, 1
     .breaking-card-title { font-size: 13px; font-weight: 700; line-height: 1.5; color: #1a1a1a; margin-bottom: 6px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
     .breaking-card-meta { font-size: 10px; color: #999; }
 
+    /* ===== Topic導線 ===== */ 
+    .topic-section { background: #fff; border-radius: 3px; padding: 16px; margin-bottom: 28px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+    .topic-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    .topic-chip { font-size: 12px; font-weight: 700; padding: 6px 14px; border-radius: 20px; background: #f0f4fa; color: #003f88; border: 1px solid #d0ddf5; transition: all 0.15s; text-decoration: none; }
+    .topic-chip:hover { background: #003f88; color: #fff; }
+
     /* ===== 記事リスト ===== */
     .article-list { background: #fff; border-radius: 3px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.06); margin-bottom: 28px; }
     .list-item { display: flex; gap: 12px; padding: 12px 14px; border-bottom: 1px solid #f0f0f0; align-items: flex-start; transition: background 0.1s; }
@@ -297,13 +303,25 @@ const getLead = (entry) => ((entry.body || '').replace(/[#\n]/g, ' ').slice(0, 1
       </div>
 
       <!-- ===== Company導線 ===== -->
+      <div class="topic-section">
+        <div class="section-header" style="margin-bottom:0;border-bottom:none;padding-bottom:0;">
+          <span class="section-title">🏷 注目トピック</span>
+        </div>
+        <div class="topic-grid">
+          {['agents','llm','reasoning','multimodal','rag','coding-agent','open-source-ai','agi','alignment','datacenter','gpu','semiconductor'].map(topic => (
+            <a class="topic-chip" href={`/topic/${topic}/`}>#{topic}</a>
+          ))}
+        </div>
+      </div>
+
+      <!-- ===== Company導線 ===== -->
       <div class="company-section">
         <div class="section-header" style="margin-bottom:0;border-bottom:none;padding-bottom:0;">
-          <span class="section-title">🏢 企業で探す</span>
+          <span class="section-title">🏢 注目企業</span>
         </div>
         <div class="company-grid">
           {['OpenAI','NVIDIA','Anthropic','Google','Microsoft','Meta','Apple','xAI','AMD','TSMC'].map(company => (
-            <span class="company-chip">{company}</span>
+            <a class="company-chip" href={`/company/${company.toLowerCase()}/`}>{company}</a>
           ))}
         </div>
       </div>

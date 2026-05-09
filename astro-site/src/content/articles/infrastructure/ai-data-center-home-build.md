@@ -9,6 +9,8 @@ published_at: "2026-05-10"
 buzz_score: 13.5
 image_url: "https://image.cnbcfm.com/api/v1/image/108275223-1773036085667-gettyimages-2263326904-data_center_protest_mlc_0138.jpeg?v=1773391803&w=1920&h=1080"
 meta_description: "米国で大規模データセンター建設への反対世論が強まる中、家庭に直接設置する小型AIサーバーが登場した。カリフォルニアの企業が開発した「Node.1」は、高い処理能力を持ちながら電力消費を抑え、廃熱を給湯に利用する仕組みも備える。住民拒否権の拡"
+topics_json: ["datacenter", "gpu", "llm", "nvidia", "reasoning"]
+companies_json: ["nvidia"]
 ---
 
 米国で大規模データセンター建設への反対運動が広がるなか、一般家庭に直接設置する新形態のAI処理基盤が開発段階に入った。クラウドに依存せず、個人が生成AIの推論や学習を自宅で完結させる構想であり、データ主権とエネルギー効率の両面から再設計が進んでいる。

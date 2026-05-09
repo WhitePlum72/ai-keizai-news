@@ -9,6 +9,8 @@ published_at: "2026-05-10"
 buzz_score: 45.0
 image_url: "/images/articles/article_3213.webp"
 meta_description: "バイトダンスが2025年のAIインフラ投資を前年比25％増の約4.2兆円に拡大した。半導体価格高騰や米国輸出規制の逆風下でも、生成AI主導権獲得を最優先する姿勢が鮮明となった。"
+topics_json: ["datacenter", "gpu", "llm", "nvidia", "reasoning", "semiconductor"]
+companies_json: ["nvidia"]
 ---
 
 中国の動画投稿アプリTikTokを運営するバイトダンスが、2025年の人工知能インフラ向け投資を前年比25％増の2000億元（約4兆2000億円）に引き上げたと、香港の英字紙サウスチャイナ・モーニング・ポストが3月29日に報じた。メモリー半導体の価格が上昇する逆風下でも、同社が生成AI分野での主導権獲得を最優先課題と位置づけていることが浮き彫りになった。

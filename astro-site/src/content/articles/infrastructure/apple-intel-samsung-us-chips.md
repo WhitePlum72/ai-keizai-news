@@ -9,6 +9,8 @@ published_at: "2026-05-09"
 buzz_score: 35.0
 image_url: "/images/articles/article_1529.webp"
 meta_description: "Appleは、台湾TSMCに依存する半導体製造の分散を図るため、IntelやSamsungと米国内での生産委託に向けた初期協議に入った。台湾有事の地政学リスクやCHIPS法による補助金が背景にあり、供給網再構築を視野に入れた動きだ。"
+topics_json: ["alignment", "apple", "intel", "samsung", "semiconductor", "tsmc"]
+companies_json: ["apple", "intel", "samsung", "tsmc"]
 ---
 
 Appleが、主力製品に搭載する中核プロセッサの米国内生産に関して、IntelやSamsung Electronicsとの探索的な協議を開始したことが複数の関係者の話で明らかになった。長年のパートナーであるTSMC（台湾積体電路製造）に次ぐ「第二の選択肢」を確保し、供給網の再構築を視野に入れた動きとみられる。

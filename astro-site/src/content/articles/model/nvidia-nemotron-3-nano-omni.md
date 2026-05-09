@@ -9,6 +9,8 @@ published_at: "2026-05-09"
 buzz_score: 51.0
 image_url: "/images/articles/article_1407.webp"
 meta_description: "エヌビディア（NVIDIA）は2026年4月28日、ドキュメントや音声、映像などを統合的に処理する新モデル「NVIDIA Nemotron 3 Nano Omni」を発表した。同モデルはエンタープライズ向けエージェントの基盤技術として位置づ"
+topics_json: ["agents", "intel", "multimodal", "nvidia", "reasoning"]
+companies_json: ["intel", "nvidia"]
 ---
 
 エヌビディア（NVIDIA）は2026年4月28日、ドキュメントや音声、映像などを統合的に処理する新モデル「NVIDIA Nemotron 3 Nano Omni」を発表した。同モデルはエンタープライズ向けエージェントの基盤技術として位置づけられ、複雑な文書分析や長時間のメディア理解において、既存のオープンウェイトモデルを大きく上回る精度とコスト効率を実現する。これはAIが単なるテキスト処理から、現実世界の多様なデータソースを自律的に解釈・推論する段階へ移行する重要な転換点となる。

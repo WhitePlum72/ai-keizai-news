@@ -9,6 +9,8 @@ published_at: "2026-05-09"
 buzz_score: 45.0
 image_url: "/images/articles/article_1646.webp"
 meta_description: "OpenAIは2026年にAI計算資源へ500億ドルを投資し、半導体やデータセンターの調達を拡大する。ChatGPTの需要増に対応するためで、業界の競争は電力調達にも及んでいる。"
+topics_json: ["anthropic", "datacenter", "multimodal", "openai", "reasoning", "semiconductor"]
+companies_json: ["anthropic", "openai"]
 ---
 
 OpenAIのグレッグ・ブロックマン社長兼共同創業者は、2026年に人工知能ソフトウェアを支える計算インフラへ500億ドル（約7兆5000億円）を投じる方針を明らかにした。この巨額支出はAIモデルの訓練と推論に必要な半導体やデータセンターの調達拡大を目的としており、OpenAIの成長戦略における転換点となる。

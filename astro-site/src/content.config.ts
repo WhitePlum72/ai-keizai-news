@@ -16,7 +16,8 @@ const articles = defineCollection({
     meta_description: z.string().optional(),
     source_label: z.string().optional(),
     is_digest: z.boolean().optional(),
+    topics_json: z.array(z.string()).optional(),
+    companies_json: z.array(z.string()).optional(),
   }),
 });
-
 export const collections = { articles };

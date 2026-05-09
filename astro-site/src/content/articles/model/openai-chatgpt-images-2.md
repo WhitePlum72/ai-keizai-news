@@ -9,6 +9,8 @@ published_at: "2026-05-09"
 buzz_score: 51.0
 image_url: "/images/articles/article_1402.webp"
 meta_description: "画像生成の質的転換点 米OpenAIは2026年4月21日、次世代画像生成モデル「ChatGPT イメージ 2.0」を正式にリリースした。同社はこの新モデルにより、AIによる画像生成の新たな時代を切り開くとしている。従来の生成AIが抱えてい"
+topics_json: ["openai"]
+companies_json: ["openai"]
 ---
 
 画像生成の質的転換点

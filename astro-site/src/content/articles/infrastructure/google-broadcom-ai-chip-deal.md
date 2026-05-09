@@ -9,6 +9,8 @@ published_at: "2026-05-09"
 buzz_score: 34.0
 image_url: "/images/articles/article_1580.webp"
 meta_description: "GoogleはBroadcomとの協業を拡大し、自社AIチップ「TPU」の生産能力を2027年までに3倍に増強する。NVIDIAへの依存から脱却し、コスト削減とAI需要急増に対応する狙いだ。"
+topics_json: ["amazon", "broadcom", "datacenter", "google", "gpu", "meta", "microsoft", "nvidia", "reasoning", "semiconductor", "tsmc"]
+companies_json: ["amazon", "broadcom", "google", "meta", "microsoft", "nvidia", "tsmc"]
 ---
 
 Googleは半導体設計大手Broadcomとの戦略的パートナーシップを大幅に拡大する。生成AI（人工知能）向けの自社開発チップ「TPU」の生産能力を2027年までに現行の3倍に引き上げる計画で、その設計・製造の主要パートナーにBroadcomを据えた。複数の関係者への取材で明らかになった。年間契約規模は数十億ドルに達する見通しだ。

@@ -9,6 +9,8 @@ published_at: "2026-05-09"
 buzz_score: 50.5
 image_url: "/images/articles/article_2950.webp"
 meta_description: "米AI企業Anthropicが最大500億ドルの資金調達を計画し、評価額は約135兆円に達する見込みだ。主力モデル「Claude」の好調で売上高は前年比5倍の年200億ドル超に急増。安全性を重視した戦略で法人契約数を伸ばし、OpenAIを猛"
+topics_json: ["alignment", "anthropic", "openai", "reasoning"]
+companies_json: ["anthropic", "openai"]
 ---
 
 米AI開発企業Anthropicが調達を計画する最大500億ドル規模の資金調達ラウンドで、評価額が約9000億ドル（約135兆円）に達する見通しとなった。英フィナンシャル・タイムズ（FT）の報道によれば、同社の売上高は前年比5倍に急増しており、OpenAIを猛追する資金力と収益基盤を同時に固めつつある。

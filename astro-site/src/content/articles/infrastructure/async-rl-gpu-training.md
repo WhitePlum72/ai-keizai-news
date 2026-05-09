@@ -9,6 +9,8 @@ published_at: "2026-05-09"
 buzz_score: 51.0
 image_url: "/images/articles/article_1433.webp"
 meta_description: "アミン・ディルフーシ氏らが2026年3月、16のオープンソース強化学習（RL）ライブラリを分析した。同期RLでは推論がボトルネックとなりGPUが遊休化する問題を解決するため、推論と学習を分離する非同期アーキテクチャの設計指針を提示した。 調"
+topics_json: ["agents", "gpu", "llm", "open-source-ai", "reasoning"]
+companies_json: []
 ---
 
 アミン・ディルフーシ氏らが2026年3月、16のオープンソース強化学習（RL）ライブラリを分析した。同期RLでは推論がボトルネックとなりGPUが遊休化する問題を解決するため、推論と学習を分離する非同期アーキテクチャの設計指針を提示した。

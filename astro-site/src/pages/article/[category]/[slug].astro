@@ -204,6 +204,13 @@ const categoryLabel = getCatLabel(article.data.category_slug);
           <span>{article.data.source || ''}</span>
           <span>{article.data.published_at || ''}</span>
         </div>
+        {article.data.topics_json && article.data.topics_json.length > 0 && (
+          <div class="topic-chips">
+            {article.data.topics_json.map(topic => (
+              <a class="topic-chip" href={`/topic/${topic}/`}>#{topic}</a>
+            ))}
+          </div>
+        )}
         <h1>{article.data.title}</h1>
         <Content />
         <div class="source-link">

@@ -9,6 +9,8 @@ published_at: "2026-05-09"
 buzz_score: 33.0
 image_url: "/images/articles/article_1622.webp"
 meta_description: "米サーバー大手スーパーマイクロの1〜3月期決算は、売上高が前年同期比55％増の62億ドル。粗利益率が13.8％へ改善し、AIサーバー出荷に伴うコスト管理の進展を評価され時間外取引で株価が急伸した。通期利益見通しも上方修正した。"
+topics_json: ["amd", "datacenter", "gpu", "semiconductor"]
+companies_json: ["amd"]
 ---
 
 米サーバー大手のスーパーマイクロコンピュータ（Super Micro Computer Inc.）が6日、2025年3月期第3四半期（1〜3月期）決算を発表した。粗利益率の改善を示すとともに、通期の利益見通しを上方修正し、AIサーバー出荷に伴うコストを制御できているとの見方を示した。この発表を受け、同社株は米国時間の時間外取引で急伸した。

@@ -9,6 +9,8 @@ published_at: "2026-05-09"
 buzz_score: 35.0
 image_url: "/images/articles/article_1434.webp"
 meta_description: "エヌビディアのフアンCEOは、AIが雇用を奪う懸念に反論し、生産性向上が新たな事業と職種を生むと主張した。生成AIの普及で雇用不安が高まる中、AI半導体市場を席巻する同氏の強気な発言は、過去の産業革命の歴史を踏まえたものであり、大きな波紋を"
+topics_json: ["amd", "datacenter", "nvidia", "semiconductor"]
+companies_json: ["amd", "nvidia"]
 ---
 
 エヌビディアのジェンスン・フアン最高経営責任者（CEO）は、人工知能（AI）が雇用を破壊するという懸念に対し、むしろAIは「膨大な数の雇用を生み出している」と真っ向から反論した。AIの急速な普及に伴う労働市場の不安が広がる中、業界の旗手による強気の発言は、テクノロジーと人間の共生をめぐる議論に新たな火種を投じている。

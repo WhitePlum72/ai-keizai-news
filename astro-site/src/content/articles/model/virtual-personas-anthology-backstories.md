@@ -9,6 +9,8 @@ published_at: "2026-05-09"
 buzz_score: 46.0
 image_url: "/images/articles/article_1520.webp"
 meta_description: "バークレー大らが開発したLLM人格付与手法「Anthology」は、詳細なバックストーリーを生成し多様な人格を付与する。これにより一貫性のある現実的な対話が可能になり、応用拡大やAI倫理面での透明性向上が期待される。"
+topics_json: ["llm"]
+companies_json: []
 ---
 
 空行

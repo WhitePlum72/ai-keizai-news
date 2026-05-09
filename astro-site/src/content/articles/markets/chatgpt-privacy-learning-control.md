@@ -9,6 +9,8 @@ published_at: "2026-05-09"
 buzz_score: 53.5
 image_url: "/images/articles/article_2905.webp"
 meta_description: "OpenAIはChatGPTのプライバシー保護を強化し、対話データのAI学習利用を全利用者が選択可能になった。個人情報は自動検出・除去され、企業向け契約では初期設定で学習利用が除外される。GDPRやEU規制への対応として設計が進化し、AIの"
+topics_json: ["google", "microsoft", "openai"]
+companies_json: ["google", "microsoft", "openai"]
 ---
 
 OpenAIはChatGPTにおけるプライバシー保護の仕組みを大幅に強化した。対話データをAIモデルの追加学習に使うかどうかの選択権を全利用者に与え、個人情報の収集を最小化する設計へと移行している。2024年以降、プライバシー規制が厳格化するグローバル市場で、AIの信頼性を左右する基盤技術として注目を集めている。

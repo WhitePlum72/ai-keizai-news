@@ -9,6 +9,8 @@ published_at: "2026-05-09"
 buzz_score: 43.0
 image_url: "/images/articles/article_2895.webp"
 meta_description: "米新興AI企業Anthropicが開発した性能評価システム「Mythos」が、政府主導のAI戦略を揺るがしている。自主的な安全性評価と公開停止の仕組みを先行させたことで、関与強化を図る米政府の規制枠組みが実効性を失いつつあるのだ。"
+topics_json: ["alignment", "anthropic", "google", "llm", "openai"]
+companies_json: ["anthropic", "google", "openai"]
 ---
 
 米新興AI企業Anthropicが進める性能評価システム「Mythos」の存在が、トランプ政権の人工知能（AI）戦略に激震をもたらしている。次世代モデルの展開を政府が主導しようとした矢先、企業側が自主的な安全性評価と段階的公開の枠組みを先行させたことで、従来の「不介入」から「関与」へ舵を切ったばかりのホワイトハウスの施策が実効性を失いつつあるのだ。AI開発の主導権が民間に移行する決定的な転機とみられる。

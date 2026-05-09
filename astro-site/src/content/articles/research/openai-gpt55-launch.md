@@ -9,6 +9,8 @@ published_at: "2026-05-09"
 buzz_score: 51.0
 image_url: "/images/articles/article_1387.webp"
 meta_description: "OpenAIは2026年4月23日、次世代大規模言語モデル「GPT-5.5」を正式リリースした。同モデルは、単なる対話を超え、複雑なタスクを自律的に計画・実行する「エージェントAI」の基準を塗り替える。従来のモデルがステップごとに指示を必要"
+topics_json: ["agents", "alignment", "anthropic", "google", "llm", "openai", "reasoning"]
+companies_json: ["anthropic", "google", "openai"]
 ---
 
 OpenAIは2026年4月23日、次世代大規模言語モデル「GPT-5.5」を正式リリースした。同モデルは、単なる対話を超え、複雑なタスクを自律的に計画・実行する「エージェントAI」の基準を塗り替える。従来のモデルがステップごとに指示を必要とするのに対し、GPT-5.5は曖昧な指示を受け取っても、ツールを駆使して作業を完遂する能力を備える。これは、ソフトウェア開発から科学研究まで、知識労働の形態を根本から変革する可能性を秘めている。

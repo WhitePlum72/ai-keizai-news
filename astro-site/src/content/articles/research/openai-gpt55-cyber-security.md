@@ -9,6 +9,8 @@ published_at: "2026-05-09"
 buzz_score: 31.5
 image_url: "/images/articles/article_2952.webp"
 meta_description: "OpenAIは2026年4月、重要インフラ防衛向けAI「GPT-5.5-Cyber」を限定公開した。審査通過組織のみ、実際の侵入テストが可能で、攻撃手法を提示し防御を強化する。攻撃高速化に対抗し、常時稼働するレッドチームとして機能する。"
+topics_json: ["anthropic", "openai"]
+companies_json: ["anthropic", "openai"]
 ---
 
 OpenAIは2026年4月、重要インフラの防御を目的とした新たなセキュリティ特化型AIモデル「GPT-5.5-Cyber」を、審査を通過した一部のセキュリティ研究者とパートナー企業に限定公開した。サイバー攻撃の高度化が加速する中、防御側に攻撃者の視点を提供し、能動的な脆弱性検証を可能にするこのモデルは、セキュリティ業界のゲームチェンジャーとなる可能性を秘めている。

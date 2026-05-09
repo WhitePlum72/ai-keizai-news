@@ -9,6 +9,8 @@ published_at: "2026-05-09"
 buzz_score: 25.5
 image_url: "/images/articles/article_3053.webp"
 meta_description: "サイバー攻撃対策として、パラメータ数40億の小型AI「CyberSecQwen-4B」が登場した。ローカル実行と防御特化により、機密データを外部送信せず低遅延のリアルタイム脅威分析を実現し、データ主権も確保する。"
+topics_json: ["google", "gpu", "llm", "openai", "reasoning"]
+companies_json: ["google", "openai"]
 ---
 
 生成AIを悪用したサイバー攻撃の高度化に対し、セキュリティ業界はパラメータ数40億の小型言語モデルで対抗しようとしている。新たに登場した「CyberSecQwen-4B」は、GPU非依存のローカル実行と防御タスクへの特化という二つの設計思想によって、企業の機密データを外部に漏洩させないリアルタイム脅威分析を実現する。

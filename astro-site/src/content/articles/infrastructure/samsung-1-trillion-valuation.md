@@ -9,6 +9,8 @@ published_at: "2026-05-09"
 buzz_score: 50.0
 image_url: "/images/articles/article_1620.webp"
 meta_description: "サムスン電子の時価総額がAIブームで1兆ドル台に到達した。HBM需要の高まりが後押しし、構造的な成長が期待される一方、競合激化や地政学リスクも残る。技術優位性維持が今後の行方を左右する。"
+topics_json: ["datacenter", "reasoning", "samsung", "semiconductor", "tsmc"]
+companies_json: ["samsung", "tsmc"]
 ---
 
 サムスン電子の市場評価額が1兆ドルの大台に到達した。これは、人工知能（AI）関連の半導体需要が急拡大し、同社の主力製品であるメモリチップの価格高騰と売上増を後押しした結果である。世界最大のメモリメーカーとして君臨する同社は、過去1年間で株価が4倍以上に上昇し、投資家からの期待を一身に集めている。

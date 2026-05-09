@@ -9,6 +9,8 @@ published_at: "2026-05-09"
 buzz_score: 33.0
 image_url: "/images/articles/article_1386.webp"
 meta_description: "オープンAIのアルトマンCEOが、AGI開発を全人類の利益につなげるための5原則を公表した。営利部門の収益追求に上限を設け、超過分を非営利に還元する仕組みを正当化し、急速な事業拡大に伴う使命の形骸化懸念に歯止めをかける意図がある。"
+topics_json: ["agi", "alignment"]
+companies_json: []
 ---
 
 オープンAIのアルトマンCEOが5原則

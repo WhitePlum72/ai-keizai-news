@@ -9,6 +9,8 @@ published_at: "2026-05-09"
 buzz_score: 51.0
 image_url: "/images/articles/article_1428.webp"
 meta_description: "ServiceNowは2026年3月24日、会話型音声エージェント（EVA）を評価する新しいフレームワーク「EVA」を発表した。従来の評価方法では、タスク完了の「精度」と対話の「体験」を別個に測る傾向が強かった。しかし、実際のビジネス利用で"
+topics_json: ["agents", "llm", "reasoning", "servicenow"]
+companies_json: ["servicenow"]
 ---
 
 ServiceNowは2026年3月24日、会話型音声エージェント（EVA）を評価する新しいフレームワーク「EVA」を発表した。従来の評価方法では、タスク完了の「精度」と対話の「体験」を別個に測る傾向が強かった。しかし、実際のビジネス利用では両者のバランスが重要である。聞き間違いや応答の遅れは、高度な推論能力があっても無意味になり得る。ServiceNowはこの課題を解決し、エンドツーエンドで両方を同時にスコアリングする初の企業となった。

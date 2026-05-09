@@ -9,6 +9,8 @@ published_at: "2026-05-09"
 buzz_score: 51.0
 image_url: "/images/articles/article_1399.webp"
 meta_description: "OpenAIは2026年4月22日、ChatGPT向けに「ワークスペース エージェント」を発表した。これはCodex技術を活用し、チーム単位で複雑なタスクや長時間のワークフローを処理できる共有型AIエージェントである。従来の個人向けアシスタ"
+topics_json: ["agents", "openai"]
+companies_json: ["openai"]
 ---
 
 OpenAIは2026年4月22日、ChatGPT向けに「ワークスペース エージェント」を発表した。これはCodex技術を活用し、チーム単位で複雑なタスクや長時間のワークフローを処理できる共有型AIエージェントである。従来の個人向けアシスタントとは異なり、組織の権限管理下で動作し、クラウド上で常時稼働することで、不在時でも業務を継続可能とする。

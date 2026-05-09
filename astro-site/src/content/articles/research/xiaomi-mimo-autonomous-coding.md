@@ -9,6 +9,8 @@ published_at: "2026-05-09"
 buzz_score: 36.0
 image_url: "/images/articles/article_1568.webp"
 meta_description: "小米が新AIモデル「MiMo-V2.5-Pro」をリリース。コーディング性能はClaudeに匹敵し、トークン数を大幅削減。コスト効率と自律性を重視した中国のAI競争激化を象徴し、実用性で米系大手に挑む戦略となる。"
+topics_json: ["agents", "anthropic", "coding-agent"]
+companies_json: ["anthropic"]
 ---
 
 小米（シャオミ）が、新たなオープンウェイトAIモデル「MiMo-V2.5-Pro」をリリースした。同社によれば、このモデルはコーディングベンチマークにおいて、Anthropic社の最先端モデル「Claude Opus 4.6」にほぼ匹敵する性能を発揮する。さらに重要なのは、処理に必要なトークン数を40〜60％削減している点だ。これは、同等の性能をより低コストで実現できることを意味し、実用面での優位性を示唆している。

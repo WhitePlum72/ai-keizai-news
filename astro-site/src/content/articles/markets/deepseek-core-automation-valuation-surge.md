@@ -9,6 +9,8 @@ published_at: "2026-05-09"
 buzz_score: 42.5
 image_url: "/images/articles/article_3085.webp"
 meta_description: "DeepSeekが最大約1000億円の資金調達を計画し、中国AI企業で過去最大の調達額となる見込み。米国では創業6週間のCore Automationが評価額40億ドルへ急騰し、AI分野への巨額投資の勢いが続いている。"
+topics_json: ["agents", "alignment", "llm", "openai", "reasoning"]
+companies_json: ["openai"]
 ---
 
 中国発の生成AIスタートアップDeepSeekが、過去最大となる最大73億5000万ドル（約1000億円）の資金調達ラウンドを計画していることが明らかになった。関係者への取材として海外メディアが報じた。同時期に、米国では元OpenAI研究員が創業したCore Automationが設立わずか6週間で評価額40億ドルへの急騰を見せており、AI分野への巨額マネーの流入が衰える気配を見せていない。

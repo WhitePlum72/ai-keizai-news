@@ -9,6 +9,8 @@ published_at: "2026-05-09"
 buzz_score: 27.5
 image_url: "/images/articles/article_3038.webp"
 meta_description: "OpenClawの台頭を受け、MetaとGoogleが自律型AIエージェントの開発競争を激化させている。OpenClawは公開3カ月で3000万人のユーザーを獲得し、プラットフォームに依存しない行動完結型AIへの需要を証明。これに対抗し、両"
+topics_json: ["agents", "google", "llm", "meta", "open-source-ai"]
+companies_json: ["google", "meta"]
 ---
 
 パーソナルAIアシスタントのOpenClawが爆発的な普及を見せたことを契機に、米国のビッグテック各社が自律的にタスクを遂行する「エージェント型AI」の開発競争を急速に激化させている。特にMetaとGoogleは従来のチャットボットを超えた新サービス投入の動きを加速させ、アナリストの間では2025年のAI業界を左右する「エージェント戦争」の本格化と受け止められている。

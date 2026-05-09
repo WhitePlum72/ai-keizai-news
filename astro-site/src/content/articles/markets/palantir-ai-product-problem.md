@@ -9,6 +9,8 @@ published_at: "2026-05-10"
 buzz_score: 38.0
 image_url: "/images/articles/article_3354.webp"
 meta_description: "パランティアCEOは粗悪なAI生成物を「スロップ」と批判するが、生成AIの普及が自社の分析プラットフォームの事業機会を脅かす逆説に直面。投資家や社内からも、従来型分析から生成AIツールへ予算が流れる傾向が指摘され始めた。"
+topics_json: ["alignment", "google", "llm", "openai", "palantir"]
+companies_json: ["google", "openai", "palantir"]
 ---
 
 データ分析大手のパランティア・テクノロジーズが、自ら推進する人工知能（AI）技術の普及によって、新たな経営課題に直面している。アレックス・カープ最高経営責任者（CEO）が低品質なAI生成コンテンツを指す「スロップ」という言葉で市場を批判する一方、投資家や社内からは生成AIモデルそのものに事業機会を奪われる脅威が指摘され始めたのだ。

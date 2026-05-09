@@ -9,6 +9,8 @@ published_at: "2026-05-09"
 buzz_score: 55.0
 image_url: "/images/articles/article_3074.webp"
 meta_description: "Anthropicが推論需要の急増に対応するため、アカマイ社と2700億円規模のコンピューティング調達契約を締結し、マルチクラウド戦略へ転換した。"
+topics_json: ["anthropic", "google", "llm", "reasoning"]
+companies_json: ["anthropic", "google"]
 ---
 
 AI開発企業のAnthropic PBCは、クラウドサービス大手のアカマイ・テクノロジーズと総額18億ドル（約2700億円）規模のコンピューティングリソース調達契約を締結した。同社の生成AIソフトウェアに対する急増する推論需要に対応するため、従来のハイパースケーラー集中型からマルチクラウド調達へと戦略を転換した動きだ。

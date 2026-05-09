@@ -9,6 +9,8 @@ published_at: "2026-05-09"
 buzz_score: 33.0
 image_url: "/images/articles/article_2943.webp"
 meta_description: "AIスタートアップのMonkが、技術者採用の紹介報酬として紹介者の家賃1年分を負担する破格の制度を導入し、人材獲得競争の激化を示した。"
+topics_json: ["google", "meta", "openai"]
+companies_json: ["google", "meta", "openai"]
 ---
 
 米国のAIスタートアップ、モンク（Monk）が技術者採用の紹介報酬として、紹介者が1年間に支払う家賃相当額を負担するという破格の制度を打ち出した。ハイテク人材の獲得競争が過熱する中、金銭的インセンティブの基準が年収の数パーセントから生活費そのものへと跳ね上がった格好だ。この動きは、優秀なAI技術者の囲い込みがいかに熾烈を極めているかを如実に示している。

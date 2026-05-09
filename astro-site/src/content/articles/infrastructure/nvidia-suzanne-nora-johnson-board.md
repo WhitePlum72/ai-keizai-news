@@ -9,6 +9,8 @@ published_at: "2026-05-09"
 buzz_score: 48.0
 image_url: "/images/articles/article_3070.webp"
 meta_description: "Nvidiaが元ゴールドマン・サックス副会長のスザンヌ・ノラ・ジョンソン女史を社外取締役に選任した。AI需要で急成長する同社は、財務戦略やガバナンス強化を目的に、金融専門家の知見を取り入れる狙いだ。"
+topics_json: ["datacenter", "gpu", "nvidia", "semiconductor"]
+companies_json: ["nvidia"]
 ---
 
 Nvidiaが元ゴールドマン・サックス副会長のスザンヌ・ノラ・ジョンソン女史を新たに取締役として招聘した。半導体大手が財務戦略とフィランソロピーの知見を取り込み、次の成長基盤を強化する動きである。

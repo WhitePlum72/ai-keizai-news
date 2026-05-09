@@ -9,6 +9,8 @@ published_at: "2026-05-09"
 buzz_score: 51.0
 image_url: "/images/articles/article_1400.webp"
 meta_description: "OpenAIが2026年4月22日、Responses APIにWebSocket接続機能を導入し、AIエージェントの処理速度を大幅に向上させたと発表した。これは、生成AIが自律的にタスクをこなす「エージェント」の実用性を高める重要な技術革"
+topics_json: ["agents", "alignment", "coding-agent", "gpu", "llm", "openai", "reasoning"]
+companies_json: ["openai"]
 ---
 
 OpenAIが2026年4月22日、Responses APIにWebSocket接続機能を導入し、AIエージェントの処理速度を大幅に向上させたと発表した。これは、生成AIが自律的にタスクをこなす「エージェント」の実用性を高める重要な技術革新である。従来のHTTPリクエストでは、モデルの推論速度が向上するにつれてAPI自体のオーバーヘッドがボトルネック化していた。この問題解決により、複雑なプログラミング作業やデータ分析などの長時間タスクにおいて、ユーザーが待つ時間を劇的に短縮できる可能性がある。

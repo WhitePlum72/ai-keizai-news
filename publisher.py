@@ -54,7 +54,9 @@ def get_articles_to_publish():
                COALESCE(a.image_url, '') as image_url,
                COALESCE(s.meta_description, '') as meta_description,
                COALESCE(s.article_slug, '') as article_slug,
-               COALESCE(s.category_slug, '') as category_slug
+               COALESCE(s.category_slug, '') as category_slug,
+               COALESCE(s.topics_json, '[]') as topics_json,
+               COALESCE(s.companies_json, '[]') as companies_json
         FROM articles a
         JOIN summaries s ON a.id = s.article_id
         WHERE a.processed = 1
@@ -146,6 +148,19 @@ def generate_markdown(article):
     cat_slug  = category_slug if category_slug else "ai"
     today     = datetime.now().strftime("%Y-%m-%d")
 
+    # topics_json / companies_json をfrontmatterに追加
+    import json as _json
+    topics_raw = article[13] if len(article) > 13 else "[]"  # summaries.topics_json
+    companies_raw = article[14] if len(article) > 14 else "[]"  # summaries.companies_json
+    try:
+        topics_list = _json.loads(topics_raw or "[]")
+    except Exception:
+        topics_list = []
+    try:
+        companies_list = _json.loads(companies_raw or "[]")
+    except Exception:
+        companies_list = []
+
     content = f"""---
 title: "{yaml_escape(title)}"
 source: "{yaml_escape(source)}"
@@ -157,6 +172,8 @@ published_at: "{today}"
 buzz_score: {buzz_score:.1f}
 image_url: "{yaml_escape(image_url)}"
 meta_description: "{yaml_escape(meta_desc)}"
+topics_json: {_json.dumps(topics_list, ensure_ascii=False)}
+companies_json: {_json.dumps(companies_list, ensure_ascii=False)}
 ---
 
 {body}

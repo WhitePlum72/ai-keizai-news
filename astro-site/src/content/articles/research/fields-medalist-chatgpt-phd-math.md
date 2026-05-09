@@ -9,6 +9,8 @@ published_at: "2026-05-10"
 buzz_score: 21.5
 image_url: "https://the-decoder.com/wp-content/uploads/2026/05/ai_and_math.png"
 meta_description: "フィールズ賞受賞者のガワーズ氏がChatGPT 5.5 Proに未解決の整数論問題を与えたところ、2時間足らずで博士課程級の証明を自律的に生成した。従来は指数関数的評価だった限界値を多項式的限界へ改良し、数学者による検証に耐える厳密な成果を"
+topics_json: ["llm", "openai", "reasoning"]
+companies_json: ["openai"]
 ---
 
 数学の最高権威であるフィールズ賞受賞者のティモシー・ガワーズ氏が、OpenAIの最新モデル「ChatGPT 5.5 Pro」に未解決の整数論問題を与えたところ、人間の介入なしで2時間足らずのうちに博士課程レベルの研究成果を達成した。ガワーズ氏はこの結果を受け、大規模言語モデルでは証明できない命題を提示することが、今後の数学的貢献の新たな基準になるとの見解を示した。

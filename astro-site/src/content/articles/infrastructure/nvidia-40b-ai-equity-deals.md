@@ -9,6 +9,8 @@ published_at: "2026-05-10"
 buzz_score: 43.5
 image_url: "https://techcrunch.com/wp-content/uploads/2026/03/GettyImages-2266475966.jpg?w=1024"
 meta_description: "エヌビディアがAI投資枠を400億ドルに拡大。GPU購入先への戦略的出資で需要を創出し、半導体販売と投資益の二重収益を確保している。"
+topics_json: ["gpu", "nvidia", "openai", "semiconductor", "xai"]
+companies_json: ["nvidia", "openai", "xai"]
 ---
 
 半導体大手エヌビディアが2025年に入り、AI関連企業への出資枠として既に400億ドルをコミットしていることが同社の財務データから明らかになった。GPU供給で得た莫大なキャッシュを、自社製品の需要を生み出す企業群に還流させる戦略の規模が一段と拡大している。

@@ -9,6 +9,8 @@ published_at: "2026-05-10"
 buzz_score: 29.5
 image_url: "https://cdn-thumbnails.huggingface.co/social-thumbnails/blog/lablab-ai-amd-developer-hackathon/oncoagent-official-paper.png"
 meta_description: "米国の研究チームが、患者データを外部共有せず複数施設で高精度なAI「OncoAgent」を開発する手法を発表した。二層構造で医師の思考を模倣し、プライバシー保護と性能向上を両立。規制の厳しい地域でも国際共同研究への参加障壁を下げると期待され"
+topics_json: ["agents", "llm", "reasoning"]
+companies_json: []
 ---
 
 米国の研究チームは、複数のがん医療機関が患者データを外部に共有することなく、単一の高精度な臨床意思決定支援AI「OncoAgent」を協調開発できるマルチエージェント基盤を発表した。プライバシー保護と医療AIの性能向上を両立する技術として、希少がんや症例数の少ない治療方針の判断精度を大きく引き上げる可能性がある。日本を含むデータ利活用規制の厳しい地域の医療機関にとって、国際共同研究への参加障壁を下げる契機となり得る。

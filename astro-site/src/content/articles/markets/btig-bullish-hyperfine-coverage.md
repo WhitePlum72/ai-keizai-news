@@ -9,6 +9,8 @@ published_at: "2026-05-09"
 buzz_score: 16.0
 image_url: "/images/articles/article_3110.webp"
 meta_description: "米BTIGが携帯型低磁場MRI「Swoop」に強気評価。約3500万円と低価格でベッドサイド撮像が可能な点を評価し、脳卒中診断ガイドライン改定を追い風に売上高の倍増を予測。医療格差の解消につながる新市場として注目されている。"
+topics_json: ["rag"]
+companies_json: []
 ---
 
 米調査会社BTIGは2025年4月、携帯型MRI装置を手がけるHyperfine, Inc.（HYPR）のカバレッジを新規開始し、強気の投資判断を提示した。目標株価は設定されていないが、初回レポートでは同社の低磁場MRI技術が画像診断のアクセス障壁を根本から変える点を高く評価している。

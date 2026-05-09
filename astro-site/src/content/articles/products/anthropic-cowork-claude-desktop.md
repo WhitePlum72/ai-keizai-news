@@ -9,6 +9,8 @@ published_at: "2026-05-09"
 buzz_score: 51.0
 image_url: "/images/articles/article_1468.webp"
 meta_description: "AI企業Anthropicは2026年1月、ファイル操作を可能にするデスクトップエージェント「Cowork」をリリースした。これはコーディング不要で、非技術者もAIに複雑なタスクを任せられる画期的な機能である。 CoworkはAnthrop"
+topics_json: ["agents", "anthropic", "coding-agent", "google", "microsoft", "openai"]
+companies_json: ["anthropic", "google", "microsoft", "openai"]
 ---
 
 AI企業Anthropicは2026年1月、ファイル操作を可能にするデスクトップエージェント「Cowork」をリリースした。これはコーディング不要で、非技術者もAIに複雑なタスクを任せられる画期的な機能である。

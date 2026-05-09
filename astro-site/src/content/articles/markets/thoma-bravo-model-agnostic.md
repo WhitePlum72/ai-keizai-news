@@ -9,6 +9,8 @@ published_at: "2026-05-09"
 buzz_score: 45.0
 image_url: "/images/articles/article_1638.webp"
 meta_description: "Thoma BravoはAI選定でGoogle他と多角的に関係し依存を回避する。マルチモデル戦略が主流化中だ。導入コストやセキュリティ課題は大きい。最適な技術選択と組み合わせが競争優位性を生む。このアプローチは企業や投資家の参考となる。"
+topics_json: ["alignment", "anthropic", "google", "llm", "openai"]
+companies_json: ["anthropic", "google", "openai"]
 ---
 
 現在のAI市場は、単一のプラットフォームに依存するリスクを回避するために、複数のプロバイダーと連携する「マルチモデル戦略」が主流になりつつある。ボロ氏の発言は、この業界の動向を反映するものであり、企業側がAI技術を最大限に活用するためには、各社の得意分野を組み合わせる柔軟性が不可欠であることを示唆している。Googleのインフラ強み、OpenAIの汎用言語モデルの先進性、Anthropicの安全性へのこだわりなど、各社が持つ特性をバランスよく活用することで、ビジネス上の競争優位性を確保しようとする動きが加速している。

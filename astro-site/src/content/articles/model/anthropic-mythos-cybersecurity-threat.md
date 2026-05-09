@@ -9,6 +9,8 @@ published_at: "2026-05-09"
 buzz_score: 30.5
 image_url: "/images/articles/article_3035.webp"
 meta_description: "AnthropicのAI「Mythos」は既知の脆弱性を高速連鎖させ、多要素認証を3.2分で突破した。本質は新たな脅威ではなく、長年見過ごされてきたセキュリティ対策の欠陥を可視化した点にある。"
+topics_json: ["alignment", "anthropic"]
+companies_json: ["anthropic"]
 ---
 
 Anthropicの最新AIモデル「Mythos」の登場が、世界の金融機関や政府機関に激震をもたらしている。しかし専門家らは、Mythosが生み出したのは新たな脅威ではなく、既に存在したサイバー攻撃の「可視化」による集団的ヒステリーだと指摘する。問題の本質はAIの進化そのものより、既存のセキュリティ対策の空洞化にある。

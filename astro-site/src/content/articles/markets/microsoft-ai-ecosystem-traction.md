@@ -9,6 +9,8 @@ published_at: "2026-05-09"
 buzz_score: 51.0
 image_url: "/images/articles/article_2955.webp"
 meta_description: "マイクロソフトのAzure AI導入企業数が前年比40%以上増加。Fortune 500の65%が利用し、大規模契約も急増している。AI需要が実需へ転換し、各製品を連携させるエコシステムが競合優位性を生み出している。"
+topics_json: ["microsoft", "openai"]
+companies_json: ["microsoft", "openai"]
 ---
 
 マイクロソフトのAIエコシステムが新たな転換点を迎えた。法人向けクラウド事業AzureのAI導入企業数が前年同期比で40％以上拡大し、競合との差を明確に広げつつある。この数字は単なる利用増ではなく、企業の基幹業務にAIが本格実装され始めた構造変化を示す。

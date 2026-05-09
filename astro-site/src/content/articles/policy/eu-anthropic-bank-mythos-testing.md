@@ -9,6 +9,8 @@ published_at: "2026-05-09"
 buzz_score: 43.0
 image_url: "/images/articles/article_1547.webp"
 meta_description: "EUは米アンセリックとAI脆弱性テスト協議を継続。同社のモデル「Mythos」で金融機関等のセキュリティを強化する方針で、データ保護と性能向上のバランスを調整中。デジタル主権確保の一環で、来月までにテスト計画草案を策定する見通し。"
+topics_json: ["alignment", "anthropic", "llm"]
+companies_json: ["anthropic"]
 ---
 
 欧州連合（EU）は、米人工知能（AI）企業アンセリック（Anthropic PBC）と、同社が開発した次世代大規模言語モデル「Mythos」が発見したセキュリティ脆弱性について、域内の金融機関や大企業に対して実証テストを実施させる方針で協議を続けている。この動きは、EUが推進するAI法案の実施段階において、生成AIの安全性と信頼性を確保するための具体的な措置として注目されている。

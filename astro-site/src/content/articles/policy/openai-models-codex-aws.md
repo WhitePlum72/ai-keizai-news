@@ -9,6 +9,8 @@ published_at: "2026-05-09"
 buzz_score: 46.0
 image_url: "/images/articles/article_1380.webp"
 meta_description: "AWSはOpenAIのGPTシリーズやCodex、マネージドエージェントをBedrock経由で提供開始した。顧客データは学習に利用されず、セキュリティを保証しながらAIアプリの構築を支援。導入障壁の低下や業務効率化が期待され、生成AI普及が"
+topics_json: ["agents", "alignment", "openai"]
+companies_json: ["openai"]
 ---
 
 米国アマゾン・ウェブ・サービスズ（AWS）は、人工知能（AI）の先駆者であるOpenAIの生成モデル「GPT」シリーズやコード生成モデル「Codex」、さらにマネージドエージェント機能をAWS環境で提供開始したと発表した。これにより、企業はAWSのクラウドインフラ上で、OpenAIの強力なAIモデルを活用したアプリケーションを安全かつ効率的に構築できる環境が整った。
