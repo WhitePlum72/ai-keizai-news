@@ -1,0 +1,40 @@
+---
+const { currentCategory = '' } = Astro.props;
+---
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+<style>
+  .header-top { background: #003f88; color: white; padding: 4px 0; text-align: center; font-size: 11px; }
+  .header-main { background: #fff; border-bottom: 3px solid #003f88; padding: 10px 20px; display: flex; align-items: center; justify-content: space-between; }
+  .logo { font-size: 26px; font-weight: 900; color: #003f88; letter-spacing: -1px; text-decoration: none; }
+  .header-date { font-size: 12px; color: #666; }
+  .header-sub { background: #fff; border-bottom: 1px solid #ddd; padding: 0 20px; display: flex; overflow-x: auto; }
+  .nav-item { padding: 8px 14px; font-size: 13px; font-weight: 500; color: #333; border-bottom: 3px solid transparent; white-space: nowrap; text-decoration: none; display: block; }
+  .nav-item:hover, .nav-item.active { color: #003f88; border-bottom-color: #003f88; }
+  @media (max-width: 768px) {
+    .header-main { padding: 8px 12px; }
+    .logo { font-size: 20px; }
+  }
+</style>
+
+<div class="header-top">AIと経済の最新ニュースを毎朝配信</div>
+<header>
+  <div class="header-main">
+    <a class="logo" href="/">AI<span>経済</span>新聞</a>
+    <div class="header-date">
+      {new Date().toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' })}
+    </div>
+  </div>
+  <nav class="header-sub">
+    <a class={`nav-item${currentCategory === '' ? ' active' : ''}`} href="/">すべて</a>
+    <a class={`nav-item${currentCategory === 'model' ? ' active' : ''}`} href="/model">モデル</a>
+    <a class={`nav-item${currentCategory === 'markets' ? ' active' : ''}`} href="/markets">マーケット</a>
+    <a class={`nav-item${currentCategory === 'infrastructure' ? ' active' : ''}`} href="/infrastructure">インフラ</a>
+    <a class={`nav-item${currentCategory === 'business' ? ' active' : ''}`} href="/business">ビジネス</a>
+    <a class={`nav-item${currentCategory === 'research' ? ' active' : ''}`} href="/research">研究</a>
+    <a class={`nav-item${currentCategory === 'policy' ? ' active' : ''}`} href="/policy">政策</a>
+    <a class={`nav-item${currentCategory === 'products' ? ' active' : ''}`} href="/products">プロダクト</a>
+  </nav>
+</header>
