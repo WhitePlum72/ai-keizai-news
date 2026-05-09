@@ -58,8 +58,7 @@ def get_articles_to_publish():
         FROM articles a
         JOIN summaries s ON a.id = s.article_id
         WHERE a.processed = 1
-        AND DATE(s.created_at) = DATE('now', 'localtime')
-        LIMIT 30
+        LIMIT 200
     """)
     rows = cursor.fetchall()
     conn.close()
