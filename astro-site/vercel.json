@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    {
+      "source": "/article/article-:id(\\d+)",
+      "destination": "/",
+      "permanent": false
+    }
+  ]
+}

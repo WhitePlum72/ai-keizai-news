@@ -4,23 +4,12 @@ import { getCollection, render } from 'astro:content';
 export async function getStaticPaths() {
   const articles = await getCollection('articles');
   
-  if (articles.length > 0) {
-    const first = articles[0];
-    console.log('DEBUG_ID:', first.id);
-    console.log('DEBUG_DATA:', Object.keys(first.data).join(','));
-    console.log('DEBUG_CAT:', first.data.category_slug);
-  }
-
   const paths = articles.map((article) => {
     const catSlug = article.data.category_slug || 'ai';
     const idSlug = article.id.includes('/')
       ? article.id.split('/').pop()
       : article.id;
     const artSlug = article.data.article_slug || idSlug;
-
-    if (catSlug === 'ai') {
-      console.log('AI category found:', article.id, article.data.category_slug, article.data.article_slug);
-    }
 
     return {
       params: { category: catSlug, slug: artSlug },
