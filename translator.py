@@ -106,15 +106,23 @@ def get_articles_to_translate():
     return rows
 
 
-def save_summary(article_id, title_ja, summary_ja, tweet_text, category, meta_description=""):
+def save_summary(article_id, title_ja, summary_ja, tweet_text, category, meta_description="", article_slug="", category_slug=""):
     conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
     cursor.execute("""
         INSERT OR REPLACE INTO summaries
-            (article_id, title_ja, summary_ja, tweet_text, category, meta_description)
-        VALUES (?, ?, ?, ?, ?, ?)
-    """, (article_id, title_ja, summary_ja, tweet_text, category, meta_description))
-    cursor.execute("UPDATE articles SET processed = 1 WHERE id = ?", (article_id,))
+            (article_id, title_ja, summary_ja, tweet_text, category,
+             meta_description, article_slug, category_slug, slug_en)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+    """, (article_id, title_ja, summary_ja, tweet_text, category,
+          meta_description, article_slug, category_slug, article_slug))
+    cursor.execute("""
+        UPDATE articles
+        SET processed = 1,
+            article_slug = ?,
+            category_slug = ?
+        WHERE id = ?
+    """, (article_slug, category_slug, article_id))
     conn.commit()
     conn.close()
     return True
@@ -255,10 +263,9 @@ def call_deepseek(prompt: str, max_tokens: int = 2500, max_retries: int = 5) -> 
 # ========================
 # 記事生成
 # ========================
-def generate_article(title_en: str, body_en: str) -> tuple[str, str]:
+def generate_article(title_en: str, body_en: str) -> tuple[str, str, str, str]:
     """
-    英語の元記事からDeepSeek V4 Proで高品質な日本語記事を生成する。
-    Returns: (article_body, meta_description) のタプル
+    Returns: (article_body, meta_description, slug_en, category_slug) のタプル
     """
 
     # ---- 記事本文生成 ----
@@ -288,16 +295,16 @@ def generate_article(title_en: str, body_en: str) -> tuple[str, str]:
    - 結論を最初の1文に凝縮する
    - 「誰が・何を・どれだけ・なぜ重要か」を含める
    - 120文字以内で読者を引き込む
-2. ## 何が起きたか（具体的な数字・固有名詞を含める）
-3. ## なぜ今重要なのか（業界・市場への影響）
-4. ## 背景と競合状況（他社との比較・業界構造）
-5. ## 投資家・企業戦略の視点
-6. ## 今後の展望（抽象論禁止・具体的な予測）
+2. ## セクション見出し（記事内容を反映した具体的な見出し）
+3. ## セクション見出し
+4. ## セクション見出し
+5. ## セクション見出し
+6. ## セクション見出し
 
 【見出しルール】
 ・各セクションの冒頭は必ず ## 見出し の形式にする
-・見出しは体言止めまたは疑問形（例: ## OpenAIとの差別化戦略、## 日本市場への波及効果）
-・「## 何が起きたか」のような汎用的な見出しは禁止。記事内容を反映した具体的な見出しにする
+・見出しは体言止めまたは疑問形
+・「## 何が起きたか」のような汎用的な見出しは禁止
 
 【品質基準】
 ・数字にはソース感を付ける（「〇〇によると」「アナリスト予測では」等）
@@ -305,7 +312,6 @@ def generate_article(title_en: str, body_en: str) -> tuple[str, str]:
 ・日本市場・日本企業への影響を必ず1箇所含める"""
 
     article_body = call_deepseek(article_prompt, max_tokens=2500)
-
     time.sleep(API_INTERVAL)
 
     # ---- meta description生成 ----
@@ -315,8 +321,28 @@ def generate_article(title_en: str, body_en: str) -> tuple[str, str]:
         f"{article_body[:1000]}"
     )
     meta_description = call_deepseek(meta_prompt, max_tokens=200)[:120]
+    time.sleep(API_INTERVAL)
 
-    return article_body, meta_description
+    # ---- slug生成 ----
+    slug_prompt = f"""Generate a URL slug for this article.
+
+Title: {title_en}
+
+RULES:
+- Output ONLY the slug, nothing else
+- 3 to 5 words maximum
+- Lowercase letters, numbers, hyphens only
+- Include the most important company name or product name
+- Include a strong action verb or key topic
+- No stop words (a, the, in, of, for, and, to, with)
+- Examples: openai-gpt5-reasoning-launch, nvidia-blackwell-datacenter-demand, anthropic-finance-agents-ipo
+
+Slug:"""
+
+    slug_raw = call_deepseek(slug_prompt, max_tokens=30)
+    slug_en = re.sub(r'[^a-z0-9-]', '', slug_raw.lower().strip().replace(' ', '-'))[:80]
+
+    return article_body, meta_description, slug_en
 
 
 # ========================
@@ -341,6 +367,20 @@ SOURCE_TYPE_TO_CATEGORY = {
     "arxiv":    "研究",
     "hn":       "ビジネス",
 }
+SOURCE_TYPE_TO_CATEGORY_SLUG = {
+    "model":    "model",
+    "business": "business",
+    "research": "research",
+    "stock":    "stock",
+    "arxiv":    "research",
+    "hn":       "business",
+    "official_blog": "model",
+    "gov_jp":   "policy",
+    "ir_tdnet": "stock",
+}
+
+def get_category_slug(source_type: str) -> str:
+    return SOURCE_TYPE_TO_CATEGORY_SLUG.get(source_type, "ai")
 
 def get_category(source_type: str) -> str:
     return SOURCE_TYPE_TO_CATEGORY.get(source_type, "AI")
@@ -363,12 +403,13 @@ def translate_all():
         article_id, title, summary, source, source_type, url = a
 
         try:
-            generated, meta_description = generate_article(title, summary)
+            generated, meta_description, slug_en = generate_article(title, summary)
             data = split_generated_article(generated, title)
             data["meta_description"] = meta_description
 
-            category = get_category(source_type)
-            tweet    = make_tweet(data["title"], data["body"], category)
+            category      = get_category(source_type)
+            category_slug = get_category_slug(source_type)
+            tweet         = make_tweet(data["title"], data["body"], category)
 
             save_summary(
                 article_id,
@@ -377,9 +418,11 @@ def translate_all():
                 tweet,
                 category,
                 data["meta_description"],
+                article_slug=slug_en,
+                category_slug=category_slug,
             )
 
-            logger.info("完了 [id=%d]: %s", article_id, data["title"])
+            logger.info("完了 [id=%d] slug=%s: %s", article_id, slug_en, data["title"])
 
             if i < len(articles) - 1:
                 time.sleep(API_INTERVAL)
