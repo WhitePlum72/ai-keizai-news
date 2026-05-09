@@ -15,6 +15,8 @@ import time
 import requests
 from datetime import datetime
 
+from generate_slugs import CATEGORY_TO_SLUG
+
 try:
     from dotenv import load_dotenv
     load_dotenv(dotenv_path='.env', override=True)
@@ -359,31 +361,42 @@ def make_tweet(title: str, body: str, category: str) -> str:
 # ========================
 # カテゴリ分類
 # ========================
+# translator.py の SOURCE_TYPE_TO_CATEGORY を差し替え
 SOURCE_TYPE_TO_CATEGORY = {
-    "model":    "AIモデル",
-    "business": "ビジネス",
-    "research": "研究",
-    "stock":    "AI関連株",
-    "arxiv":    "研究",
-    "hn":       "ビジネス",
+    "model":         "モデル",
+    "business":      "ビジネス",
+    "research":      "研究",
+    "stock":         "マーケット",
+    "arxiv":         "研究",
+    "hn":            "ビジネス",
+    "official_blog": "モデル",
+    "gov_jp":        "政策",
+    "ir_tdnet":      "マーケット",
+    "rss":           "ビジネス",
+    "media":         "ビジネス",
 }
-SOURCE_TYPE_TO_CATEGORY_SLUG = {
-    "model":    "model",
-    "business": "business",
-    "research": "research",
-    "stock":    "stock",
-    "arxiv":    "research",
-    "hn":       "business",
-    "official_blog": "model",
-    "gov_jp":   "policy",
-    "ir_tdnet": "stock",
+CATEGORY_TO_SLUG = {
+    "モデル":     "model",
+    "ビジネス":   "business",
+    "研究":       "research",
+    "マーケット": "markets",
+    "インフラ":   "infrastructure",
+    "政策":       "policy",
+    "プロダクト": "products",
+    "AI":         "business",
+    "AI関連株":   "markets",
+    "AIモデル":   "model",
+    "ツール":     "products",
 }
-
-def get_category_slug(source_type: str) -> str:
-    return SOURCE_TYPE_TO_CATEGORY_SLUG.get(source_type, "ai")
 
 def get_category(source_type: str) -> str:
-    return SOURCE_TYPE_TO_CATEGORY.get(source_type, "AI")
+    return SOURCE_TYPE_TO_CATEGORY.get(source_type, "ビジネス")
+
+def get_category_slug(source_type: str, category: str = "") -> str:
+    if category and category in CATEGORY_TO_SLUG:
+        return CATEGORY_TO_SLUG[category]
+    cat = SOURCE_TYPE_TO_CATEGORY.get(source_type, "ビジネス")
+    return CATEGORY_TO_SLUG.get(cat, "business")
 
 
 # ========================

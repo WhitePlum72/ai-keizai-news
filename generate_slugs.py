@@ -12,19 +12,31 @@ DEEPSEEK_API_KEY = os.environ.get("DEEPSEEK_API_KEY")
 DEEPSEEK_URL     = "https://api.deepseek.com/chat/completions"
 DEEPSEEK_MODEL   = "deepseek-v4-pro"
 
-SOURCE_TYPE_TO_CATEGORY_SLUG = {
-    "model":        "model",
-    "business":     "business",
-    "research":     "research",
-    "stock":        "stock",
-    "arxiv":        "research",
-    "hn":           "business",
-    "official_blog":"model",
-    "gov_jp":       "policy",
-    "ir_tdnet":     "stock",
+CATEGORY_TO_SLUG = {
+    "AIモデル": "model",
+    "モデル":   "model",
+    "ビジネス": "business",
+    "研究":     "research",
+    "AI関連株": "stock",
+    "ツール":   "tools",
+    "AI":       "ai",
 }
 
-def get_category_slug(source_type: str) -> str:
+SOURCE_TYPE_TO_CATEGORY_SLUG = {
+    "model":         "model",
+    "business":      "business",
+    "research":      "research",
+    "stock":         "stock",
+    "arxiv":         "research",
+    "hn":            "business",
+    "official_blog": "model",
+    "gov_jp":        "policy",
+    "ir_tdnet":      "stock",
+}
+
+def get_category_slug(source_type: str, category: str = "") -> str:
+    if category and category in CATEGORY_TO_SLUG:
+        return CATEGORY_TO_SLUG[category]
     return SOURCE_TYPE_TO_CATEGORY_SLUG.get(source_type or '', 'ai')
 
 def call_deepseek_slug(title_ja: str, title_en: str) -> str:
@@ -70,7 +82,7 @@ def generate_slugs():
     cur = conn.cursor()
 
     cur.execute("""
-        SELECT a.id, a.title, a.source_type, s.title_ja
+        SELECT a.id, a.title, a.source_type, s.title_ja, s.category
         FROM articles a
         JOIN summaries s ON a.id = s.article_id
         WHERE s.article_slug IS NULL
@@ -82,12 +94,12 @@ def generate_slugs():
 
     print(f"slug未設定: {len(rows)}件")
 
-    for i, (article_id, title_en, source_type, title_ja) in enumerate(rows):
+    for i, (article_id, title_en, source_type, title_ja, category) in enumerate(rows):
         slug = call_deepseek_slug(title_ja or '', title_en or '')
         if not slug:
             slug = f"article-{article_id}"
 
-        cat_slug = get_category_slug(source_type)
+        cat_slug = get_category_slug(source_type, category)
 
         conn = sqlite3.connect(DB_PATH)
         cur = conn.cursor()
