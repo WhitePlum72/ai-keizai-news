@@ -834,3 +834,179 @@
 2026-05-09 02:08:50,061 [INFO] 新規収集: 147件
 2026-05-09 02:08:50,061 [INFO] 重複排除: 331件
 2026-05-09 02:08:50,061 [INFO] ============================================================
+2026-05-09 04:00:07,431 [INFO] ============================================================
+2026-05-09 04:00:07,431 [INFO] パイプライン開始: 2026-05-09 04:00:07
+2026-05-09 04:00:07,431 [INFO] ============================================================
+2026-05-09 04:00:07,431 [INFO] [1/4] RSS収集
+2026-05-09 04:00:07,431 [INFO] ============================================================
+2026-05-09 04:00:07,431 [INFO] RSS収集を開始しました
+2026-05-09 04:00:07,431 [INFO] ============================================================
+2026-05-09 04:00:07,431 [INFO] データベースを初期化しました: data/articles.db
+2026-05-09 04:00:08,027 [ERROR] Anthropicスクレイピングエラー: Page.goto: net::ERR_INTERNET_DISCONNECTED at https://www.anthropic.com/news
+Call log:
+  - navigating to "https://www.anthropic.com/news", waiting until "load"
+
+2026-05-09 04:00:08,027 [INFO] RSS取得開始: OpenAI (https://openai.com/news/rss.xml)
+2026-05-09 04:00:08,042 [INFO] RSS取得完了: OpenAI - 記事数: 0
+2026-05-09 04:00:08,042 [INFO] RSS取得開始: Hugging Face (https://huggingface.co/blog/feed.xml)
+2026-05-09 04:00:08,042 [INFO] RSS取得完了: Hugging Face - 記事数: 0
+2026-05-09 04:00:08,042 [INFO] RSS取得開始: TechCrunch (https://techcrunch.com/feed/)
+2026-05-09 04:00:08,058 [INFO] RSS取得完了: TechCrunch - 記事数: 0
+2026-05-09 04:00:08,058 [INFO] RSS取得開始: The Verge AI (https://www.theverge.com/rss/ai-artificial-intelligence/index.xml)
+2026-05-09 04:00:08,074 [INFO] RSS取得完了: The Verge AI - 記事数: 0
+2026-05-09 04:00:08,074 [INFO] RSS取得開始: VentureBeat AI (https://venturebeat.com/category/ai/feed/)
+2026-05-09 04:00:08,074 [INFO] RSS取得完了: VentureBeat AI - 記事数: 0
+2026-05-09 04:00:08,074 [INFO] RSS取得開始: Wired AI (https://www.wired.com/feed/tag/ai/latest/rss)
+2026-05-09 04:00:08,090 [INFO] RSS取得完了: Wired AI - 記事数: 0
+2026-05-09 04:00:08,090 [INFO] RSS取得開始: MIT Technology Review (https://www.technologyreview.com/feed/)
+2026-05-09 04:00:08,090 [INFO] RSS取得完了: MIT Technology Review - 記事数: 0
+2026-05-09 04:00:08,090 [INFO] RSS取得開始: BAIR Blog (https://bair.berkeley.edu/blog/feed.xml)
+2026-05-09 04:00:08,105 [INFO] RSS取得完了: BAIR Blog - 記事数: 0
+2026-05-09 04:00:08,105 [INFO] RSS取得開始: Bloomberg Technology (https://feeds.bloomberg.com/technology/news.rss)
+2026-05-09 04:00:08,105 [INFO] RSS取得完了: Bloomberg Technology - 記事数: 0
+2026-05-09 04:00:08,105 [INFO] RSS取得開始: Reuters Technology (https://www.reutersagency.com/feed/?best-topics=tech)
+2026-05-09 04:00:08,121 [INFO] RSS取得完了: Reuters Technology - 記事数: 0
+2026-05-09 04:00:08,121 [INFO] RSS取得開始: The Decoder (https://the-decoder.com/feed/)
+2026-05-09 04:00:08,127 [INFO] RSS取得完了: The Decoder - 記事数: 0
+2026-05-09 04:00:08,127 [INFO] RSS取得開始: arXiv CS.AI (https://arxiv.org/rss/cs.AI)
+2026-05-09 04:00:08,137 [INFO] RSS取得完了: arXiv CS.AI - 記事数: 0
+2026-05-09 04:00:08,137 [INFO] RSS取得開始: arXiv CS.CL (https://arxiv.org/rss/cs.CL)
+2026-05-09 04:00:08,137 [INFO] RSS取得完了: arXiv CS.CL - 記事数: 0
+2026-05-09 04:00:08,137 [INFO] RSS取得開始: Yahoo Finance (https://finance.yahoo.com/rss/topstories)
+2026-05-09 04:00:08,153 [INFO] RSS取得完了: Yahoo Finance - 記事数: 0
+2026-05-09 04:00:08,153 [INFO] RSS取得開始: Seeking Alpha (https://seekingalpha.com/feed.xml)
+2026-05-09 04:00:08,153 [INFO] RSS取得完了: Seeking Alpha - 記事数: 0
+2026-05-09 04:00:08,153 [INFO] RSS取得開始: MarketWatch Tech (https://feeds.marketwatch.com/marketwatch/technology/)
+2026-05-09 04:00:08,168 [INFO] RSS取得完了: MarketWatch Tech - 記事数: 0
+2026-05-09 04:00:08,168 [INFO] RSS取得開始: Bloomberg Markets (https://feeds.bloomberg.com/markets/news.rss)
+2026-05-09 04:00:08,168 [INFO] RSS取得完了: Bloomberg Markets - 記事数: 0
+2026-05-09 04:00:08,168 [INFO] RSS取得開始: WSJ Tech (https://feeds.content.dowjones.io/public/rss/RSSWSJD)
+2026-05-09 04:00:08,184 [INFO] RSS取得完了: WSJ Tech - 記事数: 0
+2026-05-09 04:00:08,184 [INFO] RSS取得開始: Financial Times Tech (https://feeds.ft.com/ft/technology)
+2026-05-09 04:00:08,184 [INFO] RSS取得完了: Financial Times Tech - 記事数: 0
+2026-05-09 04:00:08,184 [INFO] RSS取得開始: Reuters Business (https://feeds.reuters.com/reuters/businessNews)
+2026-05-09 04:00:08,200 [INFO] RSS取得完了: Reuters Business - 記事数: 0
+2026-05-09 04:00:08,200 [INFO] RSS取得開始: CNBC Technology (https://www.cnbc.com/id/19854910/device/rss/rss.html)
+2026-05-09 04:00:08,200 [INFO] RSS取得完了: CNBC Technology - 記事数: 0
+2026-05-09 04:00:08,200 [INFO] RSS取得開始: CNBC AI (https://www.cnbc.com/id/100727362/device/rss/rss.html)
+2026-05-09 04:00:08,216 [INFO] RSS取得完了: CNBC AI - 記事数: 0
+2026-05-09 04:00:08,216 [INFO] RSS取得開始: Microsoft Blog (https://blogs.microsoft.com/feed/)
+2026-05-09 04:00:08,227 [INFO] RSS取得完了: Microsoft Blog - 記事数: 0
+2026-05-09 04:00:08,227 [INFO] RSS取得開始: Google AI Blog (https://blog.google/technology/ai/rss/)
+2026-05-09 04:00:08,232 [INFO] RSS取得完了: Google AI Blog - 記事数: 0
+2026-05-09 04:00:08,232 [INFO] RSS取得開始: Meta AI Blog (https://ai.meta.com/blog/rss/)
+2026-05-09 04:00:08,247 [INFO] RSS取得完了: Meta AI Blog - 記事数: 0
+2026-05-09 04:00:08,247 [INFO] RSS取得開始: NVIDIA Blog (https://blogs.nvidia.com/feed/)
+2026-05-09 04:00:08,247 [INFO] RSS取得完了: NVIDIA Blog - 記事数: 0
+2026-05-09 04:00:08,247 [INFO] RSS取得開始: AWS Machine Learning (https://aws.amazon.com/blogs/machine-learning/feed/)
+2026-05-09 04:00:08,263 [INFO] RSS取得完了: AWS Machine Learning - 記事数: 0
+2026-05-09 04:00:08,263 [INFO] RSS取得開始: AI News (https://www.artificialintelligence-news.com/feed/)
+2026-05-09 04:00:08,263 [INFO] RSS取得完了: AI News - 記事数: 0
+2026-05-09 04:00:08,263 [INFO] RSS取得開始: ZDNet AI (https://www.zdnet.com/topic/artificial-intelligence/rss.xml)
+2026-05-09 04:00:08,279 [INFO] RSS取得完了: ZDNet AI - 記事数: 0
+2026-05-09 04:00:08,279 [INFO] RSS取得開始: Ars Technica (https://feeds.arstechnica.com/arstechnica/technology-lab)
+2026-05-09 04:00:08,279 [INFO] RSS取得完了: Ars Technica - 記事数: 0
+2026-05-09 04:00:08,279 [INFO] RSS取得開始: Anthropic Blog (https://www.anthropic.com/rss.xml)
+2026-05-09 04:00:08,295 [INFO] RSS取得完了: Anthropic Blog - 記事数: 0
+2026-05-09 04:00:08,295 [INFO] RSS取得開始: Google DeepMind (https://deepmind.google/blog/rss/)
+2026-05-09 04:00:08,295 [INFO] RSS取得完了: Google DeepMind - 記事数: 0
+2026-05-09 04:00:08,295 [INFO] RSS取得開始: arXiv CS.LG (https://arxiv.org/rss/cs.LG)
+2026-05-09 04:00:08,310 [INFO] RSS取得完了: arXiv CS.LG - 記事数: 0
+2026-05-09 04:00:08,310 [INFO] RSS取得開始: 経済産業省 (https://www.meti.go.jp/rss/rss.rdf)
+2026-05-09 04:00:08,310 [INFO] RSS取得完了: 経済産業省 - 記事数: 0
+2026-05-09 04:00:08,310 [INFO] RSS取得開始: IPA (https://www.ipa.go.jp/rss/news.rdf)
+2026-05-09 04:00:08,331 [INFO] RSS取得完了: IPA - 記事数: 0
+2026-05-09 04:00:08,331 [INFO] RSS取得開始: NEDO (https://www.nedo.go.jp/rss/index.xml)
+2026-05-09 04:00:08,342 [INFO] RSS取得完了: NEDO - 記事数: 0
+2026-05-09 04:00:08,342 [INFO] RSS取得開始: PR TIMES (https://prtimes.jp/rss/all.rdf)
+2026-05-09 04:00:08,351 [INFO] RSS取得完了: PR TIMES - 記事数: 0
+2026-05-09 04:00:08,351 [INFO] ============================================================
+2026-05-09 04:00:08,351 [INFO] RSS収集が完了しました
+2026-05-09 04:00:08,351 [INFO] 新規収集: 0件
+2026-05-09 04:00:08,351 [INFO] 重複排除: 0件
+2026-05-09 04:00:08,351 [INFO] ============================================================
+2026-05-09 04:00:08,351 [INFO] [2/4] スコアリング（類似記事除外・上位10件）
+2026-05-09 04:00:08,375 [INFO] [3/4] 記事生成（DeepSeek）
+2026-05-09 04:00:08,375 [INFO] 翻訳開始: 10件
+2026-05-09 04:00:08,375 [WARNING] APIエラー (1/5): HTTPSConnectionPool(host='api.deepseek.com', port=443): Max retries exceeded with url: /chat/completions (Caused by NameResolutionError("HTTPSConnection(host='api.deepseek.com', port=443): Failed to resolve 'api.deepseek.com' ([Errno 11001] getaddrinfo failed)"))
+2026-05-09 04:01:07,548 [INFO] 完了 [id=2905]: ChatGPTの個人情報保護設計が進化 学習データの制御権が利用者に
+2026-05-09 04:02:19,181 [INFO] 完了 [id=2955]: マイクロソフトのAI導入企業数が急増、競合を引き離す4割超の成長率
+2026-05-09 04:03:21,261 [INFO] 完了 [id=2950]: Anthropicの評価額100兆円目前、売上高5倍の急拡大
+2026-05-09 04:04:35,488 [INFO] 完了 [id=2906]: OpenAIが欧州の10代安全策を発表、家族向けAI指針の新段階
+2026-05-09 04:05:45,780 [INFO] 完了 [id=2895]: Anthropicの未発表AIが覆す米政府AI戦略、規制回避へ転換加速の理由
+2026-05-09 04:06:56,604 [INFO] 完了 [id=3047]: ハリバートンが生成AIで地層探査を95%高速化する理由
+2026-05-09 04:08:06,551 [INFO] 完了 [id=2930]: 世界最大級の資産運用会社が支えるバージニア州データセンター計画が新聞広告の手続きミスで頓挫
+2026-05-09 04:09:10,220 [INFO] 完了 [id=2943]: AI新興企業が採用成功報酬に家賃1年分、人材争奪戦が異次元に
+2026-05-09 04:10:10,625 [INFO] 完了 [id=2952]: OpenAIが攻撃的セキュリティAIを限定公開 インフラ防衛に特化したGPT-5.5-Cyberの実力
+2026-05-09 04:11:22,167 [INFO] 完了 [id=3037]: アカマイ株20%急騰、クラウド好調と1800億円AI基盤案件の衝撃
+2026-05-09 04:11:22,167 [INFO] [4/4] 画像生成（全記事・FLUX.1 Schnell）
+2026-05-09 04:11:22,183 [INFO] ComfyUI起動中...
+2026-05-09 04:11:26,247 [INFO] ComfyUI起動完了（2秒）
+2026-05-09 04:11:26,250 [INFO] 画像生成開始: 10件
+2026-05-09 04:11:26,250 [INFO] 生成中 [2905]: ChatGPTの個人情報保護設計が進化 学習データの制御権が利用者に
+2026-05-09 04:11:26,250 [DEBUG] FLUX Prompt: AI language model visualization, neural networks, floating digital text streams, cinematic lighting, editorial illustration, ultra detailed, professional business magazine style, no text, artificial i
+2026-05-09 04:11:28,323 [INFO] ComfyUIキュー送信完了: 36ca9f85-8434-4fd2-b5f2-8561b90e9c48
+2026-05-09 04:11:36,608 [DEBUG] オーバーレイ完了: astro-site/public/images/articles\article_2905.webp ['GPT']
+2026-05-09 04:11:36,608 [INFO] オーバーレイ: ['GPT']
+2026-05-09 04:11:36,623 [INFO] ✅ 生成完了 [2905]
+2026-05-09 04:11:36,623 [INFO] 生成中 [2955]: マイクロソフトのAI導入企業数が急増、競合を引き離す4割超の成長率
+2026-05-09 04:11:36,623 [DEBUG] FLUX Prompt: corporate enterprise technology, blue tones, cloud infrastructure, cinematic lighting, editorial illustration, ultra detailed, professional business magazine style, no text, artificial intelligence co
+2026-05-09 04:11:38,701 [INFO] ComfyUIキュー送信完了: a8fb243c-dcce-4a92-aaf6-7c5bee2e7020
+2026-05-09 04:11:43,971 [DEBUG] オーバーレイ完了: astro-site/public/images/articles\article_2955.webp ['Microsoft']
+2026-05-09 04:11:43,971 [INFO] オーバーレイ: ['Microsoft']
+2026-05-09 04:11:43,971 [INFO] ✅ 生成完了 [2955]
+2026-05-09 04:11:43,971 [INFO] 生成中 [2950]: Anthropicの評価額100兆円目前、売上高5倍の急拡大
+2026-05-09 04:11:43,971 [DEBUG] FLUX Prompt: clean minimal AI safety laboratory, purple tones, modern research environment, cinematic lighting, editorial illustration, ultra detailed, professional business magazine style, no text, artificial int
+2026-05-09 04:11:46,032 [INFO] ComfyUIキュー送信完了: e91fc0d3-7587-4425-83ee-e900ccabf5c5
+2026-05-09 04:11:51,380 [DEBUG] オーバーレイ完了: astro-site/public/images/articles\article_2950.webp ['Anthropic', 'Google', 'Claude']
+2026-05-09 04:11:51,380 [INFO] オーバーレイ: ['Anthropic', 'Google', 'Claude']
+2026-05-09 04:11:51,396 [INFO] ✅ 生成完了 [2950]
+2026-05-09 04:11:51,396 [INFO] 生成中 [2906]: OpenAIが欧州の10代安全策を発表、家族向けAI指針の新段階
+2026-05-09 04:11:51,396 [DEBUG] FLUX Prompt: futuristic AI laboratory, glowing neural networks, dark cinematic atmosphere, cinematic lighting, editorial illustration, ultra detailed, professional business magazine style, no text, artificial inte
+2026-05-09 04:11:53,442 [INFO] ComfyUIキュー送信完了: 7018b8c0-f3e7-4249-a8c9-338291e119dd
+2026-05-09 04:11:58,719 [DEBUG] オーバーレイ完了: astro-site/public/images/articles\article_2906.webp ['OpenAI']
+2026-05-09 04:11:58,719 [INFO] オーバーレイ: ['OpenAI']
+2026-05-09 04:11:58,722 [INFO] ✅ 生成完了 [2906]
+2026-05-09 04:11:58,722 [INFO] 生成中 [2895]: Anthropicの未発表AIが覆す米政府AI戦略、規制回避へ転換加速の理由
+2026-05-09 04:11:58,722 [DEBUG] FLUX Prompt: clean minimal AI safety laboratory, purple tones, modern research environment, cinematic lighting, editorial illustration, ultra detailed, professional business magazine style, no text, artificial int
+2026-05-09 04:12:00,798 [INFO] ComfyUIキュー送信完了: 70e9ea5d-e726-453f-83b2-17b8074ea295
+2026-05-09 04:12:06,142 [DEBUG] オーバーレイ完了: astro-site/public/images/articles\article_2895.webp ['Anthropic']
+2026-05-09 04:12:06,142 [INFO] オーバーレイ: ['Anthropic']
+2026-05-09 04:12:06,147 [INFO] ✅ 生成完了 [2895]
+2026-05-09 04:12:06,147 [INFO] 生成中 [3047]: ハリバートンが生成AIで地層探査を95%高速化する理由
+2026-05-09 04:12:06,147 [DEBUG] FLUX Prompt: warehouse automation, cloud computing infrastructure, industrial robotics, cinematic lighting, editorial illustration, ultra detailed, professional business magazine style, no text, artificial intelli
+2026-05-09 04:12:08,225 [INFO] ComfyUIキュー送信完了: 9999586a-4d7c-41de-901a-97b26b8fcae9
+2026-05-09 04:12:13,467 [DEBUG] オーバーレイ完了: astro-site/public/images/articles\article_3047.webp ['Amazon']
+2026-05-09 04:12:13,467 [INFO] オーバーレイ: ['Amazon']
+2026-05-09 04:12:13,483 [INFO] ✅ 生成完了 [3047]
+2026-05-09 04:12:13,483 [INFO] 生成中 [2930]: 世界最大級の資産運用会社が支えるバージニア州データセンター計画が新聞広告の手続き
+2026-05-09 04:12:16,536 [DEBUG] FLUX Prompt: A colossal data center made of circuit boards and glass fractures like a glacier, splitting apart as a single vintage newspaper page slices through its core like a guillotine. Cinematic beams of golde
+2026-05-09 04:12:18,610 [INFO] ComfyUIキュー送信完了: 4ddd427f-60a1-4654-9e34-c0e85b3f5b34
+2026-05-09 04:12:26,783 [INFO] ✅ 生成完了 [2930]
+2026-05-09 04:12:26,783 [INFO] 生成中 [2943]: AI新興企業が採用成功報酬に家賃1年分、人材争奪戦が異次元に
+2026-05-09 04:12:29,882 [DEBUG] FLUX Prompt: A bustling futuristic recruitment war room, holographic apartment towers rising from a chessboard table. Suited figures offer gleaming keys to silhouetted engineer candidates. Cinematic volumetric lig
+2026-05-09 04:12:31,969 [INFO] ComfyUIキュー送信完了: 8cda995a-7dde-45ea-af95-40f1917c05a9
+2026-05-09 04:12:40,175 [INFO] ✅ 生成完了 [2943]
+2026-05-09 04:12:40,175 [INFO] 生成中 [2952]: OpenAIが攻撃的セキュリティAIを限定公開 インフラ防衛に特化したGPT-5
+2026-05-09 04:12:40,175 [DEBUG] FLUX Prompt: futuristic AI laboratory, glowing neural networks, dark cinematic atmosphere, cinematic lighting, editorial illustration, ultra detailed, professional business magazine style, no text, artificial inte
+2026-05-09 04:12:42,242 [INFO] ComfyUIキュー送信完了: 998613c0-6ab5-4a9a-8a89-7f3782c901ae
+2026-05-09 04:12:47,640 [DEBUG] オーバーレイ完了: astro-site/public/images/articles\article_2952.webp ['OpenAI', 'Anthropic', 'GPT']
+2026-05-09 04:12:47,640 [INFO] オーバーレイ: ['OpenAI', 'Anthropic', 'GPT']
+2026-05-09 04:12:47,655 [INFO] ✅ 生成完了 [2952]
+2026-05-09 04:12:47,655 [INFO] 生成中 [3037]: アカマイ株20%急騰、クラウド好調と1800億円AI基盤案件の衝撃
+2026-05-09 04:12:51,535 [DEBUG] FLUX Prompt: A radiant golden stock arrow pierces through a dark digital cloudscape, soaring 20% upward as crystalline data streams spiral around it. Futuristic AI server towers emit pulses of neon cyan energy, th
+2026-05-09 04:12:53,617 [INFO] ComfyUIキュー送信完了: 5678b788-728e-468f-89b8-07eea8315396
+2026-05-09 04:13:01,778 [INFO] ✅ 生成完了 [3037]
+2026-05-09 04:13:01,778 [INFO] 画像生成完了: 成功10件 / 失敗0件
+2026-05-09 04:13:01,778 [INFO] ComfyUI停止中...
+2026-05-09 04:13:01,778 [INFO] ComfyUI停止完了
+2026-05-09 04:13:01,778 [INFO] [5/5] 記事公開・Git Push
+2026-05-09 04:13:01,778 [INFO] ============================================================
+2026-05-09 04:13:01,778 [INFO] 記事公開処理を開始しました
+2026-05-09 04:13:01,778 [INFO] ============================================================
+2026-05-09 04:13:01,778 [INFO] 公開対象の記事がありません
+2026-05-09 04:13:05,673 [INFO] Git Push完了
+2026-05-09 04:13:05,673 [INFO] パイプライン完了
+2026-05-09 04:13:05,673 [INFO] ============================================================
+2026-05-09 04:13:05,673 [INFO] パイプライン終了: 2026-05-09 04:13:05
+2026-05-09 04:13:05,673 [INFO] ============================================================
