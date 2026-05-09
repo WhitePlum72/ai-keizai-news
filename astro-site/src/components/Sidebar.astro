@@ -5,6 +5,9 @@ const sorted = [...allArticles].sort((a, b) => (b.data.buzz_score || 0) - (a.dat
 const popularArticles = sorted.slice(0, 8);
 const rankingMarkets = sorted.filter(a => a.data.category_slug === 'markets').slice(0, 4);
 const rankingInfra = sorted.filter(a => a.data.category_slug === 'infrastructure').slice(0, 4);
+const latestArticles = [...allArticles]
+  .sort((a, b) => (b.data.published_at || '').localeCompare(a.data.published_at || ''))
+  .slice(0, 6);
 
 const getArticleUrl = (article) => {
   const cat = article.data.category_slug || 'business';
@@ -81,5 +84,17 @@ const getArticleUrl = (article) => {
         </span>
       ))}
     </div>
+  </div>
+  <div class="block">
+    <div class="block-title">🆕 最新記事</div>
+    {latestArticles.map((a) => (
+      <a class="card" href={getArticleUrl(a)}>
+        <img src={a.data.image_url || '/ogp.png'} alt={a.data.title} loading="lazy" />
+        <div class="card-content">
+          <div class="card-title">{a.data.title.slice(0, 36)}{a.data.title.length > 36 ? '...' : ''}</div>
+          <div class="card-meta">{a.data.published_at}</div>
+        </div>
+      </a>
+    ))}
   </div>
 </aside>
