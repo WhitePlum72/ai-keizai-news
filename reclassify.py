@@ -89,3 +89,48 @@ def reclassify_all():
 
 if __name__ == "__main__":
     reclassify_all()
+
+import json
+import sys
+sys.path.insert(0, '.')
+from translator import extract_entities
+
+def add_entities_to_existing():
+    conn = sqlite3.connect(DB_PATH)
+    cur = conn.cursor()
+
+    cur.execute("""
+        SELECT a.id, a.title, s.title_ja, s.summary_ja
+        FROM articles a
+        JOIN summaries s ON a.id = s.article_id
+        WHERE a.processed = 1
+    """)
+    rows = cur.fetchall()
+
+    for article_id, title_en, title_ja, summary_ja in rows:
+        entities = extract_entities(title_en or '', title_ja or '', summary_ja or '')
+        topics_json    = json.dumps(entities["topics"],    ensure_ascii=False)
+        companies_json = json.dumps(entities["companies"], ensure_ascii=False)
+        persons_json   = json.dumps(entities["persons"],   ensure_ascii=False)
+        tags_json      = json.dumps(entities["tags"],      ensure_ascii=False)
+
+        cur.execute("""
+            UPDATE summaries
+            SET topics_json = ?, companies_json = ?,
+                persons_json = ?, tags_json = ?
+            WHERE article_id = ?
+        """, (topics_json, companies_json, persons_json, tags_json, article_id))
+
+        cur.execute("""
+            UPDATE articles
+            SET topics_json = ?, companies_json = ?
+            WHERE id = ?
+        """, (topics_json, companies_json, article_id))
+
+    conn.commit()
+    conn.close()
+    print(f"entities付与完了: {len(rows)}件")
+
+if __name__ == "__main__":
+    reclassify_all()
+    add_entities_to_existing()

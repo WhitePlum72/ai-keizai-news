@@ -15,8 +15,6 @@ import time
 import requests
 from datetime import datetime
 
-from generate_slugs import CATEGORY_TO_SLUG
-
 try:
     from dotenv import load_dotenv
     load_dotenv(dotenv_path='.env', override=True)
@@ -108,23 +106,45 @@ def get_articles_to_translate():
     return rows
 
 
-def save_summary(article_id, title_ja, summary_ja, tweet_text, category, meta_description="", article_slug="", category_slug=""):
+def save_summary(article_id, title_ja, summary_ja, tweet_text, category,
+                 meta_description="", article_slug="", category_slug="",
+                 entities: dict = None):
+    import json
     conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
+
+    entities = entities or {}
+    topics_json   = json.dumps(entities.get("topics",    []), ensure_ascii=False)
+    companies_json = json.dumps(entities.get("companies", []), ensure_ascii=False)
+    persons_json  = json.dumps(entities.get("persons",   []), ensure_ascii=False)
+    tags_json     = json.dumps(entities.get("tags",      []), ensure_ascii=False)
+
+    primary_topic   = entities.get("topics",    [""])[0] if entities.get("topics")    else ""
+    primary_company = entities.get("companies", [""])[0] if entities.get("companies") else ""
+    primary_person  = entities.get("persons",   [""])[0] if entities.get("persons")   else ""
+
     cursor.execute("""
         INSERT OR REPLACE INTO summaries
             (article_id, title_ja, summary_ja, tweet_text, category,
-             meta_description, article_slug, category_slug, slug_en)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+             meta_description, article_slug, category_slug, slug_en,
+             topics_json, companies_json, persons_json, tags_json)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     """, (article_id, title_ja, summary_ja, tweet_text, category,
-          meta_description, article_slug, category_slug, article_slug))
+          meta_description, article_slug, category_slug, article_slug,
+          topics_json, companies_json, persons_json, tags_json))
+
     cursor.execute("""
         UPDATE articles
-        SET processed = 1,
-            article_slug = ?,
-            category_slug = ?
+        SET processed      = 1,
+            article_slug   = ?,
+            category_slug  = ?,
+            topics_json    = ?,
+            companies_json = ?
         WHERE id = ?
-    """, (article_slug, category_slug, article_id))
+    """, (article_slug, category_slug,
+          topics_json, companies_json,
+          article_id))
+
     conn.commit()
     conn.close()
     return True
@@ -398,6 +418,117 @@ def get_category_slug(source_type: str, category: str = "") -> str:
     cat = SOURCE_TYPE_TO_CATEGORY.get(source_type, "ビジネス")
     return CATEGORY_TO_SLUG.get(cat, "business")
 
+# ========================
+# Topic・Company・Tag 抽出用定数
+# ========================
+KNOWN_COMPANIES = {
+    "openai", "anthropic", "google", "deepmind", "microsoft",
+    "meta", "apple", "amazon", "nvidia", "amd", "intel",
+    "tsmc", "broadcom", "arm", "qualcomm", "xai",
+    "mistral", "cohere", "perplexity", "huggingface",
+    "databricks", "snowflake", "palantir", "servicenow",
+    "salesforce", "oracle", "ibm", "samsung", "softbank",
+    "ntt", "kddi", "fujitsu", "nec", "sony", "toyota",
+    "preferred networks", "sakura internet",
+}
+
+KNOWN_TOPICS = {
+    "gpt-5", "gpt-4", "claude", "gemini", "llama",
+    "deepseek", "mistral", "qwen", "grok",
+    "agents", "ai-agents", "coding-agent",
+    "gpu", "blackwell", "hopper", "h100", "h200",
+    "datacenter", "semiconductor",
+    "reasoning", "multimodal", "rag",
+    "agi", "alignment", "safety",
+    "llm", "open-source-ai",
+}
+
+KNOWN_PERSONS = {
+    "sam altman", "elon musk", "jensen huang",
+    "sundar pichai", "satya nadella", "mark zuckerberg",
+    "demis hassabis", "dario amodei", "yann lecun",
+    "greg brockman", "ilya sutskever", "tim cook",
+}
+
+TOPIC_KEYWORDS = {
+    "agents":         ["agent", "エージェント", "autonomous"],
+    "gpu":            ["gpu", "グラフィックス"],
+    "datacenter":     ["datacenter", "data center", "データセンター"],
+    "semiconductor":  ["semiconductor", "半導体", "chip", "チップ"],
+    "reasoning":      ["reasoning", "推論"],
+    "multimodal":     ["multimodal", "マルチモーダル"],
+    "agi":            ["agi", "汎用人工知能"],
+    "alignment":      ["alignment", "safety", "安全"],
+    "rag":            ["rag", "retrieval"],
+    "open-source-ai": ["open source", "open-source", "オープンソース"],
+    "llm":            ["llm", "language model", "言語モデル"],
+    "coding-agent":   ["coding", "code generation", "コーディング"],
+}
+
+CATEGORY_RULES = [
+    (["gpu", "半導体", "データセンター", "data center", "chip", "semiconductor",
+      "blackwell", "h100", "h200", "cuda", "nvlink", "電力", "inference chip",
+      "ai server", "コンピューティング", "computing"], "インフラ"),
+    (["株", "決算", "ipo", "投資", "valuation", "earnings", "revenue",
+      "stock", "shares", "funding", "raises", "billion", "trillion",
+      "市場", "上場", "時価総額", "資金調達"], "マーケット"),
+    (["規制", "法律", "政策", "policy", "regulation", "安全", "safety",
+      "ai act", "governance", "倫理", "ethics", "government", "官公庁",
+      "経産省", "デジタル庁", "congress", "senate"], "政策"),
+    (["論文", "arxiv", "research", "benchmark", "ベンチマーク",
+      "leaderboard", "evaluation", "学術", "study", "paper",
+      "reasoning", "alignment", "fine-tuning"], "研究"),
+    (["api", "sdk", "ツール", "tool", "plugin", "extension",
+      "開発者", "developer", "platform", "サービス開始", "launch",
+      "copilot", "cursor", "agent framework", "workflow"], "プロダクト"),
+    (["gpt", "claude", "gemini", "llama", "llm", "language model",
+      "モデル", "model", "multimodal", "diffusion", "text to",
+      "image generation", "voice ai", "foundation model",
+      "open source model", "weights", "release"], "モデル"),
+]
+
+def classify_category_by_rules(title_en: str, title_ja: str, body: str = "") -> str:
+    text = f"{title_en} {title_ja} {body[:300]}".lower()
+    for keywords, category in CATEGORY_RULES:
+        if any(kw in text for kw in keywords):
+            return category
+    return "ビジネス"
+
+
+def extract_entities(title_en: str, title_ja: str, body: str) -> dict:
+    import json
+    text = f"{title_en} {title_ja} {body[:1000]}".lower()
+
+    companies = sorted([c for c in KNOWN_COMPANIES if c in text])
+
+    topics = []
+    for company in companies:
+        topics.append(company.replace(" ", "-"))
+    for topic_slug, keywords in TOPIC_KEYWORDS.items():
+        if any(kw in text for kw in keywords):
+            topics.append(topic_slug)
+    topics = sorted(set(topics))
+
+    persons = sorted([p for p in KNOWN_PERSONS if p in text])
+
+    tags = list(topics)
+    if "billion" in text or "trillion" in text or "funding" in text:
+        tags.append("funding")
+    if "ipo" in text or "上場" in text:
+        tags.append("ipo")
+    if "acquisition" in text or "買収" in text:
+        tags.append("acquisition")
+    if "regulation" in text or "規制" in text:
+        tags.append("regulation")
+    tags = sorted(set(tags))
+
+    return {
+        "companies": companies,
+        "topics":    topics,
+        "persons":   persons,
+        "tags":      tags,
+    }
+
 
 # ========================
 # メイン
@@ -420,9 +551,14 @@ def translate_all():
             data = split_generated_article(generated, title)
             data["meta_description"] = meta_description
 
-            category      = get_category(source_type)
-            category_slug = get_category_slug(source_type)
-            tweet         = make_tweet(data["title"], data["body"], category)
+            # カテゴリをルールベースで判定
+            category      = classify_category_by_rules(title, data["title"], data["body"])
+            category_slug = get_category_slug("", category)
+
+            # entities抽出
+            entities = extract_entities(title, data["title"], data["body"])
+
+            tweet = make_tweet(data["title"], data["body"], category)
 
             save_summary(
                 article_id,
@@ -433,9 +569,15 @@ def translate_all():
                 data["meta_description"],
                 article_slug=slug_en,
                 category_slug=category_slug,
+                entities=entities,
             )
 
-            logger.info("完了 [id=%d] slug=%s: %s", article_id, slug_en, data["title"])
+            logger.info(
+                "完了 [id=%d] cat=%s topics=%s: %s",
+                article_id, category,
+                entities.get("topics", [])[:3],
+                data["title"]
+            )
 
             if i < len(articles) - 1:
                 time.sleep(API_INTERVAL)

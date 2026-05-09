@@ -2570,3 +2570,27 @@ Call log:
 2026-05-09 16:01:53,668 [INFO] ============================================================
 2026-05-09 16:01:53,669 [INFO] パイプライン終了: 2026-05-09 16:01:53
 2026-05-09 16:01:53,669 [INFO] ============================================================
+2026-05-09 17:17:24,070 [INFO] ============================================================
+2026-05-09 17:17:24,070 [INFO] 記事公開処理を開始しました
+2026-05-09 17:17:24,071 [INFO] ============================================================
+2026-05-09 17:17:24,079 [INFO] 生成完了: infrastructure/aws-outage-halts-fanduel-coinbase.md
+2026-05-09 17:17:24,079 [INFO] 生成完了: model/anthropic-mythos-cybersecurity-threat.md
+2026-05-09 17:17:24,079 [INFO] 生成完了: markets/meta-google-ai-agent-wars.md
+2026-05-09 17:17:24,079 [INFO] 生成完了: business/creative-legends-ai-small-business-ads.md
+2026-05-09 17:17:24,079 [INFO] 生成完了: policy/openai-codex-safe-deployment.md
+2026-05-09 17:17:24,079 [INFO] 生成完了: infrastructure/cybersecqwen-4b-defensive-cyber-small-models.md
+2026-05-09 17:17:24,079 [INFO] 生成完了: infrastructure/ai-data-center-power-conflict.md
+2026-05-09 17:17:24,079 [INFO] 生成完了: business/musk-altman-openai-poach-lawsuit.md
+2026-05-09 17:17:24,079 [INFO] 生成完了: research/adaptive-parallel-reasoning-ai.md
+2026-05-09 17:17:24,079 [INFO] 生成完了: infrastructure/nvidia-suzanne-nora-johnson-board.md
+2026-05-09 17:17:24,079 [INFO] 生成完了: infrastructure/anthropic-akamai-computing-deal.md
+2026-05-09 17:17:24,079 [INFO] 生成完了: markets/openai-leadership-trial-flaws.md
+2026-05-09 17:17:24,087 [INFO] 生成完了: infrastructure/cerebras-ipo-price-surge.md
+2026-05-09 17:17:24,087 [INFO] 生成完了: markets/deepseek-core-automation-valuation-surge.md
+2026-05-09 17:17:24,088 [INFO] 生成完了: markets/btig-bullish-hyperfine-coverage.md
+2026-05-09 17:17:24,088 [INFO] 生成完了: infrastructure/wall-street-ai-intel-amd.md
+2026-05-09 17:17:24,089 [INFO] 生成完了: business/musk-openai-secret-diary-revealed.md
+2026-05-09 17:17:24,089 [INFO] ============================================================
+2026-05-09 17:17:24,089 [INFO] Markdown生成完了: 17件
+2026-05-09 17:17:24,089 [INFO] ============================================================
+2026-05-09 17:17:26,242 [INFO] Git Push完了
