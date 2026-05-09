@@ -21,7 +21,10 @@ export async function getStaticPaths() {
 const { category, label, emoji } = Astro.props;
 const allArticles = await getCollection('articles');
 const articles = allArticles
-  .filter(a => a.data.category_slug === category)
+  .filter(a => {
+    // category_slugで判定、またはidのパスから判定
+    return a.data.category_slug === category || a.id.startsWith(category + '/');
+  })
   .sort((a, b) => (b.data.buzz_score || 0) - (a.data.buzz_score || 0));
 
 const getArticleUrl = (article) => {
@@ -93,16 +96,16 @@ const getLead = (entry) => ((entry.body || '').replace(/[#\n]/g, ' ').slice(0, 1
       {new Date().toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' })}
     </div>
   </div>
-  <nav class="header-sub">
-    <a class="nav-item" href="/">すべて</a>
-    <a class="nav-item" class:list={[{ active: category === 'model' }]} href="/model">モデル</a>
-    <a class="nav-item" class:list={[{ active: category === 'markets' }]} href="/markets">マーケット</a>
-    <a class="nav-item" class:list={[{ active: category === 'infrastructure' }]} href="/infrastructure">インフラ</a>
-    <a class="nav-item" class:list={[{ active: category === 'business' }]} href="/business">ビジネス</a>
-    <a class="nav-item" class:list={[{ active: category === 'research' }]} href="/research">研究</a>
-    <a class="nav-item" class:list={[{ active: category === 'policy' }]} href="/policy">政策</a>
-    <a class="nav-item" class:list={[{ active: category === 'products' }]} href="/products">プロダクト</a>
-  </nav>
+    <nav class="header-sub">
+      <a class="nav-item" href="/">すべて</a>
+      <a class="nav-item" href="/model">モデル</a>
+      <a class="nav-item" href="/markets">マーケット</a>
+      <a class="nav-item" href="/infrastructure">インフラ</a>
+      <a class="nav-item" href="/business">ビジネス</a>
+      <a class="nav-item" href="/research">研究</a>
+      <a class="nav-item" href="/policy">政策</a>
+      <a class="nav-item" href="/products">プロダクト</a>
+    </nav>
 </header>
 
 <div class="container">
