@@ -1,0 +1,117 @@
+---
+// src/components/JsonLd.astro
+// NewsArticle + BreadcrumbList の構造化データを出力する再利用コンポーネント
+
+export interface Props {
+  type: "article" | "category" | "top";
+
+  // article用
+  headline?: string;
+  description?: string;
+  url?: string;
+  imageUrl?: string;
+  datePublished?: string;
+  dateModified?: string;
+  authorName?: string;
+  categoryName?: string;
+  categorySlug?: string;
+  articleSlug?: string;
+}
+
+const {
+  type,
+  headline,
+  description,
+  url,
+  imageUrl,
+  datePublished,
+  dateModified,
+  authorName = "AI経済新聞編集部",
+  categoryName,
+  categorySlug,
+  articleSlug,
+} = Astro.props;
+
+const siteUrl = "https://aikeizai.jp";
+const siteName = "AI経済新聞";
+const logoUrl = `${siteUrl}/logo.png`; // ← ロゴのパスに合わせて変更
+
+// ── NewsArticle スキーマ ──────────────────────────────
+const newsArticleSchema = type === "article" ? {
+  "@context": "https://schema.org",
+  "@type": "NewsArticle",
+  "headline": headline?.slice(0, 110), // Google推奨: 110文字以内
+  "description": description,
+  "url": url,
+  "image": imageUrl ? {
+    "@type": "ImageObject",
+    "url": imageUrl,
+    "width": 1200,
+    "height": 675,
+  } : undefined,
+  "datePublished": datePublished,
+  "dateModified": dateModified ?? datePublished,
+  "author": {
+    "@type": "Organization",
+    "name": authorName,
+    "url": siteUrl,
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": siteName,
+    "url": siteUrl,
+    "logo": {
+      "@type": "ImageObject",
+      "url": logoUrl,
+      "width": 600,
+      "height": 60,
+    },
+  },
+  "isAccessibleForFree": true,
+  "inLanguage": "ja",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": url,
+  },
+} : null;
+
+// ── BreadcrumbList スキーマ ───────────────────────────
+const buildBreadcrumbs = () => {
+  const items = [
+    { position: 1, name: "ホーム", item: siteUrl },
+  ];
+
+  if (type === "category" && categoryName && categorySlug) {
+    items.push({
+      position: 2,
+      name: categoryName,
+      item: `${siteUrl}/${categorySlug}/`,
+    });
+  }
+
+  if (type === "article" && categoryName && categorySlug && articleSlug) {
+    items.push(
+      { position: 2, name: categoryName, item: `${siteUrl}/${categorySlug}/` },
+      { position: 3, name: headline ?? "", item: url ?? "" },
+    );
+  }
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": items.map(({ position, name, item }) => ({
+      "@type": "ListItem",
+      position,
+      name,
+      item,
+    })),
+  };
+};
+
+const breadcrumbSchema = buildBreadcrumbs();
+---
+
+{newsArticleSchema && (
+  <script type="application/ld+json" set:html={JSON.stringify(newsArticleSchema)} />
+)}
+<script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />

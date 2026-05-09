@@ -4,6 +4,7 @@ import Header from '../../../components/Header.astro';
 import Footer from '../../../components/Footer.astro';
 import Sidebar from '../../../components/Sidebar.astro';
 import AlsoRead from '../../../components/AlsoRead.astro';
+import JsonLd from '../../../components/JsonLd.astro';
 
 export async function getStaticPaths() {
   const articles = await getCollection('articles');
@@ -43,12 +44,15 @@ const getArticleUrl = (a) => {
 const getCatLabel = (slug) => ({
   model: 'モデル',
   business: 'ビジネス',
-  markets: 'マーケット',
+  markets: 'AI関連株',
   infrastructure: 'インフラ',
   research: '研究',
   policy: '政策',
   products: 'プロダクト',
 }[slug] || slug);
+
+// JsonLd コンポーネントで使用
+const categoryLabel = getCatLabel(article.data.category_slug);
 ---
 
 <html lang="ja">
@@ -60,6 +64,7 @@ const getCatLabel = (slug) => ({
     gtag('js', new Date());
     gtag('config', 'G-R8C9ET314H');
   </script>
+  
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{article.data.title} | AI経済新聞</title>
@@ -69,6 +74,18 @@ const getCatLabel = (slug) => ({
   <meta property="og:description" content={description} />
   <meta property="og:image" content={ogImage} />
   <meta property="og:type" content="article" />
+<JsonLd
+  type="article"
+  headline={article.data.title}
+  description={article.data.summary ?? description}
+  url={canonicalUrl}
+  imageUrl={article.data.image_url}
+  datePublished={article.data.published_at}
+  dateModified={article.data.published_at}
+  categoryName={categoryLabel}
+  categorySlug={article.data.category_slug}
+  articleSlug={article.data.article_slug}
+/>
 
   <style>
     body { margin: 0; font-family: 'Noto Sans JP', -apple-system, sans-serif; background: #f4f6f8; color: #17202a; }
@@ -106,6 +123,38 @@ const getCatLabel = (slug) => ({
     .article-image-wrap img { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; }
     .image-credit { font-size: 10px; color: #999; text-align: right; padding: 4px 12px 0; }
     .image-credit a { color: #999; text-decoration: underline; }
+    .breadcrumb {
+  font-size: 0.8rem;
+  color: #888;
+  padding: 12px 32px 0;
+}
+.breadcrumb ol {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  padding: 0;
+  margin: 0;
+}
+.breadcrumb li + li::before {
+  content: "›";
+  margin: 0 0.4rem;
+  color: #bbb;
+}
+.breadcrumb a {
+  color: #555;
+  text-decoration: none;
+}
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+.breadcrumb li[aria-current="page"] {
+  color: #333;
+  max-width: 320px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
     @media (max-width: 768px) {
       .layout { grid-template-columns: 1fr; padding: 12px; gap: 16px; }
@@ -113,6 +162,7 @@ const getCatLabel = (slug) => ({
       .article-body h1 { font-size: 19px; }
       .article-body h2 { font-size: 15px; padding: 8px 12px; margin-top: 28px; }
       .related-grid { grid-template-columns: 1fr; }
+      .breadcrumb { padding: 8px 16px 0; }
     }
   </style>
 </head>
@@ -138,6 +188,13 @@ const getCatLabel = (slug) => ({
     )}
   </div>
 )}
+<nav aria-label="パンくずリスト" class="breadcrumb">
+  <ol>
+    <li><a href="/">ホーム</a></li>
+    <li><a href={`/${article.data.category_slug}/`}>{categoryLabel}</a></li>
+    <li aria-current="page">{article.data.title}</li>
+  </ol>
+</nav>
       <div class="article-body">
         <div class="article-meta">
           <span class="category-badge">{getCatLabel(article.data.category_slug)}</span>

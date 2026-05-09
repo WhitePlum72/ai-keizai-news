@@ -9,3 +9,25 @@ __pycache__/
 
 Noto_Sans_JP.zip
 *.zip
+# ログ
+logs/
+
+# 開発用スクリプト
+generate_slugs.py
+reclassify.py
+check_today.py
+check_status.py
+test_*.py
+debug_*.py
+
+# DB関連（WAL/SHMファイル）
+data/*.db-shm
+data/*.db-wal
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# エディタ
+.vscode/
+.idea/
