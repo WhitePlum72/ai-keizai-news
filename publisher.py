@@ -184,7 +184,7 @@ def publish_articles():
             os.makedirs(category_dir, exist_ok=True)
             filepath = os.path.join(category_dir, f"{slug}.md")
 
-            with open(filepath, "w", encoding="utf-8") as f:
+            with open(filepath, "w", encoding="utf-8", newline="\n") as f:
                 f.write(content)
 
             logger.info("生成完了: %s/%s.md", cat_slug, slug)

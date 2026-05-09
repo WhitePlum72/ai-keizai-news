@@ -1,6 +1,10 @@
+import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
-export default {
+export default defineConfig({
   site: 'https://aikeizai.jp',
-  integrations: [sitemap()]
-};
+  integrations: [sitemap()],
+  legacy: {
+    collections: true,
+  },
+});
