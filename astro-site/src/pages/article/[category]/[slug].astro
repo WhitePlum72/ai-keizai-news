@@ -102,6 +102,10 @@ const getCatLabel = (slug) => ({
     .related-card-body { padding: 10px; }
     .related-card-title { font-size: 13px; font-weight: 700; margin-bottom: 4px; line-height: 1.4; }
     .related-card-cat { font-size: 10px; color: #003f88; font-weight: 700; margin-bottom: 4px; }
+    .article-image-wrap { position: relative; }
+    .article-image-wrap img { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; }
+    .image-credit { font-size: 10px; color: #999; text-align: right; padding: 4px 12px 0; }
+    .image-credit a { color: #999; text-decoration: underline; }
 
     @media (max-width: 768px) {
       .layout { grid-template-columns: 1fr; padding: 12px; gap: 16px; }
@@ -118,9 +122,22 @@ const getCatLabel = (slug) => ({
 
   <div class="layout">
     <article class="article">
-      {article.data.image_url && (
+{article.data.image_url && (
+  <div class="article-image-wrap">
+    {article.data.image_url.startsWith('http') ? (
+      <a href={article.data.source_url} target="_blank" rel="noopener noreferrer" title="画像引用元へ">
         <img src={article.data.image_url} alt={article.data.title} />
-      )}
+      </a>
+    ) : (
+      <img src={article.data.image_url} alt={article.data.title} />
+    )}
+    {article.data.image_url.startsWith('http') && (
+      <div class="image-credit">
+        画像引用元：<a href={article.data.source_url} target="_blank" rel="noopener noreferrer">{article.data.source}</a>
+      </div>
+    )}
+  </div>
+)}
       <div class="article-body">
         <div class="article-meta">
           <span class="category-badge">{getCatLabel(article.data.category_slug)}</span>

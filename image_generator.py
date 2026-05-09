@@ -291,6 +291,7 @@ def call_deepseek(prompt: str, max_tokens: int = 120) -> str:
 def generate_flux_prompt(title_ja, summary_ja, category, title_en, summary_en) -> str:
     text = f"{title_en} {title_ja} {summary_en}"
 
+    # 人物（2Dイラスト）
     person = detect_person(text)
     if person:
         name, appearance = person
@@ -300,19 +301,21 @@ def generate_flux_prompt(title_ja, summary_ja, category, title_en, summary_en) -
             f"futuristic AI technology background, "
             f"anime-inspired editorial illustration style, "
             f"clean line art, flat colors with cel shading, "
-            f"vibrant professional illustration, "
             f"{PERSON_QUALITY}, "
             f"no photo, no watermark, no text"
         )
-    # 以下は既存コードそのまま
 
-    # 企業・モデル検出（オーバーレイあり → FLUXには文字を含めない）
+    # 企業・モデル検出（プロンプトに企業名を含める）
     companies = detect_companies(text)
     if companies:
+        company_names = ", ".join([name for name, _ in companies[:2]])
         _, style = companies[0]
         return (
-            f"{style}, cinematic lighting, editorial illustration, "
-            f"ultra detailed, professional business magazine style, no text"
+            f"{style}, "
+            f"with subtle {company_names} branding elements, "
+            f"cinematic lighting, editorial illustration, "
+            f"ultra detailed, professional business magazine style, "
+            f"no text overlay, no watermark"
         )
 
     # DeepSeekで生成
@@ -398,6 +401,24 @@ def download_image(filename: str, article_id: int) -> str | None:
 # ========================
 # Main
 # ========================
+def get_articles_needing_images():
+    conn = sqlite3.connect(DB_PATH)
+    cursor = conn.cursor()
+    cursor.execute("""
+        SELECT a.id, s.title_ja, s.summary_ja, s.category, a.title, a.summary,
+               a.image_url, a.url
+        FROM articles a
+        JOIN summaries s ON a.id = s.article_id
+        WHERE a.processed = 1
+          AND s.summary_ja IS NOT NULL
+          AND (a.flux_prompt IS NULL OR a.flux_prompt = '')
+        ORDER BY a.buzz_score DESC
+    """)
+    rows = cursor.fetchall()
+    conn.close()
+    return rows
+
+
 def generate_all_images():
     os.makedirs(IMAGE_OUTPUT_DIR, exist_ok=True)
     articles = get_articles_needing_images()
@@ -409,10 +430,20 @@ def generate_all_images():
     logger.info("画像生成開始: %d件", len(articles))
     success = failed = 0
 
-    for (article_id, title_ja, summary_ja, category, title_en, summary_en) in articles:
-        logger.info("生成中 [%d]: %s", article_id, (title_ja or title_en)[:40])
+    for row in articles:
+        article_id, title_ja, summary_ja, category, title_en, summary_en, og_image_url, source_url = row
+        logger.info("処理中 [%d]: %s", article_id, (title_ja or title_en)[:40])
 
         try:
+            # OG画像がある場合はそのまま使用
+            if og_image_url and og_image_url.startswith("http"):
+                web_path = og_image_url  # 外部URLをそのまま使用
+                update_image_url(article_id, web_path, "og_image")
+                logger.info("✅ OG画像使用 [%d]: %s", article_id, og_image_url[:60])
+                success += 1
+                continue
+
+            # OG画像なし → FLUX生成
             prompt, negative = build_full_prompt(
                 title_ja or "", summary_ja or "", category or "AI",
                 title_en or "", summary_en or ""
@@ -429,25 +460,16 @@ def generate_all_images():
                 failed += 1
                 continue
 
-            # オーバーレイ（人物以外で企業・モデル名あれば合成）
-            combined = f"{title_en} {title_ja} {summary_en or ''}"
-            if not detect_person(combined):
-                companies = detect_companies(combined)
-                if companies:
-                    labels = [name for name, _ in companies[:3]]
-                    add_text_overlay(local_path, labels)
-                    logger.info("オーバーレイ: %s", labels)
-
             web_path = f"/images/articles/article_{article_id}.webp"
             update_image_url(article_id, web_path, prompt)
-            logger.info("✅ 生成完了 [%d]", article_id)
+            logger.info("✅ FLUX生成完了 [%d]", article_id)
             success += 1
 
         except Exception as e:
             logger.error("生成エラー [%d]: %s", article_id, e)
             failed += 1
 
-    logger.info("画像生成完了: 成功%d件 / 失敗%d件", success, failed)
+    logger.info("画像処理完了: 成功%d件 / 失敗%d件", success, failed)
 
 
 if __name__ == "__main__":

@@ -326,14 +326,55 @@ def is_duplicate(url: str, title: str) -> bool:
             return True
     return False
 
+def fetch_og_image(url: str) -> str:
+    """OG画像URLを取得する（Playwright優先・requestsフォールバック）"""
+    # まずrequestsで試みる（高速）
+    try:
+        headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"}
+        res = requests.get(url, timeout=8, headers=headers)
+        soup = BeautifulSoup(res.text, "html.parser")
+        og = soup.find("meta", property="og:image")
+        if og and og.get("content"):
+            return og["content"].strip()
+        tw = soup.find("meta", attrs={"name": "twitter:image"})
+        if tw and tw.get("content"):
+            return tw["content"].strip()
+    except Exception:
+        pass
+
+    # requestsで取得できない場合はPlaywrightで試みる
+    try:
+        from playwright.sync_api import sync_playwright
+        with sync_playwright() as p:
+            browser = p.chromium.launch(headless=True)
+            page = browser.new_page()
+            page.goto(url, timeout=15000)
+            page.wait_for_load_state("domcontentloaded")
+            og_url = page.evaluate("""() => {
+                const og = document.querySelector('meta[property="og:image"]');
+                if (og) return og.getAttribute('content');
+                const tw = document.querySelector('meta[name="twitter:image"]');
+                if (tw) return tw.getAttribute('content');
+                return '';
+            }""")
+            browser.close()
+            if og_url:
+                return og_url.strip()
+    except Exception:
+        pass
+
+    return ""
+
+
 def save_article(article):
     if is_duplicate(article["url"], article["title"]):
         logger.debug("重複記事をスキップ: %s", article["title"][:50])
         return False
-    
-    # OGP画像取得を無効化（FLUX生成に統一）
-    image_url = ""
-    
+
+    # OG画像取得
+    og_image = fetch_og_image(article["url"])
+    image_url = og_image if og_image else ""
+
     conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
     try:
@@ -353,7 +394,7 @@ def save_article(article):
             image_url,
         ))
         conn.commit()
-        logger.info("記事を保存: %s", article["title"][:50])
+        logger.info("記事を保存: %s [OG:%s]", article["title"][:40], "あり" if og_image else "なし")
         return True
     except sqlite3.IntegrityError:
         logger.debug("重複URLをスキップ: %s", article["url"])
