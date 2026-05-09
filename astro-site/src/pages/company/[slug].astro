@@ -1,0 +1,155 @@
+---
+import { getCollection } from 'astro:content';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Sidebar from '../../components/Sidebar.astro';
+
+export async function getStaticPaths() {
+  const articles = await getCollection('articles');
+
+  const companyMap = new Map();
+  for (const article of articles) {
+    const companies = article.data.companies_json ?? [];
+    for (const company of companies) {
+      if (!companyMap.has(company)) companyMap.set(company, []);
+      companyMap.get(company).push(article);
+    }
+  }
+
+  return Array.from(companyMap.entries()).map(([slug, companyArticles]) => ({
+    params: { slug },
+    props: {
+      slug,
+      articles: companyArticles.sort(
+        (a, b) => (b.data.buzz_score || 0) - (a.data.buzz_score || 0)
+      ),
+    },
+  }));
+}
+
+const { slug, articles } = Astro.props;
+
+// 表示名マッピング
+const companyNames: Record<string, string> = {
+  openai:     'OpenAI',
+  anthropic:  'Anthropic',
+  nvidia:     'NVIDIA',
+  google:     'Google',
+  microsoft:  'Microsoft',
+  meta:       'Meta',
+  apple:      'Apple',
+  xai:        'xAI',
+  amd:        'AMD',
+  tsmc:       'TSMC',
+  intel:      'Intel',
+  amazon:     'Amazon',
+  ibm:        'IBM',
+  servicenow: 'ServiceNow',
+  salesforce: 'Salesforce',
+  samsung:    'Samsung',
+  palantir:   'Palantir',
+  broadcom:   'Broadcom',
+  nec:        'NEC',
+  arm:        'ARM',
+  ntt:        'NTT',
+};
+
+const companyLabel = companyNames[slug] ?? slug.charAt(0).toUpperCase() + slug.slice(1);
+
+const getArticleUrl = (a) => {
+  const cat = a.data.category_slug || 'business';
+  const s = a.data.article_slug || a.id;
+  return `/article/${cat}/${s}`;
+};
+
+const getCatLabel = (slug) => ({
+  model:          'モデル',
+  business:       'ビジネス',
+  markets:        'AI関連株',
+  infrastructure: 'インフラ',
+  research:       '研究',
+  policy:         '政策',
+  products:       'プロダクト',
+}[slug] || slug);
+---
+
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{companyLabel} 関連ニュース | AI経済新聞</title>
+  <meta name="description" content={`${companyLabel}に関するAI経済ニュースの一覧です。`} />
+  <link rel="canonical" href={`https://aikeizai.jp/company/${slug}/`} />
+  <meta property="og:title" content={`${companyLabel} | AI経済新聞`} />
+  <meta property="og:description" content={`${companyLabel}に関するAI経済ニュースの一覧です。`} />
+  <meta property="og:type" content="website" />
+
+  <style>
+    body { margin: 0; font-family: 'Noto Sans JP', -apple-system, sans-serif; background: #f4f6f8; color: #17202a; }
+    a { color: inherit; text-decoration: none; }
+
+    .page-header { background: #003f88; color: #fff; padding: 32px 24px; text-align: center; }
+    .page-header h1 { margin: 0 0 8px; font-size: 28px; font-weight: 900; }
+    .page-header p { margin: 0; font-size: 14px; opacity: 0.8; }
+
+    .layout { display: grid; grid-template-columns: 1fr 340px; gap: 24px; max-width: 1200px; margin: 0 auto; padding: 24px; }
+
+    .article-list { display: flex; flex-direction: column; gap: 12px; }
+    .article-card { background: #fff; border-radius: 3px; display: grid; grid-template-columns: 140px 1fr; overflow: hidden; transition: transform 0.15s; }
+    .article-card:hover { transform: translateY(-2px); }
+    .article-card img { width: 140px; height: 90px; object-fit: cover; }
+    .card-body { padding: 12px 16px; }
+    .card-meta { display: flex; gap: 6px; align-items: center; margin-bottom: 6px; }
+    .category-badge { background: #003f88; color: #fff; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 3px; }
+    .card-date { font-size: 11px; color: #999; }
+    .card-title { font-size: 14px; font-weight: 700; line-height: 1.5; color: #1a1a2e; }
+
+    .empty { background: #fff; border-radius: 3px; padding: 40px; text-align: center; color: #999; }
+
+    @media (max-width: 768px) {
+      .layout { grid-template-columns: 1fr; padding: 12px; }
+      .article-card { grid-template-columns: 100px 1fr; }
+      .article-card img { width: 100px; height: 70px; }
+    }
+  </style>
+</head>
+
+<body>
+  <Header />
+
+  <div class="page-header">
+    <h1>{companyLabel}</h1>
+    <p>{articles.length}件の記事</p>
+  </div>
+
+  <div class="layout">
+    <main>
+      {articles.length === 0 ? (
+        <div class="empty">記事が見つかりませんでした</div>
+      ) : (
+        <div class="article-list">
+          {articles.map(a => (
+            <a class="article-card" href={getArticleUrl(a)}>
+              <img
+                src={a.data.image_url || '/ogp.png'}
+                alt={a.data.title}
+                loading="lazy"
+              />
+              <div class="card-body">
+                <div class="card-meta">
+                  <span class="category-badge">{getCatLabel(a.data.category_slug)}</span>
+                  <span class="card-date">{a.data.published_at}</span>
+                </div>
+                <div class="card-title">{a.data.title}</div>
+              </div>
+            </a>
+          ))}
+        </div>
+      )}
+    </main>
+    <Sidebar />
+  </div>
+
+  <Footer />
+</body>
+</html>
