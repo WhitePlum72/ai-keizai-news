@@ -58,7 +58,7 @@ def get_articles_to_publish():
         FROM articles a
         JOIN summaries s ON a.id = s.article_id
         WHERE a.processed = 1
-        AND DATE(s.created_at) = DATE('now', 'localtime')
+        AND s.created_at >= datetime('now', 'localtime', '-24 hours')
         LIMIT 30
     """)
     rows = cursor.fetchall()

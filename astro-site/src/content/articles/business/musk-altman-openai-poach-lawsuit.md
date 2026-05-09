@@ -5,7 +5,7 @@ source_url: "https://www.technologyreview.com/2026/05/08/1137008/musk-v-altman-w
 category: "ビジネス"
 category_slug: "business"
 article_slug: "musk-altman-openai-poach-lawsuit"
-published_at: "2026-05-09"
+published_at: "2026-05-10"
 buzz_score: 29.5
 image_url: "/images/articles/article_3065.webp"
 meta_description: "OpenAI対マスク氏の裁判は、創業時の「非営利」誓約の有効性と、マスク氏によるAltman CEO引き抜き工作が争点に。OpenAI側は、マスク氏が営利化の可能性を認識していた内部資料を提出し、提訴はxAI立ち上げ後の競争阻害が目的と反論"

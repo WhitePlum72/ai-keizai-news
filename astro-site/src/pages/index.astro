@@ -268,32 +268,30 @@ const getLead = (entry) => ((entry.body || '').replace(/[#\n]/g, ' ').slice(0, 1
       })}
 
       <!-- ===== 記事一覧 ===== -->
+      <!-- ===== 記事一覧 ===== -->
       <div style="margin-bottom: 28px;">
         <div class="section-header">
           <span class="section-title">📰 最新記事</span>
         </div>
         <div class="article-list">
-          {rest.map((entry, i) => (
-            <div class="list-item">
+          {rest.map((entry) => (
+            <a class="list-item" href={getArticleUrl(entry)} style="text-decoration:none;color:inherit;display:flex;">
               {entry.data.image_url ? (
                 <img class="list-thumb" src={entry.data.image_url} alt={entry.data.title} loading="lazy" />
               ) : (
                 <div style="width:90px;height:64px;background:#f0f4fa;border-radius:6px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:24px;">📰</div>
               )}
-              <span class="list-num">{i + 8}</span>
               <div class="list-content">
                 <span class="list-cat" style={`background:${getCatColor(entry.data.category_slug)}`}>
                   {getCatLabel(entry.data.category_slug)}
                 </span>
-                <div class="list-title">
-                  <a href={getArticleUrl(entry)}>{entry.data.title}</a>
-                </div>
+                <div class="list-title">{entry.data.title}</div>
                 <div class="list-meta">
                   {entry.data.source_label && <span class="list-source-badge">{entry.data.source_label}</span>}
                   {entry.data.source} · {entry.data.published_at}
                 </div>
               </div>
-            </div>
+            </a>
           ))}
         </div>
       </div>

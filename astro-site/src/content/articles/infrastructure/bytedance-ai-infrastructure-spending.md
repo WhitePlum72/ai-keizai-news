@@ -5,7 +5,7 @@ source_url: "https://www.bloomberg.com/news/articles/2026-05-09/bytedance-target
 category: "インフラ"
 category_slug: "infrastructure"
 article_slug: "bytedance-ai-infrastructure-spending"
-published_at: "2026-05-09"
+published_at: "2026-05-10"
 buzz_score: 45.0
 image_url: "/images/articles/article_3213.webp"
 meta_description: "バイトダンスが2025年のAIインフラ投資を前年比25％増の約4.2兆円に拡大した。半導体価格高騰や米国輸出規制の逆風下でも、生成AI主導権獲得を最優先する姿勢が鮮明となった。"
