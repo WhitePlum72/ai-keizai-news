@@ -5,7 +5,7 @@ export async function getStaticPaths() {
   const CATEGORIES = [
     { slug: 'model',          label: 'モデル',       emoji: '🤖' },
     { slug: 'business',       label: 'ビジネス',     emoji: '💼' },
-    { slug: 'markets',        label: 'マーケット',   emoji: '📈' },
+ 　 { slug: 'markets', label: 'AI関連株', emoji: '📈' },
     { slug: 'infrastructure', label: 'インフラ',     emoji: '🖥️' },
     { slug: 'research',       label: '研究',         emoji: '🔬' },
     { slug: 'policy',         label: '政策',         emoji: '⚖️' },
@@ -99,7 +99,7 @@ const getLead = (entry) => ((entry.body || '').replace(/[#\n]/g, ' ').slice(0, 1
     <nav class="header-sub">
       <a class="nav-item" href="/">すべて</a>
       <a class="nav-item" href="/model">モデル</a>
-      <a class="nav-item" href="/markets">マーケット</a>
+      <a class="nav-item" href="/markets">AI関連株</a>
       <a class="nav-item" href="/infrastructure">インフラ</a>
       <a class="nav-item" href="/business">ビジネス</a>
       <a class="nav-item" href="/research">研究</a>
