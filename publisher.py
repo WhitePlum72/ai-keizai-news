@@ -52,19 +52,22 @@ def get_articles_to_publish():
         SELECT a.id, a.url, a.source, a.buzz_score, a.published_at,
                s.title_ja, s.summary_ja, s.category, s.tweet_text,
                COALESCE(a.image_url, '') as image_url,
-               COALESCE(s.meta_description, '') as meta_description
+               COALESCE(s.meta_description, '') as meta_description,
+               COALESCE(s.article_slug, '') as article_slug,
+               COALESCE(s.category_slug, '') as category_slug
         FROM articles a
         JOIN summaries s ON a.id = s.article_id
         WHERE a.processed = 1
-        AND DATE(s.created_at) = DATE('now', 'localtime')
-        LIMIT 30
+        LIMIT 200
     """)
     rows = cursor.fetchall()
     conn.close()
     return rows
 
 
-def slugify(title, article_id):
+def slugify(title, article_id, article_slug=""):
+    if article_slug and len(article_slug) > 3:
+        return article_slug
     return f"article-{article_id}"
 
 def remove_output_labels(text):
@@ -124,25 +127,30 @@ def yaml_escape(text):
 
 
 def generate_markdown(article):
-    article_id, url, source, buzz_score, published_at, title_ja, summary_ja, category, tweet_text, image_url, meta_description_db = article
+    (article_id, url, source, buzz_score, published_at,
+     title_ja, summary_ja, category, tweet_text,
+     image_url, meta_description_db,
+     article_slug, category_slug) = article
 
     title = clean_title(title_ja)
-    body = clean_body(title, summary_ja)
+    body  = clean_body(title, summary_ja)
 
-    # DBにmeta_descriptionがあればそれを優先、なければ本文から生成
     if meta_description_db and len(meta_description_db) > 10:
         meta_desc = meta_description_db
     else:
         meta_desc = make_meta_description(body) or title
 
-    slug = slugify(title, article_id)
-    today = datetime.now().strftime("%Y-%m-%d")
+    slug      = slugify(title, article_id, article_slug)
+    cat_slug  = category_slug if category_slug else "ai"
+    today     = datetime.now().strftime("%Y-%m-%d")
 
     content = f"""---
 title: "{yaml_escape(title)}"
 source: "{yaml_escape(source)}"
 source_url: "{yaml_escape(url)}"
 category: "{yaml_escape(category)}"
+category_slug: "{yaml_escape(cat_slug)}"
+article_slug: "{yaml_escape(slug)}"
 published_at: "{today}"
 buzz_score: {buzz_score:.1f}
 image_url: "{yaml_escape(image_url)}"
@@ -151,7 +159,7 @@ meta_description: "{yaml_escape(meta_desc)}"
 
 {body}
 """
-    return slug, content
+    return slug, cat_slug, content
 
 
 def publish_articles():
@@ -159,7 +167,6 @@ def publish_articles():
     logger.info("記事公開処理を開始しました")
     logger.info("=" * 60)
 
-    os.makedirs(ASTRO_CONTENT_DIR, exist_ok=True)
     articles = get_articles_to_publish()
 
     if not articles:
@@ -170,13 +177,17 @@ def publish_articles():
 
     for article in articles:
         try:
-            slug, content = generate_markdown(article)
-            filepath = os.path.join(ASTRO_CONTENT_DIR, f"{slug}.md")
+            slug, cat_slug, content = generate_markdown(article)
+
+            # カテゴリ別サブディレクトリに保存
+            category_dir = os.path.join(ASTRO_CONTENT_DIR, cat_slug)
+            os.makedirs(category_dir, exist_ok=True)
+            filepath = os.path.join(category_dir, f"{slug}.md")
 
             with open(filepath, "w", encoding="utf-8") as f:
                 f.write(content)
 
-            logger.info("生成完了: %s.md", slug)
+            logger.info("生成完了: %s/%s.md", cat_slug, slug)
             count += 1
 
         except Exception as e:
