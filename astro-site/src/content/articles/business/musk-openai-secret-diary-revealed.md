@@ -2,7 +2,7 @@
 title: "ブロックマン氏の日記が法廷の証拠品に マスク対オープンAI紛争が映す深い確執"
 source: "WSJ Tech"
 source_url: "https://www.wsj.com/tech/musk-openai-trial-greg-brockman-diary-journal-6950270e?mod=rss_Technology"
-category: "AI"
+category: "ビジネス"
 category_slug: "business"
 article_slug: "musk-openai-secret-diary-revealed"
 published_at: "2026-05-09"

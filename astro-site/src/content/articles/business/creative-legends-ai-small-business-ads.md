@@ -2,7 +2,7 @@
 title: "広告業界の巨匠3名が中小企業向けAI広告を制作した理由"
 source: "Google AI Blog"
 source_url: "https://blog.google/company-news/inside-google/company-announcements/the-small-brief/"
-category: "AI"
+category: "ビジネス"
 category_slug: "business"
 article_slug: "creative-legends-ai-small-business-ads"
 published_at: "2026-05-09"

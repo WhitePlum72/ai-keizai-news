@@ -2434,3 +2434,139 @@ Call log:
 2026-05-09 12:31:57,272 [INFO] Markdown生成完了: 122件
 2026-05-09 12:31:57,272 [INFO] ============================================================
 2026-05-09 12:32:02,992 [INFO] Git Push完了
+2026-05-09 16:00:08,156 [INFO] ============================================================
+2026-05-09 16:00:08,156 [INFO] パイプライン開始: 2026-05-09 16:00:08
+2026-05-09 16:00:08,156 [INFO] ============================================================
+2026-05-09 16:00:08,156 [INFO] [1/4] RSS収集
+2026-05-09 16:00:08,157 [INFO] ============================================================
+2026-05-09 16:00:08,157 [INFO] RSS収集を開始しました
+2026-05-09 16:00:08,157 [INFO] ============================================================
+2026-05-09 16:00:08,159 [INFO] データベースを初期化しました: data/articles.db
+2026-05-09 16:00:08,733 [ERROR] Anthropicスクレイピングエラー: Page.goto: net::ERR_INTERNET_DISCONNECTED at https://www.anthropic.com/news
+Call log:
+  - navigating to "https://www.anthropic.com/news", waiting until "load"
+
+2026-05-09 16:00:08,733 [INFO] RSS取得開始: OpenAI (https://openai.com/news/rss.xml)
+2026-05-09 16:00:08,752 [INFO] RSS取得完了: OpenAI - 記事数: 0
+2026-05-09 16:00:08,752 [INFO] RSS取得開始: Hugging Face (https://huggingface.co/blog/feed.xml)
+2026-05-09 16:00:08,760 [INFO] RSS取得完了: Hugging Face - 記事数: 0
+2026-05-09 16:00:08,761 [INFO] RSS取得開始: TechCrunch (https://techcrunch.com/feed/)
+2026-05-09 16:00:08,769 [INFO] RSS取得完了: TechCrunch - 記事数: 0
+2026-05-09 16:00:08,770 [INFO] RSS取得開始: The Verge AI (https://www.theverge.com/rss/ai-artificial-intelligence/index.xml)
+2026-05-09 16:00:08,778 [INFO] RSS取得完了: The Verge AI - 記事数: 0
+2026-05-09 16:00:08,778 [INFO] RSS取得開始: VentureBeat AI (https://venturebeat.com/category/ai/feed/)
+2026-05-09 16:00:08,783 [INFO] RSS取得完了: VentureBeat AI - 記事数: 0
+2026-05-09 16:00:08,783 [INFO] RSS取得開始: Wired AI (https://www.wired.com/feed/tag/ai/latest/rss)
+2026-05-09 16:00:08,783 [INFO] RSS取得完了: Wired AI - 記事数: 0
+2026-05-09 16:00:08,783 [INFO] RSS取得開始: MIT Technology Review (https://www.technologyreview.com/feed/)
+2026-05-09 16:00:08,798 [INFO] RSS取得完了: MIT Technology Review - 記事数: 0
+2026-05-09 16:00:08,798 [INFO] RSS取得開始: BAIR Blog (https://bair.berkeley.edu/blog/feed.xml)
+2026-05-09 16:00:08,798 [INFO] RSS取得完了: BAIR Blog - 記事数: 0
+2026-05-09 16:00:08,798 [INFO] RSS取得開始: Bloomberg Technology (https://feeds.bloomberg.com/technology/news.rss)
+2026-05-09 16:00:08,814 [INFO] RSS取得完了: Bloomberg Technology - 記事数: 0
+2026-05-09 16:00:08,814 [INFO] RSS取得開始: Reuters Technology (https://www.reutersagency.com/feed/?best-topics=tech)
+2026-05-09 16:00:08,814 [INFO] RSS取得完了: Reuters Technology - 記事数: 0
+2026-05-09 16:00:08,814 [INFO] RSS取得開始: The Decoder (https://the-decoder.com/feed/)
+2026-05-09 16:00:08,830 [INFO] RSS取得完了: The Decoder - 記事数: 0
+2026-05-09 16:00:08,830 [INFO] RSS取得開始: arXiv CS.AI (https://arxiv.org/rss/cs.AI)
+2026-05-09 16:00:08,830 [INFO] RSS取得完了: arXiv CS.AI - 記事数: 0
+2026-05-09 16:00:08,830 [INFO] RSS取得開始: arXiv CS.CL (https://arxiv.org/rss/cs.CL)
+2026-05-09 16:00:08,845 [INFO] RSS取得完了: arXiv CS.CL - 記事数: 0
+2026-05-09 16:00:08,845 [INFO] RSS取得開始: Yahoo Finance (https://finance.yahoo.com/rss/topstories)
+2026-05-09 16:00:08,845 [INFO] RSS取得完了: Yahoo Finance - 記事数: 0
+2026-05-09 16:00:08,845 [INFO] RSS取得開始: Seeking Alpha (https://seekingalpha.com/feed.xml)
+2026-05-09 16:00:08,862 [INFO] RSS取得完了: Seeking Alpha - 記事数: 0
+2026-05-09 16:00:08,862 [INFO] RSS取得開始: MarketWatch Tech (https://feeds.marketwatch.com/marketwatch/technology/)
+2026-05-09 16:00:08,862 [INFO] RSS取得完了: MarketWatch Tech - 記事数: 0
+2026-05-09 16:00:08,862 [INFO] RSS取得開始: Bloomberg Markets (https://feeds.bloomberg.com/markets/news.rss)
+2026-05-09 16:00:08,877 [INFO] RSS取得完了: Bloomberg Markets - 記事数: 0
+2026-05-09 16:00:08,877 [INFO] RSS取得開始: WSJ Tech (https://feeds.content.dowjones.io/public/rss/RSSWSJD)
+2026-05-09 16:00:08,893 [INFO] RSS取得完了: WSJ Tech - 記事数: 0
+2026-05-09 16:00:08,893 [INFO] RSS取得開始: Financial Times Tech (https://feeds.ft.com/ft/technology)
+2026-05-09 16:00:08,893 [INFO] RSS取得完了: Financial Times Tech - 記事数: 0
+2026-05-09 16:00:08,893 [INFO] RSS取得開始: Reuters Business (https://feeds.reuters.com/reuters/businessNews)
+2026-05-09 16:00:08,908 [INFO] RSS取得完了: Reuters Business - 記事数: 0
+2026-05-09 16:00:08,908 [INFO] RSS取得開始: CNBC Technology (https://www.cnbc.com/id/19854910/device/rss/rss.html)
+2026-05-09 16:00:08,908 [INFO] RSS取得完了: CNBC Technology - 記事数: 0
+2026-05-09 16:00:08,908 [INFO] RSS取得開始: CNBC AI (https://www.cnbc.com/id/100727362/device/rss/rss.html)
+2026-05-09 16:00:08,924 [INFO] RSS取得完了: CNBC AI - 記事数: 0
+2026-05-09 16:00:08,924 [INFO] RSS取得開始: Microsoft Blog (https://blogs.microsoft.com/feed/)
+2026-05-09 16:00:08,924 [INFO] RSS取得完了: Microsoft Blog - 記事数: 0
+2026-05-09 16:00:08,924 [INFO] RSS取得開始: Google AI Blog (https://blog.google/technology/ai/rss/)
+2026-05-09 16:00:08,940 [INFO] RSS取得完了: Google AI Blog - 記事数: 0
+2026-05-09 16:00:08,940 [INFO] RSS取得開始: Meta AI Blog (https://ai.meta.com/blog/rss/)
+2026-05-09 16:00:08,940 [INFO] RSS取得完了: Meta AI Blog - 記事数: 0
+2026-05-09 16:00:08,940 [INFO] RSS取得開始: NVIDIA Blog (https://blogs.nvidia.com/feed/)
+2026-05-09 16:00:08,956 [INFO] RSS取得完了: NVIDIA Blog - 記事数: 0
+2026-05-09 16:00:08,956 [INFO] RSS取得開始: AWS Machine Learning (https://aws.amazon.com/blogs/machine-learning/feed/)
+2026-05-09 16:00:08,963 [INFO] RSS取得完了: AWS Machine Learning - 記事数: 0
+2026-05-09 16:00:08,963 [INFO] RSS取得開始: AI News (https://www.artificialintelligence-news.com/feed/)
+2026-05-09 16:00:08,972 [INFO] RSS取得完了: AI News - 記事数: 0
+2026-05-09 16:00:08,972 [INFO] RSS取得開始: ZDNet AI (https://www.zdnet.com/topic/artificial-intelligence/rss.xml)
+2026-05-09 16:00:08,972 [INFO] RSS取得完了: ZDNet AI - 記事数: 0
+2026-05-09 16:00:08,972 [INFO] RSS取得開始: Ars Technica (https://feeds.arstechnica.com/arstechnica/technology-lab)
+2026-05-09 16:00:08,988 [INFO] RSS取得完了: Ars Technica - 記事数: 0
+2026-05-09 16:00:08,988 [INFO] RSS取得開始: Anthropic Blog (https://www.anthropic.com/rss.xml)
+2026-05-09 16:00:08,988 [INFO] RSS取得完了: Anthropic Blog - 記事数: 0
+2026-05-09 16:00:08,988 [INFO] RSS取得開始: Google DeepMind (https://deepmind.google/blog/rss/)
+2026-05-09 16:00:09,008 [INFO] RSS取得完了: Google DeepMind - 記事数: 0
+2026-05-09 16:00:09,008 [INFO] RSS取得開始: arXiv CS.LG (https://arxiv.org/rss/cs.LG)
+2026-05-09 16:00:09,008 [INFO] RSS取得完了: arXiv CS.LG - 記事数: 0
+2026-05-09 16:00:09,008 [INFO] RSS取得開始: 経済産業省 (https://www.meti.go.jp/rss/rss.rdf)
+2026-05-09 16:00:09,020 [INFO] RSS取得完了: 経済産業省 - 記事数: 0
+2026-05-09 16:00:09,020 [INFO] RSS取得開始: IPA (https://www.ipa.go.jp/rss/news.rdf)
+2026-05-09 16:00:09,020 [INFO] RSS取得完了: IPA - 記事数: 0
+2026-05-09 16:00:09,020 [INFO] RSS取得開始: NEDO (https://www.nedo.go.jp/rss/index.xml)
+2026-05-09 16:00:09,035 [INFO] RSS取得完了: NEDO - 記事数: 0
+2026-05-09 16:00:09,035 [INFO] RSS取得開始: PR TIMES (https://prtimes.jp/rss/all.rdf)
+2026-05-09 16:00:09,051 [INFO] RSS取得完了: PR TIMES - 記事数: 0
+2026-05-09 16:00:09,051 [INFO] ============================================================
+2026-05-09 16:00:09,051 [INFO] RSS収集が完了しました
+2026-05-09 16:00:09,051 [INFO] 新規収集: 0件
+2026-05-09 16:00:09,051 [INFO] 重複排除: 0件
+2026-05-09 16:00:09,051 [INFO] ============================================================
+2026-05-09 16:00:09,051 [INFO] [2/4] スコアリング（類似記事除外・上位10件）
+2026-05-09 16:00:09,067 [INFO] [3/4] 記事生成（DeepSeek）
+2026-05-09 16:00:09,067 [INFO] 翻訳開始: 1件
+2026-05-09 16:00:09,067 [WARNING] APIエラー (1/5): HTTPSConnectionPool(host='api.deepseek.com', port=443): Max retries exceeded with url: /chat/completions (Caused by NameResolutionError("HTTPSConnection(host='api.deepseek.com', port=443): Failed to resolve 'api.deepseek.com' ([Errno 11001] getaddrinfo failed)"))
+2026-05-09 16:01:28,793 [INFO] 完了 [id=3065] slug=musk-altman-openai-poach-lawsuit: マスク対アルトマン裁判第2週 争点は創業時の口約束と人材引き抜き工作
+2026-05-09 16:01:28,793 [INFO] [4/4] 画像生成（全記事・FLUX.1 Schnell）
+2026-05-09 16:01:28,800 [INFO] ComfyUI起動中...
+2026-05-09 16:01:32,875 [INFO] ComfyUI起動完了（2秒）
+2026-05-09 16:01:32,878 [INFO] 画像生成開始: 1件
+2026-05-09 16:01:32,878 [INFO] 生成中 [3065]: マスク対アルトマン裁判第2週 争点は創業時の口約束と人材引き抜き工作
+2026-05-09 16:01:32,879 [DEBUG] FLUX Prompt: 2D digital illustration portrait of Sam Altman, 40s american male, round face, short dark brown hair, clean shaven, warm brown eyes, casual style, slight smile, futuristic AI technology background, an
+2026-05-09 16:01:34,914 [INFO] ComfyUIキュー送信完了: 52aaa571-6501-40a8-836f-860e3a91624a
+2026-05-09 16:01:49,132 [INFO] ✅ 生成完了 [3065]
+2026-05-09 16:01:49,132 [INFO] 画像生成完了: 成功1件 / 失敗0件
+2026-05-09 16:01:49,135 [INFO] ComfyUI停止中...
+2026-05-09 16:01:49,135 [INFO] ComfyUI停止完了
+2026-05-09 16:01:49,135 [INFO] [5/5] 記事公開・Git Push
+2026-05-09 16:01:49,135 [INFO] ============================================================
+2026-05-09 16:01:49,135 [INFO] 記事公開処理を開始しました
+2026-05-09 16:01:49,135 [INFO] ============================================================
+2026-05-09 16:01:49,140 [INFO] 生成完了: business/aws-outage-halts-fanduel-coinbase.md
+2026-05-09 16:01:49,141 [INFO] 生成完了: business/anthropic-mythos-cybersecurity-threat.md
+2026-05-09 16:01:49,142 [INFO] 生成完了: business/meta-google-ai-agent-wars.md
+2026-05-09 16:01:49,143 [INFO] 生成完了: business/creative-legends-ai-small-business-ads.md
+2026-05-09 16:01:49,143 [INFO] 生成完了: business/openai-codex-safe-deployment.md
+2026-05-09 16:01:49,144 [INFO] 生成完了: business/cybersecqwen-4b-defensive-cyber-small-models.md
+2026-05-09 16:01:49,144 [INFO] 生成完了: business/ai-data-center-power-conflict.md
+2026-05-09 16:01:49,145 [INFO] 生成完了: business/musk-altman-openai-poach-lawsuit.md
+2026-05-09 16:01:49,145 [INFO] 生成完了: business/adaptive-parallel-reasoning-ai.md
+2026-05-09 16:01:49,146 [INFO] 生成完了: business/nvidia-suzanne-nora-johnson-board.md
+2026-05-09 16:01:49,146 [INFO] 生成完了: business/anthropic-akamai-computing-deal.md
+2026-05-09 16:01:49,147 [INFO] 生成完了: business/openai-leadership-trial-flaws.md
+2026-05-09 16:01:49,147 [INFO] 生成完了: business/cerebras-ipo-price-surge.md
+2026-05-09 16:01:49,148 [INFO] 生成完了: business/deepseek-core-automation-valuation-surge.md
+2026-05-09 16:01:49,148 [INFO] 生成完了: business/btig-bullish-hyperfine-coverage.md
+2026-05-09 16:01:49,149 [INFO] 生成完了: business/wall-street-ai-intel-amd.md
+2026-05-09 16:01:49,149 [INFO] 生成完了: business/musk-openai-secret-diary-revealed.md
+2026-05-09 16:01:49,149 [INFO] ============================================================
+2026-05-09 16:01:49,149 [INFO] Markdown生成完了: 17件
+2026-05-09 16:01:49,150 [INFO] ============================================================
+2026-05-09 16:01:53,668 [INFO] Git Push完了
+2026-05-09 16:01:53,668 [INFO] パイプライン完了
+2026-05-09 16:01:53,668 [INFO] ============================================================
+2026-05-09 16:01:53,669 [INFO] パイプライン終了: 2026-05-09 16:01:53
+2026-05-09 16:01:53,669 [INFO] ============================================================
