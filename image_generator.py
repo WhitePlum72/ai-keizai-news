@@ -139,23 +139,6 @@ PERSON_QUALITY = (
 # ========================
 # DB
 # ========================
-def get_articles_needing_images():
-    conn = sqlite3.connect(DB_PATH)
-    cursor = conn.cursor()
-    cursor.execute("""
-        SELECT a.id, s.title_ja, s.summary_ja, s.category, a.title, a.summary
-        FROM articles a
-        JOIN summaries s ON a.id = s.article_id
-        WHERE a.processed = 1
-          AND s.summary_ja IS NOT NULL
-          AND (a.image_url IS NULL OR a.image_url NOT LIKE '/images/%')
-        ORDER BY a.buzz_score DESC
-    """)
-    rows = cursor.fetchall()
-    conn.close()
-    return rows
-
-
 def update_image_url(article_id: int, image_path: str, flux_prompt: str):
     conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
@@ -411,7 +394,11 @@ def get_articles_needing_images():
         JOIN summaries s ON a.id = s.article_id
         WHERE a.processed = 1
           AND s.summary_ja IS NOT NULL
-          AND (a.flux_prompt IS NULL OR a.flux_prompt = '')
+          AND (
+              a.image_url IS NULL
+              OR a.image_url = ''
+              OR a.image_url = '""'
+          )
         ORDER BY a.buzz_score DESC
     """)
     rows = cursor.fetchall()
