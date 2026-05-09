@@ -24,11 +24,30 @@ export async function getStaticPaths() {
 const { article } = Astro.props;
 const allArticles = await getCollection('articles');
 
-const relatedArticles = allArticles
-  .filter(a => a.data.category_slug === article.data.category_slug && a.id !== article.id)
-  .sort((a, b) => (b.data.buzz_score || 0) - (a.data.buzz_score || 0))
-  .slice(0, 3);
+const currentTopics = new Set(article.data.topics_json ?? []);
+const currentCompanies = new Set(article.data.companies_json ?? []);
 
+const relatedArticles = allArticles
+  .filter(a => a.id !== article.id)
+  .map(a => {
+    const aTopics = a.data.topics_json ?? [];
+    const aCompanies = a.data.companies_json ?? [];
+
+    // トピック一致数（重み2）+ 企業一致数（重み3）+ 同カテゴリボーナス（重み1）
+    const topicScore = aTopics.filter(t => currentTopics.has(t)).length * 2;
+    const companyScore = aCompanies.filter(c => currentCompanies.has(c)).length * 3;
+    const categoryBonus = a.data.category_slug === article.data.category_slug ? 1 : 0;
+    const relevance = topicScore + companyScore + categoryBonus;
+
+    return { article: a, relevance };
+  })
+  .filter(({ relevance }) => relevance > 0)  // 関連性ゼロは除外
+  .sort((a, b) =>
+    b.relevance - a.relevance ||
+    (b.article.data.buzz_score || 0) - (a.article.data.buzz_score || 0)
+  )
+  .slice(0, 3)
+  .map(({ article }) => article);
 const { Content } = await render(article);
 
 const description = article.body.slice(0, 120).replace(/[#\n]/g, '');
@@ -123,6 +142,9 @@ const categoryLabel = getCatLabel(article.data.category_slug);
     .article-image-wrap img { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; }
     .image-credit { font-size: 10px; color: #999; text-align: right; padding: 4px 12px 0; }
     .image-credit a { color: #999; text-decoration: underline; }
+    .topic-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+    .topic-chip { font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 20px; background: #f0f4fa; color: #003f88; border: 1px solid #d0ddf5; transition: all 0.15s; text-decoration: none; }
+    .topic-chip:hover { background: #003f88; color: #fff; }
     .breadcrumb {
   font-size: 0.8rem;
   color: #888;
