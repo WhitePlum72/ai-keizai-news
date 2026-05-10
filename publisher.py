@@ -134,7 +134,10 @@ def generate_markdown(article):
     (article_id, url, source, buzz_score, published_at,
      title_ja, summary_ja, category, tweet_text,
      image_url, meta_description_db,
-     article_slug, category_slug) = article
+     article_slug, category_slug,
+     topics_raw, companies_raw) = article  # 15個に修正
+
+    import json as _json
 
     title = clean_title(title_ja)
     body  = clean_body(title, summary_ja)
@@ -144,14 +147,10 @@ def generate_markdown(article):
     else:
         meta_desc = make_meta_description(body) or title
 
-    slug      = slugify(title, article_id, article_slug)
-    cat_slug  = category_slug if category_slug else "ai"
-    today     = datetime.now().strftime("%Y-%m-%d")
+    slug     = slugify(title, article_id, article_slug)
+    cat_slug = category_slug if category_slug else "ai"
+    today    = datetime.now().strftime("%Y-%m-%d")
 
-    # topics_json / companies_json をfrontmatterに追加
-    import json as _json
-    topics_raw = article[13] if len(article) > 13 else "[]"  # summaries.topics_json
-    companies_raw = article[14] if len(article) > 14 else "[]"  # summaries.companies_json
     try:
         topics_list = _json.loads(topics_raw or "[]")
     except Exception:
