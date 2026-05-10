@@ -7,7 +7,7 @@ Set-Location $ProjectDir
 
 $null = New-Item -ItemType Directory -Force -Path "logs"
 $Timestamp = Get-Date -Format "yyyyMMdd_HHmmss"
-$LogFile = "logs\publish_$Timestamp.log"
+$LogFile = "$ProjectDir\logs\publish_$Timestamp.log"
 
 function Write-Log {
     param([string]$Message, [string]$Level = "INFO")
@@ -102,3 +102,4 @@ try {
     Read-Host "Enterキーで閉じます"
     exit 1
 }
+
