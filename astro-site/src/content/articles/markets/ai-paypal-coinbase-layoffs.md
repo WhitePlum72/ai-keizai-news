@@ -9,7 +9,7 @@ published_at: "2026-05-09"
 buzz_score: 51.0
 image_url: "/images/articles/article_1643.webp"
 meta_description: "AI不確実性でソフト株低迷。ペイパルらの人員削減やパランティアの売上不振が影響。投資家は効率化重視でAI収益化に慎重。単なる技術導入から実質的価値創出へ評価基準がシフトし、持続可能な成長力を厳しく審査する動きが加速している。"
-topics_json: ["alignment"]
+topics_json: []
 companies_json: []
 ---
 

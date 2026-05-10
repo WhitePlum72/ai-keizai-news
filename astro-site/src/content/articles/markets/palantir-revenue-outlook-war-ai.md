@@ -9,7 +9,7 @@ published_at: "2026-05-09"
 buzz_score: 42.0
 image_url: "/images/articles/article_1540.webp"
 meta_description: "パランティアは軍事AIビジネスの拡大で収益見通しを上方修正した。しかし、AIによる戦争の効率化は倫理的懸念を呼び、社会の評価は二極化。技術進歩と倫理の緊張関係の中で、同社の社会的責任と受容性が重大な課題となっている。"
-topics_json: ["alignment", "palantir"]
+topics_json: []
 companies_json: ["palantir"]
 ---
 

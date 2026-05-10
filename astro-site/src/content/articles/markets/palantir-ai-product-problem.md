@@ -9,7 +9,7 @@ published_at: "2026-05-10"
 buzz_score: 38.0
 image_url: "/images/articles/article_3354.webp"
 meta_description: "パランティアCEOは粗悪なAI生成物を「スロップ」と批判するが、生成AIの普及が自社の分析プラットフォームの事業機会を脅かす逆説に直面。投資家や社内からも、従来型分析から生成AIツールへ予算が流れる傾向が指摘され始めた。"
-topics_json: ["alignment", "google", "llm", "openai", "palantir"]
+topics_json: ["google", "llm", "openai"]
 companies_json: ["google", "openai", "palantir"]
 ---
 

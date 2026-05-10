@@ -9,7 +9,7 @@ published_at: "2026-05-09"
 buzz_score: 50.0
 image_url: "/images/articles/article_1943.webp"
 meta_description: "NVIDIA、Adobe、WPPは提携を拡大し、マーケティングの中枢となるエージェントAIを導入。自律的な意思決定とリアルタイム対応により、顧客体験の高度化と業務効率化を実現する。技術革新に伴う倫理課題への対応も重要視され、業界構造の変革が"
-topics_json: ["agents", "gpu", "intel", "nvidia"]
+topics_json: ["agents", "gpu", "nvidia"]
 companies_json: ["intel", "nvidia"]
 ---
 

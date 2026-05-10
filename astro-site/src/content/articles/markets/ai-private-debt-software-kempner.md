@@ -9,7 +9,7 @@ published_at: "2026-05-09"
 buzz_score: 36.0
 image_url: "/images/articles/article_1526.webp"
 meta_description: "AI進展がソフト業界を混乱させ、民間債の健全性を脅かす。既存モデル崩壊で収益低下リスクが高まり、回収不能の可能性も。投資家は利回りだけでなく、企業のAI対応戦略や適応能力を精査し、技術的淘汰リスクを厳しく評価する必要がある。"
-topics_json: ["alignment"]
+topics_json: []
 companies_json: []
 ---
 

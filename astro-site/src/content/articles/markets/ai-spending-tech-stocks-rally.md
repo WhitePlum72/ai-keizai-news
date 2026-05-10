@@ -9,7 +9,7 @@ published_at: "2026-05-09"
 buzz_score: 52.0
 image_url: "/images/articles/article_1723.webp"
 meta_description: "AI投資加速と地政学安定感が世界株を牽引。米テック株の好調と原油価格下落が後押しし、金利低下とドル安も影響。投資家は実体価値や地政学背景を精査し、今後の市場動向を見極める必要がある。"
-topics_json: ["alignment"]
+topics_json: []
 companies_json: []
 ---
 

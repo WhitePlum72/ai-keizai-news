@@ -9,7 +9,7 @@ published_at: "2026-05-09"
 buzz_score: 45.0
 image_url: "/images/articles/article_1638.webp"
 meta_description: "Thoma BravoはAI選定でGoogle他と多角的に関係し依存を回避する。マルチモデル戦略が主流化中だ。導入コストやセキュリティ課題は大きい。最適な技術選択と組み合わせが競争優位性を生む。このアプローチは企業や投資家の参考となる。"
-topics_json: ["alignment", "anthropic", "google", "llm", "openai"]
+topics_json: ["anthropic", "google", "llm", "openai"]
 companies_json: ["anthropic", "google", "openai"]
 ---
 

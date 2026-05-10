@@ -9,7 +9,7 @@ published_at: "2026-05-10"
 buzz_score: 43.5
 image_url: "https://techcrunch.com/wp-content/uploads/2026/03/GettyImages-2266475966.jpg?w=1024"
 meta_description: "エヌビディアがAI投資枠を400億ドルに拡大。GPU購入先への戦略的出資で需要を創出し、半導体販売と投資益の二重収益を確保している。"
-topics_json: ["gpu", "nvidia", "openai", "semiconductor", "xai"]
+topics_json: ["gpu", "nvidia", "openai", "semiconductor"]
 companies_json: ["nvidia", "openai", "xai"]
 ---
 

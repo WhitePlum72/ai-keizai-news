@@ -9,7 +9,7 @@ published_at: "2026-05-09"
 buzz_score: 51.0
 image_url: "/images/articles/article_1405.webp"
 meta_description: "IBMは2026年4月29日、オープンソースの大規模言語モデル「Granite 4.1」の技術詳細を公開した。このモデルは、単なる計算資源の増強ではなく、トレーニングプロセス全体における厳格なデータ選別を最優先した設計が特徴である。エンター"
-topics_json: ["coding-agent", "ibm", "llm", "open-source-ai", "reasoning"]
+topics_json: ["coding-agent", "llm", "reasoning"]
 companies_json: ["ibm"]
 ---
 

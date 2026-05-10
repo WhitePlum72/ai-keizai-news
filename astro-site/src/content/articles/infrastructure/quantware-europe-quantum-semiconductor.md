@@ -9,7 +9,7 @@ published_at: "2026-05-09"
 buzz_score: 36.0
 image_url: "/images/articles/article_1635.webp"
 meta_description: "オランダのクォンタウェアがインテル主導で約1億5200万ユーロを調達し、量子半導体の生産施設建設を目指す。既存半導体インフラを活用した量産化で、欧州の量子技術サプライチェーン主導権獲得と産業応用加速を狙う。"
-topics_json: ["arm", "ibm", "intel", "semiconductor"]
+topics_json: ["semiconductor"]
 companies_json: ["arm", "ibm", "intel"]
 ---
 

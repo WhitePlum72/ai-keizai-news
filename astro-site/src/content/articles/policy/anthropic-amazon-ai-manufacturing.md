@@ -9,7 +9,7 @@ published_at: "2026-05-09"
 buzz_score: 36.0
 image_url: "/images/articles/article_1578.webp"
 meta_description: "大手製造業は生成AIを導入し、資料作成や顧客対応を効率化。業務時間を創造的作業に充てるため、人間が確認する運用ルールや研修を徹底し、人員削減ではなくスキルアップと組織活性化を目指す。"
-topics_json: ["alignment", "amazon", "anthropic"]
+topics_json: ["amazon", "anthropic"]
 companies_json: ["amazon", "anthropic"]
 ---
 

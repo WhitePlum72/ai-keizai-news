@@ -9,7 +9,7 @@ published_at: "2026-05-09"
 buzz_score: 31.5
 image_url: "/images/articles/article_3161.webp"
 meta_description: "米AI半導体市場でインテルとAMDの株価が急騰し、エヌビディアの伸びは鈍化した。生成AIの普及でデータセンター投資がGPUからCPUやメモリーへと広がり、主役交代の兆しが鮮明になっている。"
-topics_json: ["amd", "datacenter", "gpu", "intel", "llm", "nvidia", "reasoning", "semiconductor"]
+topics_json: ["amd", "datacenter", "gpu", "llm", "nvidia", "reasoning", "semiconductor"]
 companies_json: ["amd", "intel", "nvidia"]
 ---
 

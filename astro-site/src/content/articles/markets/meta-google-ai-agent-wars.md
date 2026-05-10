@@ -9,7 +9,7 @@ published_at: "2026-05-09"
 buzz_score: 27.5
 image_url: "/images/articles/article_3038.webp"
 meta_description: "OpenClawの台頭を受け、MetaとGoogleが自律型AIエージェントの開発競争を激化させている。OpenClawは公開3カ月で3000万人のユーザーを獲得し、プラットフォームに依存しない行動完結型AIへの需要を証明。これに対抗し、両"
-topics_json: ["agents", "google", "llm", "meta", "open-source-ai"]
+topics_json: ["agents", "google", "llm", "meta"]
 companies_json: ["google", "meta"]
 ---
 

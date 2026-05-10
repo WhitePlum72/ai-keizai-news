@@ -9,7 +9,7 @@ published_at: "2026-05-09"
 buzz_score: 36.0
 image_url: "/images/articles/article_1577.webp"
 meta_description: "東京五輪のレガシー活用は一定の成果があるものの、施設利用のハードルや多様性意識の定着、環境技術の持続可能性など課題が山積している。短期的成果に安住せず、長期的視点に立った継続的な努力が真の活用への鍵となる。"
-topics_json: ["anthropic", "nec"]
+topics_json: ["anthropic"]
 companies_json: ["anthropic", "nec"]
 ---
 

@@ -9,7 +9,7 @@ published_at: "2026-05-09"
 buzz_score: 50.0
 image_url: "/images/articles/article_1620.webp"
 meta_description: "サムスン電子の時価総額がAIブームで1兆ドル台に到達した。HBM需要の高まりが後押しし、構造的な成長が期待される一方、競合激化や地政学リスクも残る。技術優位性維持が今後の行方を左右する。"
-topics_json: ["datacenter", "reasoning", "samsung", "semiconductor", "tsmc"]
+topics_json: ["datacenter", "reasoning", "semiconductor"]
 companies_json: ["samsung", "tsmc"]
 ---
 

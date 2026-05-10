@@ -9,7 +9,7 @@ published_at: "2026-05-09"
 buzz_score: 13.5
 image_url: "/images/articles/article_3033.webp"
 meta_description: "AWSのバージニア州データセンターで冷却システム不具合による過熱障害が発生し、EC2などが連鎖停止。CoinbaseやFanDuelで取引不能となり、金融取引のクラウド依存リスクが改めて浮き彫りになった。"
-topics_json: ["alignment", "datacenter"]
+topics_json: ["datacenter"]
 companies_json: []
 ---
 

@@ -9,7 +9,7 @@ published_at: "2026-05-09"
 buzz_score: 46.0
 image_url: "/images/articles/article_1380.webp"
 meta_description: "AWSはOpenAIのGPTシリーズやCodex、マネージドエージェントをBedrock経由で提供開始した。顧客データは学習に利用されず、セキュリティを保証しながらAIアプリの構築を支援。導入障壁の低下や業務効率化が期待され、生成AI普及が"
-topics_json: ["agents", "alignment", "openai"]
+topics_json: ["agents", "openai"]
 companies_json: ["openai"]
 ---
 

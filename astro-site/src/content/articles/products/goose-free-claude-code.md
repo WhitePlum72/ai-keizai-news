@@ -9,7 +9,7 @@ published_at: "2026-05-09"
 buzz_score: 51.0
 image_url: "/images/articles/article_1465.webp"
 meta_description: "AnthropicのAIコーディングツール「Claude Code」の料金体系をめぐり開発者からの不満が高まる中、金融テック大手ブロックが提供するオープンソースエージェント「Goose」が無料代替手段として注目を集めている。クラウド依存や課"
-topics_json: ["agents", "anthropic", "coding-agent", "open-source-ai"]
+topics_json: ["agents", "anthropic", "coding-agent"]
 companies_json: ["anthropic"]
 ---
 

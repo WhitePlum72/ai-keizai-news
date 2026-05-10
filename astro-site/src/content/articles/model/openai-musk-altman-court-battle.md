@@ -9,7 +9,7 @@ published_at: "2026-05-09"
 buzz_score: 51.0
 image_url: "/images/articles/article_1456.webp"
 meta_description: "2026年5月5日、OpenAIの将来を巡るイーロン・マスク氏とサム・アルトマン氏の法廷闘争が激化している。マスク氏はOpenAIが非営利の使命を放棄し利益追求に転じたとして訴訟を起こし、アルトマン氏の解任や最大1500億ドルの損害賠償を求"
-topics_json: ["microsoft", "openai", "xai"]
+topics_json: ["microsoft", "openai"]
 companies_json: ["microsoft", "openai", "xai"]
 ---
 

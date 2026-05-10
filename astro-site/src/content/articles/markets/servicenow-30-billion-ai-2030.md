@@ -9,7 +9,7 @@ published_at: "2026-05-09"
 buzz_score: 41.0
 image_url: "/images/articles/article_1533.webp"
 meta_description: "ServiceNowはAI搭載製品の需要拡大を背景に、2030年までのサブスクリプション収入を300億ドルとする目標を掲げた。生成AIを活用した業務自動化で差別化を図り、アナリストも楽観視するが、コスト増や競合激化といった課題にも直面してい"
-topics_json: ["servicenow"]
+topics_json: []
 companies_json: ["servicenow"]
 ---
 

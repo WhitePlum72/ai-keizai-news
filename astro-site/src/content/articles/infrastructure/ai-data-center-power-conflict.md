@@ -9,7 +9,7 @@ published_at: "2026-05-09"
 buzz_score: 33.9
 image_url: "/images/articles/article_3063.webp"
 meta_description: "世界のAIデータセンター投資は2030年までに1兆ドル超と急拡大する一方、電力網への負荷や環境影響で各国で住民紛争や立地規制が相次いでいる。日本は賃料の安さや再エネで再評価されるが、電力確保が課題だ。"
-topics_json: ["datacenter", "gpu", "ntt", "reasoning"]
+topics_json: ["datacenter", "gpu", "reasoning"]
 companies_json: ["ntt"]
 ---
 

@@ -452,18 +452,23 @@ KNOWN_PERSONS = {
 }
 
 TOPIC_KEYWORDS = {
-    "agents":         ["agent", "エージェント", "autonomous"],
-    "gpu":            ["gpu", "グラフィックス"],
-    "datacenter":     ["datacenter", "data center", "データセンター"],
-    "semiconductor":  ["semiconductor", "半導体", "chip", "チップ"],
-    "reasoning":      ["reasoning", "推論"],
-    "multimodal":     ["multimodal", "マルチモーダル"],
-    "agi":            ["agi", "汎用人工知能"],
-    "alignment":      ["alignment", "safety", "安全"],
-    "rag":            ["rag", "retrieval"],
-    "open-source-ai": ["open source", "open-source", "オープンソース"],
-    "llm":            ["llm", "language model", "言語モデル"],
-    "coding-agent":   ["coding", "code generation", "コーディング"],
+    "openai":        ["openai", "chatgpt", "gpt"],
+    "nvidia":        ["nvidia", "blackwell", "h100", "h200", "cuda", "nvlink"],
+    "anthropic":     ["anthropic", "claude"],
+    "google":        ["google", "gemini", "deepmind"],
+    "microsoft":     ["microsoft", "copilot", "azure"],
+    "meta":          ["meta", "llama"],
+    "amd":           ["amd", "radeon", "instinct"],
+    "amazon":        ["amazon", "aws", "bedrock"],
+    "llm":           ["llm", "language model", "foundation model"],
+    "reasoning":     ["reasoning", "chain of thought", "推論"],
+    "agents":        ["agent", "エージェント", "autonomous", "agentic"],
+    "gpu":           ["gpu", "グラフィックス", "graphics card"],
+    "datacenter":    ["datacenter", "data center", "データセンター"],
+    "semiconductor": ["semiconductor", "半導体", "chip", "チップ"],
+    "agi":           ["agi", "artificial general intelligence", "汎用人工知能"],
+    "multimodal":    ["multimodal", "マルチモーダル"],
+    "coding-agent":  ["coding agent", "code generation", "コーディング", "copilot"],
 }
 
 CATEGORY_RULES = [
@@ -503,8 +508,6 @@ def extract_entities(title_en: str, title_ja: str, body: str) -> dict:
     companies = sorted([c for c in KNOWN_COMPANIES if c in text])
 
     topics = []
-    for company in companies:
-        topics.append(company.replace(" ", "-"))
     for topic_slug, keywords in TOPIC_KEYWORDS.items():
         if any(kw in text for kw in keywords):
             topics.append(topic_slug)

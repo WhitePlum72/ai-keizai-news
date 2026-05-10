@@ -9,7 +9,7 @@ published_at: "2026-05-09"
 buzz_score: 51.0
 image_url: "/images/articles/article_1460.webp"
 meta_description: "米国防総省は2026年5月1日、OpenAI、Google、Nvidiaら7社と機密情報を扱うAIツールの使用に関する契約を締結した。これにより、同省はAnthropic社の利用を停止し、サプライチェーン上のリスクを理由に同社を除外した。こ"
-topics_json: ["alignment", "amazon", "anthropic", "google", "microsoft", "nvidia", "openai", "xai"]
+topics_json: ["amazon", "anthropic", "google", "microsoft", "nvidia", "openai"]
 companies_json: ["amazon", "anthropic", "google", "microsoft", "nvidia", "openai", "xai"]
 ---
 

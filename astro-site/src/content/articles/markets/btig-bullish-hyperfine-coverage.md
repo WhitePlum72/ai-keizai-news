@@ -9,7 +9,7 @@ published_at: "2026-05-09"
 buzz_score: 16.0
 image_url: "/images/articles/article_3110.webp"
 meta_description: "米BTIGが携帯型低磁場MRI「Swoop」に強気評価。約3500万円と低価格でベッドサイド撮像が可能な点を評価し、脳卒中診断ガイドライン改定を追い風に売上高の倍増を予測。医療格差の解消につながる新市場として注目されている。"
-topics_json: ["rag"]
+topics_json: []
 companies_json: []
 ---
 

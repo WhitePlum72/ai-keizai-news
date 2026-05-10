@@ -9,7 +9,7 @@ published_at: "2026-05-09"
 buzz_score: 41.0
 image_url: "/images/articles/article_1512.webp"
 meta_description: "LLM解釈可能性は特徴・データ・機械的解釈性の3手法で進むが、規模に伴う複雑さと創発により全体説明は困難。単一手法の限界を超え、多角的枠組み構築と人間理解可能な記述が透明性向上と社会実装の鍵となる。"
-topics_json: ["alignment", "llm"]
+topics_json: ["llm"]
 companies_json: []
 ---
 

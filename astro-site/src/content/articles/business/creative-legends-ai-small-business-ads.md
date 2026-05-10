@@ -9,7 +9,7 @@ published_at: "2026-05-09"
 buzz_score: 30.1
 image_url: "/images/articles/article_3046.webp"
 meta_description: "広告業界の巨匠3名が生成AIを使い、中小企業向け広告を48時間で制作した。AIは創造性を拡張する道具として認識され始め、業界の民主化と構造転換を示唆する試金石となっている。"
-topics_json: ["apple", "nvidia"]
+topics_json: ["nvidia"]
 companies_json: ["apple", "nvidia"]
 ---
 

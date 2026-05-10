@@ -9,7 +9,7 @@ published_at: "2026-05-09"
 buzz_score: 51.0
 image_url: "/images/articles/article_1467.webp"
 meta_description: "セールスフォースは1月13日、職場用AIアシスタント「Slackbot」を完全再構築した新バージョンを発売した。従来の通知ツールから、企業データを検索し、文書作成や業務代行まで行う高度なAIエージェントへと進化させる。これは、マイクロソフト"
-topics_json: ["agents", "google", "llm", "microsoft", "salesforce"]
+topics_json: ["agents", "google", "llm", "microsoft"]
 companies_json: ["google", "microsoft", "salesforce"]
 ---
 

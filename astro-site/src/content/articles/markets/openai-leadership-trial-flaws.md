@@ -9,7 +9,7 @@ published_at: "2026-05-09"
 buzz_score: 46.0
 image_url: "/images/articles/article_3075.webp"
 meta_description: "OpenAI裁判で、マスク氏とアルトマン氏の独断的なリーダーシップや経営の不透明さが露呈し、両者の資質に批判が集まった。この対立は、急成長するAI企業のガバナンスの脆弱性を浮き彫りにし、市場の信頼を揺るがしている。"
-topics_json: ["agi", "alignment", "openai"]
+topics_json: ["agi", "openai"]
 companies_json: ["openai"]
 ---
 

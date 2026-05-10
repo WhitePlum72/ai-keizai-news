@@ -9,7 +9,7 @@ published_at: "2026-05-09"
 buzz_score: 51.0
 image_url: "/images/articles/article_1552.webp"
 meta_description: "OpenAIら支援の非営利団体が中国不安を煽る政治キャンペーンを展開。地政学的対立を強調し国民感情を誘導する狙いがあり、民間と政治資金の境界線曖昧化への懸念が高まる。技術進歩が覇権競争道具とならないよう、資金源と目的への監視と透明性確保が不"
-topics_json: ["alignment", "openai"]
+topics_json: ["openai"]
 companies_json: ["openai"]
 ---
 

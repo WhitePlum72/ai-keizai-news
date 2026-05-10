@@ -9,7 +9,7 @@ published_at: "2026-05-09"
 buzz_score: 51.0
 image_url: "/images/articles/article_1416.webp"
 meta_description: "IBMが2026年4月15日、企業環境におけるAIエージェントの推論能力を評価する新ベンチマーク「VAKRA」の詳細を発表した。従来の個別スキルテストと異なり、複数ステップにわたるワークフローの完了可否を実行可能な環境で検証する点が特徴であ"
-topics_json: ["agents", "alignment", "ibm", "reasoning"]
+topics_json: ["agents", "reasoning"]
 companies_json: ["ibm"]
 ---
 

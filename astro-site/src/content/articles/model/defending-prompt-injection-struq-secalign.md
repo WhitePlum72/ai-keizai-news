@@ -9,7 +9,7 @@ published_at: "2026-05-09"
 buzz_score: 49.0
 image_url: "/images/articles/article_1517.webp"
 meta_description: "LLMの最大脅威であるプロンプトインジェクションに対し、計算コスト増なしで防御する新手法を提案した。実験で攻撃成功率を大幅に低下させ、実装コストを抑えつつセキュリティを強化する効果を実証した。"
-topics_json: ["alignment", "google", "llm"]
+topics_json: ["google", "llm"]
 companies_json: ["google"]
 ---
 

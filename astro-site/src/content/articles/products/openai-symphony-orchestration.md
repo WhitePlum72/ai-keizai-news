@@ -9,7 +9,7 @@ published_at: "2026-05-09"
 buzz_score: 51.0
 image_url: "/images/articles/article_1384.webp"
 meta_description: "OpenAIが2026年4月27日、AIコーディングエージェントのオーケストレーション仕様「Symphony」をオープンソースとして公開した。これは、生成AIが自律的にタスクを処理するための標準的な制御フレームワークを提供するもので、開発現"
-topics_json: ["agents", "coding-agent", "open-source-ai", "openai"]
+topics_json: ["agents", "coding-agent", "openai"]
 companies_json: ["openai"]
 ---
 
