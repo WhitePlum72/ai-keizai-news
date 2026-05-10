@@ -30,4 +30,4 @@ Desktop.ini
 
 # エディタ
 .vscode/
-.idea/
+.idea/build_and_push.ps1
