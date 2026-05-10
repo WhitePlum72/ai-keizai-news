@@ -5,13 +5,14 @@ source_url: "https://www.zdnet.com/article/how-to-get-microsoft-365-free/"
 category: "ビジネス"
 category_slug: "business"
 article_slug: "microsoft-365-free-how"
-published_at: "2026-05-10"
+published_at: "2026-05-11"
 buzz_score: 23.5
 image_url: "https://www.zdnet.com/a/img/resize/46249ebb29b021205f86039a3b894023d80354e1/2026/05/08/2cc611a8-41f6-498b-a453-7710a0f0cce4/untitled-design-2026-05-08t144259-818.jpg?auto=webp&fit=crop&height=675&width=1200"
 meta_description: "Microsoft 365はウェブ版を無料で利用でき、文書作成など基本機能は十分使える。また学生・教職員なら教育機関向けプログラムでデスクトップ版も無償入手が可能。ただしウェブ版はオフライン非対応で、ビジネス利用時は提供元の条件確認が必須で"
 topics_json: ["microsoft"]
 companies_json: ["microsoft"]
 ---
+
 
 Microsoftは2023年にOfficeブランドを刷新し、WordやExcel、PowerPointといった中核アプリケーションを「Microsoft 365」サブスクリプションへ統合した。個人向けプランは年間79.99ドル、ファミリー向けは99.99ドルに設定されているが、実は公式が認める複数の経路で完全無料の合法利用が可能だ。本稿ではコストをかけずに最新版を入手する具体的手段と、ビジネス利用時の留意点を解説する。
 

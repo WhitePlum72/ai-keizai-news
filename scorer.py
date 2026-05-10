@@ -1,4 +1,4 @@
-import sqlite3
+﻿import sqlite3
 from datetime import datetime, timezone
 from deep_translator import GoogleTranslator
 from difflib import SequenceMatcher
@@ -455,7 +455,7 @@ def calculate_scores():
         FROM articles
         WHERE processed = 0
         ORDER BY collected_at DESC
-        LIMIT 200
+        LIMIT 700
     """)
     articles = cursor.fetchall()
 
@@ -493,8 +493,8 @@ def calculate_scores():
             economic_score_f = get_economic_score(title_lower_f + ' ' + summary_lower_f)
 
             if not (
-                ai_score >= 5
-                or (ai_score >= 3 and economic_score_f >= 5)
+                ai_score >= 4
+                or (ai_score >= 2 and economic_score_f >= 4)
             ):
                 continue
 
@@ -534,7 +534,7 @@ def calculate_scores():
         buzz, article_id, title, company, \
         primary_score, stype, label, is_official, tier1_official = row
 
-        if len(selected) >= 10:
+        if len(selected) >= 30:
             break
 
         limit_bonus = 1 if tier1_official else 0
@@ -554,7 +554,13 @@ def calculate_scores():
         selected.append(row)
         selected_titles_ja.append(title_ja)
 
-    cursor.execute("UPDATE articles SET buzz_score = 0 WHERE processed = 0")
+    for row in scored:
+        buzz_all, article_id_all = row[0], row[1]
+        cursor.execute(
+            "UPDATE articles SET buzz_score = ? WHERE id = ?",
+            (round(buzz_all, 2), article_id_all)
+        )
+
     for row in selected:
         buzz, article_id, title, company, \
         primary_score, stype, label, is_official, tier1_official = row
@@ -581,6 +587,7 @@ def calculate_scores():
 
     print(f"スコアリング完了: {len(selected)}件を選出")
     print("\n選出記事:")
+
     for row in selected:
         buzz, article_id, title, company, \
         primary_score, stype, label, is_official, _ = row
@@ -591,3 +598,6 @@ def calculate_scores():
 
 if __name__ == "__main__":
     calculate_scores()
+
+
+

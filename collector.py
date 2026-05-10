@@ -367,11 +367,11 @@ def fetch_og_image(url: str) -> str:
 
 
 def save_article(article):
+    article["title"] = article.get("title", "").replace('\xa0', ' ').replace('\u200b', '').strip()
+    article["summary"] = article.get("summary", "").replace('\xa0', ' ').replace('\u200b', '').strip()
     if is_duplicate(article["url"], article["title"]):
-        logger.debug("重複記事をスキップ: %s", article["title"][:50])
         return False
-
-    # OG画像取得
+     # OG画像取得
     og_image = fetch_og_image(article["url"])
     image_url = og_image if og_image else ""
 

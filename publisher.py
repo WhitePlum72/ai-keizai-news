@@ -175,6 +175,7 @@ topics_json: {_json.dumps(topics_list, ensure_ascii=False)}
 companies_json: {_json.dumps(companies_list, ensure_ascii=False)}
 ---
 
+
 {body}
 """
     return slug, cat_slug, content

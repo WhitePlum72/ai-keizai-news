@@ -1,4 +1,4 @@
-"""
+﻿"""
 翻訳・記事生成モジュール（DeepSeek公式API対応版）
 - platform.deepseek.com のAPIを使用
 - thinking無効化でトークン節約
@@ -96,8 +96,7 @@ def get_articles_to_translate():
         SELECT a.id, a.title, a.summary, a.source, a.source_type, a.url
         FROM articles a
         LEFT JOIN summaries s ON a.id = s.article_id
-        WHERE a.buzz_score > 0
-          AND s.article_id IS NULL
+        WHERE s.article_id IS NULL
         ORDER BY a.buzz_score DESC
         LIMIT 10
     """)
@@ -593,3 +592,5 @@ def translate_all():
 
 if __name__ == "__main__":
     translate_all()
+
+

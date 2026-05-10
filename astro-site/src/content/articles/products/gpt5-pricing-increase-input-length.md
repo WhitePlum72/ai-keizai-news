@@ -5,13 +5,14 @@ source_url: "https://the-decoder.com/gpt-5-5-costs-49-to-92-percent-more-than-it
 category: "プロダクト"
 category_slug: "products"
 article_slug: "gpt5-pricing-increase-input-length"
-published_at: "2026-05-10"
+published_at: "2026-05-11"
 buzz_score: 37.5
 image_url: "https://the-decoder.com/wp-content/uploads/2026/04/openai_logo_orange.png"
 meta_description: "GPT-5.5の実質利用料は49〜92%上昇し、入力が長いほど値上がり幅が拡大する。OpenAIは出力短縮によるコスト相殺を主張したが、実測データでは想定通りに機能していない。Anthropicも価格を引き上げており、AI推論コストの上昇が"
 topics_json: ["anthropic", "openai", "reasoning"]
 companies_json: ["anthropic", "openai"]
 ---
+
 
 OpenAIが最新大規模言語モデル「GPT-5.5」の定価を前世代比で倍増させた。短文応答によるコスト相殺を主張する同社に対し、実利用データからは平均49〜92%の値上がりが確認された。AI推論コストの上昇は止まらず、企業の調達戦略に影響を与え始めている。
 

@@ -5,13 +5,14 @@ source_url: "https://finance.yahoo.com/sectors/technology/articles/nvidia-nvda-g
 category: "インフラ"
 category_slug: "infrastructure"
 article_slug: "nvidia-enterprise-ai-adoption-expands"
-published_at: "2026-05-10"
+published_at: "2026-05-11"
 buzz_score: 26.2
 image_url: "https://s.yimg.com/ny/api/res/1.2/xtlS.VjuHR4pKRpFLOUG2A--/YXBwaWQ9aGlnaGxhbmRlcjt3PTEyMDA7aD04MDA-/https://media.zenfs.com/en/insidermonkey.com/4beabd482637ec7f5549a99b77c1d1cd"
 meta_description: "NVIDIAが金融大手INGにAI基盤を全社導入され、エンタープライズ市場でのシェアを拡大している。INGは自行プライベートクラウドでAI処理を完結させ、データ主権と規制遵守を両立。NVIDIAのソフトウェアエコシステムが競合との差別化を加"
 topics_json: ["amd", "datacenter", "gpu", "nvidia"]
 companies_json: ["amd", "nvidia"]
 ---
+
 
 米NVIDIA（エヌビディア）はエンタープライズ向けAI事業で新たな大口案件を獲得した。オランダの金融大手INGグループが、NVIDIAの高速コンピューティング基盤と自然言語処理AIプラットフォーム「NVIDIA AI Enterprise」を全社導入すると発表したのだ。金融規制の厳しい欧州大手行のAI全面採用は、同社にとって法人市場での信頼性を証明するマイルストーンとなる。
 

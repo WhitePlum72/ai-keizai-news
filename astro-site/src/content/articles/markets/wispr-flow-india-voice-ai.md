@@ -5,13 +5,14 @@ source_url: "https://techcrunch.com/2026/05/09/voice-ai-in-india-is-hard-wispr-f
 category: "マーケット"
 category_slug: "markets"
 article_slug: "wispr-flow-india-voice-ai"
-published_at: "2026-05-10"
+published_at: "2026-05-11"
 buzz_score: 24.5
 image_url: "https://techcrunch.com/wp-content/uploads/2026/05/wispr-flow-india-image.jpg?resize=1200,800"
 meta_description: "インド音声AI市場で、ヒンディー語と英語が混在する「ヒングリッシュ」対応製品が急成長している。米Wispr Flowは、日常的な言語混在や騒音環境といった課題に正面から挑み、導入後わずか数カ月でユーザー数が約3倍に拡大した。"
 topics_json: ["google", "reasoning"]
 companies_json: ["google"]
 ---
+
 
 米スタートアップのWispr Flowは、ヒンディー語と英語が混ざり合うHinglish（ヒングリッシュ）への対応を開始した2024年後半以降、インド市場での成長が加速したことを明らかにした。音声AI製品がインドで直面する多言語混在やノイズ環境といった構造的障壁に対し、あえて正面から挑む戦略が奏功しつつある。
 
