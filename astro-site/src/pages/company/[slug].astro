@@ -158,18 +158,22 @@ const getCatLabel = (slug) => ({
   {profile && (
     <div class="kpi-section">
       <div class="kpi-grid">
-        {profile.valuation && (
-          <div class="kpi-card">
-            <div class="kpi-label">評価額・時価総額</div>
-            <div class="kpi-value">{profile.valuation}</div>
-          </div>
-        )}
-        {profile.revenue && (
-          <div class="kpi-card">
-            <div class="kpi-label">売上・ARR</div>
-            <div class="kpi-value">{profile.revenue}</div>
-          </div>
-        )}
+{profile.valuation && (
+  <div class="kpi-card">
+    <div class="kpi-label">評価額・時価総額</div>
+    <div class="kpi-value">{profile.valuation}</div>
+    {profile.valuation_jpy && <div class="kpi-sub">{profile.valuation_jpy}</div>}
+    {profile.valuation_fx_note && <div class="kpi-note">※ {profile.valuation_fx_note}</div>}
+  </div>
+)}
+{profile.revenue && (
+  <div class="kpi-card">
+    <div class="kpi-label">売上・ARR</div>
+    <div class="kpi-value">{profile.revenue}</div>
+    {profile.revenue_jpy && profile.revenue_jpy !== '-' && <div class="kpi-sub">{profile.revenue_jpy}</div>}
+    {profile.revenue_fx_note && <div class="kpi-note">※ {profile.revenue_fx_note}</div>}
+  </div>
+)}
         {profile.employees && (
           <div class="kpi-card">
             <div class="kpi-label">従業員数</div>
@@ -228,6 +232,32 @@ const getCatLabel = (slug) => ({
           </div>
         </div>
       )}
+      {profile?.listed && profile?.ticker && (
+  <div class="section">
+    <div class="section-title">株価チャート（{profile.exchange}: {profile.ticker}）</div>
+    <div class="tradingview-widget-container">
+      <div id={`tv-${profile.ticker}`}></div>
+      <script
+        type="text/javascript"
+        src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js"
+        async
+        set:html={JSON.stringify({
+          symbol: `${profile.exchange}:${profile.ticker}`,
+          width: "100%",
+          height: 220,
+          locale: "ja",
+          dateRange: "3M",
+          colorTheme: "light",
+          trendLineColor: "#003f88",
+          underLineColor: "#f0f4fa",
+          isTransparent: false,
+          autosize: true,
+          largeChartUrl: `https://jp.tradingview.com/symbols/${profile.exchange}-${profile.ticker}/`
+        })}
+      ></script>
+    </div>
+  </div>
+)}
 
       <!-- 最新ニュース -->
       {articles.length > 0 && (
