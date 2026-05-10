@@ -3,58 +3,38 @@ import { getCollection } from 'astro:content';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import Sidebar from '../../components/Sidebar.astro';
+import profiles from '../../data/company_profiles.json';
 
 export async function getStaticPaths() {
-  const articles = await getCollection('articles');
+  const allArticles = await getCollection('articles');
+  const profileSlugs = Object.keys(profiles);
 
-  const companyMap = new Map();
-  for (const article of articles) {
-    const companies = article.data.companies_json ?? [];
-    for (const company of companies) {
-      if (!companyMap.has(company)) companyMap.set(company, []);
-      companyMap.get(company).push(article);
+  // DBの企業スラッグとprofilesのスラッグを統合
+  const companySlugs = new Set(profileSlugs);
+  for (const article of allArticles) {
+    for (const c of article.data.companies_json ?? []) {
+      companySlugs.add(c);
     }
   }
 
-  return Array.from(companyMap.entries()).map(([slug, companyArticles]) => ({
-    params: { slug },
-    props: {
-      slug,
-      articles: companyArticles.sort(
-        (a, b) => (b.data.buzz_score || 0) - (a.data.buzz_score || 0)
-      ),
-    },
-  }));
+  return Array.from(companySlugs).map(slug => {
+    const companyArticles = allArticles
+      .filter(a => (a.data.companies_json ?? []).includes(slug))
+      .sort((a, b) => (b.data.buzz_score || 0) - (a.data.buzz_score || 0));
+
+    return {
+      params: { slug },
+      props: { slug, articles: companyArticles },
+    };
+  });
 }
 
 const { slug, articles } = Astro.props;
+const profile = profiles[slug] ?? null;
 
-// 表示名マッピング
-const companyNames: Record<string, string> = {
-  openai:     'OpenAI',
-  anthropic:  'Anthropic',
-  nvidia:     'NVIDIA',
-  google:     'Google',
-  microsoft:  'Microsoft',
-  meta:       'Meta',
-  apple:      'Apple',
-  xai:        'xAI',
-  amd:        'AMD',
-  tsmc:       'TSMC',
-  intel:      'Intel',
-  amazon:     'Amazon',
-  ibm:        'IBM',
-  servicenow: 'ServiceNow',
-  salesforce: 'Salesforce',
-  samsung:    'Samsung',
-  palantir:   'Palantir',
-  broadcom:   'Broadcom',
-  nec:        'NEC',
-  arm:        'ARM',
-  ntt:        'NTT',
-};
-
-const companyLabel = companyNames[slug] ?? slug.charAt(0).toUpperCase() + slug.slice(1);
+const displayName = profile?.name ?? slug.charAt(0).toUpperCase() + slug.slice(1);
+const domain = profile?.website?.replace('https://', '') ?? slug + '.com';
+const logoUrl = `https://img.logo.dev/${domain}?token=pk_LZPEognIRoGnDKM6tw3obQ`;
 
 const getArticleUrl = (a) => {
   const cat = a.data.category_slug || 'business';
@@ -63,13 +43,8 @@ const getArticleUrl = (a) => {
 };
 
 const getCatLabel = (slug) => ({
-  model:          'モデル',
-  business:       'ビジネス',
-  markets:        'AI関連株',
-  infrastructure: 'インフラ',
-  research:       '研究',
-  policy:         '政策',
-  products:       'プロダクト',
+  model: 'モデル', business: 'ビジネス', markets: 'AI関連株',
+  infrastructure: 'インフラ', research: '研究', policy: '政策', products: 'プロダクト',
 }[slug] || slug);
 ---
 
@@ -77,39 +52,70 @@ const getCatLabel = (slug) => ({
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>{companyLabel} 関連ニュース | AI経済新聞</title>
-  <meta name="description" content={`${companyLabel}に関するAI経済ニュースの一覧です。`} />
+  <title>{displayName} | AI経済新聞 企業データベース</title>
+  <meta name="description" content={profile?.description ?? `${displayName}に関するAI経済ニュース`} />
   <link rel="canonical" href={`https://aikeizai.jp/company/${slug}/`} />
-  <meta property="og:title" content={`${companyLabel} | AI経済新聞`} />
-  <meta property="og:description" content={`${companyLabel}に関するAI経済ニュースの一覧です。`} />
+  <meta property="og:title" content={`${displayName} | AI経済新聞`} />
+  <meta property="og:description" content={profile?.description ?? ''} />
   <meta property="og:type" content="website" />
 
   <style>
     body { margin: 0; font-family: 'Noto Sans JP', -apple-system, sans-serif; background: #f4f6f8; color: #17202a; }
     a { color: inherit; text-decoration: none; }
 
-    .page-header { background: #003f88; color: #fff; padding: 32px 24px; text-align: center; }
-    .page-header h1 { margin: 0 0 8px; font-size: 28px; font-weight: 900; }
-    .page-header p { margin: 0; font-size: 14px; opacity: 0.8; }
+    /* ===== Hero ===== */
+    .company-hero { background: #fff; border-bottom: 1px solid #e8edf2; }
+    .hero-inner { max-width: 1200px; margin: 0 auto; padding: 32px 24px; display: flex; gap: 24px; align-items: flex-start; }
+    .hero-logo { width: 72px; height: 72px; border-radius: 12px; background: #f4f6f8; border: 1px solid #e8edf2; object-fit: contain; padding: 8px; flex-shrink: 0; }
+    .hero-logo-fallback { width: 72px; height: 72px; border-radius: 12px; background: #003f88; display: flex; align-items: center; justify-content: center; font-size: 28px; font-weight: 900; color: #fff; flex-shrink: 0; }
+    .hero-info { flex: 1; }
+    .hero-name { font-size: 28px; font-weight: 900; margin: 0 0 8px; color: #1a1a2e; }
+    .hero-description { font-size: 14px; color: #555; line-height: 1.8; margin: 0 0 16px; }
+    .hero-meta { display: flex; flex-wrap: wrap; gap: 12px; font-size: 12px; color: #888; }
+    .hero-meta span { display: flex; align-items: center; gap: 4px; }
 
-    .layout { display: grid; grid-template-columns: 1fr 340px; gap: 24px; max-width: 1200px; margin: 0 auto; padding: 24px; }
+    /* ===== KPI Cards ===== */
+    .kpi-section { max-width: 1200px; margin: 24px auto 0; padding: 0 24px; }
+    .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+    .kpi-card { background: #fff; border-radius: 3px; padding: 16px; text-align: center; }
+    .kpi-label { font-size: 11px; color: #888; margin-bottom: 6px; }
+    .kpi-value { font-size: 15px; font-weight: 900; color: #003f88; line-height: 1.3; }
 
-    .article-list { display: flex; flex-direction: column; gap: 12px; }
-    .article-card { background: #fff; border-radius: 3px; display: grid; grid-template-columns: 140px 1fr; overflow: hidden; transition: transform 0.15s; }
+    /* ===== Layout ===== */
+    .layout { display: grid; grid-template-columns: 1fr 340px; gap: 24px; max-width: 1200px; margin: 24px auto 0; padding: 0 24px 24px; }
+
+    /* ===== Products ===== */
+    .section { background: #fff; border-radius: 3px; padding: 20px; margin-bottom: 16px; }
+    .section-title { font-size: 13px; font-weight: 900; color: #003f88; margin: 0 0 12px; padding-bottom: 8px; border-bottom: 2px solid #003f88; }
+    .tag-list { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tag { font-size: 12px; padding: 4px 10px; background: #f0f4fa; color: #003f88; border-radius: 4px; border: 1px solid #d0ddf5; }
+    .tag.partner { background: #fff8e1; color: #b45309; border-color: #fde68a; }
+    .tag.topic { background: #f0fdf4; color: #166534; border-color: #bbf7d0; }
+    .tag a { color: inherit; }
+
+    /* ===== Notable ===== */
+    .notable { background: #f0f4fa; border-left: 4px solid #003f88; padding: 12px 16px; border-radius: 0 6px 6px 0; font-size: 13px; line-height: 1.8; color: #1a1a2e; margin-bottom: 16px; }
+
+    /* ===== Articles ===== */
+    .article-list { display: flex; flex-direction: column; gap: 10px; }
+    .article-card { background: #fff; border-radius: 3px; display: grid; grid-template-columns: 120px 1fr; overflow: hidden; transition: transform 0.15s; }
     .article-card:hover { transform: translateY(-2px); }
-    .article-card img { width: 140px; height: 90px; object-fit: cover; }
-    .card-body { padding: 12px 16px; }
-    .card-meta { display: flex; gap: 6px; align-items: center; margin-bottom: 6px; }
-    .category-badge { background: #003f88; color: #fff; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 3px; }
+    .article-card img { width: 120px; height: 78px; object-fit: cover; }
+    .card-body { padding: 10px 14px; }
+    .card-meta { display: flex; gap: 6px; align-items: center; margin-bottom: 4px; }
+    .category-badge { background: #003f88; color: #fff; font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 3px; }
     .card-date { font-size: 11px; color: #999; }
-    .card-title { font-size: 14px; font-weight: 700; line-height: 1.5; color: #1a1a2e; }
+    .card-title { font-size: 13px; font-weight: 700; line-height: 1.5; color: #1a1a2e; }
 
-    .empty { background: #fff; border-radius: 3px; padding: 40px; text-align: center; color: #999; }
+    .external-link { display: inline-flex; align-items: center; gap: 4px; font-size: 12px; color: #003f88; padding: 6px 12px; border: 1px solid #d0ddf5; border-radius: 4px; transition: all 0.15s; }
+    .external-link:hover { background: #003f88; color: #fff; }
 
     @media (max-width: 768px) {
+      .hero-inner { flex-direction: column; gap: 16px; }
+      .kpi-grid { grid-template-columns: repeat(2, 1fr); }
       .layout { grid-template-columns: 1fr; padding: 12px; }
-      .article-card { grid-template-columns: 100px 1fr; }
-      .article-card img { width: 100px; height: 70px; }
+      .article-card { grid-template-columns: 90px 1fr; }
+      .article-card img { width: 90px; height: 60px; }
     }
   </style>
 </head>
@@ -117,33 +123,130 @@ const getCatLabel = (slug) => ({
 <body>
   <Header />
 
-  <div class="page-header">
-    <h1>{companyLabel}</h1>
-    <p>{articles.length}件の記事</p>
+  <!-- Hero -->
+  <div class="company-hero">
+    <div class="hero-inner">
+      <img
+        class="hero-logo"
+        src={logoUrl}
+        alt={displayName}
+        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+      />
+      <div class="hero-logo-fallback" style="display:none">
+        {displayName.charAt(0)}
+      </div>
+      <div class="hero-info">
+        <h1 class="hero-name">{displayName}</h1>
+        {profile?.description && (
+          <p class="hero-description">{profile.description}</p>
+        )}
+        <div class="hero-meta">
+          {profile?.founded && <span>🏢 設立：{profile.founded}年</span>}
+          {profile?.ceo && <span>👤 CEO：{profile.ceo}</span>}
+          {profile?.hq && <span>📍 {profile.hq}</span>}
+          {profile?.website && (
+            <a class="external-link" href={profile.website} target="_blank" rel="noopener noreferrer">
+              公式サイト →
+            </a>
+          )}
+        </div>
+      </div>
+    </div>
   </div>
+
+  <!-- KPI -->
+  {profile && (
+    <div class="kpi-section">
+      <div class="kpi-grid">
+        {profile.valuation && (
+          <div class="kpi-card">
+            <div class="kpi-label">評価額・時価総額</div>
+            <div class="kpi-value">{profile.valuation}</div>
+          </div>
+        )}
+        {profile.revenue && (
+          <div class="kpi-card">
+            <div class="kpi-label">売上・ARR</div>
+            <div class="kpi-value">{profile.revenue}</div>
+          </div>
+        )}
+        {profile.employees && (
+          <div class="kpi-card">
+            <div class="kpi-label">従業員数</div>
+            <div class="kpi-value">{profile.employees}</div>
+          </div>
+        )}
+        <div class="kpi-card">
+          <div class="kpi-label">関連記事数</div>
+          <div class="kpi-value">{articles.length}件</div>
+        </div>
+      </div>
+    </div>
+  )}
 
   <div class="layout">
     <main>
-      {articles.length === 0 ? (
-        <div class="empty">記事が見つかりませんでした</div>
-      ) : (
-        <div class="article-list">
-          {articles.map(a => (
-            <a class="article-card" href={getArticleUrl(a)}>
-              <img
-                src={a.data.image_url || '/ogp.png'}
-                alt={a.data.title}
-                loading="lazy"
-              />
-              <div class="card-body">
-                <div class="card-meta">
-                  <span class="category-badge">{getCatLabel(a.data.category_slug)}</span>
-                  <span class="card-date">{a.data.published_at}</span>
+      <!-- Notable -->
+      {profile?.notable && (
+        <div class="notable">💡 {profile.notable}</div>
+      )}
+
+      <!-- 主要製品 -->
+      {profile?.products && profile.products.length > 0 && (
+        <div class="section">
+          <div class="section-title">主要製品・サービス</div>
+          <div class="tag-list">
+            {profile.products.map(p => <span class="tag">{p}</span>)}
+          </div>
+        </div>
+      )}
+
+      <!-- 提携企業 -->
+      {profile?.partners && profile.partners.length > 0 && (
+        <div class="section">
+          <div class="section-title">主要パートナー</div>
+          <div class="tag-list">
+            {profile.partners.map(p => (
+              <span class="tag partner">
+                <a href={`/company/${p.toLowerCase().replace(/[^a-z0-9]/g, '')}/`}>{p}</a>
+              </span>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <!-- 関連Topic -->
+      {profile?.related_topics && profile.related_topics.length > 0 && (
+        <div class="section">
+          <div class="section-title">関連トピック</div>
+          <div class="tag-list">
+            {profile.related_topics.map(t => (
+              <span class="tag topic">
+                <a href={`/topic/${t}/`}>#{t}</a>
+              </span>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <!-- 最新ニュース -->
+      {articles.length > 0 && (
+        <div class="section">
+          <div class="section-title">最新ニュース（{articles.length}件）</div>
+          <div class="article-list">
+            {articles.slice(0, 10).map(a => (
+              <a class="article-card" href={getArticleUrl(a)}>
+                <img src={a.data.image_url || '/ogp.png'} alt={a.data.title} loading="lazy" />
+                <div class="card-body">
+                  <div class="card-meta">
+                    <span class="category-badge">{getCatLabel(a.data.category_slug)}</span>
+                    <span class="card-date">{a.data.published_at}</span>
+                  </div>
+                  <div class="card-title">{a.data.title}</div>
                 </div>
-                <div class="card-title">{a.data.title}</div>
-              </div>
-            </a>
-          ))}
+              </a>
+            ))}
+          </div>
         </div>
       )}
     </main>
