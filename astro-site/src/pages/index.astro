@@ -30,7 +30,7 @@ const official = allArticles
 const getArticleUrl = (article) => {
   const cat = article.data.category_slug || 'business';
   const slug = article.data.article_slug || article.id;
-  return `/article/${cat}/${slug}`;
+  return `/article/${cat}/${slug}/`;
 };
 
 const getCatLabel = (slug) => ({

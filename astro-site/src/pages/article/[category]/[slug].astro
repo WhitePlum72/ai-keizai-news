@@ -57,7 +57,7 @@ const ogImage = article.data.image_url || 'https://aikeizai.jp/ogp.png';
 const getArticleUrl = (a) => {
   const cat = a.data.category_slug || 'business';
   const slug = a.data.article_slug || a.id;
-  return `/article/${cat}/${slug}`;
+  return `/article/${cat}/${slug}/`;
 };
 
 const getCatLabel = (slug) => ({
