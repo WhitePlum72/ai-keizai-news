@@ -5,7 +5,7 @@ source_url: "https://www.bloomberg.com/news/articles/2026-05-11/pictet-fund-plow
 category: "マーケット"
 category_slug: "markets"
 article_slug: "pictet-fund-ai-stocks-surge"
-published_at: "2026-05-11"
+published_at: "2026-05-12"
 buzz_score: 48.0
 image_url: "/images/articles/article_3743.webp"
 meta_description: "ピクテは運用資産35億ドルのファンドで現金比率を最大30％引き下げ、米国とアジアのAI関連株へ投資した。インフレ鈍化と利上げ終了観測でリスク選好に転じ、エヌビディアやTSMCなどを直接購入。ディープシーク台頭もAI普及の追い風と判断した。"

@@ -5,7 +5,7 @@ source_url: "https://huggingface.co/blog/nvidia/domain-specific-embedding-finetu
 category: "プロダクト"
 category_slug: "products"
 article_slug: "domain-specific-embedding-model-build"
-published_at: "2026-05-11"
+published_at: "2026-05-12"
 buzz_score: 0.0
 image_url: "/images/articles/article_1429.webp"
 meta_description: "1日で特定ドメイン向け埋め込みモデルを構築する低コスト手法が公開された。LLMで訓練データを自動生成し、人間のラベル付け不要で開発期間を短縮。GPUはRTX 4090程度で総コスト10ドル未満を実現した。"

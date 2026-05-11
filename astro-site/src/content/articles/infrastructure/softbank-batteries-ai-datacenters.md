@@ -5,7 +5,7 @@ source_url: "https://www.bloomberg.com/news/articles/2026-05-11/softbank-plans-t
 category: "インフラ"
 category_slug: "infrastructure"
 article_slug: "softbank-batteries-ai-datacenters"
-published_at: "2026-05-11"
+published_at: "2026-05-12"
 buzz_score: 38.0
 image_url: "/images/articles/article_3748.webp"
 meta_description: "ソフトバンク子会社が堺市の工場で、AI向けデータセンターの電力需要急増に対応するため大型蓄電池セルの量産を開始する。生成AI普及による電力逼迫を背景に、安定供給とコスト削減を狙う。"

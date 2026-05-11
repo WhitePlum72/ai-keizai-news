@@ -5,7 +5,7 @@ source_url: "https://blog.google/products-and-platforms/products/search/ai-power
 category: "マーケット"
 category_slug: "markets"
 article_slug: "google-finance-ai-europe-expansion"
-published_at: "2026-05-11"
+published_at: "2026-05-12"
 buzz_score: 30.1
 image_url: "https://storage.googleapis.com/gweb-uniblog-publish-prod/images/UK_1920x1080.max-1440x810.png"
 meta_description: "Google FinanceのAI要約機能が欧州30カ国に拡大。企業業績や市場動向を自然言語で瞬時に分析し、個人投資家の情報格差縮小を目指す。"

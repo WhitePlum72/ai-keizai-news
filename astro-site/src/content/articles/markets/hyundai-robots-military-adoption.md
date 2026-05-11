@@ -5,7 +5,7 @@ source_url: "https://www.bloomberg.com/news/articles/2026-05-11/south-korea-expl
 category: "マーケット"
 category_slug: "markets"
 article_slug: "hyundai-robots-military-adoption"
-published_at: "2026-05-11"
+published_at: "2026-05-12"
 buzz_score: 48.0
 image_url: "/images/articles/article_3745.webp"
 meta_description: "韓国は少子化による深刻な兵力不足を受け、現代自動車のロボット技術を前線配備へ転用する戦略的提携を模索している。2030年代半ばには兵力維持が破綻すると試算され、国防省はAI搭載の無人戦闘システム導入を必須戦略と位置づけ、多額の予算を投じる計"

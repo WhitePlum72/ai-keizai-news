@@ -5,7 +5,7 @@ source_url: "https://huggingface.co/blog/ibm-granite/granite-4-vision"
 category: "研究"
 category_slug: "research"
 article_slug: "granite-4-3b-vision-enterprise"
-published_at: "2026-05-11"
+published_at: "2026-05-12"
 buzz_score: 0.0
 image_url: "/images/articles/article_1424.webp"
 meta_description: "IBMの小型マルチモーダルAI「Granite 4.0 3B Vision」は30億パラメータながら複雑な企業文書の解析でGPT-4o超えの精度を示し、低コストとオープンソースによる機密性の高さが特徴。特に日本の紙文書デジタル化課題に有効な"

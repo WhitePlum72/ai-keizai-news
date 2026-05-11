@@ -5,7 +5,7 @@ source_url: "https://huggingface.co/blog/storage-buckets"
 category: "プロダクト"
 category_slug: "products"
 article_slug: "hugging-face-storage-buckets"
-published_at: "2026-05-11"
+published_at: "2026-05-12"
 buzz_score: 0.0
 image_url: "/images/articles/article_1432.webp"
 meta_description: "Hugging Faceが新機能「Storage Buckets」を導入し、大規模データセットやモデル重みの管理を効率化した。S3互換APIでクラウド感覚の操作を実現し、開発のボトルネック解消を図る。"

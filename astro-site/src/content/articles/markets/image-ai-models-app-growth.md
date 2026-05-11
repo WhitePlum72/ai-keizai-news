@@ -5,7 +5,7 @@ source_url: "https://techcrunch.com/2026/05/04/image-ai-models-now-drive-app-gro
 category: "マーケット"
 category_slug: "markets"
 article_slug: "image-ai-models-app-growth"
-published_at: "2026-05-11"
+published_at: "2026-05-12"
 buzz_score: 0.0
 image_url: "/images/articles/article_1438.webp"
 meta_description: "画像生成AI機能の追加はアプリのダウンロード数を平均6.5倍に押し上げるが、利用は一時的で継続しにくい。急成長を持続的な収益に転換できた事例は限られ、収益化に壁がある。"

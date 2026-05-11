@@ -5,7 +5,7 @@ source_url: "https://huggingface.co/blog/OpenMed/training-mrna-models-25-species
 category: "インフラ"
 category_slug: "infrastructure"
 article_slug: "mrna-language-models-25-species"
-published_at: "2026-05-11"
+published_at: "2026-05-12"
 buzz_score: 0.0
 image_url: "/images/articles/article_1425.webp"
 meta_description: "米企業が165ドルで25種のmRNA解析用言語モデルを訓練し、従来の数億円規模の創薬基盤技術を個人レベルで実現可能にした。低コストで配列から安定性や翻訳効率を高精度予測し、医薬品設計の期間と費用を劇的に削減できる成果である。"

@@ -5,7 +5,7 @@ source_url: "https://openai.com/index/openai-campus-network-student-club-interes
 category: "プロダクト"
 category_slug: "products"
 article_slug: "openai-campus-network-interest"
-published_at: "2026-05-11"
+published_at: "2026-05-12"
 buzz_score: 48.5
 image_url: "https://images.ctfassets.net/kftzwdyauwt9/7jgfj0ck26uG4g1nrzrA0Q/66561482da84669067710304a720a960/OpenAI_Campus_Network-_Student_club_interest_form.png?w=1600&h=900&fit=fill"
 meta_description: "OpenAIが学生主体のAIコミュニティ構築を支援する新プログラムを開始し、ツールや資金提供で活用を促進する。教育現場への生成AI導入格差拡大の可能性が指摘される中、草の根的な共同体形成を図る狙いだ。"

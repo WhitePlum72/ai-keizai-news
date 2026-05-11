@@ -5,7 +5,7 @@ source_url: "https://www.wsj.com/tech/openai-employee-stock-sales-71ed10bd?mod=r
 category: "マーケット"
 category_slug: "markets"
 article_slug: "openai-job-lottery-ticket"
-published_at: "2026-05-11"
+published_at: "2026-05-12"
 buzz_score: 50.0
 image_url: "/images/articles/article_3820.webp"
 meta_description: "退職者を含む一部株主による約4500億円規模のOpenAI株式売却が完了した。ソフトバンク主導で、2年間の換金凍結中に企業価値が3倍超に急騰し、関係者は巨額の売却益を得た。AIブームで利益分配ユニットが莫大な富を生み、「現代の宝くじ」と呼ば"

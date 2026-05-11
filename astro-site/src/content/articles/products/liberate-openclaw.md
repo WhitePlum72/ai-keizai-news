@@ -5,7 +5,7 @@ source_url: "https://huggingface.co/blog/liberate-your-openclaw"
 category: "プロダクト"
 category_slug: "products"
 article_slug: "liberate-openclaw"
-published_at: "2026-05-11"
+published_at: "2026-05-12"
 buzz_score: 0.0
 image_url: "/images/articles/article_1427.webp"
 meta_description: "バイドゥ系UniXAIが、ロボット基盤「OpenClaw」の全設計図・ソースコードをCC0で無償公開した。ハードウェアのコモディティ化により開発者主導エコシステムへの転換を狙い、日本の垂直統合型メーカーにも影響を与える可能性がある。"

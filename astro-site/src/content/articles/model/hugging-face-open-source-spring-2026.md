@@ -5,7 +5,7 @@ source_url: "https://huggingface.co/blog/huggingface/state-of-os-hf-spring-2026"
 category: "モデル"
 category_slug: "model"
 article_slug: "hugging-face-open-source-spring-2026"
-published_at: "2026-05-11"
+published_at: "2026-05-12"
 buzz_score: 0.0
 image_url: "/images/articles/article_1430.webp"
 meta_description: "主要AIモデルの83%がHugging Faceに集約され、登録モデル数は480万件と急増。マルチモーダルモデルが全体の41%を占め、特に軽量モデルの性能向上が顕著である。企業の参入も加速し、上位貢献者の約半数を企業アカウントが占めるなど、"

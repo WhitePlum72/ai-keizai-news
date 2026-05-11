@@ -5,7 +5,7 @@ source_url: "https://huggingface.co/blog/trl-v1"
 category: "モデル"
 category_slug: "model"
 article_slug: "trl-v1-post-training-library"
-published_at: "2026-05-11"
+published_at: "2026-05-12"
 buzz_score: 0.0
 image_url: "/images/articles/article_1426.webp"
 meta_description: "Hugging Faceが大規模言語モデルの学習後処理基盤TRL v1.0を公開。全APIを刷新し単一トレーナークラスに統合することで、DPOやRLVR等の複合的パイプラインを柔軟に構築可能に。現場の変化速度に追随する拡張性と実用性を備えた"

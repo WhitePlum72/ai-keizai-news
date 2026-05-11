@@ -5,7 +5,7 @@ source_url: "https://finance.yahoo.com/sectors/energy/articles/microsoft-deal-st
 category: "インフラ"
 category_slug: "infrastructure"
 article_slug: "microsoft-black-hills-utility-growth"
-published_at: "2026-05-11"
+published_at: "2026-05-12"
 buzz_score: 27.9
 image_url: "https://s.yimg.com/os/en/insidermonkey.com/8217c409d5d601839179045d7b24b98a"
 meta_description: "マイクロソフトのデータセンター向け電力供給契約を獲得した米地方公益企業ブラックヒルズが注目されている。マイクロソフトが建設費を全額負担する異例の契約で、財務リスクが低く、同社の収益成長率は年6～8％への加速が見込まれる。"

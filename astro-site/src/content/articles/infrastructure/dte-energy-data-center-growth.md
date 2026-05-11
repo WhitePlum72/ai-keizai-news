@@ -5,7 +5,7 @@ source_url: "https://finance.yahoo.com/sectors/energy/articles/dte-energy-compan
 category: "インフラ"
 category_slug: "infrastructure"
 article_slug: "dte-energy-data-center-growth"
-published_at: "2026-05-11"
+published_at: "2026-05-12"
 buzz_score: 13.9
 image_url: "https://s.yimg.com/os/en/insidermonkey.com/ad054ab219d5ccea3360f0c3eb713004"
 meta_description: "DTEエナジーはデータセンター需要急増を受け、電力販売量の長期成長率を年5〜7％に上方修正した。これにより1株当たり利益成長率も8〜9％へ引き上げられ、総計2.3ギガワットの新規負荷が見込まれている。"

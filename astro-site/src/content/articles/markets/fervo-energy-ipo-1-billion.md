@@ -5,7 +5,7 @@ source_url: "https://techcrunch.com/2026/05/04/geothermal-startup-fervo-energy-t
 category: "マーケット"
 category_slug: "markets"
 article_slug: "fervo-energy-ipo-1-billion"
-published_at: "2026-05-11"
+published_at: "2026-05-12"
 buzz_score: 0.0
 image_url: "/images/articles/article_1435.webp"
 meta_description: "米地熱ベンチャーFervo EnergyのIPOで最大13億ドル調達見込み、時価総額最大65億ドル。石油ガス掘削技術を応用し地熱発電の地理的限界を突破するEGSを開発中。24年12月期売上高は3100万ドルと倍増も赤字拡大。電力販売契約残高"

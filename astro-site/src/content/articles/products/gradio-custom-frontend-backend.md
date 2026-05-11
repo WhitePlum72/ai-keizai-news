@@ -5,7 +5,7 @@ source_url: "https://huggingface.co/blog/introducing-gradio-server"
 category: "プロダクト"
 category_slug: "products"
 article_slug: "gradio-custom-frontend-backend"
-published_at: "2026-05-11"
+published_at: "2026-05-12"
 buzz_score: 0.0
 image_url: "/images/articles/article_1423.webp"
 meta_description: "Gradioの新機能Custom Componentsは、バックエンドをPythonで共有しつつ、フロントエンドをSvelteやReactで自由に構築可能にした。キーバリューストアで状態を抽象化し、開発分業と高速プロトタイピングを両立。AI"

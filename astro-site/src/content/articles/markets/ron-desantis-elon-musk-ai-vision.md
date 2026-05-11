@@ -5,7 +5,7 @@ source_url: "https://finance.yahoo.com/sectors/technology/articles/ron-desantis-
 category: "マーケット"
 category_slug: "markets"
 article_slug: "ron-desantis-elon-musk-ai-vision"
-published_at: "2026-05-11"
+published_at: "2026-05-12"
 buzz_score: 27.6
 image_url: "https://s.yimg.com/os/en/benzinga_79/eafab1b6b48e9429ff292a34186554d6"
 meta_description: "フロリダ州知事がSpaceXとAnthropicの提携を評価し、マスク氏の人間中心のAI観を賞賛した。提携はロケット製造にAIを導入し、安全性向上を図る異色の協業で、政治的議論にも発展した。"

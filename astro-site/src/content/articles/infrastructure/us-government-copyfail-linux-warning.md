@@ -5,7 +5,7 @@ source_url: "https://techcrunch.com/2026/05/04/u-s-government-warns-of-severe-co
 category: "インフラ"
 category_slug: "infrastructure"
 article_slug: "us-government-copyfail-linux-warning"
-published_at: "2026-05-11"
+published_at: "2026-05-12"
 buzz_score: 0.0
 image_url: "/images/articles/article_1436.webp"
 meta_description: "CISAはLinuxの深刻な脆弱性CopyFailの悪用を警告。root権限奪取や重要インフラ攻撃に悪用され、政府・金融などが標的に。早急なパッチ適用とネットワーク隔離が必要。"
