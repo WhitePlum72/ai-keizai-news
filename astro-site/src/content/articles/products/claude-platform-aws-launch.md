@@ -1,0 +1,41 @@
+---
+title: "AnthropicがAWSでネイティブ基盤提供を開始 認証統合で導入障壁を大幅低減"
+source: "AWS Machine Learning"
+source_url: "https://aws.amazon.com/blogs/machine-learning/introducing-claude-platform-on-aws-anthropics-native-platform-through-your-aws-account/"
+category: "プロダクト"
+category_slug: "products"
+article_slug: "claude-platform-aws-launch"
+published_at: "2026-05-12"
+buzz_score: 40.5
+image_url: "https://d2908q01vomqb2.cloudfront.net/f1f836cb4ea6efb2a0b1b99f41ad8b103eff4b59/2026/05/11/ml-20969.png"
+meta_description: "AnthropicがAWS上でClaudeを直接利用できる新サービスを提供開始。単一認証で契約・請求が統合され、IAMによる権限制御も可能になり、企業の導入負荷を大幅に低減する。"
+topics_json: ["amazon", "anthropic"]
+companies_json: ["amazon", "anthropic"]
+---
+
+
+Anthropicは4月15日、Amazon Web Services（AWS）上で同社のAIプラットフォーム「Claude」をネイティブ環境として直接利用できる新サービス「Claude Platform on AWS」の一般提供を開始した。AWSアカウントから単一の認証でアクセスでき、個別の契約や請求手続きが不要になることで、企業の生成AI導入における管理負荷が大幅に軽減される。
+
+## 単一アカウントで完結する料金体系と運用設計
+
+Claude Platform on AWSの中核的な特徴は、AWSの既存アカウントにすべての認証・契約・請求を統合した点にある。これまでAnthropicのClaudeを本格導入するには、Anthropicとの直接契約に加え、別途APIキーの発行やクレジットカード登録といった手続きが必要だった。特に金融機関や政府系組織では、外部ベンダーとの直接決済関係の構築が調達プロセス上の障壁となるケースが少なくなかった。
+
+新サービスでは、AWSマネジメントコンソールからシングルサインオンでAnthropicのコンソールに遷移し、Claude SonnetやHaikuといったモデル群を即座に利用できる。請求はAWSの月額利用料に統合され、既存のAWS契約に基づく与信枠や支払い条件がそのまま適用される。Anthropicのプロダクト責任者であるスコット・ホワイト氏は発表文において「企業顧客から最も多く寄せられていた調達面での複雑さを解消した」と述べている。
+
+## エンタープライズ向け機能をAWS上で直接提供
+
+Claude Platform on AWSでは、Anthropicが提供するプロジェクト管理やユーザー権限制御といったエンタープライズ向け機能も、AWS環境内で一元的に利用できる。管理者はAWS Identity and Access Management（IAM）を通じて、組織内の誰がどのClaudeモデルにアクセスできるかを細かく設定できる。これにより、機密性の高い業務データを扱う部門でも、ガバナンスを効かせた形での生成AI活用が可能になる。
+
+特筆すべきは、こうした機能がAnthropicのネイティブプラットフォームそのものの体験として提供される点だ。AWSが仲介するマーケットプレイス型の提供ではなく、Anthropicの開発したインターフェースとワークスペースを、AWSのアカウント基盤で包み込んだ設計になっている。AWSは現時点で、Anthropicのネイティブプラットフォーム体験を提供する最初のクラウドベンダーとなる。
+
+## 競合対立から協調へと転じた両社の戦略意図
+
+今回の発表は、AWSとAnthropicの関係が単なる資本提携を超えて、プロダクト統合の段階に入ったことを示す。AWSは2023年9月にAnthropicへ最大40億ドルの戦略的投資を発表し、TrainiumやInferentiaといった自社開発AIチップの利用拡大を進めてきた。一方でAWSは独自の生成AIサービス「Amazon Bedrock」や「Amazon Q」を展開しており、Anthropicのプラットフォームを直接提供することは、一見すると競合関係を生み出すようにも映る。
+
+しかし、両社はこの点を明確に棲み分けている。Bedrockが複数の基盤モデルをAPI経由で統合的に利用するサービスであるのに対し、Claude Platform on AWSはAnthropicの研究開発チームと直接対話しながらプロンプト設計やモデル評価を行いたいデータサイエンティストやAIエンジニアを主な対象としている。AWSのAI担当バイスプレジデントであるマット・ウッド氏は「顧客のAI活用スタイルは一様ではなく、複数の経路を用意することが重要だ」との見解を示している。
+
+## 日本市場におけるクラウドAIガバナンスへの波及効果
+
+日本市場においては、AWSの東京リージョンと大阪リージョンを通じた低レイテンシーでのClaude利用が可能になる点が、金融や製造業のAIワークロード移行を加速させる可能性がある。国内のエンタープライズ企業では、AWSを基盤とするシステムに生成AI機能を組み込む動きが活発化しているが、Anthropicとの個別契約やドル建て決済が調達プロセス上の課題となる事例が指摘されていた。
+
+Claude Platform on AWSの提供開始により、日本企業は既存のAWS日本法人との契約・請求関係の枠内でClaudeの全機能を評価・導入できるようになる。個人情報保護法や金融庁のガイドラインに対応したデータ取り扱いポリシーをAWS側で一元管理できることも、コンプライアンス部門の負担軽減につながるとみられる。国内SIer各社は、この統合認証モデルを前提としたシステム構築支援サービスの拡充を始めており、エンタープライズAI市場の競争が新たな段階に入ったと言える。
