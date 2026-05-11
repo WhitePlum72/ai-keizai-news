@@ -1,0 +1,47 @@
+---
+title: "安全なAIモデル共有形式SafetensorsがPyTorch財団に移管"
+source: "Hugging Face"
+source_url: "https://huggingface.co/blog/safetensors-joins-pytorch-foundation"
+category: "政策"
+category_slug: "policy"
+article_slug: "safetensors-joins-pytorch-foundation"
+published_at: "2026-05-11"
+buzz_score: 0.0
+image_url: "/images/articles/article_1420.webp"
+meta_description: "Safetensorsは、悪意あるコード埋め込みを防ぐAIモデル共有形式で、Hugging FaceからPyTorch財団へ移管された。8万超のモデルで採用され、中立資産として安心利用が促進される。"
+topics_json: ["amazon", "google", "meta", "microsoft"]
+companies_json: ["amazon", "google", "meta", "microsoft"]
+---
+
+
+機械学習分野で広く使われる深層学習フレームワーク「PyTorch」を支援するPyTorch財団は、AIモデルの安全な保存・共有形式であるSafetensorsの管理を引き継いだ。Hugging Faceが主導して開発したこの形式は、モデルファイルに悪意あるコードを埋め込む攻撃を防ぐ設計で、すでに8万を超えるモデルが同形式で公開されている。今回の移管により、SafetensorsはPyTorchエコシステムの中立資産として、より多くの企業や開発者が安心して利用できる基盤となる。
+
+## なぜSafetensorsが生まれたのか
+
+従来、PyTorchのモデル保存にはPython標準のシリアライズ方式であるpickleが使われてきた。pickleはオブジェクトを直接バイト列に変換できる利便性がある一方、復元時に任意のコードが実行される仕様上の脆弱性を抱える。このため第三者が配布するモデルファイルを読み込む際、ランサムウェアやデータ窃取コードが仕込まれているリスクが常に指摘されていた。
+
+Hugging FaceのエンジニアであるNicolas Patry氏は2022年、この問題を根本的に解決するためSafetensorsを考案した。同形式は純粋なテンソルデータと最小限のメタデータのみを格納し、コード実行を一切許容しない設計を採用する。保存・読み込み速度もpickleより高速で、大規模モデルのゼロコピーロードにも対応する。現在Hugging Face Hub上では8万5000を超える公開モデルがSafetensors形式で提供され、総ダウンロード数は10億回を突破している。
+
+## 移管の背景にあるエコシステム戦略
+
+Hugging FaceがSafetensorsをPyTorch財団へ移管した判断は、特定企業の管理下から中立的な場へ移すことで普及を加速させる意図がある。PyTorch財団はLinux Foundationのもとで運営され、Meta、Microsoft、Google、Amazonなどが加盟する。Hugging Faceの最高技術責任者であるJulien Chaumond氏は「SafetensorsはAIコミュニティ全体にとって不可欠なインフラになった。中立的な財団のもとで長期的な発展を担保するのが自然な流れだ」と説明する。
+
+PyTorch財団のエグゼクティブディレクターであるMatt White氏によると、今回の移管は両組織の間で約6カ月かけて調整が進められた。SafetensorsのコアリポジトリはGitHub上でPyTorch財団の管理下に移され、これまで通りオープンソースライセンスのもとで開発が継続される。Hugging Faceは今後も仕様策定や実装改善に協力するが、ガバナンスは財団が担う形となる。
+
+## ゼロコピーロードがもたらす省メモリ効果
+
+Safetensorsの技術的な特長の一つに、大規模モデルをメモリ上で効率的に扱うゼロコピーロード機能がある。通常、モデルファイルを読み込む際はファイル全体をメモリに展開してから必要な部分をGPUに転送するが、SafetensorsはファイルをメモリマップドI/Oで開き、テンソルが必要になった時点でGPUへ直接転送できる。
+
+この仕組みにより、700億パラメータ級の大規模言語モデルを扱う場合でもCPUメモリ消費を抑えつつ起動時間を短縮できる。Hugging Faceの測定では、従来形式と比較して読み込み時間が最大で76％短縮されたケースもある。クラウド環境で複数のモデルを並行運用するサービス事業者にとって、この省メモリ効果はインフラコストの低減に直結する利点となる。
+
+## 国内AI開発現場への波及効果
+
+日本国内でも、大規模言語モデルの自社開発やファインチューニングに取り組む企業が増えている。サイバーエージェントやストックマーク、Preferred Networksなどは独自モデルを公開しており、コミュニティとの安全なモデル共有は喫緊の課題だ。経済産業省が2024年に公表したAI事業者ガイドラインでも、モデル配布時のセキュリティ対策が明記された。
+
+Safetensorsの標準化が進めば、国内企業が海外のオープンソースモデルを検証する際の安全性が高まり、技術導入のハードルが下がる。同時に国内発のモデルを国際的に公開する際も、Safetensors形式を採用することでダウンロード側の安心感を確保できる。PyTorch財団の日本アンバサダーを務めるエンジニアからは、日本語ドキュメントの整備や国内勉強会での啓蒙を進める動きも出始めている。
+
+## セキュリティ形式の標準化が促す信頼基盤
+
+PyTorch財団への移管は、Safetensorsが事実上の業界標準へと踏み出す契機となる。pickle形式の使用を段階的に制限する流れはすでに始まっており、Hugging Face Hubでは2024年以降、新規モデルのデフォルト保存形式をSafetensorsに切り替えた。主要なモデル提供元であるMetaのLlamaシリーズやMistral AIのモデル群もSafetensors版を標準で公開している。
+
+セキュリティ研究者からは「AIサプライチェーンにおける信頼の基点が整備された」との評価が出ている。モデル共有の安全性が担保されることで、金融や医療など規制の厳しい業界でのAI導入が促進される可能性がある。PyTorch財団は今後、仕様の国際標準化に向けた協議も視野に入れており、Safetensorsの仕様文書をIETFやISOに提出する選択肢を検討している。
