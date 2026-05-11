@@ -1,4 +1,6 @@
 ﻿{
+  "buildCommand": "cd astro-site && npm run build",
+  "outputDirectory": "astro-site/dist",
   "redirects": [
     {
       "source": "/article/article-1385",
