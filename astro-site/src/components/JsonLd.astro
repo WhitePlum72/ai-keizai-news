@@ -49,8 +49,8 @@ const newsArticleSchema = type === "article" ? {
     "width": 1200,
     "height": 675,
   } : undefined,
-  "datePublished": datePublished,
-  "dateModified": dateModified ?? datePublished,
+"datePublished": datePublished ? datePublished + "T00:00:00+09:00" : undefined,
+"dateModified": (dateModified ?? datePublished) ? (dateModified ?? datePublished) + "T00:00:00+09:00" : undefined,
   "author": {
     "@type": "Organization",
     "name": authorName,
