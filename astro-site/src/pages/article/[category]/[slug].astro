@@ -51,7 +51,7 @@ const relatedArticles = allArticles
 const { Content } = await render(article);
 
 const description = article.body.slice(0, 120).replace(/[#\n]/g, '');
-const canonicalUrl = `https://aikeizai.jp/article/${article.data.category_slug || 'business'}/${article.data.article_slug || article.id}`;
+const canonicalUrl = `https://aikeizai.jp/article/${article.data.category_slug || 'business'}/${article.data.article_slug || article.id}/`;
 const ogImage = article.data.image_url || 'https://aikeizai.jp/ogp.png';
 
 const getArticleUrl = (a) => {
