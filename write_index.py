@@ -1,4 +1,6 @@
----
+﻿import pathlib
+
+content = '''---
 import { getCollection } from 'astro:content';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
@@ -59,7 +61,7 @@ const getCatColor = (slug) => ({
 }[slug] || "#555");
 
 const getLead = (entry) =>
-  ((entry.body || "").replace(/[#*`\[\]\n]/g, " ").replace(/\s+/g, " ").trim().slice(0, 120)) + "…";
+  ((entry.body || "").replace(/[#*`\\[\\]\\n]/g, " ").replace(/\\s+/g, " ").trim().slice(0, 120)) + "…";
 
 const formatDate = (str) => {
   if (!str) return "";
@@ -369,3 +371,8 @@ const newsMediaSchema = {
 
 </body>
 </html>
+'''
+
+with open("astro-site/src/pages/index.astro", "w", encoding="utf-8", newline="\n") as f:
+    f.write(content)
+print("完了")
