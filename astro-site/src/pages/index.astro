@@ -40,7 +40,7 @@ const latestExcluded = new Set([...breakingIds]);
 const latest = [...allArticles]
   .sort((a, b) => (b.data.published_at || "").localeCompare(a.data.published_at || ""))
   .filter(a => !latestExcluded.has(a.id))
-  .slice(0, 14);
+  .slice(0, 10);
 
 const getArticleUrl = (article) => {
   const cat = article.data.category_slug || "business";
@@ -272,7 +272,7 @@ const newsMediaSchema = {
 
   {/* 上4件：サムネ＋タイトル＋リード */}
   <div class="latest-top-grid">
-    {latest.slice(0, 4).map(entry => (
+    {latest.slice(0, 2).map(entry => (
       <a class="lt-card" href={getArticleUrl(entry)}>
         {entry.data.image_url
           ? <img class="lt-img" src={entry.data.image_url} alt={entry.data.title} loading="eager" />
