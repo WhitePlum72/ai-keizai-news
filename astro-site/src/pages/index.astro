@@ -40,7 +40,7 @@ const latestExcluded = new Set([...breakingIds]);
 const latest = [...allArticles]
   .sort((a, b) => (b.data.published_at || "").localeCompare(a.data.published_at || ""))
   .filter(a => !latestExcluded.has(a.id))
-  .slice(0, 12);
+  .slice(0, 14);
 
 const getArticleUrl = (article) => {
   const cat = article.data.category_slug || "business";
@@ -230,6 +230,30 @@ const newsMediaSchema = {
     .chip-wrap { display: flex; flex-wrap: wrap; gap: 7px; }
     .chip { font-size: 12px; font-weight: 700; padding: 5px 13px; border-radius: 20px; background: #edf2fb; color: #003f88; border: 1px solid #c8d8f0; transition: all 0.15s; }
     .chip:hover { background: #003f88; color: #fff; border-color: #003f88; }
+    /* 最新記事：上4件グリッド */
+.latest-top-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 10px; }
+.lt-card { background: #fff; border-radius: 4px; overflow: hidden; border: 1px solid #e8ecf2; display: block; transition: border-color 0.15s, transform 0.15s; }
+.lt-card:hover { border-color: #b0c4de; transform: translateY(-2px); }
+.lt-img { width: 100%; aspect-ratio: 16/9; object-fit: cover; }
+.lt-placeholder { width: 100%; aspect-ratio: 16/9; background: #edf0f7; display: flex; align-items: center; justify-content: center; font-size: 32px; }
+.lt-body { padding: 10px 12px 12px; }
+.lt-title { font-size: 13px; font-weight: 700; line-height: 1.55; color: #1a1a1a; margin-bottom: 5px; }
+.lt-lead { font-size: 11px; color: #666; line-height: 1.7; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 5px; }
+.lt-meta { font-size: 10px; color: #aaa; display: flex; gap: 6px; }
+
+/* 最新記事：残り10件グリッド */
+.latest-rest-grid { display: grid; grid-template-columns: repeat(2, 1fr); background: #fff; border-radius: 4px; border: 1px solid #e8ecf2; overflow: hidden; }
+.lr-item { display: block; padding: 10px 12px; border-bottom: 1px solid #f0f2f5; border-right: 1px solid #f0f2f5; transition: background 0.1s; text-decoration: none; color: inherit; }
+.lr-item:hover { background: #f7f9fc; }
+.lr-item:nth-child(2n) { border-right: none; }
+.lr-title { font-size: 12px; font-weight: 700; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-top: 3px; }
+.lr-meta { font-size: 10px; color: #aaa; margin-top: 3px; }
+
+@media (max-width: 600px) {
+  .latest-top-grid { grid-template-columns: 1fr; }
+  .latest-rest-grid { grid-template-columns: 1fr; }
+  .lr-item { border-right: none; }
+}
     @media (max-width: 900px) { .main-grid { grid-template-columns: 1fr; } .breaking-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (max-width: 600px) { .hero-title { font-size: 17px; } .official-grid { grid-template-columns: 1fr; } .cat-grid { grid-template-columns: 1fr; } }
   </style>
@@ -242,6 +266,50 @@ const newsMediaSchema = {
   <h1 style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);">AI経済新聞 — AI・半導体・市場の最新ニュース</h1>
   <div class="main-grid">
     <main>
+
+    <div class="latest-section" style="margin-bottom:28px;">
+  <div class="sec-head"><span class="sec-title">📰 最新記事</span></div>
+
+  {/* 上4件：サムネ＋タイトル＋リード */}
+  <div class="latest-top-grid">
+    {latest.slice(0, 4).map(entry => (
+      <a class="lt-card" href={getArticleUrl(entry)}>
+        {entry.data.image_url
+          ? <img class="lt-img" src={entry.data.image_url} alt={entry.data.title} loading="eager" />
+          : <div class="lt-placeholder" aria-hidden="true">📰</div>
+        }
+        <div class="lt-body">
+          <span class="l-cat" style={`background:${getCatColor(entry.data.category_slug)}`}>
+            {getCatLabel(entry.data.category_slug)}
+          </span>
+          <div class="lt-title">{entry.data.title}</div>
+          <div class="lt-lead">{getLead(entry)}</div>
+          <div class="lt-meta">
+            {entry.data.source_label && <span class="l-source-badge">{entry.data.source_label}</span>}
+            <span>{entry.data.source}</span>
+            <span>{formatDate(entry.data.published_at)}</span>
+          </div>
+        </div>
+      </a>
+    ))}
+  </div>
+
+  {/* 残り10件：タイトルのみ */}
+  <div class="latest-rest-grid">
+    {latest.slice(4).map(entry => (
+      <a class="lr-item" href={getArticleUrl(entry)}>
+        <span class="l-cat" style={`background:${getCatColor(entry.data.category_slug)}`}>
+          {getCatLabel(entry.data.category_slug)}
+        </span>
+        <div class="lr-title">{entry.data.title}</div>
+        <div class="lr-meta">
+          <span>{entry.data.source}</span>
+          <span>{formatDate(entry.data.published_at)}</span>
+        </div>
+      </a>
+    ))}
+  </div>
+</div>
 
       {hero && (
         <div class="hero">
@@ -322,29 +390,6 @@ const newsMediaSchema = {
           </div>
         </div>
       ))}
-
-      <div class="latest-section">
-        <div class="sec-head"><span class="sec-title">📰 最新記事</span></div>
-        <div class="latest-list">
-          {latest.map(entry => (
-            <a class="l-item" href={getArticleUrl(entry)}>
-              {entry.data.image_url
-                ? <img class="l-thumb" src={entry.data.image_url} alt={entry.data.title} loading="lazy" />
-                : <div class="l-placeholder" aria-hidden="true">📰</div>
-              }
-              <div class="l-body">
-                <span class="l-cat" style={`background:${getCatColor(entry.data.category_slug)}`}>{getCatLabel(entry.data.category_slug)}</span>
-                <div class="l-title">{entry.data.title}</div>
-                <div class="l-meta">
-                  {entry.data.source_label && <span class="l-source-badge">{entry.data.source_label}</span>}
-                  <span>{entry.data.source}</span>
-                  <span>{formatDate(entry.data.published_at)}</span>
-                </div>
-              </div>
-            </a>
-          ))}
-        </div>
-      </div>
 
       <div class="chip-section">
         <div class="chip-head">🏷 注目トピック</div>
