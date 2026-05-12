@@ -31,3 +31,10 @@ Desktop.ini
 # エディタ
 .vscode/
 .idea/build_and_push.ps1
+check_*.py
+fix_*.py
+write_*.py
+debug_*.py
+find_*.py
+show_*.py
+dump_*.py
