@@ -1,0 +1,89 @@
+﻿import pathlib
+
+content = """---
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI経済新聞について — 運営方針・編集ポリシー</title>
+  <meta name="description" content="AI経済新聞は、AI・テック産業の情報インフラを目指すメディアです。公式発表・論文・規制文書など一次情報を中心に配信します。" />
+  <link rel="canonical" href="https://aikeizai.jp/about/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://aikeizai.jp/about/" />
+  <meta property="og:title" content="AI経済新聞について — 運営方針・編集ポリシー" />
+  <meta property="og:image" content="https://aikeizai.jp/ogp.png" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: "Noto Sans JP", -apple-system, sans-serif; background: #f2f4f7; color: #1a1a1a; font-size: 15px; line-height: 1.8; }
+    a { color: #003f88; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .container { max-width: 800px; margin: 0 auto; padding: 40px 20px 80px; }
+    h1 { font-size: 26px; font-weight: 900; color: #0d1117; margin-bottom: 8px; }
+    .lead { font-size: 15px; color: #555; margin-bottom: 40px; padding-bottom: 24px; border-bottom: 1px solid #e4e8ee; }
+    h2 { font-size: 17px; font-weight: 900; color: #003f88; margin: 36px 0 12px; padding-left: 12px; border-left: 4px solid #003f88; }
+    p { margin-bottom: 16px; color: #333; }
+    .company-box { background: #fff; border: 1px solid #e4e8ee; border-radius: 8px; padding: 24px; margin-top: 40px; }
+    .company-box h2 { border-left: 4px solid #003f88; padding-left: 12px; color: #003f88; font-size: 17px; margin: 0 0 16px; }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    td { padding: 10px 12px; border-bottom: 1px solid #f0f2f5; vertical-align: top; }
+    td:first-child { color: #777; width: 140px; white-space: nowrap; }
+    .contact { margin-top: 40px; padding: 20px; background: #edf2fb; border-radius: 8px; font-size: 14px; }
+    .disclaimer { background: #fff8e1; border: 1px solid #f0c040; border-left: 4px solid #e0a800; border-radius: 4px; padding: 16px 20px; margin-bottom: 32px; font-size: 14px; color: #5a4000; }
+  </style>
+</head>
+<body>
+<Header />
+<div class="container">
+  <h1>AI経済新聞について</h1>
+  <p class="lead">AI経済新聞は、AI・テック産業における意思決定を支える情報インフラを目指して運営されています。</p>
+
+  <div class="disclaimer">
+    <strong>【免責事項】</strong><br />
+    当サイトに掲載されている情報は、情報提供を目的としたものであり、投資・売買・その他の取引を推奨・勧誘するものではありません。掲載情報に基づいて行われた投資判断の結果について、当メディアおよび運営会社は一切の責任を負いません。投資に関する最終判断はご自身の責任において行ってください。
+  </div>
+
+  <h2>ミッション</h2>
+  <p>AIと半導体・市場・政策をめぐる動向は、企業・投資家・研究者・政策立案者にとって不可欠な情報です。AI経済新聞は、その情報を正確かつ迅速に届けることを使命としています。</p>
+
+  <h2>情報ソースの方針</h2>
+  <p>当メディアは、以下の一次情報を優先的に取り扱います。</p>
+  <p>・企業公式ブログ・プレスリリース<br />
+  ・学術論文（arXiv・査読済み論文）<br />
+  ・SEC・金融当局への開示文書<br />
+  ・各国政府・規制機関の公式文書<br />
+  ・国際機関・研究機関の報告書</p>
+  <p>報道機関等の二次情報は参照にとどめ、原典となる一次情報の確認を原則としています。</p>
+
+  <h2>編集方針</h2>
+  <p>情報の正確性・文脈の適切さについては編集基準に基づいて管理しています。誤りが発見された場合は速やかに訂正します。</p>
+
+  <h2>訂正・お問い合わせポリシー</h2>
+  <p>記事の内容に誤りがある場合、または訂正・削除のご要望がある場合は、下記の連絡先までお問い合わせください。確認の上、速やかに対応します。</p>
+
+  <div class="company-box">
+    <h2>運営会社</h2>
+    <table>
+      <tr><td>会社名</td><td>Umebase</td></tr>
+      <tr><td>サービス名</td><td>AI経済新聞</td></tr>
+      <tr><td>サイトURL</td><td><a href="https://aikeizai.jp/">https://aikeizai.jp/</a></td></tr>
+      <tr><td>運営会社URL</td><td><a href="https://umebase.com/">https://umebase.com/</a></td></tr>
+      <tr><td>お問い合わせ</td><td><a href="mailto:aikeizai@umebase.com">aikeizai@umebase.com</a></td></tr>
+    </table>
+  </div>
+
+  <div class="contact">
+    📩 記事に関するご意見・訂正依頼は <a href="mailto:aikeizai@umebase.com">aikeizai@umebase.com</a> までご連絡ください。
+  </div>
+</div>
+<Footer />
+</body>
+</html>
+"""
+
+with open("astro-site/src/pages/about.astro", "w", encoding="utf-8", newline="\n") as f:
+    f.write(content)
+print("完了")
