@@ -1,0 +1,10 @@
+﻿import sqlite3
+conn = sqlite3.connect('data/articles.db')
+c = conn.cursor()
+c.execute("SELECT COUNT(*) FROM articles WHERE buzz_score >= 48")
+print(f"buzz_score 48以上: {c.fetchone()[0]}件")
+c.execute("SELECT COUNT(*) FROM articles WHERE buzz_score >= 48 AND processed = 1")
+print(f"うち処理済み: {c.fetchone()[0]}件")
+c.execute("SELECT COUNT(*) FROM articles WHERE buzz_score >= 48 AND processed = 0")
+print(f"うち未処理: {c.fetchone()[0]}件")
+conn.close()

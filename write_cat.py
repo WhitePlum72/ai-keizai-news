@@ -1,4 +1,4 @@
----
+﻿content = """---
 import { getCollection } from "astro:content";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
@@ -124,3 +124,8 @@ const pageDesc = `AI経済新聞の${label}カテゴリ。AI・テック産業�
   .l-meta { font-size: 11px; color: #aaa; }
   .empty { padding: 40px; text-align: center; color: #999; background: #fff; border-radius: 4px; }
 </style>
+"""
+
+with open("astro-site/src/pages/[category].astro", "w", encoding="utf-8", newline="\n") as f:
+    f.write(content)
+print("完了")
