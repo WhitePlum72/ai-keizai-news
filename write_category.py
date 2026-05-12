@@ -1,4 +1,6 @@
----
+﻿import pathlib
+
+content = """---
 import { getCollection } from "astro:content";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
@@ -114,7 +116,7 @@ const pageDesc = `AI経済新聞の${label}カテゴリ。AI・テック産業�
                   {article.data.source_label && <span class="l-source-badge">{article.data.source_label}</span>}
                   {article.data.title}
                 </div>
-                <div class="l-lead">{(article.body || "").replace(/[#*`\n]/g, " ").trim().slice(0, 120)}…</div>
+                <div class="l-lead">{(article.body || "").replace(/[#*`\\n]/g, " ").trim().slice(0, 120)}…</div>
                 <div class="l-meta">{article.data.source} · {formatDate(article.data.published_at)}</div>
               </div>
             </a>
@@ -128,3 +130,9 @@ const pageDesc = `AI経済新聞の${label}カテゴリ。AI・テック産業�
 <Footer />
 </body>
 </html>
+"""
+
+with open("astro-site/src/pages/[category].astro", "w", encoding="utf-8", newline="\n") as f:
+    f.write(content)
+print("完了")
+
