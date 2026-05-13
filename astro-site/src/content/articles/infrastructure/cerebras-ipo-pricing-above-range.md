@@ -7,7 +7,7 @@ category_slug: "infrastructure"
 article_slug: "cerebras-ipo-pricing-above-range"
 published_at: "2026-05-13"
 buzz_score: 42.0
-image_url: ""
+image_url: "/images/articles/article_5004.webp"
 meta_description: "AI半導体設計のCerebras Systemsは、IPO需要の急騰を受け公開価格を想定レンジ上限以上に設定する見通し。エヌビディア対抗として独自の巨大チップで注目を集め、AIブームを追い風に機関投資家の注文が殺到している。"
 topics_json: ["datacenter", "gpu", "nvidia", "semiconductor"]
 companies_json: ["nvidia", "tsmc"]

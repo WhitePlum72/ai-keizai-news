@@ -7,7 +7,7 @@ category_slug: "markets"
 article_slug: "nvidia-ceo-pay-shrinks"
 published_at: "2026-05-13"
 buzz_score: 54.0
-image_url: ""
+image_url: "/images/articles/article_4932.webp"
 meta_description: "エヌビディアのファンCEOの2026会計年度の総報酬は、業績連動型株式報酬の評価減が主因で前年比27％減の3630万ドルとなった。基本給は100万ドルで据え置かれた。報酬は減ったが、保有株の価値は依然巨額で、半導体業界内でも突出した高水準に"
 topics_json: ["nvidia", "semiconductor"]
 companies_json: ["nvidia"]

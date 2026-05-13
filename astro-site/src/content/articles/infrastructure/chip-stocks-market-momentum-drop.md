@@ -7,7 +7,7 @@ category_slug: "infrastructure"
 article_slug: "chip-stocks-market-momentum-drop"
 published_at: "2026-05-13"
 buzz_score: 36.0
-image_url: ""
+image_url: "/images/articles/article_4935.webp"
 meta_description: "半導体株が急落し、年初来の上昇相場に亀裂が生じた。エヌビディアやAMDが大幅安となり、S&P500種全体を押し下げた。背景には米国の対中半導体輸出規制強化の報道があり、政策リスクが上昇前提の投資戦略や投資家心理を冷やしている。過度な利益期待"
 topics_json: ["amd", "semiconductor"]
 companies_json: ["amd"]
