@@ -40,7 +40,7 @@ const latestExcluded = new Set([...breakingIds]);
 const latest = [...allArticles]
   .sort((a, b) => (b.data.published_at || "").localeCompare(a.data.published_at || ""))
   .filter(a => !latestExcluded.has(a.id))
-  .slice(0, 10);
+  .slice(0, 12);
 
 const getArticleUrl = (article) => {
   const cat = article.data.category_slug || "business";
