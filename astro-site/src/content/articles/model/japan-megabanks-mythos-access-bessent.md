@@ -5,9 +5,9 @@ source_url: "https://www.bloomberg.com/news/articles/2026-05-13/japan-s-megabank
 category: "モデル"
 category_slug: "model"
 article_slug: "japan-megabanks-mythos-access-bessent"
-published_at: "2026-05-13"
+published_at: "2026-05-14"
 buzz_score: 53.0
-image_url: ""
+image_url: "/images/articles/article_5124.webp"
 meta_description: "三菱UFJ、三井住友、みずほの3メガバンクが米Anthropicの最新AI「Mythos」へ限定アクセスする見通し。米財務長官来日を機に協議が進み、サイバーリスクへの高度な防御目的での利用提案が決め手となった。"
 topics_json: ["anthropic"]
 companies_json: ["anthropic"]

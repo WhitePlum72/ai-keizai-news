@@ -5,7 +5,7 @@ source_url: "https://www.theverge.com/ai-artificial-intelligence/928963/data-cen
 category: "インフラ"
 category_slug: "infrastructure"
 article_slug: "data-centers-rural-america"
-published_at: "2026-05-13"
+published_at: "2026-05-14"
 buzz_score: 41.1
 image_url: "https://platform.theverge.com/wp-content/uploads/sites/2/2026/04/STKS528_DATA_CENTERS_B.jpg?quality=90&strip=all&crop=0%2C10.732984293194%2C100%2C78.534031413613&w=1200"
 meta_description: "米メイン州の人口4600人の町で、1500人雇用の製紙工場跡地がデータセンターへ転換される。工場は2020年の爆発事故で閉鎖。地方の脱工業化とデータセンター建設ラッシュが背景にある。土地安・電力余裕が選定理由だ。"

@@ -5,7 +5,7 @@ source_url: "https://www.cnbc.com/2026/05/12/new-futures-market-for-semiconducto
 category: "インフラ"
 category_slug: "infrastructure"
 article_slug: "semiconductors-ai-futures-market"
-published_at: "2026-05-13"
+published_at: "2026-05-14"
 buzz_score: 13.5
 image_url: "https://image.cnbcfm.com/api/v1/image/108233443-1764337969884-gettyimages-2246639666-CBOT_FUTURE.jpeg?v=1764338018&w=1920&h=1080"
 meta_description: "半導体先物市場が開設され、AI需要で高騰するGPU調達コストのリスク回避手段として注目されている。英ベクトラ社がNVIDIA製GPUの賃貸料指数に連動する商品を上場し、初年度想定元本は10億ドル規模に達する見込み。高まるAI訓練コストが市場"

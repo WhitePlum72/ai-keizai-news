@@ -5,9 +5,9 @@ source_url: "https://www.bloomberg.com/news/videos/2026-05-13/daybreak-europe-5-
 category: "インフラ"
 category_slug: "infrastructure"
 article_slug: "trump-xi-summit-nvidia-china"
-published_at: "2026-05-13"
+published_at: "2026-05-14"
 buzz_score: 59.0
-image_url: ""
+image_url: "/images/articles/article_5128.webp"
 meta_description: "エヌビディアCEOが異例の大統領専用機同乗で北京入りし、米中首脳会談ではAIと先端半導体が主要議題に浮上した。一方、AI開発企業アントロピックは300億ドルの大型調達交渉に入り、激化する開発競争と巨額資本の必要性を示している。"
 topics_json: ["datacenter", "nvidia", "semiconductor"]
 companies_json: ["nvidia"]

@@ -5,7 +5,7 @@ source_url: "https://www.bloomberg.com/news/videos/2026-05-13/insight-with-hasli
 category: "政策"
 category_slug: "policy"
 article_slug: "assertive-china-leverageless-trump"
-published_at: "2026-05-13"
+published_at: "2026-05-14"
 buzz_score: 33.0
 image_url: "/images/articles/article_5078.webp"
 meta_description: "中国は関税迂回輸出や先端技術開発で攻勢を強め、レアアース輸出規制も強化。一方、米国は関税の効果が限界に達し政策手段が枯渇しつつある。2026年半ばの米中関係は、戦略的余裕を保つ中国と交渉手段を失ったトランプ政権の非対称な構図となっている。"

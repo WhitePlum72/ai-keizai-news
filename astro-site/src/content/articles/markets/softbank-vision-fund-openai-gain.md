@@ -5,7 +5,7 @@ source_url: "https://www.cnbc.com/2026/05/13/softbank-earnings-fy-2025-vision-fu
 category: "マーケット"
 category_slug: "markets"
 article_slug: "softbank-vision-fund-openai-gain"
-published_at: "2026-05-13"
+published_at: "2026-05-14"
 buzz_score: 41.5
 image_url: "https://image.cnbcfm.com/api/v1/image/108246661-17671042772025-02-03t064652z_1577749545_rc2umcauaumr_rtrmadp_0_softbank-openai.jpeg?v=1767104415&w=1920&h=1080"
 meta_description: "ソフトバンクG傘下のビジョン・ファンドが25年3月期に過去最大級の年間460億ドル利益を計上。OpenAIへの巨額出資による含み益200億ドル超が牽引し、孫氏のAIインフラ再編構想の資金調達力強化にも寄与した。"

@@ -5,9 +5,9 @@ source_url: "https://www.bloomberg.com/news/articles/2026-05-13/softbank-logs-su
 category: "マーケット"
 category_slug: "markets"
 article_slug: "softbank-profit-ai-bets"
-published_at: "2026-05-13"
+published_at: "2026-05-14"
 buzz_score: 66.0
-image_url: ""
+image_url: "/images/articles/article_5016.webp"
 meta_description: "ソフトバンクGの10〜12月期は純利益3693億円と黒字転換。OpenAI出資による評価益が寄与し、ビジョン・ファンドも黒字を維持。ARMの成長も安定収入を支え、孫氏のAI投資戦略が収益化へ進んだ形だ。"
 topics_json: ["datacenter", "openai", "semiconductor"]
 companies_json: ["arm", "openai", "softbank"]

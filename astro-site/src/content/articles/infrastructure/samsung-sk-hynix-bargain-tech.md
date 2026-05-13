@@ -5,7 +5,7 @@ source_url: "https://www.bloomberg.com/news/newsletters/2026-05-13/samsung-sk-hy
 category: "インフラ"
 category_slug: "infrastructure"
 article_slug: "samsung-sk-hynix-bargain-tech"
-published_at: "2026-05-13"
+published_at: "2026-05-14"
 buzz_score: 33.0
 image_url: "/images/articles/article_5114.webp"
 meta_description: "サムスン電子とSKハイニックスは、AI半導体需要拡大で業績が急伸しているにもかかわらず、PERが業界平均を大きく下回り割安な状態だ。この背景には、株主還元に消極的な統治構造や地政学的リスクなど、韓国企業全体に共通する「コリア・ディスカウント"

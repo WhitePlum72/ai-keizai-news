@@ -18,7 +18,7 @@ from urllib.parse import urlparse, parse_qs
 # 設定（環境に合わせて変更）
 # ============================================================
 PROJECT_ROOT = r"C:\Users\info\Desktop\dev\tools\projects\ai-daily-jp"
-DB_PATH      = os.path.join(PROJECT_ROOT, "articles.db")   # DBファイル名が違う場合は変更
+DB_PATH      = os.path.join(PROJECT_ROOT, "data/articles.db")   # DBファイル名が違う場合は変更
 PYTHON_EXE   = r"C:\Users\info\AppData\Local\Programs\Python\Python311\python.exe"
 PORT         = 5555
 DB_TABLE     = "articles"   # テーブル名が違う場合は変更

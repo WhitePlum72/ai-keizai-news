@@ -5,7 +5,7 @@ source_url: "https://www.cnbc.com/2026/05/13/nvidia-says-ceo-jensen-huang-is-joi
 category: "インフラ"
 category_slug: "infrastructure"
 article_slug: "jensen-huang-joins-trump-china-trip"
-published_at: "2026-05-13"
+published_at: "2026-05-14"
 buzz_score: 28.5
 image_url: "https://image.cnbcfm.com/api/v1/image/108302527-1778009344247-Huang-1.jpg?v=1778009579&w=1920&h=1080"
 meta_description: "エヌビディアCEOがトランプ大統領の中国訪問に緊急同行する。大統領の直接電話による異例の招請で実現。AI半導体で市場を席巻する同社の参加は、米中交渉の焦点が先端技術規制にあることを示す。"

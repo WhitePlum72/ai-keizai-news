@@ -5,7 +5,7 @@ source_url: "https://www.wired.com/story/uplift-desk-coupon-code/"
 category: "モデル"
 category_slug: "model"
 article_slug: "uplift-desk-coupon-discounts"
-published_at: "2026-05-13"
+published_at: "2026-05-14"
 buzz_score: 0.0
 image_url: "/images/articles/article_1479.webp"
 meta_description: "Uplift Deskが春季セールを開始し、主力の昇降デスクや人間工学チェアを最大570ドル値引きする。パンデミック後の法人契約が急増し、在宅勤務手当での一括購入需要も拡大した。"

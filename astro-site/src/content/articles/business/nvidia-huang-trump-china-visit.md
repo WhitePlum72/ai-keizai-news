@@ -5,7 +5,7 @@ source_url: "https://www.bloomberg.com/news/videos/2026-05-13/the-china-show-5-1
 category: "ビジネス"
 category_slug: "business"
 article_slug: "nvidia-huang-trump-china-visit"
-published_at: "2026-05-13"
+published_at: "2026-05-14"
 buzz_score: 48.0
 image_url: "/images/articles/article_5086.webp"
 meta_description: "米中首脳会談にエヌビディアCEOが同行した。輸出規制が激化する中での異例の訪中は、AI半導体を巡る覇権争いの最終局面を象徴する。経営トップ自ら北京の交渉に臨む事態は、規制の狭間で中国市場との関係維持に苦慮する同社の危機感の表れだ。"

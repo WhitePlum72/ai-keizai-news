@@ -5,9 +5,9 @@ source_url: "https://www.bloomberg.com/news/videos/2026-05-13/the-opening-trade-
 category: "インフラ"
 category_slug: "infrastructure"
 article_slug: "trump-china-softbank-openai-bet"
-published_at: "2026-05-13"
+published_at: "2026-05-14"
 buzz_score: 71.0
-image_url: ""
+image_url: "/images/articles/article_5192.webp"
 meta_description: "米中両政府の通商トップがソウルで会談し、9年ぶりの大統領訪中に向けた地ならしを進めた。ソフトバンクグループはOpenAIへの投資評価額上昇により四半期純利益が前年同期比約4倍に急増した。"
 topics_json: ["openai", "semiconductor"]
 companies_json: ["openai", "softbank"]

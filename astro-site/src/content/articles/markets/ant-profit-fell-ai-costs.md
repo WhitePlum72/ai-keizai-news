@@ -5,7 +5,7 @@ source_url: "https://www.bloomberg.com/news/articles/2026-05-13/jack-ma-backed-a
 category: "マーケット"
 category_slug: "markets"
 article_slug: "ant-profit-fell-ai-costs"
-published_at: "2026-05-13"
+published_at: "2026-05-14"
 buzz_score: 50.0
 image_url: "/images/articles/article_5117.webp"
 meta_description: "アントの四半期利益が79％減。AI基盤や医療分野への開発費急増が主因で、独自LLMや保険商品のリスク予測モデル構築に巨額を投じた。過去のフィンテック規制の影響も残る中、収益構造の転換は試練を迎えている。"

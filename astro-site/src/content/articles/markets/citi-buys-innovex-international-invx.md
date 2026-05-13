@@ -5,7 +5,7 @@ source_url: "https://finance.yahoo.com/news/citi-initiates-coverage-innovex-inte
 category: "マーケット"
 category_slug: "markets"
 article_slug: "citi-buys-innovex-international-invx"
-published_at: "2026-05-13"
+published_at: "2026-05-14"
 buzz_score: 41.0
 image_url: "https://s.yimg.com/os/en/insidermonkey.com/cf1851d18b84c22ce181dbe4ca3f0d73"
 meta_description: "シティが石油ガス機器のInnovex Internationalに買い推奨、目標株価19ドルを設定した。効率化製品の需要拡大やストック型収益、統合シナジーを評価している。"

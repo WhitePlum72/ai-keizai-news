@@ -5,7 +5,7 @@ source_url: "https://www.zdnet.com/article/how-to-learn-claude-code-with-free-an
 category: "プロダクト"
 category_slug: "products"
 article_slug: "learn-claude-code-free-anthropic"
-published_at: "2026-05-13"
+published_at: "2026-05-14"
 buzz_score: 34.5
 image_url: "https://www.zdnet.com/a/img/resize/cb3c07a5b5ae907e7af4ba8ae96cb8c0fcc6e955/2026/03/18/1ec9f2a0-f138-4e03-ad76-2f145a4244a4/dsc09838.jpg?auto=webp&fit=crop&height=675&width=1200"
 meta_description: "Anthropicが開発支援AI「Claude Code」等を学べる無料講座を公開。記者が試した20分のコースで、コード解析や修正指示の基礎を習得できた。API利用促進が狙いだが、開発者の学習コストを大幅に下げると注目されている。"

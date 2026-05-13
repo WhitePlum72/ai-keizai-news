@@ -5,7 +5,7 @@ source_url: "https://www.bloomberg.com/news/articles/2026-05-13/europe-s-oil-gas
 category: "マーケット"
 category_slug: "markets"
 article_slug: "europe-oil-gas-storage-flexibility"
-published_at: "2026-05-13"
+published_at: "2026-05-14"
 buzz_score: 33.0
 image_url: "/images/articles/article_5089.webp"
 meta_description: "欧州のエネルギー業界団体が、ガス貯蔵率90％を毎年11月までに達成する現行目標の柔軟化を要請した。厳格な期限が夏季の買い付け競争と価格高騰を招くとして、中間目標の導入や地政学的リスク等に応じた許容幅の設定を求めている。"

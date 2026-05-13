@@ -5,7 +5,7 @@ source_url: "https://finance.yahoo.com/sectors/technology/articles/alphabet-cons
 category: "インフラ"
 category_slug: "infrastructure"
 article_slug: "alphabet-amazon-overseas-debt-ai"
-published_at: "2026-05-13"
+published_at: "2026-05-14"
 buzz_score: 19.5
 image_url: "https://s.yimg.com/os/en/reuters-finance.com/877aba15111b7e5415a75bf0688c8097"
 meta_description: "AlphabetとAmazonがAI投資の資金調達を海外債券市場で加速し、総額100億ドル超を発行した。低金利の海外市場を活用し、データセンターなどAI基盤の拡充に数十億ドル規模の資金を機動的に確保する戦略が鮮明になった。"

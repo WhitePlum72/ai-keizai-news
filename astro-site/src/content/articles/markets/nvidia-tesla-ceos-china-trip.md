@@ -5,9 +5,9 @@ source_url: "https://www.bloomberg.com/news/articles/2026-05-13/nvidia-tesla-sha
 category: "マーケット"
 category_slug: "markets"
 article_slug: "nvidia-tesla-ceos-china-trip"
-published_at: "2026-05-13"
+published_at: "2026-05-14"
 buzz_score: 54.0
-image_url: ""
+image_url: "/images/articles/article_5186.webp"
 meta_description: "トランプ大統領の訪中にテスラのマスクCEOとエヌビディアのファンCEOが同行し、両社の株価が上昇した。中国市場での事業拡大期待に加え、米中貿易摩擦の緩和観測がハイテク株全体の買いを誘った。"
 topics_json: ["nvidia", "semiconductor"]
 companies_json: ["nvidia"]

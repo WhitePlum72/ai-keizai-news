@@ -5,7 +5,7 @@ source_url: "https://www.bloomberg.com/news/articles/2026-05-13/nebius-reports-6
 category: "インフラ"
 category_slug: "infrastructure"
 article_slug: "nebiussales-jump-ai-datacenter"
-published_at: "2026-05-13"
+published_at: "2026-05-14"
 buzz_score: 33.0
 image_url: "/images/articles/article_5113.webp"
 meta_description: "Nebiusの第1四半期売上高が前年比684%増と急伸。生成AI需要を背景にGPUクラウド事業が好調で、設備投資を75億ドルへ上方修正し収益化を加速する。"
