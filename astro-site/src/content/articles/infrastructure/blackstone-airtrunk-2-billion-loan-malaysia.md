@@ -5,7 +5,7 @@ source_url: "https://www.bloomberg.com/news/articles/2026-05-14/blackstone-s-air
 category: "インフラ"
 category_slug: "infrastructure"
 article_slug: "blackstone-airtrunk-2-billion-loan-malaysia"
-published_at: "2026-05-14"
+published_at: "2026-05-15"
 buzz_score: 45.0
 image_url: "/images/articles/article_5383.webp"
 meta_description: "ブラックストーン系データセンター運営会社エアトランクが、マレーシアでの事業拡大に向け最大23億ドルの融資調達を進めている。AI特需を背景に東南アジアで資金需要が高まる中、同社は国際金融機関と交渉し、大規模施設建設の具体化へ舵を切った。"

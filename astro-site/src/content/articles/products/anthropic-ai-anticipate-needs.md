@@ -5,7 +5,7 @@ source_url: "https://techcrunch.com/2026/05/13/anthropics-cat-wu-says-that-in-th
 category: "プロダクト"
 category_slug: "products"
 article_slug: "anthropic-ai-anticipate-needs"
-published_at: "2026-05-14"
+published_at: "2026-05-15"
 buzz_score: 41.5
 image_url: "https://techcrunch.com/wp-content/uploads/2026/05/Cat-Wu.jpg?resize=1200,800"
 meta_description: "Anthropicのウー氏は、AIが要求前に意図を察知して動く「先回り支援」が開発の未来を変えると語った。コード理解や自律的な提案を行う「Claude Code」は、人間とAIの常時協働を目指し、思考過程の透明性を重視する。"

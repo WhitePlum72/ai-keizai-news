@@ -5,7 +5,7 @@ source_url: "https://techcrunch.com/2026/05/13/anthropic-courts-a-new-kind-of-cu
 category: "マーケット"
 category_slug: "markets"
 article_slug: "anthropic-small-business-courts"
-published_at: "2026-05-14"
+published_at: "2026-05-15"
 buzz_score: 45.5
 image_url: "https://techcrunch.com/wp-content/uploads/2026/03/Dario-Amodei-Anthropic-1.jpg?w=1024"
 meta_description: "Anthropicが中小企業市場へ本格参入し、約3600万社の争奪戦が始まった。安全性と指示理解力に優れたAIを低価格で提供し、専門知識不要の連携機能も訴求する。大企業から中小企業へAI競争の主戦場が移り、日本市場でも今後の普及拡大が課題と"

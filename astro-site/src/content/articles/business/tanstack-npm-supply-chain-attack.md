@@ -5,7 +5,7 @@ source_url: "https://openai.com/index/our-response-to-the-tanstack-npm-supply-ch
 category: "ビジネス"
 category_slug: "business"
 article_slug: "tanstack-npm-supply-chain-attack"
-published_at: "2026-05-14"
+published_at: "2026-05-15"
 buzz_score: 48.5
 image_url: "https://images.ctfassets.net/kftzwdyauwt9/5sVkleeWkpnumrq0G1UkIW/138a18ce1af4678fc72e12fe691f3ad8/Frame-1.png?w=1600&h=900&fit=fill"
 meta_description: "OpenAIは、改ざんされたTanStack経由で社内システムに侵入されたが、顧客データへの影響はないと発表。macOSアプリのコード署名証明書が不正取得されたため、全ユーザーに2026年6月12日までの更新を要請している。"

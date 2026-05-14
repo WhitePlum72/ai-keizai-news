@@ -5,7 +5,7 @@ source_url: "https://www.bloomberg.com/news/articles/2026-05-14/nvidia-partner-h
 category: "インフラ"
 category_slug: "infrastructure"
 article_slug: "nvidia-hon-hai-profit-ai-servers"
-published_at: "2026-05-14"
+published_at: "2026-05-15"
 buzz_score: 55.0
 image_url: "/images/articles/article_5376.webp"
 meta_description: "鴻海精密工業の四半期決算は、AI向けサーバー販売好調で市場予測を上回る増益となった。NVIDIAの最新GPU搭載製品の出荷本格化が寄与し、データセンター投資の裾野拡大が同社の成長を支えている。"

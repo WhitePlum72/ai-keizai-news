@@ -5,7 +5,7 @@ source_url: "https://www.wsj.com/opinion/the-real-story-of-the-openai-case-a326a
 category: "ビジネス"
 category_slug: "business"
 article_slug: "real-story-openai-case"
-published_at: "2026-05-14"
+published_at: "2026-05-15"
 buzz_score: 48.0
 image_url: "/images/articles/article_5334.webp"
 meta_description: "OpenAIの営利化で、州司法長官がずさんな審査で納税者の利益を軽視し承認した実態が明らかになった。非営利資産の価値算定が不透明なまま営利移転され、公的支援で育った知的財産が私物化された疑いが指摘されている。"

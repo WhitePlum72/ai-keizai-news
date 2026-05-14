@@ -5,7 +5,7 @@ source_url: "https://www.wsj.com/tech/ai/anthropic-was-behind-now-its-the-ai-boo
 category: "マーケット"
 category_slug: "markets"
 article_slug: "anthropic-ai-boom-frontrunner"
-published_at: "2026-05-14"
+published_at: "2026-05-15"
 buzz_score: 43.0
 image_url: "/images/articles/article_5330.webp"
 meta_description: "Anthropicは、複雑なコーディングを自動化するAIの実用性で企業から支持を集め、開発者利用でOpenAIを逆転した。2027年には営業利益が150億ドルに達する見通しで、企業向け戦略が業界首位への躍進を支えている。"

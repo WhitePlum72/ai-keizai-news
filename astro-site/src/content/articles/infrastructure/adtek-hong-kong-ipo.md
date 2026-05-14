@@ -5,7 +5,7 @@ source_url: "https://www.bloomberg.com/news/articles/2026-05-14/adtek-is-said-to
 category: "インフラ"
 category_slug: "infrastructure"
 article_slug: "adtek-hong-kong-ipo"
-published_at: "2026-05-14"
+published_at: "2026-05-15"
 buzz_score: 56.0
 image_url: "/images/articles/article_5375.webp"
 meta_description: "深センAdtekが香港IPOを検討中で、評価額は約40億ドルを想定。データセンター向け先端基板を手がけ、3億～5億ドルの調達を目指す。中国のAI・データセンター関連の上場ラッシュの一環で、市況次第では2025年後半の上場となる可能性がある。"

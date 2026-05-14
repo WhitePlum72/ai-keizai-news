@@ -1,416 +1,1876 @@
 ﻿---
+/**
+ * AI経済新聞 preview.astro
+ * URL: http://localhost:4321/preview/
+ */
 import { getCollection } from 'astro:content';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import Sidebar from '../components/Sidebar.astro';
 
 const allArticles = await getCollection('articles');
-const sorted = [...allArticles].sort((a, b) => (b.data.buzz_score || 0) - (a.data.buzz_score || 0));
+const sorted = [...allArticles].sort(
+  (a, b) => (b.data.buzz_score || 0) - (a.data.buzz_score || 0)
+);
 
-const hero = sorted[0];
+const hero    = sorted[0];
+const usedIds = new Set([hero?.id]);
 
-const breakingIds = new Set([hero?.id]);
-const breaking = sorted.filter(a => !breakingIds.has(a.id)).slice(0, 8);
-breaking.forEach(a => breakingIds.add(a.id));
+const breaking = sorted.filter(a => !usedIds.has(a.id)).slice(0, 8);
+breaking.forEach(a => usedIds.add(a.id));
 
 const official = allArticles
-  .filter(a => a.data.source_label && !breakingIds.has(a.id))
+  .filter(a => a.data.source_label && !usedIds.has(a.id))
   .sort((a, b) => (b.data.buzz_score || 0) - (a.data.buzz_score || 0))
-  .slice(0, 4);
-official.forEach(a => breakingIds.add(a.id));
+  .slice(0, 6);
+official.forEach(a => usedIds.add(a.id));
 
 const byCategory = (slug, limit = 4) =>
   allArticles
-    .filter(a => a.data.category_slug === slug && !breakingIds.has(a.id))
+    .filter(a => a.data.category_slug === slug && !usedIds.has(a.id))
     .sort((a, b) => (b.data.buzz_score || 0) - (a.data.buzz_score || 0))
     .slice(0, limit);
 
 const catSections = [
-  { slug: "model",          label: "モデル",      emoji: "🤖" },
-  { slug: "business",       label: "ビジネス",    emoji: "💼" },
-  { slug: "markets",        label: "AI関連株",    emoji: "📈" },
-  { slug: "infrastructure", label: "インフラ",    emoji: "🖥️" },
-  { slug: "research",       label: "研究",        emoji: "🔬" },
-  { slug: "policy",         label: "政策",        emoji: "⚖️" },
-  { slug: "products",       label: "プロダクト",  emoji: "📦" },
-].map(cat => ({ ...cat, articles: byCategory(cat.slug, 4) }))
- .filter(cat => cat.articles.length > 0);
+  { slug: 'model',          label: 'モデル',     url: '/model/'          },
+  { slug: 'business',       label: 'ビジネス',   url: '/business/'       },
+  { slug: 'markets',        label: 'AI関連株',   url: '/markets/'        },
+  { slug: 'infrastructure', label: 'インフラ',   url: '/infrastructure/' },
+  { slug: 'research',       label: '研究',       url: '/research/'       },
+  { slug: 'policy',         label: '政策',       url: '/policy/'         },
+  { slug: 'products',       label: 'プロダクト', url: '/products/'       },
+].map(c => ({ ...c, articles: byCategory(c.slug, 4) }))
+ .filter(c => c.articles.length > 0);
 
-const latestExcluded = new Set([...breakingIds]);
+const latestExcluded = new Set([...usedIds]);
 const latest = [...allArticles]
-  .sort((a, b) => (b.data.published_at || "").localeCompare(a.data.published_at || ""))
+  .sort((a, b) => (b.data.published_at || '').localeCompare(a.data.published_at || ''))
   .filter(a => !latestExcluded.has(a.id))
-  .slice(0, 12);
+  .slice(0, 4);
 
-const getArticleUrl = (article) => {
-  const cat = article.data.category_slug || "business";
-  const slug = article.data.article_slug || article.id;
-  return `/article/${cat}/${slug}/`;
+const getUrl = (a) =>
+  `/article/${a.data.category_slug || 'business'}/${a.data.article_slug || a.id}/`;
+
+const CAT_LABEL = {
+  model:'モデル', business:'ビジネス', markets:'AI関連株',
+  infrastructure:'インフラ', research:'研究', policy:'政策', products:'プロダクト',
+};
+const getCatLabel = (s) => CAT_LABEL[s] || s;
+
+const CAT_COLOR = {
+  model:'#4d8ef0', business:'#e05252', markets:'#c49a20',
+  infrastructure:'#2fa86e', research:'#9b6dea', policy:'#0ea5c4', products:'#4299c4',
+};
+const getCatColor = (s) => CAT_COLOR[s] || '#6b7280';
+
+const getLead = (e) =>
+  ((e.body || '').replace(/[#*`\[\]\n]/g,' ').replace(/\s+/g,' ').trim().slice(0, 200));
+
+const fmtDate = (s) => {
+  if (!s) return '';
+  const d = new Date(s);
+  return isNaN(d.getTime()) ? s : d.toLocaleDateString('ja-JP', { month:'numeric', day:'numeric' });
+};
+const fmtFull = (s) => {
+  if (!s) return '';
+  const d = new Date(s);
+  return isNaN(d.getTime()) ? s : d.toLocaleDateString('ja-JP', { year:'numeric', month:'long', day:'numeric' });
 };
 
-const getCatLabel = (slug) => ({
-  model: "モデル", business: "ビジネス", markets: "AI関連株",
-  infrastructure: "インフラ", research: "研究", policy: "政策", products: "プロダクト",
-}[slug] || slug);
-
-const getCatColor = (slug) => ({
-  model: "#003f88", business: "#c0392b", markets: "#b7770d",
-  infrastructure: "#2e7d32", research: "#6a1b9a", policy: "#00695c", products: "#0277bd",
-}[slug] || "#555");
-
-const getLead = (entry) =>
-  ((entry.body || "").replace(/[#*`\[\]\n]/g, " ").replace(/\s+/g, " ").trim().slice(0, 120)) + "…";
-
-const formatDate = (str) => {
-  if (!str) return "";
-  const d = new Date(str);
-  if (isNaN(d)) return str;
-  return d.toLocaleDateString("ja-JP", { month: "numeric", day: "numeric" });
+// Hero summary: 必ず3つに分割
+const buildSummary = (entry) => {
+  if (!entry) return ['', '', ''];
+  const text = getLead(entry);
+  const sentences = text.split(/。|．/).map(s => s.trim()).filter(s => s.length > 8);
+  while (sentences.length < 3) sentences.push('詳細は記事本文をご覧ください');
+  return sentences.slice(0, 3).map(s => s + '。');
 };
+const heroSummary = buildSummary(hero);
 
-const TOPICS = [
-  "openai","nvidia","anthropic","google","microsoft",
-  "meta","amd","amazon","llm","reasoning",
-  "agents","gpu","datacenter","semiconductor","agi","multimodal","coding-agent"
+const TICKER = [
+  {name:'NVDA',val:'$1,120',chg:'+2.4%',up:true},
+  {name:'AMD', val:'$162', chg:'-1.0%',up:false},
+  {name:'MSFT',val:'$415', chg:'+0.9%',up:true},
+  {name:'GOOG',val:'$178', chg:'+1.4%',up:true},
+  {name:'META',val:'$564', chg:'+2.1%',up:true},
+  {name:'SOX', val:'5,312',chg:'+0.8%',up:true},
+  {name:'H100',val:'$2.10',chg:'-5.4%',up:false},
+  {name:'ARR', val:'$4.2B',chg:'推定', up:true},
 ];
 
+const PULSES = [
+  {label:'NVIDIA GPU需給', value:'逼迫',   sub:'H100在庫不足',        tone:'warn', icon:'⚡'},
+  {label:'OpenAI 推定ARR', value:'$4.2B',  sub:'前年比 +180%',        tone:'up',   icon:'📈'},
+  {label:'H100 スポット',  value:'$2.10',  sub:'1時間（推定）',        tone:'dn',   icon:'💻'},
+  {label:'CoreWeave 調達', value:'$12B',   sub:'2026年累計',          tone:'up',   icon:'💰'},
+  {label:'DC投資額',       value:'$248B',  sub:'2026年世界推計',      tone:'up',   icon:'🏗️'},
+  {label:'AI関連ETF',      value:'+1.1%',  sub:'前日比',              tone:'up',   icon:'📊'},
+  {label:'推論コスト',     value:'急落中', sub:'GPT-4o比 -60%',       tone:'up',   icon:'🔽'},
+  {label:'電力制約',       value:'深刻化', sub:'北米DC新設遅延',      tone:'warn', icon:'⚠️'},
+];
+
+const DASHBOARD = [
+  {label:'NVIDIA株価',  value:'1,120', unit:'USD', delta:'+2.4%', up:true },
+  {label:'SOX指数',     value:'5,312', unit:'pt',  delta:'+0.8%', up:true },
+  {label:'H100価格',    value:'28,500',unit:'USD', delta:'-3.0%', up:false},
+  {label:'GPU需給',     value:'86',    unit:'/100',delta:'逼迫',  up:false},
+  {label:'DC投資額',    value:'248B',  unit:'USD', delta:'+18%',  up:true },
+  {label:'OpenAI ARR', value:'4.2B',  unit:'USD', delta:'+成長', up:true },
+  {label:'AI ETF',     value:'142.6', unit:'idx', delta:'+1.1%', up:true },
+  {label:'推論コスト',  value:'-60%',  unit:'YoY', delta:'低下',  up:true },
+];
+
+const TRENDS = [
+  {label:'AGI',          slug:'agi'},
+  {label:'Reasoning',    slug:'reasoning'},
+  {label:'Agents',       slug:'agents'},
+  {label:'GPU',          slug:'gpu'},
+  {label:'Multimodal',   slug:'multimodal'},
+  {label:'Inference',    slug:'reasoning'},
+  {label:'Datacenter',   slug:'datacenter'},
+  {label:'HBM',          slug:'semiconductor'},
+  {label:'Sovereign AI', slug:'policy'},
+  {label:'AI Act',       slug:'policy'},
+  {label:'Robotics',     slug:'agi'},
+  {label:'RAG',          slug:'research'},
+  {label:'Semiconductor',slug:'semiconductor'},
+  {label:'OpenAI',       slug:'openai'},
+  {label:'NVIDIA',       slug:'nvidia'},
+];
+
+// 企業ロゴデータ（SVGインライン）
 const COMPANIES = [
-  { name: "OpenAI",    slug: "openai" },
-  { name: "NVIDIA",    slug: "nvidia" },
-  { name: "Anthropic", slug: "anthropic" },
-  { name: "Google",    slug: "google" },
-  { name: "Microsoft", slug: "microsoft" },
-  { name: "Meta",      slug: "meta" },
-  { name: "Amazon",    slug: "amazon" },
-  { name: "xAI",       slug: "xai" },
-  { name: "AMD",       slug: "amd" },
-  { name: "TSMC",      slug: "tsmc" },
+  {
+    name:'OpenAI', slug:'openai', sub:'GPT-4o / o3',
+    desc:'大規模言語モデルのパイオニア。ChatGPT、GPT-4o、o3を開発。',
+    color:'#10a37f',
+    svg:`<svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="20" cy="20" r="18" fill="#10a37f" fill-opacity=".15" stroke="#10a37f" stroke-width="1.5"/><text x="20" y="26" text-anchor="middle" font-size="14" font-weight="900" fill="#10a37f" font-family="serif">O</text></svg>`,
+  },
+  {
+    name:'NVIDIA', slug:'nvidia', sub:'H100 / B200 / CUDA',
+    desc:'AIアクセラレータ市場を独占。H100、B200、CUDAエコシステム。',
+    color:'#76b900',
+    svg:`<svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="36" height="36" rx="4" fill="#76b900" fill-opacity=".15" stroke="#76b900" stroke-width="1.5"/><text x="20" y="26" text-anchor="middle" font-size="12" font-weight="900" fill="#76b900" font-family="sans-serif">NV</text></svg>`,
+  },
+  {
+    name:'Anthropic', slug:'anthropic', sub:'Claude 3.x',
+    desc:'Constitutional AIを開発。Claude 3シリーズで企業市場を席巻。',
+    color:'#d97706',
+    svg:`<svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="20" cy="20" r="18" fill="#d97706" fill-opacity=".12" stroke="#d97706" stroke-width="1.5"/><text x="20" y="26" text-anchor="middle" font-size="14" font-weight="900" fill="#d97706" font-family="sans-serif">A</text></svg>`,
+  },
+  {
+    name:'Google', slug:'google', sub:'Gemini 2.0 / TPU',
+    desc:'Gemini、DeepMind、TPUでAI全領域をカバー。',
+    color:'#4285f4',
+    svg:`<svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="20" cy="20" r="18" fill="#4285f4" fill-opacity=".1" stroke="#4285f4" stroke-width="1.5"/><text x="20" y="26" text-anchor="middle" font-size="14" font-weight="900" fill="#4285f4" font-family="sans-serif">G</text></svg>`,
+  },
+  {
+    name:'Meta', slug:'meta', sub:'Llama 4 / OSSモデル',
+    desc:'Llama 4をオープンソースで公開。AI研究をリード。',
+    color:'#0081fb',
+    svg:`<svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="36" height="36" rx="6" fill="#0081fb" fill-opacity=".1" stroke="#0081fb" stroke-width="1.5"/><text x="20" y="26" text-anchor="middle" font-size="12" font-weight="900" fill="#0081fb" font-family="sans-serif">Meta</text></svg>`,
+  },
+  {
+    name:'Microsoft', slug:'microsoft', sub:'Azure AI / Copilot',
+    desc:'OpenAIへの投資と統合でAI商業化を主導。Azure AIが急成長。',
+    color:'#00a4ef',
+    svg:`<svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="6" width="12" height="12" fill="#f25022"/><rect x="22" y="6" width="12" height="12" fill="#00a4ef"/><rect x="6" y="22" width="12" height="12" fill="#ffb900"/><rect x="22" y="22" width="12" height="12" fill="#7fba00"/></svg>`,
+  },
+  {
+    name:'AMD', slug:'amd', sub:'MI300X / ROCm',
+    desc:'NVIDIAに次ぐGPU勢力。MI300XでAI学習市場に参入。',
+    color:'#ed1c24',
+    svg:`<svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="36" height="36" rx="4" fill="#ed1c24" fill-opacity=".1" stroke="#ed1c24" stroke-width="1.5"/><text x="20" y="27" text-anchor="middle" font-size="12" font-weight="900" fill="#ed1c24" font-family="sans-serif">AMD</text></svg>`,
+  },
+  {
+    name:'TSMC', slug:'tsmc', sub:'2nm / CoWoS',
+    desc:'世界最先端半導体製造。2nm量産とCoWoSでAIチップを支える。',
+    color:'#5c9ecf',
+    svg:`<svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><polygon points="20,2 38,11 38,29 20,38 2,29 2,11" fill="#5c9ecf" fill-opacity=".1" stroke="#5c9ecf" stroke-width="1.5"/><text x="20" y="26" text-anchor="middle" font-size="9" font-weight="900" fill="#5c9ecf" font-family="sans-serif">TSMC</text></svg>`,
+  },
+  {
+    name:'Amazon', slug:'amazon', sub:'AWS Bedrock / Trainium',
+    desc:'AWS Bedrockでエンタープライズ向けAI基盤を提供。Trainium開発。',
+    color:'#ff9900',
+    svg:`<svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="36" height="36" rx="4" fill="#ff9900" fill-opacity=".1" stroke="#ff9900" stroke-width="1.5"/><text x="20" y="27" text-anchor="middle" font-size="11" font-weight="900" fill="#ff9900" font-family="sans-serif">AWS</text></svg>`,
+  },
+  {
+    name:'xAI', slug:'xai', sub:'Grok / Colossus',
+    desc:'Grokを開発。Colossusクラスターで急速に計算資源を拡張中。',
+    color:'#e5e7eb',
+    svg:`<svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="20" cy="20" r="18" fill="#e5e7eb" fill-opacity=".08" stroke="#e5e7eb" stroke-width="1.5"/><text x="20" y="26" text-anchor="middle" font-size="14" font-weight="900" fill="#e5e7eb" font-family="sans-serif">xAI</text></svg>`,
+  },
 ];
 
-const websiteSchema = {
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "AI経済新聞",
-  "url": "https://aikeizai.jp/",
-  "description": "AIと経済の最新ニュースを毎日3回配信",
-  "inLanguage": "ja",
-  "publisher": {
-    "@type": "Organization",
-    "name": "AI経済新聞",
-    "url": "https://aikeizai.jp/"
-  }
-};
-
-const newsMediaSchema = {
-  "@context": "https://schema.org",
-  "@type": "NewsMediaOrganization",
-  "name": "AI経済新聞",
-  "url": "https://aikeizai.jp/",
-  "logo": {
-    "@type": "ImageObject",
-    "url": "https://aikeizai.jp/logo.png",
-    "width": 600,
-    "height": 60
-  },
-  "sameAs": ["https://x.com/aikeizai_jp"],
-  "foundingDate": "2026",
-  "inLanguage": "ja",
-  "publishingPrinciples": "https://aikeizai.jp/about/",
-  "masthead": "https://aikeizai.jp/about/",
-  "diversityPolicy": "https://aikeizai.jp/about/",
-  "ethicsPolicy": "https://aikeizai.jp/about/",
-  "correctionsPolicy": "https://aikeizai.jp/about/",
-  "actionableFeedbackPolicy": "https://aikeizai.jp/about/",
-  "verificationFactCheckingPolicy": "https://aikeizai.jp/about/",
-  "noBylinesPolicy": "https://aikeizai.jp/about/",
-  "coverageStartsAt": "2026-01-01T00:00:00+09:00",
-  "contactPoint": {
-    "@type": "ContactPoint",
-    "contactType": "editorial",
-    "email": "info@umebase.com"
-  },
-  "brand": [
-    { "@type": "Brand", "name": "AI経済新聞", "url": "https://aikeizai.jp/" }
-  ]
-};
+const jsonLd = [
+  {'@context':'https://schema.org','@type':'WebSite',name:'AI経済新聞',url:'https://aikeizai.jp/'},
+  {'@context':'https://schema.org','@type':'NewsMediaOrganization',name:'AI経済新聞',url:'https://aikeizai.jp/',publishingPrinciples:'https://aikeizai.jp/about/'},
+];
 ---
 
+<!doctype html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI経済新聞 — AI・半導体・市場の最新ニュース</title>
-  <meta name="description" content="OpenAI・NVIDIA・Anthropicなど一次情報を中心に、AIと経済の最新ニュースを毎日3回配信。モデル・ビジネス・マーケット・政策まで網羅。" />
-  <link rel="canonical" href="https://aikeizai.jp/" />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://aikeizai.jp/" />
-  <meta property="og:site_name" content="AI経済新聞" />
-  <meta property="og:title" content="AI経済新聞 — AI・半導体・市場の最新ニュース" />
-  <meta property="og:description" content="OpenAI・NVIDIA・Anthropicなど一次情報を中心に、AIと経済の最新ニュースを毎日3回配信。" />
-  <meta property="og:image" content="https://aikeizai.jp/ogp.png" />
-  <meta property="og:locale" content="ja_JP" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="AI経済新聞 — AI・半導体・市場の最新ニュース" />
-  <meta name="twitter:description" content="OpenAI・NVIDIA・Anthropicなど一次情報を中心に、AIと経済の最新ニュースを毎日3回配信。" />
-  <meta name="twitter:image" content="https://aikeizai.jp/ogp.png" />
-  <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
-  <script type="application/ld+json" set:html={JSON.stringify(newsMediaSchema)} />
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-R8C9ET314H"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag("js", new Date());
-    gtag("config", "G-R8C9ET314H");
-  </script>
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: "Noto Sans JP", -apple-system, sans-serif; background: #f2f4f7; color: #1a1a1a; font-size: 14px; line-height: 1.6; }
-    a { text-decoration: none; color: inherit; }
-    img { display: block; width: 100%; }
-    .container { max-width: 1200px; margin: 0 auto; padding: 20px 16px; }
-    .main-grid { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 24px; }
-    .sec-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; padding-bottom: 8px; border-bottom: 2px solid #003f88; }
-    .sec-title { font-size: 14px; font-weight: 900; color: #1a1a1a; }
-    .sec-more { font-size: 12px; color: #003f88; font-weight: 700; }
-    .sec-more:hover { text-decoration: underline; }
-    .hero { background: #fff; border-radius: 4px; overflow: hidden; margin-bottom: 24px; border: 1px solid #e4e8ee; }
-    .hero-img { width: 100%; aspect-ratio: 16/7; object-fit: cover; }
-    .hero-img-placeholder { width: 100%; aspect-ratio: 16/7; background: #e8edf5; display: flex; align-items: center; justify-content: center; font-size: 48px; }
-    .hero-body { padding: 18px 22px 22px; }
-    .hero-meta { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; flex-wrap: wrap; }
-    .cat-badge { font-size: 10px; font-weight: 900; padding: 3px 9px; border-radius: 3px; color: #fff; }
-    .source-badge { font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 3px; background: #fff8e1; color: #7a5800; border: 1px solid #f0c040; }
-    .hot-badge { font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 3px; background: #fff0f0; color: #c0392b; }
-    .hero-title { font-size: 22px; font-weight: 900; line-height: 1.55; margin-bottom: 10px; color: #0d1117; }
-    .hero-title a:hover { color: #003f88; }
-    .hero-lead { font-size: 13px; color: #555; line-height: 1.85; margin-bottom: 14px; }
-    .hero-footer { display: flex; align-items: center; gap: 16px; font-size: 12px; color: #999; flex-wrap: wrap; }
-    .hero-footer .date { color: #777; }
-    .read-more { color: #003f88; font-weight: 700; font-size: 13px; margin-left: auto; }
-    .read-more:hover { text-decoration: underline; }
-    .breaking-section { margin-bottom: 28px; }
-    .breaking-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
-    .b-card { background: #fff; border-radius: 4px; overflow: hidden; border: 1px solid #e8ecf2; display: block; transition: border-color 0.15s, transform 0.15s; }
-    .b-card:hover { border-color: #b0c4de; transform: translateY(-2px); }
-    .b-card-img { width: 100%; height: 100px; object-fit: cover; }
-    .b-card-placeholder { width: 100%; height: 100px; background: #edf0f7; display: flex; align-items: center; justify-content: center; font-size: 28px; }
-    .b-card-body { padding: 9px 11px 11px; }
-    .b-card-title { font-size: 12px; font-weight: 700; line-height: 1.55; color: #1a1a1a; margin-bottom: 5px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
-    .b-card-meta { font-size: 10px; color: #aaa; display: flex; gap: 6px; }
-    .official-section { margin-bottom: 28px; }
-    .official-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
-    .o-card { background: #fffdf5; border-radius: 4px; border: 1px solid #f0e0a0; border-left: 4px solid #e0a800; padding: 12px 14px; display: block; transition: background 0.1s; }
-    .o-card:hover { background: #fffbea; }
-    .o-label { font-size: 10px; font-weight: 900; color: #7a5800; background: #fff0c0; padding: 2px 7px; border-radius: 3px; display: inline-block; margin-bottom: 6px; }
-    .o-title { font-size: 13px; font-weight: 700; line-height: 1.55; color: #1a1a1a; margin-bottom: 4px; }
-    .o-meta { font-size: 10px; color: #aaa; }
-    .cat-section { margin-bottom: 28px; }
-    .cat-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
-    .c-card { background: #fff; border-radius: 4px; overflow: hidden; display: flex; gap: 10px; padding: 10px; border: 1px solid #e8ecf2; transition: background 0.1s; }
-    .c-card:hover { background: #f7f9fc; }
-    .c-card-thumb { width: 72px; height: 54px; object-fit: cover; border-radius: 3px; flex-shrink: 0; }
-    .c-card-placeholder { width: 72px; height: 54px; background: #edf0f7; border-radius: 3px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 22px; }
-    .c-card-info { flex: 1; min-width: 0; }
-    .c-card-title { font-size: 12px; font-weight: 700; line-height: 1.55; color: #1a1a1a; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 4px; }
-    .c-card-meta { font-size: 10px; color: #aaa; }
-    .latest-section { margin-bottom: 28px; }
-    .latest-list { background: #fff; border-radius: 4px; border: 1px solid #e8ecf2; overflow: hidden; }
-    .l-item { display: flex; gap: 12px; padding: 11px 14px; border-bottom: 1px solid #f0f2f5; align-items: flex-start; text-decoration: none; color: inherit; transition: background 0.1s; }
-    .l-item:hover { background: #f7f9fc; }
-    .l-item:last-child { border-bottom: none; }
-    .l-thumb { width: 80px; height: 58px; object-fit: cover; border-radius: 3px; flex-shrink: 0; }
-    .l-placeholder { width: 80px; height: 58px; background: #edf0f7; border-radius: 3px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 20px; }
-    .l-body { flex: 1; min-width: 0; }
-    .l-cat { display: inline-block; font-size: 9px; font-weight: 700; padding: 2px 6px; border-radius: 2px; color: #fff; margin-bottom: 3px; }
-    .l-title { font-size: 13px; font-weight: 700; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 3px; }
-    .l-meta { font-size: 10px; color: #aaa; display: flex; gap: 6px; flex-wrap: wrap; }
-    .l-source-badge { font-size: 9px; font-weight: 700; padding: 1px 5px; border-radius: 2px; background: #fff8e1; color: #7a5800; }
-    .chip-section { background: #fff; border-radius: 4px; padding: 16px; margin-bottom: 16px; border: 1px solid #e8ecf2; }
-    .chip-head { font-size: 13px; font-weight: 900; color: #1a1a1a; margin-bottom: 12px; }
-    .chip-wrap { display: flex; flex-wrap: wrap; gap: 7px; }
-    .chip { font-size: 12px; font-weight: 700; padding: 5px 13px; border-radius: 20px; background: #edf2fb; color: #003f88; border: 1px solid #c8d8f0; transition: all 0.15s; }
-    .chip:hover { background: #003f88; color: #fff; border-color: #003f88; }
-    /* 最新記事：上4件グリッド */
-.latest-top-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 10px; }
-.lt-card { background: #fff; border-radius: 4px; overflow: hidden; border: 1px solid #e8ecf2; display: block; transition: border-color 0.15s, transform 0.15s; }
-.lt-card:hover { border-color: #b0c4de; transform: translateY(-2px); }
-.lt-img { width: 100%; aspect-ratio: 16/9; object-fit: cover; }
-.lt-placeholder { width: 100%; aspect-ratio: 16/9; background: #edf0f7; display: flex; align-items: center; justify-content: center; font-size: 32px; }
-.lt-body { padding: 10px 12px 12px; }
-.lt-title { font-size: 13px; font-weight: 700; line-height: 1.55; color: #1a1a1a; margin-bottom: 5px; }
-.lt-lead { font-size: 11px; color: #666; line-height: 1.7; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 5px; }
-.lt-meta { font-size: 10px; color: #aaa; display: flex; gap: 6px; }
-
-/* 最新記事：残り10件グリッド */
-.latest-rest-grid { display: grid; grid-template-columns: repeat(2, 1fr); background: #fff; border-radius: 4px; border: 1px solid #e8ecf2; overflow: hidden; }
-.lr-item { display: block; padding: 10px 12px; border-bottom: 1px solid #f0f2f5; border-right: 1px solid #f0f2f5; transition: background 0.1s; text-decoration: none; color: inherit; }
-.lr-item:hover { background: #f7f9fc; }
-.lr-item:nth-child(2n) { border-right: none; }
-.lr-title { font-size: 12px; font-weight: 700; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-top: 3px; }
-.lr-meta { font-size: 10px; color: #aaa; margin-top: 3px; }
-
-@media (max-width: 600px) {
-  .latest-top-grid { grid-template-columns: 1fr; }
-  .latest-rest-grid { grid-template-columns: 1fr; }
-  .lr-item { border-right: none; }
-}
-    @media (max-width: 900px) { .main-grid { grid-template-columns: 1fr; } .breaking-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 600px) { .hero-title { font-size: 17px; } .official-grid { grid-template-columns: 1fr; } .cat-grid { grid-template-columns: 1fr; } }
-  </style>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>AI経済新聞 | AI産業OS — AI・半導体・市場・政策を構造で読む</title>
+<meta name="description" content="AI・半導体・市場・インフラ・政策を構造で読む日本語AI業界インテリジェンスメディア。一次情報特化。毎日3回更新。"/>
+<link rel="canonical" href="https://aikeizai.jp/"/>
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="AI経済新聞 | AI産業OS"/>
+<meta property="og:description" content="AI・半導体・市場・インフラ・政策を構造で読む日本語AI業界インテリジェンスメディア。"/>
+<meta property="og:image" content="https://aikeizai.jp/ogp.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Serif+JP:wght@700;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
+<link rel="alternate" type="application/rss+xml" href="https://aikeizai.jp/rss.xml"/>
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)}/>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-R8C9ET314H"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-R8C9ET314H');</script>
+<!-- Three.js for Globe -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
 <body>
 
-<Header />
-
-<div class="container">
-  <h1 style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);">AI経済新聞 — AI・半導体・市場の最新ニュース</h1>
-  <div class="main-grid">
-    <main>
-
-    <div class="latest-section" style="margin-bottom:28px;">
-  <div class="sec-head"><span class="sec-title">📰 最新記事</span></div>
-
-  {/* 上4件：サムネ＋タイトル＋リード */}
-  <div class="latest-top-grid">
-    {latest.slice(0, 2).map(entry => (
-      <a class="lt-card" href={getArticleUrl(entry)}>
-        {entry.data.image_url
-          ? <img class="lt-img" src={entry.data.image_url} alt={entry.data.title} loading="eager" />
-          : <div class="lt-placeholder" aria-hidden="true">📰</div>
-        }
-        <div class="lt-body">
-          <span class="l-cat" style={`background:${getCatColor(entry.data.category_slug)}`}>
-            {getCatLabel(entry.data.category_slug)}
-          </span>
-          <div class="lt-title">{entry.data.title}</div>
-          <div class="lt-lead">{getLead(entry)}</div>
-          <div class="lt-meta">
-            {entry.data.source_label && <span class="l-source-badge">{entry.data.source_label}</span>}
-            <span>{entry.data.source}</span>
-            <span>{formatDate(entry.data.published_at)}</span>
-          </div>
-        </div>
-      </a>
-    ))}
-  </div>
-
-  {/* 残り10件：タイトルのみ */}
-  <div class="latest-rest-grid">
-    {latest.slice(4).map(entry => (
-      <a class="lr-item" href={getArticleUrl(entry)}>
-        <span class="l-cat" style={`background:${getCatColor(entry.data.category_slug)}`}>
-          {getCatLabel(entry.data.category_slug)}
+<!-- TICKER -->
+<div class="ticker-bar" aria-hidden="true">
+  <span class="ticker-label">MARKET</span>
+  <div class="ticker-scroll">
+    <div class="ticker-track">
+      {[...TICKER,...TICKER].map(t=>(
+        <span class="t-item">
+          <span class="t-name">{t.name}</span>
+          <span class="t-val">{t.val}</span>
+          <span class={t.up?'t-up':'t-dn'}>{t.chg}</span>
         </span>
-        <div class="lr-title">{entry.data.title}</div>
-        <div class="lr-meta">
-          <span>{entry.data.source}</span>
-          <span>{formatDate(entry.data.published_at)}</span>
-        </div>
-      </a>
-    ))}
+      ))}
+    </div>
   </div>
 </div>
 
-      {hero && (
-        <div class="hero">
-          {hero.data.image_url
-            ? <img class="hero-img" src={hero.data.image_url} alt={hero.data.title} loading="eager" fetchpriority="high" />
-            : <div class="hero-img-placeholder" aria-hidden="true">📰</div>
-          }
-          <div class="hero-body">
-            <div class="hero-meta">
-              <span class="cat-badge" style={`background:${getCatColor(hero.data.category_slug)}`}>{getCatLabel(hero.data.category_slug)}</span>
-              {hero.data.source_label && <span class="source-badge">{hero.data.source_label}</span>}
-              {(hero.data.buzz_score || 0) > 50 && <span class="hot-badge">🔥 注目</span>}
+<!-- HEADER -->
+<header class="site-header">
+  <div class="w">
+    <a class="brand" href="/"><span class="brand-mark">AI</span><span class="brand-name">AI経済新聞</span></a>
+    <nav class="gnav" aria-label="メインナビ">
+      <a href="/markets/">Markets</a>
+      <a href="/company/">Companies</a>
+      <a href="/model/">Models</a>
+      <a href="/infrastructure/">Infra</a>
+      <a href="/policy/">Policy</a>
+      <a href="/research/">Research</a>
+    </nav>
+    <div class="hright"><a class="hbtn" href="/about/">About</a></div>
+  </div>
+</header>
+<h1 class="sr-only">AI経済新聞 — AI産業OS</h1>
+
+<main>
+
+<!-- ================================================================
+     §1 MARKET PULSE
+     ================================================================ -->
+<section class="section pulse-section" aria-labelledby="pulse-hd">
+  <div class="w">
+    <div class="sec-head compact">
+      <div class="sec-left">
+        <span class="eyebrow">Market Pulse</span>
+        <h2 class="sec-title" id="pulse-hd">AI市場の現在地</h2>
+      </div>
+      <span class="sec-note">参考値 · 随時更新</span>
+    </div>
+    <div class="pulse-scroll">
+      <div class="pulse-grid">
+        {PULSES.map(p=>(
+          <div class={`pulse-card tone-${p.tone}`}>
+            <div class="pulse-icon">{p.icon}</div>
+            <div class="pulse-label">{p.label}</div>
+            <div class="pulse-value">{p.value}</div>
+            <div class="pulse-sub">{p.sub}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     §2 最新記事 — Codex式 article-grid (4カード)
+     ================================================================ -->
+<section class="section" aria-labelledby="latest-title">
+  <div class="w">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Latest Intelligence</p>
+        <h2 id="latest-title">最新記事</h2>
+      </div>
+      <a class="pill" href="/articles">すべての記事</a>
+    </div>
+    <div class="article-grid">
+      {latest.map(article => (
+        <article class="article-card">
+          <a href={getUrl(article)}>
+            {article.data.image_url
+              ? <img src={article.data.image_url} alt={article.data.title} width="640" height="400" loading="lazy" decoding="async"/>
+              : <div class="article-img-ph">◈</div>
+            }
+            <div class="article-body">
+              <div class="article-meta">
+                <span class="category" style={`background:${getCatColor(article.data.category_slug)}`}>
+                  {getCatLabel(article.data.category_slug)}
+                  
+                </span>
+                <span class="pill">{article.data.source}</span>
+                {(article.data.buzz_score||0) >= 60
+                  ? <span class="importance high">重要</span>
+                  : (article.data.buzz_score||0) >= 40
+                  ? <span class="importance med">注目</span>
+                  : null
+                }
+                
+                {article.data.source_label && <span class="source-badge">一次情報</span>}
+              </div>
+              <h3>{article.data.title}</h3>
+              
+              <p class="article-date">{fmtDate(article.data.published_at)}</p>
             </div>
-            <h2 class="hero-title"><a href={getArticleUrl(hero)}>{hero.data.title}</a></h2>
-            <p class="hero-lead">{getLead(hero)}</p>
-            <div class="hero-footer">
-              <span>{hero.data.source}</span>
-              <span class="date">{formatDate(hero.data.published_at)}</span>
-              <a class="read-more" href={getArticleUrl(hero)}>続きを読む →</a>
-            </div>
+          </a>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     §3 HERO — 注目の最重要ニュース（なぜ重要か + 3セル要約）
+     ================================================================ -->
+{hero && (
+  <section class="section hero-section" aria-labelledby="hero-hd">
+    <div class="w">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Top Story</p>
+          <h2 id="hero-hd">注目の最重要ニュース</h2>
+        </div>
+      </div>
+      <div class="hero-grid">
+        <!-- 左: コピー -->
+        <div class="hero-copy">
+          <div class="hero-tags">
+            <span class="tag tag-cat" style={`background:${getCatColor(hero.data.category_slug)}`}>
+              {getCatLabel(hero.data.category_slug)}
+            </span>
+            {hero.data.source_label && <span class="tag tag-primary">{hero.data.source_label}</span>}
+            {(hero.data.buzz_score||0) >= 50 && <span class="tag tag-hot">🔥 注目</span>}
+          </div>
+
+          <h2 class="hero-title">
+            <a href={getUrl(hero)}>{hero.data.title}</a>
+          </h2>
+
+          <!-- 3セル要約（必ず3つ）-->
+          <div class="hero-summary">
+            {heroSummary.map(s => <p>{s}</p>)}
+          </div>
+
+          <!-- なぜ重要か -->
+          <div class="why-box">
+          <div class="impact-box">
+  <div class="impact-head">
+    <span class="impact-live"></span>
+    <span>MARKET IMPACT</span>
+  </div>
+
+  <ul class="impact-list">
+    <li>GPU需給への影響</li>
+    <li>AI関連株への波及</li>
+    <li>データセンター投資加速</li>
+  </ul>
+</div>
+            <span class="eyebrow">なぜ重要か</span>
+            <p>
+              {hero.data.source_label
+                ? `${hero.data.source}が公式に発表した一次情報です。`
+                : `${hero.data.source}が報じた、AI産業の構造変化に直結するニュースです。`
+              }
+              AI業界の投資家・経営者・エンジニアが注目すべき動向として、
+              buzz_score {hero.data.buzz_score || 0} の高関連度記事として選出されました。
+            </p>
+          </div>
+
+          <div class="hero-footer">
+            <span class="hero-src">{hero.data.source}</span>
+            <time class="hero-date">{fmtFull(hero.data.published_at)}</time>
+            <a class="hero-cta" href={getUrl(hero)}>続きを読む →</a>
           </div>
         </div>
-      )}
 
-      <div class="breaking-section">
-        <div class="sec-head"><span class="sec-title">⚡ 注目ニュース</span></div>
-        <div class="breaking-grid">
-          {breaking.map(entry => (
-            <a class="b-card" href={getArticleUrl(entry)}>
-              {entry.data.image_url
-                ? <img class="b-card-img" src={entry.data.image_url} alt={entry.data.title} loading="lazy" />
-                : <div class="b-card-placeholder" aria-hidden="true">📰</div>
-              }
-              <div class="b-card-body">
-                <span class="cat-badge" style={`background:${getCatColor(entry.data.category_slug)};font-size:9px;padding:2px 6px;display:inline-block;margin-bottom:4px;`}>{getCatLabel(entry.data.category_slug)}</span>
-                <div class="b-card-title">{entry.data.title}</div>
-                <div class="b-card-meta"><span>{entry.data.source}</span><span>{formatDate(entry.data.published_at)}</span></div>
-              </div>
-            </a>
-          ))}
+        <!-- 右: 画像 -->
+        <figure class="hero-media">
+          {hero.data.image_url
+            ? <img src={hero.data.image_url} alt={hero.data.title}
+                loading="eager" fetchpriority="high" decoding="async" width="900" height="600"/>
+            : <div class="hero-ph-lg">◈</div>
+          }
+          <div class="terminal-strip">
+            <span>GPU: TIGHT</span>
+            <span>CAPEX: ↑</span>
+            <span>INFERENCE: ↑</span>
+            <span>POLICY: ACT</span>
+          </div>
+        </figure>
+      </div>
+    </div>
+  </section>
+)}
+
+
+<!-- ================================================================
+     §4 AI INDUSTRY NETWORK — Semantic Neural Sphere
+     ================================================================ -->
+<section class="section map-section" aria-labelledby="map-hd">
+  <div class="w">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">AI Industry Network</p>
+        <h2 id="map-hd">AI業界ネットワーク</h2>
+      </div>
+      <span class="sec-note">ドラッグで回転 / セクターで関連企業を強調</span>
+    </div>
+
+    <div class="globe-layout">
+      <div class="globe-container neural-container" id="globe-container">
+        <canvas id="globe-canvas"></canvas>
+        <div class="neural-badge">
+          <span>NEURAL MAP</span>
+          <strong id="neural-signal">GPU</strong>
         </div>
       </div>
 
-      {official.length > 0 && (
-        <div class="official-section">
-          <div class="sec-head"><span class="sec-title">📋 公式発表・一次情報</span></div>
-          <div class="official-grid">
-            {official.map(a => (
-              <a class="o-card" href={getArticleUrl(a)}>
-                <span class="o-label">{a.data.source_label}</span>
-                <div class="o-title">{a.data.title}</div>
-                <div class="o-meta">{a.data.source} · {formatDate(a.data.published_at)}</div>
-              </a>
-            ))}
-          </div>
-        </div>
-      )}
+      <div class="sector-tabs" id="sector-tabs">
+        <button class="sector-tab" data-sector="llm" type="button">LLM</button>
+        <button class="sector-tab active" data-sector="gpu" type="button">GPU</button>
+        <button class="sector-tab" data-sector="agent" type="button">Agent</button>
+        <button class="sector-tab" data-sector="video" type="button">Video</button>
+        <button class="sector-tab" data-sector="robotics" type="button">Robotics</button>
+      </div>
 
-      {catSections.map(cat => (
-        <div class="cat-section">
-          <div class="sec-head">
-            <span class="sec-title">{cat.emoji} {cat.label}</span>
-            <a class="sec-more" href={`/${cat.slug}/`}>もっと見る →</a>
+      <div class="globe-detail neural-detail" id="globe-detail">
+        <div class="gd-content" id="gd-content">
+          <div class="gd-header">
+            <span class="gd-dot" id="gd-dot"></span>
+            <h3 class="gd-title" id="gd-title">GPU / 半導体</h3>
           </div>
-          <div class="cat-grid">
-            {cat.articles.map(a => (
-              <a class="c-card" href={getArticleUrl(a)}>
-                {a.data.image_url
-                  ? <img class="c-card-thumb" src={a.data.image_url} alt={a.data.title} loading="lazy" />
-                  : <div class="c-card-placeholder" aria-hidden="true">{cat.emoji}</div>
-                }
-                <div class="c-card-info">
-                  <div class="c-card-title">{a.data.title}</div>
-                  <div class="c-card-meta">{a.data.source} · {formatDate(a.data.published_at)}</div>
-                </div>
-              </a>
-            ))}
+
+          <p class="gd-desc" id="gd-desc"></p>
+
+          <div class="gd-subhead">主要ノード</div>
+          <div class="gd-players" id="gd-players"></div>
+
+          <div class="gd-subhead">接続トピック</div>
+          <div class="gd-articles" id="gd-articles"></div>
+
+          <a class="gd-link" id="gd-link" href="/topic/semiconductor/">このセクターの記事 →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ================================================================
+     §5 Breaking
+     ================================================================ -->
+<section class="section" aria-labelledby="breaking-hd">
+  <div class="w">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Breaking</p>
+        <h2 id="breaking-hd">注目ニュース</h2>
+      </div>
+    </div>
+    <div class="breaking-grid">
+      {breaking.map(e=>(
+        <a
+  class={`b-card ${
+    (e.data.buzz_score || 0) >= 70 ? 'hot' : ''
+  }`}
+  href={getUrl(e)}
+>
+          <div class="b-img-wrap">
+            {e.data.image_url
+              ? <img class="b-img" src={e.data.image_url} alt={e.data.title} loading="lazy" width="320" height="180"/>
+              : <div class="b-ph">◈</div>
+            }
+          </div>
+          <div class="b-body">
+            <span class="b-cat" style={`color:${getCatColor(e.data.category_slug)}`}>
+              {getCatLabel(e.data.category_slug)}
+            </span>
+            <h3 class="b-title">{e.data.title}</h3>
+            <div class="b-meta">
+              <span>{e.data.source}</span>
+              <span>{fmtDate(e.data.published_at)}</span>
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     §6 マーケットダッシュボード
+     ================================================================ -->
+<section class="section" aria-labelledby="dash-hd">
+  <div class="w">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Market Dashboard</p>
+        <h2 id="dash-hd">AI産業の温度感</h2>
+      </div>
+      <span class="sec-note">※参考値 · 投資推奨ではありません</span>
+    </div>
+    <div class="dash-grid">
+      {DASHBOARD.map(m=>(
+        <div class="metric-card">
+          <p class="m-label">{m.label}</p>
+          <p class="m-value">{m.value}</p>
+          <div class="m-foot">
+            <span class="m-unit">{m.unit}</span>
+            <span class={m.up?'d-up':'d-dn'}>{m.delta}</span>
           </div>
         </div>
       ))}
-
-      <div class="chip-section">
-        <div class="chip-head">🏷 注目トピック</div>
-        <div class="chip-wrap">
-          {TOPICS.map(t => <a class="chip" href={`/topic/${t}/`}>#{t}</a>)}
-        </div>
-      </div>
-
-      <div class="chip-section">
-        <div class="chip-head">🏢 企業で探す</div>
-        <div class="chip-wrap">
-          {COMPANIES.map(c => <a class="chip" href={`/company/${c.slug}/`}>{c.name}</a>)}
-        </div>
-      </div>
-
-    </main>
-    <Sidebar />
+    </div>
+    <p class="dash-note">
+      データは参考値・推定値。投資判断の根拠としないでください。
+      <a href="/about/">免責事項</a>
+    </p>
   </div>
-</div>
+</section>
 
-<Footer />
+<!-- ================================================================
+     §7 一次情報・公式発表
+     ================================================================ -->
+{official.length > 0 && (
+  <section class="section" aria-labelledby="primary-hd">
+    <div class="w">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Primary Sources</p>
+          <h2 id="primary-hd">一次情報・公式発表</h2>
+        </div>
+        <p class="sec-note">企業公式 / 論文 / 規制文書 / SEC</p>
+      </div>
+      <div class="official-grid">
+        {official.map(a=>(
+          <a class="o-card" href={getUrl(a)}>
+            <div class="o-top">
+              <span class="o-badge">{a.data.source_label}</span>
+              <span class="o-date">{fmtDate(a.data.published_at)}</span>
+            </div>
+            <h3 class="o-title">{a.data.title}</h3>
+            <p class="o-src">{a.data.source}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+)}
+
+<!-- ================================================================
+     §8 テーマ別セクション — コンパクトカード + 注目記事タイトル
+     ================================================================ -->
+<section class="section" aria-labelledby="theme-hd">
+  <div class="w">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Coverage</p>
+        <h2 id="theme-hd">テーマ別セクション</h2>
+      </div>
+    </div>
+    <div class="theme-grid">
+      {catSections.map(cat=>(
+        <a class="theme-card" href={cat.url} style={`--tc:${getCatColor(cat.slug)}`}>
+          <div class="theme-header">
+            <span class="theme-dot" style={`background:${getCatColor(cat.slug)}`}></span>
+            <span class="theme-label">{cat.label}</span>
+            <span class="theme-arrow">→</span>
+          </div>
+          <ul class="theme-articles">
+            {cat.articles.slice(0,3).map(a=>(
+              <li class="theme-art-item">
+                <span class="theme-art-bullet">▸</span>
+                <span class="theme-art-title">{a.data.title}</span>
+              </li>
+            ))}
+          </ul>
+          <div class="theme-footer">
+            <span>{cat.articles.length}件の記事</span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     §9 トレンドテーマ
+     ================================================================ -->
+<section class="section" aria-labelledby="trends-hd">
+  <div class="w">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Trending</p>
+        <h2 id="trends-hd">注目テーマ</h2>
+      </div>
+    </div>
+    <div class="trend-cloud">
+      {TRENDS.map(t=>(
+        <a class="trend-chip" href={`/topic/${t.slug}/`}>#{t.label}</a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     §10 Company Intelligence — ロゴ + クリックで詳細
+     ================================================================ -->
+<section class="section" aria-labelledby="co-hd">
+  <div class="w">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Company Intelligence</p>
+        <h2 id="co-hd">企業データベース</h2>
+      </div>
+      <a class="see-more" href="/company/">全企業 →</a>
+    </div>
+    <div class="company-grid" id="company-grid">
+      {COMPANIES.map(c=>(
+        <button
+          class="co-card"
+          data-slug={c.slug}
+          data-name={c.name}
+          data-sub={c.sub}
+          data-desc={c.desc}
+          data-color={c.color}
+          data-url={`/company/${c.slug}/`}
+          aria-label={c.name}
+        >
+          <div class="co-logo" set:html={c.svg}></div>
+          <span class="co-name">{c.name}</span>
+          <span class="co-sub">{c.sub}</span>
+        </button>
+      ))}
+    </div>
+
+    <!-- 企業詳細パネル -->
+    <div class="co-detail" id="co-detail" style="display:none">
+      <div class="co-detail-inner">
+        <div class="co-detail-logo" id="co-detail-logo"></div>
+        <div class="co-detail-info">
+          <h3 class="co-detail-name" id="co-detail-name"></h3>
+          <p class="co-detail-sub" id="co-detail-sub"></p>
+          <p class="co-detail-desc" id="co-detail-desc"></p>
+        </div>
+        <a class="co-detail-link" id="co-detail-link" href="#">企業ページを見る →</a>
+        <button class="co-detail-close" id="co-detail-close" aria-label="閉じる">✕</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="w footer-inner">
+    <div class="footer-brand">
+      <a class="brand" href="/"><span class="brand-mark">AI</span><span class="brand-name">AI経済新聞</span></a>
+      <p class="footer-desc">AI産業の構造・企業・技術・市場・政策を一次情報から読み解く。</p>
+    </div>
+    <nav class="footer-links">
+      <a href="/about/">About</a>
+      <a href="/about/">編集方針</a>
+      <a href="/about/">一次情報ポリシー</a>
+      <a href="/about/">Corrections</a>
+      <a href="/about/">Contact</a>
+      <a href="https://x.com/aikeizai_jp" target="_blank" rel="noopener">X</a>
+      <a href="/rss.xml">RSS</a>
+      <a href="/sitemap-index.xml">Sitemap</a>
+    </nav>
+  </div>
+</footer>
 
 </body>
 </html>
+
+<!-- ================================================================
+     GLOBE + COMPANY JAVASCRIPT
+     ================================================================ -->
+<script>
+// ================================================================
+// 3D GLOBE (Three.js)
+// ================================================================
+(function() {
+  if (typeof THREE === 'undefined') {
+    console.warn('Three.js not loaded');
+    return;
+  }
+
+  const SECTORS = {
+    llm: {
+      label: 'LLM',
+      title: '大規模言語モデル',
+      color: '#5cd8ce',
+      color2: '#5a9eff',
+      desc: '基盤モデル、推論、マルチモーダル、企業導入の競争領域。',
+      url: '/topic/llm/',
+      articles: ['モデル小型化と高性能化が同時進行', '企業導入は推論コストと安全性が焦点'],
+      shape: 'sphere',
+      motion: 0.55
+    },
+    gpu: {
+      label: 'GPU',
+      title: 'GPU / 半導体',
+      color: '#76b900',
+      color2: '#e6b84a',
+      desc: 'GPU、ASIC、HBM、先端パッケージングがAI経済の制約条件に。',
+      url: '/topic/semiconductor/',
+      articles: ['AIサーバー需要が半導体サプライチェーンを再編', 'HBMとCoWoSが次のボトルネックに'],
+      shape: 'core',
+      motion: 0.36
+    },
+    agent: {
+      label: 'Agent',
+      title: 'AIエージェント',
+      color: '#e05252',
+      color2: '#9b6dea',
+      desc: 'ブラウザ操作、開発支援、業務自動化がチャットUIの外へ広がる。',
+      url: '/topic/agents/',
+      articles: ['AIエージェントは業務OSになれるか', '自律実行には権限管理と監査が課題'],
+      shape: 'torus',
+      motion: 0.78
+    },
+    video: {
+      label: 'Video',
+      title: '生成AI動画',
+      color: '#f97316',
+      color2: '#ffd166',
+      desc: '動画生成は一貫性、制御性、権利処理、制作ワークフローが焦点。',
+      url: '/topic/video/',
+      articles: ['動画生成モデルは編集ツールへ進化', 'クリエイティブ産業で権利処理が論点に'],
+      shape: 'wave',
+      motion: 0.66
+    },
+    robotics: {
+      label: 'Robotics',
+      title: 'ロボティクス',
+      color: '#53d8ff',
+      color2: '#4ade80',
+      desc: '物理世界AI、ヒューマノイド、倉庫・製造現場への導入が進む。',
+      url: '/topic/agi/',
+      articles: ['ロボット基盤モデルが現場データで進化', 'ヒューマノイド実証が製造業へ拡大'],
+      shape: 'helix',
+      motion: 0.48
+    }
+  };
+
+  const NETWORK_NODES = [
+    { id:'openai', label:'OpenAI', sector:'llm', color:'#10a37f' },
+    { id:'anthropic', label:'Anthropic', sector:'llm', color:'#d97706' },
+    { id:'google', label:'Google', sector:'llm', color:'#4285f4' },
+    { id:'meta', label:'Meta', sector:'llm', color:'#0081fb' },
+    { id:'mistral', label:'Mistral', sector:'llm', color:'#f97316' },
+
+    { id:'nvidia', label:'NVIDIA', sector:'gpu', color:'#76b900' },
+    { id:'amd', label:'AMD', sector:'gpu', color:'#ed1c24' },
+    { id:'tsmc', label:'TSMC', sector:'gpu', color:'#5c9ecf' },
+    { id:'skhynix', label:'SK hynix', sector:'gpu', color:'#e11d48' },
+    { id:'broadcom', label:'Broadcom', sector:'gpu', color:'#cc092f' },
+
+    { id:'microsoft', label:'Microsoft', sector:'agent', color:'#00a4ef' },
+    { id:'devin', label:'Devin', sector:'agent', color:'#9b6dea' },
+    { id:'manus', label:'Manus', sector:'agent', color:'#e05252' },
+
+    { id:'sora', label:'Sora', sector:'video', color:'#5cd8ce' },
+    { id:'runway', label:'Runway', sector:'video', color:'#f97316' },
+    { id:'pika', label:'Pika', sector:'video', color:'#ffd166' },
+
+    { id:'figure', label:'Figure AI', sector:'robotics', color:'#53d8ff' },
+    { id:'tesla', label:'Tesla', sector:'robotics', color:'#e5e7eb' },
+    { id:'bostondynamics', label:'Boston Dynamics', sector:'robotics', color:'#4ade80' }
+  ];
+
+  const NETWORK_EDGES = [
+    ['nvidia', 'tsmc', 'CoWoS / advanced node'],
+    ['nvidia', 'skhynix', 'HBM'],
+    ['nvidia', 'openai', 'training cluster'],
+    ['nvidia', 'microsoft', 'Azure AI'],
+    ['nvidia', 'google', 'AI infrastructure'],
+    ['amd', 'microsoft', 'MI300X'],
+    ['amd', 'openai', 'inference'],
+    ['tsmc', 'google', 'TPU'],
+    ['tsmc', 'nvidia', 'fabrication'],
+    ['broadcom', 'google', 'custom ASIC'],
+    ['openai', 'microsoft', 'commercialization'],
+    ['openai', 'sora', 'video model'],
+    ['google', 'sora', 'multimodal rivalry'],
+    ['meta', 'mistral', 'open models'],
+    ['openai', 'figure', 'robot foundation model'],
+    ['tesla', 'nvidia', 'training compute'],
+    ['figure', 'nvidia', 'robotics compute']
+  ];
+
+  const container = document.getElementById('globe-container');
+  const canvas = document.getElementById('globe-canvas');
+  if (!container || !canvas) return;
+
+  const isMobile = window.matchMedia('(max-width: 640px)').matches;
+  const particleCount = isMobile ? 1500 : 3000;
+  const lineCount = isMobile ? 280 : 620;
+  const radius = 2.25;
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 100);
+  camera.position.z = 6.5;
+
+  const renderer = new THREE.WebGLRenderer({
+    canvas,
+    antialias: false,
+    alpha: true,
+    powerPreference: 'high-performance'
+  });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, isMobile ? 1.35 : 1.7));
+  renderer.setClearColor(0x000000, 0);
+
+  const group = new THREE.Group();
+  const edgeGroup = new THREE.Group();
+  const nodeGroup = new THREE.Group();
+
+  scene.add(group);
+  group.add(edgeGroup);
+  group.add(nodeGroup);
+
+  const base = new Float32Array(particleCount * 3);
+  const target = new Float32Array(particleCount * 3);
+  const current = new Float32Array(particleCount * 3);
+  const phases = new Float32Array(particleCount);
+  const sizes = new Float32Array(particleCount);
+  const colors = new Float32Array(particleCount * 3);
+
+  const colorA = new THREE.Color();
+  const colorB = new THREE.Color();
+  const colorC = new THREE.Color('#ffffff');
+
+  function fibPoint(i, total, r) {
+    const y = 1 - (i / (total - 1)) * 2;
+    const d = Math.sqrt(1 - y * y);
+    const phi = i * Math.PI * (3 - Math.sqrt(5));
+    return [Math.cos(phi) * d * r, y * r, Math.sin(phi) * d * r];
+  }
+
+  for (let i = 0; i < particleCount; i++) {
+    const p = fibPoint(i, particleCount, radius * (0.86 + Math.random() * 0.22));
+    const k = i * 3;
+    base[k] = current[k] = p[0];
+    base[k + 1] = current[k + 1] = p[1];
+    base[k + 2] = current[k + 2] = p[2];
+    phases[i] = Math.random() * Math.PI * 2;
+    sizes[i] = isMobile ? 8 + Math.random() * 13 : 9 + Math.random() * 20;
+  }
+
+  const particleGeo = new THREE.BufferGeometry();
+  particleGeo.setAttribute('position', new THREE.BufferAttribute(current, 3));
+  particleGeo.setAttribute('particleColor', new THREE.BufferAttribute(colors, 3));
+  particleGeo.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
+
+  const particleMat = new THREE.ShaderMaterial({
+    transparent: true,
+    depthWrite: false,
+    blending: THREE.AdditiveBlending,
+    uniforms: {
+      uTime: { value: 0 },
+      uPixelRatio: { value: renderer.getPixelRatio() }
+    },
+    vertexShader: `
+      attribute vec3 particleColor;
+      attribute float size;
+      varying vec3 vColor;
+      varying float vPulse;
+      uniform float uTime;
+      uniform float uPixelRatio;
+      void main(){
+        vColor = particleColor;
+        vPulse = .62 + .38 * sin(uTime * 1.8 + position.x * 1.7 + position.y);
+        vec4 mv = modelViewMatrix * vec4(position, 1.0);
+        gl_PointSize = size * uPixelRatio * vPulse / max(.35, -mv.z);
+        gl_Position = projectionMatrix * mv;
+      }
+    `,
+    fragmentShader: `
+      varying vec3 vColor;
+      varying float vPulse;
+      void main(){
+        vec2 uv = gl_PointCoord - vec2(.5);
+        float d = length(uv);
+        float core = smoothstep(.42, 0.0, d);
+        float halo = smoothstep(.5, .08, d) * .34;
+        float a = (core + halo) * vPulse;
+        if (a < .02) discard;
+        gl_FragColor = vec4(vColor, a);
+      }
+    `
+  });
+
+  group.add(new THREE.Points(particleGeo, particleMat));
+
+  const linePositions = new Float32Array(lineCount * 6);
+  const lineColors = new Float32Array(lineCount * 6);
+  const lineGeo = new THREE.BufferGeometry();
+  lineGeo.setAttribute('position', new THREE.BufferAttribute(linePositions, 3));
+  lineGeo.setAttribute('color', new THREE.BufferAttribute(lineColors, 3));
+
+  const lineMat = new THREE.LineBasicMaterial({
+    transparent: true,
+    opacity: .22,
+    vertexColors: true,
+    blending: THREE.AdditiveBlending,
+    depthWrite: false
+  });
+
+  group.add(new THREE.LineSegments(lineGeo, lineMat));
+
+  const pairs = Array.from({ length: lineCount }, (_, i) => {
+    const a = Math.floor((i / lineCount) * particleCount);
+    return [a, (a + 8 + Math.floor(Math.random() * 42)) % particleCount];
+  });
+
+  function shapePoint(i, key) {
+    const k = i * 3;
+    const x = base[k];
+    const y = base[k + 1];
+    const z = base[k + 2];
+    const ph = phases[i];
+    const shape = SECTORS[key].shape;
+
+    if (shape === 'core') {
+      const s = .68 + .24 * Math.sin(ph);
+      return [x * s, y * .78, z * s];
+    }
+
+    if (shape === 'torus') {
+      const a = Math.atan2(z, x);
+      const tube = .54 + .25 * Math.sin(ph * 2);
+      const ring = 1.75 + tube * Math.cos(ph);
+      return [
+        Math.cos(a) * ring,
+        Math.sin(ph) * .76 + y * .2,
+        Math.sin(a) * ring + tube * Math.sin(ph)
+      ];
+    }
+
+    if (shape === 'wave') {
+      return [
+        x * 1.05,
+        y * .5 + Math.sin(x * 1.8 + ph) * .56,
+        z * .9
+      ];
+    }
+
+    if (shape === 'helix') {
+      const a = ph + y * 1.8;
+      const s = 1.0 + Math.abs(y) * .36;
+      return [
+        Math.cos(a) * s + x * .32,
+        y * 1.08,
+        Math.sin(a) * s + z * .32
+      ];
+    }
+
+    return [x, y, z];
+  }
+
+  function roundRect(ctx, x, y, w, h, r) {
+    ctx.beginPath();
+    ctx.moveTo(x + r, y);
+    ctx.arcTo(x + w, y, x + w, y + h, r);
+    ctx.arcTo(x + w, y + h, x, y + h, r);
+    ctx.arcTo(x, y + h, x, y, r);
+    ctx.arcTo(x, y, x + w, y, r);
+    ctx.closePath();
+  }
+
+  function createNodeLabel(text, color, active) {
+    const canvas = document.createElement('canvas');
+    canvas.width = 320;
+    canvas.height = 110;
+
+    const ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    ctx.fillStyle = active ? 'rgba(7,9,13,.88)' : 'rgba(7,9,13,.58)';
+    ctx.strokeStyle = color;
+    ctx.lineWidth = active ? 3 : 1.5;
+
+    roundRect(ctx, 18, 26, 284, 54, 26);
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.arc(48, 53, active ? 7 : 5, 0, Math.PI * 2);
+    ctx.fillStyle = color;
+    ctx.fill();
+
+    ctx.fillStyle = active ? '#f8fbff' : '#aab7c8';
+    ctx.font = active ? '700 24px IBM Plex Mono, monospace' : '600 22px IBM Plex Mono, monospace';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(text, 170, 53);
+
+    const texture = new THREE.CanvasTexture(canvas);
+    const material = new THREE.SpriteMaterial({
+      map: texture,
+      transparent: true,
+      opacity: active ? 1 : .48,
+      depthWrite: false
+    });
+
+    const sprite = new THREE.Sprite(material);
+    sprite.scale.set(active ? 1.45 : 1.05, active ? .5 : .38, 1);
+    sprite.userData.baseScale = sprite.scale.clone();
+    return sprite;
+  }
+
+  function nodePosition(node, activeSector, index, total) {
+    const same = node.sector === activeSector;
+    const angle = (index / Math.max(total, 1)) * Math.PI * 2;
+
+    if (same) {
+      return new THREE.Vector3(
+        Math.cos(angle) * 1.68,
+        Math.sin(angle * 1.55) * .72,
+        1.45 + Math.sin(angle) * .34
+      );
+    }
+
+    return new THREE.Vector3(
+      Math.cos(angle) * 2.34,
+      Math.sin(angle * 1.2) * 1.36,
+      -.38 + Math.sin(angle) * .5
+    );
+  }
+
+  function updateSemanticNodes(activeSector) {
+    edgeGroup.clear();
+    nodeGroup.clear();
+
+    const activeIds = new Set(
+      NETWORK_NODES.filter(n => n.sector === activeSector).map(n => n.id)
+    );
+
+    const relevantIds = new Set(activeIds);
+
+    NETWORK_EDGES.forEach(([a, b]) => {
+      if (activeIds.has(a) || activeIds.has(b)) {
+        relevantIds.add(a);
+        relevantIds.add(b);
+      }
+    });
+
+    const relevant = NETWORK_NODES.filter(n => relevantIds.has(n.id));
+    const nodeObjects = new Map();
+
+    relevant.forEach((node, i) => {
+      const active = node.sector === activeSector;
+      const sprite = createNodeLabel(node.label, node.color, active);
+      sprite.position.copy(nodePosition(node, activeSector, i, relevant.length));
+      sprite.userData.node = node;
+      nodeGroup.add(sprite);
+      nodeObjects.set(node.id, sprite);
+    });
+
+    NETWORK_EDGES.forEach(([from, to]) => {
+      const a = nodeObjects.get(from);
+      const b = nodeObjects.get(to);
+      if (!a || !b) return;
+
+      const fromNode = NETWORK_NODES.find(n => n.id === from);
+      const toNode = NETWORK_NODES.find(n => n.id === to);
+      const strong = fromNode?.sector === activeSector || toNode?.sector === activeSector;
+
+      const geo = new THREE.BufferGeometry().setFromPoints([
+        a.position,
+        b.position
+      ]);
+
+      const mat = new THREE.LineBasicMaterial({
+        color: strong ? 0xffffff : 0x6b7280,
+        transparent: true,
+        opacity: strong ? .58 : .18,
+        blending: THREE.AdditiveBlending,
+        depthWrite: false
+      });
+
+      edgeGroup.add(new THREE.Line(geo, mat));
+    });
+
+    const sector = SECTORS[activeSector];
+
+    document.getElementById('gd-players').innerHTML = relevant
+      .filter(n => n.sector === activeSector)
+      .map(n => `
+        <div class="gd-player">
+          <span class="gd-pdot" style="background:${n.color}"></span>
+          <span>${n.label}</span>
+        </div>
+      `)
+      .join('');
+
+    document.getElementById('gd-articles').innerHTML = sector.articles
+      .map(a => `<a href="${sector.url}">${a}</a>`)
+      .join('');
+  }
+
+  let active = 'llm';
+  let rotX = -0.08;
+  let rotY = 0.35;
+  let drag = null;
+  let last = performance.now();
+
+  function setSector(key) {
+    active = key;
+    const sector = SECTORS[key];
+
+    document.documentElement.style.setProperty('--map-accent', sector.color);
+    document.getElementById('neural-signal').textContent = sector.label;
+    document.getElementById('gd-dot').style.background = sector.color;
+    document.getElementById('gd-title').textContent = sector.title;
+    document.getElementById('gd-desc').textContent = sector.desc;
+    document.getElementById('gd-link').href = sector.url;
+    document.getElementById('gd-link').style.color = sector.color;
+
+    colorA.set(sector.color);
+    colorB.set(sector.color2);
+
+    for (let i = 0; i < particleCount; i++) {
+      const k = i * 3;
+      const p = shapePoint(i, key);
+
+      target[k] = p[0];
+      target[k + 1] = p[1];
+      target[k + 2] = p[2];
+
+      const mix = (Math.sin(phases[i] * 1.7) + 1) / 2;
+      const col = colorA.clone().lerp(colorB, mix * .82).lerp(colorC, Math.random() * .12);
+
+      colors[k] = col.r;
+      colors[k + 1] = col.g;
+      colors[k + 2] = col.b;
+    }
+
+    particleGeo.attributes.particleColor.needsUpdate = true;
+
+    pairs.forEach(([a, b], i) => {
+      const ai = a * 3;
+      const bi = b * 3;
+      const li = i * 6;
+
+      lineColors[li] = colors[ai];
+      lineColors[li + 1] = colors[ai + 1];
+      lineColors[li + 2] = colors[ai + 2];
+
+      lineColors[li + 3] = colors[bi];
+      lineColors[li + 4] = colors[bi + 1];
+      lineColors[li + 5] = colors[bi + 2];
+    });
+
+    lineGeo.attributes.color.needsUpdate = true;
+
+    updateSemanticNodes(key);
+  }
+
+  document.querySelectorAll('#sector-tabs .sector-tab').forEach(button => {
+    button.addEventListener('click', () => {
+      document.querySelectorAll('#sector-tabs .sector-tab').forEach(tab => {
+        tab.classList.remove('active');
+      });
+      button.classList.add('active');
+      setSector(button.dataset.sector);
+    });
+  });
+
+  function resize() {
+    const w = container.clientWidth;
+    const h = Math.min(Math.max(w * .78, isMobile ? 420 : 500), 640);
+    renderer.setSize(w, h, false);
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+  }
+
+  canvas.addEventListener('pointerdown', e => {
+    canvas.setPointerCapture(e.pointerId);
+    drag = {
+      x: e.clientX,
+      y: e.clientY,
+      rx: rotX,
+      ry: rotY
+    };
+  });
+
+  canvas.addEventListener('pointermove', e => {
+    if (!drag) return;
+
+    rotY = drag.ry + (e.clientX - drag.x) * .008;
+    rotX = Math.max(-1.15, Math.min(1.15, drag.rx + (e.clientY - drag.y) * .006));
+  });
+
+  canvas.addEventListener('pointerup', () => {
+    drag = null;
+  });
+
+  canvas.addEventListener('pointercancel', () => {
+    drag = null;
+  });
+
+  function animate(now) {
+    requestAnimationFrame(animate);
+
+    const dt = Math.min(.034, (now - last) / 1000);
+    last = now;
+
+    const sector = SECTORS[active];
+    particleMat.uniforms.uTime.value = now * .001;
+
+    for (let i = 0; i < particleCount; i++) {
+      const k = i * 3;
+      const ph = phases[i];
+
+      const breathe = Math.sin(now * .0014 * sector.motion + ph) * .065;
+      const orbit = Math.cos(now * .001 * sector.motion + ph * .7) * .032;
+
+      current[k] += (target[k] + breathe - current[k]) * .03;
+      current[k + 1] += (target[k + 1] + orbit - current[k + 1]) * .03;
+      current[k + 2] += (target[k + 2] - breathe * .45 - current[k + 2]) * .03;
+    }
+
+    particleGeo.attributes.position.needsUpdate = true;
+
+    pairs.forEach(([a, b], i) => {
+      const ai = a * 3;
+      const bi = b * 3;
+      const li = i * 6;
+
+      linePositions[li] = current[ai];
+      linePositions[li + 1] = current[ai + 1];
+      linePositions[li + 2] = current[ai + 2];
+
+      linePositions[li + 3] = current[bi];
+      linePositions[li + 4] = current[bi + 1];
+      linePositions[li + 5] = current[bi + 2];
+    });
+
+    lineGeo.attributes.position.needsUpdate = true;
+
+    nodeGroup.children.forEach((node, i) => {
+      const base = node.userData.baseScale;
+      if (!base) return;
+
+      const pulse = 1 + Math.sin(now * .002 + i) * .035;
+      node.scale.set(base.x * pulse, base.y * pulse, base.z);
+    });
+
+    group.rotation.y += (rotY - group.rotation.y) * .035 + dt * .045;
+    group.rotation.x += (rotX - group.rotation.x) * .035;
+    group.rotation.z = Math.sin(now * .00038) * .04;
+
+    renderer.render(scene, camera);
+  }
+
+  window.addEventListener('resize', resize);
+
+  setSector(active);
+  resize();
+  requestAnimationFrame(animate);
+})();
+
+// ================================================================
+// COMPANY CARDS
+// ================================================================
+(function() {
+  const cards  = document.querySelectorAll('.co-card');
+  const detail = document.getElementById('co-detail');
+  const closeBtn = document.getElementById('co-detail-close');
+
+  cards.forEach(card => {
+    card.addEventListener('click', () => {
+      const name  = card.dataset.name;
+      const sub   = card.dataset.sub;
+      const desc  = card.dataset.desc;
+      const color = card.dataset.color;
+      const url   = card.dataset.url;
+      const slug  = card.dataset.slug;
+      const logo  = card.querySelector('.co-logo')?.innerHTML || '';
+
+      document.getElementById('co-detail-logo').innerHTML = logo;
+      document.getElementById('co-detail-name').textContent = name;
+      document.getElementById('co-detail-name').style.color = color;
+      document.getElementById('co-detail-sub').textContent  = sub;
+      document.getElementById('co-detail-desc').textContent = desc;
+      const link = document.getElementById('co-detail-link');
+      link.href = url;
+      link.style.color = color;
+
+      // Highlight selected
+      cards.forEach(c => c.classList.remove('active'));
+      card.classList.add('active');
+      card.style.setProperty('--active-color', color);
+
+      detail.style.display = 'block';
+      detail.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+  });
+
+  closeBtn?.addEventListener('click', () => {
+    detail.style.display = 'none';
+    cards.forEach(c => c.classList.remove('active'));
+  });
+})();
+</script>
+
+<style>
+/* ============================================================
+   VARIABLES & RESET
+   ============================================================ */
+:root{
+  color-scheme:dark;
+  --bg:#07090d;--panel:#0d1118;--panel2:#111827;
+  --line:rgba(255,255,255,.09);--lines:rgba(255,255,255,.16);
+  --ink:#f0f4f8;--muted:#8a9ab8;--dim:#4a5568;
+  --blue:#5a9eff;--cyan:#5cd8ce;--green:#4ade80;--gold:#e6b84a;--red:#f87171;--orange:#f97316;
+  --max:1440px;--r:6px;
+  --sans:'Noto Sans JP','Hiragino Kaku Gothic ProN',Meiryo,sans-serif;
+  --serif:'Noto Serif JP',Georgia,serif;
+  --mono:'IBM Plex Mono',ui-monospace,'Courier New',monospace;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;background:var(--bg);}
+body{font-family:var(--sans);background:linear-gradient(180deg,rgba(14,22,40,.9),rgba(7,9,13,0) 500px),var(--bg);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+img{display:block;max-width:100%;height:auto;}
+h1,h2,h3,p{margin:0;}
+button{background:none;border:none;cursor:pointer;font:inherit;color:inherit;}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);}
+.w{width:min(100% - 32px,var(--max));margin:0 auto;}
+
+/* TICKER */
+.ticker-bar{background:var(--panel);border-bottom:1px solid var(--line);height:30px;display:flex;align-items:center;overflow:hidden;}
+.ticker-label{font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:.12em;color:var(--dim);background:var(--bg);padding:0 14px;height:100%;display:flex;align-items:center;border-right:1px solid var(--line);flex-shrink:0;}
+.ticker-scroll{flex:1;overflow:hidden;}
+.ticker-track{display:flex;animation:tick 48s linear infinite;white-space:nowrap;}
+.ticker-track:hover{animation-play-state:paused;}
+@keyframes tick{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+.t-item{display:inline-flex;align-items:center;gap:7px;padding:0 18px;border-right:1px solid var(--line);font-family:var(--mono);font-size:11px;height:30px;}
+.t-name{color:var(--muted);font-size:10px;font-weight:600;}
+.t-val{color:var(--ink);font-weight:500;}
+.t-up{color:var(--green);font-weight:700;}
+.t-dn{color:var(--red);font-weight:700;}
+
+/* HEADER */
+.site-header{position:sticky;top:0;z-index:40;border-bottom:1px solid var(--line);background:rgba(7,9,13,.88);backdrop-filter:blur(18px);}
+.site-header .w{height:60px;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:24px;}
+.brand{display:inline-flex;align-items:center;gap:10px;font-weight:800;font-size:15px;letter-spacing:-.02em;}
+.brand-mark{width:28px;height:28px;border:1px solid var(--lines);border-radius:6px;display:grid;place-items:center;background:linear-gradient(145deg,#e2e8f0,#94a3b8);color:#080b10;font-size:11px;font-weight:900;font-family:var(--mono);}
+.brand-name{color:var(--ink);}
+.gnav{display:flex;gap:20px;justify-content:center;color:var(--muted);font-size:13px;}
+.gnav a:hover{color:var(--ink);}
+.hright{display:flex;}
+.hbtn{border:1px solid var(--lines);border-radius:999px;padding:7px 14px;color:var(--muted);font-size:12px;}
+.hbtn:hover{color:var(--ink);border-color:var(--ink);}
+
+/* SECTION 共通 */
+.section{padding:44px 0;border-bottom:1px solid var(--line);}
+.section-head,.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:20px;}
+.sec-head.compact{margin-bottom:14px;}
+.sec-left{display:flex;flex-direction:column;gap:4px;}
+.eyebrow{color:var(--blue);font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:2px;}
+.sec-title{font-size:clamp(16px,2vw,24px);font-weight:900;line-height:1.2;letter-spacing:-.02em;}
+.section-head h2{font-size:clamp(16px,2vw,24px);font-weight:900;line-height:1.2;letter-spacing:-.02em;}
+.sec-note{font-family:var(--mono);font-size:11px;color:var(--muted);}
+.see-more{font-family:var(--mono);font-size:11px;color:var(--blue);letter-spacing:.04em;white-space:nowrap;}
+.see-more:hover{opacity:.7;}
+.d-up{color:var(--green);font-weight:700;}
+.d-dn{color:var(--red);font-weight:700;}
+
+/* PILL */
+.pill{display:inline-flex;align-items:center;border:1px solid var(--lines);border-radius:999px;padding:5px 12px;font-family:var(--mono);font-size:11px;color:var(--muted);background:rgba(255,255,255,.03);line-height:1;transition:background .15s,color .15s;}
+.pill:hover{color:var(--ink);background:rgba(255,255,255,.07);}
+
+/* §1 PULSE */
+.pulse-section{padding-bottom:32px;}
+.pulse-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:4px;}
+.pulse-grid{display:grid;grid-template-columns:repeat(8,minmax(140px,1fr));gap:10px;min-width:max-content;width:100%;}
+.pulse-card{padding:14px 16px;background:var(--panel);border:1px solid var(--line);border-radius:var(--r);display:grid;gap:4px;transition:transform .18s,border-color .18s;}
+.pulse-card:hover{transform:translateY(-2px);border-color:var(--lines);}
+.pulse-card.tone-up{border-top:2px solid var(--green);}
+.pulse-card.tone-dn{border-top:2px solid var(--red);}
+.pulse-card.tone-warn{border-top:2px solid var(--orange);}
+.pulse-icon{font-size:18px;line-height:1;}
+.pulse-label{font-size:11px;color:var(--muted);font-family:var(--mono);}
+.pulse-value{font-family:var(--mono);font-size:17px;font-weight:800;color:var(--ink);line-height:1.1;}
+.pulse-sub{font-size:10px;color:var(--dim);font-family:var(--mono);}
+
+/* §2 最新記事 article-grid */
+.article-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+.article-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;transition:border-color .2s,transform .2s;}
+.article-card:hover{border-color:var(--lines);transform:translateY(-2px);}
+.article-card img{width:100%;aspect-ratio:16/10;object-fit:cover;background:var(--panel2);}
+.article-img-ph{width:100%;aspect-ratio:16/10;display:flex;align-items:center;justify-content:center;font-size:32px;color:var(--lines);background:var(--panel2);}
+.article-body{padding:12px 14px 14px;display:grid;gap:8px;}
+.article-meta{display:flex;flex-wrap:wrap;gap:6px;align-items:center;}
+.category{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.06em;padding:3px 8px;border-radius:999px;color:#fff;}
+.importance{font-family:var(--mono);font-size:9px;font-weight:700;padding:3px 7px;border-radius:999px;}
+.importance.high{background:rgba(248,113,113,.12);color:var(--red);}
+.importance.med{background:rgba(230,184,74,.1);color:var(--gold);}
+.source-badge{font-family:var(--mono);font-size:9px;font-weight:700;padding:3px 7px;border-radius:999px;background:rgba(230,184,74,.1);color:var(--gold);border:1px solid rgba(230,184,74,.25);}
+.article-card h3{font-size:13px;font-weight:700;line-height:1.55;color:var(--ink);}
+.article-date{font-family:var(--mono);font-size:10px;color:var(--dim);}
+
+/* §3 HERO */
+.hero-section{background:linear-gradient(180deg,rgba(29,110,230,.04),transparent);}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(300px,.9fr);gap:32px;align-items:end;}
+.hero-copy{display:grid;gap:18px;}
+.hero-tags{display:flex;flex-wrap:wrap;gap:8px;}
+.tag{display:inline-flex;align-items:center;border-radius:999px;padding:4px 11px;font-family:var(--mono);font-size:11px;font-weight:700;line-height:1;}
+.tag-cat{color:#fff;}
+.tag-primary{background:rgba(230,184,74,.1);color:var(--gold);border:1px solid rgba(230,184,74,.3);}
+.tag-hot{background:rgba(248,113,113,.1);color:var(--red);border:1px solid rgba(248,113,113,.25);}
+.hero-title{font-family:var(--serif);font-size:clamp(20px,3vw,42px);font-weight:900;line-height:1.15;letter-spacing:-.02em;}
+.hero-title a:hover{color:var(--blue);}
+
+.impact-box{
+  border:1px solid rgba(90,158,255,.18);
+  background:rgba(90,158,255,.05);
+  border-radius:6px;
+  padding:14px 16px;
+  display:grid;
+  gap:10px;
+}
+
+.impact-head{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-family:var(--mono);
+  font-size:11px;
+  color:var(--blue);
+}
+
+.impact-live{
+  width:7px;
+  height:7px;
+  border-radius:999px;
+  background:#4ade80;
+}
+
+.impact-list{
+  list-style:none;
+  display:grid;
+  gap:6px;
+}
+
+.impact-list li{
+  font-size:13px;
+  color:#d7e2f0;
+}
+/* 3セル必須 */
+.hero-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:var(--line);}
+.hero-summary p{padding:13px 15px;background:rgba(13,17,24,.94);color:#c8d3e4;font-size:12px;line-height:1.7;}
+.why-box{display:grid;gap:6px;padding:14px 16px;border-left:2px solid var(--blue);background:rgba(90,158,255,.06);border-radius:0 var(--r) var(--r) 0;}
+.why-box p{font-size:13px;color:var(--muted);line-height:1.7;}
+.hero-footer{display:flex;align-items:center;gap:14px;font-family:var(--mono);font-size:12px;color:var(--dim);flex-wrap:wrap;}
+.hero-cta{margin-left:auto;color:var(--blue);font-weight:700;transition:opacity .15s;}
+.hero-cta:hover{opacity:.7;}
+.hero-media{position:relative;min-height:440px;border:1px solid var(--lines);border-radius:var(--r);overflow:hidden;background:var(--panel);box-shadow:0 20px 70px rgba(0,0,0,.3);}
+.hero-media img{width:100%;height:100%;min-height:440px;object-fit:cover;}
+.hero-ph-lg{width:100%;min-height:440px;display:flex;align-items:center;justify-content:center;font-size:60px;color:var(--lines);background:linear-gradient(135deg,var(--panel),var(--panel2));}
+.terminal-strip{position:absolute;inset:auto 12px 12px 12px;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;border:1px solid var(--line);background:var(--line);border-radius:3px;overflow:hidden;}
+.terminal-strip span{padding:7px 10px;background:rgba(7,9,13,.88);font-family:var(--mono);font-size:10px;color:var(--cyan);letter-spacing:.06em;}
+
+/* §4 AI NETWORK */
+/* §4 AI NETWORK */
+.map-section{
+  background:
+    radial-gradient(circle at 18% 20%, rgba(90,158,255,.08), transparent 34rem),
+    linear-gradient(180deg,rgba(77,142,240,.03),transparent);
+}
+
+.globe-layout{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 150px 340px;
+  gap:24px;
+  align-items:stretch;
+}
+
+.neural-container{
+  position:relative;
+  width:100%;
+  max-width:none;
+  min-height:520px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:14px;
+  background:
+    linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px),
+    radial-gradient(circle at 50% 50%, rgba(92,216,206,.12), transparent 34rem),
+    rgba(5,8,13,.82);
+  background-size:44px 44px,44px 44px,auto,auto;
+  cursor:grab;
+}
+
+.neural-container:active{
+  cursor:grabbing;
+}
+
+#globe-canvas{
+  display:block;
+  width:100%;
+  height:100%;
+  min-height:520px;
+  border-radius:0;
+  touch-action:none;
+}
+
+.neural-container::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at center, transparent 26%, rgba(0,0,0,.25) 72%, rgba(0,0,0,.72) 100%),
+    linear-gradient(180deg, rgba(255,255,255,.05), transparent 22%, transparent 74%, rgba(0,0,0,.46));
+}
+
+.neural-badge{
+  position:absolute;
+  left:16px;
+  bottom:16px;
+  z-index:2;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 11px;
+  border:1px solid rgba(255,255,255,.14);
+  border-radius:999px;
+  background:rgba(7,9,13,.66);
+  backdrop-filter:blur(18px);
+  font-family:var(--mono);
+  font-size:10px;
+  color:var(--muted);
+  letter-spacing:.08em;
+}
+
+.neural-badge strong{
+  color:var(--map-accent, var(--cyan));
+  font-size:11px;
+  letter-spacing:0;
+}
+
+.sector-tabs{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:10px;
+}
+
+.sector-tab{
+  min-height:66px;
+  background:rgba(255,255,255,.045);
+  border:1px solid rgba(255,255,255,.1);
+  color:#dbe7f5;
+  padding:12px;
+  border-radius:12px;
+  cursor:pointer;
+  font-family:var(--mono);
+  font-size:12px;
+  font-weight:800;
+  transition:transform .2s,border-color .2s,background .2s,color .2s,box-shadow .2s;
+}
+
+.sector-tab:hover,
+.sector-tab.active{
+  transform:translateX(4px);
+  border-color:color-mix(in srgb, var(--map-accent, var(--blue)) 62%, white 8%);
+  background:linear-gradient(135deg,color-mix(in srgb, var(--map-accent, var(--blue)) 20%, transparent),rgba(255,255,255,.055));
+  color:#fff;
+  box-shadow:0 0 28px color-mix(in srgb, var(--map-accent, var(--blue)) 22%, transparent);
+}
+
+.neural-detail{
+  min-height:520px;
+  justify-content:flex-start;
+  padding:24px;
+  background:linear-gradient(145deg,rgba(255,255,255,.08),rgba(255,255,255,.025)),rgba(13,17,24,.76);
+  backdrop-filter:blur(22px);
+}
+
+.gd-header{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:12px;
+}
+
+.gd-dot{
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  box-shadow:0 0 18px currentColor;
+}
+
+.gd-title{
+  font-size:22px;
+  font-weight:900;
+  letter-spacing:-.02em;
+}
+
+.gd-desc{
+  font-size:13px;
+  color:#aebbd0;
+  margin-bottom:18px;
+  line-height:1.8;
+}
+
+.gd-players{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:8px;
+  margin-bottom:18px;
+}
+
+.gd-player{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  min-height:42px;
+  padding:9px 10px;
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:10px;
+  background:rgba(255,255,255,.04);
+  font-size:12px;
+  color:#e6edf7;
+}
+
+.gd-pdot{
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  flex-shrink:0;
+}
+
+.gd-articles{
+  display:grid;
+  gap:0;
+  margin:6px 0 18px;
+  border-top:1px solid rgba(255,255,255,.1);
+}
+
+.gd-articles a{
+  padding:12px 0;
+  border-bottom:1px solid rgba(255,255,255,.1);
+  font-size:13px;
+  line-height:1.6;
+  color:#d8e3f2;
+}
+
+.gd-articles a:hover{
+  color:var(--map-accent,var(--blue));
+}
+
+.gd-link{
+  font-family:var(--mono);
+  font-size:12px;
+  font-weight:700;
+}
+
+@media(max-width:1100px){
+  .globe-layout{
+    grid-template-columns:1fr;
+  }
+
+  .sector-tabs{
+    flex-direction:row;
+    overflow-x:auto;
+    justify-content:flex-start;
+  }
+
+  .sector-tab{
+    min-width:108px;
+    min-height:56px;
+  }
+
+  .neural-container,
+  #globe-canvas,
+  .neural-detail{
+    min-height:440px;
+  }
+}
+
+@media(max-width:640px){
+  .globe-layout{
+    gap:14px;
+  }
+
+  .neural-container,
+  #globe-canvas{
+    min-height:420px;
+  }
+
+  .neural-detail{
+    min-height:auto;
+    padding:18px;
+  }
+
+  .gd-players{
+    grid-template-columns:1fr;
+  }
+}
+
+
+/* §5 Breaking */
+.breaking-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+.b-card{display:block;background:var(--panel);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;transition:border-color .2s,transform .2s;}
+.b-card:hover{border-color:var(--lines);transform:translateY(-2px);}
+.b-img-wrap{aspect-ratio:16/9;overflow:hidden;background:var(--panel2);}
+.b-img{width:100%;height:100%;object-fit:cover;transition:transform .3s;}
+.b-card:hover .b-img{transform:scale(1.04);}
+.b-ph{width:100%;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;font-size:24px;color:var(--lines);background:var(--panel2);}
+.b-body{padding:10px 12px 12px;}
+.b-cat{display:block;font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px;}
+.b-title{font-size:12px;font-weight:700;line-height:1.55;color:var(--ink);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:5px;}
+.b-meta{display:flex;gap:6px;font-family:var(--mono);font-size:10px;color:var(--dim);}
+.b-card.hot{
+  grid-column:span 2;
+  border-color:rgba(248,113,113,.45);
+  background:linear-gradient(
+    180deg,
+    rgba(248,113,113,.06),
+    transparent
+  );
+}
+
+.b-card.hot .b-title{
+  font-size:15px;
+  line-height:1.5;
+}
+/* §6 Dashboard */
+.dash-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:var(--line);margin-bottom:10px;}
+.metric-card{padding:18px;background:var(--panel);}
+.m-label{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.06em;margin-bottom:8px;}
+.m-value{font-family:var(--mono);font-size:clamp(18px,2.2vw,28px);font-weight:700;line-height:1;color:var(--ink);margin-bottom:8px;}
+.m-foot{display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;}
+.m-unit{color:var(--dim);}
+.dash-note{font-family:var(--mono);font-size:11px;color:var(--dim);}
+.dash-note a{color:var(--blue);}
+
+/* §7 一次情報 */
+.official-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+.o-card{display:block;padding:14px 16px;background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:var(--r);transition:background .15s;}
+.o-card:hover{background:var(--panel2);}
+.o-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
+.o-badge{font-family:var(--mono);font-size:9px;font-weight:700;padding:2px 7px;border-radius:2px;background:rgba(230,184,74,.1);color:var(--gold);}
+.o-date{font-family:var(--mono);font-size:10px;color:var(--dim);}
+.o-title{font-size:13px;font-weight:700;line-height:1.55;color:var(--ink);margin-bottom:5px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.o-src{font-family:var(--mono);font-size:10px;color:var(--dim);}
+
+/* §8 テーマカード */
+.theme-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+.theme-card{display:block;background:var(--panel);border:1px solid var(--line);border-top:2px solid var(--tc,var(--blue));border-radius:var(--r);padding:14px 16px;transition:background .15s,border-color .15s;}
+.theme-card:hover{background:var(--panel2);}
+.theme-header{display:flex;align-items:center;gap:8px;margin-bottom:12px;}
+.theme-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.theme-label{font-size:13px;font-weight:900;flex:1;}
+.theme-arrow{font-size:12px;color:var(--muted);transition:transform .15s;}
+.theme-card:hover .theme-arrow{transform:translateX(3px);}
+.theme-articles{list-style:none;display:grid;gap:6px;margin-bottom:10px;}
+.theme-art-item{display:flex;align-items:flex-start;gap:6px;font-size:11px;line-height:1.5;}
+.theme-art-bullet{color:var(--muted);flex-shrink:0;margin-top:1px;}
+.theme-art-title{color:var(--ink);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.theme-footer{font-family:var(--mono);font-size:10px;color:var(--dim);border-top:1px solid var(--line);padding-top:8px;}
+
+/* §9 Trends */
+.trend-cloud{display:flex;flex-wrap:wrap;gap:9px;}
+.trend-chip{border:1px solid var(--line);border-radius:999px;padding:7px 14px;color:#c8d4e6;background:rgba(255,255,255,.03);font-family:var(--mono);font-size:12px;transition:border-color .15s,color .15s,background .15s;}
+.trend-chip:hover{border-color:rgba(90,158,255,.5);color:var(--blue);background:rgba(90,158,255,.06);}
+
+/* §10 企業ロゴ */
+.company-grid{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px;}
+.co-card{display:grid;place-items:center;gap:6px;width:calc(10% - 9px);min-width:80px;min-height:100px;padding:12px 8px;border:1px solid var(--line);border-radius:var(--r);background:var(--panel);transition:transform .18s,border-color .18s,background .18s;}
+.co-card:hover{transform:translateY(-3px);border-color:var(--lines);background:var(--panel2);}
+.co-card.active{border-color:var(--active-color,var(--blue));background:var(--panel2);transform:translateY(-3px);}
+.co-logo svg{width:40px;height:40px;}
+.co-name{font-size:11px;font-weight:900;color:var(--ink);text-align:center;}
+.co-sub{font-family:var(--mono);font-size:9px;color:var(--dim);text-align:center;}
+.co-detail{background:var(--panel);border:1px solid var(--lines);border-radius:var(--r);overflow:hidden;margin-top:4px;}
+.co-detail-inner{display:flex;align-items:center;gap:20px;padding:20px 24px;position:relative;}
+.co-detail-logo svg{width:52px;height:52px;flex-shrink:0;}
+.co-detail-info{flex:1;display:grid;gap:4px;}
+.co-detail-name{font-size:20px;font-weight:900;}
+.co-detail-sub{font-family:var(--mono);font-size:11px;color:var(--muted);}
+.co-detail-desc{font-size:13px;color:var(--muted);line-height:1.65;}
+.co-detail-link{font-family:var(--mono);font-size:12px;font-weight:700;white-space:nowrap;transition:opacity .15s;}
+.co-detail-link:hover{opacity:.7;}
+.co-detail-close{position:absolute;top:12px;right:12px;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-size:14px;color:var(--muted);background:var(--panel2);border:1px solid var(--line);transition:color .15s;}
+.co-detail-close:hover{color:var(--ink);}
+
+/* FOOTER */
+.site-footer{padding:40px 0 52px;border-top:1px solid var(--line);}
+.footer-inner{display:grid;grid-template-columns:1fr auto;gap:32px;align-items:start;}
+.footer-brand{display:grid;gap:10px;}
+.footer-desc{font-size:13px;color:var(--muted);max-width:300px;line-height:1.7;}
+.footer-links{display:flex;flex-wrap:wrap;gap:14px;justify-content:flex-end;}
+.footer-links a{font-size:13px;color:var(--muted);transition:color .15s;}
+.footer-links a:hover{color:var(--ink);}
+
+/* RESPONSIVE */
+@media(max-width:1100px){
+  .article-grid{grid-template-columns:repeat(2,1fr);}
+  .globe-layout{grid-template-columns:1fr 260px;gap:20px;}
+  .breaking-grid{grid-template-columns:repeat(2,1fr);}
+  .theme-grid{grid-template-columns:repeat(3,1fr);}
+  .co-card{width:calc(16.6% - 9px);}
+}
+@media(max-width:900px){
+  .globe-layout{grid-template-columns:1fr;}
+  .hero-grid{grid-template-columns:1fr;}
+  .hero-media,.hero-media img{min-height:300px;}
+  .hero-summary{grid-template-columns:1fr;}
+  .terminal-strip{grid-template-columns:repeat(2,1fr);}
+  .official-grid{grid-template-columns:repeat(2,1fr);}
+  .dash-grid{grid-template-columns:repeat(4,1fr);}
+  .footer-inner{grid-template-columns:1fr;}
+  .footer-links{justify-content:flex-start;}
+}
+@media(max-width:640px){
+  .w{width:min(100% - 24px,100%);}
+  .section{padding:28px 0;}
+  .section-head,.sec-head{flex-direction:column;align-items:flex-start;gap:6px;}
+  .site-header .w{grid-template-columns:1fr auto;}
+  .gnav{display:none;}
+  .ticker-bar{display:none;}
+  .article-grid{grid-template-columns:repeat(2,1fr);}
+  .breaking-grid{grid-template-columns:repeat(2,1fr);}
+  .dash-grid{grid-template-columns:repeat(2,1fr);}
+  .official-grid{grid-template-columns:1fr;}
+  .theme-grid{grid-template-columns:repeat(2,1fr);}
+  .pulse-grid{grid-template-columns:repeat(4,minmax(130px,1fr));}
+  .co-card{width:calc(33.3% - 7px);}
+  .co-detail-inner{flex-direction:column;align-items:flex-start;gap:12px;}
+}
+@media(max-width:400px){
+  .article-grid{grid-template-columns:1fr;}
+  .theme-grid{grid-template-columns:1fr;}
+}
+</style>

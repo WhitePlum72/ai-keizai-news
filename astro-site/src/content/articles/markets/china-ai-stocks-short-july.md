@@ -5,7 +5,7 @@ source_url: "https://www.bloomberg.com/news/articles/2026-05-13/china-s-hot-unpr
 category: "マーケット"
 category_slug: "markets"
 article_slug: "china-ai-stocks-short-july"
-published_at: "2026-05-14"
+published_at: "2026-05-15"
 buzz_score: 43.0
 image_url: "/images/articles/article_5254.webp"
 meta_description: "中国AI株は浮動株不足で空売りが困難だが、7月にロックアップが一斉解除され状況が一変する見通しだ。高バリュエーションで収益の乏しい企業が多く、流通株急増は株価の重石となる可能性がある。"

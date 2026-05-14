@@ -5,7 +5,7 @@ source_url: "https://www.bloomberg.com/news/articles/2026-05-13/tpg-says-new-ope
 category: "マーケット"
 category_slug: "markets"
 article_slug: "tpg-openai-venture-traditional"
-published_at: "2026-05-14"
+published_at: "2026-05-15"
 buzz_score: 46.0
 image_url: "/images/articles/article_5259.webp"
 meta_description: "TPGはOpenAIへの巨額出資も通常業務の一環として捉え、従来と同じ投資手法を適用した。調達規模は最大400億ドルに達するが、同社は過去の巨大テクノロジー企業投資と変わらぬ精査を行い、AI分野全体への戦略的布石の一つに過ぎないと位置づけて"
