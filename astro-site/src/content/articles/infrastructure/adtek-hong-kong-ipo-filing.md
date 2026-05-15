@@ -5,7 +5,7 @@ source_url: "https://www.bloomberg.com/news/articles/2026-05-15/adtek-files-for-
 category: "インフラ"
 category_slug: "infrastructure"
 article_slug: "adtek-hong-kong-ipo-filing"
-published_at: "2026-05-15"
+published_at: "2026-05-16"
 buzz_score: 45.0
 image_url: "/images/articles/article_5773.webp"
 meta_description: "中国データセンター設計施工のAdtekが香港IPOを申請。生成AI需要を背景にAIインフラ企業の上場が加速しており、米国輸出規制対策の冷却技術開発や東南アジア展開を資金使途とする。日本も部品・素材で商機が広がる一方、半導体規制の狭間で戦略が"

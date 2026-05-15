@@ -5,7 +5,7 @@ source_url: "https://openai.com/index/sea-david-chen"
 category: "ビジネス"
 category_slug: "business"
 article_slug: "seas-codex-agentic-development"
-published_at: "2026-05-15"
+published_at: "2026-05-16"
 buzz_score: 52.5
 image_url: "https://images.ctfassets.net/kftzwdyauwt9/3GtC4ObJd8RLwLe2OIIsyb/06f9c687583df8c348fa7c9ceac493ab/EF_Ep20_16.9.png?w=1600&h=900&fit=fill"
 meta_description: "Sea LimitedがAIコーディングエージェント「Codex」を全社導入し、自律型ソフトウェア開発を加速する。ゲームやECなど多事業で膨大な開発需要を抱える中、AIが要件定義からテストまで一貫実行し、工数削減と生産性向上を実現する狙いだ"

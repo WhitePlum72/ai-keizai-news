@@ -1,0 +1,83 @@
+﻿[
+  {
+    "id": "infrastructure",
+    "name": "Infrastructure",
+    "short": "Infra",
+    "color": "#3B82F6",
+    "description": "GPU、半導体、クラウド、推論基盤。AI産業の土台。",
+    "priority": 100,
+    "keywords": ["GPU", "Data Center", "Cloud", "Inference", "HBM", "CoWoS"]
+  },
+  {
+    "id": "foundation",
+    "name": "Foundation Models",
+    "short": "Models",
+    "color": "#7B61FF",
+    "description": "LLM、マルチモーダル、基盤モデル競争の中心。",
+    "priority": 98,
+    "keywords": ["LLM", "Reasoning", "Multimodal", "Frontier Model", "Context Window"]
+  },
+  {
+    "id": "agents",
+    "name": "AI Agents",
+    "short": "Agents",
+    "color": "#22C55E",
+    "description": "検索、業務自動化、開発支援。2026年の主戦場。",
+    "priority": 96,
+    "keywords": ["Agent", "Workflow", "Browser Use", "Coding Agent", "Automation"]
+  },
+  {
+    "id": "robotics",
+    "name": "Robotics",
+    "short": "Robotics",
+    "color": "#F97316",
+    "description": "ヒューマノイド、物理世界AI、産業ロボット。",
+    "priority": 88,
+    "keywords": ["Humanoid", "Embodied AI", "Factory", "Manipulation", "Autonomy"]
+  },
+  {
+    "id": "opensource",
+    "name": "Open Source",
+    "short": "OSS",
+    "color": "#06B6D4",
+    "description": "オープンモデル、配布基盤、開発者エコシステム。",
+    "priority": 86,
+    "keywords": ["Open Weights", "Model Hub", "Llama", "DeepSeek", "Community"]
+  },
+  {
+    "id": "enterprise",
+    "name": "Enterprise AI",
+    "short": "Enterprise",
+    "color": "#EAB308",
+    "description": "BtoB、業務AI、SaaS、企業導入。",
+    "priority": 90,
+    "keywords": ["Copilot", "CRM", "ERP", "RAG", "Governance", "SaaS"]
+  },
+  {
+    "id": "video",
+    "name": "Video AI",
+    "short": "Video",
+    "color": "#EC4899",
+    "description": "動画生成、編集、クリエイティブAI。",
+    "priority": 84,
+    "keywords": ["Text-to-Video", "Editing", "Creative AI", "Sora", "Runway"]
+  },
+  {
+    "id": "voice",
+    "name": "Voice AI",
+    "short": "Voice",
+    "color": "#14B8A6",
+    "description": "音声生成、会話AI、ナレーション。",
+    "priority": 76,
+    "keywords": ["Voice", "Speech", "Audio", "Realtime", "Narration"]
+  },
+  {
+    "id": "china",
+    "name": "China AI",
+    "short": "China",
+    "color": "#EF4444",
+    "description": "DeepSeek、Alibaba、ByteDanceなど中国AI勢。",
+    "priority": 92,
+    "keywords": ["DeepSeek", "Qwen", "Doubao", "ERNIE", "China Cloud"]
+  }
+]

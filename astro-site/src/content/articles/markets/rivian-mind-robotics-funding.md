@@ -5,7 +5,7 @@ source_url: "https://techcrunch.com/2026/05/13/rivian-spinoff-mind-robotics-rais
 category: "マーケット"
 category_slug: "markets"
 article_slug: "rivian-mind-robotics-funding"
-published_at: "2026-05-15"
+published_at: "2026-05-16"
 buzz_score: 39.5
 image_url: "https://techcrunch.com/wp-content/uploads/2022/10/TechCrunch-Disrupt-Haje-Kamps-529.jpg?resize=1200,800"
 meta_description: "Rivianから分離独立した物流ロボ開発企業Mind Roboticsが約600億円を調達し、累計調達額が10億ドルを突破した。同社はRivianの自動運転技術を倉庫搬送に応用し、非定型物のピッキング等で急成長。RivianはEV製造に専念"

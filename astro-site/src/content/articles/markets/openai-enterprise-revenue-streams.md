@@ -5,7 +5,7 @@ source_url: "https://www.bloomberg.com/news/videos/2026-05-15/enterprise-40-of-r
 category: "マーケット"
 category_slug: "markets"
 article_slug: "openai-enterprise-revenue-streams"
-published_at: "2026-05-15"
+published_at: "2026-05-16"
 buzz_score: 50.0
 image_url: "/images/articles/article_5766.webp"
 meta_description: "OpenAIの法人向け事業が総収入の4割を占め、年内に5割へ拡大する見通しだ。企業の基幹業務へのAI実装が進み、Fortune 500の92%が同社製品を利用。カスタマイズ需要や高い継続率が収益構造の変化を加速させている。"

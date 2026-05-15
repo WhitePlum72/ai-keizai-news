@@ -5,7 +5,7 @@ source_url: "https://www.bloomberg.com/news/videos/2026-05-15/openai-cfo-says-co
 category: "インフラ"
 category_slug: "infrastructure"
 article_slug: "openai-compute-crunch-capital-raise"
-published_at: "2026-05-15"
+published_at: "2026-05-16"
 buzz_score: 51.0
 image_url: "/images/articles/article_5774.webp"
 meta_description: "OpenAIのCFOは、過去最大の私募資金調達後も計算資源不足を理由に追加調達の可能性を示した。ChatGPTの普及でGPUなど先端半導体が慢性的に不足し、データセンター拡充に巨額投資が必要なため、生成AI開発競争で資金力が経営の鍵を握って"

@@ -1,281 +1,1251 @@
-
-
 ---
 /**
- * AI経済新聞 top page
- * Astro SSR-ready single-file implementation.
+ * AI経済新聞 preview.astro
+ * URL: http://localhost:4321/preview/
  */
+import '../styles/global.css' 
+import { getCollection } from 'astro:content';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import LiveAIEcosystemNetwork from '../components/LiveAIEcosystemNetwork.tsx';
 
-const siteUrl = "https://aikeizai.jp";
-const pageTitle = "AI経済新聞 | AI産業OS";
-const pageDescription =
-  "AI・半導体・市場・インフラ・政策を構造で読む、日本語AI業界インテリジェンスメディア。";
-const ogImage =
-  "https://images.unsplash.com/photo-1647427060118-4911c9821b82?auto=format&fit=crop&w=1600&q=80";
 
-const hero = {
-  category: "Industry Structure",
-  title: "AIインフラ競争はモデル単体から、計算資源・推論網・政策を束ねる産業戦へ",
-  summary: [
-    "OpenAI、Google、Anthropic、Metaは、モデル性能だけでなく推論コストと配信網で競争している。",
-    "NVIDIA、TSMC、CoreWeave、主要クラウドの投資判断が、AI企業の成長速度を左右する局面に入った。",
-    "政策・安全保障・電力制約が、次のAI覇権を決める重要変数として浮上している。",
-  ],
-  why: "AI産業の勝者は、最高性能モデルを持つ企業ではなく、モデル・GPU・資本・電力・規制対応を最も速く統合できる企業になる可能性が高い。",
-  image:
-    "https://images.unsplash.com/photo-1518709268805-4e9042af2176?auto=format&fit=crop&w=1800&q=82",
-  tags: ["OpenAI", "NVIDIA", "Google", "Anthropic"],
-  themes: ["推論", "GPU供給", "データセンター", "政策"],
+const allArticles = await getCollection('articles');
+const sorted = [...allArticles].sort(
+  (a, b) => (b.data.buzz_score || 0) - (a.data.buzz_score || 0)
+);
+
+const hero    = sorted[0];
+const usedIds = new Set([hero?.id]);
+
+const breaking = sorted.filter(a => !usedIds.has(a.id)).slice(0, 8);
+breaking.forEach(a => usedIds.add(a.id));
+
+const official = allArticles
+  .filter(a => a.data.source_label && !usedIds.has(a.id))
+  .sort((a, b) => (b.data.buzz_score || 0) - (a.data.buzz_score || 0))
+  .slice(0, 6);
+official.forEach(a => usedIds.add(a.id));
+
+const byCategory = (slug, limit = 4) =>
+  allArticles
+    .filter(a => a.data.category_slug === slug && !usedIds.has(a.id))
+    .sort((a, b) => (b.data.buzz_score || 0) - (a.data.buzz_score || 0))
+    .slice(0, limit);
+
+const catSections = [
+  { slug: 'model',          label: 'モデル',     url: '/model/'          },
+  { slug: 'business',       label: 'ビジネス',   url: '/business/'       },
+  { slug: 'markets',        label: 'AI関連株',   url: '/markets/'        },
+  { slug: 'infrastructure', label: 'インフラ',   url: '/infrastructure/' },
+  { slug: 'research',       label: '研究',       url: '/research/'       },
+  { slug: 'policy',         label: '政策',       url: '/policy/'         },
+  { slug: 'products',       label: 'プロダクト', url: '/products/'       },
+].map(c => ({ ...c, articles: byCategory(c.slug, 4) }))
+ .filter(c => c.articles.length > 0);
+
+const latestExcluded = new Set([...usedIds]);
+const latest = [...allArticles]
+  .sort((a, b) => (b.data.published_at || '').localeCompare(a.data.published_at || ''))
+  .filter(a => !latestExcluded.has(a.id))
+  .slice(0, 4);
+
+const getUrl = (a) =>
+  `/article/${a.data.category_slug || 'business'}/${a.data.article_slug || a.id}/`;
+
+const CAT_LABEL = {
+  model:'モデル', business:'ビジネス', markets:'AI関連株',
+  infrastructure:'インフラ', research:'研究', policy:'政策', products:'プロダクト',
+};
+const getCatLabel = (s) => CAT_LABEL[s] || s;
+
+const CAT_COLOR = {
+  model:'#4d8ef0', business:'#e05252', markets:'#c49a20',
+  infrastructure:'#2fa86e', research:'#9b6dea', policy:'#0ea5c4', products:'#4299c4',
+};
+const getCatColor = (s) => CAT_COLOR[s] || '#6b7280';
+
+const getLead = (e) =>
+  ((e.body || '').replace(/[#*`\[\]\n]/g,' ').replace(/\s+/g,' ').trim().slice(0, 200));
+
+const fmtDate = (s) => {
+  if (!s) return '';
+  const d = new Date(s);
+  return isNaN(d.getTime()) ? s : d.toLocaleDateString('ja-JP', { month:'numeric', day:'numeric' });
+};
+const fmtFull = (s) => {
+  if (!s) return '';
+  const d = new Date(s);
+  return isNaN(d.getTime()) ? s : d.toLocaleDateString('ja-JP', { year:'numeric', month:'long', day:'numeric' });
 };
 
-const pulses = [
-  { company: "NVIDIA", label: "GPU需給", value: "Tight", change: "+3.8%", tone: "up" },
-  { company: "OpenAI", label: "推定ARR", value: "$4B+", change: "加速", tone: "up" },
-  { company: "Anthropic", label: "Enterprise", value: "拡大", change: "+", tone: "up" },
-  { company: "Google", label: "Gemini", value: "更新", change: "競争", tone: "flat" },
-  { company: "Meta", label: "Open Model", value: "攻勢", change: "OSS", tone: "up" },
-  { company: "xAI", label: "Compute", value: "増強", change: "GPU", tone: "up" },
-  { company: "Microsoft", label: "Azure AI", value: "強含み", change: "+2.1%", tone: "up" },
-  { company: "Amazon", label: "Trainium", value: "投資", change: "拡大", tone: "flat" },
+// Hero summary: 必ず3つに分割
+const buildSummary = (entry) => {
+  if (!entry) return ['', '', ''];
+  const text = getLead(entry);
+  const sentences = text.split(/。|．/).map(s => s.trim()).filter(s => s.length > 8);
+  while (sentences.length < 3) sentences.push('詳細は記事本文をご覧ください');
+  return sentences.slice(0, 3).map(s => s + '。');
+};
+const heroSummary = buildSummary(hero);
+
+const TICKER = [
+  {name:'NVDA',val:'$1,120',chg:'+2.4%',up:true},
+  {name:'AMD', val:'$162', chg:'-1.0%',up:false},
+  {name:'MSFT',val:'$415', chg:'+0.9%',up:true},
+  {name:'GOOG',val:'$178', chg:'+1.4%',up:true},
+  {name:'META',val:'$564', chg:'+2.1%',up:true},
+  {name:'SOX', val:'5,312',chg:'+0.8%',up:true},
+  {name:'H100',val:'$2.10',chg:'-5.4%',up:false},
+  {name:'ARR', val:'$4.2B',chg:'推定', up:true},
 ];
 
-const industryMap = [
-  { name: "モデル", description: "基盤モデル、推論、マルチモーダル競争", companies: ["OpenAI", "Anthropic", "Google DeepMind", "xAI"] },
-  { name: "半導体", description: "GPU、ASIC、HBM、先端パッケージ", companies: ["NVIDIA", "AMD", "TSMC", "Broadcom"] },
-  { name: "クラウド", description: "AI計算資源、学習基盤、企業導入", companies: ["AWS", "Azure", "GCP"] },
-  { name: "推論", description: "低レイテンシ、専用チップ、配信最適化", companies: ["Groq", "Cerebras", "SambaNova"] },
-  { name: "エージェント", description: "業務自動化、ソフトウェア開発、操作代行", companies: ["OpenAI Agents", "Manus", "Devin"] },
-  { name: "データセンター", description: "電力、冷却、GPUクラスタ、資本投下", companies: ["Stargate", "Crusoe", "CoreWeave"] },
-  { name: "ロボティクス", description: "ヒューマノイド、製造、物理世界AI", companies: ["Figure", "Tesla", "Unitree"] },
-  { name: "政策", description: "規制、安全保障、輸出管理、AI Act", companies: ["EU AI Act", "米国政策", "中国AI規制"] },
+const PULSES = [
+  {label:'NVIDIA GPU需給', value:'逼迫',   sub:'H100在庫不足',        tone:'warn', icon:'⚡'},
+  {label:'OpenAI 推定ARR', value:'$4.2B',  sub:'前年比 +180%',        tone:'up',   icon:'📈'},
+  {label:'H100 スポット',  value:'$2.10',  sub:'1時間（推定）',        tone:'dn',   icon:'💻'},
+  {label:'CoreWeave 調達', value:'$12B',   sub:'2026年累計',          tone:'up',   icon:'💰'},
+  {label:'DC投資額',       value:'$248B',  sub:'2026年世界推計',      tone:'up',   icon:'🏗️'},
+  {label:'AI関連ETF',      value:'+1.1%',  sub:'前日比',              tone:'up',   icon:'📊'},
+  {label:'推論コスト',     value:'急落中', sub:'GPT-4o比 -60%',       tone:'up',   icon:'🔽'},
+  {label:'電力制約',       value:'深刻化', sub:'北米DC新設遅延',      tone:'warn', icon:'⚠️'},
 ];
 
-const dashboard = [
-  { label: "NVIDIA株価", value: "1,120.48", unit: "USD", delta: "+2.4%" },
-  { label: "SOX指数", value: "5,312.9", unit: "pt", delta: "+0.8%" },
-  { label: "AI関連ETF", value: "142.6", unit: "index", delta: "+1.1%" },
-  { label: "GPU需給", value: "86", unit: "/100", delta: "逼迫" },
-  { label: "H100価格", value: "28,500", unit: "USD", delta: "-3.0%" },
-  { label: "DC投資額", value: "248B", unit: "USD", delta: "+18%" },
-  { label: "OpenAI推定ARR", value: "4.2B", unit: "USD", delta: "+高成長" },
-  { label: "CoreWeave調達額", value: "12B", unit: "USD", delta: "大型" },
+const DASHBOARD = [
+  {label:'NVIDIA株価',  value:'1,120', unit:'USD', delta:'+2.4%', up:true },
+  {label:'SOX指数',     value:'5,312', unit:'pt',  delta:'+0.8%', up:true },
+  {label:'H100価格',    value:'28,500',unit:'USD', delta:'-3.0%', up:false},
+  {label:'GPU需給',     value:'86',    unit:'/100',delta:'逼迫',  up:false},
+  {label:'DC投資額',    value:'248B',  unit:'USD', delta:'+18%',  up:true },
+  {label:'OpenAI ARR', value:'4.2B',  unit:'USD', delta:'+成長', up:true },
+  {label:'AI ETF',     value:'142.6', unit:'idx', delta:'+1.1%', up:true },
+  {label:'推論コスト',  value:'-60%',  unit:'YoY', delta:'低下',  up:true },
 ];
 
-const latestArticles = [
-  { title: "NVIDIAの次世代GPU供給、クラウド各社のAI投資計画に波及", category: "GPU/半導体", company: "NVIDIA", importance: "High", primary: true, image: "https://images.unsplash.com/photo-1591405351990-4726e331f141?auto=format&fit=crop&w=900&q=78" },
-  { title: "OpenAI、エージェント基盤を企業向けワークフローに拡張", category: "モデル", company: "OpenAI", importance: "High", primary: true, image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=900&q=78" },
-  { title: "データセンター電力制約、AIインフラ投資の新たなボトルネックに", category: "インフラ", company: "CoreWeave", importance: "Medium", primary: false, image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=900&q=78" },
-  { title: "EU AI Act対応で基盤モデル企業の開示負担が増加", category: "政策", company: "EU", importance: "Medium", primary: true, image: "https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&w=900&q=78" },
+const TRENDS = [
+  {label:'AGI',          slug:'agi'},
+  {label:'Reasoning',    slug:'reasoning'},
+  {label:'Agents',       slug:'agents'},
+  {label:'GPU',          slug:'gpu'},
+  {label:'Multimodal',   slug:'multimodal'},
+  {label:'Inference',    slug:'reasoning'},
+  {label:'Datacenter',   slug:'datacenter'},
+  {label:'HBM',          slug:'semiconductor'},
+  {label:'Sovereign AI', slug:'policy'},
+  {label:'AI Act',       slug:'policy'},
+  {label:'Robotics',     slug:'agi'},
+  {label:'RAG',          slug:'research'},
+  {label:'Semiconductor',slug:'semiconductor'},
+  {label:'OpenAI',       slug:'openai'},
+  {label:'NVIDIA',       slug:'nvidia'},
 ];
 
-const primarySources = ["OpenAI Blog", "Google AI Blog", "NVIDIA Newsroom", "Anthropic News", "Meta AI", "Microsoft Azure Blog", "SEC Filings", "政策文書・規制当局"];
-const topicSections = ["モデル", "GPU/半導体", "AI関連株", "エージェント", "推論", "データセンター", "政策", "ロボティクス", "研究", "M&A", "資金調達"];
-const trends = ["AGI", "Reasoning", "Inference", "GPU", "Multimodal", "Agents", "OpenAI", "NVIDIA", "Datacenter", "HBM", "Sovereign AI", "AI Act", "Robotics", "RAG", "Semiconductor"];
-const companies = ["OpenAI", "NVIDIA", "Anthropic", "Google", "Meta", "Microsoft", "AMD", "TSMC", "CoreWeave", "Groq"];
-
-const slugify = (value: string) => encodeURIComponent(value.toLowerCase().replaceAll(" ", "-"));
+// 企業ロゴデータ（SVGインライン）
+const COMPANIES = [
+  {
+    name:'OpenAI', slug:'openai', sub:'GPT-4o / o3',
+    desc:'大規模言語モデルのパイオニア。ChatGPT、GPT-4o、o3を開発。',
+    color:'#10a37f',
+    svg:`<svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="20" cy="20" r="18" fill="#10a37f" fill-opacity=".15" stroke="#10a37f" stroke-width="1.5"/><text x="20" y="26" text-anchor="middle" font-size="14" font-weight="900" fill="#10a37f" font-family="serif">O</text></svg>`,
+  },
+  {
+    name:'NVIDIA', slug:'nvidia', sub:'H100 / B200 / CUDA',
+    desc:'AIアクセラレータ市場を独占。H100、B200、CUDAエコシステム。',
+    color:'#76b900',
+    svg:`<svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="36" height="36" rx="4" fill="#76b900" fill-opacity=".15" stroke="#76b900" stroke-width="1.5"/><text x="20" y="26" text-anchor="middle" font-size="12" font-weight="900" fill="#76b900" font-family="sans-serif">NV</text></svg>`,
+  },
+  {
+    name:'Anthropic', slug:'anthropic', sub:'Claude 3.x',
+    desc:'Constitutional AIを開発。Claude 3シリーズで企業市場を席巻。',
+    color:'#d97706',
+    svg:`<svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="20" cy="20" r="18" fill="#d97706" fill-opacity=".12" stroke="#d97706" stroke-width="1.5"/><text x="20" y="26" text-anchor="middle" font-size="14" font-weight="900" fill="#d97706" font-family="sans-serif">A</text></svg>`,
+  },
+  {
+    name:'Google', slug:'google', sub:'Gemini 2.0 / TPU',
+    desc:'Gemini、DeepMind、TPUでAI全領域をカバー。',
+    color:'#4285f4',
+    svg:`<svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="20" cy="20" r="18" fill="#4285f4" fill-opacity=".1" stroke="#4285f4" stroke-width="1.5"/><text x="20" y="26" text-anchor="middle" font-size="14" font-weight="900" fill="#4285f4" font-family="sans-serif">G</text></svg>`,
+  },
+  {
+    name:'Meta', slug:'meta', sub:'Llama 4 / OSSモデル',
+    desc:'Llama 4をオープンソースで公開。AI研究をリード。',
+    color:'#0081fb',
+    svg:`<svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="36" height="36" rx="6" fill="#0081fb" fill-opacity=".1" stroke="#0081fb" stroke-width="1.5"/><text x="20" y="26" text-anchor="middle" font-size="12" font-weight="900" fill="#0081fb" font-family="sans-serif">Meta</text></svg>`,
+  },
+  {
+    name:'Microsoft', slug:'microsoft', sub:'Azure AI / Copilot',
+    desc:'OpenAIへの投資と統合でAI商業化を主導。Azure AIが急成長。',
+    color:'#00a4ef',
+    svg:`<svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="6" width="12" height="12" fill="#f25022"/><rect x="22" y="6" width="12" height="12" fill="#00a4ef"/><rect x="6" y="22" width="12" height="12" fill="#ffb900"/><rect x="22" y="22" width="12" height="12" fill="#7fba00"/></svg>`,
+  },
+  {
+    name:'AMD', slug:'amd', sub:'MI300X / ROCm',
+    desc:'NVIDIAに次ぐGPU勢力。MI300XでAI学習市場に参入。',
+    color:'#ed1c24',
+    svg:`<svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="36" height="36" rx="4" fill="#ed1c24" fill-opacity=".1" stroke="#ed1c24" stroke-width="1.5"/><text x="20" y="27" text-anchor="middle" font-size="12" font-weight="900" fill="#ed1c24" font-family="sans-serif">AMD</text></svg>`,
+  },
+  {
+    name:'TSMC', slug:'tsmc', sub:'2nm / CoWoS',
+    desc:'世界最先端半導体製造。2nm量産とCoWoSでAIチップを支える。',
+    color:'#5c9ecf',
+    svg:`<svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><polygon points="20,2 38,11 38,29 20,38 2,29 2,11" fill="#5c9ecf" fill-opacity=".1" stroke="#5c9ecf" stroke-width="1.5"/><text x="20" y="26" text-anchor="middle" font-size="9" font-weight="900" fill="#5c9ecf" font-family="sans-serif">TSMC</text></svg>`,
+  },
+  {
+    name:'Amazon', slug:'amazon', sub:'AWS Bedrock / Trainium',
+    desc:'AWS Bedrockでエンタープライズ向けAI基盤を提供。Trainium開発。',
+    color:'#ff9900',
+    svg:`<svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="36" height="36" rx="4" fill="#ff9900" fill-opacity=".1" stroke="#ff9900" stroke-width="1.5"/><text x="20" y="27" text-anchor="middle" font-size="11" font-weight="900" fill="#ff9900" font-family="sans-serif">AWS</text></svg>`,
+  },
+  {
+    name:'xAI', slug:'xai', sub:'Grok / Colossus',
+    desc:'Grokを開発。Colossusクラスターで急速に計算資源を拡張中。',
+    color:'#e5e7eb',
+    svg:`<svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="20" cy="20" r="18" fill="#e5e7eb" fill-opacity=".08" stroke="#e5e7eb" stroke-width="1.5"/><text x="20" y="26" text-anchor="middle" font-size="14" font-weight="900" fill="#e5e7eb" font-family="sans-serif">xAI</text></svg>`,
+  },
+];
 
 const jsonLd = [
-  {
-    "@context": "https://schema.org",
-    "@type": "NewsMediaOrganization",
-    name: "AI経済新聞",
-    url: siteUrl,
-    logo: `${siteUrl}/logo.png`,
-    sameAs: ["https://x.com/aikeizai"],
-    description: pageDescription,
-    publishingPrinciples: `${siteUrl}/editorial-policy`,
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    name: "AI経済新聞",
-    url: siteUrl,
-    potentialAction: {
-      "@type": "SearchAction",
-      target: `${siteUrl}/search?q={search_term_string}`,
-      "query-input": "required name=search_term_string",
-    },
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [{ "@type": "ListItem", position: 1, name: "ホーム", item: siteUrl }],
-  },
+  {'@context':'https://schema.org','@type':'WebSite',name:'AI経済新聞',url:'https://aikeizai.jp/'},
+  {'@context':'https://schema.org','@type':'NewsMediaOrganization',name:'AI経済新聞',url:'https://aikeizai.jp/',publishingPrinciples:'https://aikeizai.jp/about/'},
 ];
 ---
 
 <!doctype html>
 <html lang="ja">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{pageTitle}</title>
-    <meta name="description" content={pageDescription} />
-    <link rel="canonical" href={siteUrl} />
-    <meta name="robots" content="index,follow,max-image-preview:large" />
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="AI経済新聞" />
-    <meta property="og:title" content={pageTitle} />
-    <meta property="og:description" content={pageDescription} />
-    <meta property="og:url" content={siteUrl} />
-    <meta property="og:image" content={ogImage} />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={pageTitle} />
-    <meta name="twitter:description" content={pageDescription} />
-    <meta name="twitter:image" content={ogImage} />
-    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
-    <style>
-      :root { color-scheme: dark; --bg: #07090d; --panel: #0d1118; --ink: #f6f8fb; --muted: #9aa6b8; --line: rgba(255,255,255,.1); --line-strong: rgba(255,255,255,.18); --blue: #7db7ff; --cyan: #73e0d6; --green: #9de88f; --gold: #f0c36a; --max: 1440px; --radius: 8px; --shadow: 0 20px 70px rgba(0,0,0,.28); }
-      * { box-sizing: border-box; }
-      html { scroll-behavior: smooth; background: var(--bg); }
-      body { margin: 0; font-family: "Inter", "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif; line-height: 1.65; color: var(--ink); background: linear-gradient(180deg, rgba(16,26,42,.85), rgba(7,9,13,0) 420px), var(--bg); text-rendering: optimizeLegibility; }
-      a { color: inherit; text-decoration: none; }
-      img { display: block; max-width: 100%; height: auto; }
-      .site-header { position: sticky; top: 0; z-index: 40; border-bottom: 1px solid var(--line); background: rgba(7,9,13,.88); backdrop-filter: blur(18px); }
-      .header-inner { width: min(100% - 32px, var(--max)); height: 64px; margin: 0 auto; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 24px; }
-      .brand { display: inline-flex; align-items: center; gap: 10px; font-weight: 800; }
-      .brand-mark { width: 28px; height: 28px; border: 1px solid var(--line-strong); border-radius: 6px; display: grid; place-items: center; background: linear-gradient(145deg, #fff, #aab7c7); color: #080b10; font-size: 12px; }
-      .global-nav { display: flex; gap: 18px; justify-content: center; color: var(--muted); font-size: 13px; white-space: nowrap; }
-      .global-nav a:hover, .header-action:hover { color: var(--ink); }
-      .header-action { border: 1px solid var(--line-strong); border-radius: 999px; padding: 8px 13px; color: var(--muted); font-size: 13px; }
-      main, .site-footer { width: min(100% - 32px, var(--max)); margin: 0 auto; }
-      .section { padding: 44px 0; border-bottom: 1px solid var(--line); }
-      .section-head { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 18px; }
-      .eyebrow { color: var(--blue); font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
-      h1, h2, h3, p { margin: 0; }
-      h1 { max-width: 980px; font-size: clamp(34px, 5vw, 72px); line-height: 1.04; }
-      h2 { font-size: clamp(22px, 2.4vw, 34px); line-height: 1.18; }
-      h3 { font-size: 17px; line-height: 1.45; }
-      .muted { color: var(--muted); }
-      .hero { min-height: calc(100svh - 64px); display: grid; grid-template-columns: minmax(0,1.1fr) minmax(360px,.9fr); gap: 28px; align-items: end; padding: 42px 0 44px; }
-      .hero-copy { display: grid; gap: 22px; }
-      .hero-meta, .tag-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
-      .pill, .source-badge, .importance { border: 1px solid var(--line-strong); border-radius: 999px; padding: 5px 9px; font-size: 12px; line-height: 1; color: var(--muted); background: rgba(255,255,255,.03); }
-      .pill.strong { color: var(--ink); border-color: rgba(125,183,255,.42); background: rgba(125,183,255,.08); }
-      .hero-summary { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius); background: var(--line); }
-      .hero-summary p { padding: 16px; background: rgba(13,17,24,.92); color: #d9e1ec; font-size: 14px; }
-      .why-box { display: grid; gap: 8px; padding: 18px; border-left: 2px solid var(--blue); background: rgba(125,183,255,.07); }
-      .read-more { width: fit-content; border: 1px solid var(--ink); border-radius: 999px; padding: 11px 16px; font-weight: 700; transition: transform .18s ease, background .18s ease, color .18s ease; }
-      .read-more:hover { transform: translateY(-1px); background: var(--ink); color: #07090d; }
-      .hero-media { position: relative; min-height: 560px; border: 1px solid var(--line-strong); border-radius: var(--radius); overflow: hidden; background: var(--panel); box-shadow: var(--shadow); }
-      .hero-media img { width: 100%; height: 100%; min-height: 560px; object-fit: cover; }
-      .terminal-strip { position: absolute; inset: auto 14px 14px 14px; display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; border: 1px solid var(--line); background: var(--line); }
-      .terminal-strip span { padding: 10px; background: rgba(7,9,13,.88); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 11px; color: var(--cyan); }
-      .pulse-grid { display: grid; grid-template-columns: repeat(8, 1fr); gap: 10px; }
-      .pulse-card, .map-card, .metric-card, .article-card, .source-card, .topic-card, .company-card { border: 1px solid var(--line); border-radius: var(--radius); background: linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.015)); transition: transform .18s ease, border-color .18s ease, background .18s ease; }
-      .pulse-card:hover, .map-card:hover, .article-card:hover, .source-card:hover, .topic-card:hover, .company-card:hover { transform: translateY(-2px); border-color: var(--line-strong); background: rgba(255,255,255,.055); }
-      .pulse-card { min-height: 112px; padding: 13px; display: grid; align-content: space-between; }
-      .pulse-top { display: flex; justify-content: space-between; gap: 10px; font-size: 12px; }
-      .pulse-value { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 21px; font-weight: 800; }
-      .up { color: var(--green); } .flat { color: var(--gold); }
-      .map-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
-      .map-card { padding: 18px; min-height: 220px; display: grid; gap: 16px; align-content: start; }
-      .map-card p { color: var(--muted); font-size: 13px; }
-      .company-list { display: flex; flex-wrap: wrap; gap: 8px; }
-      .company-chip { border: 1px solid var(--line); border-radius: 999px; padding: 6px 9px; color: #dce6f2; font-size: 12px; background: rgba(0,0,0,.18); }
-      .dashboard-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: var(--line); }
-      .metric-card { border: 0; border-radius: 0; padding: 18px; background: #0b1018; }
-      .metric-label { color: var(--muted); font-size: 12px; }
-      .metric-value { margin-top: 8px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: clamp(22px, 3vw, 34px); line-height: 1; }
-      .metric-foot { margin-top: 9px; display: flex; justify-content: space-between; color: var(--green); font-size: 12px; }
-      .article-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
-      .article-card { overflow: hidden; background: var(--panel); }
-      .article-card img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; background: #151a23; }
-      .article-body { padding: 15px; display: grid; gap: 12px; }
-      .article-meta { display: flex; flex-wrap: wrap; gap: 7px; align-items: center; }
-      .category { border-radius: 999px; padding: 4px 8px; background: rgba(125,183,255,.1); color: var(--blue); font-size: 11px; font-weight: 700; }
-      .source-badge { color: var(--cyan); border-color: rgba(115,224,214,.34); }
-      .sources-grid { display: grid; grid-template-columns: repeat(8, 1fr); gap: 10px; }
-      .source-card { min-height: 94px; padding: 13px; display: grid; align-content: space-between; color: #dce6f2; }
-      .source-card small { color: var(--muted); }
-      .topic-grid { display: grid; grid-template-columns: repeat(11, minmax(0, 1fr)); gap: 10px; }
-      .topic-card { padding: 14px; min-height: 164px; display: grid; gap: 12px; align-content: start; }
-      .topic-card ol { margin: 0; padding-left: 18px; color: var(--muted); font-size: 12px; }
-      .trend-cloud, .companies-grid { display: flex; flex-wrap: wrap; gap: 10px; }
-      .trend { border: 1px solid var(--line); border-radius: 999px; padding: 9px 12px; color: #dce6f2; background: rgba(255,255,255,.03); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 13px; }
-      .trend:hover { border-color: rgba(125,183,255,.5); color: var(--blue); }
-      .company-card { width: calc(20% - 8px); min-height: 96px; padding: 16px; display: grid; align-content: space-between; }
-      .company-card span { color: var(--muted); font-size: 12px; }
-      .site-footer { padding: 42px 0 54px; display: grid; grid-template-columns: 1fr auto; gap: 32px; color: var(--muted); }
-      .footer-links { display: flex; flex-wrap: wrap; gap: 14px; }
-      .footer-links a:hover { color: var(--ink); }
-      @media (max-width: 1180px) { .pulse-grid, .sources-grid { grid-template-columns: repeat(4, 1fr); } .map-grid, .dashboard-grid, .article-grid { grid-template-columns: repeat(2, 1fr); } .topic-grid { grid-template-columns: repeat(3, 1fr); } .hero { grid-template-columns: 1fr; min-height: auto; } .hero-media, .hero-media img { min-height: 420px; } }
-      @media (max-width: 760px) { .header-inner { width: min(100% - 24px, var(--max)); height: 58px; grid-template-columns: 1fr auto; } .global-nav { display: none; } main, .site-footer { width: min(100% - 24px, var(--max)); } .section { padding: 32px 0; } .section-head { align-items: start; flex-direction: column; gap: 8px; } .hero { padding: 28px 0 34px; gap: 18px; } .hero-summary, .pulse-grid, .map-grid, .dashboard-grid, .article-grid, .sources-grid, .topic-grid { grid-template-columns: 1fr; } .hero-summary p { padding: 14px; } .hero-media, .hero-media img { min-height: 320px; } .terminal-strip { grid-template-columns: repeat(2, 1fr); } .company-card { width: 100%; } .site-footer { grid-template-columns: 1fr; } }
-    </style>
-  </head>
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>AI経済新聞 | AI産業OS — AI・半導体・市場・政策を構造で読む</title>
+<meta name="description" content="AI・半導体・市場・インフラ・政策を構造で読む日本語AI業界インテリジェンスメディア。一次情報特化。毎日3回更新。"/>
+<link rel="canonical" href="https://aikeizai.jp/"/>
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="AI経済新聞 | AI産業OS"/>
+<meta property="og:description" content="AI・半導体・市場・インフラ・政策を構造で読む日本語AI業界インテリジェンスメディア。"/>
+<meta property="og:image" content="https://aikeizai.jp/ogp.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Serif+JP:wght@700;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
+<link rel="alternate" type="application/rss+xml" href="https://aikeizai.jp/rss.xml"/>
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)}/>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-R8C9ET314H"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-R8C9ET314H');</script>
+<!-- Three.js for Globe -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
 
-  <body>
-    <header class="site-header" aria-label="サイトヘッダー">
-      <div class="header-inner">
-        <a class="brand" href="/" aria-label="AI経済新聞 ホーム"><span class="brand-mark" aria-hidden="true">AI</span><span>AI経済新聞</span></a>
-        <nav class="global-nav" aria-label="主要ナビゲーション">
-          <a href="/markets">Markets</a><a href="/companies">Companies</a><a href="/models">Models</a><a href="/semiconductors">Semiconductors</a><a href="/policy">Policy</a><a href="/research">Research</a>
-        </nav>
-        <a class="header-action" href="/newsletter">Newsletter</a>
+<!-- TICKER -->
+<div class="ticker-bar" aria-hidden="true">
+  <span class="ticker-label">MARKET</span>
+  <div class="ticker-scroll">
+    <div class="ticker-track">
+      {[...TICKER,...TICKER].map(t=>(
+        <span class="t-item">
+          <span class="t-name">{t.name}</span>
+          <span class="t-val">{t.val}</span>
+          <span class={t.up?'t-up':'t-dn'}>{t.chg}</span>
+        </span>
+      ))}
+    </div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="w">
+    <a class="brand" href="/"><span class="brand-mark">AI</span><span class="brand-name">AI経済新聞</span></a>
+    <nav class="gnav" aria-label="メインナビ">
+      <a href="/markets/">Markets</a>
+      <a href="/company/">Companies</a>
+      <a href="/model/">Models</a>
+      <a href="/infrastructure/">Infra</a>
+      <a href="/policy/">Policy</a>
+      <a href="/research/">Research</a>
+    </nav>
+    <div class="hright"><a class="hbtn" href="/about/">About</a></div>
+  </div>
+</header>
+<h1 class="sr-only">AI経済新聞 — AI産業OS</h1>
+
+<main>
+
+<!-- ================================================================
+     §1 MARKET PULSE
+     ================================================================ -->
+<section class="section pulse-section" aria-labelledby="pulse-hd">
+  <div class="w">
+    <div class="sec-head compact">
+      <div class="sec-left">
+        <span class="eyebrow">Market Pulse</span>
+        <h2 class="sec-title" id="pulse-hd">AI市場の現在地</h2>
       </div>
-    </header>
+      <span class="sec-note">参考値 · 随時更新</span>
+    </div>
+    <div class="pulse-scroll">
+      <div class="pulse-grid">
+        {PULSES.map(p=>(
+          <div class={`pulse-card tone-${p.tone}`}>
+            <div class="pulse-icon">{p.icon}</div>
+            <div class="pulse-label">{p.label}</div>
+            <div class="pulse-value">{p.value}</div>
+            <div class="pulse-sub">{p.sub}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
 
-    <main>
-      <section class="hero" aria-labelledby="hero-title">
-        <div class="hero-copy">
-          <div class="hero-meta"><span class="pill strong">{hero.category}</span>{hero.tags.map((tag) => <a class="pill" href={`/companies/${slugify(tag)}`}>{tag}</a>)}</div>
-          <h1 id="hero-title">{hero.title}</h1>
-          <div class="tag-row" aria-label="関連テーマ">{hero.themes.map((theme) => <a class="pill" href={`/topics/${slugify(theme)}`}>{theme}</a>)}</div>
-          <div class="hero-summary" aria-label="3行要約">{hero.summary.map((item) => <p>{item}</p>)}</div>
-          <div class="why-box"><span class="eyebrow">Why it matters</span><p>{hero.why}</p></div>
-          <a class="read-more" href="/articles/ai-industry-infrastructure-shift">続きを読む</a>
+<!-- ================================================================
+     §2 最新記事 — Codex式 article-grid (4カード)
+     ================================================================ -->
+<section class="section" aria-labelledby="latest-title">
+  <div class="w">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Latest Intelligence</p>
+        <h2 id="latest-title">最新記事</h2>
+      </div>
+      <a class="pill" href="/articles">すべての記事</a>
+    </div>
+    <div class="article-grid">
+      {latest.map(article => (
+        <article class="article-card">
+          <a href={getUrl(article)}>
+            {article.data.image_url
+              ? <img src={article.data.image_url} alt={article.data.title} width="640" height="400" loading="lazy" decoding="async"/>
+              : <div class="article-img-ph">◈</div>
+            }
+            <div class="article-body">
+              <div class="article-meta">
+                <span class="category" style={`background:${getCatColor(article.data.category_slug)}`}>
+                  {getCatLabel(article.data.category_slug)}
+                  
+                </span>
+                <span class="pill">{article.data.source}</span>
+                {(article.data.buzz_score||0) >= 60
+                  ? <span class="importance high">重要</span>
+                  : (article.data.buzz_score||0) >= 40
+                  ? <span class="importance med">注目</span>
+                  : null
+                }
+                
+                {article.data.source_label && <span class="source-badge">一次情報</span>}
+              </div>
+              <h3>{article.data.title}</h3>
+              
+              <p class="article-date">{fmtDate(article.data.published_at)}</p>
+            </div>
+          </a>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     §3 HERO — 注目の最重要ニュース（なぜ重要か + 3セル要約）
+     ================================================================ -->
+{hero && (
+  <section class="section hero-section" aria-labelledby="hero-hd">
+    <div class="w">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Top Story</p>
+          <h2 id="hero-hd">注目の最重要ニュース</h2>
         </div>
+      </div>
+      <div class="hero-grid">
+        <!-- 左: コピー -->
+        <div class="hero-copy">
+          <div class="hero-tags">
+            <span class="tag tag-cat" style={`background:${getCatColor(hero.data.category_slug)}`}>
+              {getCatLabel(hero.data.category_slug)}
+            </span>
+            {hero.data.source_label && <span class="tag tag-primary">{hero.data.source_label}</span>}
+            {(hero.data.buzz_score||0) >= 50 && <span class="tag tag-hot">🔥 注目</span>}
+          </div>
+
+          <h2 class="hero-title">
+            <a href={getUrl(hero)}>{hero.data.title}</a>
+          </h2>
+
+          <!-- 3セル要約（必ず3つ）-->
+          <div class="hero-summary">
+            {heroSummary.map(s => <p>{s}</p>)}
+          </div>
+
+          <!-- なぜ重要か -->
+          <div class="why-box">
+          <div class="impact-box">
+  <div class="impact-head">
+    <span class="impact-live"></span>
+    <span>MARKET IMPACT</span>
+  </div>
+
+  <ul class="impact-list">
+    <li>GPU需給への影響</li>
+    <li>AI関連株への波及</li>
+    <li>データセンター投資加速</li>
+  </ul>
+</div>
+            <span class="eyebrow">なぜ重要か</span>
+            <p>
+              {hero.data.source_label
+                ? `${hero.data.source}が公式に発表した一次情報です。`
+                : `${hero.data.source}が報じた、AI産業の構造変化に直結するニュースです。`
+              }
+              AI業界の投資家・経営者・エンジニアが注目すべき動向として、
+              buzz_score {hero.data.buzz_score || 0} の高関連度記事として選出されました。
+            </p>
+          </div>
+
+          <div class="hero-footer">
+            <span class="hero-src">{hero.data.source}</span>
+            <time class="hero-date">{fmtFull(hero.data.published_at)}</time>
+            <a class="hero-cta" href={getUrl(hero)}>続きを読む →</a>
+          </div>
+        </div>
+
+        <!-- 右: 画像 -->
         <figure class="hero-media">
-          <img src={hero.image} alt="AIインフラを象徴する半導体とデータセンターのイメージ" width="900" height="1125" loading="eager" decoding="async" fetchpriority="high" />
-          <figcaption class="terminal-strip" aria-label="市場端末指標"><span>GPU SUPPLY: TIGHT</span><span>INFERENCE: RISING</span><span>CAPEX: EXPANDING</span><span>POLICY: ACTIVE</span></figcaption>
+          {hero.data.image_url
+            ? <img src={hero.data.image_url} alt={hero.data.title}
+                loading="eager" fetchpriority="high" decoding="async" width="900" height="600"/>
+            : <div class="hero-ph-lg">◈</div>
+          }
+          <div class="terminal-strip">
+            <span>GPU: TIGHT</span>
+            <span>CAPEX: ↑</span>
+            <span>INFERENCE: ↑</span>
+            <span>POLICY: ACT</span>
+          </div>
         </figure>
-      </section>
+      </div>
+    </div>
+  </section>
+)}
 
-      <section class="section" aria-labelledby="pulse-title">
-        <div class="section-head"><div><p class="eyebrow">Breaking / Market Pulse</p><h2 id="pulse-title">AI市場の現在地</h2></div><p class="muted">企業・GPU・資本市場の短期シグナル</p></div>
-        <div class="pulse-grid">{pulses.map((pulse) => <a class="pulse-card" href={`/companies/${slugify(pulse.company)}`}><div class="pulse-top"><strong>{pulse.company}</strong><span class={pulse.tone}>{pulse.change}</span></div><div><p class="muted">{pulse.label}</p><p class="pulse-value">{pulse.value}</p></div></a>)}</div>
-      </section>
 
-      <section class="section" aria-labelledby="map-title">
-        <div class="section-head"><div><p class="eyebrow">AI Industry Map</p><h2 id="map-title">AI業界マップ</h2></div><p class="muted">モデル、半導体、クラウド、政策まで産業構造で見る</p></div>
-        <div class="map-grid">{industryMap.map((group) => <a class="map-card" href={`/industry/${slugify(group.name)}`}><div><p class="eyebrow">{group.name}</p><h3>{group.description}</h3></div><div class="company-list">{group.companies.map((company) => <span class="company-chip">{company}</span>)}</div></a>)}</div>
-      </section>
+<!-- ================================================================
+     §4 AI INDUSTRY NETWORK — Semantic Neural Sphere
+     ================================================================ -->
+<LiveAIEcosystemNetwork client:only="react" />
 
-      <section class="section" aria-labelledby="dashboard-title">
-        <div class="section-head"><div><p class="eyebrow">AI Market Dashboard</p><h2 id="dashboard-title">AI産業の温度感</h2></div><p class="muted">株価、GPU、資金調達、データセンター投資を俯瞰</p></div>
-        <div class="dashboard-grid">{dashboard.map((metric) => <article class="metric-card"><p class="metric-label">{metric.label}</p><p class="metric-value">{metric.value}</p><div class="metric-foot"><span>{metric.unit}</span><span>{metric.delta}</span></div></article>)}</div>
-      </section>
+<!-- ================================================================
+     §5 Breaking
+     ================================================================ -->
+<section class="section" aria-labelledby="breaking-hd">
+  <div class="w">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Breaking</p>
+        <h2 id="breaking-hd">注目ニュース</h2>
+      </div>
+    </div>
+    <div class="breaking-grid">
+      {breaking.map(e=>(
+        <a
+  class={`b-card ${
+    (e.data.buzz_score || 0) >= 70 ? 'hot' : ''
+  }`}
+  href={getUrl(e)}
+>
+          <div class="b-img-wrap">
+            {e.data.image_url
+              ? <img class="b-img" src={e.data.image_url} alt={e.data.title} loading="lazy" width="320" height="180"/>
+              : <div class="b-ph">◈</div>
+            }
+          </div>
+          <div class="b-body">
+            <span class="b-cat" style={`color:${getCatColor(e.data.category_slug)}`}>
+              {getCatLabel(e.data.category_slug)}
+            </span>
+            <h3 class="b-title">{e.data.title}</h3>
+            <div class="b-meta">
+              <span>{e.data.source}</span>
+              <span>{fmtDate(e.data.published_at)}</span>
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
 
-      <section class="section" aria-labelledby="latest-title">
-        <div class="section-head"><div><p class="eyebrow">Latest Intelligence</p><h2 id="latest-title">最新記事</h2></div><a class="pill" href="/articles">すべての記事</a></div>
-        <div class="article-grid">{latestArticles.map((article) => <article class="article-card"><a href="/articles/sample"><img src={article.image} alt="" width="640" height="400" loading="lazy" decoding="async" /><div class="article-body"><div class="article-meta"><span class="category">{article.category}</span><span class="pill">{article.company}</span><span class="importance">{article.importance}</span>{article.primary && <span class="source-badge">一次情報</span>}</div><h3>{article.title}</h3></div></a></article>)}</div>
-      </section>
+<!-- ================================================================
+     §6 マーケットダッシュボード
+     ================================================================ -->
+<section class="section" aria-labelledby="dash-hd">
+  <div class="w">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Market Dashboard</p>
+        <h2 id="dash-hd">AI産業の温度感</h2>
+      </div>
+      <span class="sec-note">※参考値 · 投資推奨ではありません</span>
+    </div>
+    <div class="dash-grid">
+      {DASHBOARD.map(m=>(
+        <div class="metric-card">
+          <p class="m-label">{m.label}</p>
+          <p class="m-value">{m.value}</p>
+          <div class="m-foot">
+            <span class="m-unit">{m.unit}</span>
+            <span class={m.up?'d-up':'d-dn'}>{m.delta}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+    <p class="dash-note">
+      データは参考値・推定値。投資判断の根拠としないでください。
+      <a href="/about/">免責事項</a>
+    </p>
+  </div>
+</section>
 
-      <section class="section" aria-labelledby="sources-title">
-        <div class="section-head"><div><p class="eyebrow">Primary Sources</p><h2 id="sources-title">一次情報・公式発表</h2></div><p class="muted">公式発表、規制文書、開示資料を起点に検証</p></div>
-        <div class="sources-grid">{primarySources.map((source) => <a class="source-card" href={`/sources/${slugify(source)}`}><strong>{source}</strong><small>Official source</small></a>)}</div>
-      </section>
+<!-- ================================================================
+     §7 一次情報・公式発表
+     ================================================================ -->
+{official.length > 0 && (
+  <section class="section" aria-labelledby="primary-hd">
+    <div class="w">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Primary Sources</p>
+          <h2 id="primary-hd">一次情報・公式発表</h2>
+        </div>
+        <p class="sec-note">企業公式 / 論文 / 規制文書 / SEC</p>
+      </div>
+      <div class="official-grid">
+        {official.map(a=>(
+          <a class="o-card" href={getUrl(a)}>
+            <div class="o-top">
+              <span class="o-badge">{a.data.source_label}</span>
+              <span class="o-date">{fmtDate(a.data.published_at)}</span>
+            </div>
+            <h3 class="o-title">{a.data.title}</h3>
+            <p class="o-src">{a.data.source}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+)}
 
-      <section class="section" aria-labelledby="topics-title">
-        <div class="section-head"><div><p class="eyebrow">Coverage</p><h2 id="topics-title">テーマ別セクション</h2></div><p class="muted">各領域の重要記事を4本ずつ整理</p></div>
-        <div class="topic-grid">{topicSections.map((topic) => <a class="topic-card" href={`/topics/${slugify(topic)}`}><div><p class="eyebrow">{topic}</p><h3>{topic}の主要論点</h3></div><ol><li>市場構造の変化</li><li>主要企業の動き</li><li>一次情報の要点</li><li>次に見る指標</li></ol></a>)}</div>
-      </section>
+<!-- ================================================================
+     §8 テーマ別セクション — コンパクトカード + 注目記事タイトル
+     ================================================================ -->
+<section class="section" aria-labelledby="theme-hd">
+  <div class="w">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Coverage</p>
+        <h2 id="theme-hd">テーマ別セクション</h2>
+      </div>
+    </div>
+    <div class="theme-grid">
+      {catSections.map(cat=>(
+        <a class="theme-card" href={cat.url} style={`--tc:${getCatColor(cat.slug)}`}>
+          <div class="theme-header">
+            <span class="theme-dot" style={`background:${getCatColor(cat.slug)}`}></span>
+            <span class="theme-label">{cat.label}</span>
+            <span class="theme-arrow">→</span>
+          </div>
+          <ul class="theme-articles">
+            {cat.articles.slice(0,3).map(a=>(
+              <li class="theme-art-item">
+                <span class="theme-art-bullet">▸</span>
+                <span class="theme-art-title">{a.data.title}</span>
+              </li>
+            ))}
+          </ul>
+          <div class="theme-footer">
+            <span>{cat.articles.length}件の記事</span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
 
-      <section class="section" aria-labelledby="trends-title">
-        <div class="section-head"><div><p class="eyebrow">Trending Themes</p><h2 id="trends-title">トレンドテーマ</h2></div></div>
-        <div class="trend-cloud">{trends.map((trend) => <a class="trend" href={`/tags/${slugify(trend)}`}>#{trend}</a>)}</div>
-      </section>
+<!-- ================================================================
+     §9 トレンドテーマ
+     ================================================================ -->
+<section class="section" aria-labelledby="trends-hd">
+  <div class="w">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Trending</p>
+        <h2 id="trends-hd">注目テーマ</h2>
+      </div>
+    </div>
+    <div class="trend-cloud">
+      {TRENDS.map(t=>(
+        <a class="trend-chip" href={`/topic/${t.slug}/`}>#{t.label}</a>
+      ))}
+    </div>
+  </div>
+</section>
 
-      <section class="section" aria-labelledby="companies-title">
-        <div class="section-head"><div><p class="eyebrow">Company Database</p><h2 id="companies-title">企業一覧</h2></div><p class="muted">Crunchbase型の企業別インテリジェンスへ</p></div>
-        <div class="companies-grid">{companies.map((company) => <a class="company-card" href={`/companies/${slugify(company)}`}><strong>{company}</strong><span>企業ページを見る</span></a>)}</div>
-      </section>
-    </main>
+<!-- ================================================================
+     §10 Company Intelligence — ロゴ + クリックで詳細
+     ================================================================ -->
+<section class="section" aria-labelledby="co-hd">
+  <div class="w">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Company Intelligence</p>
+        <h2 id="co-hd">企業データベース</h2>
+      </div>
+      <a class="see-more" href="/company/">全企業 →</a>
+    </div>
+    <div class="company-grid" id="company-grid">
+      {COMPANIES.map(c=>(
+        <button
+          class="co-card"
+          data-slug={c.slug}
+          data-name={c.name}
+          data-sub={c.sub}
+          data-desc={c.desc}
+          data-color={c.color}
+          data-url={`/company/${c.slug}/`}
+          aria-label={c.name}
+        >
+          <div class="co-logo" set:html={c.svg}></div>
+          <span class="co-name">{c.name}</span>
+          <span class="co-sub">{c.sub}</span>
+        </button>
+      ))}
+    </div>
 
-    <footer class="site-footer">
-      <div><a class="brand" href="/"><span class="brand-mark" aria-hidden="true">AI</span><span>AI経済新聞</span></a><p class="muted">AI産業の構造、企業、技術、市場、政策を一次情報から読み解く。</p></div>
-      <nav class="footer-links" aria-label="フッターナビゲーション"><a href="/about">About</a><a href="/editorial-policy">編集方針</a><a href="/primary-source-policy">一次情報ポリシー</a><a href="/corrections">Corrections</a><a href="/contact">Contact</a><a href="https://x.com/aikeizai">X</a><a href="/rss.xml">RSS</a><a href="/sitemap.xml">Sitemap</a></nav>
-    </footer>
-  </body>
+    <!-- 企業詳細パネル -->
+    <div class="co-detail" id="co-detail" style="display:none">
+      <div class="co-detail-inner">
+        <div class="co-detail-logo" id="co-detail-logo"></div>
+        <div class="co-detail-info">
+          <h3 class="co-detail-name" id="co-detail-name"></h3>
+          <p class="co-detail-sub" id="co-detail-sub"></p>
+          <p class="co-detail-desc" id="co-detail-desc"></p>
+        </div>
+        <a class="co-detail-link" id="co-detail-link" href="#">企業ページを見る →</a>
+        <button class="co-detail-close" id="co-detail-close" aria-label="閉じる">✕</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="w footer-inner">
+    <div class="footer-brand">
+      <a class="brand" href="/"><span class="brand-mark">AI</span><span class="brand-name">AI経済新聞</span></a>
+      <p class="footer-desc">AI産業の構造・企業・技術・市場・政策を一次情報から読み解く。</p>
+    </div>
+    <nav class="footer-links">
+      <a href="/about/">About</a>
+      <a href="/about/">編集方針</a>
+      <a href="/about/">一次情報ポリシー</a>
+      <a href="/about/">Corrections</a>
+      <a href="/about/">Contact</a>
+      <a href="https://x.com/aikeizai_jp" target="_blank" rel="noopener">X</a>
+      <a href="/rss.xml">RSS</a>
+      <a href="/sitemap-index.xml">Sitemap</a>
+    </nav>
+  </div>
+</footer>
+
+</body>
 </html>
+
+<!-- ================================================================
+     GLOBE + COMPANY JAVASCRIPT
+     ================================================================ -->
+<script>
+// ================================================================
+// 3D GLOBE (Three.js)
+// ================================================================
+
+
+// ================================================================
+// COMPANY CARDS
+// ================================================================
+(function() {
+  const cards  = document.querySelectorAll('.co-card');
+  const detail = document.getElementById('co-detail');
+  const closeBtn = document.getElementById('co-detail-close');
+
+  cards.forEach(card => {
+    card.addEventListener('click', () => {
+      const name  = card.dataset.name;
+      const sub   = card.dataset.sub;
+      const desc  = card.dataset.desc;
+      const color = card.dataset.color;
+      const url   = card.dataset.url;
+      const slug  = card.dataset.slug;
+      const logo  = card.querySelector('.co-logo')?.innerHTML || '';
+
+      document.getElementById('co-detail-logo').innerHTML = logo;
+      document.getElementById('co-detail-name').textContent = name;
+      document.getElementById('co-detail-name').style.color = color;
+      document.getElementById('co-detail-sub').textContent  = sub;
+      document.getElementById('co-detail-desc').textContent = desc;
+      const link = document.getElementById('co-detail-link');
+      link.href = url;
+      link.style.color = color;
+
+      // Highlight selected
+      cards.forEach(c => c.classList.remove('active'));
+      card.classList.add('active');
+      card.style.setProperty('--active-color', color);
+
+      detail.style.display = 'block';
+      detail.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+  });
+
+  closeBtn?.addEventListener('click', () => {
+    detail.style.display = 'none';
+    cards.forEach(c => c.classList.remove('active'));
+  });
+})();
+</script>
+
+<style>
+/* ============================================================
+   VARIABLES & RESET
+   ============================================================ */
+:root{
+  color-scheme:dark;
+  --bg:#07090d;--panel:#0d1118;--panel2:#111827;
+  --line:rgba(255,255,255,.09);--lines:rgba(255,255,255,.16);
+  --ink:#f0f4f8;--muted:#8a9ab8;--dim:#4a5568;
+  --blue:#5a9eff;--cyan:#5cd8ce;--green:#4ade80;--gold:#e6b84a;--red:#f87171;--orange:#f97316;
+  --max:1440px;--r:6px;
+  --sans:'Noto Sans JP','Hiragino Kaku Gothic ProN',Meiryo,sans-serif;
+  --serif:'Noto Serif JP',Georgia,serif;
+  --mono:'IBM Plex Mono',ui-monospace,'Courier New',monospace;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;background:var(--bg);}
+body{font-family:var(--sans);background:linear-gradient(180deg,rgba(14,22,40,.9),rgba(7,9,13,0) 500px),var(--bg);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+img{display:block;max-width:100%;height:auto;}
+h1,h2,h3,p{margin:0;}
+button{background:none;border:none;cursor:pointer;font:inherit;color:inherit;}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);}
+.w{width:min(100% - 32px,var(--max));margin:0 auto;}
+
+/* TICKER */
+.ticker-bar{background:var(--panel);border-bottom:1px solid var(--line);height:30px;display:flex;align-items:center;overflow:hidden;}
+.ticker-label{font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:.12em;color:var(--dim);background:var(--bg);padding:0 14px;height:100%;display:flex;align-items:center;border-right:1px solid var(--line);flex-shrink:0;}
+.ticker-scroll{flex:1;overflow:hidden;}
+.ticker-track{display:flex;animation:tick 48s linear infinite;white-space:nowrap;}
+.ticker-track:hover{animation-play-state:paused;}
+@keyframes tick{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+.t-item{display:inline-flex;align-items:center;gap:7px;padding:0 18px;border-right:1px solid var(--line);font-family:var(--mono);font-size:11px;height:30px;}
+.t-name{color:var(--muted);font-size:10px;font-weight:600;}
+.t-val{color:var(--ink);font-weight:500;}
+.t-up{color:var(--green);font-weight:700;}
+.t-dn{color:var(--red);font-weight:700;}
+
+/* HEADER */
+.site-header{position:sticky;top:0;z-index:40;border-bottom:1px solid var(--line);background:rgba(7,9,13,.88);backdrop-filter:blur(18px);}
+.site-header .w{height:60px;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:24px;}
+.brand{display:inline-flex;align-items:center;gap:10px;font-weight:800;font-size:15px;letter-spacing:-.02em;}
+.brand-mark{width:28px;height:28px;border:1px solid var(--lines);border-radius:6px;display:grid;place-items:center;background:linear-gradient(145deg,#e2e8f0,#94a3b8);color:#080b10;font-size:11px;font-weight:900;font-family:var(--mono);}
+.brand-name{color:var(--ink);}
+.gnav{display:flex;gap:20px;justify-content:center;color:var(--muted);font-size:13px;}
+.gnav a:hover{color:var(--ink);}
+.hright{display:flex;}
+.hbtn{border:1px solid var(--lines);border-radius:999px;padding:7px 14px;color:var(--muted);font-size:12px;}
+.hbtn:hover{color:var(--ink);border-color:var(--ink);}
+
+/* SECTION 共通 */
+.section{padding:44px 0;border-bottom:1px solid var(--line);}
+.section-head,.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:20px;}
+.sec-head.compact{margin-bottom:14px;}
+.sec-left{display:flex;flex-direction:column;gap:4px;}
+.eyebrow{color:var(--blue);font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:2px;}
+.sec-title{font-size:clamp(16px,2vw,24px);font-weight:900;line-height:1.2;letter-spacing:-.02em;}
+.section-head h2{font-size:clamp(16px,2vw,24px);font-weight:900;line-height:1.2;letter-spacing:-.02em;}
+.sec-note{font-family:var(--mono);font-size:11px;color:var(--muted);}
+.see-more{font-family:var(--mono);font-size:11px;color:var(--blue);letter-spacing:.04em;white-space:nowrap;}
+.see-more:hover{opacity:.7;}
+.d-up{color:var(--green);font-weight:700;}
+.d-dn{color:var(--red);font-weight:700;}
+
+/* PILL */
+.pill{display:inline-flex;align-items:center;border:1px solid var(--lines);border-radius:999px;padding:5px 12px;font-family:var(--mono);font-size:11px;color:var(--muted);background:rgba(255,255,255,.03);line-height:1;transition:background .15s,color .15s;}
+.pill:hover{color:var(--ink);background:rgba(255,255,255,.07);}
+
+/* §1 PULSE */
+.pulse-section{padding-bottom:32px;}
+.pulse-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:4px;}
+.pulse-grid{display:grid;grid-template-columns:repeat(8,minmax(140px,1fr));gap:10px;min-width:max-content;width:100%;}
+.pulse-card{padding:14px 16px;background:var(--panel);border:1px solid var(--line);border-radius:var(--r);display:grid;gap:4px;transition:transform .18s,border-color .18s;}
+.pulse-card:hover{transform:translateY(-2px);border-color:var(--lines);}
+.pulse-card.tone-up{border-top:2px solid var(--green);}
+.pulse-card.tone-dn{border-top:2px solid var(--red);}
+.pulse-card.tone-warn{border-top:2px solid var(--orange);}
+.pulse-icon{font-size:18px;line-height:1;}
+.pulse-label{font-size:11px;color:var(--muted);font-family:var(--mono);}
+.pulse-value{font-family:var(--mono);font-size:17px;font-weight:800;color:var(--ink);line-height:1.1;}
+.pulse-sub{font-size:10px;color:var(--dim);font-family:var(--mono);}
+
+/* §2 最新記事 article-grid */
+.article-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+.article-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;transition:border-color .2s,transform .2s;}
+.article-card:hover{border-color:var(--lines);transform:translateY(-2px);}
+.article-card img{width:100%;aspect-ratio:16/10;object-fit:cover;background:var(--panel2);}
+.article-img-ph{width:100%;aspect-ratio:16/10;display:flex;align-items:center;justify-content:center;font-size:32px;color:var(--lines);background:var(--panel2);}
+.article-body{padding:12px 14px 14px;display:grid;gap:8px;}
+.article-meta{display:flex;flex-wrap:wrap;gap:6px;align-items:center;}
+.category{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.06em;padding:3px 8px;border-radius:999px;color:#fff;}
+.importance{font-family:var(--mono);font-size:9px;font-weight:700;padding:3px 7px;border-radius:999px;}
+.importance.high{background:rgba(248,113,113,.12);color:var(--red);}
+.importance.med{background:rgba(230,184,74,.1);color:var(--gold);}
+.source-badge{font-family:var(--mono);font-size:9px;font-weight:700;padding:3px 7px;border-radius:999px;background:rgba(230,184,74,.1);color:var(--gold);border:1px solid rgba(230,184,74,.25);}
+.article-card h3{font-size:13px;font-weight:700;line-height:1.55;color:var(--ink);}
+.article-date{font-family:var(--mono);font-size:10px;color:var(--dim);}
+
+/* §3 HERO */
+.hero-section{background:linear-gradient(180deg,rgba(29,110,230,.04),transparent);}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(300px,.9fr);gap:32px;align-items:end;}
+.hero-copy{display:grid;gap:18px;}
+.hero-tags{display:flex;flex-wrap:wrap;gap:8px;}
+.tag{display:inline-flex;align-items:center;border-radius:999px;padding:4px 11px;font-family:var(--mono);font-size:11px;font-weight:700;line-height:1;}
+.tag-cat{color:#fff;}
+.tag-primary{background:rgba(230,184,74,.1);color:var(--gold);border:1px solid rgba(230,184,74,.3);}
+.tag-hot{background:rgba(248,113,113,.1);color:var(--red);border:1px solid rgba(248,113,113,.25);}
+.hero-title{font-family:var(--serif);font-size:clamp(20px,3vw,42px);font-weight:900;line-height:1.15;letter-spacing:-.02em;}
+.hero-title a:hover{color:var(--blue);}
+
+.impact-box{
+  border:1px solid rgba(90,158,255,.18);
+  background:rgba(90,158,255,.05);
+  border-radius:6px;
+  padding:14px 16px;
+  display:grid;
+  gap:10px;
+}
+
+.impact-head{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-family:var(--mono);
+  font-size:11px;
+  color:var(--blue);
+}
+
+.impact-live{
+  width:7px;
+  height:7px;
+  border-radius:999px;
+  background:#4ade80;
+}
+
+.impact-list{
+  list-style:none;
+  display:grid;
+  gap:6px;
+}
+
+.impact-list li{
+  font-size:13px;
+  color:#d7e2f0;
+}
+/* 3セル必須 */
+.hero-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:var(--line);}
+.hero-summary p{padding:13px 15px;background:rgba(13,17,24,.94);color:#c8d3e4;font-size:12px;line-height:1.7;}
+.why-box{display:grid;gap:6px;padding:14px 16px;border-left:2px solid var(--blue);background:rgba(90,158,255,.06);border-radius:0 var(--r) var(--r) 0;}
+.why-box p{font-size:13px;color:var(--muted);line-height:1.7;}
+.hero-footer{display:flex;align-items:center;gap:14px;font-family:var(--mono);font-size:12px;color:var(--dim);flex-wrap:wrap;}
+.hero-cta{margin-left:auto;color:var(--blue);font-weight:700;transition:opacity .15s;}
+.hero-cta:hover{opacity:.7;}
+.hero-media{position:relative;min-height:440px;border:1px solid var(--lines);border-radius:var(--r);overflow:hidden;background:var(--panel);box-shadow:0 20px 70px rgba(0,0,0,.3);}
+.hero-media img{width:100%;height:100%;min-height:440px;object-fit:cover;}
+.hero-ph-lg{width:100%;min-height:440px;display:flex;align-items:center;justify-content:center;font-size:60px;color:var(--lines);background:linear-gradient(135deg,var(--panel),var(--panel2));}
+.terminal-strip{position:absolute;inset:auto 12px 12px 12px;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;border:1px solid var(--line);background:var(--line);border-radius:3px;overflow:hidden;}
+.terminal-strip span{padding:7px 10px;background:rgba(7,9,13,.88);font-family:var(--mono);font-size:10px;color:var(--cyan);letter-spacing:.06em;}
+
+/* §4 AI NETWORK */
+/* §4 AI NETWORK */
+.map-section{
+  background:
+    radial-gradient(circle at 18% 20%, rgba(90,158,255,.08), transparent 34rem),
+    linear-gradient(180deg,rgba(77,142,240,.03),transparent);
+}
+
+.globe-layout{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 150px 340px;
+  gap:24px;
+  align-items:stretch;
+}
+
+.neural-container{
+  position:relative;
+  width:100%;
+  max-width:none;
+  min-height:520px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:14px;
+  background:
+    linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px),
+    radial-gradient(circle at 50% 50%, rgba(92,216,206,.12), transparent 34rem),
+    rgba(5,8,13,.82);
+  background-size:44px 44px,44px 44px,auto,auto;
+  cursor:grab;
+}
+
+.neural-container:active{
+  cursor:grabbing;
+}
+
+#globe-canvas{
+  display:block;
+  width:100%;
+  height:100%;
+  min-height:520px;
+  border-radius:0;
+  touch-action:none;
+}
+
+.neural-container::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at center, transparent 26%, rgba(0,0,0,.25) 72%, rgba(0,0,0,.72) 100%),
+    linear-gradient(180deg, rgba(255,255,255,.05), transparent 22%, transparent 74%, rgba(0,0,0,.46));
+}
+
+.neural-badge{
+  position:absolute;
+  left:16px;
+  bottom:16px;
+  z-index:2;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 11px;
+  border:1px solid rgba(255,255,255,.14);
+  border-radius:999px;
+  background:rgba(7,9,13,.66);
+  backdrop-filter:blur(18px);
+  font-family:var(--mono);
+  font-size:10px;
+  color:var(--muted);
+  letter-spacing:.08em;
+}
+
+.neural-badge strong{
+  color:var(--map-accent, var(--cyan));
+  font-size:11px;
+  letter-spacing:0;
+}
+
+.sector-tabs{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:10px;
+}
+
+.sector-tab{
+  min-height:66px;
+  background:rgba(255,255,255,.045);
+  border:1px solid rgba(255,255,255,.1);
+  color:#dbe7f5;
+  padding:12px;
+  border-radius:12px;
+  cursor:pointer;
+  font-family:var(--mono);
+  font-size:12px;
+  font-weight:800;
+  transition:transform .2s,border-color .2s,background .2s,color .2s,box-shadow .2s;
+}
+
+.sector-tab:hover,
+.sector-tab.active{
+  transform:translateX(4px);
+  border-color:color-mix(in srgb, var(--map-accent, var(--blue)) 62%, white 8%);
+  background:linear-gradient(135deg,color-mix(in srgb, var(--map-accent, var(--blue)) 20%, transparent),rgba(255,255,255,.055));
+  color:#fff;
+  box-shadow:0 0 28px color-mix(in srgb, var(--map-accent, var(--blue)) 22%, transparent);
+}
+
+.neural-detail{
+  min-height:520px;
+  justify-content:flex-start;
+  padding:24px;
+  background:linear-gradient(145deg,rgba(255,255,255,.08),rgba(255,255,255,.025)),rgba(13,17,24,.76);
+  backdrop-filter:blur(22px);
+}
+
+.gd-header{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:12px;
+}
+
+.gd-dot{
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  box-shadow:0 0 18px currentColor;
+}
+
+.gd-title{
+  font-size:22px;
+  font-weight:900;
+  letter-spacing:-.02em;
+}
+
+.gd-desc{
+  font-size:13px;
+  color:#aebbd0;
+  margin-bottom:18px;
+  line-height:1.8;
+}
+
+.gd-players{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:8px;
+  margin-bottom:18px;
+}
+
+.gd-player{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  min-height:42px;
+  padding:9px 10px;
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:10px;
+  background:rgba(255,255,255,.04);
+  font-size:12px;
+  color:#e6edf7;
+}
+
+.gd-pdot{
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  flex-shrink:0;
+}
+
+.gd-articles{
+  display:grid;
+  gap:0;
+  margin:6px 0 18px;
+  border-top:1px solid rgba(255,255,255,.1);
+}
+
+.gd-articles a{
+  padding:12px 0;
+  border-bottom:1px solid rgba(255,255,255,.1);
+  font-size:13px;
+  line-height:1.6;
+  color:#d8e3f2;
+}
+
+.gd-articles a:hover{
+  color:var(--map-accent,var(--blue));
+}
+
+.gd-link{
+  font-family:var(--mono);
+  font-size:12px;
+  font-weight:700;
+}
+
+@media(max-width:1100px){
+  .globe-layout{
+    grid-template-columns:1fr;
+  }
+
+  .sector-tabs{
+    flex-direction:row;
+    overflow-x:auto;
+    justify-content:flex-start;
+  }
+
+  .sector-tab{
+    min-width:108px;
+    min-height:56px;
+  }
+
+  .neural-container,
+  #globe-canvas,
+  .neural-detail{
+    min-height:440px;
+  }
+}
+
+@media(max-width:640px){
+  .globe-layout{
+    gap:14px;
+  }
+
+  .neural-container,
+  #globe-canvas{
+    min-height:420px;
+  }
+
+  .neural-detail{
+    min-height:auto;
+    padding:18px;
+  }
+
+  .gd-players{
+    grid-template-columns:1fr;
+  }
+}
+
+
+/* §5 Breaking */
+.breaking-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+.b-card{display:block;background:var(--panel);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;transition:border-color .2s,transform .2s;}
+.b-card:hover{border-color:var(--lines);transform:translateY(-2px);}
+.b-img-wrap{aspect-ratio:16/9;overflow:hidden;background:var(--panel2);}
+.b-img{width:100%;height:100%;object-fit:cover;transition:transform .3s;}
+.b-card:hover .b-img{transform:scale(1.04);}
+.b-ph{width:100%;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;font-size:24px;color:var(--lines);background:var(--panel2);}
+.b-body{padding:10px 12px 12px;}
+.b-cat{display:block;font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px;}
+.b-title{font-size:12px;font-weight:700;line-height:1.55;color:var(--ink);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:5px;}
+.b-meta{display:flex;gap:6px;font-family:var(--mono);font-size:10px;color:var(--dim);}
+.b-card.hot{
+  grid-column:span 2;
+  border-color:rgba(248,113,113,.45);
+  background:linear-gradient(
+    180deg,
+    rgba(248,113,113,.06),
+    transparent
+  );
+}
+
+.b-card.hot .b-title{
+  font-size:15px;
+  line-height:1.5;
+}
+/* §6 Dashboard */
+.dash-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:var(--line);margin-bottom:10px;}
+.metric-card{padding:18px;background:var(--panel);}
+.m-label{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.06em;margin-bottom:8px;}
+.m-value{font-family:var(--mono);font-size:clamp(18px,2.2vw,28px);font-weight:700;line-height:1;color:var(--ink);margin-bottom:8px;}
+.m-foot{display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;}
+.m-unit{color:var(--dim);}
+.dash-note{font-family:var(--mono);font-size:11px;color:var(--dim);}
+.dash-note a{color:var(--blue);}
+
+/* §7 一次情報 */
+.official-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+.o-card{display:block;padding:14px 16px;background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:var(--r);transition:background .15s;}
+.o-card:hover{background:var(--panel2);}
+.o-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
+.o-badge{font-family:var(--mono);font-size:9px;font-weight:700;padding:2px 7px;border-radius:2px;background:rgba(230,184,74,.1);color:var(--gold);}
+.o-date{font-family:var(--mono);font-size:10px;color:var(--dim);}
+.o-title{font-size:13px;font-weight:700;line-height:1.55;color:var(--ink);margin-bottom:5px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.o-src{font-family:var(--mono);font-size:10px;color:var(--dim);}
+
+/* §8 テーマカード */
+.theme-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+.theme-card{display:block;background:var(--panel);border:1px solid var(--line);border-top:2px solid var(--tc,var(--blue));border-radius:var(--r);padding:14px 16px;transition:background .15s,border-color .15s;}
+.theme-card:hover{background:var(--panel2);}
+.theme-header{display:flex;align-items:center;gap:8px;margin-bottom:12px;}
+.theme-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.theme-label{font-size:13px;font-weight:900;flex:1;}
+.theme-arrow{font-size:12px;color:var(--muted);transition:transform .15s;}
+.theme-card:hover .theme-arrow{transform:translateX(3px);}
+.theme-articles{list-style:none;display:grid;gap:6px;margin-bottom:10px;}
+.theme-art-item{display:flex;align-items:flex-start;gap:6px;font-size:11px;line-height:1.5;}
+.theme-art-bullet{color:var(--muted);flex-shrink:0;margin-top:1px;}
+.theme-art-title{color:var(--ink);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.theme-footer{font-family:var(--mono);font-size:10px;color:var(--dim);border-top:1px solid var(--line);padding-top:8px;}
+
+/* §9 Trends */
+.trend-cloud{display:flex;flex-wrap:wrap;gap:9px;}
+.trend-chip{border:1px solid var(--line);border-radius:999px;padding:7px 14px;color:#c8d4e6;background:rgba(255,255,255,.03);font-family:var(--mono);font-size:12px;transition:border-color .15s,color .15s,background .15s;}
+.trend-chip:hover{border-color:rgba(90,158,255,.5);color:var(--blue);background:rgba(90,158,255,.06);}
+
+/* §10 企業ロゴ */
+.company-grid{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px;}
+.co-card{display:grid;place-items:center;gap:6px;width:calc(10% - 9px);min-width:80px;min-height:100px;padding:12px 8px;border:1px solid var(--line);border-radius:var(--r);background:var(--panel);transition:transform .18s,border-color .18s,background .18s;}
+.co-card:hover{transform:translateY(-3px);border-color:var(--lines);background:var(--panel2);}
+.co-card.active{border-color:var(--active-color,var(--blue));background:var(--panel2);transform:translateY(-3px);}
+.co-logo svg{width:40px;height:40px;}
+.co-name{font-size:11px;font-weight:900;color:var(--ink);text-align:center;}
+.co-sub{font-family:var(--mono);font-size:9px;color:var(--dim);text-align:center;}
+.co-detail{background:var(--panel);border:1px solid var(--lines);border-radius:var(--r);overflow:hidden;margin-top:4px;}
+.co-detail-inner{display:flex;align-items:center;gap:20px;padding:20px 24px;position:relative;}
+.co-detail-logo svg{width:52px;height:52px;flex-shrink:0;}
+.co-detail-info{flex:1;display:grid;gap:4px;}
+.co-detail-name{font-size:20px;font-weight:900;}
+.co-detail-sub{font-family:var(--mono);font-size:11px;color:var(--muted);}
+.co-detail-desc{font-size:13px;color:var(--muted);line-height:1.65;}
+.co-detail-link{font-family:var(--mono);font-size:12px;font-weight:700;white-space:nowrap;transition:opacity .15s;}
+.co-detail-link:hover{opacity:.7;}
+.co-detail-close{position:absolute;top:12px;right:12px;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-size:14px;color:var(--muted);background:var(--panel2);border:1px solid var(--line);transition:color .15s;}
+.co-detail-close:hover{color:var(--ink);}
+
+/* FOOTER */
+.site-footer{padding:40px 0 52px;border-top:1px solid var(--line);}
+.footer-inner{display:grid;grid-template-columns:1fr auto;gap:32px;align-items:start;}
+.footer-brand{display:grid;gap:10px;}
+.footer-desc{font-size:13px;color:var(--muted);max-width:300px;line-height:1.7;}
+.footer-links{display:flex;flex-wrap:wrap;gap:14px;justify-content:flex-end;}
+.footer-links a{font-size:13px;color:var(--muted);transition:color .15s;}
+.footer-links a:hover{color:var(--ink);}
+
+/* RESPONSIVE */
+@media(max-width:1100px){
+  .article-grid{grid-template-columns:repeat(2,1fr);}
+  .globe-layout{grid-template-columns:1fr 260px;gap:20px;}
+  .breaking-grid{grid-template-columns:repeat(2,1fr);}
+  .theme-grid{grid-template-columns:repeat(3,1fr);}
+  .co-card{width:calc(16.6% - 9px);}
+}
+@media(max-width:900px){
+  .globe-layout{grid-template-columns:1fr;}
+  .hero-grid{grid-template-columns:1fr;}
+  .hero-media,.hero-media img{min-height:300px;}
+  .hero-summary{grid-template-columns:1fr;}
+  .terminal-strip{grid-template-columns:repeat(2,1fr);}
+  .official-grid{grid-template-columns:repeat(2,1fr);}
+  .dash-grid{grid-template-columns:repeat(4,1fr);}
+  .footer-inner{grid-template-columns:1fr;}
+  .footer-links{justify-content:flex-start;}
+}
+@media(max-width:640px){
+  .w{width:min(100% - 24px,100%);}
+  .section{padding:28px 0;}
+  .section-head,.sec-head{flex-direction:column;align-items:flex-start;gap:6px;}
+  .site-header .w{grid-template-columns:1fr auto;}
+  .gnav{display:none;}
+  .ticker-bar{display:none;}
+  .article-grid{grid-template-columns:repeat(2,1fr);}
+  .breaking-grid{grid-template-columns:repeat(2,1fr);}
+  .dash-grid{grid-template-columns:repeat(2,1fr);}
+  .official-grid{grid-template-columns:1fr;}
+  .theme-grid{grid-template-columns:repeat(2,1fr);}
+  .pulse-grid{grid-template-columns:repeat(4,minmax(130px,1fr));}
+  .co-card{width:calc(33.3% - 7px);}
+  .co-detail-inner{flex-direction:column;align-items:flex-start;gap:12px;}
+}
+@media(max-width:400px){
+  .article-grid{grid-template-columns:1fr;}
+  .theme-grid{grid-template-columns:1fr;}
+}
+</style>

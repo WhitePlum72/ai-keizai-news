@@ -5,7 +5,7 @@ source_url: "https://www.bloomberg.com/news/articles/2026-05-14/singapore-airlin
 category: "マーケット"
 category_slug: "markets"
 article_slug: "singapore-air-profit-beat-risks"
-published_at: "2026-05-15"
+published_at: "2026-05-16"
 buzz_score: 45.0
 image_url: "/images/articles/article_5838.webp"
 meta_description: "シンガポール航空の株価が急伸し、過去最高益と強気見通しが好感された。通期純利益は市場予想を上回り、旺盛な旅客需要が業績を牽引。中東情勢の緊迫化による需要減退の兆候はなく、柔軟な路線戦略でリスクを抑制できると強気の姿勢を示した。"

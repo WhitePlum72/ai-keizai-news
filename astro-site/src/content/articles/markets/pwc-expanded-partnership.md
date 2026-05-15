@@ -5,7 +5,7 @@ source_url: "https://www.anthropic.com/news/pwc-expanded-partnership"
 category: "マーケット"
 category_slug: "markets"
 article_slug: "pwc-expanded-partnership"
-published_at: "2026-05-15"
+published_at: "2026-05-16"
 buzz_score: 47.5
 image_url: "https://www.anthropic.com/api/opengraph-illustration?name=Object%20CodeGlobe&backgroundColor=sky"
 meta_description: "PwCはOpenAIとの提携を拡大し、監査・税務・コンサル全領域にAIエージェントを展開するため、年間10億ドルの投資を発表。財務監査の自動化など高付加価値業務をAIが担い、専門的判断の補助を実現し、競合デロイト等とのAI投資競争が激化して"

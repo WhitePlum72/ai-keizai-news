@@ -5,7 +5,7 @@ source_url: "https://www.bloomberg.com/news/articles/2026-05-15/alphabet-sells-3
 category: "インフラ"
 category_slug: "infrastructure"
 article_slug: "alphabet-record-yen-bond"
-published_at: "2026-05-15"
+published_at: "2026-05-16"
 buzz_score: 53.0
 image_url: "/images/articles/article_5768.webp"
 meta_description: "米アルファベットがAI投資向けに円建て社債で過去最大の5765億円を発行した。低金利の日本市場を活用し、データセンターなど巨額設備投資の資金を調達する動きが加速している。"

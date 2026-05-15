@@ -5,7 +5,7 @@ source_url: "https://aws.amazon.com/blogs/machine-learning/fine-tune-llm-with-da
 category: "モデル"
 category_slug: "model"
 article_slug: "databricks-unity-catalog-sagemaker-finetune"
-published_at: "2026-05-15"
+published_at: "2026-05-16"
 buzz_score: 40.5
 image_url: "https://d2908q01vomqb2.cloudfront.net/f1f836cb4ea6efb2a0b1b99f41ad8b103eff4b59/2026/05/13/ml-19973.png"
 meta_description: "DatabricksとAWSは、Unity Catalogで管理するデータをSageMaker AIで安全に微調整する手法を確立した。EMR Serverlessを前処理に活用し、データの移動や権限継承の障壁を克服。一貫したリネージ追跡によ"

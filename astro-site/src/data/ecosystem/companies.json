@@ -1,0 +1,1090 @@
+[
+  {
+    "id": "nvidia",
+    "name": "NVIDIA",
+    "sector": "infrastructure",
+    "logoText": "NV",
+    "size": "large",
+    "score": 98,
+    "description": "AI GPU、CUDA、ネットワークでAI計算資源の中心に立つ。",
+    "tags": [
+      "GPU",
+      "CUDA",
+      "Data Center"
+    ],
+    "country": "US",
+    "role": "AI accelerator platform leader",
+    "website": "https://www.nvidia.com/",
+    "founded": 1993,
+    "aliases": [
+      "NVDA",
+      "NVIDIA AI",
+      "CUDA"
+    ],
+    "signals": {
+      "newsHeat": 98,
+      "marketImpact": 100,
+      "developerImpact": 94
+    }
+  },
+  {
+    "id": "amd",
+    "name": "AMD",
+    "sector": "infrastructure",
+    "logoText": "AMD",
+    "size": "medium",
+    "score": 78,
+    "description": "MI300XなどでNVIDIA対抗のAI GPU市場を狙う。",
+    "tags": [
+      "GPU",
+      "MI300X",
+      "ROCm"
+    ],
+    "country": "US",
+    "role": "AI GPU challenger",
+    "website": "https://www.amd.com/",
+    "founded": 1969,
+    "aliases": [
+      "AMD Instinct",
+      "ROCm"
+    ],
+    "signals": {
+      "newsHeat": 74,
+      "marketImpact": 82,
+      "developerImpact": 66
+    }
+  },
+  {
+    "id": "tsmc",
+    "name": "TSMC",
+    "sector": "infrastructure",
+    "logoText": "TS",
+    "size": "large",
+    "score": 90,
+    "description": "先端プロセスとCoWoSでAIチップ供給を支える。",
+    "tags": [
+      "CoWoS",
+      "2nm",
+      "Fab"
+    ],
+    "country": "TW",
+    "role": "Advanced semiconductor foundry",
+    "website": "https://www.tsmc.com/",
+    "founded": 1987,
+    "aliases": [
+      "Taiwan Semiconductor",
+      "CoWoS"
+    ],
+    "signals": {
+      "newsHeat": 86,
+      "marketImpact": 96,
+      "developerImpact": 52
+    }
+  },
+  {
+    "id": "broadcom",
+    "name": "Broadcom",
+    "sector": "infrastructure",
+    "logoText": "BC",
+    "size": "medium",
+    "score": 76,
+    "description": "カスタムASICとネットワーク半導体でAI基盤を支える。",
+    "tags": [
+      "ASIC",
+      "Networking",
+      "Custom Chip"
+    ],
+    "country": "US",
+    "role": "Custom AI ASIC and networking supplier",
+    "website": "https://www.broadcom.com/",
+    "founded": 1961,
+    "aliases": [
+      "AVGO",
+      "Custom ASIC"
+    ],
+    "signals": {
+      "newsHeat": 70,
+      "marketImpact": 82,
+      "developerImpact": 40
+    }
+  },
+  {
+    "id": "intel",
+    "name": "Intel",
+    "sector": "infrastructure",
+    "logoText": "IN",
+    "size": "medium",
+    "score": 64,
+    "description": "CPU、Gaudi、ファウンドリ戦略でAI半導体競争に再参入を狙う。",
+    "tags": [
+      "CPU",
+      "Gaudi",
+      "Foundry"
+    ],
+    "country": "US",
+    "role": "CPU and AI accelerator supplier",
+    "website": "https://www.intel.com/",
+    "founded": 1968,
+    "aliases": [
+      "INTC",
+      "Gaudi"
+    ],
+    "signals": {
+      "newsHeat": 62,
+      "marketImpact": 68,
+      "developerImpact": 54
+    }
+  },
+  {
+    "id": "cerebras",
+    "name": "Cerebras",
+    "sector": "infrastructure",
+    "logoText": "CB",
+    "size": "medium",
+    "score": 68,
+    "description": "ウェハースケールAIチップで高速推論・学習基盤を展開。",
+    "tags": [
+      "Wafer Scale",
+      "Inference",
+      "AI Chip"
+    ],
+    "country": "US",
+    "role": "Alternative AI compute platform",
+    "website": "https://www.cerebras.net/",
+    "founded": 2015,
+    "aliases": [
+      "WSE",
+      "Cerebras Cloud"
+    ],
+    "signals": {
+      "newsHeat": 66,
+      "marketImpact": 58,
+      "developerImpact": 48
+    }
+  },
+  {
+    "id": "groq",
+    "name": "Groq",
+    "sector": "infrastructure",
+    "logoText": "GQ",
+    "size": "medium",
+    "score": 70,
+    "description": "低遅延推論チップでリアルタイムAIアプリケーションを支える。",
+    "tags": [
+      "Inference",
+      "LPU",
+      "Realtime"
+    ],
+    "country": "US",
+    "role": "Low latency inference platform",
+    "website": "https://groq.com/",
+    "founded": 2016,
+    "aliases": [
+      "LPU",
+      "GroqCloud"
+    ],
+    "signals": {
+      "newsHeat": 72,
+      "marketImpact": 56,
+      "developerImpact": 70
+    }
+  },
+  {
+    "id": "coreweave",
+    "name": "CoreWeave",
+    "sector": "infrastructure",
+    "logoText": "CW",
+    "size": "medium",
+    "score": 82,
+    "description": "GPUクラウドとAIデータセンターで急成長するAIインフラ企業。",
+    "tags": [
+      "GPU Cloud",
+      "Data Center",
+      "NVIDIA"
+    ],
+    "country": "US",
+    "role": "Specialized GPU cloud provider",
+    "website": "https://www.coreweave.com/",
+    "founded": 2017,
+    "aliases": [
+      "GPU Cloud",
+      "AI Cloud"
+    ],
+    "signals": {
+      "newsHeat": 84,
+      "marketImpact": 86,
+      "developerImpact": 62
+    }
+  },
+  {
+    "id": "openai",
+    "name": "OpenAI",
+    "sector": "foundation",
+    "logoText": "O",
+    "size": "large",
+    "score": 99,
+    "description": "ChatGPT、Sora、Codex、Agentsを展開するAI業界の中核。",
+    "tags": [
+      "GPT",
+      "Sora",
+      "Agents"
+    ],
+    "country": "US",
+    "role": "Frontier AI lab and application platform",
+    "website": "https://openai.com/",
+    "founded": 2015,
+    "aliases": [
+      "ChatGPT",
+      "GPT",
+      "OpenAI API"
+    ],
+    "signals": {
+      "newsHeat": 100,
+      "marketImpact": 98,
+      "developerImpact": 100
+    }
+  },
+  {
+    "id": "anthropic",
+    "name": "Anthropic",
+    "sector": "foundation",
+    "logoText": "A",
+    "size": "large",
+    "score": 88,
+    "description": "Claudeを中心に安全性と企業導入で存在感を高める。",
+    "tags": [
+      "Claude",
+      "Safety",
+      "Enterprise"
+    ],
+    "country": "US",
+    "role": "Frontier model lab focused on safety and enterprise adoption",
+    "website": "https://www.anthropic.com/",
+    "founded": 2021,
+    "aliases": [
+      "Claude",
+      "Constitutional AI"
+    ],
+    "signals": {
+      "newsHeat": 88,
+      "marketImpact": 86,
+      "developerImpact": 82
+    }
+  },
+  {
+    "id": "google",
+    "name": "Google",
+    "sector": "foundation",
+    "logoText": "G",
+    "size": "large",
+    "score": 90,
+    "description": "Gemini、DeepMind、TPU、検索、クラウドを横断する巨大AI企業。",
+    "tags": [
+      "Gemini",
+      "DeepMind",
+      "TPU"
+    ],
+    "country": "US",
+    "role": "Full-stack AI platform across models, cloud, search, and chips",
+    "website": "https://ai.google/",
+    "founded": 1998,
+    "aliases": [
+      "Alphabet",
+      "Gemini",
+      "Google AI"
+    ],
+    "signals": {
+      "newsHeat": 90,
+      "marketImpact": 92,
+      "developerImpact": 84
+    }
+  },
+  {
+    "id": "meta",
+    "name": "Meta",
+    "sector": "foundation",
+    "logoText": "M",
+    "size": "medium",
+    "score": 84,
+    "description": "Llamaを中心にオープンモデル戦略を推進。",
+    "tags": [
+      "Llama",
+      "OSS",
+      "Social"
+    ],
+    "country": "US",
+    "role": "Open model and social AI platform",
+    "website": "https://ai.meta.com/",
+    "founded": 2004,
+    "aliases": [
+      "Facebook",
+      "Llama",
+      "Meta AI"
+    ],
+    "signals": {
+      "newsHeat": 82,
+      "marketImpact": 84,
+      "developerImpact": 92
+    }
+  },
+  {
+    "id": "xai",
+    "name": "xAI",
+    "sector": "foundation",
+    "logoText": "xAI",
+    "size": "medium",
+    "score": 92,
+    "description": "Grokと大規模GPUクラスターで急成長するAI企業。",
+    "tags": [
+      "Grok",
+      "Colossus",
+      "X"
+    ],
+    "country": "US",
+    "role": "Frontier model company connected to X and large GPU clusters",
+    "website": "https://x.ai/",
+    "founded": 2023,
+    "aliases": [
+      "Grok",
+      "Colossus"
+    ],
+    "signals": {
+      "newsHeat": 94,
+      "marketImpact": 82,
+      "developerImpact": 68
+    }
+  },
+  {
+    "id": "mistral",
+    "name": "Mistral AI",
+    "sector": "foundation",
+    "logoText": "MI",
+    "size": "medium",
+    "score": 78,
+    "description": "欧州発の高性能オープンモデル企業。",
+    "tags": [
+      "Europe",
+      "Open Model",
+      "Le Chat"
+    ],
+    "country": "FR",
+    "role": "European frontier and open model company",
+    "website": "https://mistral.ai/",
+    "founded": 2023,
+    "aliases": [
+      "Le Chat",
+      "Mixtral"
+    ],
+    "signals": {
+      "newsHeat": 76,
+      "marketImpact": 70,
+      "developerImpact": 88
+    }
+  },
+  {
+    "id": "cohere",
+    "name": "Cohere",
+    "sector": "foundation",
+    "logoText": "CO",
+    "size": "medium",
+    "score": 72,
+    "description": "企業向けLLMとRAG基盤に強みを持つモデル企業。",
+    "tags": [
+      "Enterprise LLM",
+      "RAG",
+      "Command"
+    ],
+    "country": "CA",
+    "role": "Enterprise-focused model provider",
+    "website": "https://cohere.com/",
+    "founded": 2019,
+    "aliases": [
+      "Command",
+      "Embed"
+    ],
+    "signals": {
+      "newsHeat": 64,
+      "marketImpact": 66,
+      "developerImpact": 70
+    }
+  },
+  {
+    "id": "deepseek",
+    "name": "DeepSeek",
+    "sector": "china",
+    "logoText": "DS",
+    "size": "large",
+    "score": 91,
+    "description": "中国発の高性能モデルで世界的に注目されるAI企業。",
+    "tags": [
+      "China",
+      "Open Model",
+      "Reasoning"
+    ],
+    "country": "CN",
+    "role": "Chinese model company with global open model impact",
+    "website": "https://www.deepseek.com/",
+    "founded": 2023,
+    "aliases": [
+      "DeepSeek V3",
+      "DeepSeek R1"
+    ],
+    "signals": {
+      "newsHeat": 96,
+      "marketImpact": 88,
+      "developerImpact": 94
+    }
+  },
+  {
+    "id": "langchain",
+    "name": "LangChain",
+    "sector": "agents",
+    "logoText": "LC",
+    "size": "medium",
+    "score": 82,
+    "description": "LLMアプリケーションとエージェント構築の開発基盤。",
+    "tags": [
+      "Agent",
+      "Framework",
+      "LangGraph"
+    ],
+    "country": "US",
+    "role": "Agent framework and orchestration platform",
+    "website": "https://www.langchain.com/",
+    "founded": 2023,
+    "aliases": [
+      "LangGraph",
+      "LangSmith"
+    ],
+    "signals": {
+      "newsHeat": 78,
+      "marketImpact": 62,
+      "developerImpact": 96
+    }
+  },
+  {
+    "id": "perplexity",
+    "name": "Perplexity",
+    "sector": "agents",
+    "logoText": "PX",
+    "size": "large",
+    "score": 86,
+    "description": "検索体験とAI回答を融合するSearch Agent企業。",
+    "tags": [
+      "Search",
+      "Agent",
+      "Answer Engine"
+    ],
+    "country": "US",
+    "role": "AI search and answer engine company",
+    "website": "https://www.perplexity.ai/",
+    "founded": 2022,
+    "aliases": [
+      "Perplexity AI",
+      "Answer Engine"
+    ],
+    "signals": {
+      "newsHeat": 86,
+      "marketImpact": 72,
+      "developerImpact": 60
+    }
+  },
+  {
+    "id": "microsoft",
+    "name": "Microsoft",
+    "sector": "enterprise",
+    "logoText": "MS",
+    "size": "large",
+    "score": 92,
+    "description": "Azure AI、Copilot、OpenAI連携で企業AIの中心にいる。",
+    "tags": [
+      "Azure",
+      "Copilot",
+      "OpenAI"
+    ],
+    "country": "US",
+    "role": "Enterprise AI platform and cloud provider",
+    "website": "https://www.microsoft.com/ai/",
+    "founded": 1975,
+    "aliases": [
+      "MSFT",
+      "Azure AI",
+      "Copilot"
+    ],
+    "signals": {
+      "newsHeat": 88,
+      "marketImpact": 96,
+      "developerImpact": 86
+    }
+  },
+  {
+    "id": "salesforce",
+    "name": "Salesforce",
+    "sector": "enterprise",
+    "logoText": "SF",
+    "size": "medium",
+    "score": 76,
+    "description": "CRMとAIエージェントを組み合わせ企業向けAIを展開。",
+    "tags": [
+      "CRM",
+      "Agentforce",
+      "Enterprise"
+    ],
+    "country": "US",
+    "role": "CRM and enterprise agent platform",
+    "website": "https://www.salesforce.com/ai/",
+    "founded": 1999,
+    "aliases": [
+      "Agentforce",
+      "Einstein"
+    ],
+    "signals": {
+      "newsHeat": 72,
+      "marketImpact": 76,
+      "developerImpact": 58
+    }
+  },
+  {
+    "id": "devin",
+    "name": "Devin",
+    "sector": "agents",
+    "logoText": "DV",
+    "size": "medium",
+    "score": 80,
+    "description": "ソフトウェア開発タスクを自律実行するAIエージェント。",
+    "tags": [
+      "Code",
+      "Agent",
+      "Software Engineering"
+    ],
+    "country": "US",
+    "role": "Autonomous software engineering agent",
+    "website": "https://www.cognition.ai/",
+    "founded": 2023,
+    "aliases": [
+      "Cognition",
+      "Devin AI"
+    ],
+    "signals": {
+      "newsHeat": 78,
+      "marketImpact": 62,
+      "developerImpact": 82
+    }
+  },
+  {
+    "id": "midjourney",
+    "name": "Midjourney",
+    "sector": "video",
+    "logoText": "MJ",
+    "size": "medium",
+    "score": 78,
+    "description": "画像生成AIの代表的サービス。",
+    "tags": [
+      "Image",
+      "Creator",
+      "Generative Art"
+    ],
+    "country": "US",
+    "role": "Consumer creative AI platform",
+    "website": "https://www.midjourney.com/",
+    "founded": 2022,
+    "aliases": [
+      "MJ",
+      "Image AI"
+    ],
+    "signals": {
+      "newsHeat": 76,
+      "marketImpact": 64,
+      "developerImpact": 46
+    }
+  },
+  {
+    "id": "adobe",
+    "name": "Adobe",
+    "sector": "video",
+    "logoText": "AD",
+    "size": "medium",
+    "score": 76,
+    "description": "FireflyとCreative Cloudで生成AIを制作へ統合。",
+    "tags": [
+      "Firefly",
+      "Creative",
+      "Enterprise Creative"
+    ],
+    "country": "US",
+    "role": "Creative software platform with generative AI",
+    "website": "https://www.adobe.com/ai/",
+    "founded": 1982,
+    "aliases": [
+      "Firefly",
+      "Creative Cloud"
+    ],
+    "signals": {
+      "newsHeat": 72,
+      "marketImpact": 80,
+      "developerImpact": 44
+    }
+  },
+  {
+    "id": "runway",
+    "name": "Runway",
+    "sector": "video",
+    "logoText": "RW",
+    "size": "medium",
+    "score": 76,
+    "description": "動画生成・編集ワークフローを展開するクリエイティブAI企業。",
+    "tags": [
+      "Video",
+      "Creative",
+      "Gen-3"
+    ],
+    "country": "US",
+    "role": "Generative video and creative workflow platform",
+    "website": "https://runwayml.com/",
+    "founded": 2018,
+    "aliases": [
+      "Runway ML",
+      "Gen-3"
+    ],
+    "signals": {
+      "newsHeat": 78,
+      "marketImpact": 58,
+      "developerImpact": 48
+    }
+  },
+  {
+    "id": "pika",
+    "name": "Pika",
+    "sector": "video",
+    "logoText": "PK",
+    "size": "small",
+    "score": 68,
+    "description": "ショート動画・SNS向けの生成AI動画体験で注目。",
+    "tags": [
+      "Video",
+      "SNS",
+      "Creator"
+    ],
+    "country": "US",
+    "role": "Consumer video generation app",
+    "website": "https://pika.art/",
+    "founded": 2023,
+    "aliases": [
+      "Pika Labs"
+    ],
+    "signals": {
+      "newsHeat": 66,
+      "marketImpact": 44,
+      "developerImpact": 36
+    }
+  },
+  {
+    "id": "luma",
+    "name": "Luma AI",
+    "sector": "video",
+    "logoText": "LU",
+    "size": "small",
+    "score": 66,
+    "description": "動画生成と3D表現を組み合わせたAI制作ツール。",
+    "tags": [
+      "Video",
+      "3D",
+      "Dream Machine"
+    ],
+    "country": "US",
+    "role": "Video and 3D generation platform",
+    "website": "https://lumalabs.ai/",
+    "founded": 2021,
+    "aliases": [
+      "Dream Machine",
+      "Luma Labs"
+    ],
+    "signals": {
+      "newsHeat": 64,
+      "marketImpact": 42,
+      "developerImpact": 38
+    }
+  },
+  {
+    "id": "elevenlabs",
+    "name": "ElevenLabs",
+    "sector": "voice",
+    "logoText": "11",
+    "size": "medium",
+    "score": 74,
+    "description": "音声生成・ボイスAI領域の代表的企業。",
+    "tags": [
+      "Voice",
+      "Audio",
+      "Realtime"
+    ],
+    "country": "US",
+    "role": "Voice generation and speech AI platform",
+    "website": "https://elevenlabs.io/",
+    "founded": 2022,
+    "aliases": [
+      "Eleven",
+      "Voice AI"
+    ],
+    "signals": {
+      "newsHeat": 76,
+      "marketImpact": 60,
+      "developerImpact": 58
+    }
+  },
+  {
+    "id": "tesla",
+    "name": "Tesla",
+    "sector": "robotics",
+    "logoText": "TSL",
+    "size": "large",
+    "score": 84,
+    "description": "Optimusと自動運転AIで物理世界AIを狙う。",
+    "tags": [
+      "Optimus",
+      "Robot",
+      "Autonomy"
+    ],
+    "country": "US",
+    "role": "Embodied AI and autonomy company",
+    "website": "https://www.tesla.com/AI",
+    "founded": 2003,
+    "aliases": [
+      "Optimus",
+      "FSD"
+    ],
+    "signals": {
+      "newsHeat": 88,
+      "marketImpact": 82,
+      "developerImpact": 54
+    }
+  },
+  {
+    "id": "figure",
+    "name": "Figure AI",
+    "sector": "robotics",
+    "logoText": "F",
+    "size": "medium",
+    "score": 82,
+    "description": "ヒューマノイドロボットと基盤モデルを接続する注目企業。",
+    "tags": [
+      "Humanoid",
+      "Robot",
+      "Embodied AI"
+    ],
+    "country": "US",
+    "role": "Humanoid robotics company",
+    "website": "https://www.figure.ai/",
+    "founded": 2022,
+    "aliases": [
+      "Figure 01",
+      "Figure 02"
+    ],
+    "signals": {
+      "newsHeat": 82,
+      "marketImpact": 62,
+      "developerImpact": 42
+    }
+  },
+  {
+    "id": "bostondynamics",
+    "name": "Boston Dynamics",
+    "sector": "robotics",
+    "logoText": "BD",
+    "size": "medium",
+    "score": 72,
+    "description": "高度なロボット制御・移動技術を持つロボティクス企業。",
+    "tags": [
+      "Robotics",
+      "Control",
+      "Mobility"
+    ],
+    "country": "US",
+    "role": "Advanced robotics and mobility company",
+    "website": "https://bostondynamics.com/",
+    "founded": 1992,
+    "aliases": [
+      "Atlas",
+      "Spot"
+    ],
+    "signals": {
+      "newsHeat": 70,
+      "marketImpact": 48,
+      "developerImpact": 34
+    }
+  },
+  {
+    "id": "huggingface",
+    "name": "Hugging Face",
+    "sector": "opensource",
+    "logoText": "HF",
+    "size": "large",
+    "score": 80,
+    "description": "モデル配布、データセット、OSS AI開発の中心的プラットフォーム。",
+    "tags": [
+      "Models",
+      "Dataset",
+      "OSS"
+    ],
+    "country": "US",
+    "role": "Open model hub and developer platform",
+    "website": "https://huggingface.co/",
+    "founded": 2016,
+    "aliases": [
+      "HF",
+      "Model Hub",
+      "Datasets"
+    ],
+    "signals": {
+      "newsHeat": 78,
+      "marketImpact": 66,
+      "developerImpact": 98
+    }
+  },
+  {
+    "id": "databricks",
+    "name": "Databricks",
+    "sector": "enterprise",
+    "logoText": "DB",
+    "size": "medium",
+    "score": 78,
+    "description": "LakehouseとMosaicMLで企業データと生成AI基盤を接続する。",
+    "tags": [
+      "Lakehouse",
+      "MosaicML",
+      "Enterprise Data"
+    ],
+    "country": "US",
+    "role": "Enterprise data and AI platform",
+    "website": "https://www.databricks.com/",
+    "founded": 2013,
+    "aliases": [
+      "MosaicML",
+      "Lakehouse"
+    ],
+    "signals": {
+      "newsHeat": 74,
+      "marketImpact": 78,
+      "developerImpact": 76
+    }
+  },
+  {
+    "id": "oracle",
+    "name": "Oracle",
+    "sector": "enterprise",
+    "logoText": "OR",
+    "size": "medium",
+    "score": 72,
+    "description": "OCIとデータベース基盤で企業AIインフラを拡大。",
+    "tags": [
+      "OCI",
+      "Database",
+      "Enterprise"
+    ],
+    "country": "US",
+    "role": "Enterprise cloud and database AI platform",
+    "website": "https://www.oracle.com/artificial-intelligence/",
+    "founded": 1977,
+    "aliases": [
+      "OCI",
+      "Oracle Cloud"
+    ],
+    "signals": {
+      "newsHeat": 70,
+      "marketImpact": 76,
+      "developerImpact": 44
+    }
+  },
+  {
+    "id": "sap",
+    "name": "SAP",
+    "sector": "enterprise",
+    "logoText": "SAP",
+    "size": "medium",
+    "score": 66,
+    "description": "ERPと業務データをAI化し、企業向け生成AIを展開。",
+    "tags": [
+      "ERP",
+      "Business AI",
+      "Enterprise"
+    ],
+    "country": "DE",
+    "role": "Enterprise application AI platform",
+    "website": "https://www.sap.com/products/artificial-intelligence.html",
+    "founded": 1972,
+    "aliases": [
+      "Joule",
+      "Business AI"
+    ],
+    "signals": {
+      "newsHeat": 62,
+      "marketImpact": 70,
+      "developerImpact": 36
+    }
+  },
+  {
+    "id": "ibm",
+    "name": "IBM",
+    "sector": "enterprise",
+    "logoText": "IBM",
+    "size": "medium",
+    "score": 64,
+    "description": "watsonxを中心に企業向けAIとガバナンスを展開。",
+    "tags": [
+      "watsonx",
+      "Governance",
+      "Enterprise"
+    ],
+    "country": "US",
+    "role": "Enterprise AI and governance platform",
+    "website": "https://www.ibm.com/watsonx",
+    "founded": 1911,
+    "aliases": [
+      "watsonx",
+      "Granite"
+    ],
+    "signals": {
+      "newsHeat": 60,
+      "marketImpact": 66,
+      "developerImpact": 48
+    }
+  },
+  {
+    "id": "alibaba",
+    "name": "Alibaba",
+    "sector": "china",
+    "logoText": "AB",
+    "size": "large",
+    "score": 84,
+    "description": "Qwenとクラウド基盤で中国AIエコシステムの中心に位置する。",
+    "tags": [
+      "Qwen",
+      "Cloud",
+      "China"
+    ],
+    "country": "CN",
+    "role": "Chinese cloud and model platform",
+    "website": "https://www.alibabacloud.com/",
+    "founded": 1999,
+    "aliases": [
+      "Qwen",
+      "Tongyi",
+      "Alibaba Cloud"
+    ],
+    "signals": {
+      "newsHeat": 84,
+      "marketImpact": 82,
+      "developerImpact": 72
+    }
+  },
+  {
+    "id": "bytedance",
+    "name": "ByteDance",
+    "sector": "china",
+    "logoText": "BD",
+    "size": "medium",
+    "score": 82,
+    "description": "TikTok、Doubaoなどを軸に中国AIアプリとモデルを展開。",
+    "tags": [
+      "Doubao",
+      "TikTok",
+      "China"
+    ],
+    "country": "CN",
+    "role": "Consumer AI app and model company",
+    "website": "https://www.bytedance.com/",
+    "founded": 2012,
+    "aliases": [
+      "Doubao",
+      "TikTok"
+    ],
+    "signals": {
+      "newsHeat": 82,
+      "marketImpact": 78,
+      "developerImpact": 52
+    }
+  },
+  {
+    "id": "tencent",
+    "name": "Tencent",
+    "sector": "china",
+    "logoText": "TC",
+    "size": "medium",
+    "score": 72,
+    "description": "クラウド、ゲーム、SNS基盤を背景にAIサービスを展開。",
+    "tags": [
+      "Hunyuan",
+      "WeChat",
+      "Cloud"
+    ],
+    "country": "CN",
+    "role": "Chinese cloud, social, and AI application platform",
+    "website": "https://www.tencent.com/",
+    "founded": 1998,
+    "aliases": [
+      "Hunyuan",
+      "Tencent Cloud"
+    ],
+    "signals": {
+      "newsHeat": 70,
+      "marketImpact": 72,
+      "developerImpact": 46
+    }
+  },
+  {
+    "id": "baidu",
+    "name": "Baidu",
+    "sector": "china",
+    "logoText": "BDU",
+    "size": "medium",
+    "score": 74,
+    "description": "ERNIE Botと検索基盤を持つ中国AI企業。",
+    "tags": [
+      "ERNIE",
+      "Search",
+      "China"
+    ],
+    "country": "CN",
+    "role": "Chinese search and foundation model company",
+    "website": "https://www.baidu.com/",
+    "founded": 2000,
+    "aliases": [
+      "ERNIE",
+      "Wenxin"
+    ],
+    "signals": {
+      "newsHeat": 72,
+      "marketImpact": 70,
+      "developerImpact": 44
+    }
+  },
+  {
+    "id": "amazon",
+    "name": "Amazon / AWS",
+    "sector": "enterprise",
+    "logoText": "AWS",
+    "size": "large",
+    "score": 88,
+    "description": "AWS Bedrock、Trainium、Anthropic出資で企業AI基盤を拡張するクラウド企業。",
+    "tags": [
+      "AWS",
+      "Bedrock",
+      "Trainium",
+      "Cloud"
+    ],
+    "country": "US",
+    "role": "Cloud and enterprise AI platform",
+    "website": "https://aws.amazon.com/ai/",
+    "founded": 1994,
+    "aliases": [
+      "AWS",
+      "Amazon Web Services",
+      "Bedrock"
+    ],
+    "signals": {
+      "newsHeat": 84,
+      "marketImpact": 90,
+      "developerImpact": 78
+    }
+  }
+]

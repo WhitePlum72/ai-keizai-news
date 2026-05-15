@@ -5,7 +5,7 @@ source_url: "https://techcrunch.com/2026/05/13/ransomware-hackers-claim-breach-a
 category: "ビジネス"
 category_slug: "business"
 article_slug: "foxconn-ransomware-breach-apple"
-published_at: "2026-05-15"
+published_at: "2026-05-16"
 buzz_score: 39.5
 image_url: "https://techcrunch.com/wp-content/uploads/2026/05/iphone-store.jpg?resize=1200,800"
 meta_description: "フォックスコンがランサムウェア集団「ロックビット」の攻撃を受け、身代金を要求された。同社はアップルやエヌビディアなどに供給する世界最大手で、年末商戦期の生産停止や情報漏洩がサプライチェーン全体に深刻な影響を及ぼす懸念が強まっている。"
