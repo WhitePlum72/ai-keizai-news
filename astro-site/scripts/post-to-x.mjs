@@ -63,14 +63,11 @@ console.log(`✅ 投稿対象: buzz_score ${score} >= ${BUZZ_SCORE_THRESHOLD}`);
 // ----------------------------
 const articleUrl = `${SITE_URL}/article/${category_slug}/${article_slug}`;
 
-const tweetText = buildTweet(title, articleUrl, source);
+const tweetText = buildTweet(title, articleUrl);
 
-function buildTweet(title, url, source) {
-  const sourceTag = source ? `\n📰 ${source}` : '';
-  const tag = '\n\n#AI経済新聞 #AI #人工知能';
-
-  // Xの文字数制限（280文字）を考慮してタイトルを調整
-  const base = `${sourceTag}${tag}\n${url}`;
+function buildTweet(title, url) {
+  // 280文字制限を考慮
+  const base = `\n${url}`;
   const maxTitleLength = 280 - base.length - 5;
   const shortTitle = title.length > maxTitleLength
     ? title.slice(0, maxTitleLength) + '…'
