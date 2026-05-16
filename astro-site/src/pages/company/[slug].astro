@@ -4,22 +4,27 @@ import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import Sidebar from '../../components/Sidebar.astro';
 import profiles from '../../data/company_profiles.json';
+import companiesData from '../../data/ecosystem/companies.json';
+import modelsData from '../../data/ecosystem/models.json';
+import productsData from '../../data/ecosystem/products.json';
+import relationsData from '../../data/ecosystem/relations.json';
+import sectorsData from '../../data/ecosystem/sectors.json';
+import storygraphsData from '../../data/ecosystem/storygraphs.json';
 
 export async function getStaticPaths() {
   const allArticles = await getCollection('articles');
-  const profileSlugs = Object.keys(profiles);
+  const companySlugs = new Set([
+    ...Object.keys(profiles),
+    ...companiesData.map((company) => company.id),
+  ]);
 
-  // DBの企業スラッグとprofilesのスラッグを統合
-  const companySlugs = new Set(profileSlugs);
   for (const article of allArticles) {
-    for (const c of article.data.companies_json ?? []) {
-      companySlugs.add(c);
-    }
+    for (const c of article.data.companies_json ?? []) companySlugs.add(c);
   }
 
-  return Array.from(companySlugs).map(slug => {
+  return Array.from(companySlugs).map((slug) => {
     const companyArticles = allArticles
-      .filter(a => (a.data.companies_json ?? []).includes(slug))
+      .filter((a) => (a.data.companies_json ?? []).includes(slug))
       .sort((a, b) => (b.data.buzz_score || 0) - (a.data.buzz_score || 0));
 
     return {
@@ -31,260 +36,382 @@ export async function getStaticPaths() {
 
 const { slug, articles } = Astro.props;
 const profile = profiles[slug] ?? null;
+const company = companiesData.find((c) => c.id === slug) ?? null;
+const sector = sectorsData.find((s) => s.id === company?.sector);
+const graph = storygraphsData.find((g) => g.company === slug);
 
-const displayName = profile?.name ?? slug.charAt(0).toUpperCase() + slug.slice(1);
-const domain = profile?.website?.replace('https://', '') ?? slug + '.com';
-const logoUrl = `https://img.logo.dev/${domain}?token=pk_LZPEognIRoGnDKM6tw3obQ`;
+const entityIndex = new Map([
+  ...companiesData.map((item) => [item.id, { ...item, kind: 'company' }]),
+  ...modelsData.map((item) => [item.id, { ...item, kind: 'model' }]),
+  ...productsData.map((item) => [item.id, { ...item, kind: 'product' }]),
+]);
+
+const fallbackColor = '#5CD8CE';
+const safeColor = (color) => color || fallbackColor;
+const accent = safeColor(company?.brandColor || sector?.color);
+const displayName = company?.name || profile?.name || slug;
+const description = company?.description || profile?.description || `${displayName}に関するAI業界データと関連ニュース。`;
+const logo = company?.logo;
+const logoText = company?.logoText || displayName.slice(0, 2);
+
+const getEntity = (id) => entityIndex.get(id) || { id, name: id, logoText: id.slice(0, 2), kind: 'unknown' };
 
 const getArticleUrl = (a) => {
   const cat = a.data.category_slug || 'business';
   const s = a.data.article_slug || a.id;
-  return `/article/${cat}/${s}`;
+  return `/article/${cat}/${s}/`;
 };
 
-const getCatLabel = (slug) => ({
-  model: 'モデル', business: 'ビジネス', markets: 'AI関連株',
-  infrastructure: 'インフラ', research: '研究', policy: '政策', products: 'プロダクト',
-}[slug] || slug);
+const catLabels = {
+  model: '基盤モデル',
+  business: 'ビジネス',
+  markets: '市場・株価',
+  infrastructure: 'AIインフラ',
+  research: '研究',
+  policy: '政策',
+  products: 'プロダクト',
+  agents: 'AIエージェント',
+  robotics: 'ロボティクス',
+  'generative-ai': '生成AI',
+};
+const getCatLabel = (id) => catLabels[id] || id || '記事';
+
+const relations = relationsData.filter((r) => r.source === slug || r.target === slug);
+const groupIds = (filterFn, mapFn) => Array.from(new Set(relations.filter(filterFn).map(mapFn).filter(Boolean)));
+const investors = groupIds((r) => r.type === 'investment' && r.target === slug, (r) => r.source);
+const investments = groupIds((r) => r.type === 'investment' && r.source === slug, (r) => r.target);
+const partnerships = groupIds(
+  (r) => ['partnership', 'distribution', 'cloud', 'gpu_supply', 'customer', 'supplier'].includes(r.type),
+  (r) => (r.source === slug ? r.target : r.source)
+);
+const competitors = groupIds(
+  (r) => ['competitor', 'competition'].includes(r.type),
+  (r) => (r.source === slug ? r.target : r.source)
+);
+
+const products = graph?.layers
+  ?.flatMap((layer) => [
+    ...(layer.nodes || []),
+    ...((layer.subgroups || []).flatMap((subgroup) => subgroup.nodes || [])),
+  ])
+  .filter((id) => getEntity(id).kind !== 'company' && id !== slug)
+  .slice(0, 12) || [];
+
+const officialUrl = profile?.website || (company?.domain ? `https://${company.domain}` : null);
+const metricItems = [
+  profile?.valuation && { label: '評価額・時価総額', value: profile.valuation },
+  profile?.revenue && { label: '売上・ARR', value: profile.revenue },
+  profile?.employees && { label: '従業員数', value: profile.employees },
+  { label: '関連記事', value: `${articles.length}件` },
+].filter(Boolean);
+const relationGroups = [
+  { title: '出資者', ids: investors },
+  { title: '投資先', ids: investments },
+  { title: '提携・供給網', ids: partnerships },
+  { title: '競合企業', ids: competitors },
+];
 ---
 
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>{displayName} | AI経済新聞 企業データベース</title>
-  <meta name="description" content={profile?.description ?? `${displayName}に関するAI経済ニュース`} />
+  <title>{displayName} | 企業データベース | AI経済新聞</title>
+  <meta name="description" content={description} />
   <link rel="canonical" href={`https://aikeizai.jp/company/${slug}/`} />
   <meta property="og:title" content={`${displayName} | AI経済新聞`} />
-  <meta property="og:description" content={profile?.description ?? ''} />
+  <meta property="og:description" content={description} />
   <meta property="og:type" content="website" />
-
-  <style>
-    body { margin: 0; font-family: 'Noto Sans JP', -apple-system, sans-serif; background: #f4f6f8; color: #17202a; }
-    a { color: inherit; text-decoration: none; }
-
-    /* ===== Hero ===== */
-    .company-hero { background: #fff; border-bottom: 1px solid #e8edf2; }
-    .hero-inner { max-width: 1200px; margin: 0 auto; padding: 32px 24px; display: flex; gap: 24px; align-items: flex-start; }
-    .hero-logo { width: 72px; height: 72px; border-radius: 12px; background: #f4f6f8; border: 1px solid #e8edf2; object-fit: contain; padding: 8px; flex-shrink: 0; }
-    .hero-logo-fallback { width: 72px; height: 72px; border-radius: 12px; background: #003f88; display: flex; align-items: center; justify-content: center; font-size: 28px; font-weight: 900; color: #fff; flex-shrink: 0; }
-    .hero-info { flex: 1; }
-    .hero-name { font-size: 28px; font-weight: 900; margin: 0 0 8px; color: #1a1a2e; }
-    .hero-description { font-size: 14px; color: #555; line-height: 1.8; margin: 0 0 16px; }
-    .hero-meta { display: flex; flex-wrap: wrap; gap: 12px; font-size: 12px; color: #888; }
-    .hero-meta span { display: flex; align-items: center; gap: 4px; }
-
-    /* ===== KPI Cards ===== */
-    .kpi-section { max-width: 1200px; margin: 24px auto 0; padding: 0 24px; }
-    .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
-    .kpi-card { background: #fff; border-radius: 3px; padding: 16px; text-align: center; }
-    .kpi-label { font-size: 11px; color: #888; margin-bottom: 6px; }
-    .kpi-value { font-size: 15px; font-weight: 900; color: #003f88; line-height: 1.3; }
-    .kpi-sub { font-size: 12px; color: #444; margin-top: 4px; font-weight: 700; }
-.kpi-note { font-size: 10px; color: #aaa; margin-top: 3px; line-height: 1.4; }
-
-    /* ===== Layout ===== */
-    .layout { display: grid; grid-template-columns: 1fr 340px; gap: 24px; max-width: 1200px; margin: 24px auto 0; padding: 0 24px 24px; }
-
-    /* ===== Products ===== */
-    .section { background: #fff; border-radius: 3px; padding: 20px; margin-bottom: 16px; }
-    .section-title { font-size: 13px; font-weight: 900; color: #003f88; margin: 0 0 12px; padding-bottom: 8px; border-bottom: 2px solid #003f88; }
-    .tag-list { display: flex; flex-wrap: wrap; gap: 6px; }
-    .tag { font-size: 12px; padding: 4px 10px; background: #f0f4fa; color: #003f88; border-radius: 4px; border: 1px solid #d0ddf5; }
-    .tag.partner { background: #fff8e1; color: #b45309; border-color: #fde68a; }
-    .tag.topic { background: #f0fdf4; color: #166534; border-color: #bbf7d0; }
-    .tag a { color: inherit; }
-
-    /* ===== Notable ===== */
-    .notable { background: #f0f4fa; border-left: 4px solid #003f88; padding: 12px 16px; border-radius: 0 6px 6px 0; font-size: 13px; line-height: 1.8; color: #1a1a2e; margin-bottom: 16px; }
-
-    /* ===== Articles ===== */
-    .article-list { display: flex; flex-direction: column; gap: 10px; }
-    .article-card { background: #fff; border-radius: 3px; display: grid; grid-template-columns: 120px 1fr; overflow: hidden; transition: transform 0.15s; }
-    .article-card:hover { transform: translateY(-2px); }
-    .article-card img { width: 120px; height: 78px; object-fit: cover; }
-    .card-body { padding: 10px 14px; }
-    .card-meta { display: flex; gap: 6px; align-items: center; margin-bottom: 4px; }
-    .category-badge { background: #003f88; color: #fff; font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 3px; }
-    .card-date { font-size: 11px; color: #999; }
-    .card-title { font-size: 13px; font-weight: 700; line-height: 1.5; color: #1a1a2e; }
-
-    .external-link { display: inline-flex; align-items: center; gap: 4px; font-size: 12px; color: #003f88; padding: 6px 12px; border: 1px solid #d0ddf5; border-radius: 4px; transition: all 0.15s; }
-    .external-link:hover { background: #003f88; color: #fff; }
-
-    @media (max-width: 768px) {
-      .hero-inner { flex-direction: column; gap: 16px; }
-      .kpi-grid { grid-template-columns: repeat(2, 1fr); }
-      .layout { grid-template-columns: 1fr; padding: 12px; }
-      .article-card { grid-template-columns: 90px 1fr; }
-      .article-card img { width: 90px; height: 60px; }
-    }
-  </style>
 </head>
 
 <body>
   <Header />
 
-  <!-- Hero -->
-  <div class="company-hero">
-    <div class="hero-inner">
-      <img
-        class="hero-logo"
-        src={logoUrl}
-        alt={displayName}
-        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-      />
-      <div class="hero-logo-fallback" style="display:none">
-        {displayName.charAt(0)}
+  <main>
+    <section class="company-hero" style={`--accent:${accent}`}>
+      <div class="w hero-inner">
+        <div class="identity">
+          <span class="logo-frame hero-logo">
+            {logo ? <img src={logo} alt={displayName} loading="eager" decoding="async" /> : logoText}
+          </span>
+          <div>
+            <p class="eyebrow">Company Profile</p>
+            <h1>{displayName}</h1>
+            <p class="lead">{description}</p>
+            <div class="tag-row">
+              {sector && <span>{sector.name}</span>}
+              {company?.country && <span>{company.country}</span>}
+              {profile?.ticker && <span>{profile.ticker}</span>}
+              {profile?.ceo && <span>CEO: {profile.ceo}</span>}
+            </div>
+          </div>
+        </div>
+        <div class="hero-actions">
+          {officialUrl && <a class="ghost-btn" href={officialUrl} target="_blank" rel="noopener noreferrer">公式サイト →</a>}
+          <a class="primary-btn" href="/#ai-ecosystem-map">業界マップで見る →</a>
+        </div>
       </div>
-      <div class="hero-info">
-        <h1 class="hero-name">{displayName}</h1>
-        {profile?.description && (
-          <p class="hero-description">{profile.description}</p>
+    </section>
+
+    <section class="overview">
+      <div class="w metric-grid">
+        {metricItems.map((item) => (
+          <div class="metric-card">
+            <p>{item.label}</p>
+            <strong>{item.value}</strong>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <div class="w layout">
+      <main>
+        {profile?.notable && (
+          <section class="panel notable">
+            <p class="eyebrow">Industry Position</p>
+            <h2>AI業界内の位置づけ</h2>
+            <p>{profile.notable}</p>
+          </section>
         )}
-        <div class="hero-meta">
-          {profile?.founded && <span>🏢 設立：{profile.founded}年</span>}
-          {profile?.ceo && <span>👤 CEO：{profile.ceo}</span>}
-          {profile?.hq && <span>📍 {profile.hq}</span>}
-          {profile?.website && (
-            <a class="external-link" href={profile.website} target="_blank" rel="noopener noreferrer">
-              公式サイト →
-            </a>
-          )}
-        </div>
-      </div>
-    </div>
-  </div>
 
-  <!-- KPI -->
-  {profile && (
-    <div class="kpi-section">
-      <div class="kpi-grid">
-{profile.valuation && (
-  <div class="kpi-card">
-    <div class="kpi-label">評価額・時価総額</div>
-    <div class="kpi-value">{profile.valuation}</div>
-    {profile.valuation_jpy && <div class="kpi-sub">{profile.valuation_jpy}</div>}
-    {profile.valuation_fx_note && <div class="kpi-note">※ {profile.valuation_fx_note}</div>}
-  </div>
-)}
-{profile.revenue && (
-  <div class="kpi-card">
-    <div class="kpi-label">売上・ARR</div>
-    <div class="kpi-value">{profile.revenue}</div>
-    {profile.revenue_jpy && profile.revenue_jpy !== '-' && <div class="kpi-sub">{profile.revenue_jpy}</div>}
-    {profile.revenue_fx_note && <div class="kpi-note">※ {profile.revenue_fx_note}</div>}
-  </div>
-)}
-        {profile.employees && (
-          <div class="kpi-card">
-            <div class="kpi-label">従業員数</div>
-            <div class="kpi-value">{profile.employees}</div>
+        <section class="panel">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">Relationships</p>
+              <h2>関係性</h2>
+            </div>
+            <span>{relations.length} relations</span>
           </div>
-        )}
-        <div class="kpi-card">
-          <div class="kpi-label">関連記事数</div>
-          <div class="kpi-value">{articles.length}件</div>
-        </div>
-      </div>
-    </div>
-  )}
-
-  <div class="layout">
-    <main>
-      <!-- Notable -->
-      {profile?.notable && (
-        <div class="notable">💡 {profile.notable}</div>
-      )}
-
-      <!-- 主要製品 -->
-      {profile?.products && profile.products.length > 0 && (
-        <div class="section">
-          <div class="section-title">主要製品・サービス</div>
-          <div class="tag-list">
-            {profile.products.map(p => <span class="tag">{p}</span>)}
-          </div>
-        </div>
-      )}
-
-      <!-- 提携企業 -->
-      {profile?.partners && profile.partners.length > 0 && (
-        <div class="section">
-          <div class="section-title">主要パートナー</div>
-          <div class="tag-list">
-            {profile.partners.map(p => (
-              <span class="tag partner">
-                <a href={`/company/${p.toLowerCase().replace(/[^a-z0-9]/g, '')}/`}>{p}</a>
-              </span>
-            ))}
-          </div>
-        </div>
-      )}
-
-      <!-- 関連Topic -->
-      {profile?.related_topics && profile.related_topics.length > 0 && (
-        <div class="section">
-          <div class="section-title">関連トピック</div>
-          <div class="tag-list">
-            {profile.related_topics.map(t => (
-              <span class="tag topic">
-                <a href={`/topic/${t}/`}>#{t}</a>
-              </span>
-            ))}
-          </div>
-        </div>
-      )}
-      {profile?.listed && profile?.ticker && (
-  <div class="section">
-    <div class="section-title">株価チャート（{profile.exchange}: {profile.ticker}）</div>
-    <div class="tradingview-widget-container">
-      <div id={`tv-${profile.ticker}`}></div>
-      <script
-        type="text/javascript"
-        src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js"
-        async
-        set:html={JSON.stringify({
-          symbol: `${profile.exchange}:${profile.ticker}`,
-          width: "100%",
-          height: 220,
-          locale: "ja",
-          dateRange: "3M",
-          colorTheme: "light",
-          trendLineColor: "#003f88",
-          underLineColor: "#f0f4fa",
-          isTransparent: false,
-          autosize: true,
-          largeChartUrl: `https://jp.tradingview.com/symbols/${profile.exchange}-${profile.ticker}/`
-        })}
-      ></script>
-    </div>
-  </div>
-)}
-
-      <!-- 最新ニュース -->
-      {articles.length > 0 && (
-        <div class="section">
-          <div class="section-title">最新ニュース（{articles.length}件）</div>
-          <div class="article-list">
-            {articles.slice(0, 10).map(a => (
-              <a class="article-card" href={getArticleUrl(a)}>
-                <img src={a.data.image_url || '/ogp.png'} alt={a.data.title} loading="lazy" />
-                <div class="card-body">
-                  <div class="card-meta">
-                    <span class="category-badge">{getCatLabel(a.data.category_slug)}</span>
-                    <span class="card-date">{a.data.published_at}</span>
+          <div class="relation-grid">
+            {relationGroups.map((group) => (
+              <div class="relation-group">
+                <h3>{group.title}</h3>
+                {group.ids.length > 0 ? (
+                  <div class="logo-list">
+                    {group.ids.slice(0, 14).map((id) => {
+                      const entity = getEntity(id);
+                      const content = (
+                        <>
+                          <span class="logo-frame small">
+                            {entity.logo ? (
+                              <img src={entity.logo} alt={entity.name} loading="lazy" decoding="async" />
+                            ) : (
+                              entity.logoText || entity.name?.slice(0, 2) || id.slice(0, 2)
+                            )}
+                          </span>
+                          <span>{entity.name || entity.label || id}</span>
+                        </>
+                      );
+                      return entity.kind === 'company' ? (
+                        <a href={`/company/${id}/`}>{content}</a>
+                      ) : (
+                        <span>{content}</span>
+                      );
+                    })}
                   </div>
-                  <div class="card-title">{a.data.title}</div>
-                </div>
-              </a>
+                ) : (
+                  <p class="empty">主要データを整理中です。</p>
+                )}
+              </div>
             ))}
           </div>
-        </div>
-      )}
-    </main>
-    <Sidebar />
-  </div>
+        </section>
+
+        {products.length > 0 && (
+          <section class="panel">
+            <p class="eyebrow">Products / Models</p>
+            <h2>関連モデル・サービス</h2>
+            <div class="product-grid">
+              {products.map((id) => {
+                const entity = getEntity(id);
+                return <span>{entity.name || entity.label || id}</span>;
+              })}
+            </div>
+          </section>
+        )}
+
+        {articles.length > 0 && (
+          <section class="panel">
+            <p class="eyebrow">Related Articles</p>
+            <h2>関連記事</h2>
+            <div class="article-grid">
+              {articles.slice(0, 9).map((a) => (
+                <a class="article-card" href={getArticleUrl(a)}>
+                  <img src={a.data.image_url || '/ogp.png'} alt={a.data.title} loading="lazy" decoding="async" />
+                  <div>
+                    <div class="article-meta">
+                      <span>{getCatLabel(a.data.category_slug)}</span>
+                      <time>{a.data.published_at || ''}</time>
+                    </div>
+                    <h3>{a.data.title}</h3>
+                    <p>読む →</p>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </section>
+        )}
+      </main>
+      <Sidebar />
+    </div>
+  </main>
 
   <Footer />
 </body>
 </html>
+
+<style>
+  :global(body) {
+    margin: 0;
+    background:
+      radial-gradient(circle at 18% 0%, rgba(90,158,255,.14), transparent 34rem),
+      linear-gradient(180deg, rgba(14,22,40,.9), rgba(7,9,13,0) 520px),
+      #07090d;
+    color: #f0f4f8;
+    font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  :global(a) { color: inherit; text-decoration: none; }
+  .w { width: min(100% - 32px, 1440px); margin-inline: auto; }
+  .company-hero {
+    border-bottom: 1px solid rgba(255,255,255,.09);
+    padding: 46px 0 30px;
+    background: radial-gradient(circle at 22% 10%, color-mix(in srgb, var(--accent) 16%, transparent), transparent 34rem);
+  }
+  .hero-inner { display: flex; justify-content: space-between; align-items: flex-start; gap: 28px; }
+  .identity { display: flex; gap: 18px; align-items: flex-start; max-width: 920px; }
+  .logo-frame {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,.11);
+    background: rgba(255,255,255,.055);
+    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+    font-weight: 900;
+    color: #fff;
+  }
+  .logo-frame img { display: block; max-width: 72%; max-height: 72%; object-fit: contain; }
+  .hero-logo { width: 82px; height: 82px; border-radius: 22px; font-size: 24px; box-shadow: 0 0 34px color-mix(in srgb, var(--accent) 20%, transparent); }
+  .logo-frame.small { width: 34px; height: 34px; border-radius: 11px; font-size: 11px; flex: 0 0 auto; }
+  .eyebrow {
+    margin: 0;
+    color: #5a9eff;
+    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+  }
+  h1 { margin: 4px 0 0; font-size: clamp(32px, 4vw, 58px); line-height: 1.08; letter-spacing: -.04em; }
+  .lead { max-width: 760px; margin: 14px 0 0; color: #b7c4d8; font-size: 15px; line-height: 1.9; }
+  .tag-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+  .tag-row span {
+    border: 1px solid rgba(255,255,255,.10);
+    border-radius: 999px;
+    background: rgba(0,0,0,.22);
+    padding: 6px 10px;
+    color: #dbe7f5;
+    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+    font-size: 10px;
+  }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 9px; justify-content: flex-end; }
+  .primary-btn, .ghost-btn {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 999px;
+    padding: 10px 15px;
+    font-size: 12px;
+    font-weight: 900;
+    transition: transform .16s ease, background .16s ease;
+  }
+  .primary-btn { background: #5cd8ce; color: #07111b; }
+  .ghost-btn { border: 1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.04); color: #e8eef8; }
+  .primary-btn:hover, .ghost-btn:hover { transform: translateY(-2px); }
+  .overview { padding: 18px 0 0; }
+  .metric-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+  .metric-card {
+    border: 1px solid rgba(255,255,255,.10);
+    border-radius: 14px;
+    background: rgba(255,255,255,.035);
+    padding: 15px 16px;
+  }
+  .metric-card p { margin: 0 0 7px; color: #7f8da3; font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 10px; }
+  .metric-card strong { font-size: 18px; }
+  .layout { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 24px; padding: 24px 0 52px; }
+  .panel {
+    border: 1px solid rgba(255,255,255,.10);
+    border-radius: 16px;
+    background: rgba(255,255,255,.035);
+    backdrop-filter: blur(14px);
+    padding: 20px;
+    margin-bottom: 16px;
+  }
+  .panel h2 { margin: 4px 0 14px; font-size: 22px; letter-spacing: -.03em; }
+  .notable p:last-child { color: #b7c4d8; line-height: 1.9; margin-bottom: 0; }
+  .panel-head { display: flex; justify-content: space-between; align-items: end; gap: 16px; margin-bottom: 14px; }
+  .panel-head span { color: #7f8da3; font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 10px; }
+  .relation-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .relation-group {
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 14px;
+    background: rgba(0,0,0,.18);
+    padding: 14px;
+  }
+  .relation-group h3 { margin: 0 0 10px; color: #eef5ff; font-size: 13px; }
+  .logo-list { display: flex; flex-wrap: wrap; gap: 8px; }
+  .logo-list a, .logo-list > span {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    border: 1px solid rgba(255,255,255,.10);
+    border-radius: 999px;
+    background: rgba(255,255,255,.035);
+    padding: 5px 9px 5px 5px;
+    color: #dbe7f5;
+    font-size: 11px;
+    font-weight: 800;
+  }
+  .empty { margin: 0; color: #7f8da3; font-size: 12px; }
+  .product-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+  .product-grid span {
+    border: 1px solid rgba(92,216,206,.18);
+    border-radius: 999px;
+    background: rgba(92,216,206,.065);
+    padding: 7px 11px;
+    color: #dff8f6;
+    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+    font-size: 11px;
+  }
+  .article-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+  .article-card {
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,.10);
+    border-radius: 14px;
+    background: rgba(0,0,0,.18);
+    transition: transform .16s ease, border-color .16s ease;
+  }
+  .article-card:hover { transform: translateY(-2px); border-color: rgba(92,216,206,.42); }
+  .article-card img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; background: rgba(255,255,255,.04); }
+  .article-card div { padding: 11px; }
+  .article-meta { display: flex; gap: 8px; color: #7f8da3; font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 10px; }
+  .article-card h3 {
+    margin: 7px 0;
+    color: #eef5ff;
+    font-size: 13px;
+    line-height: 1.6;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .article-card p { margin: 0; color: #5cd8ce; font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 11px; font-weight: 900; }
+  @media (max-width: 980px) {
+    .hero-inner, .identity { flex-direction: column; }
+    .hero-actions { justify-content: flex-start; }
+    .metric-grid, .relation-grid, .article-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .layout { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 560px) {
+    .metric-grid, .relation-grid, .article-grid { grid-template-columns: 1fr; }
+  }
+</style>

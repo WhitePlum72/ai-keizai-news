@@ -1,8 +1,59 @@
 <style>
-  footer { background: #1a1a1a; color: #999; text-align: center; padding: 24px; font-size: 12px; margin-top: 32px; }
+  .site-footer {
+    border-top: 1px solid rgba(255,255,255,.10);
+    background: #07090d;
+    color: #8a9ab8;
+    padding: 42px 0 52px;
+    font-family: 'Noto Sans JP', -apple-system, sans-serif;
+  }
+  .site-footer-inner {
+    width: min(100% - 32px, 1440px);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 24px;
+    align-items: start;
+  }
+  .site-footer-brand {
+    color: #f0f4f8;
+    font-weight: 900;
+    letter-spacing: -.02em;
+  }
+  .site-footer p {
+    margin: 8px 0 0;
+    max-width: 520px;
+    font-size: 12px;
+    line-height: 1.8;
+  }
+  .site-footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 14px;
+  }
+  .site-footer-links a {
+    color: #8a9ab8;
+    text-decoration: none;
+    font-size: 12px;
+  }
+  .site-footer-links a:hover { color: #f0f4f8; }
+  @media (max-width: 760px) {
+    .site-footer-inner { grid-template-columns: 1fr; }
+    .site-footer-links { justify-content: flex-start; }
+  }
 </style>
 
-<footer>
-  <p>AI経済新聞 — AIと経済の最新ニュースを毎日配信</p>
-  <p style="margin-top:6px;">各記事の著作権は元メディアに帰属します。当サイトは翻訳・要約を提供しています。</p>
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div>
+      <div class="site-footer-brand">AI経済新聞</div>
+      <p>AI・半導体・市場・インフラ・政策を構造で読む日本語AI業界インテリジェンスメディア。</p>
+    </div>
+    <nav class="site-footer-links" aria-label="フッターナビ">
+      <a href="/about/">About</a>
+      <a href="/company/">企業DB</a>
+      <a href="/rss.xml">RSS</a>
+      <a href="/sitemap-index.xml">Sitemap</a>
+    </nav>
+  </div>
 </footer>

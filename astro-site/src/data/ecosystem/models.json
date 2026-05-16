@@ -13,7 +13,8 @@
       "image",
       "agents"
     ],
-    "status": "flagship"
+    "status": "flagship",
+    "color": "#10A37F"
   },
   {
     "id": "gpt-4o",
@@ -28,7 +29,8 @@
       "vision",
       "reasoning"
     ],
-    "status": "active"
+    "status": "active",
+    "color": "#10A37F"
   },
   {
     "id": "o3",
@@ -43,7 +45,8 @@
       "analysis",
       "agentic-workflows"
     ],
-    "status": "active"
+    "status": "active",
+    "color": "#10A37F"
   },
   {
     "id": "sora",
@@ -57,7 +60,8 @@
       "visual-generation",
       "creative-workflows"
     ],
-    "status": "active"
+    "status": "active",
+    "color": "#10A37F"
   },
   {
     "id": "codex",
@@ -71,7 +75,8 @@
       "repo-analysis",
       "automation"
     ],
-    "status": "active"
+    "status": "active",
+    "color": "#10A37F"
   },
   {
     "id": "claude",
@@ -86,7 +91,8 @@
       "coding",
       "enterprise"
     ],
-    "status": "active"
+    "status": "active",
+    "color": "#D97757"
   },
   {
     "id": "claude-code",
@@ -100,7 +106,8 @@
       "terminal",
       "repo-workflows"
     ],
-    "status": "active"
+    "status": "active",
+    "color": "#D97757"
   },
   {
     "id": "gemini",
@@ -115,7 +122,8 @@
       "workspace",
       "android"
     ],
-    "status": "active"
+    "status": "active",
+    "color": "#4285F4"
   },
   {
     "id": "veo",
@@ -128,7 +136,8 @@
       "video-generation",
       "creative-ai"
     ],
-    "status": "active"
+    "status": "active",
+    "color": "#4285F4"
   },
   {
     "id": "gemma",
@@ -142,7 +151,8 @@
       "developer",
       "research"
     ],
-    "status": "active"
+    "status": "active",
+    "color": "#4285F4"
   },
   {
     "id": "llama",
@@ -156,7 +166,8 @@
       "fine-tuning",
       "local-ai"
     ],
-    "status": "active"
+    "status": "active",
+    "color": "#0866FF"
   },
   {
     "id": "grok",
@@ -170,7 +181,8 @@
       "reasoning",
       "social-data"
     ],
-    "status": "active"
+    "status": "active",
+    "color": "#FFFFFF"
   },
   {
     "id": "mistral-large",
@@ -184,7 +196,8 @@
       "multilingual",
       "reasoning"
     ],
-    "status": "active"
+    "status": "active",
+    "color": "#FF7000"
   },
   {
     "id": "le-chat",
@@ -198,7 +211,8 @@
       "enterprise",
       "multilingual"
     ],
-    "status": "active"
+    "status": "active",
+    "color": "#FF7000"
   },
   {
     "id": "command-r",
@@ -212,7 +226,8 @@
       "enterprise-search",
       "multilingual"
     ],
-    "status": "active"
+    "status": "active",
+    "color": "#7B61FF"
   },
   {
     "id": "deepseek-r1",
@@ -226,7 +241,8 @@
       "open-weights",
       "cost-efficiency"
     ],
-    "status": "active"
+    "status": "active",
+    "color": "#4F46E5"
   },
   {
     "id": "deepseek-v3",
@@ -240,7 +256,8 @@
       "coding",
       "open-weights"
     ],
-    "status": "active"
+    "status": "active",
+    "color": "#4F46E5"
   },
   {
     "id": "qwen",
@@ -254,7 +271,8 @@
       "coding",
       "cloud"
     ],
-    "status": "active"
+    "status": "active",
+    "color": "#EF4444"
   },
   {
     "id": "doubao",
@@ -268,7 +286,8 @@
       "consumer-ai",
       "content"
     ],
-    "status": "active"
+    "status": "active",
+    "color": "#EF4444"
   },
   {
     "id": "hunyuan",
@@ -282,7 +301,8 @@
       "gaming",
       "cloud"
     ],
-    "status": "active"
+    "status": "active",
+    "color": "#EF4444"
   },
   {
     "id": "ernie",
@@ -296,7 +316,8 @@
       "chat",
       "cloud"
     ],
-    "status": "active"
+    "status": "active",
+    "color": "#EF4444"
   },
   {
     "id": "langgraph",
@@ -310,7 +331,8 @@
       "workflow",
       "developer"
     ],
-    "status": "active"
+    "status": "active",
+    "color": "#22C55E"
   },
   {
     "id": "perplexity-answer-engine",
@@ -324,7 +346,8 @@
       "answer-engine",
       "citations"
     ],
-    "status": "active"
+    "status": "active",
+    "color": "#22C55E"
   },
   {
     "id": "devin-agent",
@@ -338,7 +361,8 @@
       "autonomous-agent",
       "developer"
     ],
-    "status": "active"
+    "status": "active",
+    "color": "#22C55E"
   },
   {
     "id": "copilot",
@@ -353,7 +377,8 @@
       "coding",
       "agents"
     ],
-    "status": "active"
+    "status": "active",
+    "color": "#00A4EF"
   },
   {
     "id": "agentforce",
@@ -367,7 +392,8 @@
       "workflow",
       "enterprise-agents"
     ],
-    "status": "active"
+    "status": "active",
+    "color": "#00A1E0"
   },
   {
     "id": "mosaic-ai",
@@ -381,7 +407,8 @@
       "mlops",
       "enterprise-ai"
     ],
-    "status": "active"
+    "status": "active",
+    "color": "#EAB308"
   },
   {
     "id": "watsonx",
@@ -395,7 +422,8 @@
       "enterprise",
       "modelops"
     ],
-    "status": "active"
+    "status": "active",
+    "color": "#0F62FE"
   },
   {
     "id": "joule",
@@ -409,7 +437,8 @@
       "workflow",
       "enterprise"
     ],
-    "status": "active"
+    "status": "active",
+    "color": "#EAB308"
   },
   {
     "id": "firefly",
@@ -423,7 +452,8 @@
       "video",
       "creative-cloud"
     ],
-    "status": "active"
+    "status": "active",
+    "color": "#FF0000"
   },
   {
     "id": "gen-3",
@@ -437,7 +467,8 @@
       "editing",
       "creative"
     ],
-    "status": "active"
+    "status": "active",
+    "color": "#FFFFFF"
   },
   {
     "id": "pika-video",
@@ -450,7 +481,8 @@
       "video-generation",
       "consumer-creative"
     ],
-    "status": "active"
+    "status": "active",
+    "color": "#EC4899"
   },
   {
     "id": "dream-machine",
@@ -464,7 +496,8 @@
       "3d",
       "creative"
     ],
-    "status": "active"
+    "status": "active",
+    "color": "#EC4899"
   },
   {
     "id": "eleven-voice",
@@ -479,7 +512,8 @@
       "dubbing",
       "agents"
     ],
-    "status": "active"
+    "status": "active",
+    "color": "#111111"
   },
   {
     "id": "optimus",
@@ -493,7 +527,8 @@
       "manufacturing",
       "embodied-ai"
     ],
-    "status": "developing"
+    "status": "developing",
+    "color": "#E82127"
   },
   {
     "id": "figure-02",
@@ -507,7 +542,8 @@
       "manufacturing",
       "foundation-models"
     ],
-    "status": "developing"
+    "status": "developing",
+    "color": "#F97316"
   },
   {
     "id": "mi300x",
@@ -521,7 +557,8 @@
       "inference",
       "hpc"
     ],
-    "status": "active"
+    "status": "active",
+    "color": "#ED1C24"
   },
   {
     "id": "mi350",
@@ -534,7 +571,8 @@
       "training",
       "inference"
     ],
-    "status": "developing"
+    "status": "developing",
+    "color": "#ED1C24"
   },
   {
     "id": "llama-4",
@@ -549,7 +587,8 @@
       "fine-tuning",
       "local-ai"
     ],
-    "status": "active"
+    "status": "active",
+    "color": "#0866FF"
   },
   {
     "id": "grok-3",
@@ -564,7 +603,8 @@
       "chat",
       "social-data"
     ],
-    "status": "active"
+    "status": "active",
+    "color": "#FFFFFF"
   },
   {
     "id": "claude-3-7",
@@ -579,7 +619,8 @@
       "enterprise",
       "long-context"
     ],
-    "status": "active"
+    "status": "active",
+    "color": "#D97757"
   },
   {
     "id": "gemini-2-0",
@@ -594,7 +635,8 @@
       "agentic",
       "search"
     ],
-    "status": "active"
+    "status": "active",
+    "color": "#4285F4"
   },
   {
     "id": "o4-mini",
@@ -608,7 +650,8 @@
       "coding",
       "cost-efficiency"
     ],
-    "status": "active"
+    "status": "active",
+    "color": "#10A37F"
   },
   {
     "id": "tsuzumi",
@@ -623,7 +666,8 @@
       "enterprise",
       "lightweight"
     ],
-    "status": "active"
+    "status": "active",
+    "color": "#2563EB"
   },
   {
     "id": "fugaku-llm",
@@ -637,7 +681,8 @@
       "research",
       "enterprise"
     ],
-    "status": "active"
+    "status": "active",
+    "color": "#2563EB"
   },
   {
     "id": "cotomi",
@@ -651,7 +696,8 @@
       "enterprise",
       "security"
     ],
-    "status": "active"
+    "status": "active",
+    "color": "#2563EB"
   },
   {
     "id": "plamo",
@@ -665,7 +711,8 @@
       "open-weights",
       "research"
     ],
-    "status": "active"
+    "status": "active",
+    "color": "#2563EB"
   },
   {
     "id": "cyberagent-lm",
@@ -679,7 +726,8 @@
       "open-weights",
       "media"
     ],
-    "status": "active"
+    "status": "active",
+    "color": "#2563EB"
   },
   {
     "id": "rakuten-ai-lm",
@@ -693,7 +741,8 @@
       "open-weights",
       "e-commerce"
     ],
-    "status": "active"
+    "status": "active",
+    "color": "#2563EB"
   },
   {
     "id": "sakana-lm",
@@ -707,7 +756,8 @@
       "research",
       "evolutionary-architecture"
     ],
-    "status": "active"
+    "status": "active",
+    "color": "#2563EB"
   },
   {
     "id": "rinna-lm",
@@ -721,7 +771,8 @@
       "open-weights",
       "dialogue"
     ],
-    "status": "active"
+    "status": "active",
+    "color": "#2563EB"
   },
   {
     "id": "perplexity-sonar",
@@ -736,7 +787,8 @@
       "api",
       "answer-engine"
     ],
-    "status": "active"
+    "status": "active",
+    "color": "#22C55E"
   },
   {
     "id": "kachaka",
@@ -750,7 +802,8 @@
       "home-automation",
       "service-robot"
     ],
-    "status": "active"
+    "status": "active",
+    "color": "#2563EB"
   },
   {
     "id": "arm-neoverse",
@@ -764,7 +817,8 @@
       "edge-ai",
       "energy-efficiency"
     ],
-    "status": "active"
+    "status": "active",
+    "color": "#3B82F6"
   },
   {
     "id": "hbm3e",
@@ -778,7 +832,8 @@
       "ai-memory",
       "gpu-memory"
     ],
-    "status": "active"
+    "status": "active",
+    "color": "#3B82F6"
   },
   {
     "id": "stockmark-lm",
@@ -792,7 +847,8 @@
       "business-intelligence",
       "enterprise"
     ],
-    "status": "active"
+    "status": "active",
+    "color": "#2563EB"
   },
   {
     "id": "sakura-gpu-service",
@@ -806,7 +862,8 @@
       "h100",
       "japan-data-residency"
     ],
-    "status": "active"
+    "status": "active",
+    "color": "#2563EB"
   },
   {
     "id": "field-system",
@@ -821,7 +878,8 @@
       "robotics",
       "predictive-maintenance"
     ],
-    "status": "active"
+    "status": "active",
+    "color": "#2563EB"
   },
   {
     "id": "motoman",
@@ -836,7 +894,8 @@
       "welding",
       "assembly"
     ],
-    "status": "active"
+    "status": "active",
+    "color": "#2563EB"
   },
   {
     "id": "openai-o3",
@@ -851,7 +910,8 @@
       "science",
       "coding"
     ],
-    "status": "active"
+    "status": "active",
+    "color": "#10A37F"
   },
   {
     "id": "kimi",
@@ -859,7 +919,8 @@
     "company": "moonshot-ai",
     "sector": "china-ai",
     "type": "model",
-    "description": "Kimiは中国AIエコシステムのモデルです。"
+    "description": "Kimiは中国AIエコシステムのモデルです。",
+    "color": "#EF4444"
   },
   {
     "id": "glm",
@@ -867,7 +928,8 @@
     "company": "zhipu-ai",
     "sector": "china-ai",
     "type": "model",
-    "description": "GLMは中国AIエコシステムのモデルです。"
+    "description": "GLMは中国AIエコシステムのモデルです。",
+    "color": "#EF4444"
   },
   {
     "id": "yi",
@@ -875,7 +937,8 @@
     "company": "01-ai",
     "sector": "china-ai",
     "type": "model",
-    "description": "Yiは中国AIエコシステムのモデルです。"
+    "description": "Yiは中国AIエコシステムのモデルです。",
+    "color": "#EF4444"
   },
   {
     "id": "step",
@@ -883,6 +946,7 @@
     "company": "stepfun",
     "sector": "china-ai",
     "type": "model",
-    "description": "Stepは中国AIエコシステムのモデルです。"
+    "description": "Stepは中国AIエコシステムのモデルです。",
+    "color": "#EF4444"
   }
 ]

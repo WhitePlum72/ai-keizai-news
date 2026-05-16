@@ -7,7 +7,9 @@
     "sector": "infrastructure",
     "description": "H100はAI Ecosystem Mapで参照される製品・サービスです。",
     "capabilities": [],
-    "status": "active"
+    "status": "active",
+    "logoText": "H",
+    "color": "#76B900"
   },
   {
     "id": "h200",
@@ -17,7 +19,9 @@
     "sector": "infrastructure",
     "description": "H200はAI Ecosystem Mapで参照される製品・サービスです。",
     "capabilities": [],
-    "status": "active"
+    "status": "active",
+    "logoText": "H",
+    "color": "#76B900"
   },
   {
     "id": "b200",
@@ -27,7 +31,9 @@
     "sector": "infrastructure",
     "description": "B200はAI Ecosystem Mapで参照される製品・サービスです。",
     "capabilities": [],
-    "status": "active"
+    "status": "active",
+    "logoText": "B",
+    "color": "#76B900"
   },
   {
     "id": "gb200",
@@ -37,7 +43,9 @@
     "sector": "infrastructure",
     "description": "GB200はAI Ecosystem Mapで参照される製品・サービスです。",
     "capabilities": [],
-    "status": "active"
+    "status": "active",
+    "logoText": "G",
+    "color": "#76B900"
   },
   {
     "id": "cuda",
@@ -47,7 +55,9 @@
     "sector": "infrastructure",
     "description": "CUDAはAI Ecosystem Mapで参照される製品・サービスです。",
     "capabilities": [],
-    "status": "active"
+    "status": "active",
+    "logoText": "C",
+    "color": "#76B900"
   },
   {
     "id": "nvidia-ai-enterprise",
@@ -57,7 +67,9 @@
     "sector": "infrastructure",
     "description": "NVIDIA AI EnterpriseはAI Ecosystem Mapで参照される製品・サービスです。",
     "capabilities": [],
-    "status": "active"
+    "status": "active",
+    "logoText": "NA",
+    "color": "#76B900"
   },
   {
     "id": "dgx",
@@ -67,7 +79,9 @@
     "sector": "infrastructure",
     "description": "DGXはAI Ecosystem Mapで参照される製品・サービスです。",
     "capabilities": [],
-    "status": "active"
+    "status": "active",
+    "logoText": "D",
+    "color": "#76B900"
   },
   {
     "id": "nvlink",
@@ -77,7 +91,9 @@
     "sector": "infrastructure",
     "description": "NVLinkはAI Ecosystem Mapで参照される製品・サービスです。",
     "capabilities": [],
-    "status": "active"
+    "status": "active",
+    "logoText": "N",
+    "color": "#76B900"
   },
   {
     "id": "spectrum-x",
@@ -87,7 +103,9 @@
     "sector": "infrastructure",
     "description": "Spectrum-XはAI Ecosystem Mapで参照される製品・サービスです。",
     "capabilities": [],
-    "status": "active"
+    "status": "active",
+    "logoText": "SX",
+    "color": "#76B900"
   },
   {
     "id": "mi300x",
@@ -97,7 +115,9 @@
     "sector": "infrastructure",
     "description": "MI300XはAI Ecosystem Mapで参照される製品・サービスです。",
     "capabilities": [],
-    "status": "active"
+    "status": "active",
+    "logoText": "M",
+    "color": "#ED1C24"
   },
   {
     "id": "mi325x",
@@ -107,7 +127,9 @@
     "sector": "infrastructure",
     "description": "MI325XはAI Ecosystem Mapで参照される製品・サービスです。",
     "capabilities": [],
-    "status": "active"
+    "status": "active",
+    "logoText": "M",
+    "color": "#ED1C24"
   },
   {
     "id": "mi350",
@@ -117,7 +139,9 @@
     "sector": "infrastructure",
     "description": "MI350はAI Ecosystem Mapで参照される製品・サービスです。",
     "capabilities": [],
-    "status": "active"
+    "status": "active",
+    "logoText": "M",
+    "color": "#ED1C24"
   },
   {
     "id": "mi400",
@@ -127,7 +151,9 @@
     "sector": "infrastructure",
     "description": "MI400はAI Ecosystem Mapで参照される製品・サービスです。",
     "capabilities": [],
-    "status": "active"
+    "status": "active",
+    "logoText": "M",
+    "color": "#ED1C24"
   },
   {
     "id": "grok",
@@ -137,7 +163,9 @@
     "sector": "foundation",
     "description": "GrokはAI Ecosystem Mapで参照される製品・サービスです。",
     "capabilities": [],
-    "status": "active"
+    "status": "active",
+    "logoText": "G",
+    "color": "#FFFFFF"
   },
   {
     "id": "xai-api",
@@ -147,7 +175,9 @@
     "sector": "foundation",
     "description": "xAI APIはAI Ecosystem Mapで参照される製品・サービスです。",
     "capabilities": [],
-    "status": "active"
+    "status": "active",
+    "logoText": "XA",
+    "color": "#FFFFFF"
   },
   {
     "id": "colossus",
@@ -157,7 +187,9 @@
     "sector": "foundation",
     "description": "ColossusはAI Ecosystem Mapで参照される製品・サービスです。",
     "capabilities": [],
-    "status": "active"
+    "status": "active",
+    "logoText": "C",
+    "color": "#FFFFFF"
   },
   {
     "id": "chatgpt",
@@ -167,7 +199,9 @@
     "sector": "foundation",
     "description": "ChatGPTはAI Ecosystem Mapで参照される製品・サービスです。",
     "capabilities": [],
-    "status": "active"
+    "status": "active",
+    "logoText": "C",
+    "color": "#10A37F"
   },
   {
     "id": "openai-api",
@@ -177,7 +211,9 @@
     "sector": "foundation",
     "description": "OpenAI APIはAI Ecosystem Mapで参照される製品・サービスです。",
     "capabilities": [],
-    "status": "active"
+    "status": "active",
+    "logoText": "OA",
+    "color": "#10A37F"
   },
   {
     "id": "sora",
@@ -187,7 +223,9 @@
     "sector": "generative-ai",
     "description": "SoraはAI Ecosystem Mapで参照される製品・サービスです。",
     "capabilities": [],
-    "status": "active"
+    "status": "active",
+    "logoText": "S",
+    "color": "#10A37F"
   },
   {
     "id": "codex",
@@ -197,7 +235,9 @@
     "sector": "foundation",
     "description": "CodexはAI Ecosystem Mapで参照される製品・サービスです。",
     "capabilities": [],
-    "status": "active"
+    "status": "active",
+    "logoText": "C",
+    "color": "#10A37F"
   },
   {
     "id": "agents",
@@ -207,7 +247,9 @@
     "sector": "foundation",
     "description": "AgentsはAI Ecosystem Mapで参照される製品・サービスです。",
     "capabilities": [],
-    "status": "active"
+    "status": "active",
+    "logoText": "A",
+    "color": "#10A37F"
   },
   {
     "id": "dall-e",
@@ -217,7 +259,9 @@
     "sector": "generative-ai",
     "description": "DALL-EはAI Ecosystem Mapで参照される製品・サービスです。",
     "capabilities": [],
-    "status": "active"
+    "status": "active",
+    "logoText": "DE",
+    "color": "#10A37F"
   },
   {
     "id": "claude",
@@ -227,7 +271,9 @@
     "sector": "foundation",
     "description": "ClaudeはAI Ecosystem Mapで参照される製品・サービスです。",
     "capabilities": [],
-    "status": "active"
+    "status": "active",
+    "logoText": "C",
+    "color": "#D97757"
   },
   {
     "id": "claude-api",
@@ -237,7 +283,9 @@
     "sector": "foundation",
     "description": "Claude APIはAI Ecosystem Mapで参照される製品・サービスです。",
     "capabilities": [],
-    "status": "active"
+    "status": "active",
+    "logoText": "CA",
+    "color": "#D97757"
   },
   {
     "id": "claude-code",
@@ -247,7 +295,9 @@
     "sector": "foundation",
     "description": "Claude CodeはAI Ecosystem Mapで参照される製品・サービスです。",
     "capabilities": [],
-    "status": "active"
+    "status": "active",
+    "logoText": "CC",
+    "color": "#D97757"
   },
   {
     "id": "claude-for-work",
@@ -257,7 +307,9 @@
     "sector": "foundation",
     "description": "Claude for WorkはAI Ecosystem Mapで参照される製品・サービスです。",
     "capabilities": [],
-    "status": "active"
+    "status": "active",
+    "logoText": "CF",
+    "color": "#D97757"
   },
   {
     "id": "huggingface-hub",
@@ -267,7 +319,9 @@
     "sector": "opensource",
     "description": "Hugging Face HubはAI Ecosystem Mapで参照される製品・サービスです。",
     "capabilities": [],
-    "status": "active"
+    "status": "active",
+    "logoText": "HF",
+    "color": "#FFD21E"
   },
   {
     "id": "transformers",
@@ -277,7 +331,9 @@
     "sector": "opensource",
     "description": "TransformersはAI Ecosystem Mapで参照される製品・サービスです。",
     "capabilities": [],
-    "status": "active"
+    "status": "active",
+    "logoText": "T",
+    "color": "#FFD21E"
   },
   {
     "id": "datasets",
@@ -287,7 +343,9 @@
     "sector": "opensource",
     "description": "DatasetsはAI Ecosystem Mapで参照される製品・サービスです。",
     "capabilities": [],
-    "status": "active"
+    "status": "active",
+    "logoText": "D",
+    "color": "#FFD21E"
   },
   {
     "id": "spaces",
@@ -297,7 +355,9 @@
     "sector": "opensource",
     "description": "SpacesはAI Ecosystem Mapで参照される製品・サービスです。",
     "capabilities": [],
-    "status": "active"
+    "status": "active",
+    "logoText": "S",
+    "color": "#FFD21E"
   },
   {
     "id": "google-tpu",
@@ -307,7 +367,9 @@
     "sector": "foundation",
     "description": "Google TPUはAI Ecosystem Mapで参照される製品・サービスです。",
     "capabilities": [],
-    "status": "active"
+    "status": "active",
+    "logoText": "GT",
+    "color": "#4285F4"
   },
   {
     "id": "aws-trainium",
@@ -317,7 +379,9 @@
     "sector": "enterprise",
     "description": "AWS TrainiumはAI Ecosystem Mapで参照される製品・サービスです。",
     "capabilities": [],
-    "status": "active"
+    "status": "active",
+    "logoText": "AT",
+    "color": "#FF9900"
   },
   {
     "id": "microsoft-azure",
@@ -327,7 +391,9 @@
     "sector": "enterprise",
     "description": "Microsoft AzureはAI Ecosystem Mapで参照される製品・サービスです。",
     "capabilities": [],
-    "status": "active"
+    "status": "active",
+    "logoText": "MA",
+    "color": "#00A4EF"
   },
   {
     "id": "oracle-oci",
@@ -337,7 +403,9 @@
     "sector": "enterprise",
     "description": "Oracle OCIはAI Ecosystem Mapで参照される製品・サービスです。",
     "capabilities": [],
-    "status": "active"
+    "status": "active",
+    "logoText": "OO",
+    "color": "#C74634"
   },
   {
     "id": "ibm-cloud",
@@ -347,7 +415,9 @@
     "sector": "enterprise",
     "description": "IBM CloudはAI Ecosystem Mapで参照される製品・サービスです。",
     "capabilities": [],
-    "status": "active"
+    "status": "active",
+    "logoText": "IC",
+    "color": "#0F62FE"
   },
   {
     "id": "amazon-bedrock",
@@ -357,7 +427,9 @@
     "sector": "enterprise",
     "description": "Amazon BedrockはAI Ecosystem Mapで参照される製品・サービスです。",
     "capabilities": [],
-    "status": "active"
+    "status": "active",
+    "logoText": "AB",
+    "color": "#FF9900"
   },
   {
     "id": "google-vertex-ai",
@@ -367,7 +439,9 @@
     "sector": "foundation",
     "description": "Google Vertex AIはAI Ecosystem Mapで参照される製品・サービスです。",
     "capabilities": [],
-    "status": "active"
+    "status": "active",
+    "logoText": "GV",
+    "color": "#4285F4"
   },
   {
     "id": "sakura-gpu-cloud",
@@ -377,7 +451,9 @@
     "sector": "japan-ai",
     "description": "GPUクラウドはAI Ecosystem Mapで参照される製品・サービスです。",
     "capabilities": [],
-    "status": "active"
+    "status": "active",
+    "logoText": "G",
+    "color": "#2563EB"
   },
   {
     "id": "koukaryoku",
@@ -387,7 +463,9 @@
     "sector": "japan-ai",
     "description": "高火力はAI Ecosystem Mapで参照される製品・サービスです。",
     "capabilities": [],
-    "status": "active"
+    "status": "active",
+    "logoText": "高",
+    "color": "#2563EB"
   },
   {
     "id": "cotomi",
@@ -397,7 +475,9 @@
     "sector": "japan-ai",
     "description": "cotomiはAI Ecosystem Mapで参照される製品・サービスです。",
     "capabilities": [],
-    "status": "active"
+    "status": "active",
+    "logoText": "C",
+    "color": "#2563EB"
   },
   {
     "id": "tsuzumi",
@@ -407,7 +487,9 @@
     "sector": "japan-ai",
     "description": "tsuzumiはAI Ecosystem Mapで参照される製品・サービスです。",
     "capabilities": [],
-    "status": "active"
+    "status": "active",
+    "logoText": "T",
+    "color": "#2563EB"
   },
   {
     "id": "sakana-lm",
@@ -417,7 +499,9 @@
     "sector": "japan-ai",
     "description": "Sakana AI ModelsはAI Ecosystem Mapで参照される製品・サービスです。",
     "capabilities": [],
-    "status": "active"
+    "status": "active",
+    "logoText": "SA",
+    "color": "#2563EB"
   },
   {
     "id": "pfn-ca",
@@ -427,7 +511,9 @@
     "sector": "japan-ai",
     "description": "Preferred Networks AI基盤はAI Ecosystem Mapで参照される製品・サービスです。",
     "capabilities": [],
-    "status": "active"
+    "status": "active",
+    "logoText": "PN",
+    "color": "#2563EB"
   },
   {
     "id": "line-ai-assistant",
@@ -437,7 +523,9 @@
     "sector": "japan-ai",
     "description": "LINE AI AssistantはAI Ecosystem Mapで参照される製品・サービスです。",
     "capabilities": [],
-    "status": "active"
+    "status": "active",
+    "logoText": "LA",
+    "color": "#2563EB"
   },
   {
     "id": "adobe-firefly",
@@ -450,7 +538,9 @@
       "image",
       "creative"
     ],
-    "status": "active"
+    "status": "active",
+    "logoText": "AF",
+    "color": "#FF0000"
   },
   {
     "id": "runway-gen-3",
@@ -462,7 +552,9 @@
     "capabilities": [
       "video generation"
     ],
-    "status": "active"
+    "status": "active",
+    "logoText": "RG",
+    "color": "#FFFFFF"
   },
   {
     "id": "cmos-sensor",
@@ -474,7 +566,9 @@
     "capabilities": [
       "image sensor"
     ],
-    "status": "active"
+    "status": "active",
+    "logoText": "CS",
+    "color": "#2563EB"
   },
   {
     "id": "starvis",
@@ -486,7 +580,9 @@
     "capabilities": [
       "image sensor"
     ],
-    "status": "active"
+    "status": "active",
+    "logoText": "S",
+    "color": "#2563EB"
   },
   {
     "id": "firefly",
@@ -497,7 +593,8 @@
     "description": "Fireflyは生成AI領域の製品・サービスです。",
     "logoText": "F",
     "capabilities": [],
-    "status": "active"
+    "status": "active",
+    "color": "#FF0000"
   },
   {
     "id": "midjourney-product",
@@ -508,7 +605,8 @@
     "description": "Midjourneyは生成AI領域の製品・サービスです。",
     "logoText": "M",
     "capabilities": [],
-    "status": "active"
+    "status": "active",
+    "color": "#FFFFFF"
   },
   {
     "id": "runway-gen",
@@ -519,7 +617,8 @@
     "description": "Runway Genは生成AI領域の製品・サービスです。",
     "logoText": "RG",
     "capabilities": [],
-    "status": "active"
+    "status": "active",
+    "color": "#FFFFFF"
   },
   {
     "id": "pika-product",
@@ -530,7 +629,8 @@
     "description": "Pikaは生成AI領域の製品・サービスです。",
     "logoText": "P",
     "capabilities": [],
-    "status": "active"
+    "status": "active",
+    "color": "#EC4899"
   },
   {
     "id": "luma-dream-machine",
@@ -541,7 +641,8 @@
     "description": "Luma Dream Machineは生成AI領域の製品・サービスです。",
     "logoText": "LD",
     "capabilities": [],
-    "status": "active"
+    "status": "active",
+    "color": "#EC4899"
   },
   {
     "id": "elevenlabs-voice",
@@ -552,7 +653,8 @@
     "description": "ElevenLabs Voiceは生成AI領域の製品・サービスです。",
     "logoText": "EV",
     "capabilities": [],
-    "status": "active"
+    "status": "active",
+    "color": "#111111"
   },
   {
     "id": "suno-product",
@@ -563,7 +665,8 @@
     "description": "Sunoは生成AI領域の製品・サービスです。",
     "logoText": "S",
     "capabilities": [],
-    "status": "active"
+    "status": "active",
+    "color": "#7C3AED"
   },
   {
     "id": "udio-product",
@@ -574,7 +677,8 @@
     "description": "Udioは生成AI領域の製品・サービスです。",
     "logoText": "U",
     "capabilities": [],
-    "status": "active"
+    "status": "active",
+    "color": "#111827"
   },
   {
     "id": "devin",
@@ -585,7 +689,8 @@
     "description": "DevinはAIエージェント領域の製品・基盤です。",
     "logoText": "D",
     "capabilities": [],
-    "status": "active"
+    "status": "active",
+    "color": "#22C55E"
   },
   {
     "id": "langgraph",
@@ -596,7 +701,8 @@
     "description": "LangGraphはAIエージェント領域の製品・基盤です。",
     "logoText": "L",
     "capabilities": [],
-    "status": "active"
+    "status": "active",
+    "color": "#22C55E"
   },
   {
     "id": "autogen",
@@ -607,7 +713,8 @@
     "description": "AutoGenはAIエージェント領域の製品・基盤です。",
     "logoText": "A",
     "capabilities": [],
-    "status": "active"
+    "status": "active",
+    "color": "#00A4EF"
   },
   {
     "id": "crewai-framework",
@@ -618,7 +725,8 @@
     "description": "CrewAIはAIエージェント領域の製品・基盤です。",
     "logoText": "C",
     "capabilities": [],
-    "status": "active"
+    "status": "active",
+    "color": "#22C55E"
   },
   {
     "id": "dify-platform",
@@ -629,7 +737,8 @@
     "description": "Dify PlatformはAIエージェント領域の製品・基盤です。",
     "logoText": "DP",
     "capabilities": [],
-    "status": "active"
+    "status": "active",
+    "color": "#22C55E"
   },
   {
     "id": "flowise-builder",
@@ -640,7 +749,8 @@
     "description": "FlowiseはAIエージェント領域の製品・基盤です。",
     "logoText": "F",
     "capabilities": [],
-    "status": "active"
+    "status": "active",
+    "color": "#22C55E"
   },
   {
     "id": "rabbit-r1",
@@ -651,7 +761,8 @@
     "description": "Rabbit R1はAIエージェント領域の製品・基盤です。",
     "logoText": "RR",
     "capabilities": [],
-    "status": "active"
+    "status": "active",
+    "color": "#22C55E"
   },
   {
     "id": "sierra-agent",
@@ -662,7 +773,8 @@
     "description": "Sierra AgentはAIエージェント領域の製品・基盤です。",
     "logoText": "SA",
     "capabilities": [],
-    "status": "active"
+    "status": "active",
+    "color": "#22C55E"
   },
   {
     "id": "replit-agent",
@@ -673,7 +785,8 @@
     "description": "Replit AgentはAIエージェント領域の製品・基盤です。",
     "logoText": "RA",
     "capabilities": [],
-    "status": "active"
+    "status": "active",
+    "color": "#22C55E"
   },
   {
     "id": "cursor-agent",
@@ -684,7 +797,8 @@
     "description": "Cursor AgentはAIエージェント領域の製品・基盤です。",
     "logoText": "CA",
     "capabilities": [],
-    "status": "active"
+    "status": "active",
+    "color": "#22C55E"
   },
   {
     "id": "windsurf-cascade",
@@ -695,7 +809,8 @@
     "description": "CascadeはAIエージェント領域の製品・基盤です。",
     "logoText": "C",
     "capabilities": [],
-    "status": "active"
+    "status": "active",
+    "color": "#22C55E"
   },
   {
     "id": "ollama-runtime",
@@ -706,7 +821,8 @@
     "description": "Ollama RuntimeはオープンソースAIエコシステムの製品・基盤です。",
     "logoText": "OR",
     "capabilities": [],
-    "status": "active"
+    "status": "active",
+    "color": "#06B6D4"
   },
   {
     "id": "vllm-engine",
@@ -717,7 +833,8 @@
     "description": "vLLM EngineはオープンソースAIエコシステムの製品・基盤です。",
     "logoText": "VE",
     "capabilities": [],
-    "status": "active"
+    "status": "active",
+    "color": "#06B6D4"
   },
   {
     "id": "llama-cpp-runtime",
@@ -728,7 +845,8 @@
     "description": "llama.cpp RuntimeはオープンソースAIエコシステムの製品・基盤です。",
     "logoText": "LR",
     "capabilities": [],
-    "status": "active"
+    "status": "active",
+    "color": "#06B6D4"
   },
   {
     "id": "open-webui-product",
@@ -739,7 +857,8 @@
     "description": "Open WebUIはオープンソースAIエコシステムの製品・基盤です。",
     "logoText": "OW",
     "capabilities": [],
-    "status": "active"
+    "status": "active",
+    "color": "#06B6D4"
   },
   {
     "id": "comfyui-product",
@@ -750,7 +869,8 @@
     "description": "ComfyUIはオープンソースAIエコシステムの製品・基盤です。",
     "logoText": "C",
     "capabilities": [],
-    "status": "active"
+    "status": "active",
+    "color": "#06B6D4"
   },
   {
     "id": "jetson",
@@ -761,7 +881,8 @@
     "description": "Jetsonはロボティクス領域の製品・基盤です。",
     "logoText": "J",
     "capabilities": [],
-    "status": "active"
+    "status": "active",
+    "color": "#76B900"
   },
   {
     "id": "isaac",
@@ -772,7 +893,8 @@
     "description": "Isaacはロボティクス領域の製品・基盤です。",
     "logoText": "I",
     "capabilities": [],
-    "status": "active"
+    "status": "active",
+    "color": "#76B900"
   },
   {
     "id": "gemini-robotics",
@@ -783,7 +905,8 @@
     "description": "Gemini Roboticsはロボティクス領域の製品・基盤です。",
     "logoText": "GR",
     "capabilities": [],
-    "status": "active"
+    "status": "active",
+    "color": "#7B61FF"
   },
   {
     "id": "optimus",
@@ -794,7 +917,8 @@
     "description": "Optimusはロボティクス領域の製品・基盤です。",
     "logoText": "O",
     "capabilities": [],
-    "status": "active"
+    "status": "active",
+    "color": "#F97316"
   },
   {
     "id": "digit",
@@ -805,7 +929,8 @@
     "description": "Digitはロボティクス領域の製品・基盤です。",
     "logoText": "D",
     "capabilities": [],
-    "status": "active"
+    "status": "active",
+    "color": "#F97316"
   },
   {
     "id": "apollo-robot",
@@ -816,7 +941,8 @@
     "description": "Apolloはロボティクス領域の製品・基盤です。",
     "logoText": "A",
     "capabilities": [],
-    "status": "active"
+    "status": "active",
+    "color": "#F97316"
   },
   {
     "id": "neo-robot",
@@ -827,7 +953,8 @@
     "description": "NEOはロボティクス領域の製品・基盤です。",
     "logoText": "N",
     "capabilities": [],
-    "status": "active"
+    "status": "active",
+    "color": "#F97316"
   },
   {
     "id": "pi0",
@@ -838,7 +965,8 @@
     "description": "π0はロボティクス領域の製品・基盤です。",
     "logoText": "Π",
     "capabilities": [],
-    "status": "active"
+    "status": "active",
+    "color": "#F97316"
   },
   {
     "id": "huawei-ascend",
@@ -849,7 +977,8 @@
     "description": "Huawei Ascendは中国AIエコシステムの製品・基盤です。",
     "logoText": "HA",
     "capabilities": [],
-    "status": "active"
+    "status": "active",
+    "color": "#EF4444"
   },
   {
     "id": "alibaba-cloud",
@@ -860,7 +989,8 @@
     "description": "Alibaba Cloudは中国AIエコシステムの製品・基盤です。",
     "logoText": "AC",
     "capabilities": [],
-    "status": "active"
+    "status": "active",
+    "color": "#EF4444"
   },
   {
     "id": "tencent-cloud",
@@ -871,7 +1001,8 @@
     "description": "Tencent Cloudは中国AIエコシステムの製品・基盤です。",
     "logoText": "TC",
     "capabilities": [],
-    "status": "active"
+    "status": "active",
+    "color": "#EF4444"
   },
   {
     "id": "baidu-ai-cloud",
@@ -882,7 +1013,8 @@
     "description": "Baidu AI Cloudは中国AIエコシステムの製品・基盤です。",
     "logoText": "BA",
     "capabilities": [],
-    "status": "active"
+    "status": "active",
+    "color": "#EF4444"
   },
   {
     "id": "kimi-chat",
@@ -893,7 +1025,8 @@
     "description": "Kimi Chatは中国AIエコシステムの製品・基盤です。",
     "logoText": "KC",
     "capabilities": [],
-    "status": "active"
+    "status": "active",
+    "color": "#EF4444"
   },
   {
     "id": "wechat",
@@ -904,7 +1037,8 @@
     "description": "WeChatは中国AIエコシステムの製品・基盤です。",
     "logoText": "W",
     "capabilities": [],
-    "status": "active"
+    "status": "active",
+    "color": "#EF4444"
   },
   {
     "id": "tiktok",
@@ -915,6 +1049,163 @@
     "description": "TikTokは中国AIエコシステムの製品・基盤です。",
     "logoText": "T",
     "capabilities": [],
-    "status": "active"
+    "status": "active",
+    "color": "#EF4444"
+  },
+  {
+    "type": "product",
+    "sector": "generative-ai",
+    "status": "active",
+    "capabilities": [],
+    "id": "ideogram-product",
+    "name": "Ideogram",
+    "company": "ideogram",
+    "logoText": "ID",
+    "description": "Ideogramは生成AIサービス一覧で参照される製品・サービスです。",
+    "color": "#EC4899"
+  },
+  {
+    "type": "product",
+    "sector": "generative-ai",
+    "status": "active",
+    "capabilities": [],
+    "id": "leonardo-ai-product",
+    "name": "Leonardo AI",
+    "company": "leonardo-ai",
+    "logoText": "LA",
+    "description": "Leonardo AIは生成AIサービス一覧で参照される製品・サービスです。",
+    "color": "#EC4899"
+  },
+  {
+    "type": "product",
+    "sector": "generative-ai",
+    "status": "active",
+    "capabilities": [],
+    "id": "kling",
+    "name": "Kling",
+    "company": "kuaishou",
+    "logoText": "KL",
+    "description": "Klingは生成AIサービス一覧で参照される製品・サービスです。",
+    "color": "#EF4444"
+  },
+  {
+    "type": "product",
+    "sector": "generative-ai",
+    "status": "active",
+    "capabilities": [],
+    "id": "veo",
+    "name": "Veo",
+    "company": "google",
+    "logoText": "VO",
+    "description": "Veoは生成AIサービス一覧で参照される製品・サービスです。",
+    "color": "#4285F4"
+  },
+  {
+    "type": "product",
+    "sector": "generative-ai",
+    "status": "active",
+    "capabilities": [],
+    "id": "voice-engine",
+    "name": "Voice Engine",
+    "company": "openai",
+    "logoText": "VE",
+    "description": "Voice Engineは生成AIサービス一覧で参照される製品・サービスです。",
+    "color": "#10A37F"
+  },
+  {
+    "type": "product",
+    "sector": "generative-ai",
+    "status": "active",
+    "capabilities": [],
+    "id": "fish-audio-product",
+    "name": "Fish Audio",
+    "company": "fish-audio",
+    "logoText": "FA",
+    "description": "Fish Audioは生成AIサービス一覧で参照される製品・サービスです。",
+    "color": "#EC4899"
+  },
+  {
+    "type": "product",
+    "sector": "generative-ai",
+    "status": "active",
+    "capabilities": [],
+    "id": "meshy-product",
+    "name": "Meshy",
+    "company": "meshy",
+    "logoText": "MY",
+    "description": "Meshyは生成AIサービス一覧で参照される製品・サービスです。",
+    "color": "#EC4899"
+  },
+  {
+    "type": "product",
+    "sector": "generative-ai",
+    "status": "active",
+    "capabilities": [],
+    "id": "tripo-product",
+    "name": "Tripo",
+    "company": "tripo",
+    "logoText": "TR",
+    "description": "Tripoは生成AIサービス一覧で参照される製品・サービスです。",
+    "color": "#EC4899"
+  },
+  {
+    "type": "product",
+    "sector": "generative-ai",
+    "status": "active",
+    "capabilities": [],
+    "id": "inworld-ai",
+    "name": "Inworld AI",
+    "company": "inworld",
+    "logoText": "IW",
+    "description": "Inworld AIは生成AIサービス一覧で参照される製品・サービスです。",
+    "color": "#EC4899"
+  },
+  {
+    "type": "product",
+    "sector": "generative-ai",
+    "status": "active",
+    "capabilities": [],
+    "id": "character-ai-product",
+    "name": "Character AI",
+    "company": "character-ai",
+    "logoText": "CA",
+    "description": "Character AIは生成AIサービス一覧で参照される製品・サービスです。",
+    "color": "#EC4899"
+  },
+  {
+    "type": "product",
+    "sector": "generative-ai",
+    "status": "active",
+    "capabilities": [],
+    "id": "canva-ai",
+    "name": "Canva AI",
+    "company": "canva",
+    "logoText": "CV",
+    "description": "Canva AIは生成AIサービス一覧で参照される製品・サービスです。",
+    "color": "#00C4CC"
+  },
+  {
+    "type": "product",
+    "sector": "generative-ai",
+    "status": "active",
+    "capabilities": [],
+    "id": "capcut-ai",
+    "name": "CapCut AI",
+    "company": "capcut",
+    "logoText": "CC",
+    "description": "CapCut AIは生成AIサービス一覧で参照される製品・サービスです。",
+    "color": "#EC4899"
+  },
+  {
+    "type": "product",
+    "sector": "generative-ai",
+    "status": "active",
+    "capabilities": [],
+    "id": "figma-ai",
+    "name": "Figma AI",
+    "company": "figma",
+    "logoText": "FG",
+    "description": "Figma AIは生成AIサービス一覧で参照される製品・サービスです。",
+    "color": "#A259FF"
   }
 ]

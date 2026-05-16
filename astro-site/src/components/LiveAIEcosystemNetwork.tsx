@@ -46,8 +46,10 @@ type Company = {
   id: string;
   name: string;
   sector: Exclude<SectorId, 'all'>;
+  domain?: string;
   logo?: string;
   logoText: string;
+  brandColor?: string;
   size: CompanySize;
   description: string;
   score: number;
@@ -62,6 +64,7 @@ type EcosystemModel = {
   company: string;
   sector: string;
   type: ModelType;
+  color?: string;
   description: string;
 };
 
@@ -73,6 +76,7 @@ type EcosystemProduct = {
   type?: string;
   description?: string;
   logoText?: string;
+  color?: string;
 };
 
 type Relation = {
@@ -284,8 +288,20 @@ export default function LiveAIEcosystemNetwork() {
   }, []);
 
   const handleCompanyClick = (company: Company) => {
+    if (company.sector === 'generative-ai') {
+      setSelectedCompany(null);
+      setActiveSector('generative-ai');
+      return;
+    }
+
     setSelectedCompany(company);
     setActiveSector(company.sector);
+  };
+
+  const handleBackToAll = () => {
+    setSelectedCompany(null);
+    setActiveSector('all');
+    setHoveredNodeId(null);
   };
 
   const handleStoryNodeClick = (node: StoryGraphNode) => {
@@ -313,51 +329,22 @@ export default function LiveAIEcosystemNetwork() {
               半導体、GPU、クラウド、モデル、サービスまで。AI産業のつながりを構造で読む。
             </p>
           </div>
-          <div className="ecosystem-stats" aria-label="データ更新情報">
-            <span className="ecosystem-stat-chip">
-              <span>Updated</span>
-              <strong>JSON</strong>
-            </span>
-            <span className="ecosystem-stat-chip">
-              <span>Companies</span>
-              <strong>{COMPANIES.length}</strong>
-            </span>
-            <span className="ecosystem-stat-chip">
-              <span>Relations</span>
-              <strong>{RELATIONS.length}</strong>
-            </span>
-          </div>
         </div>
 
         <div className="grid gap-4">
           <main className="relative min-h-[760px] overflow-hidden rounded-lg border border-white/10 bg-[#080d14]/80 p-4 shadow-2xl shadow-black/30 backdrop-blur md:p-6">
-            <div className="map-toolbar">
-              <div className="map-status-badge">
-                <span className="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_16px_rgba(74,222,128,.8)]" />
-                <span>{selectedCompany ? 'STORYGRAPH' : 'SECTOR OVERVIEW'}</span>
-                <strong className="text-[#5cd8ce]">{selectedCompany?.name || 'ALL'}</strong>
-              </div>
-
-              {selectedCompany && (
-                <div className="flex flex-wrap gap-2">
-                  <button
-                    type="button"
-                    onClick={() => setSelectedCompany(null)}
-                    className="w-fit rounded-full border border-white/10 bg-white/[.04] px-3 py-2 font-mono text-[11px] text-slate-300 transition hover:border-[#5cd8ce]/50 hover:text-white"
-                  >
-                    全セクターに戻る</button>
-                  <a
-                    href={`/company/${selectedCompany.id}/`}
-                    className="company-cta"
-                    style={{ background: safeColor(getSector(selectedCompany.sector).color) }}
-                  >
-                    ↗ 企業データベースで詳しく見る →</a>
-                </div>
-              )}
-            </div>
-
             <AnimatePresence mode="wait">
-              {selectedCompany && detail && layers ? (
+              {activeSector === 'generative-ai' ? (
+                <motion.div
+                  key="generative-ai-directory"
+                  initial={{ opacity: 0, scale: 0.985 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.985 }}
+                  transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  <GenerativeAIServiceDirectory onBack={handleBackToAll} />
+                </motion.div>
+              ) : selectedCompany && detail && layers ? (
                 <motion.div
                   key={selectedCompany.id}
                   initial={{ opacity: 0, y: 16 }}
@@ -373,6 +360,7 @@ export default function LiveAIEcosystemNetwork() {
                     hoveredNodeId={hoveredNodeId}
                     onHoverNode={setHoveredNodeId}
                     onNodeClick={handleStoryNodeClick}
+                    onBack={handleBackToAll}
                   />
                 </motion.div>
               ) : (
@@ -451,7 +439,12 @@ function SectorOverview({
                     }}
                     className="sector-company-chip"
                   >
-                    <span className="sector-company-logo">{company.logoText}</span>
+                    <EntityLogo
+                      logo={company.logo}
+                      logoText={company.logoText}
+                      alt={company.name}
+                      className="sector-company-logo"
+                    />
                     <span className="sector-company-name">{company.name}</span>
                   </button>
                 ))}
@@ -468,6 +461,155 @@ function SectorOverview({
         );
       })}
     </div>
+  );
+}
+
+const GENERATIVE_AI_DIRECTORY = [
+  {
+    label: '画像生成',
+    ids: ['midjourney', 'stability-ai', 'adobe', 'firefly', 'dall-e', 'ideogram', 'leonardo-ai'],
+  },
+  {
+    label: '動画生成',
+    ids: ['sora', 'runway', 'pika', 'luma', 'kling', 'veo', 'heygen'],
+  },
+  {
+    label: '音声・音楽生成',
+    ids: ['elevenlabs', 'suno', 'udio', 'voice-engine', 'fish-audio'],
+  },
+  {
+    label: '3D / Avatar',
+    ids: ['meshy', 'tripo', 'inworld', 'character-ai'],
+  },
+  {
+    label: 'Creative Tools',
+    ids: ['adobe', 'canva', 'capcut', 'figma'],
+  },
+];
+
+function GenerativeAIServiceDirectory({
+  onBack,
+}: {
+  onBack: () => void;
+}) {
+  const sector = getSector('generative-ai');
+  const color = safeColor(sector.color);
+
+  return (
+    <div className="generative-directory" style={{ ['--directory-color' as string]: color }}>
+      <div className="directory-head">
+        <button type="button" className="storygraph-back" onClick={onBack}>
+          ← 全体に戻る
+        </button>
+        <div>
+          <p className="directory-kicker">サービス一覧</p>
+          <h3>生成AI</h3>
+          <p>画像、動画、音声、3D、クリエイティブ制作の主要AIサービスをカテゴリ別に整理。</p>
+        </div>
+      </div>
+
+      <div className="directory-grid">
+        {GENERATIVE_AI_DIRECTORY.map((category) => (
+          <section key={category.label} className="directory-card">
+            <div className="directory-card-title">
+              <span />
+              <h4>{category.label}</h4>
+            </div>
+            <div className="directory-chip-list">
+              {category.ids
+                .map(resolveDirectoryEntity)
+                .filter(Boolean)
+                .map((entity) => {
+                  return (
+                    <div
+                      key={`${category.label}-${entity.id}`}
+                      className="directory-chip"
+                      title={entity.name}
+                    >
+                      {entity.kind === 'company' ? (
+                        <EntityLogo
+                          logo={entity.logo}
+                          logoText={entity.logoText}
+                          alt={entity.name}
+                          className="directory-logo"
+                        />
+                      ) : (
+                        <span className="directory-badge" style={{ ['--badge-color' as string]: entity.color }}>
+                          {entity.logoText}
+                        </span>
+                      )}
+                      <span>{entity.name}</span>
+                    </div>
+                  );
+                })}
+            </div>
+          </section>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function resolveDirectoryEntity(id: string) {
+  const company = COMPANIES.find((item) => item.id === id);
+  if (company) {
+    return {
+      kind: 'company' as const,
+      id: company.id,
+      name: company.name,
+      logo: company.logo,
+      logoText: company.logoText,
+      color: safeColor(company.brandColor || getSector(company.sector).color),
+      company,
+    };
+  }
+
+  const model = MODELS.find((item) => item.id === id);
+  if (model) {
+    return {
+      kind: 'model' as const,
+      id: model.id,
+      name: model.name,
+      logoText: initials(model.name),
+      color: safeColor(model.color || getEntityBrandColor(model.company)),
+    };
+  }
+
+  const product = PRODUCTS.find((item) => item.id === id);
+  if (product) {
+    return {
+      kind: 'product' as const,
+      id: product.id,
+      name: product.name,
+      logoText: product.logoText || initials(product.name),
+      color: safeColor(product.color || getEntityBrandColor(product.company || '')),
+    };
+  }
+
+  return null;
+}
+
+function EntityLogo({
+  logo,
+  logoText,
+  alt,
+  className,
+}: {
+  logo?: string;
+  logoText: string;
+  alt: string;
+  className?: string;
+}) {
+  const [failed, setFailed] = useState(false);
+
+  return (
+    <span className={className}>
+      {logo && !failed ? (
+        <img src={logo} alt={alt} loading="lazy" decoding="async" onError={() => setFailed(true)} />
+      ) : (
+        <span>{logoText}</span>
+      )}
+    </span>
   );
 }
 
@@ -490,6 +632,7 @@ function LayeredStoryGraph({
   hoveredNodeId,
   onHoverNode,
   onNodeClick,
+  onBack,
 }: {
   company: Company;
   detail: StoryGraph;
@@ -498,6 +641,7 @@ function LayeredStoryGraph({
   hoveredNodeId: string | null;
   onHoverNode: (id: string | null) => void;
   onNodeClick: (node: StoryGraphNode) => void;
+  onBack: () => void;
 }) {
   const sector = getSector(company.sector);
   const sectorColor = safeColor(sector.color);
@@ -535,21 +679,19 @@ function LayeredStoryGraph({
 
   return (
     <div className="min-h-[620px]">
-      <div className="mb-6 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-        <div className="max-w-4xl">
-          <p className="font-mono text-[11px] font-bold uppercase tracking-[.14em]" style={{ color: sectorColor }}>
-            {sector.name}
-          </p>
-          <h3 className="mt-2 text-3xl font-black tracking-[-.04em] md:text-4xl">{detail.title}</h3>
-          <p className="mt-3 text-sm leading-7 text-slate-400">{detail.summary}</p>
+      <div className="storygraph-head">
+        <button type="button" className="storygraph-back" onClick={onBack}>
+          ← 全体に戻る
+        </button>
+        <div className="storygraph-title-row">
+          <div className="max-w-4xl">
+            <h3>{company.name}</h3>
+            <p>{company.description || detail.summary}</p>
+          </div>
+          <a href={`/company/${company.id}/`} className="storygraph-detail-cta">
+            詳細を見る →
+          </a>
         </div>
-        <a
-          href={`/company/${company.id}/`}
-          className="company-cta"
-          style={{ background: sectorColor }}
-        >
-          ↗ 企業データベースで詳しく見る →
-        </a>
       </div>
 
       <div className="storygraph-map-shell">
@@ -771,6 +913,7 @@ function SelectedCompanyFlowCard({
   const company = findCompanyForNode(node);
   const clickable = Boolean(company);
   const logoText = node.logoText || company?.logoText || initials(node.label);
+  const logo = node.logo || company?.logo;
 
   return (
     <button
@@ -782,9 +925,7 @@ function SelectedCompanyFlowCard({
       className={['selected-flow-card', clickable ? 'is-clickable' : '', hoveredNodeId === node.id ? 'is-highlighted' : ''].join(' ')}
       style={{ ['--stage-color' as string]: safeColor(color) }}
     >
-      <span className="selected-logo">
-        {node.logo ? <img src={node.logo} alt="" /> : logoText}
-      </span>
+      <EntityLogo logo={logo} logoText={logoText} alt={node.label} className="selected-logo" />
       <span className="selected-name">{node.label}</span>
     </button>
   );
@@ -828,6 +969,7 @@ function LogoChip({ node, tone, onNodeClick }: { node: StoryGraphNode; tone: str
   const company = findCompanyForNode(node);
   const clickable = Boolean(company);
   const logoText = node.logoText || company?.logoText || initials(node.label);
+  const logo = node.logo || company?.logo;
   const title = node.relation ? `${node.label} / ${jaRelation(node.relation)}` : node.label;
 
   return (
@@ -840,7 +982,7 @@ function LogoChip({ node, tone, onNodeClick }: { node: StoryGraphNode; tone: str
       style={{ ['--chip-tone' as string]: safeColor(tone) }}
       aria-label={title}
     >
-      {node.logo ? <img src={node.logo} alt="" /> : <span>{logoText}</span>}
+      <EntityLogo logo={logo} logoText={logoText} alt={node.label} />
     </button>
   );
 }
@@ -1063,6 +1205,7 @@ function StoryNodeCard({
   const company = findCompanyForNode(node);
   const clickable = Boolean(company);
   const logoText = node.logoText || company?.logoText || initials(node.label);
+  const logo = node.logo || company?.logo;
   const relationType = normalizeRelationType(node.type);
   const typeStyle = relationStyle[relationType] || { label: jaRelation(node.type || ''), color: safeColor(tone), verb: '' };
   const typeColor = safeColor(typeStyle.color);
@@ -1084,9 +1227,7 @@ function StoryNodeCard({
       style={{ ['--node-tone' as string]: safeColor(tone) }}
     >
       <div className="node-card-inner">
-        <div className="node-logo">
-          {node.logo ? <img src={node.logo} alt="" className="h-full w-full object-contain p-1" /> : logoText}
-        </div>
+        <EntityLogo logo={logo} logoText={logoText} alt={node.label} className="node-logo" />
         <div className="node-copy">
           <p className="node-title">{node.label}</p>
           <div className="node-meta">
@@ -1144,6 +1285,9 @@ function FinalFlowStage({
 }
 
 function SelectedCompanyCard({ company, center, color }: { company: Company; center: StoryGraphNode; color: string }) {
+  const logo = center.logo || company.logo;
+  const logoText = center.logoText || company.logoText;
+
   return (
     <motion.div
       initial={{ scale: 0.94, opacity: 0 }}
@@ -1155,9 +1299,7 @@ function SelectedCompanyCard({ company, center, color }: { company: Company; cen
       <div className="absolute inset-3 rounded-[20px] border border-white/10" />
       <div className="absolute -inset-10 rounded-full opacity-20 blur-3xl" style={{ background: color }} />
       <div className="relative">
-        <div className="mx-auto grid h-16 w-16 place-items-center rounded-2xl border border-white/15 bg-white/[.06] font-mono text-lg font-black text-white">
-          {center.logo ? <img src={center.logo} alt="" className="h-full w-full object-contain p-2" /> : center.logoText || company.logoText}
-        </div>
+        <EntityLogo logo={logo} logoText={logoText} alt={center.label || company.name} className="selected-company-logo" />
         <h4 className="mt-4 text-2xl font-black tracking-[-.04em] text-white">{center.label || company.name}</h4>
         <p className="mt-2 font-mono text-[10px] uppercase tracking-[.12em] text-slate-500">
           {center.type || company.role || 'Selected Company'}
@@ -1799,6 +1941,19 @@ function getEntityLogoText(id: string) {
   return product?.logoText || initials(product?.name || id);
 }
 
+function getEntityBrandColor(id: string) {
+  const company = COMPANIES.find((item) => item.id === id);
+  if (company) return safeColor(company.brandColor || getSector(company.sector).color);
+
+  const model = MODELS.find((item) => item.id === id);
+  if (model) return safeColor(model.color || getEntityBrandColor(model.company));
+
+  const product = PRODUCTS.find((item) => item.id === id);
+  if (product) return safeColor(product.color || getEntityBrandColor(product.company || ''));
+
+  return FALLBACK_COLOR;
+}
+
 function findCompanyForNode(node: StoryGraphNode) {
   return COMPANIES.find((company) => company.id === node.id) || findCompanyByName(node.label);
 }
@@ -1937,6 +2092,7 @@ function StoryGraphStyles() {
         padding: 18px;
         box-shadow: 0 20px 54px rgba(0,0,0,.20);
         backdrop-filter: blur(14px);
+        cursor: pointer;
         transition: transform .22s ease, border-color .22s ease, background .22s ease, box-shadow .22s ease;
       }
 
@@ -1960,6 +2116,25 @@ function StoryGraphStyles() {
         justify-content: space-between;
         gap: 14px;
         margin-bottom: 12px;
+      }
+
+      .sector-card-head::after {
+        content: "見る →";
+        position: absolute;
+        right: 18px;
+        top: 18px;
+        opacity: 0;
+        transform: translateX(-4px);
+        color: color-mix(in srgb, var(--sector-color, #5CD8CE) 72%, white 18%);
+        font-family: IBM Plex Mono, ui-monospace, monospace;
+        font-size: 10px;
+        font-weight: 950;
+        transition: opacity .18s ease, transform .18s ease;
+      }
+
+      .sector-card:hover .sector-card-head::after {
+        opacity: 1;
+        transform: translateX(0);
       }
 
       .sector-kicker {
@@ -2032,17 +2207,32 @@ function StoryGraphStyles() {
       }
 
       .sector-company-logo {
-        display: grid;
-        place-items: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         width: 30px;
         height: 30px;
         flex: 0 0 auto;
+        overflow: hidden;
         border: 1px solid color-mix(in srgb, var(--sector-color, #5CD8CE) 35%, rgba(255,255,255,.10));
         border-radius: 9px;
         background: rgba(255,255,255,.045);
         font-family: IBM Plex Mono, ui-monospace, monospace;
         font-size: 9px;
         font-weight: 950;
+      }
+
+      .sector-company-logo img {
+        display: block;
+        width: auto;
+        height: auto;
+        max-width: 72%;
+        max-height: 72%;
+        object-fit: contain;
+      }
+
+      .sector-card:hover .sector-company-chip {
+        background: rgba(255,255,255,.055);
       }
 
       .sector-company-name {
@@ -2096,6 +2286,182 @@ function StoryGraphStyles() {
         overflow-y: hidden;
         overscroll-behavior-x: contain;
         padding: 12px 0 22px;
+      }
+
+      .storygraph-head,
+      .directory-head {
+        display: grid;
+        gap: 14px;
+        margin-bottom: 24px;
+      }
+
+      .storygraph-back {
+        width: fit-content;
+        border: 1px solid rgba(255,255,255,.10);
+        border-radius: 999px;
+        background: rgba(255,255,255,.035);
+        padding: 8px 12px;
+        color: #c7d3e3;
+        font-family: IBM Plex Mono, ui-monospace, monospace;
+        font-size: 11px;
+        font-weight: 850;
+        transition: transform .18s ease, border-color .18s ease, color .18s ease, background .18s ease;
+      }
+
+      .storygraph-back:hover {
+        transform: translateY(-1px);
+        border-color: rgba(92,216,206,.45);
+        background: rgba(92,216,206,.08);
+        color: #fff;
+      }
+
+      .storygraph-title-row {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 18px;
+      }
+
+      .storygraph-title-row h3,
+      .directory-head h3 {
+        color: #f8fbff;
+        font-size: clamp(28px, 4vw, 44px);
+        font-weight: 950;
+        letter-spacing: -.045em;
+        line-height: 1.05;
+      }
+
+      .storygraph-title-row p,
+      .directory-head p {
+        margin-top: 10px;
+        max-width: 760px;
+        color: #97a6bb;
+        font-size: 13px;
+        line-height: 1.8;
+      }
+
+      .storygraph-detail-cta {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex: 0 0 auto;
+        border: 1px solid rgba(255,255,255,.16);
+        border-radius: 999px;
+        background: #5CD8CE;
+        padding: 10px 15px;
+        color: #07111B;
+        font-family: IBM Plex Mono, ui-monospace, monospace;
+        font-size: 11px;
+        font-weight: 950;
+        box-shadow: 0 18px 42px rgba(92,216,206,.16);
+        transition: transform .18s ease, filter .18s ease, box-shadow .18s ease;
+      }
+
+      .storygraph-detail-cta:hover {
+        transform: translateY(-2px);
+        filter: brightness(1.08);
+        box-shadow: 0 22px 54px rgba(92,216,206,.22);
+      }
+
+      .directory-kicker {
+        color: var(--directory-color, #EC4899);
+        font-family: IBM Plex Mono, ui-monospace, monospace;
+        font-size: 11px;
+        font-weight: 950;
+        letter-spacing: .14em;
+        text-transform: uppercase;
+      }
+
+      .directory-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .directory-card {
+        border: 1px solid color-mix(in srgb, var(--directory-color, #EC4899) 28%, rgba(255,255,255,.10));
+        border-radius: 18px;
+        background:
+          linear-gradient(180deg, color-mix(in srgb, var(--directory-color, #EC4899) 8%, transparent), transparent 64%),
+          rgba(255,255,255,.035);
+        padding: 16px;
+        backdrop-filter: blur(14px);
+        box-shadow: 0 20px 54px rgba(0,0,0,.18);
+      }
+
+      .directory-card-title {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        margin-bottom: 12px;
+      }
+
+      .directory-card-title span {
+        width: 8px;
+        height: 8px;
+        border-radius: 999px;
+        background: var(--directory-color, #EC4899);
+        box-shadow: 0 0 18px var(--directory-color, #EC4899);
+      }
+
+      .directory-card-title h4 {
+        color: #f8fbff;
+        font-size: 15px;
+        font-weight: 950;
+      }
+
+      .directory-chip-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .directory-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        max-width: 100%;
+        cursor: default;
+        border: 1px solid rgba(255,255,255,.10);
+        border-radius: 999px;
+        background: rgba(0,0,0,.24);
+        padding: 7px 10px 7px 7px;
+        color: #edf4ff;
+        font-size: 12px;
+        font-weight: 850;
+        transition: transform .18s ease, border-color .18s ease, background .18s ease;
+      }
+
+      .directory-logo,
+      .directory-badge {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 28px;
+        height: 28px;
+        flex: 0 0 auto;
+        overflow: hidden;
+        border: 1px solid rgba(255,255,255,.12);
+        border-radius: 999px;
+        background: rgba(255,255,255,.055);
+        color: #fff;
+        font-family: IBM Plex Mono, ui-monospace, monospace;
+        font-size: 9px;
+        font-weight: 950;
+      }
+
+      .directory-logo img {
+        display: block;
+        width: auto;
+        height: auto;
+        max-width: 72%;
+        max-height: 72%;
+        object-fit: contain;
+      }
+
+      .directory-badge {
+        border-color: color-mix(in srgb, var(--badge-color, #5CD8CE) 48%, rgba(255,255,255,.14));
+        background: color-mix(in srgb, var(--badge-color, #5CD8CE) 16%, rgba(255,255,255,.04));
       }
 
       .storygraph-flow-row {
@@ -2247,8 +2613,9 @@ function StoryGraphStyles() {
       }
 
       .selected-logo {
-        display: grid;
-        place-items: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         width: 58px;
         height: 58px;
         overflow: hidden;
@@ -2261,10 +2628,12 @@ function StoryGraphStyles() {
       }
 
       .selected-logo img {
-        width: 100%;
-        height: 100%;
+        display: block;
+        width: auto;
+        height: auto;
+        max-width: 72%;
+        max-height: 72%;
         object-fit: contain;
-        padding: 10px;
       }
 
       .selected-name {
@@ -2336,8 +2705,9 @@ function StoryGraphStyles() {
       }
 
       .node-logo {
-        display: grid;
-        place-items: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         width: 36px;
         height: 36px;
         overflow: hidden;
@@ -2348,6 +2718,15 @@ function StoryGraphStyles() {
         font-family: IBM Plex Mono, ui-monospace, monospace;
         font-size: 10px;
         font-weight: 950;
+      }
+
+      .node-logo img {
+        display: block;
+        width: auto;
+        height: auto;
+        max-width: 72%;
+        max-height: 72%;
+        object-fit: contain;
       }
 
       .node-copy {
@@ -2463,6 +2842,32 @@ function StoryGraphStyles() {
         box-shadow: 0 20px 48px rgba(0,0,0,.38);
       }
 
+      .selected-company-logo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 64px;
+        height: 64px;
+        margin-inline: auto;
+        overflow: hidden;
+        border: 1px solid rgba(255,255,255,.15);
+        border-radius: 18px;
+        background: rgba(255,255,255,.06);
+        color: #fff;
+        font-family: IBM Plex Mono, ui-monospace, monospace;
+        font-size: 18px;
+        font-weight: 950;
+      }
+
+      .selected-company-logo img {
+        display: block;
+        width: auto;
+        height: auto;
+        max-width: 74%;
+        max-height: 74%;
+        object-fit: contain;
+      }
+
       .storygraph-competitors {
         margin-top: 18px;
         padding-top: 2px;
@@ -2497,8 +2902,9 @@ function StoryGraphStyles() {
       }
 
       .logo-chip {
-        display: grid;
-        place-items: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         width: 44px;
         height: 44px;
         flex: 0 0 auto;
@@ -2514,10 +2920,12 @@ function StoryGraphStyles() {
       }
 
       .logo-chip img {
-        width: 100%;
-        height: 100%;
+        display: block;
+        width: auto;
+        height: auto;
+        max-width: 72%;
+        max-height: 72%;
         object-fit: contain;
-        padding: 7px;
       }
 
       .logo-chip.is-clickable:hover {
@@ -2666,12 +3074,17 @@ function StoryGraphStyles() {
           justify-content: flex-start;
         }
         .sector-overview-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .directory-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
         .storygraph-logo-panels { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       }
 
       @media (max-width: 768px) {
         .sector-overview-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
         .sector-company-chip { flex-basis: 120px; }
+        .storygraph-title-row {
+          align-items: flex-start;
+          flex-direction: column;
+        }
         .map-toolbar {
           align-items: flex-start;
           flex-direction: column;
@@ -2690,6 +3103,7 @@ function StoryGraphStyles() {
 
       @media (max-width: 560px) {
         .sector-overview-grid { grid-template-columns: 1fr; }
+        .directory-grid { grid-template-columns: 1fr; }
       }
     `}</style>
   );

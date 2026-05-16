@@ -1,0 +1,52 @@
+name: 新記事をXに自動投稿
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'astro-site/src/content/articles/**/*.md'
+
+jobs:
+  post-to-x:
+    runs-on: ubuntu-latest
+    steps:
+      - name: リポジトリをチェックアウト
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2  # 差分検出のために直前のコミットも取得
+
+      - name: Node.js セットアップ
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: 依存パッケージのインストール
+        run: npm install twitter-api-v2 gray-matter
+
+      - name: 新しい記事ファイルを検出してX投稿
+        env:
+          TWITTER_CONSUMER_KEY: ${{ secrets.TWITTER_CONSUMER_KEY }}
+          TWITTER_CONSUMER_SECRET: ${{ secrets.TWITTER_CONSUMER_SECRET }}
+          TWITTER_ACCESS_TOKEN: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+          TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
+          SITE_URL: ${{ secrets.SITE_URL }}
+        run: |
+          # 今回のpushで追加されたMDファイルを取得
+          NEW_FILES=$(git diff --name-only --diff-filter=A HEAD~1 HEAD -- 'astro-site/src/content/articles/**/*.md' 2>/dev/null || \
+                      git diff --name-only --diff-filter=A HEAD~1 HEAD | grep 'astro-site/src/content/articles/.*\.md')
+          
+          if [ -z "$NEW_FILES" ]; then
+            echo "新しい記事ファイルはありません。スキップします。"
+            exit 0
+          fi
+          
+          echo "投稿対象ファイル:"
+          echo "$NEW_FILES"
+          
+          # 各ファイルに対して投稿スクリプトを実行
+          echo "$NEW_FILES" | while read FILE; do
+            if [ -f "$FILE" ]; then
+              node scripts/post-to-x.mjs "$FILE"
+            fi
+          done

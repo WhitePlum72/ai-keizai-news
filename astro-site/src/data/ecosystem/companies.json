@@ -25,7 +25,10 @@
       "newsHeat": 98,
       "marketImpact": 100,
       "developerImpact": 94
-    }
+    },
+    "brandColor": "#76B900",
+    "domain": "nvidia.com",
+    "logo": "/logos/nvidia.png"
   },
   {
     "id": "amd",
@@ -52,7 +55,10 @@
       "newsHeat": 74,
       "marketImpact": 82,
       "developerImpact": 66
-    }
+    },
+    "brandColor": "#ED1C24",
+    "domain": "amd.com",
+    "logo": "/logos/amd.png"
   },
   {
     "id": "tsmc",
@@ -79,7 +85,10 @@
       "newsHeat": 86,
       "marketImpact": 96,
       "developerImpact": 52
-    }
+    },
+    "brandColor": "#CC092F",
+    "domain": "tsmc.com",
+    "logo": "/logos/tsmc.png"
   },
   {
     "id": "broadcom",
@@ -106,7 +115,10 @@
       "newsHeat": 70,
       "marketImpact": 82,
       "developerImpact": 40
-    }
+    },
+    "brandColor": "#3B82F6",
+    "domain": "broadcom.com",
+    "logo": "/logos/broadcom.png"
   },
   {
     "id": "intel",
@@ -133,7 +145,10 @@
       "newsHeat": 62,
       "marketImpact": 68,
       "developerImpact": 54
-    }
+    },
+    "brandColor": "#3B82F6",
+    "domain": "intel.com",
+    "logo": "/logos/intel.png"
   },
   {
     "id": "cerebras",
@@ -160,7 +175,10 @@
       "newsHeat": 66,
       "marketImpact": 58,
       "developerImpact": 48
-    }
+    },
+    "brandColor": "#3B82F6",
+    "domain": "cerebras.ai",
+    "logo": "/logos/cerebras.png"
   },
   {
     "id": "groq",
@@ -187,7 +205,10 @@
       "newsHeat": 72,
       "marketImpact": 56,
       "developerImpact": 70
-    }
+    },
+    "brandColor": "#3B82F6",
+    "domain": "groq.com",
+    "logo": "/logos/groq.png"
   },
   {
     "id": "coreweave",
@@ -214,7 +235,10 @@
       "newsHeat": 84,
       "marketImpact": 86,
       "developerImpact": 62
-    }
+    },
+    "brandColor": "#3B82F6",
+    "domain": "coreweave.com",
+    "logo": "/logos/coreweave.png"
   },
   {
     "id": "openai",
@@ -242,7 +266,10 @@
       "newsHeat": 100,
       "marketImpact": 98,
       "developerImpact": 100
-    }
+    },
+    "brandColor": "#10A37F",
+    "domain": "openai.com",
+    "logo": "/logos/openai.png"
   },
   {
     "id": "anthropic",
@@ -269,7 +296,10 @@
       "newsHeat": 88,
       "marketImpact": 86,
       "developerImpact": 82
-    }
+    },
+    "brandColor": "#D97757",
+    "domain": "anthropic.com",
+    "logo": "/logos/anthropic.png"
   },
   {
     "id": "google",
@@ -297,7 +327,10 @@
       "newsHeat": 90,
       "marketImpact": 92,
       "developerImpact": 84
-    }
+    },
+    "brandColor": "#4285F4",
+    "domain": "google.com",
+    "logo": "/logos/google.png"
   },
   {
     "id": "meta",
@@ -325,7 +358,10 @@
       "newsHeat": 82,
       "marketImpact": 84,
       "developerImpact": 92
-    }
+    },
+    "brandColor": "#0866FF",
+    "domain": "meta.com",
+    "logo": "/logos/meta.png"
   },
   {
     "id": "xai",
@@ -352,7 +388,10 @@
       "newsHeat": 94,
       "marketImpact": 82,
       "developerImpact": 68
-    }
+    },
+    "brandColor": "#FFFFFF",
+    "domain": "x.ai",
+    "logo": "/logos/xai.png"
   },
   {
     "id": "mistral",
@@ -379,7 +418,10 @@
       "newsHeat": 76,
       "marketImpact": 70,
       "developerImpact": 88
-    }
+    },
+    "brandColor": "#FF7000",
+    "domain": "mistral.ai",
+    "logo": "/logos/mistral.png"
   },
   {
     "id": "cohere",
@@ -406,7 +448,10 @@
       "newsHeat": 64,
       "marketImpact": 66,
       "developerImpact": 70
-    }
+    },
+    "brandColor": "#7B61FF",
+    "domain": "cohere.com",
+    "logo": "/logos/cohere.png"
   },
   {
     "id": "deepseek",
@@ -433,7 +478,10 @@
       "newsHeat": 96,
       "marketImpact": 88,
       "developerImpact": 94
-    }
+    },
+    "brandColor": "#4F46E5",
+    "domain": "deepseek.com",
+    "logo": "/logos/deepseek.png"
   },
   {
     "id": "langchain",
@@ -460,7 +508,10 @@
       "newsHeat": 78,
       "marketImpact": 62,
       "developerImpact": 96
-    }
+    },
+    "brandColor": "#22C55E",
+    "domain": "langchain.com",
+    "logo": "/logos/langchain.png"
   },
   {
     "id": "perplexity",
@@ -487,7 +538,10 @@
       "newsHeat": 86,
       "marketImpact": 72,
       "developerImpact": 60
-    }
+    },
+    "brandColor": "#22C55E",
+    "domain": "perplexity.ai",
+    "logo": "/logos/perplexity.png"
   },
   {
     "id": "microsoft",
@@ -515,7 +569,10 @@
       "newsHeat": 88,
       "marketImpact": 96,
       "developerImpact": 86
-    }
+    },
+    "brandColor": "#00A4EF",
+    "domain": "microsoft.com",
+    "logo": "/logos/microsoft.png"
   },
   {
     "id": "salesforce",
@@ -542,7 +599,10 @@
       "newsHeat": 72,
       "marketImpact": 76,
       "developerImpact": 58
-    }
+    },
+    "brandColor": "#00A1E0",
+    "domain": "salesforce.com",
+    "logo": "/logos/salesforce.png"
   },
   {
     "id": "devin",
@@ -569,7 +629,10 @@
       "newsHeat": 78,
       "marketImpact": 62,
       "developerImpact": 82
-    }
+    },
+    "brandColor": "#22C55E",
+    "domain": "cognition.ai",
+    "logo": "/logos/devin.png"
   },
   {
     "id": "midjourney",
@@ -596,7 +659,10 @@
       "newsHeat": 76,
       "marketImpact": 64,
       "developerImpact": 46
-    }
+    },
+    "brandColor": "#FFFFFF",
+    "domain": "midjourney.com",
+    "logo": "/logos/midjourney.png"
   },
   {
     "id": "adobe",
@@ -623,7 +689,10 @@
       "newsHeat": 72,
       "marketImpact": 80,
       "developerImpact": 44
-    }
+    },
+    "brandColor": "#FF0000",
+    "domain": "adobe.com",
+    "logo": "/logos/adobe.png"
   },
   {
     "id": "runway",
@@ -650,7 +719,10 @@
       "newsHeat": 78,
       "marketImpact": 58,
       "developerImpact": 48
-    }
+    },
+    "brandColor": "#FFFFFF",
+    "domain": "runwayml.com",
+    "logo": "/logos/runway.png"
   },
   {
     "id": "pika",
@@ -676,7 +748,10 @@
       "newsHeat": 66,
       "marketImpact": 44,
       "developerImpact": 36
-    }
+    },
+    "brandColor": "#EC4899",
+    "domain": "pika.art",
+    "logo": "/logos/pika.png"
   },
   {
     "id": "luma",
@@ -703,7 +778,10 @@
       "newsHeat": 64,
       "marketImpact": 42,
       "developerImpact": 38
-    }
+    },
+    "brandColor": "#EC4899",
+    "domain": "lumalabs.ai",
+    "logo": "/logos/luma.png"
   },
   {
     "id": "elevenlabs",
@@ -730,7 +808,10 @@
       "newsHeat": 76,
       "marketImpact": 60,
       "developerImpact": 58
-    }
+    },
+    "brandColor": "#111111",
+    "domain": "elevenlabs.io",
+    "logo": "/logos/elevenlabs.png"
   },
   {
     "id": "tesla",
@@ -757,7 +838,10 @@
       "newsHeat": 88,
       "marketImpact": 82,
       "developerImpact": 54
-    }
+    },
+    "brandColor": "#E82127",
+    "domain": "tesla.com",
+    "logo": "/logos/tesla.png"
   },
   {
     "id": "figure",
@@ -784,7 +868,10 @@
       "newsHeat": 82,
       "marketImpact": 62,
       "developerImpact": 42
-    }
+    },
+    "brandColor": "#F97316",
+    "domain": "figure.ai",
+    "logo": "/logos/figure.png"
   },
   {
     "id": "bostondynamics",
@@ -811,7 +898,10 @@
       "newsHeat": 70,
       "marketImpact": 48,
       "developerImpact": 34
-    }
+    },
+    "brandColor": "#F97316",
+    "domain": "bostondynamics.com",
+    "logo": "/logos/bostondynamics.png"
   },
   {
     "id": "huggingface",
@@ -839,7 +929,10 @@
       "newsHeat": 78,
       "marketImpact": 66,
       "developerImpact": 98
-    }
+    },
+    "brandColor": "#FFD21E",
+    "domain": "huggingface.co",
+    "logo": "/logos/huggingface.png"
   },
   {
     "id": "databricks",
@@ -866,7 +959,10 @@
       "newsHeat": 74,
       "marketImpact": 78,
       "developerImpact": 76
-    }
+    },
+    "brandColor": "#EAB308",
+    "domain": "databricks.com",
+    "logo": "/logos/databricks.png"
   },
   {
     "id": "oracle",
@@ -893,7 +989,10 @@
       "newsHeat": 70,
       "marketImpact": 76,
       "developerImpact": 44
-    }
+    },
+    "brandColor": "#C74634",
+    "domain": "oracle.com",
+    "logo": "/logos/oracle.png"
   },
   {
     "id": "sap",
@@ -920,7 +1019,10 @@
       "newsHeat": 62,
       "marketImpact": 70,
       "developerImpact": 36
-    }
+    },
+    "brandColor": "#EAB308",
+    "domain": "sap.com",
+    "logo": "/logos/sap.png"
   },
   {
     "id": "ibm",
@@ -947,7 +1049,10 @@
       "newsHeat": 60,
       "marketImpact": 66,
       "developerImpact": 48
-    }
+    },
+    "brandColor": "#0F62FE",
+    "domain": "ibm.com",
+    "logo": "/logos/ibm.png"
   },
   {
     "id": "alibaba",
@@ -975,7 +1080,10 @@
       "newsHeat": 84,
       "marketImpact": 82,
       "developerImpact": 72
-    }
+    },
+    "brandColor": "#EF4444",
+    "domain": "alibaba.com",
+    "logo": "/logos/alibaba.png"
   },
   {
     "id": "bytedance",
@@ -1002,7 +1110,10 @@
       "newsHeat": 82,
       "marketImpact": 78,
       "developerImpact": 52
-    }
+    },
+    "brandColor": "#EF4444",
+    "domain": "bytedance.com",
+    "logo": "/logos/bytedance.png"
   },
   {
     "id": "tencent",
@@ -1029,7 +1140,10 @@
       "newsHeat": 70,
       "marketImpact": 72,
       "developerImpact": 46
-    }
+    },
+    "brandColor": "#EF4444",
+    "domain": "tencent.com",
+    "logo": "/logos/tencent.png"
   },
   {
     "id": "baidu",
@@ -1056,7 +1170,10 @@
       "newsHeat": 72,
       "marketImpact": 70,
       "developerImpact": 44
-    }
+    },
+    "brandColor": "#EF4444",
+    "domain": "baidu.com",
+    "logo": "/logos/baidu.png"
   },
   {
     "id": "amazon",
@@ -1085,7 +1202,10 @@
       "newsHeat": 84,
       "marketImpact": 90,
       "developerImpact": 78
-    }
+    },
+    "brandColor": "#FF9900",
+    "domain": "amazon.com",
+    "logo": "/logos/amazon.png"
   },
   {
     "id": "apple",
@@ -1113,7 +1233,10 @@
       "newsHeat": 82,
       "marketImpact": 86,
       "developerImpact": 74
-    }
+    },
+    "brandColor": "#A2AAAD",
+    "domain": "apple.com",
+    "logo": "/logos/apple.png"
   },
   {
     "id": "softbank",
@@ -1142,7 +1265,10 @@
       "newsHeat": 88,
       "marketImpact": 88,
       "developerImpact": 40
-    }
+    },
+    "brandColor": "#000000",
+    "domain": "softbank.jp",
+    "logo": "/logos/softbank.png"
   },
   {
     "id": "arm",
@@ -1171,7 +1297,10 @@
       "newsHeat": 80,
       "marketImpact": 88,
       "developerImpact": 72
-    }
+    },
+    "brandColor": "#3B82F6",
+    "domain": "arm.com",
+    "logo": "/logos/arm.png"
   },
   {
     "id": "asml",
@@ -1198,7 +1327,10 @@
       "newsHeat": 76,
       "marketImpact": 94,
       "developerImpact": 30
-    }
+    },
+    "brandColor": "#3B82F6",
+    "domain": "asml.com",
+    "logo": "/logos/asml.png"
   },
   {
     "id": "sk-hynix",
@@ -1225,7 +1357,10 @@
       "newsHeat": 78,
       "marketImpact": 90,
       "developerImpact": 30
-    }
+    },
+    "brandColor": "#3B82F6",
+    "domain": "skhynix.com",
+    "logo": "/logos/sk-hynix.png"
   },
   {
     "id": "samsung-semiconductor",
@@ -1254,7 +1389,10 @@
       "newsHeat": 74,
       "marketImpact": 86,
       "developerImpact": 28
-    }
+    },
+    "brandColor": "#3B82F6",
+    "domain": "semiconductor.samsung.com",
+    "logo": "/logos/samsung-semiconductor.png"
   },
   {
     "id": "sakana-ai",
@@ -1282,7 +1420,10 @@
       "newsHeat": 76,
       "marketImpact": 58,
       "developerImpact": 72
-    }
+    },
+    "brandColor": "#2563EB",
+    "domain": "sakana.ai",
+    "logo": "/logos/sakana-ai.png"
   },
   {
     "id": "preferred-networks",
@@ -1311,7 +1452,10 @@
       "newsHeat": 66,
       "marketImpact": 62,
       "developerImpact": 68
-    }
+    },
+    "brandColor": "#2563EB",
+    "domain": "preferred.jp",
+    "logo": "/logos/preferred-networks.png"
   },
   {
     "id": "abeja",
@@ -1337,7 +1481,10 @@
       "newsHeat": 54,
       "marketImpact": 58,
       "developerImpact": 50
-    }
+    },
+    "brandColor": "#2563EB",
+    "domain": "abeja.asia",
+    "logo": "/logos/abeja.png"
   },
   {
     "id": "stockmark",
@@ -1363,7 +1510,10 @@
       "newsHeat": 48,
       "marketImpact": 44,
       "developerImpact": 56
-    }
+    },
+    "brandColor": "#2563EB",
+    "domain": "stockmark.co.jp",
+    "logo": "/logos/stockmark.png"
   },
   {
     "id": "pksha-technology",
@@ -1390,7 +1540,10 @@
       "newsHeat": 52,
       "marketImpact": 60,
       "developerImpact": 48
-    }
+    },
+    "brandColor": "#2563EB",
+    "domain": "pkshatech.com",
+    "logo": "/logos/pksha-technology.png"
   },
   {
     "id": "exawizards",
@@ -1416,7 +1569,10 @@
       "newsHeat": 46,
       "marketImpact": 50,
       "developerImpact": 40
-    }
+    },
+    "brandColor": "#2563EB",
+    "domain": "exawizards.com",
+    "logo": "/logos/exawizards.png"
   },
   {
     "id": "rinna",
@@ -1443,7 +1599,10 @@
       "newsHeat": 52,
       "marketImpact": 44,
       "developerImpact": 72
-    }
+    },
+    "brandColor": "#2563EB",
+    "domain": "rinna.co.jp",
+    "logo": "/logos/rinna.png"
   },
   {
     "id": "ubie",
@@ -1470,7 +1629,10 @@
       "newsHeat": 56,
       "marketImpact": 58,
       "developerImpact": 40
-    }
+    },
+    "brandColor": "#2563EB",
+    "domain": "ubie.life",
+    "logo": "/logos/ubie.png"
   },
   {
     "id": "ai-inside",
@@ -1497,7 +1659,10 @@
       "newsHeat": 44,
       "marketImpact": 50,
       "developerImpact": 36
-    }
+    },
+    "brandColor": "#2563EB",
+    "domain": "inside.ai",
+    "logo": "/logos/ai-inside.png"
   },
   {
     "id": "cinnamon-ai",
@@ -1523,7 +1688,10 @@
       "newsHeat": 40,
       "marketImpact": 44,
       "developerImpact": 36
-    }
+    },
+    "brandColor": "#2563EB",
+    "domain": "cinnamon.is",
+    "logo": "/logos/cinnamon-ai.png"
   },
   {
     "id": "fixstars",
@@ -1549,7 +1717,10 @@
       "newsHeat": 42,
       "marketImpact": 48,
       "developerImpact": 52
-    }
+    },
+    "brandColor": "#2563EB",
+    "domain": "fixstars.com",
+    "logo": "/logos/fixstars.png"
   },
   {
     "id": "leapmind",
@@ -1575,7 +1746,10 @@
       "newsHeat": 36,
       "marketImpact": 40,
       "developerImpact": 44
-    }
+    },
+    "brandColor": "#2563EB",
+    "domain": "leapmind.io",
+    "logo": "/logos/leapmind.png"
   },
   {
     "id": "rapidus",
@@ -1602,7 +1776,10 @@
       "newsHeat": 72,
       "marketImpact": 70,
       "developerImpact": 24
-    }
+    },
+    "brandColor": "#2563EB",
+    "domain": "rapidus.inc",
+    "logo": "/logos/rapidus.png"
   },
   {
     "id": "renesas",
@@ -1629,7 +1806,10 @@
       "newsHeat": 58,
       "marketImpact": 70,
       "developerImpact": 44
-    }
+    },
+    "brandColor": "#2563EB",
+    "domain": "renesas.com",
+    "logo": "/logos/renesas.png"
   },
   {
     "id": "kioxia",
@@ -1656,7 +1836,10 @@
       "newsHeat": 52,
       "marketImpact": 64,
       "developerImpact": 22
-    }
+    },
+    "brandColor": "#2563EB",
+    "domain": "kioxia.com",
+    "logo": "/logos/kioxia.png"
   },
   {
     "id": "sony-semiconductor",
@@ -1684,7 +1867,10 @@
       "newsHeat": 60,
       "marketImpact": 76,
       "developerImpact": 36
-    }
+    },
+    "brandColor": "#2563EB",
+    "domain": "sony-semicon.com",
+    "logo": "/logos/sony-semiconductor.png"
   },
   {
     "id": "fujitsu",
@@ -1713,7 +1899,10 @@
       "newsHeat": 60,
       "marketImpact": 70,
       "developerImpact": 52
-    }
+    },
+    "brandColor": "#2563EB",
+    "domain": "fujitsu.com",
+    "logo": "/logos/fujitsu.png"
   },
   {
     "id": "nec",
@@ -1741,7 +1930,10 @@
       "newsHeat": 56,
       "marketImpact": 66,
       "developerImpact": 46
-    }
+    },
+    "brandColor": "#2563EB",
+    "domain": "nec.com",
+    "logo": "/logos/nec.png"
   },
   {
     "id": "ntt",
@@ -1770,7 +1962,10 @@
       "newsHeat": 64,
       "marketImpact": 72,
       "developerImpact": 54
-    }
+    },
+    "brandColor": "#2563EB",
+    "domain": "group.ntt",
+    "logo": "/logos/ntt.png"
   },
   {
     "id": "ntt-data",
@@ -1796,7 +1991,10 @@
       "newsHeat": 50,
       "marketImpact": 62,
       "developerImpact": 38
-    }
+    },
+    "brandColor": "#2563EB",
+    "domain": "nttdata.com",
+    "logo": "/logos/ntt-data.png"
   },
   {
     "id": "iij",
@@ -1822,7 +2020,10 @@
       "newsHeat": 40,
       "marketImpact": 50,
       "developerImpact": 46
-    }
+    },
+    "brandColor": "#2563EB",
+    "domain": "iij.ad.jp",
+    "logo": "/logos/iij.png"
   },
   {
     "id": "sakura-internet",
@@ -1849,7 +2050,10 @@
       "newsHeat": 68,
       "marketImpact": 62,
       "developerImpact": 60
-    }
+    },
+    "brandColor": "#2563EB",
+    "domain": "sakura.ad.jp",
+    "logo": "/logos/sakura-internet.png"
   },
   {
     "id": "gmo-gpu-cloud",
@@ -1876,7 +2080,10 @@
       "newsHeat": 52,
       "marketImpact": 48,
       "developerImpact": 56
-    }
+    },
+    "brandColor": "#2563EB",
+    "domain": "gmo.jp",
+    "logo": "/logos/gmo-gpu-cloud.png"
   },
   {
     "id": "highreso",
@@ -1900,7 +2107,10 @@
       "newsHeat": 36,
       "marketImpact": 38,
       "developerImpact": 42
-    }
+    },
+    "brandColor": "#2563EB",
+    "domain": "highreso.jp",
+    "logo": "/logos/highreso.png"
   },
   {
     "id": "fanuc",
@@ -1928,7 +2138,10 @@
       "newsHeat": 60,
       "marketImpact": 78,
       "developerImpact": 38
-    }
+    },
+    "brandColor": "#2563EB",
+    "domain": "fanuc.co.jp",
+    "logo": "/logos/fanuc.png"
   },
   {
     "id": "yaskawa",
@@ -1955,7 +2168,10 @@
       "newsHeat": 52,
       "marketImpact": 68,
       "developerImpact": 30
-    }
+    },
+    "brandColor": "#2563EB",
+    "domain": "yaskawa-global.com",
+    "logo": "/logos/yaskawa.png"
   },
   {
     "id": "kawasaki-robotics",
@@ -1982,7 +2198,10 @@
       "newsHeat": 44,
       "marketImpact": 58,
       "developerImpact": 28
-    }
+    },
+    "brandColor": "#2563EB",
+    "domain": "kawasaki.com",
+    "logo": "/logos/kawasaki-robotics.png"
   },
   {
     "id": "denso-robotics",
@@ -2009,7 +2228,10 @@
       "newsHeat": 42,
       "marketImpact": 56,
       "developerImpact": 26
-    }
+    },
+    "brandColor": "#2563EB",
+    "domain": "densorobotics.com",
+    "logo": "/logos/denso-robotics.png"
   },
   {
     "id": "mujin",
@@ -2036,7 +2258,10 @@
       "newsHeat": 50,
       "marketImpact": 58,
       "developerImpact": 46
-    }
+    },
+    "brandColor": "#2563EB",
+    "domain": "mujin.co.jp",
+    "logo": "/logos/mujin.png"
   },
   {
     "id": "preferred-robotics",
@@ -2063,7 +2288,10 @@
       "newsHeat": 52,
       "marketImpact": 42,
       "developerImpact": 48
-    }
+    },
+    "brandColor": "#2563EB",
+    "domain": "preferred-robotics.jp",
+    "logo": "/logos/preferred-robotics.png"
   },
   {
     "id": "honda-robotics",
@@ -2090,7 +2318,10 @@
       "newsHeat": 56,
       "marketImpact": 62,
       "developerImpact": 34
-    }
+    },
+    "brandColor": "#2563EB",
+    "domain": "global.honda",
+    "logo": "/logos/honda-robotics.png"
   },
   {
     "id": "toyota-research",
@@ -2117,7 +2348,10 @@
       "newsHeat": 62,
       "marketImpact": 68,
       "developerImpact": 52
-    }
+    },
+    "brandColor": "#2563EB",
+    "domain": "tri.global",
+    "logo": "/logos/toyota-research.png"
   },
   {
     "id": "line-yahoo",
@@ -2146,7 +2380,10 @@
       "newsHeat": 62,
       "marketImpact": 68,
       "developerImpact": 52
-    }
+    },
+    "brandColor": "#2563EB",
+    "domain": "lycorp.co.jp",
+    "logo": "/logos/line-yahoo.png"
   },
   {
     "id": "rakuten-ai",
@@ -2173,7 +2410,10 @@
       "newsHeat": 56,
       "marketImpact": 62,
       "developerImpact": 50
-    }
+    },
+    "brandColor": "#2563EB",
+    "domain": "rakuten.com",
+    "logo": "/logos/rakuten-ai.png"
   },
   {
     "id": "cyberagent-ai",
@@ -2201,7 +2441,10 @@
       "newsHeat": 54,
       "marketImpact": 56,
       "developerImpact": 62
-    }
+    },
+    "brandColor": "#2563EB",
+    "domain": "cyberagent.co.jp",
+    "logo": "/logos/cyberagent-ai.png"
   },
   {
     "id": "dena-ai",
@@ -2227,7 +2470,10 @@
       "newsHeat": 40,
       "marketImpact": 48,
       "developerImpact": 42
-    }
+    },
+    "brandColor": "#2563EB",
+    "domain": "dena.com",
+    "logo": "/logos/dena-ai.png"
   },
   {
     "id": "mercari-ai",
@@ -2254,7 +2500,10 @@
       "newsHeat": 50,
       "marketImpact": 54,
       "developerImpact": 52
-    }
+    },
+    "brandColor": "#2563EB",
+    "domain": "mercari.com",
+    "logo": "/logos/mercari-ai.png"
   },
   {
     "id": "heroz",
@@ -2280,7 +2529,10 @@
       "newsHeat": 38,
       "marketImpact": 44,
       "developerImpact": 40
-    }
+    },
+    "brandColor": "#2563EB",
+    "domain": "heroz.co.jp",
+    "logo": "/logos/heroz.png"
   },
   {
     "id": "laboro-ai",
@@ -2306,7 +2558,10 @@
       "newsHeat": 34,
       "marketImpact": 40,
       "developerImpact": 44
-    }
+    },
+    "brandColor": "#2563EB",
+    "domain": "laboro.ai",
+    "logo": "/logos/laboro-ai.png"
   },
   {
     "id": "google-deepmind",
@@ -2318,7 +2573,10 @@
     "description": "Google DeepMindはAI Ecosystem Mapで参照される企業・基盤です。",
     "tags": [],
     "country": "UK",
-    "role": "ecosystem participant"
+    "role": "ecosystem participant",
+    "brandColor": "#7B61FF",
+    "domain": "deepmind.google",
+    "logo": "/logos/google-deepmind.png"
   },
   {
     "id": "applied-materials",
@@ -2330,7 +2588,10 @@
     "description": "Applied MaterialsはAI Ecosystem Mapで参照される企業・基盤です。",
     "tags": [],
     "country": "",
-    "role": "ecosystem participant"
+    "role": "ecosystem participant",
+    "brandColor": "#3B82F6",
+    "domain": "appliedmaterials.com",
+    "logo": "/logos/applied-materials.png"
   },
   {
     "id": "lam-research",
@@ -2342,7 +2603,10 @@
     "description": "Lam ResearchはAI Ecosystem Mapで参照される企業・基盤です。",
     "tags": [],
     "country": "",
-    "role": "ecosystem participant"
+    "role": "ecosystem participant",
+    "brandColor": "#3B82F6",
+    "domain": "lamresearch.com",
+    "logo": "/logos/lam-research.png"
   },
   {
     "id": "qualcomm",
@@ -2354,7 +2618,10 @@
     "description": "QualcommはAI Ecosystem Mapで参照される企業・基盤です。",
     "tags": [],
     "country": "",
-    "role": "ecosystem participant"
+    "role": "ecosystem participant",
+    "brandColor": "#3B82F6",
+    "domain": "qualcomm.com",
+    "logo": "/logos/qualcomm.png"
   },
   {
     "id": "mediatek",
@@ -2366,7 +2633,10 @@
     "description": "MediaTekはAI Ecosystem Mapで参照される企業・基盤です。",
     "tags": [],
     "country": "",
-    "role": "ecosystem participant"
+    "role": "ecosystem participant",
+    "brandColor": "#3B82F6",
+    "domain": "mediatek.com",
+    "logo": "/logos/mediatek.png"
   },
   {
     "id": "dell",
@@ -2378,7 +2648,10 @@
     "description": "DellはAI Ecosystem Mapで参照される企業・基盤です。",
     "tags": [],
     "country": "",
-    "role": "ecosystem participant"
+    "role": "ecosystem participant",
+    "brandColor": "#3B82F6",
+    "domain": "dell.com",
+    "logo": "/logos/dell.png"
   },
   {
     "id": "supermicro",
@@ -2390,7 +2663,10 @@
     "description": "SupermicroはAI Ecosystem Mapで参照される企業・基盤です。",
     "tags": [],
     "country": "",
-    "role": "ecosystem participant"
+    "role": "ecosystem participant",
+    "brandColor": "#3B82F6",
+    "domain": "supermicro.com",
+    "logo": "/logos/supermicro.png"
   },
   {
     "id": "globalfoundries",
@@ -2402,7 +2678,10 @@
     "description": "GlobalFoundriesはAI Ecosystem Mapで参照される企業・基盤です。",
     "tags": [],
     "country": "",
-    "role": "ecosystem participant"
+    "role": "ecosystem participant",
+    "brandColor": "#3B82F6",
+    "domain": "gf.com",
+    "logo": "/logos/globalfoundries.png"
   },
   {
     "id": "micron",
@@ -2414,7 +2693,10 @@
     "description": "MicronはAI Ecosystem Mapで参照される企業・基盤です。",
     "tags": [],
     "country": "",
-    "role": "ecosystem participant"
+    "role": "ecosystem participant",
+    "brandColor": "#3B82F6",
+    "domain": "micron.com",
+    "logo": "/logos/micron.png"
   },
   {
     "id": "hpe",
@@ -2426,7 +2708,10 @@
     "description": "HPEはAI Ecosystem Mapで参照される企業・基盤です。",
     "tags": [],
     "country": "",
-    "role": "ecosystem participant"
+    "role": "ecosystem participant",
+    "brandColor": "#3B82F6",
+    "domain": "hpe.com",
+    "logo": "/logos/hpe.png"
   },
   {
     "id": "oracle-oci",
@@ -2438,7 +2723,10 @@
     "description": "Oracle OCIはAI Ecosystem Mapで参照される企業・基盤です。",
     "tags": [],
     "country": "",
-    "role": "ecosystem participant"
+    "role": "ecosystem participant",
+    "brandColor": "#3B82F6",
+    "domain": "oracle.com",
+    "logo": "/logos/oracle-oci.png"
   },
   {
     "id": "microsoft-azure",
@@ -2450,7 +2738,10 @@
     "description": "Microsoft AzureはAI Ecosystem Mapで参照される企業・基盤です。",
     "tags": [],
     "country": "",
-    "role": "ecosystem participant"
+    "role": "ecosystem participant",
+    "brandColor": "#3B82F6",
+    "domain": "azure.microsoft.com",
+    "logo": "/logos/microsoft-azure.png"
   },
   {
     "id": "aws",
@@ -2462,7 +2753,10 @@
     "description": "AWSはAI Ecosystem Mapで参照される企業・基盤です。",
     "tags": [],
     "country": "",
-    "role": "ecosystem participant"
+    "role": "ecosystem participant",
+    "brandColor": "#3B82F6",
+    "domain": "aws.amazon.com",
+    "logo": "/logos/aws.png"
   },
   {
     "id": "google-cloud",
@@ -2474,7 +2768,10 @@
     "description": "Google CloudはAI Ecosystem Mapで参照される企業・基盤です。",
     "tags": [],
     "country": "",
-    "role": "ecosystem participant"
+    "role": "ecosystem participant",
+    "brandColor": "#3B82F6",
+    "domain": "cloud.google.com",
+    "logo": "/logos/google-cloud.png"
   },
   {
     "id": "ibm-cloud",
@@ -2486,7 +2783,10 @@
     "description": "IBM CloudはAI Ecosystem Mapで参照される企業・基盤です。",
     "tags": [],
     "country": "",
-    "role": "ecosystem participant"
+    "role": "ecosystem participant",
+    "brandColor": "#3B82F6",
+    "domain": "ibm.com",
+    "logo": "/logos/ibm-cloud.png"
   },
   {
     "id": "amazon-bedrock",
@@ -2498,7 +2798,10 @@
     "description": "Amazon BedrockはAI Ecosystem Mapで参照される企業・基盤です。",
     "tags": [],
     "country": "",
-    "role": "ecosystem participant"
+    "role": "ecosystem participant",
+    "brandColor": "#EAB308",
+    "domain": "aws.amazon.com",
+    "logo": "/logos/amazon-bedrock.png"
   },
   {
     "id": "google-vertex-ai",
@@ -2510,7 +2813,10 @@
     "description": "Google Vertex AIはAI Ecosystem Mapで参照される企業・基盤です。",
     "tags": [],
     "country": "",
-    "role": "ecosystem participant"
+    "role": "ecosystem participant",
+    "brandColor": "#EAB308",
+    "domain": "cloud.google.com",
+    "logo": "/logos/google-vertex-ai.png"
   },
   {
     "id": "github-copilot",
@@ -2522,7 +2828,10 @@
     "description": "github-copilotはAI Ecosystem Mapで参照される企業・基盤です。",
     "tags": [],
     "country": "",
-    "role": "ecosystem participant"
+    "role": "ecosystem participant",
+    "brandColor": "#EAB308",
+    "domain": "github.com",
+    "logo": "/logos/github-copilot.png"
   },
   {
     "id": "china-ai-cloud",
@@ -2534,7 +2843,8 @@
     "description": "china-ai-cloudはAI Ecosystem Mapで参照される企業・基盤です。",
     "tags": [],
     "country": "",
-    "role": "ecosystem participant"
+    "role": "ecosystem participant",
+    "brandColor": "#EAB308"
   },
   {
     "id": "kddi",
@@ -2546,7 +2856,10 @@
     "description": "kddiはAI Ecosystem Mapで参照される企業・基盤です。",
     "tags": [],
     "country": "",
-    "role": "ecosystem participant"
+    "role": "ecosystem participant",
+    "brandColor": "#EAB308",
+    "domain": "kddi.com",
+    "logo": "/logos/kddi.png"
   },
   {
     "id": "yahoo-search",
@@ -2558,7 +2871,10 @@
     "description": "yahoo-searchはAI Ecosystem Mapで参照される企業・基盤です。",
     "tags": [],
     "country": "",
-    "role": "ecosystem participant"
+    "role": "ecosystem participant",
+    "brandColor": "#EAB308",
+    "domain": "yahoo.co.jp",
+    "logo": "/logos/yahoo-search.png"
   },
   {
     "id": "crusoe",
@@ -2574,7 +2890,10 @@
       "gpu"
     ],
     "country": "US",
-    "role": "AIデータセンターとクラウド計算基盤を提供するインフラ企業。"
+    "role": "AIデータセンターとクラウド計算基盤を提供するインフラ企業。",
+    "brandColor": "#3B82F6",
+    "domain": "crusoe.ai",
+    "logo": "/logos/crusoe.png"
   },
   {
     "id": "nebius",
@@ -2590,7 +2909,10 @@
       "datacenter"
     ],
     "country": "NL",
-    "role": "AIクラウドとGPUインフラを提供する欧州系AIインフラ企業。"
+    "role": "AIクラウドとGPUインフラを提供する欧州系AIインフラ企業。",
+    "brandColor": "#3B82F6",
+    "domain": "nebius.com",
+    "logo": "/logos/nebius.png"
   },
   {
     "id": "together-ai",
@@ -2606,7 +2928,10 @@
       "platform"
     ],
     "country": "US",
-    "role": "オープンモデル向け推論・学習基盤を提供するAIプラットフォーム企業。"
+    "role": "オープンモデル向け推論・学習基盤を提供するAIプラットフォーム企業。",
+    "brandColor": "#06B6D4",
+    "domain": "together.ai",
+    "logo": "/logos/together-ai.png"
   },
   {
     "id": "snowflake",
@@ -2622,7 +2947,10 @@
       "analytics"
     ],
     "country": "US",
-    "role": "データクラウドを基盤に企業向けAI・分析基盤を展開する企業。"
+    "role": "データクラウドを基盤に企業向けAI・分析基盤を展開する企業。",
+    "brandColor": "#EAB308",
+    "domain": "snowflake.com",
+    "logo": "/logos/snowflake.png"
   },
   {
     "id": "palantir",
@@ -2638,7 +2966,10 @@
       "AIP"
     ],
     "country": "US",
-    "role": "AIPを中心に政府・企業向けAI運用基盤を提供する企業。"
+    "role": "AIPを中心に政府・企業向けAI運用基盤を提供する企業。",
+    "brandColor": "#EAB308",
+    "domain": "palantir.com",
+    "logo": "/logos/palantir.png"
   },
   {
     "id": "servicenow",
@@ -2654,7 +2985,10 @@
       "agent"
     ],
     "country": "US",
-    "role": "業務ワークフローとAIエージェントを統合するエンタープライズSaaS企業。"
+    "role": "業務ワークフローとAIエージェントを統合するエンタープライズSaaS企業。",
+    "brandColor": "#EAB308",
+    "domain": "servicenow.com",
+    "logo": "/logos/servicenow.png"
   },
   {
     "id": "accenture",
@@ -2670,7 +3004,10 @@
       "implementation"
     ],
     "country": "IE",
-    "role": "企業AI導入と業務変革を支援するグローバルコンサルティング企業。"
+    "role": "企業AI導入と業務変革を支援するグローバルコンサルティング企業。",
+    "brandColor": "#EAB308",
+    "domain": "accenture.com",
+    "logo": "/logos/accenture.png"
   },
   {
     "id": "deloitte",
@@ -2686,7 +3023,10 @@
       "enterprise"
     ],
     "country": "UK",
-    "role": "企業向けAI導入、監査、リスク管理を支援するプロフェッショナルサービス企業。"
+    "role": "企業向けAI導入、監査、リスク管理を支援するプロフェッショナルサービス企業。",
+    "brandColor": "#EAB308",
+    "domain": "deloitte.com",
+    "logo": "/logos/deloitte.png"
   },
   {
     "id": "capgemini",
@@ -2702,7 +3042,10 @@
       "enterprise"
     ],
     "country": "FR",
-    "role": "AIシステム導入とデジタル変革を支援するITサービス企業。"
+    "role": "AIシステム導入とデジタル変革を支援するITサービス企業。",
+    "brandColor": "#EAB308",
+    "domain": "capgemini.com",
+    "logo": "/logos/capgemini.png"
   },
   {
     "id": "stability-ai",
@@ -2712,7 +3055,10 @@
     "size": "medium",
     "description": "画像生成モデルとStable Diffusionエコシステムを展開する生成AI企業。",
     "score": 72,
-    "tags": []
+    "tags": [],
+    "brandColor": "#EC4899",
+    "domain": "stability.ai",
+    "logo": "/logos/stability-ai.png"
   },
   {
     "id": "suno",
@@ -2722,7 +3068,10 @@
     "size": "medium",
     "description": "AI音楽生成サービスを展開する生成AI企業。",
     "score": 72,
-    "tags": []
+    "tags": [],
+    "brandColor": "#7C3AED",
+    "domain": "suno.com",
+    "logo": "/logos/suno.png"
   },
   {
     "id": "udio",
@@ -2732,7 +3081,10 @@
     "size": "medium",
     "description": "AI音楽生成サービスを展開する生成AI企業。",
     "score": 72,
-    "tags": []
+    "tags": [],
+    "brandColor": "#111827",
+    "domain": "udio.com",
+    "logo": "/logos/udio.png"
   },
   {
     "id": "heygen",
@@ -2742,7 +3094,10 @@
     "size": "medium",
     "description": "AIアバター動画生成と翻訳動画を提供する生成AI企業。",
     "score": 72,
-    "tags": []
+    "tags": [],
+    "brandColor": "#EC4899",
+    "domain": "heygen.com",
+    "logo": "/logos/heygen.png"
   },
   {
     "id": "synthesia",
@@ -2752,7 +3107,10 @@
     "size": "medium",
     "description": "法人向けAI動画生成プラットフォームを提供する企業。",
     "score": 72,
-    "tags": []
+    "tags": [],
+    "brandColor": "#EC4899",
+    "domain": "synthesia.io",
+    "logo": "/logos/synthesia.png"
   },
   {
     "id": "genspark",
@@ -2762,7 +3120,10 @@
     "size": "medium",
     "description": "AI検索とエージェント型リサーチを提供する企業。",
     "score": 70,
-    "tags": []
+    "tags": [],
+    "brandColor": "#22C55E",
+    "domain": "genspark.ai",
+    "logo": "/logos/genspark.png"
   },
   {
     "id": "manus",
@@ -2772,7 +3133,10 @@
     "size": "medium",
     "description": "汎用AIエージェントを展開する企業。",
     "score": 70,
-    "tags": []
+    "tags": [],
+    "brandColor": "#22C55E",
+    "domain": "manus.im",
+    "logo": "/logos/manus.png"
   },
   {
     "id": "cognition",
@@ -2782,7 +3146,10 @@
     "size": "medium",
     "description": "Devinを開発するAIソフトウェアエンジニアリング企業。",
     "score": 70,
-    "tags": []
+    "tags": [],
+    "brandColor": "#22C55E",
+    "domain": "cognition.ai",
+    "logo": "/logos/cognition.png"
   },
   {
     "id": "open-interpreter",
@@ -2792,7 +3159,10 @@
     "size": "medium",
     "description": "ローカル実行型AIエージェントのOSSプロジェクト。",
     "score": 70,
-    "tags": []
+    "tags": [],
+    "brandColor": "#22C55E",
+    "domain": "openinterpreter.com",
+    "logo": "/logos/open-interpreter.png"
   },
   {
     "id": "crewai",
@@ -2802,7 +3172,10 @@
     "size": "medium",
     "description": "マルチエージェントワークフロー基盤を提供する企業。",
     "score": 70,
-    "tags": []
+    "tags": [],
+    "brandColor": "#22C55E",
+    "domain": "crewai.com",
+    "logo": "/logos/crewai.png"
   },
   {
     "id": "dify",
@@ -2812,7 +3185,10 @@
     "size": "medium",
     "description": "LLMアプリとエージェント構築のオープンソース基盤。",
     "score": 70,
-    "tags": []
+    "tags": [],
+    "brandColor": "#22C55E",
+    "domain": "dify.ai",
+    "logo": "/logos/dify.png"
   },
   {
     "id": "flowise",
@@ -2822,7 +3198,10 @@
     "size": "medium",
     "description": "ローコードLLMワークフロー構築ツール。",
     "score": 70,
-    "tags": []
+    "tags": [],
+    "brandColor": "#22C55E",
+    "domain": "flowiseai.com",
+    "logo": "/logos/flowise.png"
   },
   {
     "id": "dust",
@@ -2832,7 +3211,10 @@
     "size": "medium",
     "description": "企業向けAIアシスタントとエージェント基盤を提供。",
     "score": 70,
-    "tags": []
+    "tags": [],
+    "brandColor": "#22C55E",
+    "domain": "dust.tt",
+    "logo": "/logos/dust.png"
   },
   {
     "id": "adept",
@@ -2842,7 +3224,10 @@
     "size": "medium",
     "description": "AIエージェント研究と業務自動化に取り組む企業。",
     "score": 70,
-    "tags": []
+    "tags": [],
+    "brandColor": "#22C55E",
+    "domain": "adept.ai",
+    "logo": "/logos/adept.png"
   },
   {
     "id": "multion",
@@ -2852,7 +3237,10 @@
     "size": "medium",
     "description": "ブラウザ操作型AIエージェントを開発する企業。",
     "score": 70,
-    "tags": []
+    "tags": [],
+    "brandColor": "#22C55E",
+    "domain": "multion.ai",
+    "logo": "/logos/multion.png"
   },
   {
     "id": "rabbit",
@@ -2862,7 +3250,10 @@
     "size": "medium",
     "description": "AIデバイスとアクションモデルを展開する企業。",
     "score": 70,
-    "tags": []
+    "tags": [],
+    "brandColor": "#22C55E",
+    "domain": "rabbit.tech",
+    "logo": "/logos/rabbit.png"
   },
   {
     "id": "humane",
@@ -2872,7 +3263,10 @@
     "size": "medium",
     "description": "AIデバイスとパーソナルAI体験を展開した企業。",
     "score": 70,
-    "tags": []
+    "tags": [],
+    "brandColor": "#22C55E",
+    "domain": "hu.ma.ne",
+    "logo": "/logos/humane.png"
   },
   {
     "id": "sierra",
@@ -2882,7 +3276,10 @@
     "size": "medium",
     "description": "顧客対応AIエージェントを提供する企業。",
     "score": 70,
-    "tags": []
+    "tags": [],
+    "brandColor": "#22C55E",
+    "domain": "sierra.ai",
+    "logo": "/logos/sierra.png"
   },
   {
     "id": "replit",
@@ -2892,7 +3289,10 @@
     "size": "medium",
     "description": "AI開発環境とコーディングエージェントを提供。",
     "score": 70,
-    "tags": []
+    "tags": [],
+    "brandColor": "#22C55E",
+    "domain": "replit.com",
+    "logo": "/logos/replit.png"
   },
   {
     "id": "cursor",
@@ -2902,7 +3302,10 @@
     "size": "medium",
     "description": "AIコードエディタを提供するAnysphereの製品。",
     "score": 70,
-    "tags": []
+    "tags": [],
+    "brandColor": "#22C55E",
+    "domain": "cursor.com",
+    "logo": "/logos/cursor.png"
   },
   {
     "id": "windsurf",
@@ -2912,7 +3315,10 @@
     "size": "medium",
     "description": "AIコードエディタと開発エージェントを提供。",
     "score": 70,
-    "tags": []
+    "tags": [],
+    "brandColor": "#22C55E",
+    "domain": "windsurf.com",
+    "logo": "/logos/windsurf.png"
   },
   {
     "id": "continue-dev",
@@ -2922,7 +3328,10 @@
     "size": "medium",
     "description": "オープンソースのAIコードアシスタント。",
     "score": 70,
-    "tags": []
+    "tags": [],
+    "brandColor": "#22C55E",
+    "domain": "continue.dev",
+    "logo": "/logos/continue-dev.png"
   },
   {
     "id": "cognosys",
@@ -2932,7 +3341,10 @@
     "size": "medium",
     "description": "AIエージェント自動化ツールを提供するプロジェクト。",
     "score": 70,
-    "tags": []
+    "tags": [],
+    "brandColor": "#22C55E",
+    "domain": "cognosys.ai",
+    "logo": "/logos/cognosys.png"
   },
   {
     "id": "agentops",
@@ -2942,7 +3354,10 @@
     "size": "medium",
     "description": "AIエージェント監視と評価基盤を提供。",
     "score": 70,
-    "tags": []
+    "tags": [],
+    "brandColor": "#22C55E",
+    "domain": "agentops.ai",
+    "logo": "/logos/agentops.png"
   },
   {
     "id": "ollama",
@@ -2952,7 +3367,10 @@
     "size": "medium",
     "description": "ローカルLLM実行環境を提供するオープンソース基盤。",
     "score": 70,
-    "tags": []
+    "tags": [],
+    "brandColor": "#06B6D4",
+    "domain": "ollama.com",
+    "logo": "/logos/ollama.png"
   },
   {
     "id": "lm-studio",
@@ -2962,7 +3380,10 @@
     "size": "medium",
     "description": "ローカルLLM実行とモデル管理のデスクトップアプリ。",
     "score": 70,
-    "tags": []
+    "tags": [],
+    "brandColor": "#06B6D4",
+    "domain": "lmstudio.ai",
+    "logo": "/logos/lm-studio.png"
   },
   {
     "id": "vllm",
@@ -2972,7 +3393,10 @@
     "size": "medium",
     "description": "高スループットLLM推論エンジンのOSSプロジェクト。",
     "score": 70,
-    "tags": []
+    "tags": [],
+    "brandColor": "#06B6D4",
+    "domain": "vllm.ai",
+    "logo": "/logos/vllm.png"
   },
   {
     "id": "llama-cpp",
@@ -2982,7 +3406,10 @@
     "size": "medium",
     "description": "ローカル推論を支える軽量LLM実行基盤。",
     "score": 70,
-    "tags": []
+    "tags": [],
+    "brandColor": "#06B6D4",
+    "domain": "github.com",
+    "logo": "/logos/llama-cpp.png"
   },
   {
     "id": "openrouter",
@@ -2992,7 +3419,10 @@
     "size": "medium",
     "description": "複数モデルへのAPIルーティング基盤。",
     "score": 70,
-    "tags": []
+    "tags": [],
+    "brandColor": "#06B6D4",
+    "domain": "openrouter.ai",
+    "logo": "/logos/openrouter.png"
   },
   {
     "id": "replicate",
@@ -3002,7 +3432,10 @@
     "size": "medium",
     "description": "AIモデルのホスティングと実行基盤を提供。",
     "score": 70,
-    "tags": []
+    "tags": [],
+    "brandColor": "#06B6D4",
+    "domain": "replicate.com",
+    "logo": "/logos/replicate.png"
   },
   {
     "id": "modal",
@@ -3012,7 +3445,10 @@
     "size": "medium",
     "description": "AIアプリ実行とGPUサーバレス基盤を提供。",
     "score": 70,
-    "tags": []
+    "tags": [],
+    "brandColor": "#06B6D4",
+    "domain": "modal.com",
+    "logo": "/logos/modal.png"
   },
   {
     "id": "fireworks-ai",
@@ -3022,7 +3458,10 @@
     "size": "medium",
     "description": "高速推論APIとOSSモデル提供基盤。",
     "score": 70,
-    "tags": []
+    "tags": [],
+    "brandColor": "#06B6D4",
+    "domain": "fireworks.ai",
+    "logo": "/logos/fireworks-ai.png"
   },
   {
     "id": "open-webui",
@@ -3032,7 +3471,10 @@
     "size": "medium",
     "description": "ローカル/セルフホストLLM UIのOSSプロジェクト。",
     "score": 70,
-    "tags": []
+    "tags": [],
+    "brandColor": "#06B6D4",
+    "domain": "openwebui.com",
+    "logo": "/logos/open-webui.png"
   },
   {
     "id": "jan",
@@ -3042,7 +3484,10 @@
     "size": "medium",
     "description": "ローカルAIアシスタントのOSSアプリ。",
     "score": 70,
-    "tags": []
+    "tags": [],
+    "brandColor": "#06B6D4",
+    "domain": "jan.ai",
+    "logo": "/logos/jan.png"
   },
   {
     "id": "comfyui",
@@ -3052,7 +3497,10 @@
     "size": "medium",
     "description": "画像生成ワークフローのOSS UI。",
     "score": 70,
-    "tags": []
+    "tags": [],
+    "brandColor": "#06B6D4",
+    "domain": "comfy.org",
+    "logo": "/logos/comfyui.png"
   },
   {
     "id": "invokeai",
@@ -3062,7 +3510,10 @@
     "size": "medium",
     "description": "画像生成向けOSS制作基盤。",
     "score": 70,
-    "tags": []
+    "tags": [],
+    "brandColor": "#06B6D4",
+    "domain": "invoke.com",
+    "logo": "/logos/invokeai.png"
   },
   {
     "id": "automatic1111",
@@ -3072,7 +3523,10 @@
     "size": "medium",
     "description": "Stable Diffusion WebUIの代表的OSS。",
     "score": 70,
-    "tags": []
+    "tags": [],
+    "brandColor": "#06B6D4",
+    "domain": "github.com",
+    "logo": "/logos/automatic1111.png"
   },
   {
     "id": "koboldcpp",
@@ -3082,7 +3536,10 @@
     "size": "medium",
     "description": "ローカルLLM実行のOSSツール。",
     "score": 70,
-    "tags": []
+    "tags": [],
+    "brandColor": "#06B6D4",
+    "domain": "github.com",
+    "logo": "/logos/koboldcpp.png"
   },
   {
     "id": "haystack",
@@ -3092,7 +3549,10 @@
     "size": "medium",
     "description": "RAGとLLMアプリ開発のOSSフレームワーク。",
     "score": 70,
-    "tags": []
+    "tags": [],
+    "brandColor": "#06B6D4",
+    "domain": "deepset.ai",
+    "logo": "/logos/haystack.png"
   },
   {
     "id": "fastchat",
@@ -3102,7 +3562,10 @@
     "size": "medium",
     "description": "LLMチャット・評価のOSS基盤。",
     "score": 70,
-    "tags": []
+    "tags": [],
+    "brandColor": "#06B6D4",
+    "domain": "lmsys.org",
+    "logo": "/logos/fastchat.png"
   },
   {
     "id": "axolotl",
@@ -3112,7 +3575,10 @@
     "size": "medium",
     "description": "LLMファインチューニングのOSSツール。",
     "score": 70,
-    "tags": []
+    "tags": [],
+    "brandColor": "#06B6D4",
+    "domain": "axolotl.ai",
+    "logo": "/logos/axolotl.png"
   },
   {
     "id": "tesla-optimus",
@@ -3122,7 +3588,10 @@
     "size": "medium",
     "description": "Teslaのヒューマノイドロボット計画。",
     "score": 70,
-    "tags": []
+    "tags": [],
+    "brandColor": "#F97316",
+    "domain": "tesla.com",
+    "logo": "/logos/tesla-optimus.png"
   },
   {
     "id": "agility-robotics",
@@ -3132,7 +3601,10 @@
     "size": "medium",
     "description": "二足歩行ロボットDigitを開発する企業。",
     "score": 70,
-    "tags": []
+    "tags": [],
+    "brandColor": "#F97316",
+    "domain": "agilityrobotics.com",
+    "logo": "/logos/agility-robotics.png"
   },
   {
     "id": "sanctuary-ai",
@@ -3142,7 +3614,10 @@
     "size": "medium",
     "description": "汎用ヒューマノイドロボットを開発する企業。",
     "score": 70,
-    "tags": []
+    "tags": [],
+    "brandColor": "#F97316",
+    "domain": "sanctuary.ai",
+    "logo": "/logos/sanctuary-ai.png"
   },
   {
     "id": "apptronik",
@@ -3152,7 +3627,10 @@
     "size": "medium",
     "description": "ヒューマノイドロボットApolloを開発する企業。",
     "score": 70,
-    "tags": []
+    "tags": [],
+    "brandColor": "#F97316",
+    "domain": "apptronik.com",
+    "logo": "/logos/apptronik.png"
   },
   {
     "id": "unitree",
@@ -3162,7 +3640,10 @@
     "size": "medium",
     "description": "四足歩行・ヒューマノイドロボットを展開する中国企業。",
     "score": 70,
-    "tags": []
+    "tags": [],
+    "brandColor": "#F97316",
+    "domain": "unitree.com",
+    "logo": "/logos/unitree.png"
   },
   {
     "id": "one-x",
@@ -3172,7 +3653,10 @@
     "size": "medium",
     "description": "ヒューマノイドロボットNEOを開発する企業。",
     "score": 70,
-    "tags": []
+    "tags": [],
+    "brandColor": "#F97316",
+    "domain": "1x.tech",
+    "logo": "/logos/one-x.png"
   },
   {
     "id": "fourier",
@@ -3182,7 +3666,10 @@
     "size": "medium",
     "description": "リハビリ・ヒューマノイドロボットを開発する企業。",
     "score": 70,
-    "tags": []
+    "tags": [],
+    "brandColor": "#F97316",
+    "domain": "fftai.com",
+    "logo": "/logos/fourier.png"
   },
   {
     "id": "ubtech",
@@ -3192,7 +3679,10 @@
     "size": "medium",
     "description": "中国のヒューマノイド・サービスロボット企業。",
     "score": 70,
-    "tags": []
+    "tags": [],
+    "brandColor": "#F97316",
+    "domain": "ubtrobot.com",
+    "logo": "/logos/ubtech.png"
   },
   {
     "id": "engine-ai",
@@ -3202,7 +3692,10 @@
     "size": "medium",
     "description": "中国のヒューマノイドロボット企業。",
     "score": 70,
-    "tags": []
+    "tags": [],
+    "brandColor": "#F97316",
+    "domain": "engineai.com.cn",
+    "logo": "/logos/engine-ai.png"
   },
   {
     "id": "physical-intelligence",
@@ -3212,7 +3705,10 @@
     "size": "medium",
     "description": "ロボット基盤モデルを開発するAI企業。",
     "score": 70,
-    "tags": []
+    "tags": [],
+    "brandColor": "#F97316",
+    "domain": "physicalintelligence.company",
+    "logo": "/logos/physical-intelligence.png"
   },
   {
     "id": "covariant",
@@ -3222,7 +3718,10 @@
     "size": "medium",
     "description": "倉庫ロボット向けAIを開発する企業。",
     "score": 70,
-    "tags": []
+    "tags": [],
+    "brandColor": "#F97316",
+    "domain": "covariant.ai",
+    "logo": "/logos/covariant.png"
   },
   {
     "id": "skild-ai",
@@ -3232,7 +3731,10 @@
     "size": "medium",
     "description": "ロボット基盤モデルを開発する企業。",
     "score": 70,
-    "tags": []
+    "tags": [],
+    "brandColor": "#F97316",
+    "domain": "skild.ai",
+    "logo": "/logos/skild-ai.png"
   },
   {
     "id": "toyota-research-institute",
@@ -3242,7 +3744,10 @@
     "size": "medium",
     "description": "ToyotaのAI・ロボティクス研究組織。",
     "score": 70,
-    "tags": []
+    "tags": [],
+    "brandColor": "#F97316",
+    "domain": "tri.global",
+    "logo": "/logos/toyota-research-institute.png"
   },
   {
     "id": "moonshot-ai",
@@ -3253,7 +3758,10 @@
     "description": "Kimiを展開する中国の基盤モデル企業。",
     "score": 70,
     "tags": [],
-    "country": "CN"
+    "country": "CN",
+    "brandColor": "#EF4444",
+    "domain": "moonshot.cn",
+    "logo": "/logos/moonshot-ai.png"
   },
   {
     "id": "minimax",
@@ -3264,7 +3772,10 @@
     "description": "中国のマルチモーダルAI企業。",
     "score": 70,
     "tags": [],
-    "country": "CN"
+    "country": "CN",
+    "brandColor": "#EF4444",
+    "domain": "minimax.io",
+    "logo": "/logos/minimax.png"
   },
   {
     "id": "zhipu-ai",
@@ -3275,7 +3786,10 @@
     "description": "GLM系モデルを展開する中国AI企業。",
     "score": 70,
     "tags": [],
-    "country": "CN"
+    "country": "CN",
+    "brandColor": "#EF4444",
+    "domain": "zhipuai.cn",
+    "logo": "/logos/zhipu-ai.png"
   },
   {
     "id": "01-ai",
@@ -3286,7 +3800,10 @@
     "description": "Yiモデルを開発する中国AI企業。",
     "score": 70,
     "tags": [],
-    "country": "CN"
+    "country": "CN",
+    "brandColor": "#EF4444",
+    "domain": "01.ai",
+    "logo": "/logos/01-ai.png"
   },
   {
     "id": "sensetime",
@@ -3297,7 +3814,10 @@
     "description": "コンピュータビジョンと生成AIを展開する中国AI企業。",
     "score": 70,
     "tags": [],
-    "country": "CN"
+    "country": "CN",
+    "brandColor": "#EF4444",
+    "domain": "sensetime.com",
+    "logo": "/logos/sensetime.png"
   },
   {
     "id": "iflytek",
@@ -3308,7 +3828,10 @@
     "description": "音声AIと中国語AIサービスを展開する企業。",
     "score": 70,
     "tags": [],
-    "country": "CN"
+    "country": "CN",
+    "brandColor": "#EF4444",
+    "domain": "iflytek.com",
+    "logo": "/logos/iflytek.png"
   },
   {
     "id": "huawei",
@@ -3319,7 +3842,10 @@
     "description": "Ascend AIチップとクラウドAI基盤を展開する中国企業。",
     "score": 70,
     "tags": [],
-    "country": "CN"
+    "country": "CN",
+    "brandColor": "#EF4444",
+    "domain": "huawei.com",
+    "logo": "/logos/huawei.png"
   },
   {
     "id": "biren",
@@ -3330,7 +3856,10 @@
     "description": "中国のAI GPUスタートアップ。",
     "score": 70,
     "tags": [],
-    "country": "CN"
+    "country": "CN",
+    "brandColor": "#EF4444",
+    "domain": "birentech.com",
+    "logo": "/logos/biren.png"
   },
   {
     "id": "moore-threads",
@@ -3341,7 +3870,10 @@
     "description": "中国のGPU企業。",
     "score": 70,
     "tags": [],
-    "country": "CN"
+    "country": "CN",
+    "brandColor": "#EF4444",
+    "domain": "mthreads.com",
+    "logo": "/logos/moore-threads.png"
   },
   {
     "id": "stepfun",
@@ -3352,7 +3884,10 @@
     "description": "Stepシリーズモデルを展開する中国AI企業。",
     "score": 70,
     "tags": [],
-    "country": "CN"
+    "country": "CN",
+    "brandColor": "#EF4444",
+    "domain": "stepfun.com",
+    "logo": "/logos/stepfun.png"
   },
   {
     "id": "modelbest",
@@ -3363,7 +3898,10 @@
     "description": "中国の大規模モデル企業。",
     "score": 70,
     "tags": [],
-    "country": "CN"
+    "country": "CN",
+    "brandColor": "#EF4444",
+    "domain": "modelbest.cn",
+    "logo": "/logos/modelbest.png"
   },
   {
     "id": "infinigence-ai",
@@ -3374,6 +3912,185 @@
     "description": "AIインフラと計算基盤に取り組む中国企業。",
     "score": 70,
     "tags": [],
-    "country": "CN"
+    "country": "CN",
+    "brandColor": "#EF4444",
+    "domain": "infinigence.com",
+    "logo": "/logos/infinigence-ai.png"
+  },
+  {
+    "size": "small",
+    "score": 62,
+    "tags": [],
+    "country": "US",
+    "id": "ideogram",
+    "name": "Ideogram",
+    "sector": "generative-ai",
+    "logoText": "ID",
+    "role": "Image generation service",
+    "website": "https://ideogram.ai/",
+    "description": "Ideogramは生成AI領域で参照される企業です。",
+    "brandColor": "#EC4899",
+    "domain": "ideogram.ai",
+    "logo": "/logos/ideogram.png"
+  },
+  {
+    "size": "small",
+    "score": 62,
+    "tags": [],
+    "country": "US",
+    "id": "leonardo-ai",
+    "name": "Leonardo AI",
+    "sector": "generative-ai",
+    "logoText": "LA",
+    "role": "Image generation service",
+    "website": "https://leonardo.ai/",
+    "description": "Leonardo AIは生成AI領域で参照される企業です。",
+    "brandColor": "#EC4899",
+    "domain": "leonardo.ai",
+    "logo": "/logos/leonardo-ai.png"
+  },
+  {
+    "size": "small",
+    "score": 62,
+    "tags": [],
+    "country": "US",
+    "id": "fish-audio",
+    "name": "Fish Audio",
+    "sector": "generative-ai",
+    "logoText": "FA",
+    "role": "Voice generation service",
+    "website": "https://fish.audio/",
+    "description": "Fish Audioは生成AI領域で参照される企業です。",
+    "brandColor": "#EC4899",
+    "domain": "fish.audio",
+    "logo": "/logos/fish-audio.png"
+  },
+  {
+    "size": "small",
+    "score": 62,
+    "tags": [],
+    "country": "US",
+    "id": "meshy",
+    "name": "Meshy",
+    "sector": "generative-ai",
+    "logoText": "MY",
+    "role": "3D generation service",
+    "website": "https://www.meshy.ai/",
+    "description": "Meshyは生成AI領域で参照される企業です。",
+    "brandColor": "#EC4899",
+    "domain": "meshy.ai",
+    "logo": "/logos/meshy.png"
+  },
+  {
+    "size": "small",
+    "score": 62,
+    "tags": [],
+    "country": "US",
+    "id": "tripo",
+    "name": "Tripo",
+    "sector": "generative-ai",
+    "logoText": "TR",
+    "role": "3D generation service",
+    "website": "https://www.tripo3d.ai/",
+    "description": "Tripoは生成AI領域で参照される企業です。",
+    "brandColor": "#EC4899",
+    "domain": "tripo3d.ai",
+    "logo": "/logos/tripo.png"
+  },
+  {
+    "size": "small",
+    "score": 62,
+    "tags": [],
+    "country": "US",
+    "id": "inworld",
+    "name": "Inworld",
+    "sector": "generative-ai",
+    "logoText": "IW",
+    "role": "Character AI platform",
+    "website": "https://www.inworld.ai/",
+    "description": "Inworldは生成AI領域で参照される企業です。",
+    "brandColor": "#EC4899",
+    "domain": "inworld.ai",
+    "logo": "/logos/inworld.png"
+  },
+  {
+    "size": "small",
+    "score": 62,
+    "tags": [],
+    "country": "US",
+    "id": "character-ai",
+    "name": "Character AI",
+    "sector": "generative-ai",
+    "logoText": "CA",
+    "role": "Character AI service",
+    "website": "https://character.ai/",
+    "description": "Character AIは生成AI領域で参照される企業です。",
+    "brandColor": "#EC4899",
+    "domain": "character.ai",
+    "logo": "/logos/character-ai.png"
+  },
+  {
+    "size": "small",
+    "score": 62,
+    "tags": [],
+    "country": "US",
+    "id": "canva",
+    "name": "Canva",
+    "sector": "generative-ai",
+    "logoText": "CV",
+    "role": "Creative design platform",
+    "website": "https://www.canva.com/",
+    "description": "Canvaは生成AI領域で参照される企業です。",
+    "brandColor": "#00C4CC",
+    "domain": "canva.com",
+    "logo": "/logos/canva.png"
+  },
+  {
+    "size": "small",
+    "score": 62,
+    "tags": [],
+    "country": "US",
+    "id": "capcut",
+    "name": "CapCut",
+    "sector": "generative-ai",
+    "logoText": "CC",
+    "role": "Creative video editing platform",
+    "website": "https://www.capcut.com/",
+    "description": "CapCutは生成AI領域で参照される企業です。",
+    "brandColor": "#EC4899",
+    "domain": "capcut.com",
+    "logo": "/logos/capcut.png"
+  },
+  {
+    "size": "small",
+    "score": 62,
+    "tags": [],
+    "country": "US",
+    "id": "figma",
+    "name": "Figma",
+    "sector": "generative-ai",
+    "logoText": "FG",
+    "role": "Design platform",
+    "website": "https://www.figma.com/",
+    "description": "Figmaは生成AI領域で参照される企業です。",
+    "brandColor": "#A259FF",
+    "domain": "figma.com",
+    "logo": "/logos/figma.png"
+  },
+  {
+    "size": "small",
+    "score": 62,
+    "tags": [],
+    "country": "US",
+    "id": "kuaishou",
+    "name": "Kuaishou",
+    "sector": "china-ai",
+    "logoText": "KS",
+    "role": "China video AI platform",
+    "website": "https://www.kuaishou.com/",
+    "description": "Kuaishouは生成AI領域で参照される企業です。",
+    "brandColor": "#EF4444",
+    "domain": "kuaishou.com",
+    "logo": "/logos/kuaishou.png"
   }
 ]
