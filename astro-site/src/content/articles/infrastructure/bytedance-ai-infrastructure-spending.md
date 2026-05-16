@@ -9,6 +9,7 @@ published_at: "2026-05-10"
 buzz_score: 45.0
 image_url: "/images/articles/article_3213.webp"
 meta_description: "バイトダンスが2025年のAIインフラ投資を前年比25％増の約4.2兆円に拡大した。半導体価格高騰や米国輸出規制の逆風下でも、生成AI主導権獲得を最優先する姿勢が鮮明となった。"
+summaryPoints: ["バイトダンスがAI投資25％増額の1600億元確をめぐる動きは、AI競争の主戦場がモデルだけでなく計算資源の確保に広がったことを示す。","GPU、半導体、クラウド、電力の制約が、生成AIサービスの成長速度を左右する段階に入っている。","投資家や利用企業は、製品発表だけでなく供給網とデータセンター投資の持続性を見る必要がある。"]
 topics_json: ["datacenter", "gpu", "llm", "nvidia", "reasoning", "semiconductor"]
 companies_json: ["nvidia"]
 ---

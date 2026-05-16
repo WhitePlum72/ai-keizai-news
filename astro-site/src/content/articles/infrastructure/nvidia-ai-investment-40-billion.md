@@ -9,6 +9,7 @@ published_at: "2026-05-10"
 buzz_score: 38.5
 image_url: "https://image.cnbcfm.com/api/v1/image/108279129-1773774466063-gettyimages-2266555824-NVIDIA_GTC.jpeg?v=1774007143&w=1920&h=1080"
 meta_description: "エヌビディアがAI分野の戦略投資家へと変貌し、2024年の投資総額が400億ドルを突破した。出資と同時に自社製品の長期商用契約を結ぶ手法で、半導体需要を囲い込みながらAIエコシステム全体への支配拡大を加速させている。"
+summaryPoints: ["エヌビディアをめぐる動きは、AI競争の主戦場がモデルだけでなく計算資源の確保に広がったことを示す。","GPU、半導体、クラウド、電力の制約が、生成AIサービスの成長速度を左右する段階に入っている。","投資家や利用企業は、製品発表だけでなく供給網とデータセンター投資の持続性を見る必要がある。"]
 topics_json: ["datacenter", "gpu", "llm", "nvidia", "semiconductor"]
 companies_json: ["nvidia"]
 ---

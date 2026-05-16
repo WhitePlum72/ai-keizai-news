@@ -9,10 +9,10 @@ published_at: "2026-05-16"
 buzz_score: 40.5
 image_url: "https://d2908q01vomqb2.cloudfront.net/f1f836cb4ea6efb2a0b1b99f41ad8b103eff4b59/2026/05/13/ml-19973.png"
 meta_description: "DatabricksとAWSは、Unity Catalogで管理するデータをSageMaker AIで安全に微調整する手法を確立した。EMR Serverlessを前処理に活用し、データの移動や権限継承の障壁を克服。一貫したリネージ追跡によ"
+summaryPoints: ["AWSの事例は、AI時代の競争力がサイバー防御と供給網管理にも左右されることを示している。","製造委託先、クラウド、認証情報を含む防御体制が、AI関連企業の事業継続リスクになっている。","単発の攻撃被害ではなく、AIインフラを支える企業群全体の安全性を点検する材料になる。"]
 topics_json: ["amazon", "llm"]
 companies_json: ["amazon", "databricks", "mistral"]
 ---
-
 
 ## ガバナンスを維持する分散処理の障壁
 企業が大規模言語モデルを業務活用する際、最大の課題はデータの統制とセキュリティの両立である。Databricks の Unity Catalog で一元管理するデータを、Amazon SageMaker AI の持つ高性能な学習環境で微調整しようとすると、データの移動やアクセス権限の継承が大きな障壁となっていた。今回 Databricks と AWS が共同で示した手法は、Amazon EMR Serverless を前処理に活用し、この分断を克服する点に価値がある。

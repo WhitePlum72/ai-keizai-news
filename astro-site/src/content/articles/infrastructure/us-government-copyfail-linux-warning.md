@@ -9,10 +9,10 @@ published_at: "2026-05-12"
 buzz_score: 0.0
 image_url: "/images/articles/article_1436.webp"
 meta_description: "CISAはLinuxの深刻な脆弱性CopyFailの悪用を警告。root権限奪取や重要インフラ攻撃に悪用され、政府・金融などが標的に。早急なパッチ適用とネットワーク隔離が必要。"
+summaryPoints: ["Linuxサーバーに深刻な欠陥CISAがCopyの事例は、AI時代の競争力がサイバー防御と供給網管理にも左右されることを示している。","製造委託先、クラウド、認証情報を含む防御体制が、AI関連企業の事業継続リスクになっている。","単発の攻撃被害ではなく、AIインフラを支える企業群全体の安全性を点検する材料になる。"]
 topics_json: ["datacenter"]
 companies_json: []
 ---
-
 
 米国のサイバーセキュリティ・社会基盤安全保障庁（CISA）は、Linuxシステムに影響を及ぼす深刻な脆弱性「CopyFail」が悪用されていると発表した。この欠陥はサーバーやデータセンターの中核に位置するLinux環境に重大なリスクをもたらし、既に実際のハッキング活動で使用されていることが確認されている。
 

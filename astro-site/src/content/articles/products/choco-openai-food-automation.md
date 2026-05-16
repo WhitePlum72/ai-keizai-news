@@ -9,6 +9,7 @@ published_at: "2026-05-09"
 buzz_score: 51.0
 image_url: "/images/articles/article_1385.webp"
 meta_description: "2026年4月27日、食品流通プラットフォーム大手Chocoは、OpenAI APIを活用したAIエージェントによる注文処理の自動化を本格展開した。同社は米国、英国、欧州などで2万1000社以上の流通業者と10万のバイヤーにサービスを提供し"
+summaryPoints: ["OpenAIの動きは、基盤モデル競争が性能比較だけでなく配布網や企業導入の争いになったことを示す。","モデルの価値は、API、クラウド、開発ツール、業務データと結びつくほど大きくなりやすい。","読者はベンチマークの優劣だけでなく、どの企業基盤に組み込まれるかを見る必要がある。"]
 topics_json: ["agents", "llm", "openai", "reasoning"]
 companies_json: ["openai"]
 ---

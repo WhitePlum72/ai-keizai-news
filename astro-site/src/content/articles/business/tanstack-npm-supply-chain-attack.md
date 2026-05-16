@@ -9,10 +9,10 @@ published_at: "2026-05-15"
 buzz_score: 48.5
 image_url: "https://images.ctfassets.net/kftzwdyauwt9/5sVkleeWkpnumrq0G1UkIW/138a18ce1af4678fc72e12fe691f3ad8/Frame-1.png?w=1600&h=900&fit=fill"
 meta_description: "OpenAIは、改ざんされたTanStack経由で社内システムに侵入されたが、顧客データへの影響はないと発表。macOSアプリのコード署名証明書が不正取得されたため、全ユーザーに2026年6月12日までの更新を要請している。"
+summaryPoints: ["OpenAIの事例は、AI時代の競争力がサイバー防御と供給網管理にも左右されることを示している。","製造委託先、クラウド、認証情報を含む防御体制が、AI関連企業の事業継続リスクになっている。","単発の攻撃被害ではなく、AIインフラを支える企業群全体の安全性を点検する材料になる。"]
 topics_json: ["openai"]
 companies_json: ["apple", "openai"]
 ---
-
 
 OpenAIは4月10日、JavaScriptライブラリ「TanStack」を標的としたソフトウェアサプライチェーン攻撃に関する対応報告書を公開した。同社によると、この攻撃で一部の社内システムが侵害されたものの、顧客データや本番環境への影響は確認されていない。macOS向けデスクトップアプリケーションのコード署名証明書が不正に取得された可能性を重視し、全ユーザーに対し2026年6月12日までにアプリを更新するよう呼びかけている。
 

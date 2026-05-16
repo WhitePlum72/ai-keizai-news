@@ -9,10 +9,10 @@ published_at: "2026-05-13"
 buzz_score: 37.5
 image_url: "https://the-decoder.com/wp-content/uploads/2026/05/Android-Robot-Logo-Background-Nano-Banana-Pro.jpg"
 meta_description: "Googleが発表した「Gemini Intelligence」は、Android向け次世代AIエージェントで、旅行予約や自動入力、音声メモの推敲などを単一AIが自律実行する。複数アプリを横断し、ChromeとGboardに統合され、202"
+summaryPoints: ["Googleの動きは、基盤モデル競争が性能比較だけでなく配布網や企業導入の争いになったことを示す。","モデルの価値は、API、クラウド、開発ツール、業務データと結びつくほど大きくなりやすい。","読者はベンチマークの優劣だけでなく、どの企業基盤に組み込まれるかを見る必要がある。"]
 topics_json: ["agents", "google"]
 companies_json: ["google", "intel"]
 ---
-
 
 米Googleは次世代AI機能群「Gemini Intelligence」を発表した。Android上で旅行の予約やウェブフォームへの自動入力、音声メモの文章化と推敲を単一のAIエージェントが自律実行する仕組みを2026年後半から段階的に提供する。ユーザーは複数アプリを手動で切り替える手間から解放され、スマートフォンの操作体験そのものが変わると同社は説明する。
 

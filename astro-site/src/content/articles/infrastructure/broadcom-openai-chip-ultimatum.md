@@ -9,6 +9,7 @@ published_at: "2026-05-10"
 buzz_score: 49.5
 image_url: "https://the-decoder.com/wp-content/uploads/2026/05/openai_chatgpt.png"
 meta_description: "OpenAIとブロードコムの独自半導体開発が、資金面で暗礁に乗り上げている。ブロードコムが量産条件にマイクロソフトへ全生産量の40%購入を要求するも、応じていないためだ。第一段階だけで約180億ドルの巨額投資が必要で、大口需要家の保証を得ら"
+summaryPoints: ["OpenAIをめぐる動きは、AI競争の主戦場がモデルだけでなく計算資源の確保に広がったことを示す。","GPU、半導体、クラウド、電力の制約が、生成AIサービスの成長速度を左右する段階に入っている。","投資家や利用企業は、製品発表だけでなく供給網とデータセンター投資の持続性を見る必要がある。"]
 topics_json: ["gpu", "llm", "microsoft", "nvidia", "openai", "reasoning", "semiconductor"]
 companies_json: ["broadcom", "microsoft", "nvidia", "openai", "tsmc"]
 ---

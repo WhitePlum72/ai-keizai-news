@@ -9,6 +9,7 @@ published_at: "2026-05-09"
 buzz_score: 50.5
 image_url: "/images/articles/article_2950.webp"
 meta_description: "米AI企業Anthropicが最大500億ドルの資金調達を計画し、評価額は約135兆円に達する見込みだ。主力モデル「Claude」の好調で売上高は前年比5倍の年200億ドル超に急増。安全性を重視した戦略で法人契約数を伸ばし、OpenAIを猛"
+summaryPoints: ["OpenAIの動きは、基盤モデル競争が性能比較だけでなく配布網や企業導入の争いになったことを示す。","モデルの価値は、API、クラウド、開発ツール、業務データと結びつくほど大きくなりやすい。","読者はベンチマークの優劣だけでなく、どの企業基盤に組み込まれるかを見る必要がある。"]
 topics_json: ["anthropic", "openai", "reasoning"]
 companies_json: ["anthropic", "openai"]
 ---

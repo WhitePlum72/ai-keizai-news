@@ -9,6 +9,7 @@ published_at: "2026-05-10"
 buzz_score: 13.5
 image_url: "https://image.cnbcfm.com/api/v1/image/108275223-1773036085667-gettyimages-2263326904-data_center_protest_mlc_0138.jpeg?v=1773391803&w=1920&h=1080"
 meta_description: "米国で大規模データセンター建設への反対世論が強まる中、家庭に直接設置する小型AIサーバーが登場した。カリフォルニアの企業が開発した「Node.1」は、高い処理能力を持ちながら電力消費を抑え、廃熱を給湯に利用する仕組みも備える。住民拒否権の拡"
+summaryPoints: ["AIデータセンターをめぐる動きは、AI競争の主戦場がモデルだけでなく計算資源の確保に広がったことを示す。","GPU、半導体、クラウド、電力の制約が、生成AIサービスの成長速度を左右する段階に入っている。","投資家や利用企業は、製品発表だけでなく供給網とデータセンター投資の持続性を見る必要がある。"]
 topics_json: ["datacenter", "gpu", "llm", "nvidia", "reasoning"]
 companies_json: ["nvidia"]
 ---

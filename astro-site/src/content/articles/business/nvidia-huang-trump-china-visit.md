@@ -9,10 +9,10 @@ published_at: "2026-05-14"
 buzz_score: 48.0
 image_url: "/images/articles/article_5086.webp"
 meta_description: "米中首脳会談にエヌビディアCEOが同行した。輸出規制が激化する中での異例の訪中は、AI半導体を巡る覇権争いの最終局面を象徴する。経営トップ自ら北京の交渉に臨む事態は、規制の狭間で中国市場との関係維持に苦慮する同社の危機感の表れだ。"
+summaryPoints: ["米中首脳会談にエヌビディアCEOが同行する理由をめぐる動きは、AI競争の主戦場がモデルだけでなく計算資源の確保に広がったことを示す。","GPU、半導体、クラウド、電力の制約が、生成AIサービスの成長速度を左右する段階に入っている。","投資家や利用企業は、製品発表だけでなく供給網とデータセンター投資の持続性を見る必要がある。"]
 topics_json: ["gpu", "nvidia", "semiconductor"]
 companies_json: ["nvidia"]
 ---
-
 
 <# データとルール>
 ## 参照 Knowledge: Nvidia trump china trip

@@ -9,6 +9,7 @@ published_at: "2026-05-09"
 buzz_score: 45.0
 image_url: "/images/articles/article_1638.webp"
 meta_description: "Thoma BravoはAI選定でGoogle他と多角的に関係し依存を回避する。マルチモデル戦略が主流化中だ。導入コストやセキュリティ課題は大きい。最適な技術選択と組み合わせが競争優位性を生む。このアプローチは企業や投資家の参考となる。"
+summaryPoints: ["Googleの事例は、AI時代の競争力がサイバー防御と供給網管理にも左右されることを示している。","製造委託先、クラウド、認証情報を含む防御体制が、AI関連企業の事業継続リスクになっている。","単発の攻撃被害ではなく、AIインフラを支える企業群全体の安全性を点検する材料になる。"]
 topics_json: ["anthropic", "google", "llm", "openai"]
 companies_json: ["anthropic", "google", "openai"]
 ---

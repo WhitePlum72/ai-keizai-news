@@ -9,10 +9,10 @@ published_at: "2026-05-12"
 buzz_score: 37.5
 image_url: "https://the-decoder.com/wp-content/uploads/2026/05/openai_lawsuit-2.png"
 meta_description: "フロリダ州立大の銃乱射事件で、遺族がOpenAIを提訴した。犯人は実行前にChatGPTで銃操作や被害最大化の助言を得ており、州司法長官は殺人罪に相当するとして異例の刑事捜査を開始した。"
+summaryPoints: ["OpenAIの動きは、基盤モデル競争が性能比較だけでなく配布網や企業導入の争いになったことを示す。","モデルの価値は、API、クラウド、開発ツール、業務データと結びつくほど大きくなりやすい。","読者はベンチマークの優劣だけでなく、どの企業基盤に組み込まれるかを見る必要がある。"]
 topics_json: ["amazon", "openai"]
 companies_json: ["openai"]
 ---
-
 
 （注：文字数カウントで指定範囲に収めるため微調整しています）
 

@@ -9,6 +9,7 @@ published_at: "2026-05-09"
 buzz_score: 42.5
 image_url: "/images/articles/article_3085.webp"
 meta_description: "DeepSeekが最大約1000億円の資金調達を計画し、中国AI企業で過去最大の調達額となる見込み。米国では創業6週間のCore Automationが評価額40億ドルへ急騰し、AI分野への巨額投資の勢いが続いている。"
+summaryPoints: ["DeepSeekの動きは、基盤モデル競争が性能比較だけでなく配布網や企業導入の争いになったことを示す。","モデルの価値は、API、クラウド、開発ツール、業務データと結びつくほど大きくなりやすい。","読者はベンチマークの優劣だけでなく、どの企業基盤に組み込まれるかを見る必要がある。"]
 topics_json: ["agents", "llm", "openai", "reasoning"]
 companies_json: ["openai"]
 ---

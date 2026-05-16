@@ -9,10 +9,10 @@ published_at: "2026-05-16"
 buzz_score: 56.0
 image_url: "/images/articles/article_5990.webp"
 meta_description: "Anthropicの新機能でAIエージェントの簡易作成が可能になった結果、管理不能な乱立が深刻化。コスト高騰や機密漏洩リスクが顕在化し、現場任せの導入を再考する動きが企業で広がっている。"
+summaryPoints: ["Anthropicの事例は、AI時代の競争力がサイバー防御と供給網管理にも左右されることを示している。","製造委託先、クラウド、認証情報を含む防御体制が、AI関連企業の事業継続リスクになっている。","単発の攻撃被害ではなく、AIインフラを支える企業群全体の安全性を点検する材料になる。"]
 topics_json: ["agents", "anthropic", "coding-agent", "microsoft", "openai"]
 companies_json: ["anthropic", "microsoft", "openai"]
 ---
-
 
 企業の人工知能（AI）活用現場で、想定外の事態が広がっている。Anthropicが2025年7月に発表した「Claude Cowork（クロード・コワーク）」など、専門知識がなくてもAIエージェントを量産できる開発プラットフォームの登場により、管理不能なエージェントの乱立、いわゆる「AIエージェントのスプロール現象」が顕在化してきた。コスト高騰やセキュリティリスクの懸念から、現場任せの導入を見直す企業が増え始めている。
 

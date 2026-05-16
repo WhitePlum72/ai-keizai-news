@@ -9,10 +9,10 @@ published_at: "2026-05-13"
 buzz_score: 51.0
 image_url: "/images/articles/article_4659.webp"
 meta_description: "Anthropicが未公開株の非公認二次販売に異例の警告を発した。未公開株市場の拡大に伴うガバナンス混乱を防ぎ、企業価値毀損と株主構成の厳格管理が狙いとみられる。評価額600億ドル超の同社は、承認なき取引の株式無効や将来の資金調達排除の可能"
+summaryPoints: ["Anthropicの動きは、基盤モデル競争が性能比較だけでなく配布網や企業導入の争いになったことを示す。","モデルの価値は、API、クラウド、開発ツール、業務データと結びつくほど大きくなりやすい。","読者はベンチマークの優劣だけでなく、どの企業基盤に組み込まれるかを見る必要がある。"]
 topics_json: ["anthropic", "google", "openai"]
 companies_json: ["anthropic", "google", "openai"]
 ---
-
 
 投資家保護へ異例の異議申し立て
 

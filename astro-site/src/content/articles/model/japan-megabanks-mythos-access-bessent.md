@@ -9,10 +9,10 @@ published_at: "2026-05-14"
 buzz_score: 53.0
 image_url: "/images/articles/article_5124.webp"
 meta_description: "三菱UFJ、三井住友、みずほの3メガバンクが米Anthropicの最新AI「Mythos」へ限定アクセスする見通し。米財務長官来日を機に協議が進み、サイバーリスクへの高度な防御目的での利用提案が決め手となった。"
+summaryPoints: ["Anthropicの事例は、AI時代の競争力がサイバー防御と供給網管理にも左右されることを示している。","製造委託先、クラウド、認証情報を含む防御体制が、AI関連企業の事業継続リスクになっている。","単発の攻撃被害ではなく、AIインフラを支える企業群全体の安全性を点検する材料になる。"]
 topics_json: ["anthropic"]
 companies_json: ["anthropic"]
 ---
-
 
 ベッセント氏来日が契機、サイバーリスク警戒も後押し
 

@@ -9,6 +9,7 @@ published_at: "2026-05-09"
 buzz_score: 45.0
 image_url: "/images/articles/article_1437.webp"
 meta_description: "米AIチップ企業のセレブラスが企業価値266億ドル超の史上最大級IPOを目指す。OpenAIとの密接な連携や高効率チップの技術優位性が評価され、資金は製造強化に充てられる。激しい競争の中、AIエコシステムの中核として成長が期待される。"
+summaryPoints: ["OpenAIをめぐる動きは、AI競争の主戦場がモデルだけでなく計算資源の確保に広がったことを示す。","GPU、半導体、クラウド、電力の制約が、生成AIサービスの成長速度を左右する段階に入っている。","投資家や利用企業は、製品発表だけでなく供給網とデータセンター投資の持続性を見る必要がある。"]
 topics_json: ["amd", "datacenter", "gpu", "llm", "openai", "reasoning", "semiconductor"]
 companies_json: ["amd", "openai"]
 ---

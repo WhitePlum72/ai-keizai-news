@@ -9,10 +9,10 @@ published_at: "2026-05-13"
 buzz_score: 18.9
 image_url: "/images/articles/article_4836.webp"
 meta_description: "AI半導体は学習から推論へ重心が移り、TSMCが3nmプロセス最適化やCoWoS技術で圧倒的優位に立つ。NVIDIA以外にもAMDやAWSなど多様な企業がTSMCを共通基盤とし、2027年にはAI関連売上高が全体の25%に達する見通しだ。"
+summaryPoints: ["NVIDIAをめぐる動きは、AI競争の主戦場がモデルだけでなく計算資源の確保に広がったことを示す。","GPU、半導体、クラウド、電力の制約が、生成AIサービスの成長速度を左右する段階に入っている。","投資家や利用企業は、製品発表だけでなく供給網とデータセンター投資の持続性を見る必要がある。"]
 topics_json: ["amazon", "amd", "google", "microsoft", "multimodal", "nvidia", "openai", "reasoning", "semiconductor"]
 companies_json: ["amazon", "amd", "broadcom", "google", "intel", "microsoft", "nvidia", "openai", "samsung", "tsmc"]
 ---
-
 
 2025年からの大規模推論需要でファウンドリー勢力図に決定的差
 

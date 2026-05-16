@@ -9,6 +9,7 @@ published_at: "2026-05-10"
 buzz_score: 29.5
 image_url: "https://cdn-thumbnails.huggingface.co/social-thumbnails/blog/lablab-ai-amd-developer-hackathon/oncoagent-official-paper.png"
 meta_description: "米国の研究チームが、患者データを外部共有せず複数施設で高精度なAI「OncoAgent」を開発する手法を発表した。二層構造で医師の思考を模倣し、プライバシー保護と性能向上を両立。規制の厳しい地域でも国際共同研究への参加障壁を下げると期待され"
+summaryPoints: ["がん治療支援AIの動きは、基盤モデル競争が性能比較だけでなく配布網や企業導入の争いになったことを示す。","モデルの価値は、API、クラウド、開発ツール、業務データと結びつくほど大きくなりやすい。","読者はベンチマークの優劣だけでなく、どの企業基盤に組み込まれるかを見る必要がある。"]
 topics_json: ["agents", "llm", "reasoning"]
 companies_json: []
 ---

@@ -9,10 +9,10 @@ published_at: "2026-05-15"
 buzz_score: 45.1
 image_url: "https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/25832912/STK095_MICROSOFT_2_CVirginia_A.jpg?quality=90&strip=all&crop=0%2C10.732984293194%2C100%2C78.534031413613&w=1200"
 meta_description: "Microsoftが社内向けAIコーディングツール「Claude Code」の提供を中止し、数千人規模の開発者が自社の「GitHub Copilot」へ移行する。背景には、マルチベンダー戦略から自社製品への一本化方針への転換がある。"
+summaryPoints: ["Microsoftの事例は、AI時代の競争力がサイバー防御と供給網管理にも左右されることを示している。","製造委託先、クラウド、認証情報を含む防御体制が、AI関連企業の事業継続リスクになっている。","単発の攻撃被害ではなく、AIインフラを支える企業群全体の安全性を点検する材料になる。"]
 topics_json: ["anthropic", "coding-agent", "microsoft", "openai"]
 companies_json: ["anthropic", "microsoft", "openai"]
 ---
-
 
 Microsoftは2025年6月、社内向けに提供してきたAnthropicのAIコーディングツール「Claude Code」のライセンスを順次キャンセルする方針を固めた。関係者によると、数千人規模の開発者が代替ツールへの移行を迫られる見通しだ。
 

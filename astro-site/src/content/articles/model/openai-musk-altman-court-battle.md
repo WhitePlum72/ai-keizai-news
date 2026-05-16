@@ -9,6 +9,7 @@ published_at: "2026-05-09"
 buzz_score: 51.0
 image_url: "/images/articles/article_1456.webp"
 meta_description: "2026年5月5日、OpenAIの将来を巡るイーロン・マスク氏とサム・アルトマン氏の法廷闘争が激化している。マスク氏はOpenAIが非営利の使命を放棄し利益追求に転じたとして訴訟を起こし、アルトマン氏の解任や最大1500億ドルの損害賠償を求"
+summaryPoints: ["OpenAIの動きは、基盤モデル競争が性能比較だけでなく配布網や企業導入の争いになったことを示す。","モデルの価値は、API、クラウド、開発ツール、業務データと結びつくほど大きくなりやすい。","読者はベンチマークの優劣だけでなく、どの企業基盤に組み込まれるかを見る必要がある。"]
 topics_json: ["microsoft", "openai"]
 companies_json: ["microsoft", "openai", "xai"]
 ---

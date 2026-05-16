@@ -9,6 +9,7 @@ published_at: "2026-05-09"
 buzz_score: 33.0
 image_url: "/images/articles/article_1622.webp"
 meta_description: "米サーバー大手スーパーマイクロの1〜3月期決算は、売上高が前年同期比55％増の62億ドル。粗利益率が13.8％へ改善し、AIサーバー出荷に伴うコスト管理の進展を評価され時間外取引で株価が急伸した。通期利益見通しも上方修正した。"
+summaryPoints: ["スーパーマイクロ好決算をめぐる動きは、AI競争の主戦場がモデルだけでなく計算資源の確保に広がったことを示す。","GPU、半導体、クラウド、電力の制約が、生成AIサービスの成長速度を左右する段階に入っている。","投資家や利用企業は、製品発表だけでなく供給網とデータセンター投資の持続性を見る必要がある。"]
 topics_json: ["amd", "datacenter", "gpu", "semiconductor"]
 companies_json: ["amd"]
 ---

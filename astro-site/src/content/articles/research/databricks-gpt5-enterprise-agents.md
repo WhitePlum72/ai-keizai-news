@@ -9,10 +9,10 @@ published_at: "2026-05-16"
 buzz_score: 57.5
 image_url: "https://images.ctfassets.net/kftzwdyauwt9/4QntwWTKj3ZZzB1IY3llsp/3b10f6ca5dc53144f8a6a7da26c27cd1/oai_Databricks_SEO.png?w=1600&h=900&fit=fill"
 meta_description: "DatabricksがGPT-5.5を企業向けAIエージェントに統合し、OfficeQA Proベンチマークで従来比約15ポイント向上を達成。これにより複雑な事務処理やコンプライアンス対応が可能となり、プライベートデータを安全に活用した高度"
+summaryPoints: ["DatabricksがGPT-5.5採用の動きは、基盤モデル競争が性能比較だけでなく配布網や企業導入の争いになったことを示す。","モデルの価値は、API、クラウド、開発ツール、業務データと結びつくほど大きくなりやすい。","読者はベンチマークの優劣だけでなく、どの企業基盤に組み込まれるかを見る必要がある。"]
 topics_json: ["agents", "openai"]
 companies_json: ["databricks"]
 ---
-
 
 Databricksは2025年、大規模言語モデル「GPT-5.5」を自社のエンタープライズ向けAIエージェントワークフローに統合した。この動きは、同モデルが企業の事務処理能力を測るOfficeQA Proベンチマークで最高水準を達成した直後に発表され、業務自動化の精度が新たな段階に入ったことを示す。
 

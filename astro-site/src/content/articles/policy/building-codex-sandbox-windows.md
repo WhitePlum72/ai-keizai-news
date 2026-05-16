@@ -9,10 +9,10 @@ published_at: "2026-05-14"
 buzz_score: 52.5
 image_url: "https://images.ctfassets.net/kftzwdyauwt9/4YUb3Fcl0pX59NNvNBcorz/9d6800e02d977fbde37a34cbc48a49e3/SEO_images.png?w=1600&h=900&fit=fill"
 meta_description: "OpenAIは、コーディングAI「Codex」をWindowsで安全に実行するため、ファイルとネットワークを厳格制御する専用サンドボックスを開発した。作業ディレクトリ外へのアクセス遮断や経路正規化でリスクを抑え、AIエージェントの信頼性向上"
+summaryPoints: ["OpenAIの事例は、AI時代の競争力がサイバー防御と供給網管理にも左右されることを示している。","製造委託先、クラウド、認証情報を含む防御体制が、AI関連企業の事業継続リスクになっている。","単発の攻撃被害ではなく、AIインフラを支える企業群全体の安全性を点検する材料になる。"]
 topics_json: ["agents", "coding-agent", "openai"]
 companies_json: ["openai"]
 ---
-
 
 米OpenAIは、自社のコーディングエージェント「Codex」をWindows上で安全に稼働させるため、ファイルアクセスとネットワーク接続を厳密に制御する専用サンドボックスを開発した。生成AIを実務コード実行に結びつける際に生じるセキュリティリスクを根本から抑え込む設計が特徴であり、急速に普及するAIエージェント技術の信頼性を一段引き上げる成果だと位置づけられている。
 

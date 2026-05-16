@@ -9,10 +9,10 @@ published_at: "2026-05-15"
 buzz_score: 43.0
 image_url: "/images/articles/article_5330.webp"
 meta_description: "Anthropicは、複雑なコーディングを自動化するAIの実用性で企業から支持を集め、開発者利用でOpenAIを逆転した。2027年には営業利益が150億ドルに達する見通しで、企業向け戦略が業界首位への躍進を支えている。"
+summaryPoints: ["OpenAIの動きは、基盤モデル競争が性能比較だけでなく配布網や企業導入の争いになったことを示す。","モデルの価値は、API、クラウド、開発ツール、業務データと結びつくほど大きくなりやすい。","読者はベンチマークの優劣だけでなく、どの企業基盤に組み込まれるかを見る必要がある。"]
 topics_json: ["agents", "anthropic", "coding-agent", "google", "openai"]
 companies_json: ["anthropic", "google", "openai"]
 ---
-
 
 長年、人工知能（AI）開発競争の傍流に甘んじてきた新興企業Anthropicが、エンタープライズ（法人向け）事業とコーディング能力への特化を武器に、業界の先頭集団へと躍り出た。資金力と技術で先行するOpenAIやGoogleに対し、実用性重視の戦略が開発者と企業顧客の支持を急速に集めている。
 

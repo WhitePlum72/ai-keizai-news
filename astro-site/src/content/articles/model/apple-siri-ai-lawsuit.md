@@ -9,6 +9,7 @@ published_at: "2026-05-09"
 buzz_score: 37.0
 image_url: "/images/articles/article_1607.webp"
 meta_description: "アップルは、AI機能の利用条件を誤認させたとして集団訴訟で25億ドルの和解に同意。対象は特定時期にiPhone16や15Proを購入した米国人。責任認定を避け風評被害を抑えつつ補償を行う。AI搭載製品のマーケティングと実装の乖離が新たなリス"
+summaryPoints: ["Appleの動きは、基盤モデル競争が性能比較だけでなく配布網や企業導入の争いになったことを示す。","モデルの価値は、API、クラウド、開発ツール、業務データと結びつくほど大きくなりやすい。","読者はベンチマークの優劣だけでなく、どの企業基盤に組み込まれるかを見る必要がある。"]
 topics_json: []
 companies_json: ["apple", "intel"]
 ---

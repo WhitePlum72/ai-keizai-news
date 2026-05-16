@@ -9,10 +9,10 @@ published_at: "2026-05-11"
 buzz_score: 0.0
 image_url: "/images/articles/article_1421.webp"
 meta_description: "Googleが発表した小型マルチモーダルAI「Gemma 4」は、スマホ等のデバイス上で動作し、画像とテキストを理解する。クラウド不要でプライバシーを守り、製造や医療現場での即時判断を可能にする。商用利用しやすいオープンモデルで、エッジAI"
+summaryPoints: ["Googleをめぐる動きは、AI競争の主戦場がモデルだけでなく計算資源の確保に広がったことを示す。","GPU、半導体、クラウド、電力の制約が、生成AIサービスの成長速度を左右する段階に入っている。","投資家や利用企業は、製品発表だけでなく供給網とデータセンター投資の持続性を見る必要がある。"]
 topics_json: ["google", "gpu", "meta", "multimodal", "reasoning"]
 companies_json: ["deepmind", "google", "intel", "meta", "mistral"]
 ---
-
 
 米Googleは4月9日、オープンモデルとして提供する小型言語モデルの最新版「Gemma 4」を発表した。パラメータ数が10億強でありながら、画像とテキストを同時に理解するマルチモーダル機能を単一のGPUやスマートフォン上で実現する。クラウドに依存しないエッジAIの選択肢が大幅に広がることになる。
 

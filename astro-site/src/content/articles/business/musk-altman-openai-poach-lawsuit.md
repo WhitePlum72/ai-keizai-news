@@ -9,6 +9,7 @@ published_at: "2026-05-10"
 buzz_score: 29.5
 image_url: "/images/articles/article_3065.webp"
 meta_description: "OpenAI対マスク氏の裁判は、創業時の「非営利」誓約の有効性と、マスク氏によるAltman CEO引き抜き工作が争点に。OpenAI側は、マスク氏が営利化の可能性を認識していた内部資料を提出し、提訴はxAI立ち上げ後の競争阻害が目的と反論"
+summaryPoints: ["OpenAIの動きは、基盤モデル競争が性能比較だけでなく配布網や企業導入の争いになったことを示す。","モデルの価値は、API、クラウド、開発ツール、業務データと結びつくほど大きくなりやすい。","読者はベンチマークの優劣だけでなく、どの企業基盤に組み込まれるかを見る必要がある。"]
 topics_json: ["agi", "microsoft", "openai"]
 companies_json: ["microsoft", "openai", "xai"]
 ---

@@ -9,6 +9,7 @@ published_at: "2026-05-09"
 buzz_score: 56.0
 image_url: "/images/articles/article_1545.webp"
 meta_description: "ゲームストップのイーベイ買収提案や、セレブラス、OpenAIの巨額資金調達など、米資本市場でM&AとAI投資が加速。伝統的再編と技術革新が交差し、投資家はAIパラダイムシフトに対応する企業選定が求められている。"
+summaryPoints: ["OpenAIをめぐる動きは、AI競争の主戦場がモデルだけでなく計算資源の確保に広がったことを示す。","GPU、半導体、クラウド、電力の制約が、生成AIサービスの成長速度を左右する段階に入っている。","投資家や利用企業は、製品発表だけでなく供給網とデータセンター投資の持続性を見る必要がある。"]
 topics_json: ["openai", "semiconductor"]
 companies_json: ["openai"]
 ---

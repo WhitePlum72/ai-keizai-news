@@ -9,10 +9,10 @@ published_at: "2026-05-12"
 buzz_score: 30.1
 image_url: "https://storage.googleapis.com/gweb-uniblog-publish-prod/images/UK_1920x1080.max-1440x810.png"
 meta_description: "Google FinanceのAI要約機能が欧州30カ国に拡大。企業業績や市場動向を自然言語で瞬時に分析し、個人投資家の情報格差縮小を目指す。"
+summaryPoints: ["Googleの動きは、基盤モデル競争が性能比較だけでなく配布網や企業導入の争いになったことを示す。","モデルの価値は、API、クラウド、開発ツール、業務データと結びつくほど大きくなりやすい。","読者はベンチマークの優劣だけでなく、どの企業基盤に組み込まれるかを見る必要がある。"]
 topics_json: ["google", "semiconductor"]
 companies_json: ["google"]
 ---
-
 
 米グーグルは3月31日、生成AIを搭載した金融情報プラットフォーム「Google Finance」の提供地域を欧州30カ国に拡大したと発表した。2024年に米国とインドで先行導入されたAI要約機能が、欧州連合（EU）および欧州経済領域（EEA）の個人投資家にも開放される。複数の金融データソースを横断分析し、企業業績や市場動向を自然言語で即座に要約する設計で、機関投資家と個人の間にある情報分析力の格差を埋める第一歩となる。
 

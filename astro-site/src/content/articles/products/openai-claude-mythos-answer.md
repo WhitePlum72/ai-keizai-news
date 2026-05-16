@@ -9,10 +9,10 @@ published_at: "2026-05-12"
 buzz_score: 77.0
 image_url: "https://platform.theverge.com/wp-content/uploads/sites/2/2026/04/STK201_SAM_ALTMAN_CVIRGINIA2A.jpg?quality=90&strip=all&crop=0%2C10.732984293194%2C100%2C78.534031413613&w=1200"
 meta_description: "OpenAIが発表した自律型脆弱性修正AI「Daybreak」は、脅威モデル構築からパッチ適用まで自動化し、未経験者でも高度な防御を可能にする。従来比で誤検知を約40%低減し、競合より自律的な修正深度が特徴だ。"
+summaryPoints: ["OpenAIの事例は、AI時代の競争力がサイバー防御と供給網管理にも左右されることを示している。","製造委託先、クラウド、認証情報を含む防御体制が、AI関連企業の事業継続リスクになっている。","単発の攻撃被害ではなく、AIインフラを支える企業群全体の安全性を点検する材料になる。"]
 topics_json: ["agents", "anthropic", "openai"]
 companies_json: ["anthropic", "openai"]
 ---
-
 
 OpenAIは23日、コードの脆弱性を検知するだけでなく自動修正まで実行する新たなセキュリティAI「Daybreak」を発表した。3月に投入したCodexセキュリティエージェントを中核に据え、脅威モデルの構築から攻撃経路の特定、パッチ適用までを自律的に完結させる設計が最大の特徴である。
 

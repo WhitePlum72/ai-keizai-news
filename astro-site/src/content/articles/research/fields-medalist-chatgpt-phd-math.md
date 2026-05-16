@@ -9,6 +9,7 @@ published_at: "2026-05-10"
 buzz_score: 21.5
 image_url: "https://the-decoder.com/wp-content/uploads/2026/05/ai_and_math.png"
 meta_description: "フィールズ賞受賞者のガワーズ氏がChatGPT 5.5 Proに未解決の整数論問題を与えたところ、2時間足らずで博士課程級の証明を自律的に生成した。従来は指数関数的評価だった限界値を多項式的限界へ改良し、数学者による検証に耐える厳密な成果を"
+summaryPoints: ["フィールズ賞受賞者がChatGPTの動きは、基盤モデル競争が性能比較だけでなく配布網や企業導入の争いになったことを示す。","モデルの価値は、API、クラウド、開発ツール、業務データと結びつくほど大きくなりやすい。","読者はベンチマークの優劣だけでなく、どの企業基盤に組み込まれるかを見る必要がある。"]
 topics_json: ["llm", "openai", "reasoning"]
 companies_json: ["openai"]
 ---

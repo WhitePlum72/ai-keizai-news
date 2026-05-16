@@ -9,6 +9,7 @@ published_at: "2026-05-10"
 buzz_score: 38.0
 image_url: "/images/articles/article_3354.webp"
 meta_description: "パランティアCEOは粗悪なAI生成物を「スロップ」と批判するが、生成AIの普及が自社の分析プラットフォームの事業機会を脅かす逆説に直面。投資家や社内からも、従来型分析から生成AIツールへ予算が流れる傾向が指摘され始めた。"
+summaryPoints: ["パランティアCEOがAI生成の粗製乱造を批判するの動きは、基盤モデル競争が性能比較だけでなく配布網や企業導入の争いになったことを示す。","モデルの価値は、API、クラウド、開発ツール、業務データと結びつくほど大きくなりやすい。","読者はベンチマークの優劣だけでなく、どの企業基盤に組み込まれるかを見る必要がある。"]
 topics_json: ["google", "llm", "openai"]
 companies_json: ["google", "openai", "palantir"]
 ---

@@ -9,10 +9,10 @@ published_at: "2026-05-11"
 buzz_score: 22.4
 image_url: "/images/articles/article_2918.webp"
 meta_description: "OpenAIとの提携交渉で、マイクロソフトのナデラCEOは同社のAWS移行とAzure批判を最大の脅威と警戒していた。法廷文書で明らかになった内部記録によると、OpenAI側がAWSを交渉材料に使う現実的リスクを恐れていた。"
+summaryPoints: ["OpenAIの動きは、基盤モデル競争が性能比較だけでなく配布網や企業導入の争いになったことを示す。","モデルの価値は、API、クラウド、開発ツール、業務データと結びつくほど大きくなりやすい。","読者はベンチマークの優劣だけでなく、どの企業基盤に組み込まれるかを見る必要がある。"]
 topics_json: ["agi", "amazon", "microsoft", "openai"]
 companies_json: ["amazon", "microsoft", "openai"]
 ---
-
 
 OpenAIとマイクロソフトの提携初期段階で、サティア・ナデラCEOがOpenAIのアマゾン移行とAzure批判を強く警戒していたことが法廷文書で明らかになった。両社の蜜月関係の裏にあった戦略的緊張を浮き彫りにする内容である。
 

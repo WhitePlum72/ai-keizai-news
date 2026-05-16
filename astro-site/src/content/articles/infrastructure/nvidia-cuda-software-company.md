@@ -9,10 +9,10 @@ published_at: "2026-05-12"
 buzz_score: 36.0
 image_url: "https://media.wired.com/photos/69fb095746deb466a6e86080/191:100/w_1280,c_limit/WRD_CUDA_FINAL_RGB.png"
 meta_description: "Nvidiaの最大の競争力は、20年かけて蓄積した並列コンピューティング基盤「CUDA」にある。これは開発者にとって事実上の標準で、競合他社がハード性能で並んでも超えられない高い移行障壁を築き、時価総額3兆ドル超の根幹を支えている。"
+summaryPoints: ["Nvidiaの真の堀はハードではなくCUDAといをめぐる動きは、AI競争の主戦場がモデルだけでなく計算資源の確保に広がったことを示す。","GPU、半導体、クラウド、電力の制約が、生成AIサービスの成長速度を左右する段階に入っている。","投資家や利用企業は、製品発表だけでなく供給網とデータセンター投資の持続性を見る必要がある。"]
 topics_json: ["datacenter", "gpu", "nvidia", "semiconductor"]
 companies_json: ["nvidia"]
 ---
-
 
 Nvidiaを守る最大の障壁は、最先端GPUに使われる半導体技術ではない。同社が20年近く投資してきた並列コンピューティング基盤「CUDA」こそ、競合他社が超えられない深い堀として機能している。このソフトウェア資産こそが、Nvidiaの時価総額3兆ドル超を支える本質的な強みである。
 

@@ -9,6 +9,7 @@ published_at: "2026-05-09"
 buzz_score: 41.0
 image_url: "/images/articles/article_1624.webp"
 meta_description: "AMDがクラウド企業のデータセンター投資拡大を受け、売上予想を上方修正し株価新高値を更新。エヌビディアの有力ライバルとしてAIチップ需要を捉え、供給体制を整えつつ成長基盤を強化している。"
+summaryPoints: ["AMDをめぐる動きは、AI競争の主戦場がモデルだけでなく計算資源の確保に広がったことを示す。","GPU、半導体、クラウド、電力の制約が、生成AIサービスの成長速度を左右する段階に入っている。","投資家や利用企業は、製品発表だけでなく供給網とデータセンター投資の持続性を見る必要がある。"]
 topics_json: ["amd", "datacenter", "reasoning", "semiconductor"]
 companies_json: ["amd"]
 ---

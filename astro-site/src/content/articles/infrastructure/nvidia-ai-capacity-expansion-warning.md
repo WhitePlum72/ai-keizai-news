@@ -9,10 +9,10 @@ published_at: "2026-05-12"
 buzz_score: 29.6
 image_url: "https://s.yimg.com/os/en/benzinga_79/0b76929506afe8e0ed9a6359bcb76718"
 meta_description: "NVIDIAのAI半導体供給不足を受け、CoreWeave CEOがAMD移行加速の可能性を警告した。需要爆発に対応できなければ顧客流出は必至で、同社もマルチベンダー戦略を検討中である。"
+summaryPoints: ["NVIDIAをめぐる動きは、AI競争の主戦場がモデルだけでなく計算資源の確保に広がったことを示す。","GPU、半導体、クラウド、電力の制約が、生成AIサービスの成長速度を左右する段階に入っている。","投資家や利用企業は、製品発表だけでなく供給網とデータセンター投資の持続性を見る必要がある。"]
 topics_json: ["amd", "datacenter", "gpu", "nvidia", "reasoning", "semiconductor"]
 companies_json: ["amd", "nvidia"]
 ---
-
 
 米GPU特化型クラウド事業者CoreWeaveのマイケル・イントレイター最高経営責任者（CEO）は、NVIDIAに対しAI向け半導体の供給能力を大幅に拡大しなければ、顧客が競合AMDのプロセッサへ大規模に流出するリスクがあると警告した。データセンターの拡張を加速させるCoreWeaveの戦略表明は、AIインフラ市場における供給逼迫の深刻さと、NVIDIA一強体制に変化が生じる可能性を浮き彫りにした。
 

@@ -9,10 +9,10 @@ published_at: "2026-05-15"
 buzz_score: 45.5
 image_url: "https://techcrunch.com/wp-content/uploads/2026/03/Dario-Amodei-Anthropic-1.jpg?w=1024"
 meta_description: "Anthropicが中小企業市場へ本格参入し、約3600万社の争奪戦が始まった。安全性と指示理解力に優れたAIを低価格で提供し、専門知識不要の連携機能も訴求する。大企業から中小企業へAI競争の主戦場が移り、日本市場でも今後の普及拡大が課題と"
+summaryPoints: ["Anthropicの動きは、基盤モデル競争が性能比較だけでなく配布網や企業導入の争いになったことを示す。","モデルの価値は、API、クラウド、開発ツール、業務データと結びつくほど大きくなりやすい。","読者はベンチマークの優劣だけでなく、どの企業基盤に組み込まれるかを見る必要がある。"]
 topics_json: ["anthropic", "coding-agent", "microsoft", "openai", "reasoning"]
 companies_json: ["anthropic", "openai"]
 ---
-
 
 人工知能（AI）スタートアップのAnthropicが新たな顧客層として中小企業を開拓し始めた。同社の最新サービス展開は、AIプラットフォーム戦争が大企業から中小企業へと主戦場を移している決定的な証左となる。米国経済の屋台骨である約3600万の中小企業が、次のユーザー獲得競争の最前線に浮上したのだ。
 

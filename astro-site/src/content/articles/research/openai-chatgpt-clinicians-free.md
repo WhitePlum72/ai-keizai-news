@@ -9,6 +9,7 @@ published_at: "2026-05-09"
 buzz_score: 51.0
 image_url: "/images/articles/article_1397.webp"
 meta_description: "OpenAIは2026年4月22日、臨床医向けに特化した「ChatGPT for Clinicians」を米国内の認証済み医師、NP、PA、薬剤師に対して無償で提供開始した。これは、増大する事務作業や医学研究の管理から臨床医を解放し、質の高"
+summaryPoints: ["OpenAIの動きは、基盤モデル競争が性能比較だけでなく配布網や企業導入の争いになったことを示す。","モデルの価値は、API、クラウド、開発ツール、業務データと結びつくほど大きくなりやすい。","読者はベンチマークの優劣だけでなく、どの企業基盤に組み込まれるかを見る必要がある。"]
 topics_json: ["agi", "openai"]
 companies_json: ["openai"]
 ---

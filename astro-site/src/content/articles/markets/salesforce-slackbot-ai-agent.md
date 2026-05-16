@@ -9,6 +9,7 @@ published_at: "2026-05-09"
 buzz_score: 51.0
 image_url: "/images/articles/article_1467.webp"
 meta_description: "セールスフォースは1月13日、職場用AIアシスタント「Slackbot」を完全再構築した新バージョンを発売した。従来の通知ツールから、企業データを検索し、文書作成や業務代行まで行う高度なAIエージェントへと進化させる。これは、マイクロソフト"
+summaryPoints: ["Salesforceの事例は、AI時代の競争力がサイバー防御と供給網管理にも左右されることを示している。","製造委託先、クラウド、認証情報を含む防御体制が、AI関連企業の事業継続リスクになっている。","単発の攻撃被害ではなく、AIインフラを支える企業群全体の安全性を点検する材料になる。"]
 topics_json: ["agents", "google", "llm", "microsoft"]
 companies_json: ["google", "microsoft", "salesforce"]
 ---

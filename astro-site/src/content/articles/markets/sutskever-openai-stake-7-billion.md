@@ -9,10 +9,10 @@ published_at: "2026-05-12"
 buzz_score: 57.0
 image_url: "/images/articles/article_4022.webp"
 meta_description: "イリヤ・サツキバー氏のOpenAI株評価額が約70億ドルに達した。ChatGPTの収益増やマイクロソフトの巨額出資等で同社価値が急騰したためで、同氏は退社後も巨大な資産を保持。AI開発競争における影響力の大きさが改めて示された。"
+summaryPoints: ["OpenAIの動きは、基盤モデル競争が性能比較だけでなく配布網や企業導入の争いになったことを示す。","モデルの価値は、API、クラウド、開発ツール、業務データと結びつくほど大きくなりやすい。","読者はベンチマークの優劣だけでなく、どの企業基盤に組み込まれるかを見る必要がある。"]
 topics_json: ["openai"]
 companies_json: ["openai"]
 ---
-
 
 共同創業者が抱える巨額資産と今後のAI開発競争
 

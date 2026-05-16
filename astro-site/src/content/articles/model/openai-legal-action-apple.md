@@ -9,10 +9,10 @@ published_at: "2026-05-15"
 buzz_score: 42.5
 image_url: "https://techcrunch.com/wp-content/uploads/2025/10/Screenshot-2025-10-06-at-1.13.28PM.png?resize=1200,670"
 meta_description: "OpenAIがAppleとの提携に強い不満を抱き、訴訟準備中と報じられた。ChatGPTのSiri統合は複雑な同意手順が必要で、期待した有料会員増やブランド露出を得られず、データ活用も制限されたため法的手段を検討している。"
+summaryPoints: ["OpenAIの動きは、基盤モデル競争が性能比較だけでなく配布網や企業導入の争いになったことを示す。","モデルの価値は、API、クラウド、開発ツール、業務データと結びつくほど大きくなりやすい。","読者はベンチマークの優劣だけでなく、どの企業基盤に組み込まれるかを見る必要がある。"]
 topics_json: ["openai"]
 companies_json: ["apple", "intel", "openai"]
 ---
-
 
 生成AI開発のOpenAIが、米Appleとの提携関係に強い不満を抱き、法的手段の準備を進めていることが明らかになった。iPhone向けChatGPT統合機能が期待された契約者数とプロダクトの露出を獲得できなかったことが背景にある。関係筋の情報として複数の米メディアが報じており、AI業界を揺るがす提携解消の動きとして注目を集めている。
 

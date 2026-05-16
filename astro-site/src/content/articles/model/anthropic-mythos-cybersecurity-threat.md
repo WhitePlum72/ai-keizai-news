@@ -9,6 +9,7 @@ published_at: "2026-05-09"
 buzz_score: 30.5
 image_url: "/images/articles/article_3035.webp"
 meta_description: "AnthropicのAI「Mythos」は既知の脆弱性を高速連鎖させ、多要素認証を3.2分で突破した。本質は新たな脅威ではなく、長年見過ごされてきたセキュリティ対策の欠陥を可視化した点にある。"
+summaryPoints: ["Anthropicの事例は、AI時代の競争力がサイバー防御と供給網管理にも左右されることを示している。","製造委託先、クラウド、認証情報を含む防御体制が、AI関連企業の事業継続リスクになっている。","単発の攻撃被害ではなく、AIインフラを支える企業群全体の安全性を点検する材料になる。"]
 topics_json: ["anthropic"]
 companies_json: ["anthropic"]
 ---

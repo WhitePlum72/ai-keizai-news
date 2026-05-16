@@ -9,6 +9,7 @@ published_at: "2026-05-09"
 buzz_score: 34.0
 image_url: "/images/articles/article_1580.webp"
 meta_description: "GoogleはBroadcomとの協業を拡大し、自社AIチップ「TPU」の生産能力を2027年までに3倍に増強する。NVIDIAへの依存から脱却し、コスト削減とAI需要急増に対応する狙いだ。"
+summaryPoints: ["NVIDIAをめぐる動きは、AI競争の主戦場がモデルだけでなく計算資源の確保に広がったことを示す。","GPU、半導体、クラウド、電力の制約が、生成AIサービスの成長速度を左右する段階に入っている。","投資家や利用企業は、製品発表だけでなく供給網とデータセンター投資の持続性を見る必要がある。"]
 topics_json: ["amazon", "datacenter", "google", "gpu", "meta", "microsoft", "nvidia", "reasoning", "semiconductor"]
 companies_json: ["amazon", "broadcom", "google", "meta", "microsoft", "nvidia", "tsmc"]
 ---

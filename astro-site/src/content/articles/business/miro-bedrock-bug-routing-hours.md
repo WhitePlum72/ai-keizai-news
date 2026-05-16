@@ -9,10 +9,10 @@ published_at: "2026-05-12"
 buzz_score: 32.5
 image_url: "https://d2908q01vomqb2.cloudfront.net/f1f836cb4ea6efb2a0b1b99f41ad8b103eff4b59/2026/05/11/ml-18722.png"
 meta_description: "MiroがAmazon Bedrockでバグ担当振り分けを自動化し、誤割り当てを6分の1に低減、修正完了時間を数日から数時間へと5分の1に短縮した。開発生産性とUX改善に寄与している。"
+summaryPoints: ["Amazonの動きは、基盤モデル競争が性能比較だけでなく配布網や企業導入の争いになったことを示す。","モデルの価値は、API、クラウド、開発ツール、業務データと結びつくほど大きくなりやすい。","読者はベンチマークの優劣だけでなく、どの企業基盤に組み込まれるかを見る必要がある。"]
 topics_json: ["amazon", "anthropic", "meta", "reasoning"]
 companies_json: ["amazon", "anthropic", "meta"]
 ---
-
 
 世界的なビジュアルコラボレーションプラットフォームを提供するMiroは、ソフトウェアバグの担当チーム振り分けに米Amazon Web Servicesの生成AI基盤「Amazon Bedrock」を導入し、修正完了までの所要時間を従来の数日から数時間へと大幅に短縮した。これにより、誤ったチームへの再割り当て件数は6分の1に減少し、解決までの時間は5分の1に圧縮されたと発表した。開発生産性の向上とユーザー体験の改善を両立するこの取り組みは、プロダクト品質を競争力の源泉とするSaaS企業の新たな指標となりつつある。
 

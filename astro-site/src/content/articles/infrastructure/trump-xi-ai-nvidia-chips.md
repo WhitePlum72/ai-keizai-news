@@ -9,10 +9,10 @@ published_at: "2026-05-16"
 buzz_score: 48.0
 image_url: "/images/articles/article_5901.webp"
 meta_description: "米中首脳会談で、トランプ氏はAI安全対策とNvidia製半導体H200の輸出規制について習氏と協議した。中国はAI規制の国際ルール化を訴え、米国は規制見直しの駆け引きを展開。半導体サプライチェーンとAI開発競争の行方に影響を与える可能性があ"
+summaryPoints: ["米中首脳会談でAI規制とNvidia半導体が焦点をめぐる動きは、AI競争の主戦場がモデルだけでなく計算資源の確保に広がったことを示す。","GPU、半導体、クラウド、電力の制約が、生成AIサービスの成長速度を左右する段階に入っている。","投資家や利用企業は、製品発表だけでなく供給網とデータセンター投資の持続性を見る必要がある。"]
 topics_json: ["gpu", "nvidia", "semiconductor"]
 companies_json: ["nvidia"]
 ---
-
 
 トランプ氏が習氏との対話で明かした半導体輸出管理の行方
 

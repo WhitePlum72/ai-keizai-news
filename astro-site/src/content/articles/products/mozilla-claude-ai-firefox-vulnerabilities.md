@@ -9,10 +9,10 @@ published_at: "2026-05-11"
 buzz_score: 34.5
 image_url: "/images/articles/article_2953.webp"
 meta_description: "MozillaはAIでFirefoxの未発見脆弱性271件を検出し、最古で20年前のバグも含まれていた。AIが自律的にテストを生成・実行し、誤検知を高精度で排除した点が画期的である。全件は修正済みで、今後は新規コードの自動検査体制へ移行する"
+summaryPoints: ["MozillaがAIでFirefoxの未発見脆弱の事例は、AI時代の競争力がサイバー防御と供給網管理にも左右されることを示している。","製造委託先、クラウド、認証情報を含む防御体制が、AI関連企業の事業継続リスクになっている。","単発の攻撃被害ではなく、AIインフラを支える企業群全体の安全性を点検する材料になる。"]
 topics_json: ["agents", "anthropic"]
 companies_json: ["anthropic"]
 ---
-
 
 MozillaはAnthropicのAIモデル「Claude Mythos Preview」を活用し、Firefox 150のコードベースから未知の脆弱性271件を発見した。AIが自律的にテストケースを生成・実行するパイプラインを構築し、誤検知を高精度で排除した点が画期的である。今後は全新規コードをコミット前に自動検査する体制へ移行する。
 

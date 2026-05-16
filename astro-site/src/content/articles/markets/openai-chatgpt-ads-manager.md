@@ -9,10 +9,10 @@ published_at: "2026-05-13"
 buzz_score: 29.0
 image_url: "https://s.yimg.com/ny/api/res/1.2/VQmHmXmF5zkI78NefYTSGw--/YXBwaWQ9aGlnaGxhbmRlcjt3PTEyMDA7aD02NzU-/https://media.zenfs.com/en/marketing_dive_116/999122b61b4108ed288ba3af40ab8cbd"
 meta_description: "OpenAIはChatGPTに広告管理機能「Ads Manager」を導入し、2025年後半の提供開始を目指す。月間4億人の利用基盤を活かし、対話に溶け込む広告で新収益源の確立を狙う。検索広告市場に挑む参入は、グーグルの優位を揺るがす可能性"
+summaryPoints: ["OpenAIの動きは、基盤モデル競争が性能比較だけでなく配布網や企業導入の争いになったことを示す。","モデルの価値は、API、クラウド、開発ツール、業務データと結びつくほど大きくなりやすい。","読者はベンチマークの優劣だけでなく、どの企業基盤に組み込まれるかを見る必要がある。"]
 topics_json: ["openai", "reasoning"]
 companies_json: ["openai"]
 ---
-
 
 OpenAIはChatGPT内で広告を管理する新機能「ChatGPT Ads Manager」の導入を固め、検索連動型広告市場への本格参入を明確にした。OpenAI関係者と独自入手した内部文書によると、同社は2025年後半の一般提供開始を目標に、一部の法人パートナーと試験運用に入っている。対話型AI上に広告を直接組み込む試みは、グーグルの検索広告帝国を揺るがす可能性を秘める。
 

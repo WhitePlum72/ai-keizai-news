@@ -9,10 +9,10 @@ published_at: "2026-05-12"
 buzz_score: 0.0
 image_url: "/images/articles/article_1430.webp"
 meta_description: "主要AIモデルの83%がHugging Faceに集約され、登録モデル数は480万件と急増。マルチモーダルモデルが全体の41%を占め、特に軽量モデルの性能向上が顕著である。企業の参入も加速し、上位貢献者の約半数を企業アカウントが占めるなど、"
+summaryPoints: ["Hugging Faceの動きは、基盤モデル競争が性能比較だけでなく配布網や企業導入の争いになったことを示す。","モデルの価値は、API、クラウド、開発ツール、業務データと結びつくほど大きくなりやすい。","読者はベンチマークの優劣だけでなく、どの企業基盤に組み込まれるかを見る必要がある。"]
 topics_json: ["google", "llm", "meta", "multimodal"]
 companies_json: ["deepmind"]
 ---
-
 
 2026年春時点で、主要な大規模言語モデル（LLM）の83％がHugging Face上で公開・共有されており、AI研究開発における同プラットフォームの一極集中が加速している。Hugging Faceが発表した年次レポート「State of Open Source on Hugging Face: Spring 2026」によると、登録モデル数は前年比2.4倍の480万件に達し、オープンソースAIの開発スピードと多様性が質的に転換点を迎えたことが明らかになった。
 

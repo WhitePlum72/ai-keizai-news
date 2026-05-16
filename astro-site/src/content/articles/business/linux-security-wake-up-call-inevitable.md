@@ -9,10 +9,10 @@ published_at: "2026-05-12"
 buzz_score: 13.5
 image_url: "https://www.zdnet.com/a/img/resize/d073e4751d7e129838790164faf3f0fa655cee10/2026/05/11/87b39cd6-c20e-40de-b25f-d905104f07e7/linux.jpg?auto=webp&fit=crop&height=675&width=1200"
 meta_description: "Linuxカーネルで深刻な脆弱性が急増し、過去最多ペースにある。特に「Copy Fail」や「Dirty Frag」はメモリ管理の欠陥に起因し、権限昇格やデータ漏洩を引き起こす。背景にはコードの肥大化と並列処理の複雑化という構造的要因があり"
+summaryPoints: ["Linuxカーネル脆弱性が過去最多ペースの事例は、AI時代の競争力がサイバー防御と供給網管理にも左右されることを示している。","製造委託先、クラウド、認証情報を含む防御体制が、AI関連企業の事業継続リスクになっている。","単発の攻撃被害ではなく、AIインフラを支える企業群全体の安全性を点検する材料になる。"]
 topics_json: ["coding-agent", "google"]
 companies_json: ["google"]
 ---
-
 
 オープンソースの心臓部であるLinuxカーネルにおいて、データ破壊や権限昇格を引き起こす深刻な脆弱性が相次いでいる。代表格である「Copy Fail（CVE-2025-0927）」と「Dirty Frag」の出現により、エンタープライズIT管理者は根本的な設計リスクの再評価を迫られている。
 

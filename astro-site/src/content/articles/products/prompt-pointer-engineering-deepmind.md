@@ -9,10 +9,10 @@ published_at: "2026-05-14"
 buzz_score: 24.5
 image_url: "https://the-decoder.com/wp-content/uploads/2026/05/Gemini-Intelligence-Pointer-scaled.webp"
 meta_description: "Google DeepMindは、マウス操作をAIへの指示手段とする「ポインターエンジニアリング」を提唱。画面上のカーソル位置からユーザーの意図を推論し、テキスト入力に頼らない直感的な対話を目指す研究を進めている。"
+summaryPoints: ["Googleの動きは、基盤モデル競争が性能比較だけでなく配布網や企業導入の争いになったことを示す。","モデルの価値は、API、クラウド、開発ツール、業務データと結びつくほど大きくなりやすい。","読者はベンチマークの優劣だけでなく、どの企業基盤に組み込まれるかを見る必要がある。"]
 topics_json: ["google", "reasoning"]
 companies_json: ["deepmind", "google", "intel"]
 ---
-
 
 AI活用の新潮流として、Google DeepMindが「ポインターエンジニアリング」と呼ぶ概念を提唱し、従来のプロンプト入力に代わるインタラクション手法の研究を進めていることが明らかになった。マウスカーソルによる画面上の指示操作を基盤に、ユーザーの意図をより精緻にAIへ伝達する仕組みを目指す取り組みだ。
 

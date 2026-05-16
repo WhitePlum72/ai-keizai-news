@@ -9,6 +9,7 @@ published_at: "2026-05-09"
 buzz_score: 53.5
 image_url: "/images/articles/article_2905.webp"
 meta_description: "OpenAIはChatGPTのプライバシー保護を強化し、対話データのAI学習利用を全利用者が選択可能になった。個人情報は自動検出・除去され、企業向け契約では初期設定で学習利用が除外される。GDPRやEU規制への対応として設計が進化し、AIの"
+summaryPoints: ["OpenAIの動きは、基盤モデル競争が性能比較だけでなく配布網や企業導入の争いになったことを示す。","モデルの価値は、API、クラウド、開発ツール、業務データと結びつくほど大きくなりやすい。","読者はベンチマークの優劣だけでなく、どの企業基盤に組み込まれるかを見る必要がある。"]
 topics_json: ["google", "microsoft", "openai"]
 companies_json: ["google", "microsoft", "openai"]
 ---

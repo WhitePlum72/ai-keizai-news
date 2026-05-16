@@ -9,10 +9,10 @@ published_at: "2026-05-16"
 buzz_score: 52.5
 image_url: "https://images.ctfassets.net/kftzwdyauwt9/3GtC4ObJd8RLwLe2OIIsyb/06f9c687583df8c348fa7c9ceac493ab/EF_Ep20_16.9.png?w=1600&h=900&fit=fill"
 meta_description: "Sea LimitedがAIコーディングエージェント「Codex」を全社導入し、自律型ソフトウェア開発を加速する。ゲームやECなど多事業で膨大な開発需要を抱える中、AIが要件定義からテストまで一貫実行し、工数削減と生産性向上を実現する狙いだ"
+summaryPoints: ["Seaの動きは、基盤モデル競争が性能比較だけでなく配布網や企業導入の争いになったことを示す。","モデルの価値は、API、クラウド、開発ツール、業務データと結びつくほど大きくなりやすい。","読者はベンチマークの優劣だけでなく、どの企業基盤に組み込まれるかを見る必要がある。"]
 topics_json: ["agents", "coding-agent", "openai"]
 companies_json: ["openai"]
 ---
-
 
 東南アジア最大級のインターネット企業Sea Limited（本社シンガポール）が、AIによるソフトウェア開発の自動化を全社規模で加速させている。同社最高製品責任者（CPO）は、米OpenAIが提供するAIコーディングエージェント「Codex」をエンジニアリング組織全体に展開し、アジア発のAIネイティブな開発体制を構築する方針を明らかにした。人の指示を超えて自律的にコードを生成・修正するエージェント型AIの実用化は、年間数十億ドル規模の研究開発費を投じる同社の競争力を左右する転換点となる。
 

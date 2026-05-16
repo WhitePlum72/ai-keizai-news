@@ -9,6 +9,7 @@ published_at: "2026-05-09"
 buzz_score: 46.0
 image_url: "/images/articles/article_3075.webp"
 meta_description: "OpenAI裁判で、マスク氏とアルトマン氏の独断的なリーダーシップや経営の不透明さが露呈し、両者の資質に批判が集まった。この対立は、急成長するAI企業のガバナンスの脆弱性を浮き彫りにし、市場の信頼を揺るがしている。"
+summaryPoints: ["OpenAIの事例は、AI時代の競争力がサイバー防御と供給網管理にも左右されることを示している。","製造委託先、クラウド、認証情報を含む防御体制が、AI関連企業の事業継続リスクになっている。","単発の攻撃被害ではなく、AIインフラを支える企業群全体の安全性を点検する材料になる。"]
 topics_json: ["agi", "openai"]
 companies_json: ["openai"]
 ---

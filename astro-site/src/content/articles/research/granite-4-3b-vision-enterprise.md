@@ -9,10 +9,10 @@ published_at: "2026-05-12"
 buzz_score: 0.0
 image_url: "/images/articles/article_1424.webp"
 meta_description: "IBMの小型マルチモーダルAI「Granite 4.0 3B Vision」は30億パラメータながら複雑な企業文書の解析でGPT-4o超えの精度を示し、低コストとオープンソースによる機密性の高さが特徴。特に日本の紙文書デジタル化課題に有効な"
+summaryPoints: ["IBMの動きは、基盤モデル競争が性能比較だけでなく配布網や企業導入の争いになったことを示す。","モデルの価値は、API、クラウド、開発ツール、業務データと結びつくほど大きくなりやすい。","読者はベンチマークの優劣だけでなく、どの企業基盤に組み込まれるかを見る必要がある。"]
 topics_json: ["gpu", "meta", "multimodal", "openai", "reasoning"]
 companies_json: ["ibm", "intel"]
 ---
-
 
 IBMは2024年10月、企業の文書処理に特化した小型マルチモーダルAIモデル「Granite 4.0 3B Vision」を発表した。パラメータ数わずか30億でありながら、表やグラフを含む複雑なビジネス文書の解析においてGPT-4oを上回る精度を示し、コスト効率と性能の両立を求める企業の関心を集めている。
 

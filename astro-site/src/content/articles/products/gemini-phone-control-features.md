@@ -9,10 +9,10 @@ published_at: "2026-05-13"
 buzz_score: 67.0
 image_url: "https://platform.theverge.com/wp-content/uploads/sites/2/2026/05/gemini_intell.jpg?quality=90&strip=all&crop=0%2C15.084784493477%2C100%2C69.830431013045&w=1200"
 meta_description: "グーグルは生成AI「Gemini」の拡張により、Android端末の遠隔・自動操作を強化した。Chromeへの直接統合や文脈を理解した自動入力を実現。さらに、メール確認からカレンダー登録、メッセージ送信までアプリを横断した一連のタスクを音声"
+summaryPoints: ["Gemini新機能発表の動きは、基盤モデル競争が性能比較だけでなく配布網や企業導入の争いになったことを示す。","モデルの価値は、API、クラウド、開発ツール、業務データと結びつくほど大きくなりやすい。","読者はベンチマークの優劣だけでなく、どの企業基盤に組み込まれるかを見る必要がある。"]
 topics_json: ["google"]
 companies_json: ["google"]
 ---
-
 
 米グーグルは5月、生成AI「Gemini」の大規模な機能拡張を発表した。Android向けの年次開発者会議「Google I/O」を前に、スマートフォンの操作をAIが代行する新機能群の詳細が明らかになった。ユーザーはGeminiを通じてアプリ横断的なタスク実行が可能となり、検索から決済完了までを自動化する体験が現実味を帯びてきた。
 

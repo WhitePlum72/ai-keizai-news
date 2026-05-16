@@ -9,10 +9,10 @@ published_at: "2026-05-16"
 buzz_score: 47.5
 image_url: "https://www.anthropic.com/api/opengraph-illustration?name=Object%20CodeGlobe&backgroundColor=sky"
 meta_description: "PwCはOpenAIとの提携を拡大し、監査・税務・コンサル全領域にAIエージェントを展開するため、年間10億ドルの投資を発表。財務監査の自動化など高付加価値業務をAIが担い、専門的判断の補助を実現し、競合デロイト等とのAI投資競争が激化して"
+summaryPoints: ["OpenAIの動きは、基盤モデル競争が性能比較だけでなく配布網や企業導入の争いになったことを示す。","モデルの価値は、API、クラウド、開発ツール、業務データと結びつくほど大きくなりやすい。","読者はベンチマークの優劣だけでなく、どの企業基盤に組み込まれるかを見る必要がある。"]
 topics_json: ["agents", "google", "nvidia", "openai"]
 companies_json: ["google", "nvidia", "openai"]
 ---
-
 
 PwCは監査・コンサルティング事業における人工知能の統合を加速するため、OpenAIとの提携を拡大し、年間10億ドルのAI投資計画を明らかにした。生成AIを中核に据えた戦略的刷新により、プロフェッショナルサービス業界の競争構造が大きく変わる分岐点となる。
 

@@ -9,10 +9,10 @@ published_at: "2026-05-13"
 buzz_score: 28.5
 image_url: "https://www.zdnet.com/a/img/resize/d0918c6dc9393a4920d5e3b09ecc3a520f6efcb8/2026/05/12/8772f00a-d1b1-4c86-8318-390496afe77b/gemini-intelligence.jpg?auto=webp&fit=crop&height=675&width=1200"
 meta_description: "Android端末に自律型AI「Gemini Intelligence」が搭載され、複数アプリを横断したタスクの自動実行が可能になる。オンデバイス処理でプライバシーを保護し、まずPixel 9から英語圏向けに2025年第1四半期より展開予定"
+summaryPoints: ["Intelの動きは、基盤モデル競争が性能比較だけでなく配布網や企業導入の争いになったことを示す。","モデルの価値は、API、クラウド、開発ツール、業務データと結びつくほど大きくなりやすい。","読者はベンチマークの優劣だけでなく、どの企業基盤に組み込まれるかを見る必要がある。"]
 topics_json: ["agents", "google"]
 companies_json: ["google", "intel", "samsung"]
 ---
-
 
 GoogleはAndroid向けAIアシスタント「Gemini」に大規模な機能拡張を実施した。新たに導入された「Gemini Intelligence」により、ユーザーの指示に対して端末が複数のアプリケーションを横断しながら自律的にタスクを遂行するエージェント型の動作が可能になる。モバイルAIの在り方を根本から変えるこのアップデートは、2025年第1四半期中に展開が開始される見通しだ。
 

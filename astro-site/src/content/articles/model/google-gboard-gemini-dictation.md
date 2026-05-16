@@ -9,10 +9,10 @@ published_at: "2026-05-13"
 buzz_score: 39.5
 image_url: "https://techcrunch.com/wp-content/uploads/2026/01/google-gemini-jagmeet-singh-techcrunch.jpg?resize=1200,800"
 meta_description: "GoogleのGboard音声入力に生成AI「Gemini」が搭載され、高精度な書き起こしが標準機能化される。これによりOtter.aiなど音声文字起こし専門スタートアップの商圏縮小が懸念される。"
+summaryPoints: ["Googleの動きは、基盤モデル競争が性能比較だけでなく配布網や企業導入の争いになったことを示す。","モデルの価値は、API、クラウド、開発ツール、業務データと結びつくほど大きくなりやすい。","読者はベンチマークの優劣だけでなく、どの企業基盤に組み込まれるかを見る必要がある。"]
 topics_json: ["google"]
 companies_json: ["google", "samsung"]
 ---
-
 
 Googleがスマートフォン向けキーボードアプリ「Gboard」の音声入力機能に、生成AI「Gemini」を搭載したDictation機能を追加する。まずはSamsung GalaxyとGoogle Pixelの両シリーズから提供を開始し、AIによる高精度な書き起こしを標準機能として拡大する構えだ。これにより、Otter.aiなど音声文字起こし専門スタートアップの商圏が一段と狭まる可能性がある。
 

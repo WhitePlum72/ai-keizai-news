@@ -9,10 +9,10 @@ published_at: "2026-05-15"
 buzz_score: 53.7
 image_url: "https://platform.theverge.com/wp-content/uploads/sites/2/2026/05/App-view.png?quality=90&strip=all&crop=0%2C3.4613147178592%2C100%2C93.077370564282&w=1200"
 meta_description: "OpenAIはChatGPTアプリにデスクトップ向けAIツール「Codex」を統合し、スマートフォンからコード生成やアプリ操作を可能にした。競合Anthropicの「Claude Code」の急速な台頭を受け、同社は他プロジェクトを削減し、"
+summaryPoints: ["OpenAIの動きは、基盤モデル競争が性能比較だけでなく配布網や企業導入の争いになったことを示す。","モデルの価値は、API、クラウド、開発ツール、業務データと結びつくほど大きくなりやすい。","読者はベンチマークの優劣だけでなく、どの企業基盤に組み込まれるかを見る必要がある。"]
 topics_json: ["agents", "anthropic", "coding-agent", "openai"]
 companies_json: ["anthropic", "openai"]
 ---
-
 
 OpenAIは4月15日、デスクトップ向けAIツール「Codex」をスマートフォンのChatGPTアプリから利用可能にすると発表した。Anthropicの「Claude Code」が開発者コミュニティで急速に支持を集める中、OpenAIは側面プロジェクトを削減してまでこの機能統合を急いでいる。
 

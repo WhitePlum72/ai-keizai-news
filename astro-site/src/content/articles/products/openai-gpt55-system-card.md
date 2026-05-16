@@ -9,6 +9,7 @@ published_at: "2026-05-09"
 buzz_score: 51.0
 image_url: "/images/articles/article_1388.webp"
 meta_description: "米OpenAIは2026年4月23日、次世代大規模言語モデル「GPT-5.5」のシステムカードを発表した。同モデルは複雑な現実世界の作業を自律的に処理するよう設計されており、AIの自律性向上がビジネス効率化に与える影響が注目される。 GPT"
+summaryPoints: ["OpenAIの事例は、AI時代の競争力がサイバー防御と供給網管理にも左右されることを示している。","製造委託先、クラウド、認証情報を含む防御体制が、AI関連企業の事業継続リスクになっている。","単発の攻撃被害ではなく、AIインフラを支える企業群全体の安全性を点検する材料になる。"]
 topics_json: ["llm", "openai"]
 companies_json: ["openai"]
 ---

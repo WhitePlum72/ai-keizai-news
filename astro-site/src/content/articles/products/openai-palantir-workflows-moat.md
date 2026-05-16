@@ -9,10 +9,10 @@ published_at: "2026-05-12"
 buzz_score: 26.5
 image_url: "https://the-decoder.com/wp-content/uploads/2026/05/OpenAI-Moat-DeployCo-1200x670.png"
 meta_description: "OpenAI子会社DeployCoは、Palantir流の業務統合で競争障壁を築く。ラボでは再現できない現場固有の複雑さを囲い込み、顧客のスイッチングコストを高める戦略だ。"
+summaryPoints: ["OpenAIの動きは、基盤モデル競争が性能比較だけでなく配布網や企業導入の争いになったことを示す。","モデルの価値は、API、クラウド、開発ツール、業務データと結びつくほど大きくなりやすい。","読者はベンチマークの優劣だけでなく、どの企業基盤に組み込まれるかを見る必要がある。"]
 topics_json: ["openai"]
 companies_json: ["openai", "palantir"]
 ---
-
 
 OpenAIがAI導入支援を本格事業化する。大企業向けにAIをコア業務へ統合する子会社「DeployCo」の内部戦略が明らかになり、その設計思想がPalantir流の業務プロセス囲い込みにあることが分かった。ラボ環境では模倣できない実運用の複雑さを競争障壁とする構図が浮かび上がる。
 

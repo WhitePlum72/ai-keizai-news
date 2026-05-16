@@ -9,10 +9,10 @@ published_at: "2026-05-11"
 buzz_score: 48.0
 image_url: "https://blogs.nvidia.com/wp-content/uploads/2026/05/26-cmu-commencement-20-KL_-13_16x9-scaled.jpg"
 meta_description: "NVIDIAのジェンスン・フアンCEOは、カーネギーメロン大学の卒業式で、AI革命の始まりに立つ卒業生へ「正しい問いを立てる力」の重要性を説いた。入学時には存在しなかった生成AIが社会を一変させる中、大学で培った批判的思考こそが時代を生き抜"
+summaryPoints: ["NVIDIAをめぐる動きは、AI競争の主戦場がモデルだけでなく計算資源の確保に広がったことを示す。","GPU、半導体、クラウド、電力の制約が、生成AIサービスの成長速度を左右する段階に入っている。","投資家や利用企業は、製品発表だけでなく供給網とデータセンター投資の持続性を見る必要がある。"]
 topics_json: ["datacenter", "google", "gpu", "nvidia", "openai", "semiconductor"]
 companies_json: ["deepmind", "nvidia", "openai"]
 ---
-
 
 NVIDIAのジェンスン・フアンCEOは5月18日、カーネギーメロン大学の第128回卒業式で基調講演を行い、2025年の卒業生に向けて「皆さんのキャリアはAI革命の始まりとともにスタートする」と宣言した。フアン氏は「新しい産業が生まれつつあり、科学と発見の新時代が幕を開けている」と述べ、生成AIがもたらす歴史的な転換点を強調した。
 

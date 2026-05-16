@@ -9,6 +9,7 @@ published_at: "2026-05-09"
 buzz_score: 43.0
 image_url: "/images/articles/article_1547.webp"
 meta_description: "EUは米アンセリックとAI脆弱性テスト協議を継続。同社のモデル「Mythos」で金融機関等のセキュリティを強化する方針で、データ保護と性能向上のバランスを調整中。デジタル主権確保の一環で、来月までにテスト計画草案を策定する見通し。"
+summaryPoints: ["Anthropicの事例は、AI時代の競争力がサイバー防御と供給網管理にも左右されることを示している。","製造委託先、クラウド、認証情報を含む防御体制が、AI関連企業の事業継続リスクになっている。","単発の攻撃被害ではなく、AIインフラを支える企業群全体の安全性を点検する材料になる。"]
 topics_json: ["anthropic", "llm"]
 companies_json: ["anthropic"]
 ---

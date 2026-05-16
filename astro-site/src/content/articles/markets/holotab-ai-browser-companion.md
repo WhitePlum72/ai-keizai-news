@@ -9,10 +9,10 @@ published_at: "2026-05-11"
 buzz_score: 0.0
 image_url: "/images/articles/article_1417.webp"
 meta_description: "HCompanyが発表したAIブラウザ「HoloTab」は、常駐AIがタスクを自律実行し、月額20ドルで個人のブラウジング効率を刷新する。プライバシー保護設計と段階的な対応サイト拡張で、10億ドル市場の変革を狙う。"
+summaryPoints: ["HCompanyが手掛けるAIブラウザHoloTの動きは、基盤モデル競争が性能比較だけでなく配布網や企業導入の争いになったことを示す。","モデルの価値は、API、クラウド、開発ツール、業務データと結びつくほど大きくなりやすい。","読者はベンチマークの優劣だけでなく、どの企業基盤に組み込まれるかを見る必要がある。"]
 topics_json: ["agents", "coding-agent", "google", "microsoft"]
 companies_json: ["google", "microsoft"]
 ---
-
 
 HCompanyは2025年7月9日、AIエージェントを組み込んだブラウザ「HoloTab」を正式発表した。ユーザーの意図を先読みして自律的にタスクを実行する設計が最大の特徴で、月額20ドルのサブスクリプションにより個人のブラウジング効率を抜本的に変える。発表資料によれば初年度200万ユーザー獲得を目標に掲げ、ブラウザ市場にAIネイティブの波を持ち込む。
 

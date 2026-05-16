@@ -9,6 +9,7 @@ published_at: "2026-05-09"
 buzz_score: 51.0
 image_url: "/images/articles/article_1442.webp"
 meta_description: "AIスタートアップのSierraが、Tiger GlobalとGV主導の資金調達ラウンドで9億5,000万ドルを調達した。月曜日に発表されたこの調達により、ポストマネー評価額は150億ドルを超えた。同社は調達資金を「世界標準」の顧客体験AI"
+summaryPoints: ["Sierraの動きは、基盤モデル競争が性能比較だけでなく配布網や企業導入の争いになったことを示す。","モデルの価値は、API、クラウド、開発ツール、業務データと結びつくほど大きくなりやすい。","読者はベンチマークの優劣だけでなく、どの企業基盤に組み込まれるかを見る必要がある。"]
 topics_json: ["agents", "openai"]
 companies_json: ["openai", "salesforce"]
 ---

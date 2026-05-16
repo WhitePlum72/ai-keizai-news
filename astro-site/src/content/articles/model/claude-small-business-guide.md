@@ -9,10 +9,10 @@ published_at: "2026-05-14"
 buzz_score: 52.5
 image_url: "https://www.anthropic.com/api/opengraph-illustration?name=Object%20Store&backgroundColor=clay"
 meta_description: "Anthropicが小規模企業向けAIサービスを発表。月額40ドルで大企業並みの機能をチーム全体に提供し、5ユーザーから導入可能。AI活用の民主化を進め、市場の裾野拡大を狙う。"
+summaryPoints: ["Anthropicの動きは、基盤モデル競争が性能比較だけでなく配布網や企業導入の争いになったことを示す。","モデルの価値は、API、クラウド、開発ツール、業務データと結びつくほど大きくなりやすい。","読者はベンチマークの優劣だけでなく、どの企業基盤に組み込まれるかを見る必要がある。"]
 topics_json: ["anthropic", "openai"]
 companies_json: ["anthropic", "openai"]
 ---
-
 
 米新興企業Anthropicは2025年5月、小規模企業向けの新サービス「Claude for Small Business」を発表した。月額40ドルで、大企業向けと同等の対話型AI機能をチーム全体で利用できる。従来、高度なAI活用は資金力のある大企業が独占してきたが、この価格破壊により構図が変わる可能性がある。
 

@@ -9,10 +9,10 @@ published_at: "2026-05-12"
 buzz_score: 48.5
 image_url: "https://images.ctfassets.net/kftzwdyauwt9/31rjlet3neWRz6pY1AzuTd/b48667a68f2e86d0fa1f7a890060bbbe/Frame__7_.png?w=1600&h=900&fit=fill"
 meta_description: "OpenAIが企業へのAI実装支援を手がける新会社DeployCoを設立。独自データで調整した専用モデルを安全な環境で提供し、業務改善や成果創出まで一貫して担うことで、AI収益化競争での市場シェア拡大を狙う。"
+summaryPoints: ["OpenAIの動きは、基盤モデル競争が性能比較だけでなく配布網や企業導入の争いになったことを示す。","モデルの価値は、API、クラウド、開発ツール、業務データと結びつくほど大きくなりやすい。","読者はベンチマークの優劣だけでなく、どの企業基盤に組み込まれるかを見る必要がある。"]
 topics_json: ["openai"]
 companies_json: ["intel", "openai"]
 ---
-
 
 OpenAIは米国時間16日、先端AIを企業の業務プロセスに実装し、具体的な事業成果に結びつけるための新会社「DeployCo」の設立を発表した。生成AIの活用が「実験段階」から「本番運用」へ移行する中、技術提供だけでなく成果創出までを一貫して担う異例の戦略で市場シェアの拡大を狙う。
 

@@ -9,6 +9,7 @@ published_at: "2026-05-09"
 buzz_score: 50.0
 image_url: "/images/articles/article_1642.webp"
 meta_description: "OpenAI社長が創設者のマスク氏を「愚か者」と批判。モデル開発で研究者を酷評したと証言し、忍耐力の欠如を指摘。社内葛藤やリーダーシップ課題が浮き彫りになり、組織の健全性とガバナンス強化が問われている。"
+summaryPoints: ["OpenAIの動きは、基盤モデル競争が性能比較だけでなく配布網や企業導入の争いになったことを示す。","モデルの価値は、API、クラウド、開発ツール、業務データと結びつくほど大きくなりやすい。","読者はベンチマークの優劣だけでなく、どの企業基盤に組み込まれるかを見る必要がある。"]
 topics_json: ["openai"]
 companies_json: ["openai"]
 ---

@@ -9,10 +9,10 @@ published_at: "2026-05-11"
 buzz_score: 30.5
 image_url: "https://the-decoder.com/wp-content/uploads/2026/05/openai_anthropic_religion.png"
 meta_description: "AnthropicとOpenAIがAI倫理を巡り宗教指導者と対話を始めたが、専門家からは規制論議を避ける注意散漫な試みに過ぎないとの批判が出ている。"
+summaryPoints: ["OpenAIの動きは、基盤モデル競争が性能比較だけでなく配布網や企業導入の争いになったことを示す。","モデルの価値は、API、クラウド、開発ツール、業務データと結びつくほど大きくなりやすい。","読者はベンチマークの優劣だけでなく、どの企業基盤に組み込まれるかを見る必要がある。"]
 topics_json: ["anthropic", "openai"]
 companies_json: ["anthropic", "openai"]
 ---
-
 
 米国の有力AI企業であるAnthropicとOpenAIが、技術の倫理指針を探る目的で宗教指導者との対話を開始した。両社はニューヨークで開かれた初の「Faith-AI Covenant」円卓会議に幹部を派遣し、多様な宗教の指導者らと意見を交わした。この動きの背景には急速に高度化するAIが社会にもたらす倫理的課題への対応があるが、一部の専門家からは具体的な規制論議から目をそらすための「せいぜい注意散漫に過ぎない」との批判が上がっている。
 

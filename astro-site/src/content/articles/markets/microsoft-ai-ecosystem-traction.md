@@ -9,6 +9,7 @@ published_at: "2026-05-09"
 buzz_score: 51.0
 image_url: "/images/articles/article_2955.webp"
 meta_description: "マイクロソフトのAzure AI導入企業数が前年比40%以上増加。Fortune 500の65%が利用し、大規模契約も急増している。AI需要が実需へ転換し、各製品を連携させるエコシステムが競合優位性を生み出している。"
+summaryPoints: ["マイクロソフトのAI導入企業数が急増の動きは、AI投資が短期のテーマ株ではなく産業インフラ再編と結びついていることを示す。","資金調達、買収、株価反応は、計算資源や販売網を押さえる競争の一部として読む必要がある。","市場評価を見る際は、成長期待だけでなく設備投資、収益化、供給制約のバランスが論点になる。"]
 topics_json: ["microsoft", "openai"]
 companies_json: ["microsoft", "openai"]
 ---

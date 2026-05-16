@@ -9,10 +9,10 @@ published_at: "2026-05-13"
 buzz_score: 52.5
 image_url: "https://images.ctfassets.net/kftzwdyauwt9/6PRLQARXtH3sfsTBcHlufc/ac545b82a82009609194d64e34538e62/SEO.png?w=1600&h=900&fit=fill"
 meta_description: "AI機械学習の自動化を競うコンペ「Parameter Golf」に1000人超が参加。厳しい計算制約下でAIエージェントの性能を競い、2000件超のコード提出から、人間の戦略立案とAIの実装・探索を組み合わせた新たな研究開発の潮流が示された"
+summaryPoints: ["パラメータゴルフが示したAI研究開発の新潮流をめぐる動きは、AI競争の主戦場がモデルだけでなく計算資源の確保に広がったことを示す。","GPU、半導体、クラウド、電力の制約が、生成AIサービスの成長速度を左右する段階に入っている。","投資家や利用企業は、製品発表だけでなく供給網とデータセンター投資の持続性を見る必要がある。"]
 topics_json: ["agents", "coding-agent", "gpu", "reasoning"]
 companies_json: []
 ---
-
 
 AIによる機械学習研究の自動化が、1000人を超える開発者による異例のコンペティションで現実味を帯びてきた。「Parameter Golf」と名付けられたこの企画は、極めて厳しい計算リソース制約下でAIエージェントの性能を競うものである。2000件を超えるコード投稿からは、人間とAIの協業がもたらすモデル設計の新機軸が浮かび上がった。
 

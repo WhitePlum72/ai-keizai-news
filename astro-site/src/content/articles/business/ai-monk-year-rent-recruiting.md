@@ -9,6 +9,7 @@ published_at: "2026-05-09"
 buzz_score: 33.0
 image_url: "/images/articles/article_2943.webp"
 meta_description: "AIスタートアップのMonkが、技術者採用の紹介報酬として紹介者の家賃1年分を負担する破格の制度を導入し、人材獲得競争の激化を示した。"
+summaryPoints: ["AI新興企業が採用成功報酬に家賃1年分のニュースは、AI業界の競争が単体技術ではなく企業間の接続関係で決まり始めたことを示す。","読者は発表内容だけでなく、背後にあるクラウド、データ、資本、販売網の関係を見る必要がある。","この動きは、日本企業がAI活用や調達戦略を考えるうえでも無視しにくい論点になる。"]
 topics_json: ["google", "meta", "openai"]
 companies_json: ["google", "meta", "openai"]
 ---

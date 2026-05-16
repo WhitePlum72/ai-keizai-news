@@ -9,6 +9,7 @@ published_at: "2026-05-09"
 buzz_score: 35.0
 image_url: "/images/articles/article_1434.webp"
 meta_description: "エヌビディアのフアンCEOは、AIが雇用を奪う懸念に反論し、生産性向上が新たな事業と職種を生むと主張した。生成AIの普及で雇用不安が高まる中、AI半導体市場を席巻する同氏の強気な発言は、過去の産業革命の歴史を踏まえたものであり、大きな波紋を"
+summaryPoints: ["AI革命の主役が語る雇用の未来像をめぐる動きは、AI競争の主戦場がモデルだけでなく計算資源の確保に広がったことを示す。","GPU、半導体、クラウド、電力の制約が、生成AIサービスの成長速度を左右する段階に入っている。","投資家や利用企業は、製品発表だけでなく供給網とデータセンター投資の持続性を見る必要がある。"]
 topics_json: ["amd", "datacenter", "nvidia", "semiconductor"]
 companies_json: ["amd", "nvidia"]
 ---

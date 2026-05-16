@@ -9,10 +9,10 @@ published_at: "2026-05-11"
 buzz_score: 0.0
 image_url: "/images/articles/article_1401.webp"
 meta_description: "OpenAIが個人情報を高精度で検出し自動編集するフィルターを無償公開した。17種類の情報に対応し、文脈理解で誤検出を低減。モデルを完全公開し自社運用を可能にした点で差別化し、企業のデータ保護とAI活用の両立を支援する。"
+summaryPoints: ["OpenAIの動きは、基盤モデル競争が性能比較だけでなく配布網や企業導入の争いになったことを示す。","モデルの価値は、API、クラウド、開発ツール、業務データと結びつくほど大きくなりやすい。","読者はベンチマークの優劣だけでなく、どの企業基盤に組み込まれるかを見る必要がある。"]
 topics_json: ["anthropic", "google", "openai"]
 companies_json: ["anthropic", "google", "openai"]
 ---
-
 
 OpenAIは4月10日、テキスト内の個人識別情報（PII）を高精度で検出し自動編集する「OpenAI Privacy Filter」を公開した。モデルの重みを完全公開するオープンウェイト方式を採用し、企業のプライバシー保護とAIガバナンスの両立に新たな選択肢を提供する。
 

@@ -9,6 +9,7 @@ published_at: "2026-05-09"
 buzz_score: 25.5
 image_url: "/images/articles/article_3053.webp"
 meta_description: "サイバー攻撃対策として、パラメータ数40億の小型AI「CyberSecQwen-4B」が登場した。ローカル実行と防御特化により、機密データを外部送信せず低遅延のリアルタイム脅威分析を実現し、データ主権も確保する。"
+summaryPoints: ["サイバー防衛に4Bの小型AIの事例は、AI時代の競争力がサイバー防御と供給網管理にも左右されることを示している。","製造委託先、クラウド、認証情報を含む防御体制が、AI関連企業の事業継続リスクになっている。","単発の攻撃被害ではなく、AIインフラを支える企業群全体の安全性を点検する材料になる。"]
 topics_json: ["google", "gpu", "llm", "openai", "reasoning"]
 companies_json: ["google", "openai"]
 ---

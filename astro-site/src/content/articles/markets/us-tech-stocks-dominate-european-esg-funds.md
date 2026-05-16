@@ -9,10 +9,10 @@ published_at: "2026-05-13"
 buzz_score: 55.0
 image_url: "/images/articles/article_4660.webp"
 meta_description: "欧州のESGファンド上位7銘柄をMicrosoftやNvidiaなど米ハイテク企業が独占し、理念と実態の乖離が顕在化。直接排出が少ない点が正当化の根拠だが、AI需要でScope3排出は増加し、集中リスクも課題となっている。"
+summaryPoints: ["Microsoftの動きは、AI投資が短期のテーマ株ではなく産業インフラ再編と結びついていることを示す。","資金調達、買収、株価反応は、計算資源や販売網を押さえる競争の一部として読む必要がある。","市場評価を見る際は、成長期待だけでなく設備投資、収益化、供給制約のバランスが論点になる。"]
 topics_json: ["amazon", "datacenter", "meta", "microsoft", "nvidia"]
 companies_json: ["amazon", "apple", "meta", "microsoft", "nvidia"]
 ---
-
 
 欧州で運用されるサステナブル投資ファンドの中核を、依然として米国の巨大テクノロジー企業が占めている実態が明らかになった。上位7銘柄すべてをMicrosoftやNvidiaなどが独占し、ESG（環境・社会・ガバナンス）投資の理念と運用実態の乖離が改めて浮き彫りとなっている。
 

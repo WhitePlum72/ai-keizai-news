@@ -9,10 +9,10 @@ published_at: "2026-05-16"
 buzz_score: 56.0
 image_url: "https://platform.theverge.com/wp-content/uploads/sites/2/2026/05/ChatGPT-financial-accounts.jpg?quality=90&strip=all&crop=0%2C10.732984293194%2C100%2C78.534031413613&w=1200"
 meta_description: "OpenAIはChatGPTに銀行口座アクセス機能を追加し、Plaid経由で全米1万2000の金融機関と安全に接続可能にした。支出分析や予算提案ができ、将来的な送金も視野に入れる。金融分野への本格参入で新たな収益柱を狙う。"
+summaryPoints: ["OpenAIの動きは、基盤モデル競争が性能比較だけでなく配布網や企業導入の争いになったことを示す。","モデルの価値は、API、クラウド、開発ツール、業務データと結びつくほど大きくなりやすい。","読者はベンチマークの優劣だけでなく、どの企業基盤に組み込まれるかを見る必要がある。"]
 topics_json: ["openai"]
 companies_json: ["openai"]
 ---
-
 
 OpenAIは2025年5月14日、対話型AI「ChatGPT」にユーザーの銀行口座へのアクセスを許可する新機能を発表した。金融データ連携プラットフォームのPlaidを通じて、全米1万2000の金融機関と安全に接続できる仕組みをプレビュー公開した。生成AIが金融取引の現場に直接関与する時代が現実味を帯びてきた。
 

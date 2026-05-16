@@ -9,10 +9,10 @@ published_at: "2026-05-12"
 buzz_score: 36.5
 image_url: "https://d2908q01vomqb2.cloudfront.net/f1f836cb4ea6efb2a0b1b99f41ad8b103eff4b59/2026/05/11/ml-20830.png"
 meta_description: "航空宇宙の製造現場で、生成AIのマルチモーダル技術により文書検索精度が向上。Amazon Nova Multimodal EmbeddingsとS3 Vectorsの組み合わせで、テキストと画像を統合検索し、図面や写真から高精度に関連文書を"
+summaryPoints: ["Amazonの動きは、基盤モデル競争が性能比較だけでなく配布網や企業導入の争いになったことを示す。","モデルの価値は、API、クラウド、開発ツール、業務データと結びつくほど大きくなりやすい。","読者はベンチマークの優劣だけでなく、どの企業基盤に組み込まれるかを見る必要がある。"]
 topics_json: ["amazon", "multimodal"]
 companies_json: ["amazon", "intel"]
 ---
-
 
 航空宇宙業界の製造現場における文書管理の効率化が、生成AIのマルチモーダル技術で実証された。Amazon Nova Multimodal EmbeddingsとAmazon S3 Vectorsを組み合わせた検索システムが、テキストのみの従来手法を上回る精度を示した。製造分野のデジタル変革に弾みをつける成果だ。
 

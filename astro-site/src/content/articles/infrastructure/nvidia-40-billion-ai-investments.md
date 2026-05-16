@@ -9,10 +9,10 @@ published_at: "2026-05-12"
 buzz_score: 41.5
 image_url: "https://the-decoder.com/wp-content/uploads/2025/12/nvidia_logo_wall_cb-1.jpeg"
 meta_description: "Nvidiaは2025年にAI関連企業へ400億ドル超を投資し、GPU現物出資で資金を自社製品購入に還流させる仕組みを構築。需要囲い込みとエコシステム支配を加速し、AI業界の資金循環を動かす中核的存在へ変貌を遂げている。"
+summaryPoints: ["NvidiaがAI関連企業に400億ドル超の投資をめぐる動きは、AI競争の主戦場がモデルだけでなく計算資源の確保に広がったことを示す。","GPU、半導体、クラウド、電力の制約が、生成AIサービスの成長速度を左右する段階に入っている。","投資家や利用企業は、製品発表だけでなく供給網とデータセンター投資の持続性を見る必要がある。"]
 topics_json: ["gpu", "nvidia", "semiconductor"]
 companies_json: ["nvidia"]
 ---
-
 
 Nvidiaは2025年に入り、人工知能（AI）関連企業への投資額が400億ドルを突破した。GPU市場での支配力を背景に、エヌビディアは単なる半導体サプライヤーからAI業界全体の資金循環を動かす中核的存在へと変貌を遂げている。
 

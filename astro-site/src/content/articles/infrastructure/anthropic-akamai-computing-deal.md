@@ -9,6 +9,7 @@ published_at: "2026-05-09"
 buzz_score: 55.0
 image_url: "/images/articles/article_3074.webp"
 meta_description: "Anthropicが推論需要の急増に対応するため、アカマイ社と2700億円規模のコンピューティング調達契約を締結し、マルチクラウド戦略へ転換した。"
+summaryPoints: ["Anthropicの事例は、AI時代の競争力がサイバー防御と供給網管理にも左右されることを示している。","製造委託先、クラウド、認証情報を含む防御体制が、AI関連企業の事業継続リスクになっている。","単発の攻撃被害ではなく、AIインフラを支える企業群全体の安全性を点検する材料になる。"]
 topics_json: ["anthropic", "google", "llm", "reasoning"]
 companies_json: ["anthropic", "google"]
 ---

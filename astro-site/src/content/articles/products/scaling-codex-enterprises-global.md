@@ -9,10 +9,10 @@ published_at: "2026-05-11"
 buzz_score: 0.0
 image_url: "/images/articles/article_1403.webp"
 meta_description: "OpenAIの企業向けCodex Labsが発表され、要件定義から運用保守まで全工程を統合する。週間利用者400万を突破し、アクセンチュアやPwC等との提携で開発現場へのAI浸透が加速する。"
+summaryPoints: ["OpenAIの動きは、基盤モデル競争が性能比較だけでなく配布網や企業導入の争いになったことを示す。","モデルの価値は、API、クラウド、開発ツール、業務データと結びつくほど大きくなりやすい。","読者はベンチマークの優劣だけでなく、どの企業基盤に組み込まれるかを見る必要がある。"]
 topics_json: ["coding-agent", "microsoft", "openai"]
 companies_json: ["microsoft", "openai"]
 ---
-
 
 OpenAIは2025年7月10日、企業向けコード生成・展開プラットフォーム「Codex Labs」の新設と、アクセンチュア、PwC、インフォシスを含む複数のグローバルシステムインテグレーターとの戦略提携を発表した。Codexの週間アクティブユーザー数（WAU）が400万を突破したことも明らかにし、ソフトウェア開発ライフサイクル全体へのAI浸透が本格化している実態が浮き彫りとなった。
 

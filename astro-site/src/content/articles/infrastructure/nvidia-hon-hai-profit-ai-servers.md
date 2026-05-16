@@ -9,10 +9,10 @@ published_at: "2026-05-15"
 buzz_score: 55.0
 image_url: "/images/articles/article_5376.webp"
 meta_description: "鴻海精密工業の四半期決算は、AI向けサーバー販売好調で市場予測を上回る増益となった。NVIDIAの最新GPU搭載製品の出荷本格化が寄与し、データセンター投資の裾野拡大が同社の成長を支えている。"
+summaryPoints: ["NVIDIAをめぐる動きは、AI競争の主戦場がモデルだけでなく計算資源の確保に広がったことを示す。","GPU、半導体、クラウド、電力の制約が、生成AIサービスの成長速度を左右する段階に入っている。","投資家や利用企業は、製品発表だけでなく供給網とデータセンター投資の持続性を見る必要がある。"]
 topics_json: ["amazon", "datacenter", "google", "gpu", "microsoft", "nvidia", "semiconductor"]
 companies_json: ["amazon", "google", "microsoft", "nvidia"]
 ---
-
 
 AI向けデータセンター投資の裾野が拡大する中、Nvidiaの主要サーバー組み立てパートナーである鴻海精密工業が2024年10〜12月期決算で市場予想を上回る増益を達成した。AI開発に不可欠なハードウェア支出の持続性を改めて示す結果となった。
 

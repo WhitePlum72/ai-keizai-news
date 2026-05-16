@@ -9,6 +9,7 @@ published_at: "2026-05-09"
 buzz_score: 27.5
 image_url: "/images/articles/article_3038.webp"
 meta_description: "OpenClawの台頭を受け、MetaとGoogleが自律型AIエージェントの開発競争を激化させている。OpenClawは公開3カ月で3000万人のユーザーを獲得し、プラットフォームに依存しない行動完結型AIへの需要を証明。これに対抗し、両"
+summaryPoints: ["Googleの動きは、基盤モデル競争が性能比較だけでなく配布網や企業導入の争いになったことを示す。","モデルの価値は、API、クラウド、開発ツール、業務データと結びつくほど大きくなりやすい。","読者はベンチマークの優劣だけでなく、どの企業基盤に組み込まれるかを見る必要がある。"]
 topics_json: ["agents", "google", "llm", "meta"]
 companies_json: ["google", "meta"]
 ---

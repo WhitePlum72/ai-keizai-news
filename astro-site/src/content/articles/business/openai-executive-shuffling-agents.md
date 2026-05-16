@@ -9,10 +9,10 @@ published_at: "2026-05-16"
 buzz_score: 69.0
 image_url: "https://platform.theverge.com/wp-content/uploads/sites/2/2026/05/STKP221_GREG_BROCKMAN.jpg?quality=90&strip=all&crop=0%2C10.732984293194%2C100%2C78.534031413613&w=1200"
 meta_description: "OpenAIは組織再編で社長が全製品開発の統括に就任し、今年の戦略をAIエージェントに集中する方針を表明した。製品部門を統合して意思決定を迅速化し、競争激化に対応する狙い。相次ぐ幹部退職を背景に、経営刷新と営利転換を加速させている。"
+summaryPoints: ["OpenAIの動きは、基盤モデル競争が性能比較だけでなく配布網や企業導入の争いになったことを示す。","モデルの価値は、API、クラウド、開発ツール、業務データと結びつくほど大きくなりやすい。","読者はベンチマークの優劣だけでなく、どの企業基盤に組み込まれるかを見る必要がある。"]
 topics_json: ["agents", "anthropic", "google", "openai"]
 companies_json: ["anthropic", "deepmind", "google", "openai"]
 ---
-
 
 OpenAIは3月28日、AIエージェント分野での競争力強化を目的とした組織再編を発表した。グレッグ・ブロックマン社長が全製品開発の統括責任者に就任し、今年の製品戦略をAIエージェントに集中させる方針を社内メモで明らかにした。
 

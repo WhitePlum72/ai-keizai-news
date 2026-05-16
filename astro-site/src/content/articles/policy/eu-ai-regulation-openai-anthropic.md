@@ -9,10 +9,10 @@ published_at: "2026-05-12"
 buzz_score: 31.5
 image_url: "https://the-decoder.com/wp-content/uploads/2026/05/european_flag_logo_wall.png"
 meta_description: "OpenAIは次世代モデルの内部査察受け入れを欧州委に提案し協調姿勢を示したが、Anthropicは数回の協議後も競合や安全保障を理由に拒否を続けている。域外企業の任意開示に頼る欧州AI規制の構造的脆弱性が露呈し、実効性に限界が生じている。"
+summaryPoints: ["OpenAIの事例は、AI時代の競争力がサイバー防御と供給網管理にも左右されることを示している。","製造委託先、クラウド、認証情報を含む防御体制が、AI関連企業の事業継続リスクになっている。","単発の攻撃被害ではなく、AIインフラを支える企業群全体の安全性を点検する材料になる。"]
 topics_json: ["anthropic", "openai"]
 companies_json: ["anthropic", "openai"]
 ---
-
 
 EUの人工知能規制法を巡り、開発企業間の協力格差が表面化している。OpenAIが最新モデルへの直接アクセスを欧州委員会に提案した一方、Anthropicは数回の協議を経てもなお査察を拒み続けており、域外企業の自主的協調に依存する欧州AI監督の限界が露呈した格好だ。
 

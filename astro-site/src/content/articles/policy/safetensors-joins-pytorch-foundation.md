@@ -9,10 +9,10 @@ published_at: "2026-05-11"
 buzz_score: 0.0
 image_url: "/images/articles/article_1420.webp"
 meta_description: "Safetensorsは、悪意あるコード埋め込みを防ぐAIモデル共有形式で、Hugging FaceからPyTorch財団へ移管された。8万超のモデルで採用され、中立資産として安心利用が促進される。"
+summaryPoints: ["Hugging Faceの事例は、AI時代の競争力がサイバー防御と供給網管理にも左右されることを示している。","製造委託先、クラウド、認証情報を含む防御体制が、AI関連企業の事業継続リスクになっている。","単発の攻撃被害ではなく、AIインフラを支える企業群全体の安全性を点検する材料になる。"]
 topics_json: ["amazon", "google", "meta", "microsoft"]
 companies_json: ["amazon", "google", "meta", "microsoft"]
 ---
-
 
 機械学習分野で広く使われる深層学習フレームワーク「PyTorch」を支援するPyTorch財団は、AIモデルの安全な保存・共有形式であるSafetensorsの管理を引き継いだ。Hugging Faceが主導して開発したこの形式は、モデルファイルに悪意あるコードを埋め込む攻撃を防ぐ設計で、すでに8万を超えるモデルが同形式で公開されている。今回の移管により、SafetensorsはPyTorchエコシステムの中立資産として、より多くの企業や開発者が安心して利用できる基盤となる。
 

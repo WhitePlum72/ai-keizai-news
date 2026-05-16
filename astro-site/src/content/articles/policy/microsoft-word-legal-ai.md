@@ -9,6 +9,7 @@ published_at: "2026-05-09"
 buzz_score: 51.0
 image_url: "/images/articles/article_1463.webp"
 meta_description: "米マイクロソフトは、ワード内に法務専門のAIエージェント「Legal Agent」を導入する。2026年5月に米国で先行リリースを開始した同機能は、契約書レビューなどの法務業務を効率化し、弁護士や法務担当者への信頼獲得を目指す。 Legal"
+summaryPoints: ["Microsoftの事例は、AI時代の競争力がサイバー防御と供給網管理にも左右されることを示している。","製造委託先、クラウド、認証情報を含む防御体制が、AI関連企業の事業継続リスクになっている。","単発の攻撃被害ではなく、AIインフラを支える企業群全体の安全性を点検する材料になる。"]
 topics_json: ["agents", "microsoft"]
 companies_json: ["microsoft"]
 ---

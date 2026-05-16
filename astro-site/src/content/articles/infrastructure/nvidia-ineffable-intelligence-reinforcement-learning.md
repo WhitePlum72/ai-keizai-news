@@ -9,10 +9,10 @@ published_at: "2026-05-14"
 buzz_score: 52.0
 image_url: "https://blogs.nvidia.com/wp-content/uploads/2026/05/agentic-logo-lockup-Ineffable-press-1920x1080-1-scaled.png"
 meta_description: "NVIDIAと強化学習研究所Ineffableが、試行錯誤で知識を得るAIエージェント向け計算基盤を共同設計する。AlphaGo開発者Silver氏が率いる同社の学習アルゴリズムと、NVIDIAのGPUを統合し、計算リソースを知識獲得に変換"
+summaryPoints: ["NVIDIAをめぐる動きは、AI競争の主戦場がモデルだけでなく計算資源の確保に広がったことを示す。","GPU、半導体、クラウド、電力の制約が、生成AIサービスの成長速度を左右する段階に入っている。","投資家や利用企業は、製品発表だけでなく供給網とデータセンター投資の持続性を見る必要がある。"]
 topics_json: ["agents", "datacenter", "google", "gpu", "nvidia", "reasoning", "semiconductor"]
 companies_json: ["deepmind", "intel", "nvidia"]
 ---
-
 
 NVIDIAはロンドンのAI研究所Ineffable Intelligenceと、強化学習インフラ構築に向けた技術協力を開始した。試行錯誤から自律的に知識を獲得するAIエージェントの実用化を加速し、次世代の計算基盤を両社で設計する計画だ。IneffableはAlphaGoの設計者David Silver氏が率いることで注目を集める。
 

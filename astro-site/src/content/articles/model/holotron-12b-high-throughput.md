@@ -9,6 +9,7 @@ published_at: "2026-05-09"
 buzz_score: 51.0
 image_url: "/images/articles/article_1431.webp"
 meta_description: "Hカンパニーは2026年3月17日、マルチモーダルコンピューター使用エージェント「Holotron-12B」を公開した。同モデルは、従来の静的画像処理ではなく、対話型環境での認識・決定・行動を目的としたポリシーモデルとして設計されている。運"
+summaryPoints: ["Hカンパニーをめぐる動きは、AI競争の主戦場がモデルだけでなく計算資源の確保に広がったことを示す。","GPU、半導体、クラウド、電力の制約が、生成AIサービスの成長速度を左右する段階に入っている。","投資家や利用企業は、製品発表だけでなく供給網とデータセンター投資の持続性を見る必要がある。"]
 topics_json: ["agents", "gpu", "multimodal", "nvidia", "reasoning"]
 companies_json: ["nvidia"]
 ---

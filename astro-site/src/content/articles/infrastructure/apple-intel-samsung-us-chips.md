@@ -9,6 +9,7 @@ published_at: "2026-05-09"
 buzz_score: 35.0
 image_url: "/images/articles/article_1529.webp"
 meta_description: "Appleは、台湾TSMCに依存する半導体製造の分散を図るため、IntelやSamsungと米国内での生産委託に向けた初期協議に入った。台湾有事の地政学リスクやCHIPS法による補助金が背景にあり、供給網再構築を視野に入れた動きだ。"
+summaryPoints: ["Appleをめぐる動きは、AI競争の主戦場がモデルだけでなく計算資源の確保に広がったことを示す。","GPU、半導体、クラウド、電力の制約が、生成AIサービスの成長速度を左右する段階に入っている。","投資家や利用企業は、製品発表だけでなく供給網とデータセンター投資の持続性を見る必要がある。"]
 topics_json: ["semiconductor"]
 companies_json: ["apple", "intel", "samsung", "tsmc"]
 ---

@@ -9,10 +9,10 @@ published_at: "2026-05-13"
 buzz_score: 30.5
 image_url: "https://the-decoder.com/wp-content/uploads/2025/04/ai_law_illustration-1-1200x800.png"
 meta_description: "Anthropicが法務特化AIのプラグイン12種を発表。契約法や訴訟支援を包括し、トムソン・ロイターなどと連携可能。弁護士のClaude利用頻度は全職種で最高という。"
+summaryPoints: ["Anthropicの動きは、基盤モデル競争が性能比較だけでなく配布網や企業導入の争いになったことを示す。","モデルの価値は、API、クラウド、開発ツール、業務データと結びつくほど大きくなりやすい。","読者はベンチマークの優劣だけでなく、どの企業基盤に組み込まれるかを見る必要がある。"]
 topics_json: ["anthropic"]
 companies_json: ["anthropic"]
 ---
-
 
 Anthropicは9日、法務分野に特化した新たなAIアシスタント機能「Claude Cowork」向けに12種類の専用プラグインを発表した。契約法、雇用法、訴訟対応の3領域をカバーし、既存の大手法務ソフトウェアとの連携も強化する。同社のチーフ・リーガル・オフィサーによれば、弁護士は他のどの職業よりも頻繁にClaudeを業務で利用しているという。
 

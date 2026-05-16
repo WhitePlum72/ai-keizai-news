@@ -9,10 +9,10 @@ published_at: "2026-05-11"
 buzz_score: 0.0
 image_url: "/images/articles/article_1390.webp"
 meta_description: "OpenAIの新機能Codexは、単なるテキスト生成を超え、ドキュメントやダッシュボードを自動作成し、外部ツール連携による業務自動化を実現する。チャットから実行フェーズへ移行し、企業の業務プロセスを変容させる可能性を秘めている。"
+summaryPoints: ["OpenAIの動きは、基盤モデル競争が性能比較だけでなく配布網や企業導入の争いになったことを示す。","モデルの価値は、API、クラウド、開発ツール、業務データと結びつくほど大きくなりやすい。","読者はベンチマークの優劣だけでなく、どの企業基盤に組み込まれるかを見る必要がある。"]
 topics_json: ["google", "openai"]
 companies_json: ["google", "openai", "salesforce"]
 ---
-
 
 生成AIから実行AIへ、ドキュメントやダッシュボードを自動作成
 

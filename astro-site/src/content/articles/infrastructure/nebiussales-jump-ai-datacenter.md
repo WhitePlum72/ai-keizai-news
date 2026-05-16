@@ -9,10 +9,10 @@ published_at: "2026-05-14"
 buzz_score: 33.0
 image_url: "/images/articles/article_5113.webp"
 meta_description: "Nebiusの第1四半期売上高が前年比684%増と急伸。生成AI需要を背景にGPUクラウド事業が好調で、設備投資を75億ドルへ上方修正し収益化を加速する。"
+summaryPoints: ["Nebiusの第1四半期売上高684％急伸をめぐる動きは、AI競争の主戦場がモデルだけでなく計算資源の確保に広がったことを示す。","GPU、半導体、クラウド、電力の制約が、生成AIサービスの成長速度を左右する段階に入っている。","投資家や利用企業は、製品発表だけでなく供給網とデータセンター投資の持続性を見る必要がある。"]
 topics_json: ["datacenter", "gpu", "nvidia", "reasoning", "semiconductor"]
 companies_json: []
 ---
-
 
 オランダに本社を置くクラウドコンピューティング企業Nebius Group NVが、2025年第1四半期決算で前年同期比684％増となる売上高を計上した。人工知能（AI）向けデータセンター需要の急拡大が主因であり、同社の事業拡大ペースが市場予想を大きく上回っていることが明らかになった。
 

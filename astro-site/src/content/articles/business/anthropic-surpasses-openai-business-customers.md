@@ -9,10 +9,10 @@ published_at: "2026-05-16"
 buzz_score: 37.5
 image_url: "https://techcrunch.com/wp-content/uploads/2026/02/modi-openai-anthropic-2261854815.jpg?resize=1200,800"
 meta_description: "Anthropicが法人有料契約率でOpenAIを初めて逆転し、34.4%対32.3%と首位に浮上した。この結果はRampの実際の経費決済データに基づき、AI導入企業の実態を反映している。Anthropicは安全性の高いモデル開発と機密デー"
+summaryPoints: ["OpenAIの事例は、AI時代の競争力がサイバー防御と供給網管理にも左右されることを示している。","製造委託先、クラウド、認証情報を含む防御体制が、AI関連企業の事業継続リスクになっている。","単発の攻撃被害ではなく、AIインフラを支える企業群全体の安全性を点検する材料になる。"]
 topics_json: ["amazon", "anthropic", "google", "meta", "openai"]
 companies_json: ["amazon", "anthropic", "google", "meta", "openai"]
 ---
-
 
 法人向け経費管理サービスを手がける米フィンテック企業Rampの顧客データ分析により、AI開発企業Anthropicが有料ビジネス顧客の契約割合でOpenAIを上回ったことが明らかになった。生成AIサービスの法人導入局面で、競争構造の変化を示す定量的な指標として注目される。
 

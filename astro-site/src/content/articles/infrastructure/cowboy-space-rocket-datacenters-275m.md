@@ -9,10 +9,10 @@ published_at: "2026-05-12"
 buzz_score: 27.5
 image_url: "https://techcrunch.com/wp-content/uploads/2026/05/Cowbow-Space-Company-photo.jpeg?resize=1200,960"
 meta_description: "Cowboy Spaceが軌道上データセンター構想へ275億円調達。地上の電力や冷却制約を宇宙で解決する狙いだが、数千基の衛星打ち上げに必要なロケットが絶対的に不足しており、自社開発が急務となっている。"
+summaryPoints: ["宇宙データセンター構想のCowboyをめぐる動きは、AI競争の主戦場がモデルだけでなく計算資源の確保に広がったことを示す。","GPU、半導体、クラウド、電力の制約が、生成AIサービスの成長速度を左右する段階に入っている。","投資家や利用企業は、製品発表だけでなく供給網とデータセンター投資の持続性を見る必要がある。"]
 topics_json: ["datacenter"]
 companies_json: []
 ---
-
 
 ロケット不足が最大の壁に
 

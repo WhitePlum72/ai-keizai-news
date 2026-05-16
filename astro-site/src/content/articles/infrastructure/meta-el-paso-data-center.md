@@ -9,6 +9,7 @@ published_at: "2026-05-09"
 buzz_score: 50.0
 image_url: "/images/articles/article_1534.webp"
 meta_description: "メタがテキサス州のデータセンター建設に向け130億ドル規模の資金調達を策定。AIインフラ整備による巨費を支えるため社債発行など多様な手段を活用するが、金利高止まり下での債務依存は財務リスクを呼び、業界全体の資金調達構造への影響が懸念されてい"
+summaryPoints: ["メタをめぐる動きは、AI競争の主戦場がモデルだけでなく計算資源の確保に広がったことを示す。","GPU、半導体、クラウド、電力の制約が、生成AIサービスの成長速度を左右する段階に入っている。","投資家や利用企業は、製品発表だけでなく供給網とデータセンター投資の持続性を見る必要がある。"]
 topics_json: ["datacenter", "meta", "semiconductor"]
 companies_json: ["meta"]
 ---

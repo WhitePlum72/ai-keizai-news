@@ -9,10 +9,10 @@ published_at: "2026-05-14"
 buzz_score: 34.5
 image_url: "https://www.zdnet.com/a/img/resize/cb3c07a5b5ae907e7af4ba8ae96cb8c0fcc6e955/2026/03/18/1ec9f2a0-f138-4e03-ad76-2f145a4244a4/dsc09838.jpg?auto=webp&fit=crop&height=675&width=1200"
 meta_description: "Anthropicが開発支援AI「Claude Code」等を学べる無料講座を公開。記者が試した20分のコースで、コード解析や修正指示の基礎を習得できた。API利用促進が狙いだが、開発者の学習コストを大幅に下げると注目されている。"
+summaryPoints: ["Anthropicの動きは、基盤モデル競争が性能比較だけでなく配布網や企業導入の争いになったことを示す。","モデルの価値は、API、クラウド、開発ツール、業務データと結びつくほど大きくなりやすい。","読者はベンチマークの優劣だけでなく、どの企業基盤に組み込まれるかを見る必要がある。"]
 topics_json: ["agents", "anthropic", "coding-agent"]
 companies_json: ["anthropic"]
 ---
-
 
 米新興企業Anthropicは開発支援ツール「Claude Code」やAIエージェント構築を独学できる無料講座の提供を本格化している。記者が試したところ、実践的なコースの一つはわずか20分で完了し、コーディング作業をAIに指示する基礎スキルを習得できた。同社は有料APIの利用促進を狙うが、ソフトウェア開発者の学習コストを劇的に下げる点で産業界の注目を集めている。
 

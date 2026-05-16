@@ -9,10 +9,10 @@ published_at: "2026-05-11"
 buzz_score: 0.0
 image_url: "/images/articles/article_1382.webp"
 meta_description: "OpenAIが米政府向け中程度セキュリティ認証を取得し、生成AIの安全な導入基盤が整った。これにより複雑な審査が省略され、調達手続きの迅速化が見込まれる。先行事例では契約作業時間が約3割削減されており、競合他社も政府市場での認証獲得を競って"
+summaryPoints: ["OpenAIの事例は、AI時代の競争力がサイバー防御と供給網管理にも左右されることを示している。","製造委託先、クラウド、認証情報を含む防御体制が、AI関連企業の事業継続リスクになっている。","単発の攻撃被害ではなく、AIインフラを支える企業群全体の安全性を点検する材料になる。"]
 topics_json: ["anthropic", "coding-agent", "microsoft", "openai"]
 companies_json: ["anthropic", "openai"]
 ---
-
 
 米OpenAIは、対話型AI「ChatGPT Enterprise」とAPIについて、米国政府機関がクラウドサービスを利用する際のセキュリティ認証「FedRAMP Moderate（フェドランプ・モデレート）」を取得した。政府機関が生成AIをより安全に導入するための基盤が整い、調達手続きの迅速化が見込まれる。
 

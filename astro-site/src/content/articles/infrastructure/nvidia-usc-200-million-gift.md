@@ -9,6 +9,7 @@ published_at: "2026-05-09"
 buzz_score: 50.0
 image_url: "/images/articles/article_1629.webp"
 meta_description: "エヌビディア取締役夫妻が南カリフォルニア大学に2億ドルを寄付。AI研究と教育を強化し、産学連携を深める。米国のAI競争力向上と次世代リーダー育成を目的とし、同大の地位向上と技術革新加速が期待される異例の規模の資金提供である。"
+summaryPoints: ["Nvidia幹部夫妻が南カリフォルニア大学に2億をめぐる動きは、AI競争の主戦場がモデルだけでなく計算資源の確保に広がったことを示す。","GPU、半導体、クラウド、電力の制約が、生成AIサービスの成長速度を左右する段階に入っている。","投資家や利用企業は、製品発表だけでなく供給網とデータセンター投資の持続性を見る必要がある。"]
 topics_json: ["nvidia", "semiconductor"]
 companies_json: ["nvidia"]
 ---

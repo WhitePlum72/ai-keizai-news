@@ -9,10 +9,10 @@ published_at: "2026-05-13"
 buzz_score: 0.0
 image_url: "/images/articles/article_1459.webp"
 meta_description: "マスク対アルトマン裁判で公開された資料は、非営利として発足したOpenAIが巨額資金調達のため営利化する過程と、支配権を巡る両者の決定的な亀裂を浮き彫りにした。営利化条件としてCEO就任を求めたマスク氏の提案が拒否され辞任、その後の資金拠出"
+summaryPoints: ["OpenAIの動きは、基盤モデル競争が性能比較だけでなく配布網や企業導入の争いになったことを示す。","モデルの価値は、API、クラウド、開発ツール、業務データと結びつくほど大きくなりやすい。","読者はベンチマークの優劣だけでなく、どの企業基盤に組み込まれるかを見る必要がある。"]
 topics_json: ["agi", "google", "openai"]
 companies_json: ["deepmind", "openai"]
 ---
-
 
 裁判で明かされたOpenAI創業期の証拠資料と市場への波及
 

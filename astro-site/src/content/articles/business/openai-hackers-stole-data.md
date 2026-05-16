@@ -9,10 +9,10 @@ published_at: "2026-05-16"
 buzz_score: 37.5
 image_url: "https://techcrunch.com/wp-content/uploads/2026/05/openai-logo-code-background.jpg?resize=1200,798"
 meta_description: "OpenAIが従業員端末へのハッキング被害を公表したが、ユーザーデータや本番システムへの影響はなく、中核的知的財産も無事だと明らかにした。"
+summaryPoints: ["OpenAIの事例は、AI時代の競争力がサイバー防御と供給網管理にも左右されることを示している。","製造委託先、クラウド、認証情報を含む防御体制が、AI関連企業の事業継続リスクになっている。","単発の攻撃被害ではなく、AIインフラを支える企業群全体の安全性を点検する材料になる。"]
 topics_json: ["openai"]
 companies_json: ["openai"]
 ---
-
 
 OpenAIは、同社が直近で経験したコードのセキュリティ問題に関連し、ハッカーが一部の従業員の端末からデータを窃取したことを明らかにした。同社は被害が一部の従業員デバイスに限定され、ユーザーデータや本番システムへの影響はなく、中核的な知的財産も盗まれていないと説明している。
 

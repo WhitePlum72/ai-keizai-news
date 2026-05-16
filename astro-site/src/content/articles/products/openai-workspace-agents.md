@@ -9,6 +9,7 @@ published_at: "2026-05-09"
 buzz_score: 51.0
 image_url: "/images/articles/article_1398.webp"
 meta_description: "2026年4月22日、OpenAIはChatGPTにおける「ワークスペースエージェント」の構築と活用に関するガイドラインを公開した。これは、単発の質問応答にとどまらず、日常業務に組み込まれた反復可能なワークフローをサポートするAIの新たな活"
+summaryPoints: ["OpenAIの動きは、基盤モデル競争が性能比較だけでなく配布網や企業導入の争いになったことを示す。","モデルの価値は、API、クラウド、開発ツール、業務データと結びつくほど大きくなりやすい。","読者はベンチマークの優劣だけでなく、どの企業基盤に組み込まれるかを見る必要がある。"]
 topics_json: ["agents", "openai"]
 companies_json: ["openai"]
 ---

@@ -9,10 +9,10 @@ published_at: "2026-05-12"
 buzz_score: 28.5
 image_url: "https://www.zdnet.com/a/img/resize/70deb1ccf390573952e87c2e391499c6e7e9554d/2026/05/11/81f69276-ac26-4690-a2f5-52da72982500/ai-video-test.jpg?auto=webp&fit=crop&height=675&width=1200"
 meta_description: "GoogleのGemini、OpenAIのChatGPT、AnthropicのClaudeで動画分析精度を比較した結果、Geminiが最高評価を得た。Claudeはフレーム抽出方式の限界から重要なシーンを取り逃す弱点が露呈し、連続的な文脈理"
+summaryPoints: ["OpenAIの動きは、基盤モデル競争が性能比較だけでなく配布網や企業導入の争いになったことを示す。","モデルの価値は、API、クラウド、開発ツール、業務データと結びつくほど大きくなりやすい。","読者はベンチマークの優劣だけでなく、どの企業基盤に組み込まれるかを見る必要がある。"]
 topics_json: ["anthropic", "google", "openai"]
 companies_json: ["anthropic", "google", "openai"]
 ---
-
 
 生成AIはテキスト処理だけでなく、動画コンテンツの分析領域でも急速に進化している。ITmediaの姉妹サイトが実施した独自テストによると、GoogleのGemini、OpenAIのChatGPT、AnthropicのClaudeの3モデルでYouTube動画とローカルファイルの解析精度を比較した結果、Geminiが最も高いパフォーマンスを示した。今回のテストは、各AIが実際に動画を「視聴」しているのか、それともフレームやメタデータを頼りに擬似的な分析を行っているに過ぎないのかを検証するものだ。
 

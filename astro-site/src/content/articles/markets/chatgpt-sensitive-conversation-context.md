@@ -9,10 +9,10 @@ published_at: "2026-05-15"
 buzz_score: 53.5
 image_url: "https://images.ctfassets.net/kftzwdyauwt9/1dJ8mhpIbtQbsP5wzMfoRe/a1bd2866bd1b5afb6b3e9d4bda5a42c2/SEO_Safety.png?w=1600&h=900&fit=fill"
 meta_description: "OpenAIはChatGPTの文脈認識を強化し、長時間の会話で危険性が高まるケースの検出精度を62%から89%に向上させた。複数セッションにわたる感情変化を時系列で分析する新技術により、安全な応答生成が可能となった。"
+summaryPoints: ["OpenAIの動きは、基盤モデル競争が性能比較だけでなく配布網や企業導入の争いになったことを示す。","モデルの価値は、API、クラウド、開発ツール、業務データと結びつくほど大きくなりやすい。","読者はベンチマークの優劣だけでなく、どの企業基盤に組み込まれるかを見る必要がある。"]
 topics_json: ["coding-agent", "openai"]
 companies_json: ["openai"]
 ---
-
 
 対話型AIの安全性をめぐる技術開発が新たな段階に入った。米OpenAIは2025年7月10日、ChatGPTの安全性アップデートを発表し、センシティブな会話における文脈認識能力を大幅に強化したと明らかにした。今回の改良により、長期的な会話の流れから潜在的なリスクを検出し、より安全な応答を生成できるようになる。AIの社会実装が加速する日本市場でも、この技術刷新はサービス提供事業者のリスク管理体制に直接的な影響を与える見通しだ。
 

@@ -9,10 +9,10 @@ published_at: "2026-05-12"
 buzz_score: 46.5
 image_url: "https://images.ctfassets.net/kftzwdyauwt9/7GIoPsn9eWXhOmzzp56Goz/256ab35e40510baf8bdd870c944688fd/research_analysis_share_image.png?w=1600&h=900&fit=fill"
 meta_description: "2026年1〜3月期、ChatGPTは35歳以上層の利用が25%増と急拡大し、男女比も53対47へ均衡。音声機能や操作性改善で業務利用が50%超となり、生成AIが世代と性別を超えて主流化する転換点を迎えた。"
+summaryPoints: ["ChatGPT利用35歳以上が急拡大の動きは、基盤モデル競争が性能比較だけでなく配布網や企業導入の争いになったことを示す。","モデルの価値は、API、クラウド、開発ツール、業務データと結びつくほど大きくなりやすい。","読者はベンチマークの優劣だけでなく、どの企業基盤に組み込まれるかを見る必要がある。"]
 topics_json: ["openai"]
 companies_json: ["openai"]
 ---
-
 
 2026年第1四半期、ChatGPTの利用者層で35歳以上の伸びが全年齢層で最も高く、男女比も均衡に向かい、生成AIが幅広い世代と性別へ浸透する転換点を迎えたことが関係者の分析で明らかになった。
 

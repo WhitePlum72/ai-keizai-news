@@ -9,10 +9,10 @@ published_at: "2026-05-11"
 buzz_score: 33.7
 image_url: "https://s.yimg.com/os/en/reuters-finance.com/670f9bd7a9f6a839b010d2e8668d2c91"
 meta_description: "AnthropicがAkamaiと18億ドル規模のAIクラウド契約を締結し、初のサードパーティ大型契約となった。マルチクラウド戦略を鮮明にし、需要拡大に対応する狙いだ。一方、AkamaiもAI基盤へ事業を本格展開する契機となる。"
+summaryPoints: ["Anthropicをめぐる動きは、AI競争の主戦場がモデルだけでなく計算資源の確保に広がったことを示す。","GPU、半導体、クラウド、電力の制約が、生成AIサービスの成長速度を左右する段階に入っている。","投資家や利用企業は、製品発表だけでなく供給網とデータセンター投資の持続性を見る必要がある。"]
 topics_json: ["amazon", "anthropic", "coding-agent", "google", "gpu", "microsoft", "openai", "reasoning"]
 companies_json: ["amazon", "anthropic", "google", "microsoft", "openai"]
 ---
-
 
 生成AIスタートアップのAnthropicが、米クラウド大手Akamai Technologiesと総額18億ドルの複数年契約を結んだことが明らかになった。Bloomberg Newsが複数の関係者の話として報じた。Anthropicは大規模言語モデル「Claude」の学習・推論インフラを従来のAmazon Web ServicesやGoogle Cloudから拡大し、供給網の多様化を急いでいる。
 

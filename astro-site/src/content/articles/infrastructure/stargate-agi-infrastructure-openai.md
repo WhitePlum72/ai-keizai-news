@@ -9,6 +9,7 @@ published_at: "2026-05-09"
 buzz_score: 43.0
 image_url: "/images/articles/article_1378.webp"
 meta_description: "OpenAIはAGI実現に向け次世代インフラ「Stargate」を大幅に拡大。データセンター増設やエネルギー網整備で計算基盤を強化し、業界の激しい競争の中で事業存続と技術優位性を確保する。環境負荷や規制課題への対応も不可欠とされる。"
+summaryPoints: ["OpenAIをめぐる動きは、AI競争の主戦場がモデルだけでなく計算資源の確保に広がったことを示す。","GPU、半導体、クラウド、電力の制約が、生成AIサービスの成長速度を左右する段階に入っている。","投資家や利用企業は、製品発表だけでなく供給網とデータセンター投資の持続性を見る必要がある。"]
 topics_json: ["agi", "datacenter", "openai"]
 companies_json: ["intel", "openai"]
 ---

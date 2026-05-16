@@ -9,6 +9,7 @@ published_at: "2026-05-09"
 buzz_score: 36.0
 image_url: "/images/articles/article_1568.webp"
 meta_description: "小米が新AIモデル「MiMo-V2.5-Pro」をリリース。コーディング性能はClaudeに匹敵し、トークン数を大幅削減。コスト効率と自律性を重視した中国のAI競争激化を象徴し、実用性で米系大手に挑む戦略となる。"
+summaryPoints: ["小米の動きは、基盤モデル競争が性能比較だけでなく配布網や企業導入の争いになったことを示す。","モデルの価値は、API、クラウド、開発ツール、業務データと結びつくほど大きくなりやすい。","読者はベンチマークの優劣だけでなく、どの企業基盤に組み込まれるかを見る必要がある。"]
 topics_json: ["agents", "anthropic", "coding-agent"]
 companies_json: ["anthropic"]
 ---

@@ -9,10 +9,10 @@ published_at: "2026-05-13"
 buzz_score: 28.5
 image_url: "https://image.cnbcfm.com/api/v1/image/108176033-1753304312347-gettyimages-2226698930-_73a3751_pvebbcyr.jpeg?v=1754000135&w=1920&h=1080"
 meta_description: "GoogleはAndroidやChrome、ノートPC、自動車まで、生成AI「Gemini」を横断的に統合する戦略を加速している。秋にAppleのAI刷新が予定される中、プラットフォーム層での早期優位確立と差別化を狙う。システム全体の基盤と"
+summaryPoints: ["Googleの動きは、基盤モデル競争が性能比較だけでなく配布網や企業導入の争いになったことを示す。","モデルの価値は、API、クラウド、開発ツール、業務データと結びつくほど大きくなりやすい。","読者はベンチマークの優劣だけでなく、どの企業基盤に組み込まれるかを見る必要がある。"]
 topics_json: ["google"]
 companies_json: ["apple", "google", "samsung"]
 ---
-
 
 Googleは最新のAndroidアップデートを通じて、自社の生成AI「Gemini」をスマートフォンやChromeブラウザ、ノートパソコン、さらには自動車に至るまで、あらゆるデバイスに横断的に組み込む戦略を加速している。Appleが今秋にも大規模なAI機能刷新を予定するなか、プラットフォーム層での優位性を早期に確立し、競合他社との差別化を図る狙いが鮮明になった。
 

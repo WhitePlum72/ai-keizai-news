@@ -9,10 +9,10 @@ published_at: "2026-05-14"
 buzz_score: 52.0
 image_url: "https://blogs.nvidia.com/wp-content/uploads/2026/05/rtx-ai-garage-hermes.jpeg"
 meta_description: "自己改善機能を備えたAIエージェント「Hermes Agent」が公開され、3カ月でGitHubスター14万以上を獲得した。NVIDIAのDGX Spark基盤で動作し、タスク反復により精度を自律向上させる点が特徴である。"
+summaryPoints: ["NVIDIAをめぐる動きは、AI競争の主戦場がモデルだけでなく計算資源の確保に広がったことを示す。","GPU、半導体、クラウド、電力の制約が、生成AIサービスの成長速度を左右する段階に入っている。","投資家や利用企業は、製品発表だけでなく供給網とデータセンター投資の持続性を見る必要がある。"]
 topics_json: ["agents", "anthropic", "llm", "nvidia", "openai"]
 companies_json: ["anthropic", "nvidia", "openai", "salesforce"]
 ---
-
 
 NVIDIAの新型AI開発キット「DGX Spark」とRTX搭載PCを基盤に、自己改善能力を持つ次世代AIエージェント「Hermes Agent」が公開された。このオープンソースプロジェクトは公開から3カ月足らずでGitHubのスター数を14万以上に伸ばし、自律型AI分野で最も急成長しているフレームワークとなっている。
 

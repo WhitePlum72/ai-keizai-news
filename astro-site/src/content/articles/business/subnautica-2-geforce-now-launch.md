@@ -9,10 +9,10 @@ published_at: "2026-05-15"
 buzz_score: 48.0
 image_url: "https://blogs.nvidia.com/wp-content/uploads/2026/05/gfn-thursday-5-14-nv-blog-1280x680-logo.jpg"
 meta_description: "GeForce NOWが『Subnautica 2』早期アクセス版など計11本の新作を追加しサービス拡充。発売日同日から多様な端末で高品質な異星深海探索が可能になった。"
+summaryPoints: ["ゲームファンはクラウドで未体験の異星深海へをめぐる動きは、AI競争の主戦場がモデルだけでなく計算資源の確保に広がったことを示す。","GPU、半導体、クラウド、電力の制約が、生成AIサービスの成長速度を左右する段階に入っている。","投資家や利用企業は、製品発表だけでなく供給網とデータセンター投資の持続性を見る必要がある。"]
 topics_json: ["agents", "nvidia"]
 companies_json: ["nvidia"]
 ---
-
 
 GeForce NOWが2025年もゲーム配信の勢いを加速させている。NVIDIAは最新のクラウドゲーミングサービス更新情報を発表し、注目作『Subnautica 2』の早期アクセス版が発売日と同日にGeForce NOWへ登場することを明らかにした。会員はダウンロードやインストールを待つことなく、PCやスマートフォン、タブレットなど多様な端末から即座に新たな異星の海へ潜航できる。今回のアップデートでは『Subnautica 2』を含む合計11本の新規タイトルがラインナップに追加され、サービスのコンテンツが一気に拡充される。
 

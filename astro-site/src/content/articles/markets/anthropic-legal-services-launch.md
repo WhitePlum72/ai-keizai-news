@@ -9,10 +9,10 @@ published_at: "2026-05-13"
 buzz_score: 36.5
 image_url: "https://techcrunch.com/wp-content/uploads/2026/02/GettyImages-2261514463.jpg?w=1024"
 meta_description: "Anthropicが2025年7月、法務文書の高速要約や契約リスク検出等が可能な法律特化型AIを発表した。既に全米大手法律事務所の一部が導入し、業務効率化とビジネスモデル転換を加速させている。安全性と透明性を重視した設計で、競合ひしめくリー"
+summaryPoints: ["Anthropicの動きは、基盤モデル競争が性能比較だけでなく配布網や企業導入の争いになったことを示す。","モデルの価値は、API、クラウド、開発ツール、業務データと結びつくほど大きくなりやすい。","読者はベンチマークの優劣だけでなく、どの企業基盤に組み込まれるかを見る必要がある。"]
 topics_json: ["anthropic", "openai", "reasoning"]
 companies_json: ["anthropic", "openai"]
 ---
-
 
 AIを活用した法律サービスの競争が急激に熱を帯びるなか、大規模言語モデルを開発するAnthropicは2025年7月、法律事務所向けの新機能群を発表した。法務文書の要約や契約書のレビュー精度を高める専用設計で、すでに複数の大手法律事務所が導入を決めている。
 
