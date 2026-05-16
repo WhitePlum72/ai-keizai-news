@@ -357,7 +357,7 @@
   {
     "id": "mistral",
     "name": "Mistral AI",
-    "sector": "foundation",
+    "sector": "opensource",
     "logoText": "MI",
     "size": "medium",
     "score": 78,
@@ -411,7 +411,7 @@
   {
     "id": "deepseek",
     "name": "DeepSeek",
-    "sector": "china",
+    "sector": "china-ai",
     "logoText": "DS",
     "size": "large",
     "score": 91,
@@ -574,7 +574,7 @@
   {
     "id": "midjourney",
     "name": "Midjourney",
-    "sector": "video",
+    "sector": "generative-ai",
     "logoText": "MJ",
     "size": "medium",
     "score": 78,
@@ -601,7 +601,7 @@
   {
     "id": "adobe",
     "name": "Adobe",
-    "sector": "video",
+    "sector": "generative-ai",
     "logoText": "AD",
     "size": "medium",
     "score": 76,
@@ -628,7 +628,7 @@
   {
     "id": "runway",
     "name": "Runway",
-    "sector": "video",
+    "sector": "generative-ai",
     "logoText": "RW",
     "size": "medium",
     "score": 76,
@@ -655,7 +655,7 @@
   {
     "id": "pika",
     "name": "Pika",
-    "sector": "video",
+    "sector": "generative-ai",
     "logoText": "PK",
     "size": "small",
     "score": 68,
@@ -681,7 +681,7 @@
   {
     "id": "luma",
     "name": "Luma AI",
-    "sector": "video",
+    "sector": "generative-ai",
     "logoText": "LU",
     "size": "small",
     "score": 66,
@@ -708,7 +708,7 @@
   {
     "id": "elevenlabs",
     "name": "ElevenLabs",
-    "sector": "voice",
+    "sector": "generative-ai",
     "logoText": "11",
     "size": "medium",
     "score": 74,
@@ -952,7 +952,7 @@
   {
     "id": "alibaba",
     "name": "Alibaba",
-    "sector": "china",
+    "sector": "china-ai",
     "logoText": "AB",
     "size": "large",
     "score": 84,
@@ -980,7 +980,7 @@
   {
     "id": "bytedance",
     "name": "ByteDance",
-    "sector": "china",
+    "sector": "china-ai",
     "logoText": "BD",
     "size": "medium",
     "score": 82,
@@ -1007,7 +1007,7 @@
   {
     "id": "tencent",
     "name": "Tencent",
-    "sector": "china",
+    "sector": "china-ai",
     "logoText": "TC",
     "size": "medium",
     "score": 72,
@@ -1034,7 +1034,7 @@
   {
     "id": "baidu",
     "name": "Baidu",
-    "sector": "china",
+    "sector": "china-ai",
     "logoText": "BDU",
     "size": "medium",
     "score": 74,
@@ -1086,5 +1086,2294 @@
       "marketImpact": 90,
       "developerImpact": 78
     }
+  },
+  {
+    "id": "apple",
+    "name": "Apple",
+    "sector": "infrastructure",
+    "logoText": "AP",
+    "size": "large",
+    "score": 84,
+    "description": "Apple SiliconとCore MLでオンデバイスAIをリードする。iPhone・Macのエッジ推論基盤を構築。",
+    "tags": [
+      "Apple Silicon",
+      "Edge AI",
+      "On-device AI"
+    ],
+    "country": "US",
+    "role": "On-device AI and silicon platform leader",
+    "website": "https://www.apple.com/",
+    "founded": 1976,
+    "aliases": [
+      "AAPL",
+      "Apple Intelligence",
+      "Apple Silicon"
+    ],
+    "signals": {
+      "newsHeat": 82,
+      "marketImpact": 86,
+      "developerImpact": 74
+    }
+  },
+  {
+    "id": "softbank",
+    "name": "SoftBank",
+    "sector": "japan-ai",
+    "logoText": "SB",
+    "size": "large",
+    "score": 90,
+    "description": "OpenAI・NVIDIA・Armへの大規模出資・提携でAI産業の中心的存在となった日本発のテクノロジー投資企業。",
+    "tags": [
+      "Investment",
+      "Arm",
+      "AI Fund",
+      "OpenAI"
+    ],
+    "country": "JP",
+    "role": "AI mega-investor and telecom platform with strategic AI partnerships",
+    "website": "https://www.softbank.jp/",
+    "founded": 1981,
+    "aliases": [
+      "SBG",
+      "SoftBank Group",
+      "Vision Fund"
+    ],
+    "signals": {
+      "newsHeat": 88,
+      "marketImpact": 88,
+      "developerImpact": 40
+    }
+  },
+  {
+    "id": "arm",
+    "name": "Arm",
+    "sector": "infrastructure",
+    "logoText": "ARM",
+    "size": "large",
+    "score": 86,
+    "description": "モバイル・エッジAIのCPUアーキテクチャを支配するSoftBank傘下の半導体IP設計企業。",
+    "tags": [
+      "CPU",
+      "Edge AI",
+      "Mobile",
+      "IP"
+    ],
+    "country": "GB",
+    "role": "CPU architecture and edge AI silicon design company",
+    "website": "https://www.arm.com/",
+    "founded": 1990,
+    "aliases": [
+      "ARM Holdings",
+      "Cortex",
+      "Neoverse"
+    ],
+    "signals": {
+      "newsHeat": 80,
+      "marketImpact": 88,
+      "developerImpact": 72
+    }
+  },
+  {
+    "id": "asml",
+    "name": "ASML",
+    "sector": "infrastructure",
+    "logoText": "AS",
+    "size": "large",
+    "score": 88,
+    "description": "EUV露光装置で世界独占。AI半導体製造の根幹を担う装置企業。",
+    "tags": [
+      "EUV",
+      "Lithography",
+      "Semiconductor"
+    ],
+    "country": "NL",
+    "role": "Semiconductor lithography equipment monopoly",
+    "website": "https://www.asml.com/",
+    "founded": 1984,
+    "aliases": [
+      "EUV",
+      "DUV"
+    ],
+    "signals": {
+      "newsHeat": 76,
+      "marketImpact": 94,
+      "developerImpact": 30
+    }
+  },
+  {
+    "id": "sk-hynix",
+    "name": "SK Hynix",
+    "sector": "infrastructure",
+    "logoText": "SK",
+    "size": "large",
+    "score": 84,
+    "description": "HBM（高帯域メモリ）の主要供給企業。AI GPU需要の恩恵を最も受ける半導体メーカー。",
+    "tags": [
+      "HBM",
+      "DRAM",
+      "Memory"
+    ],
+    "country": "KR",
+    "role": "Leading HBM and DRAM supplier for AI accelerators",
+    "website": "https://www.skhynix.com/",
+    "founded": 1983,
+    "aliases": [
+      "HBM3e",
+      "HBM"
+    ],
+    "signals": {
+      "newsHeat": 78,
+      "marketImpact": 90,
+      "developerImpact": 30
+    }
+  },
+  {
+    "id": "samsung-semiconductor",
+    "name": "Samsung Semiconductor",
+    "sector": "infrastructure",
+    "logoText": "SS",
+    "size": "large",
+    "score": 82,
+    "description": "DRAM・HBM・NANDを製造し、AIメモリ市場でSK Hynixと競う韓国半導体大手。",
+    "tags": [
+      "HBM",
+      "DRAM",
+      "NAND",
+      "Foundry"
+    ],
+    "country": "KR",
+    "role": "Integrated memory and logic semiconductor manufacturer",
+    "website": "https://semiconductor.samsung.com/",
+    "founded": 1969,
+    "aliases": [
+      "Samsung DS",
+      "Exynos",
+      "HBM3"
+    ],
+    "signals": {
+      "newsHeat": 74,
+      "marketImpact": 86,
+      "developerImpact": 28
+    }
+  },
+  {
+    "id": "sakana-ai",
+    "name": "Sakana AI",
+    "sector": "japan-ai",
+    "logoText": "SA",
+    "size": "medium",
+    "score": 82,
+    "description": "東京発の基盤モデル研究企業。進化的アーキテクチャ探索と日本語LLM研究を推進。",
+    "tags": [
+      "LLM",
+      "Research",
+      "Japan",
+      "EvoLLM"
+    ],
+    "country": "JP",
+    "role": "Japanese foundation model research company",
+    "website": "https://sakana.ai/",
+    "founded": 2023,
+    "aliases": [
+      "EvoLLM",
+      "EvoLM"
+    ],
+    "signals": {
+      "newsHeat": 76,
+      "marketImpact": 58,
+      "developerImpact": 72
+    }
+  },
+  {
+    "id": "preferred-networks",
+    "name": "Preferred Networks",
+    "sector": "japan-ai",
+    "logoText": "PFN",
+    "size": "medium",
+    "score": 78,
+    "description": "トヨタ・ファナックと連携する日本最大の自律AI研究企業。MN-Core開発・PLaMoモデルを展開。",
+    "tags": [
+      "Robotics",
+      "LLM",
+      "PLaMo",
+      "MN-Core"
+    ],
+    "country": "JP",
+    "role": "Japanese AI research company focused on robotics and foundation models",
+    "website": "https://www.preferred.jp/",
+    "founded": 2014,
+    "aliases": [
+      "PFN",
+      "PLaMo",
+      "MN-Core"
+    ],
+    "signals": {
+      "newsHeat": 66,
+      "marketImpact": 62,
+      "developerImpact": 68
+    }
+  },
+  {
+    "id": "abeja",
+    "name": "ABEJA",
+    "sector": "japan-ai",
+    "logoText": "AB",
+    "size": "medium",
+    "score": 68,
+    "description": "製造・流通向け画像AI・データ基盤を展開する日本の企業AI先駆者。",
+    "tags": [
+      "Enterprise AI",
+      "Computer Vision",
+      "Platform"
+    ],
+    "country": "JP",
+    "role": "Japanese enterprise AI platform for manufacturing and retail",
+    "website": "https://abeja.asia/",
+    "founded": 2012,
+    "aliases": [
+      "ABEJA Platform"
+    ],
+    "signals": {
+      "newsHeat": 54,
+      "marketImpact": 58,
+      "developerImpact": 50
+    }
+  },
+  {
+    "id": "stockmark",
+    "name": "Stockmark",
+    "sector": "japan-ai",
+    "logoText": "SM",
+    "size": "small",
+    "score": 64,
+    "description": "企業向けビジネスインテリジェンスAIと日本語LLMを展開するスタートアップ。",
+    "tags": [
+      "Business Intelligence",
+      "LLM",
+      "Japan"
+    ],
+    "country": "JP",
+    "role": "Japanese business intelligence and LLM company",
+    "website": "https://stockmark.co.jp/",
+    "founded": 2016,
+    "aliases": [
+      "Stockmark LLM"
+    ],
+    "signals": {
+      "newsHeat": 48,
+      "marketImpact": 44,
+      "developerImpact": 56
+    }
+  },
+  {
+    "id": "pksha-technology",
+    "name": "PKSHA Technology",
+    "sector": "japan-ai",
+    "logoText": "PK",
+    "size": "medium",
+    "score": 70,
+    "description": "アルゴリズムモジュールと対話AIを企業向けに展開する上場AI企業。",
+    "tags": [
+      "Algorithm",
+      "Chatbot",
+      "Enterprise AI"
+    ],
+    "country": "JP",
+    "role": "Japanese AI algorithm and enterprise chatbot platform",
+    "website": "https://pkshatech.com/",
+    "founded": 2012,
+    "aliases": [
+      "PKSHA",
+      "FAQ AI"
+    ],
+    "signals": {
+      "newsHeat": 52,
+      "marketImpact": 60,
+      "developerImpact": 48
+    }
+  },
+  {
+    "id": "exawizards",
+    "name": "ExaWizards",
+    "sector": "japan-ai",
+    "logoText": "EW",
+    "size": "small",
+    "score": 60,
+    "description": "介護・業務DXを中心に企業向けAI導入を支援するコンサルティングAI企業。",
+    "tags": [
+      "DX",
+      "Enterprise AI",
+      "Care"
+    ],
+    "country": "JP",
+    "role": "Japanese enterprise AI consulting and product company",
+    "website": "https://exawizards.com/",
+    "founded": 2016,
+    "aliases": [
+      "exaBase"
+    ],
+    "signals": {
+      "newsHeat": 46,
+      "marketImpact": 50,
+      "developerImpact": 40
+    }
+  },
+  {
+    "id": "rinna",
+    "name": "rinna",
+    "sector": "japan-ai",
+    "logoText": "RI",
+    "size": "small",
+    "score": 66,
+    "description": "日本語LLMと対話AIモデルを研究・オープンソース公開する日本のAI企業。",
+    "tags": [
+      "LLM",
+      "Japanese",
+      "OSS"
+    ],
+    "country": "JP",
+    "role": "Japanese language model research and open source company",
+    "website": "https://rinna.co.jp/",
+    "founded": 2020,
+    "aliases": [
+      "rinna LLM",
+      "Japanese GPT"
+    ],
+    "signals": {
+      "newsHeat": 52,
+      "marketImpact": 44,
+      "developerImpact": 72
+    }
+  },
+  {
+    "id": "ubie",
+    "name": "Ubie",
+    "sector": "japan-ai",
+    "logoText": "UB",
+    "size": "medium",
+    "score": 66,
+    "description": "医療問診AIを中核に、患者と医療機関を結ぶヘルステックAI企業。",
+    "tags": [
+      "Medical AI",
+      "Healthcare",
+      "Symptom Check"
+    ],
+    "country": "JP",
+    "role": "Japanese medical AI for patient triage and clinical support",
+    "website": "https://ubie.life/",
+    "founded": 2017,
+    "aliases": [
+      "ユビー",
+      "医療AI"
+    ],
+    "signals": {
+      "newsHeat": 56,
+      "marketImpact": 58,
+      "developerImpact": 40
+    }
+  },
+  {
+    "id": "ai-inside",
+    "name": "AI inside",
+    "sector": "japan-ai",
+    "logoText": "AI",
+    "size": "small",
+    "score": 62,
+    "description": "高精度OCRとドキュメントAIで企業業務DXを推進する上場AI企業。",
+    "tags": [
+      "OCR",
+      "Document AI",
+      "DX"
+    ],
+    "country": "JP",
+    "role": "Japanese document AI and OCR platform company",
+    "website": "https://inside.ai/",
+    "founded": 2015,
+    "aliases": [
+      "DX Suite",
+      "AI inside OCR"
+    ],
+    "signals": {
+      "newsHeat": 44,
+      "marketImpact": 50,
+      "developerImpact": 36
+    }
+  },
+  {
+    "id": "cinnamon-ai",
+    "name": "Cinnamon AI",
+    "sector": "japan-ai",
+    "logoText": "CA",
+    "size": "small",
+    "score": 58,
+    "description": "契約書・文書AIと多言語OCRで企業DXを支援するAIスタートアップ。",
+    "tags": [
+      "Document AI",
+      "Contract",
+      "NLP"
+    ],
+    "country": "JP",
+    "role": "Japanese document AI and contract analysis company",
+    "website": "https://cinnamon.ai/",
+    "founded": 2016,
+    "aliases": [
+      "Cinnamon"
+    ],
+    "signals": {
+      "newsHeat": 40,
+      "marketImpact": 44,
+      "developerImpact": 36
+    }
+  },
+  {
+    "id": "fixstars",
+    "name": "Fixstars",
+    "sector": "japan-ai",
+    "logoText": "FX",
+    "size": "small",
+    "score": 60,
+    "description": "NVIDIA GPU・量子アニーリング・HPCの最適化で企業AIインフラを支援する技術企業。",
+    "tags": [
+      "HPC",
+      "GPU",
+      "Optimization"
+    ],
+    "country": "JP",
+    "role": "Japanese HPC and GPU optimization technology company",
+    "website": "https://www.fixstars.com/",
+    "founded": 2002,
+    "aliases": [
+      "Fixstars Amplify"
+    ],
+    "signals": {
+      "newsHeat": 42,
+      "marketImpact": 48,
+      "developerImpact": 52
+    }
+  },
+  {
+    "id": "leapmind",
+    "name": "LeapMind",
+    "sector": "japan-ai",
+    "logoText": "LM",
+    "size": "small",
+    "score": 56,
+    "description": "エッジAI・低消費電力AI推論チップとソフトウェアを開発する日本のスタートアップ。",
+    "tags": [
+      "Edge AI",
+      "Inference",
+      "FPGA"
+    ],
+    "country": "JP",
+    "role": "Japanese edge AI inference chip and software company",
+    "website": "https://leapmind.io/",
+    "founded": 2012,
+    "aliases": [
+      "Efficiera"
+    ],
+    "signals": {
+      "newsHeat": 36,
+      "marketImpact": 40,
+      "developerImpact": 44
+    }
+  },
+  {
+    "id": "rapidus",
+    "name": "Rapidus",
+    "sector": "japan-ai",
+    "logoText": "RD",
+    "size": "medium",
+    "score": 76,
+    "description": "2nm先端半導体の国産化を目指す日本政府主導の半導体製造企業。IBMと技術協力。",
+    "tags": [
+      "2nm",
+      "Semiconductor",
+      "Japan",
+      "Foundry"
+    ],
+    "country": "JP",
+    "role": "Japanese advanced semiconductor foundry targeting 2nm production",
+    "website": "https://www.rapidus.inc/",
+    "founded": 2022,
+    "aliases": [
+      "ラピダス"
+    ],
+    "signals": {
+      "newsHeat": 72,
+      "marketImpact": 70,
+      "developerImpact": 24
+    }
+  },
+  {
+    "id": "renesas",
+    "name": "Renesas",
+    "sector": "japan-ai",
+    "logoText": "RE",
+    "size": "large",
+    "score": 68,
+    "description": "車載マイコン・エッジAIチップで世界トップクラスの日本半導体企業。",
+    "tags": [
+      "MCU",
+      "Edge AI",
+      "Automotive"
+    ],
+    "country": "JP",
+    "role": "Japanese automotive and edge AI semiconductor company",
+    "website": "https://www.renesas.com/",
+    "founded": 2002,
+    "aliases": [
+      "RZ",
+      "RA"
+    ],
+    "signals": {
+      "newsHeat": 58,
+      "marketImpact": 70,
+      "developerImpact": 44
+    }
+  },
+  {
+    "id": "kioxia",
+    "name": "Kioxia",
+    "sector": "japan-ai",
+    "logoText": "KX",
+    "size": "large",
+    "score": 66,
+    "description": "NANDフラッシュ・SSDでデータセンターとAIストレージを支える日本の記憶媒体メーカー。",
+    "tags": [
+      "NAND",
+      "SSD",
+      "Storage"
+    ],
+    "country": "JP",
+    "role": "Japanese NAND flash and enterprise SSD manufacturer",
+    "website": "https://www.kioxia.com/",
+    "founded": 2019,
+    "aliases": [
+      "東芝メモリ",
+      "NAND Flash"
+    ],
+    "signals": {
+      "newsHeat": 52,
+      "marketImpact": 64,
+      "developerImpact": 22
+    }
+  },
+  {
+    "id": "sony-semiconductor",
+    "name": "Sony Semiconductor",
+    "sector": "japan-ai",
+    "logoText": "SS",
+    "size": "large",
+    "score": 74,
+    "description": "CMOSイメージセンサー世界シェアNo.1。AIカメラ・自動運転センサーとして重要度増。",
+    "tags": [
+      "CMOS",
+      "Image Sensor",
+      "AI Camera"
+    ],
+    "country": "JP",
+    "role": "World-leading CMOS image sensor and AI sensing company",
+    "website": "https://www.sony-semicon.com/",
+    "founded": 1946,
+    "aliases": [
+      "ソニーセミコン",
+      "IMX",
+      "Starvis"
+    ],
+    "signals": {
+      "newsHeat": 60,
+      "marketImpact": 76,
+      "developerImpact": 36
+    }
+  },
+  {
+    "id": "fujitsu",
+    "name": "Fujitsu",
+    "sector": "japan-ai",
+    "logoText": "FJ",
+    "size": "large",
+    "score": 72,
+    "description": "スーパーコンピュータ「富岳」とFugaku-LLMで日本のHPC・AI研究を牽引する大手IT企業。",
+    "tags": [
+      "HPC",
+      "Fugaku",
+      "Enterprise AI",
+      "LLM"
+    ],
+    "country": "JP",
+    "role": "Japanese HPC and enterprise AI platform company",
+    "website": "https://www.fujitsu.com/ai/",
+    "founded": 1935,
+    "aliases": [
+      "富士通",
+      "Fugaku-LLM",
+      "Fujitsu Kozuchi"
+    ],
+    "signals": {
+      "newsHeat": 60,
+      "marketImpact": 70,
+      "developerImpact": 52
+    }
+  },
+  {
+    "id": "nec",
+    "name": "NEC",
+    "sector": "japan-ai",
+    "logoText": "NEC",
+    "size": "large",
+    "score": 68,
+    "description": "cotomiモデルと顔認証AIで企業・公共向けAIを展開する日本の大手IT企業。",
+    "tags": [
+      "Enterprise AI",
+      "cotomi",
+      "Face Recognition"
+    ],
+    "country": "JP",
+    "role": "Japanese enterprise AI and biometric technology company",
+    "website": "https://www.nec.com/ai/",
+    "founded": 1899,
+    "aliases": [
+      "日本電気",
+      "cotomi",
+      "NEC AI"
+    ],
+    "signals": {
+      "newsHeat": 56,
+      "marketImpact": 66,
+      "developerImpact": 46
+    }
+  },
+  {
+    "id": "ntt",
+    "name": "NTT",
+    "sector": "japan-ai",
+    "logoText": "NTT",
+    "size": "large",
+    "score": 76,
+    "description": "tsuzumiモデルと光電融合研究でAI通信基盤の未来を切り開く日本最大の通信企業。",
+    "tags": [
+      "LLM",
+      "tsuzumi",
+      "Telecom",
+      "AI Research"
+    ],
+    "country": "JP",
+    "role": "Japanese telecom and AI research company with foundation model",
+    "website": "https://www.rd.ntt/",
+    "founded": 1985,
+    "aliases": [
+      "日本電信電話",
+      "tsuzumi",
+      "NTT Research"
+    ],
+    "signals": {
+      "newsHeat": 64,
+      "marketImpact": 72,
+      "developerImpact": 54
+    }
+  },
+  {
+    "id": "ntt-data",
+    "name": "NTT DATA",
+    "sector": "japan-ai",
+    "logoText": "ND",
+    "size": "large",
+    "score": 64,
+    "description": "グローバルITサービスと生成AI活用で企業DXを推進するNTTグループのシステムインテグレーター。",
+    "tags": [
+      "SI",
+      "Enterprise AI",
+      "DX"
+    ],
+    "country": "JP",
+    "role": "Japanese global IT services and enterprise AI integrator",
+    "website": "https://www.nttdata.com/ai/",
+    "founded": 1988,
+    "aliases": [
+      "NTTデータ"
+    ],
+    "signals": {
+      "newsHeat": 50,
+      "marketImpact": 62,
+      "developerImpact": 38
+    }
+  },
+  {
+    "id": "iij",
+    "name": "IIJ",
+    "sector": "japan-ai",
+    "logoText": "IIJ",
+    "size": "medium",
+    "score": 58,
+    "description": "日本最初期のISP。AIインフラ・クラウド事業を拡大するネットワーク企業。",
+    "tags": [
+      "ISP",
+      "Cloud",
+      "Network"
+    ],
+    "country": "JP",
+    "role": "Japanese internet infrastructure and cloud provider",
+    "website": "https://www.iij.ad.jp/",
+    "founded": 1992,
+    "aliases": [
+      "Internet Initiative Japan"
+    ],
+    "signals": {
+      "newsHeat": 40,
+      "marketImpact": 50,
+      "developerImpact": 46
+    }
+  },
+  {
+    "id": "sakura-internet",
+    "name": "Sakura Internet",
+    "sector": "japan-ai",
+    "logoText": "SI",
+    "size": "medium",
+    "score": 72,
+    "description": "NVIDIAと連携し日本初の大規模GPUクラウドサービスを展開する国産クラウド企業。",
+    "tags": [
+      "GPU Cloud",
+      "NVIDIA",
+      "Japan Cloud"
+    ],
+    "country": "JP",
+    "role": "Japanese GPU cloud and data center operator",
+    "website": "https://www.sakura.ad.jp/",
+    "founded": 1996,
+    "aliases": [
+      "さくらインターネット",
+      "Sakura GPU Cloud"
+    ],
+    "signals": {
+      "newsHeat": 68,
+      "marketImpact": 62,
+      "developerImpact": 60
+    }
+  },
+  {
+    "id": "gmo-gpu-cloud",
+    "name": "GMO GPU Cloud",
+    "sector": "japan-ai",
+    "logoText": "GM",
+    "size": "medium",
+    "score": 60,
+    "description": "NVIDIAのGPUを低コストで提供するGMOインターネットグループのAIクラウド事業。",
+    "tags": [
+      "GPU Cloud",
+      "NVIDIA",
+      "Japan"
+    ],
+    "country": "JP",
+    "role": "Japanese NVIDIA GPU cloud service provider",
+    "website": "https://www.gmo.jp/",
+    "founded": 1991,
+    "aliases": [
+      "GMO GPU",
+      "お名前.com GPU"
+    ],
+    "signals": {
+      "newsHeat": 52,
+      "marketImpact": 48,
+      "developerImpact": 56
+    }
+  },
+  {
+    "id": "highreso",
+    "name": "Highreso",
+    "sector": "japan-ai",
+    "logoText": "HR",
+    "size": "small",
+    "score": 52,
+    "description": "高性能GPUレンタルと法人向けAIインフラを提供する日本のGPUクラウド企業。",
+    "tags": [
+      "GPU Cloud",
+      "AI Infra",
+      "Japan"
+    ],
+    "country": "JP",
+    "role": "Japanese GPU rental and AI infrastructure provider",
+    "website": "https://www.highreso.jp/",
+    "founded": 2000,
+    "aliases": [],
+    "signals": {
+      "newsHeat": 36,
+      "marketImpact": 38,
+      "developerImpact": 42
+    }
+  },
+  {
+    "id": "fanuc",
+    "name": "FANUC",
+    "sector": "japan-ai",
+    "logoText": "FC",
+    "size": "large",
+    "score": 76,
+    "description": "世界シェアトップの産業用ロボットとCNC制御でスマート工場のAI化をリードする企業。",
+    "tags": [
+      "Industrial Robot",
+      "CNC",
+      "Factory AI"
+    ],
+    "country": "JP",
+    "role": "World-leading industrial robot and smart factory AI company",
+    "website": "https://www.fanuc.co.jp/",
+    "founded": 1972,
+    "aliases": [
+      "ファナック",
+      "CNC",
+      "FIELD system"
+    ],
+    "signals": {
+      "newsHeat": 60,
+      "marketImpact": 78,
+      "developerImpact": 38
+    }
+  },
+  {
+    "id": "yaskawa",
+    "name": "Yaskawa Electric",
+    "sector": "japan-ai",
+    "logoText": "YS",
+    "size": "large",
+    "score": 68,
+    "description": "モーション制御・産業用ロボットで世界大手。AI駆動の工場自動化を展開。",
+    "tags": [
+      "Industrial Robot",
+      "Motion Control",
+      "Factory"
+    ],
+    "country": "JP",
+    "role": "Japanese industrial robot and motion control company",
+    "website": "https://www.yaskawa.co.jp/",
+    "founded": 1915,
+    "aliases": [
+      "安川電機",
+      "Motoman"
+    ],
+    "signals": {
+      "newsHeat": 52,
+      "marketImpact": 68,
+      "developerImpact": 30
+    }
+  },
+  {
+    "id": "kawasaki-robotics",
+    "name": "Kawasaki Robotics",
+    "sector": "japan-ai",
+    "logoText": "KR",
+    "size": "medium",
+    "score": 62,
+    "description": "産業用・協働ロボットと医療ロボットを展開する川崎重工のロボティクス事業。",
+    "tags": [
+      "Industrial Robot",
+      "Collaborative Robot",
+      "Medical"
+    ],
+    "country": "JP",
+    "role": "Japanese industrial and collaborative robotics company",
+    "website": "https://www.kawasakirobotics.com/",
+    "founded": 1969,
+    "aliases": [
+      "川崎ロボット",
+      "duAro"
+    ],
+    "signals": {
+      "newsHeat": 44,
+      "marketImpact": 58,
+      "developerImpact": 28
+    }
+  },
+  {
+    "id": "denso-robotics",
+    "name": "Denso Robotics",
+    "sector": "japan-ai",
+    "logoText": "DN",
+    "size": "medium",
+    "score": 62,
+    "description": "トヨタグループのデンソーが展開する小型精密ロボットと自動車部品組立自動化。",
+    "tags": [
+      "Industrial Robot",
+      "Automotive",
+      "Toyota"
+    ],
+    "country": "JP",
+    "role": "Japanese precision robotics for automotive manufacturing",
+    "website": "https://www.denso-wave.com/",
+    "founded": 1949,
+    "aliases": [
+      "デンソー",
+      "DENSO Wave"
+    ],
+    "signals": {
+      "newsHeat": 42,
+      "marketImpact": 56,
+      "developerImpact": 26
+    }
+  },
+  {
+    "id": "mujin",
+    "name": "Mujin",
+    "sector": "japan-ai",
+    "logoText": "MU",
+    "size": "medium",
+    "score": 66,
+    "description": "ロボットプログラミングの自動化（ティーチングレス）で物流・工場ロボットのAI化を進める。",
+    "tags": [
+      "Robot Programming",
+      "Logistics",
+      "AI Robotics"
+    ],
+    "country": "JP",
+    "role": "Japanese robot intelligence and teachingless programming platform",
+    "website": "https://mujin.co.jp/",
+    "founded": 2011,
+    "aliases": [
+      "ムジン",
+      "MujinController"
+    ],
+    "signals": {
+      "newsHeat": 50,
+      "marketImpact": 58,
+      "developerImpact": 46
+    }
+  },
+  {
+    "id": "preferred-robotics",
+    "name": "Preferred Robotics",
+    "sector": "japan-ai",
+    "logoText": "PR",
+    "size": "small",
+    "score": 64,
+    "description": "家庭向けサービスロボット「カチャカ」を展開するPreferred Networksのロボティクス子会社。",
+    "tags": [
+      "Service Robot",
+      "Home Robot",
+      "Kachaka"
+    ],
+    "country": "JP",
+    "role": "Japanese home service robot company",
+    "website": "https://kachaka.life/",
+    "founded": 2021,
+    "aliases": [
+      "Kachaka",
+      "カチャカ"
+    ],
+    "signals": {
+      "newsHeat": 52,
+      "marketImpact": 42,
+      "developerImpact": 48
+    }
+  },
+  {
+    "id": "honda-robotics",
+    "name": "Honda Robotics",
+    "sector": "japan-ai",
+    "logoText": "HR",
+    "size": "large",
+    "score": 68,
+    "description": "ASIMO開発の蓄積を背景にヒューマノイドロボット・AIモビリティを研究開発するホンダ事業。",
+    "tags": [
+      "Humanoid",
+      "ASIMO",
+      "AI Mobility"
+    ],
+    "country": "JP",
+    "role": "Japanese humanoid robotics and AI mobility research",
+    "website": "https://www.honda.co.jp/robotics/",
+    "founded": 1948,
+    "aliases": [
+      "ASIMO",
+      "ホンダ ロボット"
+    ],
+    "signals": {
+      "newsHeat": 56,
+      "marketImpact": 62,
+      "developerImpact": 34
+    }
+  },
+  {
+    "id": "toyota-research",
+    "name": "Toyota Research Institute",
+    "sector": "japan-ai",
+    "logoText": "TR",
+    "size": "medium",
+    "score": 72,
+    "description": "自動運転・ロボティクス・基盤モデル研究を推進するトヨタの米国AI研究機関。",
+    "tags": [
+      "Autonomous Driving",
+      "Robotics",
+      "Foundation Model"
+    ],
+    "country": "JP",
+    "role": "Toyota's AI research arm for autonomy, robotics, and foundation models",
+    "website": "https://www.tri.global/",
+    "founded": 2015,
+    "aliases": [
+      "TRI",
+      "トヨタ研究所"
+    ],
+    "signals": {
+      "newsHeat": 62,
+      "marketImpact": 68,
+      "developerImpact": 52
+    }
+  },
+  {
+    "id": "line-yahoo",
+    "name": "LINE Yahoo",
+    "sector": "japan-ai",
+    "logoText": "LY",
+    "size": "large",
+    "score": 72,
+    "description": "Yahoo! JAPANとLINEを統合した日本最大のプラットフォーム企業。AIアシスタント・検索を展開。",
+    "tags": [
+      "Platform",
+      "Search",
+      "LLM",
+      "Japan"
+    ],
+    "country": "JP",
+    "role": "Japan's largest platform company with AI search and assistant services",
+    "website": "https://lygroup.jp/",
+    "founded": 2023,
+    "aliases": [
+      "LINEヤフー",
+      "Yahoo Japan",
+      "LINE"
+    ],
+    "signals": {
+      "newsHeat": 62,
+      "marketImpact": 68,
+      "developerImpact": 52
+    }
+  },
+  {
+    "id": "rakuten-ai",
+    "name": "Rakuten AI",
+    "sector": "japan-ai",
+    "logoText": "RA",
+    "size": "large",
+    "score": 66,
+    "description": "楽天グループがEC・金融・通信データを活用して展開するAI・LLM研究開発事業。",
+    "tags": [
+      "E-commerce",
+      "LLM",
+      "Japan Platform"
+    ],
+    "country": "JP",
+    "role": "Japanese e-commerce and telecom group's AI and LLM division",
+    "website": "https://rakuten.ai/",
+    "founded": 1997,
+    "aliases": [
+      "楽天AI",
+      "Rakuten AI 2.0"
+    ],
+    "signals": {
+      "newsHeat": 56,
+      "marketImpact": 62,
+      "developerImpact": 50
+    }
+  },
+  {
+    "id": "cyberagent-ai",
+    "name": "CyberAgent AI Lab",
+    "sector": "japan-ai",
+    "logoText": "CY",
+    "size": "medium",
+    "score": 68,
+    "description": "AbemaTVとゲーム事業を背景にCyberAgentLMなどLLM・広告AI研究を進める国内AIラボ。",
+    "tags": [
+      "LLM",
+      "Media AI",
+      "Advertising"
+    ],
+    "country": "JP",
+    "role": "Japanese media and gaming company's AI research and LLM division",
+    "website": "https://cyberagent.ai/",
+    "founded": 1998,
+    "aliases": [
+      "CyberAgent",
+      "CyberAgentLM",
+      "AbemaTV AI"
+    ],
+    "signals": {
+      "newsHeat": 54,
+      "marketImpact": 56,
+      "developerImpact": 62
+    }
+  },
+  {
+    "id": "dena-ai",
+    "name": "DeNA AI",
+    "sector": "japan-ai",
+    "logoText": "DA",
+    "size": "medium",
+    "score": 56,
+    "description": "モバイルゲーム・スポーツDXでAI活用を進めるDeNAのAI事業部門。",
+    "tags": [
+      "Game AI",
+      "Sports AI",
+      "Mobile"
+    ],
+    "country": "JP",
+    "role": "Japanese game and sports AI platform company",
+    "website": "https://dena.com/",
+    "founded": 1999,
+    "aliases": [
+      "ディーエヌエー"
+    ],
+    "signals": {
+      "newsHeat": 40,
+      "marketImpact": 48,
+      "developerImpact": 42
+    }
+  },
+  {
+    "id": "mercari-ai",
+    "name": "Mercari AI",
+    "sector": "japan-ai",
+    "logoText": "MC",
+    "size": "medium",
+    "score": 62,
+    "description": "フリマアプリのデータと生成AIを組み合わせ、検索・出品支援・安全性AIを展開。",
+    "tags": [
+      "Marketplace AI",
+      "Search",
+      "Safety"
+    ],
+    "country": "JP",
+    "role": "Japanese marketplace AI for search, listing, and trust and safety",
+    "website": "https://about.mercari.com/",
+    "founded": 2013,
+    "aliases": [
+      "メルカリ",
+      "Mercari"
+    ],
+    "signals": {
+      "newsHeat": 50,
+      "marketImpact": 54,
+      "developerImpact": 52
+    }
+  },
+  {
+    "id": "heroz",
+    "name": "HEROZ",
+    "sector": "japan-ai",
+    "logoText": "HZ",
+    "size": "small",
+    "score": 58,
+    "description": "将棋AIからスタートし、建設・金融向けAIソリューションに展開する上場AI企業。",
+    "tags": [
+      "Game AI",
+      "Construction AI",
+      "Finance AI"
+    ],
+    "country": "JP",
+    "role": "Japanese AI company expanding from game AI to enterprise verticals",
+    "website": "https://heroz.co.jp/",
+    "founded": 2009,
+    "aliases": [
+      "ヒーローズ"
+    ],
+    "signals": {
+      "newsHeat": 38,
+      "marketImpact": 44,
+      "developerImpact": 40
+    }
+  },
+  {
+    "id": "laboro-ai",
+    "name": "Laboro.AI",
+    "sector": "japan-ai",
+    "logoText": "LA",
+    "size": "small",
+    "score": 56,
+    "description": "機械学習モデルのカスタム開発と企業AI実装支援に特化した日本のAIスタートアップ。",
+    "tags": [
+      "Custom AI",
+      "ML",
+      "Enterprise"
+    ],
+    "country": "JP",
+    "role": "Japanese custom AI development and enterprise AI consulting",
+    "website": "https://laboro.ai/",
+    "founded": 2016,
+    "aliases": [
+      "ラボロAI"
+    ],
+    "signals": {
+      "newsHeat": 34,
+      "marketImpact": 40,
+      "developerImpact": 44
+    }
+  },
+  {
+    "id": "google-deepmind",
+    "name": "Google DeepMind",
+    "sector": "foundation",
+    "logoText": "GDM",
+    "size": "small",
+    "score": 50,
+    "description": "Google DeepMindはAI Ecosystem Mapで参照される企業・基盤です。",
+    "tags": [],
+    "country": "UK",
+    "role": "ecosystem participant"
+  },
+  {
+    "id": "applied-materials",
+    "name": "Applied Materials",
+    "sector": "infrastructure",
+    "logoText": "AMAT",
+    "size": "small",
+    "score": 50,
+    "description": "Applied MaterialsはAI Ecosystem Mapで参照される企業・基盤です。",
+    "tags": [],
+    "country": "",
+    "role": "ecosystem participant"
+  },
+  {
+    "id": "lam-research",
+    "name": "Lam Research",
+    "sector": "infrastructure",
+    "logoText": "LAM",
+    "size": "small",
+    "score": 50,
+    "description": "Lam ResearchはAI Ecosystem Mapで参照される企業・基盤です。",
+    "tags": [],
+    "country": "",
+    "role": "ecosystem participant"
+  },
+  {
+    "id": "qualcomm",
+    "name": "Qualcomm",
+    "sector": "infrastructure",
+    "logoText": "QC",
+    "size": "small",
+    "score": 50,
+    "description": "QualcommはAI Ecosystem Mapで参照される企業・基盤です。",
+    "tags": [],
+    "country": "",
+    "role": "ecosystem participant"
+  },
+  {
+    "id": "mediatek",
+    "name": "MediaTek",
+    "sector": "infrastructure",
+    "logoText": "MTK",
+    "size": "small",
+    "score": 50,
+    "description": "MediaTekはAI Ecosystem Mapで参照される企業・基盤です。",
+    "tags": [],
+    "country": "",
+    "role": "ecosystem participant"
+  },
+  {
+    "id": "dell",
+    "name": "Dell",
+    "sector": "infrastructure",
+    "logoText": "DELL",
+    "size": "small",
+    "score": 50,
+    "description": "DellはAI Ecosystem Mapで参照される企業・基盤です。",
+    "tags": [],
+    "country": "",
+    "role": "ecosystem participant"
+  },
+  {
+    "id": "supermicro",
+    "name": "Supermicro",
+    "sector": "infrastructure",
+    "logoText": "SMCI",
+    "size": "small",
+    "score": 50,
+    "description": "SupermicroはAI Ecosystem Mapで参照される企業・基盤です。",
+    "tags": [],
+    "country": "",
+    "role": "ecosystem participant"
+  },
+  {
+    "id": "globalfoundries",
+    "name": "GlobalFoundries",
+    "sector": "infrastructure",
+    "logoText": "GF",
+    "size": "small",
+    "score": 50,
+    "description": "GlobalFoundriesはAI Ecosystem Mapで参照される企業・基盤です。",
+    "tags": [],
+    "country": "",
+    "role": "ecosystem participant"
+  },
+  {
+    "id": "micron",
+    "name": "Micron",
+    "sector": "infrastructure",
+    "logoText": "MU",
+    "size": "small",
+    "score": 50,
+    "description": "MicronはAI Ecosystem Mapで参照される企業・基盤です。",
+    "tags": [],
+    "country": "",
+    "role": "ecosystem participant"
+  },
+  {
+    "id": "hpe",
+    "name": "HPE",
+    "sector": "infrastructure",
+    "logoText": "HPE",
+    "size": "small",
+    "score": 50,
+    "description": "HPEはAI Ecosystem Mapで参照される企業・基盤です。",
+    "tags": [],
+    "country": "",
+    "role": "ecosystem participant"
+  },
+  {
+    "id": "oracle-oci",
+    "name": "Oracle OCI",
+    "sector": "infrastructure",
+    "logoText": "OCI",
+    "size": "small",
+    "score": 50,
+    "description": "Oracle OCIはAI Ecosystem Mapで参照される企業・基盤です。",
+    "tags": [],
+    "country": "",
+    "role": "ecosystem participant"
+  },
+  {
+    "id": "microsoft-azure",
+    "name": "Microsoft Azure",
+    "sector": "infrastructure",
+    "logoText": "AZ",
+    "size": "small",
+    "score": 50,
+    "description": "Microsoft AzureはAI Ecosystem Mapで参照される企業・基盤です。",
+    "tags": [],
+    "country": "",
+    "role": "ecosystem participant"
+  },
+  {
+    "id": "aws",
+    "name": "AWS",
+    "sector": "infrastructure",
+    "logoText": "AWS",
+    "size": "small",
+    "score": 50,
+    "description": "AWSはAI Ecosystem Mapで参照される企業・基盤です。",
+    "tags": [],
+    "country": "",
+    "role": "ecosystem participant"
+  },
+  {
+    "id": "google-cloud",
+    "name": "Google Cloud",
+    "sector": "infrastructure",
+    "logoText": "GCP",
+    "size": "small",
+    "score": 50,
+    "description": "Google CloudはAI Ecosystem Mapで参照される企業・基盤です。",
+    "tags": [],
+    "country": "",
+    "role": "ecosystem participant"
+  },
+  {
+    "id": "ibm-cloud",
+    "name": "IBM Cloud",
+    "sector": "infrastructure",
+    "logoText": "IBM",
+    "size": "small",
+    "score": 50,
+    "description": "IBM CloudはAI Ecosystem Mapで参照される企業・基盤です。",
+    "tags": [],
+    "country": "",
+    "role": "ecosystem participant"
+  },
+  {
+    "id": "amazon-bedrock",
+    "name": "Amazon Bedrock",
+    "sector": "enterprise",
+    "logoText": "BR",
+    "size": "small",
+    "score": 50,
+    "description": "Amazon BedrockはAI Ecosystem Mapで参照される企業・基盤です。",
+    "tags": [],
+    "country": "",
+    "role": "ecosystem participant"
+  },
+  {
+    "id": "google-vertex-ai",
+    "name": "Google Vertex AI",
+    "sector": "enterprise",
+    "logoText": "VX",
+    "size": "small",
+    "score": 50,
+    "description": "Google Vertex AIはAI Ecosystem Mapで参照される企業・基盤です。",
+    "tags": [],
+    "country": "",
+    "role": "ecosystem participant"
+  },
+  {
+    "id": "github-copilot",
+    "name": "github-copilot",
+    "sector": "enterprise",
+    "logoText": "GC",
+    "size": "small",
+    "score": 50,
+    "description": "github-copilotはAI Ecosystem Mapで参照される企業・基盤です。",
+    "tags": [],
+    "country": "",
+    "role": "ecosystem participant"
+  },
+  {
+    "id": "china-ai-cloud",
+    "name": "china-ai-cloud",
+    "sector": "enterprise",
+    "logoText": "CAC",
+    "size": "small",
+    "score": 50,
+    "description": "china-ai-cloudはAI Ecosystem Mapで参照される企業・基盤です。",
+    "tags": [],
+    "country": "",
+    "role": "ecosystem participant"
+  },
+  {
+    "id": "kddi",
+    "name": "kddi",
+    "sector": "enterprise",
+    "logoText": "K",
+    "size": "small",
+    "score": 50,
+    "description": "kddiはAI Ecosystem Mapで参照される企業・基盤です。",
+    "tags": [],
+    "country": "",
+    "role": "ecosystem participant"
+  },
+  {
+    "id": "yahoo-search",
+    "name": "yahoo-search",
+    "sector": "enterprise",
+    "logoText": "YS",
+    "size": "small",
+    "score": 50,
+    "description": "yahoo-searchはAI Ecosystem Mapで参照される企業・基盤です。",
+    "tags": [],
+    "country": "",
+    "role": "ecosystem participant"
+  },
+  {
+    "id": "crusoe",
+    "name": "Crusoe",
+    "sector": "infrastructure",
+    "logoText": "CR",
+    "size": "medium",
+    "score": 62,
+    "description": "AIデータセンターとクラウド計算基盤を提供するインフラ企業。",
+    "tags": [
+      "datacenter",
+      "cloud",
+      "gpu"
+    ],
+    "country": "US",
+    "role": "AIデータセンターとクラウド計算基盤を提供するインフラ企業。"
+  },
+  {
+    "id": "nebius",
+    "name": "Nebius",
+    "sector": "infrastructure",
+    "logoText": "NB",
+    "size": "medium",
+    "score": 62,
+    "description": "AIクラウドとGPUインフラを提供する欧州系AIインフラ企業。",
+    "tags": [
+      "cloud",
+      "gpu",
+      "datacenter"
+    ],
+    "country": "NL",
+    "role": "AIクラウドとGPUインフラを提供する欧州系AIインフラ企業。"
+  },
+  {
+    "id": "together-ai",
+    "name": "Together AI",
+    "sector": "opensource",
+    "logoText": "TA",
+    "size": "medium",
+    "score": 62,
+    "description": "オープンモデル向け推論・学習基盤を提供するAIプラットフォーム企業。",
+    "tags": [
+      "open model",
+      "inference",
+      "platform"
+    ],
+    "country": "US",
+    "role": "オープンモデル向け推論・学習基盤を提供するAIプラットフォーム企業。"
+  },
+  {
+    "id": "snowflake",
+    "name": "Snowflake",
+    "sector": "enterprise",
+    "logoText": "SF",
+    "size": "medium",
+    "score": 62,
+    "description": "データクラウドを基盤に企業向けAI・分析基盤を展開する企業。",
+    "tags": [
+      "data cloud",
+      "enterprise",
+      "analytics"
+    ],
+    "country": "US",
+    "role": "データクラウドを基盤に企業向けAI・分析基盤を展開する企業。"
+  },
+  {
+    "id": "palantir",
+    "name": "Palantir",
+    "sector": "enterprise",
+    "logoText": "PL",
+    "size": "medium",
+    "score": 62,
+    "description": "AIPを中心に政府・企業向けAI運用基盤を提供する企業。",
+    "tags": [
+      "enterprise",
+      "government",
+      "AIP"
+    ],
+    "country": "US",
+    "role": "AIPを中心に政府・企業向けAI運用基盤を提供する企業。"
+  },
+  {
+    "id": "servicenow",
+    "name": "ServiceNow",
+    "sector": "enterprise",
+    "logoText": "SN",
+    "size": "medium",
+    "score": 62,
+    "description": "業務ワークフローとAIエージェントを統合するエンタープライズSaaS企業。",
+    "tags": [
+      "workflow",
+      "enterprise",
+      "agent"
+    ],
+    "country": "US",
+    "role": "業務ワークフローとAIエージェントを統合するエンタープライズSaaS企業。"
+  },
+  {
+    "id": "accenture",
+    "name": "Accenture",
+    "sector": "enterprise",
+    "logoText": "AC",
+    "size": "medium",
+    "score": 62,
+    "description": "企業AI導入と業務変革を支援するグローバルコンサルティング企業。",
+    "tags": [
+      "consulting",
+      "enterprise",
+      "implementation"
+    ],
+    "country": "IE",
+    "role": "企業AI導入と業務変革を支援するグローバルコンサルティング企業。"
+  },
+  {
+    "id": "deloitte",
+    "name": "Deloitte",
+    "sector": "enterprise",
+    "logoText": "DT",
+    "size": "medium",
+    "score": 62,
+    "description": "企業向けAI導入、監査、リスク管理を支援するプロフェッショナルサービス企業。",
+    "tags": [
+      "consulting",
+      "risk",
+      "enterprise"
+    ],
+    "country": "UK",
+    "role": "企業向けAI導入、監査、リスク管理を支援するプロフェッショナルサービス企業。"
+  },
+  {
+    "id": "capgemini",
+    "name": "Capgemini",
+    "sector": "enterprise",
+    "logoText": "CG",
+    "size": "medium",
+    "score": 62,
+    "description": "AIシステム導入とデジタル変革を支援するITサービス企業。",
+    "tags": [
+      "consulting",
+      "systems",
+      "enterprise"
+    ],
+    "country": "FR",
+    "role": "AIシステム導入とデジタル変革を支援するITサービス企業。"
+  },
+  {
+    "id": "stability-ai",
+    "name": "Stability AI",
+    "sector": "generative-ai",
+    "logoText": "ST",
+    "size": "medium",
+    "description": "画像生成モデルとStable Diffusionエコシステムを展開する生成AI企業。",
+    "score": 72,
+    "tags": []
+  },
+  {
+    "id": "suno",
+    "name": "Suno",
+    "sector": "generative-ai",
+    "logoText": "SU",
+    "size": "medium",
+    "description": "AI音楽生成サービスを展開する生成AI企業。",
+    "score": 72,
+    "tags": []
+  },
+  {
+    "id": "udio",
+    "name": "Udio",
+    "sector": "generative-ai",
+    "logoText": "UD",
+    "size": "medium",
+    "description": "AI音楽生成サービスを展開する生成AI企業。",
+    "score": 72,
+    "tags": []
+  },
+  {
+    "id": "heygen",
+    "name": "HeyGen",
+    "sector": "generative-ai",
+    "logoText": "HG",
+    "size": "medium",
+    "description": "AIアバター動画生成と翻訳動画を提供する生成AI企業。",
+    "score": 72,
+    "tags": []
+  },
+  {
+    "id": "synthesia",
+    "name": "Synthesia",
+    "sector": "generative-ai",
+    "logoText": "SY",
+    "size": "medium",
+    "description": "法人向けAI動画生成プラットフォームを提供する企業。",
+    "score": 72,
+    "tags": []
+  },
+  {
+    "id": "genspark",
+    "name": "Genspark",
+    "sector": "agents",
+    "logoText": "GS",
+    "size": "medium",
+    "description": "AI検索とエージェント型リサーチを提供する企業。",
+    "score": 70,
+    "tags": []
+  },
+  {
+    "id": "manus",
+    "name": "Manus",
+    "sector": "agents",
+    "logoText": "MA",
+    "size": "medium",
+    "description": "汎用AIエージェントを展開する企業。",
+    "score": 70,
+    "tags": []
+  },
+  {
+    "id": "cognition",
+    "name": "Cognition",
+    "sector": "agents",
+    "logoText": "CG",
+    "size": "medium",
+    "description": "Devinを開発するAIソフトウェアエンジニアリング企業。",
+    "score": 70,
+    "tags": []
+  },
+  {
+    "id": "open-interpreter",
+    "name": "Open Interpreter",
+    "sector": "agents",
+    "logoText": "OI",
+    "size": "medium",
+    "description": "ローカル実行型AIエージェントのOSSプロジェクト。",
+    "score": 70,
+    "tags": []
+  },
+  {
+    "id": "crewai",
+    "name": "CrewAI",
+    "sector": "agents",
+    "logoText": "CR",
+    "size": "medium",
+    "description": "マルチエージェントワークフロー基盤を提供する企業。",
+    "score": 70,
+    "tags": []
+  },
+  {
+    "id": "dify",
+    "name": "Dify",
+    "sector": "agents",
+    "logoText": "DF",
+    "size": "medium",
+    "description": "LLMアプリとエージェント構築のオープンソース基盤。",
+    "score": 70,
+    "tags": []
+  },
+  {
+    "id": "flowise",
+    "name": "Flowise",
+    "sector": "agents",
+    "logoText": "FL",
+    "size": "medium",
+    "description": "ローコードLLMワークフロー構築ツール。",
+    "score": 70,
+    "tags": []
+  },
+  {
+    "id": "dust",
+    "name": "Dust",
+    "sector": "agents",
+    "logoText": "DU",
+    "size": "medium",
+    "description": "企業向けAIアシスタントとエージェント基盤を提供。",
+    "score": 70,
+    "tags": []
+  },
+  {
+    "id": "adept",
+    "name": "Adept",
+    "sector": "agents",
+    "logoText": "AD",
+    "size": "medium",
+    "description": "AIエージェント研究と業務自動化に取り組む企業。",
+    "score": 70,
+    "tags": []
+  },
+  {
+    "id": "multion",
+    "name": "MultiOn",
+    "sector": "agents",
+    "logoText": "MO",
+    "size": "medium",
+    "description": "ブラウザ操作型AIエージェントを開発する企業。",
+    "score": 70,
+    "tags": []
+  },
+  {
+    "id": "rabbit",
+    "name": "Rabbit",
+    "sector": "agents",
+    "logoText": "RB",
+    "size": "medium",
+    "description": "AIデバイスとアクションモデルを展開する企業。",
+    "score": 70,
+    "tags": []
+  },
+  {
+    "id": "humane",
+    "name": "Humane",
+    "sector": "agents",
+    "logoText": "HU",
+    "size": "medium",
+    "description": "AIデバイスとパーソナルAI体験を展開した企業。",
+    "score": 70,
+    "tags": []
+  },
+  {
+    "id": "sierra",
+    "name": "Sierra",
+    "sector": "agents",
+    "logoText": "SI",
+    "size": "medium",
+    "description": "顧客対応AIエージェントを提供する企業。",
+    "score": 70,
+    "tags": []
+  },
+  {
+    "id": "replit",
+    "name": "Replit",
+    "sector": "agents",
+    "logoText": "RE",
+    "size": "medium",
+    "description": "AI開発環境とコーディングエージェントを提供。",
+    "score": 70,
+    "tags": []
+  },
+  {
+    "id": "cursor",
+    "name": "Cursor",
+    "sector": "agents",
+    "logoText": "CU",
+    "size": "medium",
+    "description": "AIコードエディタを提供するAnysphereの製品。",
+    "score": 70,
+    "tags": []
+  },
+  {
+    "id": "windsurf",
+    "name": "Windsurf",
+    "sector": "agents",
+    "logoText": "WS",
+    "size": "medium",
+    "description": "AIコードエディタと開発エージェントを提供。",
+    "score": 70,
+    "tags": []
+  },
+  {
+    "id": "continue-dev",
+    "name": "Continue.dev",
+    "sector": "agents",
+    "logoText": "CT",
+    "size": "medium",
+    "description": "オープンソースのAIコードアシスタント。",
+    "score": 70,
+    "tags": []
+  },
+  {
+    "id": "cognosys",
+    "name": "Cognosys",
+    "sector": "agents",
+    "logoText": "CO",
+    "size": "medium",
+    "description": "AIエージェント自動化ツールを提供するプロジェクト。",
+    "score": 70,
+    "tags": []
+  },
+  {
+    "id": "agentops",
+    "name": "AgentOps",
+    "sector": "agents",
+    "logoText": "AO",
+    "size": "medium",
+    "description": "AIエージェント監視と評価基盤を提供。",
+    "score": 70,
+    "tags": []
+  },
+  {
+    "id": "ollama",
+    "name": "Ollama",
+    "sector": "opensource",
+    "logoText": "OL",
+    "size": "medium",
+    "description": "ローカルLLM実行環境を提供するオープンソース基盤。",
+    "score": 70,
+    "tags": []
+  },
+  {
+    "id": "lm-studio",
+    "name": "LM Studio",
+    "sector": "opensource",
+    "logoText": "LM",
+    "size": "medium",
+    "description": "ローカルLLM実行とモデル管理のデスクトップアプリ。",
+    "score": 70,
+    "tags": []
+  },
+  {
+    "id": "vllm",
+    "name": "vLLM",
+    "sector": "opensource",
+    "logoText": "VL",
+    "size": "medium",
+    "description": "高スループットLLM推論エンジンのOSSプロジェクト。",
+    "score": 70,
+    "tags": []
+  },
+  {
+    "id": "llama-cpp",
+    "name": "llama.cpp",
+    "sector": "opensource",
+    "logoText": "LC",
+    "size": "medium",
+    "description": "ローカル推論を支える軽量LLM実行基盤。",
+    "score": 70,
+    "tags": []
+  },
+  {
+    "id": "openrouter",
+    "name": "OpenRouter",
+    "sector": "opensource",
+    "logoText": "OR",
+    "size": "medium",
+    "description": "複数モデルへのAPIルーティング基盤。",
+    "score": 70,
+    "tags": []
+  },
+  {
+    "id": "replicate",
+    "name": "Replicate",
+    "sector": "opensource",
+    "logoText": "RP",
+    "size": "medium",
+    "description": "AIモデルのホスティングと実行基盤を提供。",
+    "score": 70,
+    "tags": []
+  },
+  {
+    "id": "modal",
+    "name": "Modal",
+    "sector": "opensource",
+    "logoText": "MD",
+    "size": "medium",
+    "description": "AIアプリ実行とGPUサーバレス基盤を提供。",
+    "score": 70,
+    "tags": []
+  },
+  {
+    "id": "fireworks-ai",
+    "name": "Fireworks AI",
+    "sector": "opensource",
+    "logoText": "FW",
+    "size": "medium",
+    "description": "高速推論APIとOSSモデル提供基盤。",
+    "score": 70,
+    "tags": []
+  },
+  {
+    "id": "open-webui",
+    "name": "Open WebUI",
+    "sector": "opensource",
+    "logoText": "OW",
+    "size": "medium",
+    "description": "ローカル/セルフホストLLM UIのOSSプロジェクト。",
+    "score": 70,
+    "tags": []
+  },
+  {
+    "id": "jan",
+    "name": "Jan",
+    "sector": "opensource",
+    "logoText": "JN",
+    "size": "medium",
+    "description": "ローカルAIアシスタントのOSSアプリ。",
+    "score": 70,
+    "tags": []
+  },
+  {
+    "id": "comfyui",
+    "name": "ComfyUI",
+    "sector": "opensource",
+    "logoText": "CF",
+    "size": "medium",
+    "description": "画像生成ワークフローのOSS UI。",
+    "score": 70,
+    "tags": []
+  },
+  {
+    "id": "invokeai",
+    "name": "InvokeAI",
+    "sector": "opensource",
+    "logoText": "IV",
+    "size": "medium",
+    "description": "画像生成向けOSS制作基盤。",
+    "score": 70,
+    "tags": []
+  },
+  {
+    "id": "automatic1111",
+    "name": "Automatic1111",
+    "sector": "opensource",
+    "logoText": "A1",
+    "size": "medium",
+    "description": "Stable Diffusion WebUIの代表的OSS。",
+    "score": 70,
+    "tags": []
+  },
+  {
+    "id": "koboldcpp",
+    "name": "KoboldCpp",
+    "sector": "opensource",
+    "logoText": "KC",
+    "size": "medium",
+    "description": "ローカルLLM実行のOSSツール。",
+    "score": 70,
+    "tags": []
+  },
+  {
+    "id": "haystack",
+    "name": "Haystack",
+    "sector": "opensource",
+    "logoText": "HS",
+    "size": "medium",
+    "description": "RAGとLLMアプリ開発のOSSフレームワーク。",
+    "score": 70,
+    "tags": []
+  },
+  {
+    "id": "fastchat",
+    "name": "FastChat",
+    "sector": "opensource",
+    "logoText": "FC",
+    "size": "medium",
+    "description": "LLMチャット・評価のOSS基盤。",
+    "score": 70,
+    "tags": []
+  },
+  {
+    "id": "axolotl",
+    "name": "Axolotl",
+    "sector": "opensource",
+    "logoText": "AX",
+    "size": "medium",
+    "description": "LLMファインチューニングのOSSツール。",
+    "score": 70,
+    "tags": []
+  },
+  {
+    "id": "tesla-optimus",
+    "name": "Tesla Optimus",
+    "sector": "robotics",
+    "logoText": "TO",
+    "size": "medium",
+    "description": "Teslaのヒューマノイドロボット計画。",
+    "score": 70,
+    "tags": []
+  },
+  {
+    "id": "agility-robotics",
+    "name": "Agility Robotics",
+    "sector": "robotics",
+    "logoText": "AG",
+    "size": "medium",
+    "description": "二足歩行ロボットDigitを開発する企業。",
+    "score": 70,
+    "tags": []
+  },
+  {
+    "id": "sanctuary-ai",
+    "name": "Sanctuary AI",
+    "sector": "robotics",
+    "logoText": "SA",
+    "size": "medium",
+    "description": "汎用ヒューマノイドロボットを開発する企業。",
+    "score": 70,
+    "tags": []
+  },
+  {
+    "id": "apptronik",
+    "name": "Apptronik",
+    "sector": "robotics",
+    "logoText": "AP",
+    "size": "medium",
+    "description": "ヒューマノイドロボットApolloを開発する企業。",
+    "score": 70,
+    "tags": []
+  },
+  {
+    "id": "unitree",
+    "name": "Unitree",
+    "sector": "robotics",
+    "logoText": "UT",
+    "size": "medium",
+    "description": "四足歩行・ヒューマノイドロボットを展開する中国企業。",
+    "score": 70,
+    "tags": []
+  },
+  {
+    "id": "one-x",
+    "name": "1X",
+    "sector": "robotics",
+    "logoText": "1X",
+    "size": "medium",
+    "description": "ヒューマノイドロボットNEOを開発する企業。",
+    "score": 70,
+    "tags": []
+  },
+  {
+    "id": "fourier",
+    "name": "Fourier Intelligence",
+    "sector": "robotics",
+    "logoText": "FO",
+    "size": "medium",
+    "description": "リハビリ・ヒューマノイドロボットを開発する企業。",
+    "score": 70,
+    "tags": []
+  },
+  {
+    "id": "ubtech",
+    "name": "UBTech",
+    "sector": "robotics",
+    "logoText": "UB",
+    "size": "medium",
+    "description": "中国のヒューマノイド・サービスロボット企業。",
+    "score": 70,
+    "tags": []
+  },
+  {
+    "id": "engine-ai",
+    "name": "Engine AI",
+    "sector": "robotics",
+    "logoText": "EA",
+    "size": "medium",
+    "description": "中国のヒューマノイドロボット企業。",
+    "score": 70,
+    "tags": []
+  },
+  {
+    "id": "physical-intelligence",
+    "name": "Physical Intelligence",
+    "sector": "robotics",
+    "logoText": "PI",
+    "size": "medium",
+    "description": "ロボット基盤モデルを開発するAI企業。",
+    "score": 70,
+    "tags": []
+  },
+  {
+    "id": "covariant",
+    "name": "Covariant",
+    "sector": "robotics",
+    "logoText": "CV",
+    "size": "medium",
+    "description": "倉庫ロボット向けAIを開発する企業。",
+    "score": 70,
+    "tags": []
+  },
+  {
+    "id": "skild-ai",
+    "name": "Skild AI",
+    "sector": "robotics",
+    "logoText": "SK",
+    "size": "medium",
+    "description": "ロボット基盤モデルを開発する企業。",
+    "score": 70,
+    "tags": []
+  },
+  {
+    "id": "toyota-research-institute",
+    "name": "Toyota Research Institute",
+    "sector": "robotics",
+    "logoText": "TRI",
+    "size": "medium",
+    "description": "ToyotaのAI・ロボティクス研究組織。",
+    "score": 70,
+    "tags": []
+  },
+  {
+    "id": "moonshot-ai",
+    "name": "Moonshot AI",
+    "sector": "china-ai",
+    "logoText": "MS",
+    "size": "medium",
+    "description": "Kimiを展開する中国の基盤モデル企業。",
+    "score": 70,
+    "tags": [],
+    "country": "CN"
+  },
+  {
+    "id": "minimax",
+    "name": "MiniMax",
+    "sector": "china-ai",
+    "logoText": "MM",
+    "size": "medium",
+    "description": "中国のマルチモーダルAI企業。",
+    "score": 70,
+    "tags": [],
+    "country": "CN"
+  },
+  {
+    "id": "zhipu-ai",
+    "name": "Zhipu AI",
+    "sector": "china-ai",
+    "logoText": "ZP",
+    "size": "medium",
+    "description": "GLM系モデルを展開する中国AI企業。",
+    "score": 70,
+    "tags": [],
+    "country": "CN"
+  },
+  {
+    "id": "01-ai",
+    "name": "01.AI",
+    "sector": "china-ai",
+    "logoText": "01",
+    "size": "medium",
+    "description": "Yiモデルを開発する中国AI企業。",
+    "score": 70,
+    "tags": [],
+    "country": "CN"
+  },
+  {
+    "id": "sensetime",
+    "name": "SenseTime",
+    "sector": "china-ai",
+    "logoText": "ST",
+    "size": "medium",
+    "description": "コンピュータビジョンと生成AIを展開する中国AI企業。",
+    "score": 70,
+    "tags": [],
+    "country": "CN"
+  },
+  {
+    "id": "iflytek",
+    "name": "iFlytek",
+    "sector": "china-ai",
+    "logoText": "IF",
+    "size": "medium",
+    "description": "音声AIと中国語AIサービスを展開する企業。",
+    "score": 70,
+    "tags": [],
+    "country": "CN"
+  },
+  {
+    "id": "huawei",
+    "name": "Huawei",
+    "sector": "china-ai",
+    "logoText": "HW",
+    "size": "medium",
+    "description": "Ascend AIチップとクラウドAI基盤を展開する中国企業。",
+    "score": 70,
+    "tags": [],
+    "country": "CN"
+  },
+  {
+    "id": "biren",
+    "name": "Biren",
+    "sector": "china-ai",
+    "logoText": "BR",
+    "size": "medium",
+    "description": "中国のAI GPUスタートアップ。",
+    "score": 70,
+    "tags": [],
+    "country": "CN"
+  },
+  {
+    "id": "moore-threads",
+    "name": "Moore Threads",
+    "sector": "china-ai",
+    "logoText": "MT",
+    "size": "medium",
+    "description": "中国のGPU企業。",
+    "score": 70,
+    "tags": [],
+    "country": "CN"
+  },
+  {
+    "id": "stepfun",
+    "name": "StepFun",
+    "sector": "china-ai",
+    "logoText": "SF",
+    "size": "medium",
+    "description": "Stepシリーズモデルを展開する中国AI企業。",
+    "score": 70,
+    "tags": [],
+    "country": "CN"
+  },
+  {
+    "id": "modelbest",
+    "name": "ModelBest",
+    "sector": "china-ai",
+    "logoText": "MB",
+    "size": "medium",
+    "description": "中国の大規模モデル企業。",
+    "score": 70,
+    "tags": [],
+    "country": "CN"
+  },
+  {
+    "id": "infinigence-ai",
+    "name": "Infinigence AI",
+    "sector": "china-ai",
+    "logoText": "IA",
+    "size": "medium",
+    "description": "AIインフラと計算基盤に取り組む中国企業。",
+    "score": 70,
+    "tags": [],
+    "country": "CN"
   }
 ]

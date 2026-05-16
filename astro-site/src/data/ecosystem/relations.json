@@ -1,48 +1,3149 @@
-﻿[
-  {"source":"microsoft","target":"openai","type":"investment","strength":100,"description":"Microsoftの出資とAzure提供により、OpenAIの商用展開と計算基盤が拡大。","label":"出資・Azure","articles":["/topic/microsoft/","/topic/openai/","/topic/agents/"]},
-  {"source":"nvidia","target":"openai","type":"gpu_supply","strength":96,"description":"大規模モデル学習と推論を支えるGPU供給関係。","label":"GPU供給","articles":["/topic/nvidia/","/topic/openai/","/topic/semiconductor/"]},
-  {"source":"tsmc","target":"nvidia","type":"gpu_supply","strength":98,"description":"NVIDIA GPUの製造・先端パッケージングを支える供給網。","label":"製造・CoWoS","articles":["/topic/tsmc/","/topic/nvidia/","/topic/semiconductor/"]},
-  {"source":"amd","target":"microsoft","type":"gpu_supply","strength":80,"description":"MicrosoftのAIクラウドにおけるGPU調達先の多様化。","label":"MI300X / Azure","articles":["/topic/amd/","/topic/microsoft/","/topic/datacenter/"]},
-  {"source":"nvidia","target":"xai","type":"gpu_supply","strength":92,"description":"xAIの大規模GPUクラスター拡張を支える中核供給関係。","label":"Colossus GPU","articles":["/topic/xai/","/topic/nvidia/","/topic/datacenter/"]},
-  {"source":"nvidia","target":"tesla","type":"gpu_supply","strength":78,"description":"Teslaの自動運転・ロボティクス・AI学習基盤に関わるGPU需要。","label":"AI training","articles":["/topic/tesla/","/topic/nvidia/","/topic/robotics/"]},
-  {"source":"nvidia","target":"meta","type":"gpu_supply","strength":88,"description":"MetaのLlama開発とAIインフラ投資を支えるGPU需要。","label":"Llama compute","articles":["/topic/meta/","/topic/nvidia/","/topic/open-source/"]},
-  {"source":"nvidia","target":"coreweave","type":"platform","strength":86,"description":"GPU特化クラウドとしてCoreWeaveがNVIDIAエコシステムに深く接続。","label":"GPU cloud","articles":["/topic/coreweave/","/topic/nvidia/","/topic/datacenter/"]},
-  {"source":"coreweave","target":"openai","type":"gpu_supply","strength":82,"description":"AIモデル企業の計算需要を支えるGPUクラウド供給関係。","label":"Cloud capacity","articles":["/topic/coreweave/","/topic/openai/"]},
-  {"source":"coreweave","target":"microsoft","type":"platform","strength":72,"description":"AIクラウド容量確保をめぐるMicrosoft周辺のインフラ関係。","label":"AI cloud","articles":["/topic/coreweave/","/topic/microsoft/"]},
-  {"source":"tsmc","target":"amd","type":"gpu_supply","strength":82,"description":"AMD GPUと先端半導体製造を結ぶ供給関係。","label":"先端製造","articles":["/topic/amd/","/topic/tsmc/","/topic/semiconductor/"]},
-  {"source":"broadcom","target":"google","type":"gpu_supply","strength":76,"description":"Google TPUやAI ASIC戦略を支える半導体設計・供給関係。","label":"AI ASIC","articles":["/topic/broadcom/","/topic/google/","/topic/semiconductor/"]},
-  {"source":"cerebras","target":"mistral","type":"platform","strength":58,"description":"高速推論・専用AI計算基盤とモデル提供の接点。","label":"Inference platform","articles":["/topic/cerebras/","/topic/mistral/"]},
-  {"source":"groq","target":"mistral","type":"platform","strength":62,"description":"高速推論基盤上でのオープンモデル提供。","label":"Low latency inference","articles":["/topic/groq/","/topic/mistral/"]},
-  {"source":"openai","target":"anthropic","type":"competition","strength":94,"description":"GPTとClaudeを軸にした基盤モデル・企業導入競争。","label":"GPT vs Claude","articles":["/topic/openai/","/topic/anthropic/","/topic/llm/"]},
-  {"source":"openai","target":"google","type":"competition","strength":92,"description":"OpenAIとGoogle DeepMindのモデル性能・検索・動画生成をめぐる競争。","label":"GPT vs Gemini","articles":["/topic/openai/","/topic/google/","/topic/llm/"]},
-  {"source":"openai","target":"xai","type":"competition","strength":78,"description":"GrokとChatGPTを軸にしたモデル・SNSデータ・計算資源の競争。","label":"GPT vs Grok","articles":["/topic/openai/","/topic/xai/"]},
-  {"source":"google","target":"anthropic","type":"investment","strength":70,"description":"Anthropicに対するGoogleの出資・クラウド関係。","label":"出資・Cloud","articles":["/topic/google/","/topic/anthropic/"]},
-  {"source":"meta","target":"huggingface","type":"platform","strength":84,"description":"Llamaを中心としたオープンモデル配布・開発者エコシステム。","label":"Open model hub","articles":["/topic/meta/","/topic/huggingface/","/topic/open-source/"]},
-  {"source":"mistral","target":"huggingface","type":"platform","strength":76,"description":"Mistralのオープンモデルと開発者コミュニティの接続。","label":"Model distribution","articles":["/topic/mistral/","/topic/huggingface/","/topic/open-source/"]},
-  {"source":"deepseek","target":"huggingface","type":"platform","strength":82,"description":"DeepSeekモデルの世界的な開発者利用を支える配布経路。","label":"Open weights","articles":["/topic/deepseek/","/topic/huggingface/","/topic/open-source/"]},
-  {"source":"langchain","target":"openai","type":"platform","strength":80,"description":"OpenAIモデルをエージェントやRAGに組み込む開発者基盤。","label":"Agent framework","articles":["/topic/langchain/","/topic/openai/","/topic/agents/"]},
-  {"source":"langchain","target":"anthropic","type":"platform","strength":74,"description":"Claudeをエージェントワークフローに接続する開発者エコシステム。","label":"Claude tools","articles":["/topic/langchain/","/topic/anthropic/","/topic/agents/"]},
-  {"source":"langchain","target":"google","type":"platform","strength":64,"description":"Geminiとエージェント開発ツールの接続。","label":"Gemini tools","articles":["/topic/langchain/","/topic/google/","/topic/agents/"]},
-  {"source":"perplexity","target":"openai","type":"model","strength":72,"description":"回答エンジンと基盤モデルAPIの接続。","label":"Search agent model","articles":["/topic/perplexity/","/topic/openai/","/topic/search-ai/"]},
-  {"source":"perplexity","target":"anthropic","type":"model","strength":68,"description":"検索拡張AIにおけるClaude利用・モデル選択の関係。","label":"Claude search","articles":["/topic/perplexity/","/topic/anthropic/"]},
-  {"source":"salesforce","target":"openai","type":"partnership","strength":66,"description":"CRMと生成AIモデルを接続する企業向けAI導入関係。","label":"CRM AI","articles":["/topic/salesforce/","/topic/openai/","/topic/enterprise-ai/"]},
-  {"source":"salesforce","target":"anthropic","type":"partnership","strength":60,"description":"企業向けAIエージェントにおけるモデル選択と安全性ニーズ。","label":"Enterprise model","articles":["/topic/salesforce/","/topic/anthropic/"]},
-  {"source":"databricks","target":"nvidia","type":"platform","strength":72,"description":"データ基盤、GPU計算、生成AI開発基盤の接続。","label":"Data + GPU","articles":["/topic/databricks/","/topic/nvidia/","/topic/enterprise-ai/"]},
-  {"source":"databricks","target":"cohere","type":"model","strength":56,"description":"企業データ基盤とRAG向けモデルの接続。","label":"RAG stack","articles":["/topic/databricks/","/topic/cohere/","/topic/rag/"]},
-  {"source":"oracle","target":"nvidia","type":"gpu_supply","strength":74,"description":"Oracle CloudのAIインフラ拡張とNVIDIA GPU供給。","label":"OCI GPU","articles":["/topic/oracle/","/topic/nvidia/","/topic/datacenter/"]},
-  {"source":"ibm","target":"huggingface","type":"platform","strength":64,"description":"企業AI、オープンモデル、ガバナンスを接続する関係。","label":"Open enterprise AI","articles":["/topic/ibm/","/topic/huggingface/","/topic/open-source/"]},
-  {"source":"sap","target":"microsoft","type":"partnership","strength":58,"description":"ERPとMicrosoft AIスタックの企業導入関係。","label":"ERP + Copilot","articles":["/topic/sap/","/topic/microsoft/","/topic/enterprise-ai/"]},
-  {"source":"adobe","target":"openai","type":"competition","strength":58,"description":"生成動画・画像制作ツールをめぐる競争と棲み分け。","label":"Creative AI","articles":["/topic/adobe/","/topic/openai/","/topic/video/"]},
-  {"source":"runway","target":"pika","type":"competition","strength":72,"description":"動画生成AIツール市場での直接競争。","label":"Video AI race","articles":["/topic/runway/","/topic/pika/","/topic/video/"]},
-  {"source":"runway","target":"openai","type":"competition","strength":68,"description":"Sora登場により動画生成AI市場の競争が激化。","label":"Sora impact","articles":["/topic/runway/","/topic/openai/","/topic/video/"]},
-  {"source":"midjourney","target":"adobe","type":"competition","strength":62,"description":"画像生成とクリエイティブ制作ワークフローの競争。","label":"Image AI","articles":["/topic/midjourney/","/topic/adobe/","/topic/generative-ai/"]},
-  {"source":"elevenlabs","target":"openai","type":"competition","strength":55,"description":"音声AI、リアルタイム会話、吹き替え領域での競争。","label":"Voice AI","articles":["/topic/elevenlabs/","/topic/openai/","/topic/voice-ai/"]},
-  {"source":"openai","target":"figure","type":"partnership","strength":70,"description":"基盤モデルとヒューマノイドロボットを接続する象徴的関係。","label":"Robotics AI","articles":["/topic/openai/","/topic/figure-ai/","/topic/robotics/"]},
-  {"source":"figure","target":"nvidia","type":"gpu_supply","strength":72,"description":"ロボティクスAI開発に必要なGPU計算基盤。","label":"Robotics compute","articles":["/topic/figure-ai/","/topic/nvidia/","/topic/robotics/"]},
-  {"source":"tesla","target":"xai","type":"partnership","strength":62,"description":"Teslaのロボティクス・車両データとxAIのモデル開発が接近する構図。","label":"Embodied AI","articles":["/topic/tesla/","/topic/xai/","/topic/robotics/"]},
-  {"source":"deepseek","target":"alibaba","type":"competition","strength":76,"description":"中国基盤モデル市場における低コストモデルとクラウド大手の競争。","label":"China LLM race","articles":["/topic/deepseek/","/topic/alibaba/","/topic/china-ai/"]},
-  {"source":"bytedance","target":"alibaba","type":"competition","strength":68,"description":"中国の消費者AI、クラウド、モデル展開をめぐる競争。","label":"Consumer AI","articles":["/topic/bytedance/","/topic/alibaba/","/topic/china-ai/"]},
-  {"source":"tencent","target":"baidu","type":"competition","strength":58,"description":"中国AIクラウド、検索、アプリ連携をめぐる競争。","label":"China cloud AI","articles":["/topic/tencent/","/topic/baidu/","/topic/china-ai/"]},
-  {"source":"alibaba","target":"nvidia","type":"gpu_supply","strength":62,"description":"中国クラウドAIにおけるGPU供給と輸出規制リスクの接点。","label":"GPU supply risk","articles":["/topic/alibaba/","/topic/nvidia/","/topic/export-control/"]},
-  {"source":"bytedance","target":"nvidia","type":"gpu_supply","strength":60,"description":"大規模推薦・生成AIの計算需要とGPU供給の関係。","label":"AI compute demand","articles":["/topic/bytedance/","/topic/nvidia/","/topic/datacenter/"]}
+[
+  {
+    "source": "microsoft",
+    "target": "openai",
+    "type": "investment",
+    "strength": 100,
+    "description": "Microsoftの出資とAzure提供により、OpenAIの商用展開と計算基盤が拡大。",
+    "label": "出資・Azure",
+    "articles": [
+      "/topic/microsoft/",
+      "/topic/openai/",
+      "/topic/agents/"
+    ]
+  },
+  {
+    "source": "nvidia",
+    "target": "openai",
+    "type": "gpu_supply",
+    "strength": 96,
+    "description": "大規模モデル学習と推論を支えるGPU供給関係。",
+    "label": "GPU供給",
+    "articles": [
+      "/topic/nvidia/",
+      "/topic/openai/",
+      "/topic/semiconductor/"
+    ]
+  },
+  {
+    "source": "tsmc",
+    "target": "nvidia",
+    "type": "gpu_supply",
+    "strength": 98,
+    "description": "NVIDIA GPUの製造・先端パッケージングを支える供給網。",
+    "label": "製造・CoWoS",
+    "articles": [
+      "/topic/tsmc/",
+      "/topic/nvidia/",
+      "/topic/semiconductor/"
+    ]
+  },
+  {
+    "source": "amd",
+    "target": "microsoft",
+    "type": "gpu_supply",
+    "strength": 80,
+    "description": "MicrosoftのAIクラウドにおけるGPU調達先の多様化。",
+    "label": "MI300X / Azure",
+    "articles": [
+      "/topic/amd/",
+      "/topic/microsoft/",
+      "/topic/datacenter/"
+    ]
+  },
+  {
+    "source": "nvidia",
+    "target": "xai",
+    "type": "gpu_supply",
+    "strength": 92,
+    "description": "xAIの大規模GPUクラスター拡張を支える中核供給関係。",
+    "label": "Colossus GPU",
+    "articles": [
+      "/topic/xai/",
+      "/topic/nvidia/",
+      "/topic/datacenter/"
+    ]
+  },
+  {
+    "source": "nvidia",
+    "target": "tesla",
+    "type": "gpu_supply",
+    "strength": 78,
+    "description": "Teslaの自動運転・ロボティクス・AI学習基盤に関わるGPU需要。",
+    "label": "AI training",
+    "articles": [
+      "/topic/tesla/",
+      "/topic/nvidia/",
+      "/topic/robotics/"
+    ]
+  },
+  {
+    "source": "nvidia",
+    "target": "meta",
+    "type": "gpu_supply",
+    "strength": 88,
+    "description": "MetaのLlama開発とAIインフラ投資を支えるGPU需要。",
+    "label": "Llama compute",
+    "articles": [
+      "/topic/meta/",
+      "/topic/nvidia/",
+      "/topic/open-source/"
+    ]
+  },
+  {
+    "source": "nvidia",
+    "target": "coreweave",
+    "type": "platform",
+    "strength": 86,
+    "description": "GPU特化クラウドとしてCoreWeaveがNVIDIAエコシステムに深く接続。",
+    "label": "GPU cloud",
+    "articles": [
+      "/topic/coreweave/",
+      "/topic/nvidia/",
+      "/topic/datacenter/"
+    ]
+  },
+  {
+    "source": "coreweave",
+    "target": "openai",
+    "type": "gpu_supply",
+    "strength": 82,
+    "description": "AIモデル企業の計算需要を支えるGPUクラウド供給関係。",
+    "label": "Cloud capacity",
+    "articles": [
+      "/topic/coreweave/",
+      "/topic/openai/"
+    ]
+  },
+  {
+    "source": "coreweave",
+    "target": "microsoft",
+    "type": "platform",
+    "strength": 72,
+    "description": "AIクラウド容量確保をめぐるMicrosoft周辺のインフラ関係。",
+    "label": "AI cloud",
+    "articles": [
+      "/topic/coreweave/",
+      "/topic/microsoft/"
+    ]
+  },
+  {
+    "source": "tsmc",
+    "target": "amd",
+    "type": "gpu_supply",
+    "strength": 82,
+    "description": "AMD GPUと先端半導体製造を結ぶ供給関係。",
+    "label": "先端製造",
+    "articles": [
+      "/topic/amd/",
+      "/topic/tsmc/",
+      "/topic/semiconductor/"
+    ]
+  },
+  {
+    "source": "broadcom",
+    "target": "google",
+    "type": "gpu_supply",
+    "strength": 76,
+    "description": "Google TPUやAI ASIC戦略を支える半導体設計・供給関係。",
+    "label": "AI ASIC",
+    "articles": [
+      "/topic/broadcom/",
+      "/topic/google/",
+      "/topic/semiconductor/"
+    ]
+  },
+  {
+    "source": "cerebras",
+    "target": "mistral",
+    "type": "platform",
+    "strength": 58,
+    "description": "高速推論・専用AI計算基盤とモデル提供の接点。",
+    "label": "Inference platform",
+    "articles": [
+      "/topic/cerebras/",
+      "/topic/mistral/"
+    ]
+  },
+  {
+    "source": "groq",
+    "target": "mistral",
+    "type": "platform",
+    "strength": 62,
+    "description": "高速推論基盤上でのオープンモデル提供。",
+    "label": "Low latency inference",
+    "articles": [
+      "/topic/groq/",
+      "/topic/mistral/"
+    ]
+  },
+  {
+    "source": "openai",
+    "target": "anthropic",
+    "type": "competition",
+    "strength": 94,
+    "description": "GPTとClaudeを軸にした基盤モデル・企業導入競争。",
+    "label": "GPT vs Claude",
+    "articles": [
+      "/topic/openai/",
+      "/topic/anthropic/",
+      "/topic/llm/"
+    ]
+  },
+  {
+    "source": "openai",
+    "target": "google",
+    "type": "competition",
+    "strength": 92,
+    "description": "OpenAIとGoogle DeepMindのモデル性能・検索・動画生成をめぐる競争。",
+    "label": "GPT vs Gemini",
+    "articles": [
+      "/topic/openai/",
+      "/topic/google/",
+      "/topic/llm/"
+    ]
+  },
+  {
+    "source": "openai",
+    "target": "xai",
+    "type": "competition",
+    "strength": 78,
+    "description": "GrokとChatGPTを軸にしたモデル・SNSデータ・計算資源の競争。",
+    "label": "GPT vs Grok",
+    "articles": [
+      "/topic/openai/",
+      "/topic/xai/"
+    ]
+  },
+  {
+    "source": "google",
+    "target": "anthropic",
+    "type": "investment",
+    "strength": 70,
+    "description": "Anthropicに対するGoogleの出資・クラウド関係。",
+    "label": "出資・Cloud",
+    "articles": [
+      "/topic/google/",
+      "/topic/anthropic/"
+    ]
+  },
+  {
+    "source": "meta",
+    "target": "huggingface",
+    "type": "platform",
+    "strength": 84,
+    "description": "Llamaを中心としたオープンモデル配布・開発者エコシステム。",
+    "label": "Open model hub",
+    "articles": [
+      "/topic/meta/",
+      "/topic/huggingface/",
+      "/topic/open-source/"
+    ]
+  },
+  {
+    "source": "mistral",
+    "target": "huggingface",
+    "type": "platform",
+    "strength": 76,
+    "description": "Mistralのオープンモデルと開発者コミュニティの接続。",
+    "label": "Model distribution",
+    "articles": [
+      "/topic/mistral/",
+      "/topic/huggingface/",
+      "/topic/open-source/"
+    ]
+  },
+  {
+    "source": "deepseek",
+    "target": "huggingface",
+    "type": "platform",
+    "strength": 82,
+    "description": "DeepSeekモデルの世界的な開発者利用を支える配布経路。",
+    "label": "Open weights",
+    "articles": [
+      "/topic/deepseek/",
+      "/topic/huggingface/",
+      "/topic/open-source/"
+    ]
+  },
+  {
+    "source": "langchain",
+    "target": "openai",
+    "type": "platform",
+    "strength": 80,
+    "description": "OpenAIモデルをエージェントやRAGに組み込む開発者基盤。",
+    "label": "Agent framework",
+    "articles": [
+      "/topic/langchain/",
+      "/topic/openai/",
+      "/topic/agents/"
+    ]
+  },
+  {
+    "source": "langchain",
+    "target": "anthropic",
+    "type": "platform",
+    "strength": 74,
+    "description": "Claudeをエージェントワークフローに接続する開発者エコシステム。",
+    "label": "Claude tools",
+    "articles": [
+      "/topic/langchain/",
+      "/topic/anthropic/",
+      "/topic/agents/"
+    ]
+  },
+  {
+    "source": "langchain",
+    "target": "google",
+    "type": "platform",
+    "strength": 64,
+    "description": "Geminiとエージェント開発ツールの接続。",
+    "label": "Gemini tools",
+    "articles": [
+      "/topic/langchain/",
+      "/topic/google/",
+      "/topic/agents/"
+    ]
+  },
+  {
+    "source": "perplexity",
+    "target": "openai",
+    "type": "model",
+    "strength": 72,
+    "description": "回答エンジンと基盤モデルAPIの接続。",
+    "label": "Search agent model",
+    "articles": [
+      "/topic/perplexity/",
+      "/topic/openai/",
+      "/topic/search-ai/"
+    ]
+  },
+  {
+    "source": "perplexity",
+    "target": "anthropic",
+    "type": "model",
+    "strength": 68,
+    "description": "検索拡張AIにおけるClaude利用・モデル選択の関係。",
+    "label": "Claude search",
+    "articles": [
+      "/topic/perplexity/",
+      "/topic/anthropic/"
+    ]
+  },
+  {
+    "source": "salesforce",
+    "target": "openai",
+    "type": "partnership",
+    "strength": 66,
+    "description": "CRMと生成AIモデルを接続する企業向けAI導入関係。",
+    "label": "CRM AI",
+    "articles": [
+      "/topic/salesforce/",
+      "/topic/openai/",
+      "/topic/enterprise-ai/"
+    ]
+  },
+  {
+    "source": "salesforce",
+    "target": "anthropic",
+    "type": "partnership",
+    "strength": 60,
+    "description": "企業向けAIエージェントにおけるモデル選択と安全性ニーズ。",
+    "label": "Enterprise model",
+    "articles": [
+      "/topic/salesforce/",
+      "/topic/anthropic/"
+    ]
+  },
+  {
+    "source": "databricks",
+    "target": "nvidia",
+    "type": "platform",
+    "strength": 72,
+    "description": "データ基盤、GPU計算、生成AI開発基盤の接続。",
+    "label": "Data + GPU",
+    "articles": [
+      "/topic/databricks/",
+      "/topic/nvidia/",
+      "/topic/enterprise-ai/"
+    ]
+  },
+  {
+    "source": "databricks",
+    "target": "cohere",
+    "type": "model",
+    "strength": 56,
+    "description": "企業データ基盤とRAG向けモデルの接続。",
+    "label": "RAG stack",
+    "articles": [
+      "/topic/databricks/",
+      "/topic/cohere/",
+      "/topic/rag/"
+    ]
+  },
+  {
+    "source": "oracle",
+    "target": "nvidia",
+    "type": "gpu_supply",
+    "strength": 74,
+    "description": "Oracle CloudのAIインフラ拡張とNVIDIA GPU供給。",
+    "label": "OCI GPU",
+    "articles": [
+      "/topic/oracle/",
+      "/topic/nvidia/",
+      "/topic/datacenter/"
+    ]
+  },
+  {
+    "source": "ibm",
+    "target": "huggingface",
+    "type": "platform",
+    "strength": 64,
+    "description": "企業AI、オープンモデル、ガバナンスを接続する関係。",
+    "label": "Open enterprise AI",
+    "articles": [
+      "/topic/ibm/",
+      "/topic/huggingface/",
+      "/topic/open-source/"
+    ]
+  },
+  {
+    "source": "sap",
+    "target": "microsoft",
+    "type": "partnership",
+    "strength": 58,
+    "description": "ERPとMicrosoft AIスタックの企業導入関係。",
+    "label": "ERP + Copilot",
+    "articles": [
+      "/topic/sap/",
+      "/topic/microsoft/",
+      "/topic/enterprise-ai/"
+    ]
+  },
+  {
+    "source": "adobe",
+    "target": "openai",
+    "type": "competition",
+    "strength": 58,
+    "description": "生成動画・画像制作ツールをめぐる競争と棲み分け。",
+    "label": "Creative AI",
+    "articles": [
+      "/topic/adobe/",
+      "/topic/openai/",
+      "/topic/video/"
+    ]
+  },
+  {
+    "source": "runway",
+    "target": "pika",
+    "type": "competition",
+    "strength": 72,
+    "description": "動画生成AIツール市場での直接競争。",
+    "label": "Video AI race",
+    "articles": [
+      "/topic/runway/",
+      "/topic/pika/",
+      "/topic/video/"
+    ]
+  },
+  {
+    "source": "runway",
+    "target": "openai",
+    "type": "competition",
+    "strength": 68,
+    "description": "Sora登場により動画生成AI市場の競争が激化。",
+    "label": "Sora impact",
+    "articles": [
+      "/topic/runway/",
+      "/topic/openai/",
+      "/topic/video/"
+    ]
+  },
+  {
+    "source": "midjourney",
+    "target": "adobe",
+    "type": "competition",
+    "strength": 62,
+    "description": "画像生成とクリエイティブ制作ワークフローの競争。",
+    "label": "Image AI",
+    "articles": [
+      "/topic/midjourney/",
+      "/topic/adobe/",
+      "/topic/generative-ai/"
+    ]
+  },
+  {
+    "source": "elevenlabs",
+    "target": "openai",
+    "type": "competition",
+    "strength": 55,
+    "description": "音声AI、リアルタイム会話、吹き替え領域での競争。",
+    "label": "Voice AI",
+    "articles": [
+      "/topic/elevenlabs/",
+      "/topic/openai/",
+      "/topic/voice-ai/"
+    ]
+  },
+  {
+    "source": "openai",
+    "target": "figure",
+    "type": "partnership",
+    "strength": 70,
+    "description": "基盤モデルとヒューマノイドロボットを接続する象徴的関係。",
+    "label": "Robotics AI",
+    "articles": [
+      "/topic/openai/",
+      "/topic/figure-ai/",
+      "/topic/robotics/"
+    ]
+  },
+  {
+    "source": "figure",
+    "target": "nvidia",
+    "type": "gpu_supply",
+    "strength": 72,
+    "description": "ロボティクスAI開発に必要なGPU計算基盤。",
+    "label": "Robotics compute",
+    "articles": [
+      "/topic/figure-ai/",
+      "/topic/nvidia/",
+      "/topic/robotics/"
+    ]
+  },
+  {
+    "source": "tesla",
+    "target": "xai",
+    "type": "partnership",
+    "strength": 62,
+    "description": "Teslaのロボティクス・車両データとxAIのモデル開発が接近する構図。",
+    "label": "Embodied AI",
+    "articles": [
+      "/topic/tesla/",
+      "/topic/xai/",
+      "/topic/robotics/"
+    ]
+  },
+  {
+    "source": "deepseek",
+    "target": "alibaba",
+    "type": "competition",
+    "strength": 76,
+    "description": "中国基盤モデル市場における低コストモデルとクラウド大手の競争。",
+    "label": "China LLM race",
+    "articles": [
+      "/topic/deepseek/",
+      "/topic/alibaba/",
+      "/topic/china-ai/"
+    ]
+  },
+  {
+    "source": "bytedance",
+    "target": "alibaba",
+    "type": "competition",
+    "strength": 68,
+    "description": "中国の消費者AI、クラウド、モデル展開をめぐる競争。",
+    "label": "Consumer AI",
+    "articles": [
+      "/topic/bytedance/",
+      "/topic/alibaba/",
+      "/topic/china-ai/"
+    ]
+  },
+  {
+    "source": "tencent",
+    "target": "baidu",
+    "type": "competition",
+    "strength": 58,
+    "description": "中国AIクラウド、検索、アプリ連携をめぐる競争。",
+    "label": "China cloud AI",
+    "articles": [
+      "/topic/tencent/",
+      "/topic/baidu/",
+      "/topic/china-ai/"
+    ]
+  },
+  {
+    "source": "alibaba",
+    "target": "nvidia",
+    "type": "gpu_supply",
+    "strength": 62,
+    "description": "中国クラウドAIにおけるGPU供給と輸出規制リスクの接点。",
+    "label": "GPU supply risk",
+    "articles": [
+      "/topic/alibaba/",
+      "/topic/nvidia/",
+      "/topic/export-control/"
+    ]
+  },
+  {
+    "source": "bytedance",
+    "target": "nvidia",
+    "type": "gpu_supply",
+    "strength": 60,
+    "description": "大規模推薦・生成AIの計算需要とGPU供給の関係。",
+    "label": "AI compute demand",
+    "articles": [
+      "/topic/bytedance/",
+      "/topic/nvidia/",
+      "/topic/datacenter/"
+    ]
+  },
+  {
+    "source": "softbank",
+    "target": "openai",
+    "type": "partnership",
+    "strength": 92,
+    "description": "SoftBankはOpenAIの主要投資家かつ日本展開パートナー。StarGate Japanも推進。",
+    "label": "AI戦略提携・出資",
+    "articles": [
+      "/topic/softbank/",
+      "/topic/openai/"
+    ]
+  },
+  {
+    "source": "softbank",
+    "target": "nvidia",
+    "type": "gpu_supply",
+    "strength": 86,
+    "description": "SoftBankのAIデータセンター計画とNVIDIA GPUの大規模調達関係。",
+    "label": "GPUデータセンター調達",
+    "articles": [
+      "/topic/softbank/",
+      "/topic/nvidia/",
+      "/topic/datacenter/"
+    ]
+  },
+  {
+    "source": "softbank",
+    "target": "arm",
+    "type": "ownership",
+    "strength": 100,
+    "description": "SoftBankはArmの最大株主。Arm IPはAI半導体の基盤として重要性が増す。",
+    "label": "親会社・筆頭株主",
+    "articles": [
+      "/topic/softbank/",
+      "/topic/arm/",
+      "/topic/semiconductor/"
+    ]
+  },
+  {
+    "source": "softbank",
+    "target": "anthropic",
+    "type": "customer",
+    "strength": 68,
+    "description": "SoftBankはAnthropicのClaudeをグループ内AI活用に採用。",
+    "label": "Claude活用",
+    "articles": [
+      "/topic/softbank/",
+      "/topic/anthropic/"
+    ]
+  },
+  {
+    "source": "arm",
+    "target": "nvidia",
+    "type": "partnership",
+    "strength": 76,
+    "description": "NVIDIAはArmのCPUアーキテクチャとNMX/Grace CPUを活用したAI基盤を展開。",
+    "label": "Grace CPU連携",
+    "articles": [
+      "/topic/arm/",
+      "/topic/nvidia/",
+      "/topic/semiconductor/"
+    ]
+  },
+  {
+    "source": "arm",
+    "target": "apple",
+    "type": "supplier",
+    "strength": 90,
+    "description": "Apple Siliconの根幹はArmアーキテクチャ。オンデバイスAIに不可欠。",
+    "label": "Apple Siliconの基盤",
+    "articles": [
+      "/topic/arm/",
+      "/topic/semiconductor/"
+    ]
+  },
+  {
+    "source": "arm",
+    "target": "amazon",
+    "type": "supplier",
+    "strength": 82,
+    "description": "AWS GravitonはArmベースのサーバーCPU。省電力クラウドAIに活用される。",
+    "label": "AWS Graviton基盤",
+    "articles": [
+      "/topic/arm/",
+      "/topic/amazon/",
+      "/topic/datacenter/"
+    ]
+  },
+  {
+    "source": "asml",
+    "target": "tsmc",
+    "type": "semiconductor",
+    "strength": 98,
+    "description": "TSMCの先端プロセスはASMLのEUV露光装置なしには成立しない。",
+    "label": "EUV露光装置を供給",
+    "articles": [
+      "/topic/tsmc/",
+      "/topic/semiconductor/"
+    ]
+  },
+  {
+    "source": "asml",
+    "target": "samsung-semiconductor",
+    "type": "semiconductor",
+    "strength": 90,
+    "description": "Samsung先端ファウンドリにもASML EUVが不可欠。",
+    "label": "EUV露光装置を供給",
+    "articles": [
+      "/topic/asml/",
+      "/topic/semiconductor/"
+    ]
+  },
+  {
+    "source": "asml",
+    "target": "intel",
+    "type": "semiconductor",
+    "strength": 80,
+    "description": "Intelのファウンドリ戦略もASML EUVへの依存が高い。",
+    "label": "EUV露光装置を供給",
+    "articles": [
+      "/topic/asml/",
+      "/topic/intel/",
+      "/topic/semiconductor/"
+    ]
+  },
+  {
+    "source": "sk-hynix",
+    "target": "nvidia",
+    "type": "supplier",
+    "strength": 94,
+    "description": "SK HynixのHBM3eがNVIDIA H100/H200/B200に採用。AI GPUの最重要メモリサプライヤー。",
+    "label": "HBM供給",
+    "articles": [
+      "/topic/nvidia/",
+      "/topic/semiconductor/"
+    ]
+  },
+  {
+    "source": "tsmc",
+    "target": "broadcom",
+    "type": "semiconductor",
+    "strength": 84,
+    "description": "BroadcomのAI ASIC・ネットワークチップをTSMCが製造。",
+    "label": "AI ASIC製造",
+    "articles": [
+      "/topic/tsmc/",
+      "/topic/broadcom/",
+      "/topic/semiconductor/"
+    ]
+  },
+  {
+    "source": "tsmc",
+    "target": "apple",
+    "type": "semiconductor",
+    "strength": 96,
+    "description": "Apple SiliconはTSMCの最先端プロセスで製造。AI処理能力の基盤。",
+    "label": "Apple Silicon製造",
+    "articles": [
+      "/topic/tsmc/",
+      "/topic/semiconductor/"
+    ]
+  },
+  {
+    "source": "amd",
+    "target": "nvidia",
+    "type": "competitor",
+    "strength": 88,
+    "description": "AI GPU・データセンター市場でAMDはNVIDIAの最大の競合企業。",
+    "label": "AI GPU競合",
+    "articles": [
+      "/topic/amd/",
+      "/topic/nvidia/",
+      "/topic/semiconductor/"
+    ]
+  },
+  {
+    "source": "amd",
+    "target": "google",
+    "type": "gpu_supply",
+    "strength": 72,
+    "description": "Google CloudはAMD MI300XをAIクラウドに採用。GPU調達多様化の一環。",
+    "label": "GPU供給",
+    "articles": [
+      "/topic/amd/",
+      "/topic/google/",
+      "/topic/datacenter/"
+    ]
+  },
+  {
+    "source": "amd",
+    "target": "meta",
+    "type": "gpu_supply",
+    "strength": 68,
+    "description": "MetaはAMD GPUをデータセンターAI基盤の多様化に活用。",
+    "label": "GPU供給",
+    "articles": [
+      "/topic/amd/",
+      "/topic/meta/",
+      "/topic/datacenter/"
+    ]
+  },
+  {
+    "source": "sakura-internet",
+    "target": "nvidia",
+    "type": "gpu_supply",
+    "strength": 84,
+    "description": "さくらインターネットはNVIDIA H100を大規模調達し国産GPUクラウドを構築。",
+    "label": "H100 GPU供給",
+    "articles": [
+      "/topic/sakura-internet/",
+      "/topic/nvidia/",
+      "/topic/japan-ai/"
+    ]
+  },
+  {
+    "source": "gmo-gpu-cloud",
+    "target": "nvidia",
+    "type": "gpu_supply",
+    "strength": 72,
+    "description": "GMO GPU CloudはNVIDIA GPUを活用した国内クラウドサービスを展開。",
+    "label": "GPU供給",
+    "articles": [
+      "/topic/gmo-gpu-cloud/",
+      "/topic/nvidia/",
+      "/topic/japan-ai/"
+    ]
+  },
+  {
+    "source": "sakura-internet",
+    "target": "preferred-networks",
+    "type": "customer",
+    "strength": 64,
+    "description": "さくらインターネットのGPUクラウドがPFNなど国内AI研究を支援。",
+    "label": "GPU基盤提供",
+    "articles": [
+      "/topic/sakura-internet/",
+      "/topic/japan-ai/"
+    ]
+  },
+  {
+    "source": "ntt",
+    "target": "nvidia",
+    "type": "gpu_supply",
+    "strength": 76,
+    "description": "NTTはNVIDIA GPUを活用してtsuzumi学習・AIデータセンター整備を進める。",
+    "label": "GPU調達",
+    "articles": [
+      "/topic/ntt/",
+      "/topic/nvidia/",
+      "/topic/japan-ai/"
+    ]
+  },
+  {
+    "source": "ntt",
+    "target": "openai",
+    "type": "partnership",
+    "strength": 70,
+    "description": "NTTとOpenAIはエンタープライズAI展開で提携関係を構築。",
+    "label": "企業向けAI提携",
+    "articles": [
+      "/topic/ntt/",
+      "/topic/openai/",
+      "/topic/japan-ai/"
+    ]
+  },
+  {
+    "source": "ntt",
+    "target": "preferred-networks",
+    "type": "research",
+    "strength": 68,
+    "description": "NTTとPFNはPLaMoモデル共同開発など日本語LLM研究で協力。",
+    "label": "LLM共同研究",
+    "articles": [
+      "/topic/ntt/",
+      "/topic/preferred-networks/",
+      "/topic/japan-ai/"
+    ]
+  },
+  {
+    "source": "ntt-data",
+    "target": "openai",
+    "type": "customer",
+    "strength": 66,
+    "description": "NTTデータはOpenAI APIを活用した企業向けAIソリューションを提供。",
+    "label": "OpenAI API活用",
+    "articles": [
+      "/topic/ntt-data/",
+      "/topic/openai/",
+      "/topic/enterprise-ai/"
+    ]
+  },
+  {
+    "source": "ntt-data",
+    "target": "anthropic",
+    "type": "customer",
+    "strength": 60,
+    "description": "NTTデータはAnthropicのClaudeを企業AI導入に採用。",
+    "label": "Claude活用",
+    "articles": [
+      "/topic/ntt-data/",
+      "/topic/anthropic/",
+      "/topic/enterprise-ai/"
+    ]
+  },
+  {
+    "source": "preferred-networks",
+    "target": "toyota-research",
+    "type": "partnership",
+    "strength": 80,
+    "description": "PFNとToyota Research Instituteは自動運転・ロボティクスAI研究で長期的な戦略提携を結ぶ。",
+    "label": "自動運転・ロボティクス研究",
+    "articles": [
+      "/topic/preferred-networks/",
+      "/topic/japan-ai/",
+      "/topic/robotics/"
+    ]
+  },
+  {
+    "source": "preferred-networks",
+    "target": "fanuc",
+    "type": "partnership",
+    "strength": 72,
+    "description": "PFNとFANUCは工場ロボットへのAI導入で共同研究・開発を進める。",
+    "label": "工場AIロボット研究",
+    "articles": [
+      "/topic/preferred-networks/",
+      "/topic/fanuc/",
+      "/topic/robotics/"
+    ]
+  },
+  {
+    "source": "preferred-networks",
+    "target": "nvidia",
+    "type": "gpu_supply",
+    "strength": 74,
+    "description": "PFNのMN-Core開発やLLM学習にNVIDIA GPUが活用される。",
+    "label": "GPU・研究インフラ",
+    "articles": [
+      "/topic/preferred-networks/",
+      "/topic/nvidia/",
+      "/topic/japan-ai/"
+    ]
+  },
+  {
+    "source": "preferred-robotics",
+    "target": "preferred-networks",
+    "type": "ownership",
+    "strength": 100,
+    "description": "Preferred RoboticsはPreferred Networksのロボット事業子会社。",
+    "label": "子会社",
+    "articles": [
+      "/topic/preferred-networks/",
+      "/topic/japan-ai/",
+      "/topic/robotics/"
+    ]
+  },
+  {
+    "source": "sakana-ai",
+    "target": "nvidia",
+    "type": "customer",
+    "strength": 66,
+    "description": "Sakana AIはNVIDIA GPUをモデル学習・研究基盤として活用。",
+    "label": "GPU利用",
+    "articles": [
+      "/topic/sakana-ai/",
+      "/topic/nvidia/",
+      "/topic/japan-ai/"
+    ]
+  },
+  {
+    "source": "sakana-ai",
+    "target": "huggingface",
+    "type": "open_source",
+    "strength": 76,
+    "description": "Sakana AIのモデルはHugging Faceを通じて公開・配布される。",
+    "label": "OSSモデル配布",
+    "articles": [
+      "/topic/sakana-ai/",
+      "/topic/huggingface/",
+      "/topic/japan-ai/"
+    ]
+  },
+  {
+    "source": "fujitsu",
+    "target": "nvidia",
+    "type": "gpu_supply",
+    "strength": 72,
+    "description": "富士通はNVIDIA GPUを搭載したAIシステム・サーバーを展開。",
+    "label": "GPU搭載サーバー",
+    "articles": [
+      "/topic/fujitsu/",
+      "/topic/nvidia/",
+      "/topic/japan-ai/"
+    ]
+  },
+  {
+    "source": "fujitsu",
+    "target": "openai",
+    "type": "customer",
+    "strength": 60,
+    "description": "富士通はOpenAI APIを活用した企業向けAIサービスを展開。",
+    "label": "OpenAI API活用",
+    "articles": [
+      "/topic/fujitsu/",
+      "/topic/openai/",
+      "/topic/enterprise-ai/"
+    ]
+  },
+  {
+    "source": "fujitsu",
+    "target": "rinna",
+    "type": "research",
+    "strength": 56,
+    "description": "富士通と国内AI研究機関が日本語LLM開発で協力する関係。",
+    "label": "日本語AI研究",
+    "articles": [
+      "/topic/fujitsu/",
+      "/topic/japan-ai/"
+    ]
+  },
+  {
+    "source": "nec",
+    "target": "nvidia",
+    "type": "gpu_supply",
+    "strength": 68,
+    "description": "NECはNVIDIA GPUを用いたAIサーバー・クラウドサービスを展開。",
+    "label": "GPU搭載AIサーバー",
+    "articles": [
+      "/topic/nec/",
+      "/topic/nvidia/",
+      "/topic/japan-ai/"
+    ]
+  },
+  {
+    "source": "nec",
+    "target": "openai",
+    "type": "customer",
+    "strength": 62,
+    "description": "NECはOpenAI技術を活用した企業向けAIシステムを構築・展開。",
+    "label": "OpenAI活用",
+    "articles": [
+      "/topic/nec/",
+      "/topic/openai/",
+      "/topic/enterprise-ai/"
+    ]
+  },
+  {
+    "source": "rapidus",
+    "target": "tsmc",
+    "type": "research",
+    "strength": 60,
+    "description": "Rapidusは2nm技術確立のためTSMCの技術を参照・競合する立場。製造技術の追追。",
+    "label": "先端プロセス技術比較",
+    "articles": [
+      "/topic/rapidus/",
+      "/topic/tsmc/",
+      "/topic/semiconductor/"
+    ]
+  },
+  {
+    "source": "rapidus",
+    "target": "ibm",
+    "type": "research",
+    "strength": 76,
+    "description": "RapidusはIBMと2nm以降のロジック半導体技術開発で技術提携。",
+    "label": "2nm半導体技術提携",
+    "articles": [
+      "/topic/rapidus/",
+      "/topic/ibm/",
+      "/topic/semiconductor/"
+    ]
+  },
+  {
+    "source": "rapidus",
+    "target": "asml",
+    "type": "supplier",
+    "strength": 82,
+    "description": "Rapidusの先端ファブ整備にはASMLのEUV装置が不可欠。",
+    "label": "EUV装置調達",
+    "articles": [
+      "/topic/rapidus/",
+      "/topic/asml/",
+      "/topic/semiconductor/"
+    ]
+  },
+  {
+    "source": "fanuc",
+    "target": "nvidia",
+    "type": "partnership",
+    "strength": 68,
+    "description": "FANUCはNVIDIA Isaac ROSと連携し工場ロボットのAI高度化を進める。",
+    "label": "工場AIロボット連携",
+    "articles": [
+      "/topic/fanuc/",
+      "/topic/nvidia/",
+      "/topic/robotics/"
+    ]
+  },
+  {
+    "source": "toyota-research",
+    "target": "nvidia",
+    "type": "gpu_supply",
+    "strength": 72,
+    "description": "TRIはNVIDIA GPU・Isaacプラットフォームで自動運転・ロボティクス研究を推進。",
+    "label": "自動運転・ロボット研究基盤",
+    "articles": [
+      "/topic/toyota-research/",
+      "/topic/nvidia/",
+      "/topic/robotics/"
+    ]
+  },
+  {
+    "source": "toyota-research",
+    "target": "preferred-networks",
+    "type": "partnership",
+    "strength": 78,
+    "description": "TRIとPFNは自動運転・物理世界AI研究で協力関係を持つ。",
+    "label": "自動運転AI研究",
+    "articles": [
+      "/topic/toyota-research/",
+      "/topic/preferred-networks/",
+      "/topic/robotics/"
+    ]
+  },
+  {
+    "source": "honda-robotics",
+    "target": "nvidia",
+    "type": "partnership",
+    "strength": 60,
+    "description": "ホンダのロボティクス研究はNVIDIA Isaacプラットフォームと連携。",
+    "label": "ロボットAI研究",
+    "articles": [
+      "/topic/honda-robotics/",
+      "/topic/nvidia/",
+      "/topic/robotics/"
+    ]
+  },
+  {
+    "source": "fanuc",
+    "target": "preferred-networks",
+    "type": "partnership",
+    "strength": 72,
+    "description": "FANUCとPFNは工場AIロボット共同研究開発プロジェクトを進める。",
+    "label": "工場AIロボット共同開発",
+    "articles": [
+      "/topic/fanuc/",
+      "/topic/preferred-networks/",
+      "/topic/robotics/"
+    ]
+  },
+  {
+    "source": "line-yahoo",
+    "target": "openai",
+    "type": "customer",
+    "strength": 66,
+    "description": "LINE YahooはOpenAI技術を活用したAI検索・アシスタント機能を展開。",
+    "label": "OpenAI API活用",
+    "articles": [
+      "/topic/line-yahoo/",
+      "/topic/openai/",
+      "/topic/japan-ai/"
+    ]
+  },
+  {
+    "source": "line-yahoo",
+    "target": "preferred-networks",
+    "type": "research",
+    "strength": 58,
+    "description": "LINE YahooとPFNは日本語LLM研究で協力関係を持つ。",
+    "label": "日本語LLM研究",
+    "articles": [
+      "/topic/line-yahoo/",
+      "/topic/preferred-networks/",
+      "/topic/japan-ai/"
+    ]
+  },
+  {
+    "source": "line-yahoo",
+    "target": "huggingface",
+    "type": "open_source",
+    "strength": 62,
+    "description": "LINE Yahooのモデル研究成果はHugging Faceで公開される。",
+    "label": "OSSモデル公開",
+    "articles": [
+      "/topic/line-yahoo/",
+      "/topic/huggingface/",
+      "/topic/japan-ai/"
+    ]
+  },
+  {
+    "source": "rakuten-ai",
+    "target": "openai",
+    "type": "customer",
+    "strength": 60,
+    "description": "楽天AIはOpenAI APIを活用しEC・金融サービスのAI化を推進。",
+    "label": "OpenAI API活用",
+    "articles": [
+      "/topic/rakuten-ai/",
+      "/topic/openai/",
+      "/topic/japan-ai/"
+    ]
+  },
+  {
+    "source": "rakuten-ai",
+    "target": "huggingface",
+    "type": "open_source",
+    "strength": 68,
+    "description": "楽天のオープンLLMはHugging Faceで公開されている。",
+    "label": "OSSモデル公開",
+    "articles": [
+      "/topic/rakuten-ai/",
+      "/topic/huggingface/",
+      "/topic/japan-ai/"
+    ]
+  },
+  {
+    "source": "cyberagent-ai",
+    "target": "nvidia",
+    "type": "gpu_supply",
+    "strength": 64,
+    "description": "CyberAgentはNVIDIA GPUをLLM学習・広告AI推論基盤に活用。",
+    "label": "GPU活用",
+    "articles": [
+      "/topic/cyberagent-ai/",
+      "/topic/nvidia/",
+      "/topic/japan-ai/"
+    ]
+  },
+  {
+    "source": "cyberagent-ai",
+    "target": "huggingface",
+    "type": "open_source",
+    "strength": 72,
+    "description": "CyberAgentLMはHugging Faceで公開され、日本語OSSモデルとして広く利用される。",
+    "label": "OSSモデル公開",
+    "articles": [
+      "/topic/cyberagent-ai/",
+      "/topic/huggingface/",
+      "/topic/japan-ai/"
+    ]
+  },
+  {
+    "source": "abeja",
+    "target": "nvidia",
+    "type": "gpu_supply",
+    "strength": 62,
+    "description": "ABEJAはNVIDIA GPUを活用したAIプラットフォームを製造・流通向けに展開。",
+    "label": "GPU活用プラットフォーム",
+    "articles": [
+      "/topic/abeja/",
+      "/topic/nvidia/",
+      "/topic/japan-ai/"
+    ]
+  },
+  {
+    "source": "abeja",
+    "target": "openai",
+    "type": "customer",
+    "strength": 58,
+    "description": "ABEJAはOpenAI APIを企業向けAIソリューションに組み込む。",
+    "label": "OpenAI API活用",
+    "articles": [
+      "/topic/abeja/",
+      "/topic/openai/",
+      "/topic/enterprise-ai/"
+    ]
+  },
+  {
+    "source": "pksha-technology",
+    "target": "openai",
+    "type": "customer",
+    "strength": 62,
+    "description": "PKSHAはOpenAI GPTを活用した企業向け対話AIサービスを展開。",
+    "label": "OpenAI活用",
+    "articles": [
+      "/topic/pksha-technology/",
+      "/topic/openai/",
+      "/topic/enterprise-ai/"
+    ]
+  },
+  {
+    "source": "pksha-technology",
+    "target": "anthropic",
+    "type": "customer",
+    "strength": 56,
+    "description": "PKSHAはAnthropicのClaudeも企業向けAIに採用。",
+    "label": "Claude活用",
+    "articles": [
+      "/topic/pksha-technology/",
+      "/topic/anthropic/",
+      "/topic/enterprise-ai/"
+    ]
+  },
+  {
+    "source": "ubie",
+    "target": "openai",
+    "type": "customer",
+    "strength": 64,
+    "description": "UbieはOpenAI技術を活用した医療問診AIを展開し、診断支援に活用。",
+    "label": "医療AI活用",
+    "articles": [
+      "/topic/ubie/",
+      "/topic/openai/",
+      "/topic/japan-ai/"
+    ]
+  },
+  {
+    "source": "rinna",
+    "target": "huggingface",
+    "type": "open_source",
+    "strength": 80,
+    "description": "rinnaのオープン日本語LLMはHugging Faceで広く公開・利用される。",
+    "label": "OSSモデル配布",
+    "articles": [
+      "/topic/rinna/",
+      "/topic/huggingface/",
+      "/topic/japan-ai/"
+    ]
+  },
+  {
+    "source": "stockmark",
+    "target": "openai",
+    "type": "customer",
+    "strength": 56,
+    "description": "StockmarkはOpenAI GPTを活用したビジネスインテリジェンスAIを展開。",
+    "label": "OpenAI API活用",
+    "articles": [
+      "/topic/stockmark/",
+      "/topic/openai/",
+      "/topic/enterprise-ai/"
+    ]
+  },
+  {
+    "source": "stockmark",
+    "target": "huggingface",
+    "type": "open_source",
+    "strength": 62,
+    "description": "Stockmark LLMはHugging Faceで公開されている。",
+    "label": "OSSモデル公開",
+    "articles": [
+      "/topic/stockmark/",
+      "/topic/huggingface/",
+      "/topic/japan-ai/"
+    ]
+  },
+  {
+    "source": "amazon",
+    "target": "anthropic",
+    "type": "investment",
+    "strength": 94,
+    "description": "AmazonはAnthropicに最大40億ドルを出資。AWS Bedrockでの展開も含む。",
+    "label": "出資・AWS Bedrock",
+    "articles": [
+      "/topic/amazon/",
+      "/topic/anthropic/"
+    ]
+  },
+  {
+    "source": "google",
+    "target": "deepseek",
+    "type": "competitor",
+    "strength": 72,
+    "description": "DeepSeekのコスト効率モデルがGeminiの競合として台頭。",
+    "label": "LLMコスト競争",
+    "articles": [
+      "/topic/google/",
+      "/topic/deepseek/",
+      "/topic/china-ai/"
+    ]
+  },
+  {
+    "source": "openai",
+    "target": "microsoft",
+    "type": "distribution",
+    "strength": 96,
+    "description": "MicrosoftはOpenAIの最大商用パートナー。AzureとCopilotでモデルを展開。",
+    "label": "商用展開・Azure",
+    "articles": [
+      "/topic/openai/",
+      "/topic/microsoft/"
+    ]
+  },
+  {
+    "source": "oracle",
+    "target": "openai",
+    "type": "partnership",
+    "strength": 76,
+    "description": "OracleはOpenAIのStarGateプロジェクトに参加しAIデータセンターを提供。",
+    "label": "StarGate AI基盤",
+    "articles": [
+      "/topic/oracle/",
+      "/topic/openai/",
+      "/topic/datacenter/"
+    ]
+  },
+  {
+    "source": "mujin",
+    "target": "fanuc",
+    "type": "competitor",
+    "strength": 60,
+    "description": "MujinのAI自動プログラミングはFANUCの従来型ティーチング手法に対抗する。",
+    "label": "ロボットプログラミング競合",
+    "articles": [
+      "/topic/mujin/",
+      "/topic/fanuc/",
+      "/topic/robotics/"
+    ]
+  },
+  {
+    "source": "mujin",
+    "target": "nvidia",
+    "type": "customer",
+    "strength": 62,
+    "description": "MujinはNVIDIA GPUを活用したロボット知能システムを開発。",
+    "label": "GPU活用",
+    "articles": [
+      "/topic/mujin/",
+      "/topic/nvidia/",
+      "/topic/robotics/"
+    ]
+  },
+  {
+    "source": "fixstars",
+    "target": "nvidia",
+    "type": "partnership",
+    "strength": 68,
+    "description": "FixstarsはNVIDIA GPU向け最適化ソフトウェアとコンサルティングを提供。",
+    "label": "GPU最適化パートナー",
+    "articles": [
+      "/topic/fixstars/",
+      "/topic/nvidia/",
+      "/topic/japan-ai/"
+    ]
+  },
+  {
+    "source": "sony-semiconductor",
+    "target": "nvidia",
+    "type": "partnership",
+    "strength": 66,
+    "description": "ソニーセミコンはNVIDIAのロボティクス・AI知覚系との連携を進める。",
+    "label": "AIセンシング連携",
+    "articles": [
+      "/topic/sony-semiconductor/",
+      "/topic/nvidia/",
+      "/topic/japan-ai/"
+    ]
+  },
+  {
+    "source": "sony-semiconductor",
+    "target": "tsmc",
+    "type": "semiconductor",
+    "strength": 72,
+    "description": "ソニーセミコンは先端CMOSセンサー製造でTSMCとの連携も持つ。",
+    "label": "先端センサー製造",
+    "articles": [
+      "/topic/sony-semiconductor/",
+      "/topic/tsmc/",
+      "/topic/semiconductor/"
+    ]
+  },
+  {
+    "source": "renesas",
+    "target": "nvidia",
+    "type": "partnership",
+    "strength": 60,
+    "description": "ルネサスはNVIDIA向け電源・制御ICを供給。AI GPU周辺回路も手がける。",
+    "label": "GPU周辺ICを供給",
+    "articles": [
+      "/topic/renesas/",
+      "/topic/nvidia/",
+      "/topic/semiconductor/"
+    ]
+  },
+  {
+    "source": "preferred-networks",
+    "target": "huggingface",
+    "type": "open_source",
+    "strength": 66,
+    "description": "PFNのPLaMoモデルはHugging Faceで公開・研究コミュニティと共有。",
+    "label": "OSSモデル公開",
+    "articles": [
+      "/topic/preferred-networks/",
+      "/topic/huggingface/",
+      "/topic/japan-ai/"
+    ]
+  },
+  {
+    "source": "mercari-ai",
+    "target": "openai",
+    "type": "customer",
+    "strength": 60,
+    "description": "メルカリはOpenAI技術を商品検索・出品支援・安全AIに活用。",
+    "label": "OpenAI API活用",
+    "articles": [
+      "/topic/mercari-ai/",
+      "/topic/openai/",
+      "/topic/japan-ai/"
+    ]
+  },
+  {
+    "source": "tsmc",
+    "target": "nvidia",
+    "type": "semiconductor",
+    "strength": 98,
+    "label": "先端半導体を製造",
+    "description": "先端半導体を製造",
+    "articles": [
+      "/topic/tsmc/",
+      "/topic/nvidia/"
+    ]
+  },
+  {
+    "source": "nvidia",
+    "target": "microsoft-azure",
+    "type": "gpu_supply",
+    "strength": 95,
+    "label": "GPUを供給",
+    "description": "GPUを供給",
+    "articles": [
+      "/topic/nvidia/",
+      "/topic/microsoft-azure/"
+    ]
+  },
+  {
+    "source": "microsoft-azure",
+    "target": "openai",
+    "type": "cloud",
+    "strength": 98,
+    "label": "クラウド基盤を提供",
+    "description": "クラウド基盤を提供",
+    "articles": [
+      "/topic/microsoft-azure/",
+      "/topic/openai/"
+    ]
+  },
+  {
+    "source": "openai",
+    "target": "chatgpt",
+    "type": "product",
+    "strength": 95,
+    "label": "関係",
+    "description": "関係",
+    "articles": [
+      "/topic/openai/",
+      "/topic/chatgpt/"
+    ]
+  },
+  {
+    "source": "openai",
+    "target": "openai-api",
+    "type": "product",
+    "strength": 92,
+    "label": "API提供",
+    "description": "API提供",
+    "articles": [
+      "/topic/openai/",
+      "/topic/openai-api/"
+    ]
+  },
+  {
+    "source": "openai",
+    "target": "sora",
+    "type": "product",
+    "strength": 88,
+    "label": "関係",
+    "description": "関係",
+    "articles": [
+      "/topic/openai/",
+      "/topic/sora/"
+    ]
+  },
+  {
+    "source": "openai",
+    "target": "codex",
+    "type": "product",
+    "strength": 88,
+    "label": "関係",
+    "description": "関係",
+    "articles": [
+      "/topic/openai/",
+      "/topic/codex/"
+    ]
+  },
+  {
+    "source": "apple",
+    "target": "openai",
+    "type": "partnership",
+    "strength": 75,
+    "label": "関係",
+    "description": "関係",
+    "articles": [
+      "/topic/apple/",
+      "/topic/openai/"
+    ]
+  },
+  {
+    "source": "nvidia",
+    "target": "anthropic",
+    "type": "gpu_supply",
+    "strength": 82,
+    "label": "GPU製品",
+    "description": "GPU製品",
+    "articles": [
+      "/topic/nvidia/",
+      "/topic/anthropic/"
+    ]
+  },
+  {
+    "source": "google-tpu",
+    "target": "anthropic",
+    "type": "accelerator",
+    "strength": 80,
+    "label": "TPU提供",
+    "description": "TPU提供",
+    "articles": [
+      "/topic/google-tpu/",
+      "/topic/anthropic/"
+    ]
+  },
+  {
+    "source": "aws-trainium",
+    "target": "anthropic",
+    "type": "accelerator",
+    "strength": 80,
+    "label": "AIアクセラレータ",
+    "description": "AIアクセラレータ",
+    "articles": [
+      "/topic/aws-trainium/",
+      "/topic/anthropic/"
+    ]
+  },
+  {
+    "source": "aws",
+    "target": "anthropic",
+    "type": "cloud",
+    "strength": 90,
+    "label": "クラウド基盤を提供",
+    "description": "クラウド基盤を提供",
+    "articles": [
+      "/topic/aws/",
+      "/topic/anthropic/"
+    ]
+  },
+  {
+    "source": "google-cloud",
+    "target": "anthropic",
+    "type": "cloud",
+    "strength": 82,
+    "label": "クラウド基盤を提供",
+    "description": "クラウド基盤を提供",
+    "articles": [
+      "/topic/google-cloud/",
+      "/topic/anthropic/"
+    ]
+  },
+  {
+    "source": "anthropic",
+    "target": "claude",
+    "type": "model",
+    "strength": 95,
+    "label": "モデル",
+    "description": "モデル",
+    "articles": [
+      "/topic/anthropic/",
+      "/topic/claude/"
+    ]
+  },
+  {
+    "source": "anthropic",
+    "target": "claude-api",
+    "type": "product",
+    "strength": 88,
+    "label": "API提供",
+    "description": "API提供",
+    "articles": [
+      "/topic/anthropic/",
+      "/topic/claude-api/"
+    ]
+  },
+  {
+    "source": "anthropic",
+    "target": "claude-code",
+    "type": "product",
+    "strength": 86,
+    "label": "関係",
+    "description": "関係",
+    "articles": [
+      "/topic/anthropic/",
+      "/topic/claude-code/"
+    ]
+  },
+  {
+    "source": "amazon-bedrock",
+    "target": "anthropic",
+    "type": "distribution",
+    "strength": 88,
+    "label": "Bedrock提供",
+    "description": "Bedrock提供",
+    "articles": [
+      "/topic/amazon-bedrock/",
+      "/topic/anthropic/"
+    ]
+  },
+  {
+    "source": "google-vertex-ai",
+    "target": "anthropic",
+    "type": "distribution",
+    "strength": 78,
+    "label": "Vertex AI提供",
+    "description": "Vertex AI提供",
+    "articles": [
+      "/topic/google-vertex-ai/",
+      "/topic/anthropic/"
+    ]
+  },
+  {
+    "source": "tsmc",
+    "target": "xai",
+    "type": "semiconductor",
+    "strength": 72,
+    "label": "先端半導体を製造",
+    "description": "先端半導体を製造",
+    "articles": [
+      "/topic/tsmc/",
+      "/topic/xai/"
+    ]
+  },
+  {
+    "source": "colossus",
+    "target": "xai",
+    "type": "datacenter",
+    "strength": 95,
+    "label": "大規模計算基盤",
+    "description": "大規模計算基盤",
+    "articles": [
+      "/topic/colossus/",
+      "/topic/xai/"
+    ]
+  },
+  {
+    "source": "xai",
+    "target": "grok",
+    "type": "model",
+    "strength": 92,
+    "label": "モデル",
+    "description": "モデル",
+    "articles": [
+      "/topic/xai/",
+      "/topic/grok/"
+    ]
+  },
+  {
+    "source": "xai",
+    "target": "xai-api",
+    "type": "product",
+    "strength": 78,
+    "label": "API提供",
+    "description": "API提供",
+    "articles": [
+      "/topic/xai/",
+      "/topic/xai-api/"
+    ]
+  },
+  {
+    "source": "dell",
+    "target": "xai",
+    "type": "partnership",
+    "strength": 75,
+    "label": "関係",
+    "description": "関係",
+    "articles": [
+      "/topic/dell/",
+      "/topic/xai/"
+    ]
+  },
+  {
+    "source": "supermicro",
+    "target": "xai",
+    "type": "partnership",
+    "strength": 75,
+    "label": "関係",
+    "description": "関係",
+    "articles": [
+      "/topic/supermicro/",
+      "/topic/xai/"
+    ]
+  },
+  {
+    "source": "oracle",
+    "target": "xai",
+    "type": "partnership",
+    "strength": 72,
+    "label": "関係",
+    "description": "関係",
+    "articles": [
+      "/topic/oracle/",
+      "/topic/xai/"
+    ]
+  },
+  {
+    "source": "asml",
+    "target": "tsmc",
+    "type": "supplier",
+    "strength": 94,
+    "label": "供給元",
+    "description": "供給元",
+    "articles": [
+      "/topic/asml/",
+      "/topic/tsmc/"
+    ]
+  },
+  {
+    "source": "applied-materials",
+    "target": "tsmc",
+    "type": "supplier",
+    "strength": 84,
+    "label": "供給元",
+    "description": "供給元",
+    "articles": [
+      "/topic/applied-materials/",
+      "/topic/tsmc/"
+    ]
+  },
+  {
+    "source": "lam-research",
+    "target": "tsmc",
+    "type": "supplier",
+    "strength": 82,
+    "label": "供給元",
+    "description": "供給元",
+    "articles": [
+      "/topic/lam-research/",
+      "/topic/tsmc/"
+    ]
+  },
+  {
+    "source": "tsmc",
+    "target": "amd",
+    "type": "semiconductor",
+    "strength": 88,
+    "label": "AI GPU供給",
+    "description": "AI GPU供給",
+    "articles": [
+      "/topic/tsmc/",
+      "/topic/amd/"
+    ]
+  },
+  {
+    "source": "tsmc",
+    "target": "qualcomm",
+    "type": "semiconductor",
+    "strength": 80,
+    "label": "SoC製造",
+    "description": "SoC製造",
+    "articles": [
+      "/topic/tsmc/",
+      "/topic/qualcomm/"
+    ]
+  },
+  {
+    "source": "tsmc",
+    "target": "mediatek",
+    "type": "semiconductor",
+    "strength": 78,
+    "label": "SoC製造",
+    "description": "SoC製造",
+    "articles": [
+      "/topic/tsmc/",
+      "/topic/mediatek/"
+    ]
+  },
+  {
+    "source": "meta",
+    "target": "huggingface",
+    "type": "open_source",
+    "strength": 82,
+    "label": "オープンモデル",
+    "description": "オープンモデル",
+    "articles": [
+      "/topic/meta/",
+      "/topic/huggingface/"
+    ]
+  },
+  {
+    "source": "deepseek",
+    "target": "huggingface",
+    "type": "open_source",
+    "strength": 82,
+    "label": "オープンモデル",
+    "description": "オープンモデル",
+    "articles": [
+      "/topic/deepseek/",
+      "/topic/huggingface/"
+    ]
+  },
+  {
+    "source": "mistral",
+    "target": "huggingface",
+    "type": "open_source",
+    "strength": 82,
+    "label": "オープンモデル",
+    "description": "オープンモデル",
+    "articles": [
+      "/topic/mistral/",
+      "/topic/huggingface/"
+    ]
+  },
+  {
+    "source": "ibm",
+    "target": "huggingface",
+    "type": "partnership",
+    "strength": 78,
+    "label": "企業AI連携",
+    "description": "企業AI連携",
+    "articles": [
+      "/topic/ibm/",
+      "/topic/huggingface/"
+    ]
+  },
+  {
+    "source": "huggingface",
+    "target": "transformers",
+    "type": "product",
+    "strength": 90,
+    "label": "関係",
+    "description": "関係",
+    "articles": [
+      "/topic/huggingface/",
+      "/topic/transformers/"
+    ]
+  },
+  {
+    "source": "huggingface",
+    "target": "datasets",
+    "type": "product",
+    "strength": 80,
+    "label": "関係",
+    "description": "関係",
+    "articles": [
+      "/topic/huggingface/",
+      "/topic/datasets/"
+    ]
+  },
+  {
+    "source": "huggingface",
+    "target": "spaces",
+    "type": "product",
+    "strength": 80,
+    "label": "関係",
+    "description": "関係",
+    "articles": [
+      "/topic/huggingface/",
+      "/topic/spaces/"
+    ]
+  },
+  {
+    "source": "amd",
+    "target": "mi300x",
+    "type": "product",
+    "strength": 88,
+    "label": "GPU製品",
+    "description": "GPU製品",
+    "articles": [
+      "/topic/amd/",
+      "/topic/mi300x/"
+    ]
+  },
+  {
+    "source": "amd",
+    "target": "mi325x",
+    "type": "product",
+    "strength": 82,
+    "label": "GPU製品",
+    "description": "GPU製品",
+    "articles": [
+      "/topic/amd/",
+      "/topic/mi325x/"
+    ]
+  },
+  {
+    "source": "amd",
+    "target": "mi350",
+    "type": "product",
+    "strength": 80,
+    "label": "GPU製品",
+    "description": "GPU製品",
+    "articles": [
+      "/topic/amd/",
+      "/topic/mi350/"
+    ]
+  },
+  {
+    "source": "amd",
+    "target": "mi400",
+    "type": "product",
+    "strength": 75,
+    "label": "GPU製品",
+    "description": "GPU製品",
+    "articles": [
+      "/topic/amd/",
+      "/topic/mi400/"
+    ]
+  },
+  {
+    "source": "amd",
+    "target": "microsoft-azure",
+    "type": "gpu_supply",
+    "strength": 84,
+    "label": "AI GPU供給",
+    "description": "AI GPU供給",
+    "articles": [
+      "/topic/amd/",
+      "/topic/microsoft-azure/"
+    ]
+  },
+  {
+    "source": "amd",
+    "target": "oracle-oci",
+    "type": "gpu_supply",
+    "strength": 76,
+    "label": "AI GPU供給",
+    "description": "AI GPU供給",
+    "articles": [
+      "/topic/amd/",
+      "/topic/oracle-oci/"
+    ]
+  },
+  {
+    "source": "amd",
+    "target": "ibm-cloud",
+    "type": "gpu_supply",
+    "strength": 72,
+    "label": "AI GPU供給",
+    "description": "AI GPU供給",
+    "articles": [
+      "/topic/amd/",
+      "/topic/ibm-cloud/"
+    ]
+  },
+  {
+    "source": "amd",
+    "target": "huggingface",
+    "type": "partnership",
+    "strength": 70,
+    "label": "関係",
+    "description": "関係",
+    "articles": [
+      "/topic/amd/",
+      "/topic/huggingface/"
+    ]
+  },
+  {
+    "source": "nvidia",
+    "target": "h100",
+    "type": "product",
+    "strength": 96,
+    "label": "GPU製品",
+    "description": "GPU製品",
+    "articles": [
+      "/topic/nvidia/",
+      "/topic/h100/"
+    ]
+  },
+  {
+    "source": "nvidia",
+    "target": "h200",
+    "type": "product",
+    "strength": 92,
+    "label": "GPU製品",
+    "description": "GPU製品",
+    "articles": [
+      "/topic/nvidia/",
+      "/topic/h200/"
+    ]
+  },
+  {
+    "source": "nvidia",
+    "target": "b200",
+    "type": "product",
+    "strength": 94,
+    "label": "GPU製品",
+    "description": "GPU製品",
+    "articles": [
+      "/topic/nvidia/",
+      "/topic/b200/"
+    ]
+  },
+  {
+    "source": "nvidia",
+    "target": "gb200",
+    "type": "product",
+    "strength": 94,
+    "label": "GPU製品",
+    "description": "GPU製品",
+    "articles": [
+      "/topic/nvidia/",
+      "/topic/gb200/"
+    ]
+  },
+  {
+    "source": "nvidia",
+    "target": "cuda",
+    "type": "product",
+    "strength": 98,
+    "label": "関係",
+    "description": "関係",
+    "articles": [
+      "/topic/nvidia/",
+      "/topic/cuda/"
+    ]
+  },
+  {
+    "source": "nvidia",
+    "target": "dgx",
+    "type": "product",
+    "strength": 86,
+    "label": "関係",
+    "description": "関係",
+    "articles": [
+      "/topic/nvidia/",
+      "/topic/dgx/"
+    ]
+  },
+  {
+    "source": "nvidia",
+    "target": "nvlink",
+    "type": "product",
+    "strength": 84,
+    "label": "関係",
+    "description": "関係",
+    "articles": [
+      "/topic/nvidia/",
+      "/topic/nvlink/"
+    ]
+  },
+  {
+    "source": "nvidia",
+    "target": "spectrum-x",
+    "type": "product",
+    "strength": 82,
+    "label": "関係",
+    "description": "関係",
+    "articles": [
+      "/topic/nvidia/",
+      "/topic/spectrum-x/"
+    ]
+  },
+  {
+    "source": "openai",
+    "target": "anthropic",
+    "type": "competitor",
+    "strength": 70,
+    "label": "競合",
+    "description": "競合",
+    "articles": [
+      "/topic/openai/",
+      "/topic/anthropic/"
+    ]
+  },
+  {
+    "source": "openai",
+    "target": "google-deepmind",
+    "type": "competitor",
+    "strength": 70,
+    "label": "競合",
+    "description": "競合",
+    "articles": [
+      "/topic/openai/",
+      "/topic/google-deepmind/"
+    ]
+  },
+  {
+    "source": "openai",
+    "target": "xai",
+    "type": "competitor",
+    "strength": 70,
+    "label": "競合",
+    "description": "競合",
+    "articles": [
+      "/topic/openai/",
+      "/topic/xai/"
+    ]
+  },
+  {
+    "source": "openai",
+    "target": "meta",
+    "type": "competitor",
+    "strength": 70,
+    "label": "競合",
+    "description": "競合",
+    "articles": [
+      "/topic/openai/",
+      "/topic/meta/"
+    ]
+  },
+  {
+    "source": "nvidia",
+    "target": "amd",
+    "type": "competitor",
+    "strength": 70,
+    "label": "競合",
+    "description": "競合",
+    "articles": [
+      "/topic/nvidia/",
+      "/topic/amd/"
+    ]
+  },
+  {
+    "source": "nvidia",
+    "target": "intel",
+    "type": "competitor",
+    "strength": 70,
+    "label": "競合",
+    "description": "競合",
+    "articles": [
+      "/topic/nvidia/",
+      "/topic/intel/"
+    ]
+  },
+  {
+    "source": "tsmc",
+    "target": "samsung-semiconductor",
+    "type": "competitor",
+    "strength": 70,
+    "label": "競合",
+    "description": "競合",
+    "articles": [
+      "/topic/tsmc/",
+      "/topic/samsung-semiconductor/"
+    ]
+  },
+  {
+    "source": "tsmc",
+    "target": "intel",
+    "type": "competitor",
+    "strength": 70,
+    "label": "競合",
+    "description": "競合",
+    "articles": [
+      "/topic/tsmc/",
+      "/topic/intel/"
+    ]
+  },
+  {
+    "source": "amd",
+    "target": "intel",
+    "type": "competitor",
+    "strength": 70,
+    "label": "競合",
+    "description": "競合",
+    "articles": [
+      "/topic/amd/",
+      "/topic/intel/"
+    ]
+  },
+  {
+    "source": "huggingface",
+    "target": "databricks",
+    "type": "competitor",
+    "strength": 70,
+    "label": "競合",
+    "description": "競合",
+    "articles": [
+      "/topic/huggingface/",
+      "/topic/databricks/"
+    ]
+  },
+  {
+    "source": "microsoft",
+    "target": "google",
+    "type": "competitor",
+    "strength": 70,
+    "label": "競合",
+    "description": "競合",
+    "articles": [
+      "/topic/microsoft/",
+      "/topic/google/"
+    ]
+  },
+  {
+    "source": "microsoft",
+    "target": "amazon",
+    "type": "competitor",
+    "strength": 70,
+    "label": "競合",
+    "description": "競合",
+    "articles": [
+      "/topic/microsoft/",
+      "/topic/amazon/"
+    ]
+  },
+  {
+    "source": "softbank",
+    "target": "ntt",
+    "type": "competitor",
+    "strength": 70,
+    "label": "競合",
+    "description": "競合",
+    "articles": [
+      "/topic/softbank/",
+      "/topic/ntt/"
+    ]
+  },
+  {
+    "source": "sakura-internet",
+    "target": "gmo-gpu-cloud",
+    "type": "competitor",
+    "strength": 70,
+    "label": "競合",
+    "description": "競合",
+    "articles": [
+      "/topic/sakura-internet/",
+      "/topic/gmo-gpu-cloud/"
+    ]
+  },
+  {
+    "source": "softbank",
+    "target": "openai",
+    "type": "investment",
+    "strength": 96,
+    "label": "出資・資本支援",
+    "description": "出資・資本支援",
+    "articles": [
+      "/topic/openai/"
+    ]
+  },
+  {
+    "source": "microsoft",
+    "target": "mistral",
+    "type": "investment",
+    "strength": 78,
+    "label": "出資・資本支援",
+    "description": "出資・資本支援",
+    "articles": [
+      "/topic/mistral/"
+    ]
+  },
+  {
+    "source": "nvidia",
+    "target": "mistral",
+    "type": "investment",
+    "strength": 76,
+    "label": "出資・資本支援",
+    "description": "出資・資本支援",
+    "articles": [
+      "/topic/mistral/"
+    ]
+  },
+  {
+    "source": "oracle",
+    "target": "cohere",
+    "type": "investment",
+    "strength": 82,
+    "label": "出資・資本支援",
+    "description": "出資・資本支援",
+    "articles": [
+      "/topic/cohere/"
+    ]
+  },
+  {
+    "source": "nvidia",
+    "target": "cohere",
+    "type": "investment",
+    "strength": 82,
+    "label": "出資・資本支援",
+    "description": "出資・資本支援",
+    "articles": [
+      "/topic/cohere/"
+    ]
+  },
+  {
+    "source": "salesforce",
+    "target": "cohere",
+    "type": "investment",
+    "strength": 78,
+    "label": "出資・資本支援",
+    "description": "出資・資本支援",
+    "articles": [
+      "/topic/cohere/"
+    ]
+  },
+  {
+    "source": "nvidia",
+    "target": "perplexity",
+    "type": "investment",
+    "strength": 82,
+    "label": "出資・資本支援",
+    "description": "出資・資本支援",
+    "articles": [
+      "/topic/perplexity/"
+    ]
+  },
+  {
+    "source": "salesforce",
+    "target": "huggingface",
+    "type": "investment",
+    "strength": 84,
+    "label": "出資・資本支援",
+    "description": "出資・資本支援",
+    "articles": [
+      "/topic/huggingface/"
+    ]
+  },
+  {
+    "source": "google",
+    "target": "huggingface",
+    "type": "investment",
+    "strength": 84,
+    "label": "出資・資本支援",
+    "description": "出資・資本支援",
+    "articles": [
+      "/topic/huggingface/"
+    ]
+  },
+  {
+    "source": "amazon",
+    "target": "huggingface",
+    "type": "investment",
+    "strength": 84,
+    "label": "出資・資本支援",
+    "description": "出資・資本支援",
+    "articles": [
+      "/topic/huggingface/"
+    ]
+  },
+  {
+    "source": "nvidia",
+    "target": "huggingface",
+    "type": "investment",
+    "strength": 84,
+    "label": "出資・資本支援",
+    "description": "出資・資本支援",
+    "articles": [
+      "/topic/huggingface/"
+    ]
+  },
+  {
+    "source": "ibm",
+    "target": "huggingface",
+    "type": "investment",
+    "strength": 78,
+    "label": "出資・資本支援",
+    "description": "出資・資本支援",
+    "articles": [
+      "/topic/huggingface/"
+    ]
+  },
+  {
+    "source": "amd",
+    "target": "huggingface",
+    "type": "investment",
+    "strength": 78,
+    "label": "出資・資本支援",
+    "description": "出資・資本支援",
+    "articles": [
+      "/topic/huggingface/"
+    ]
+  },
+  {
+    "source": "intel",
+    "target": "huggingface",
+    "type": "investment",
+    "strength": 78,
+    "label": "出資・資本支援",
+    "description": "出資・資本支援",
+    "articles": [
+      "/topic/huggingface/"
+    ]
+  },
+  {
+    "source": "qualcomm",
+    "target": "huggingface",
+    "type": "investment",
+    "strength": 76,
+    "label": "出資・資本支援",
+    "description": "出資・資本支援",
+    "articles": [
+      "/topic/huggingface/"
+    ]
+  },
+  {
+    "source": "nvidia",
+    "target": "sakana-ai",
+    "type": "investment",
+    "strength": 82,
+    "label": "出資・資本支援",
+    "description": "出資・資本支援",
+    "articles": [
+      "/topic/sakana-ai/"
+    ]
+  },
+  {
+    "source": "google",
+    "target": "runway",
+    "type": "investment",
+    "strength": 78,
+    "label": "出資・資本支援",
+    "description": "出資・資本支援",
+    "articles": [
+      "/topic/runway/"
+    ]
+  },
+  {
+    "source": "nvidia",
+    "target": "runway",
+    "type": "investment",
+    "strength": 78,
+    "label": "出資・資本支援",
+    "description": "出資・資本支援",
+    "articles": [
+      "/topic/runway/"
+    ]
+  },
+  {
+    "source": "salesforce",
+    "target": "runway",
+    "type": "investment",
+    "strength": 74,
+    "label": "出資・資本支援",
+    "description": "出資・資本支援",
+    "articles": [
+      "/topic/runway/"
+    ]
+  },
+  {
+    "source": "microsoft",
+    "target": "figure",
+    "type": "investment",
+    "strength": 86,
+    "label": "出資・資本支援",
+    "description": "出資・資本支援",
+    "articles": [
+      "/topic/robotics/"
+    ]
+  },
+  {
+    "source": "nvidia",
+    "target": "figure",
+    "type": "investment",
+    "strength": 86,
+    "label": "出資・資本支援",
+    "description": "出資・資本支援",
+    "articles": [
+      "/topic/robotics/"
+    ]
+  },
+  {
+    "source": "openai",
+    "target": "figure",
+    "type": "investment",
+    "strength": 82,
+    "label": "出資・資本支援",
+    "description": "出資・資本支援",
+    "articles": [
+      "/topic/robotics/"
+    ]
+  },
+  {
+    "source": "openai",
+    "target": "langchain",
+    "type": "platform",
+    "strength": 70,
+    "label": "モデル基盤",
+    "description": "モデル基盤",
+    "articles": [
+      "/topic/openai/",
+      "/topic/langchain/"
+    ]
+  },
+  {
+    "source": "anthropic",
+    "target": "langchain",
+    "type": "platform",
+    "strength": 70,
+    "label": "モデル基盤",
+    "description": "モデル基盤",
+    "articles": [
+      "/topic/anthropic/",
+      "/topic/langchain/"
+    ]
+  },
+  {
+    "source": "google",
+    "target": "langchain",
+    "type": "platform",
+    "strength": 70,
+    "label": "モデル基盤",
+    "description": "モデル基盤",
+    "articles": [
+      "/topic/google/",
+      "/topic/langchain/"
+    ]
+  },
+  {
+    "source": "microsoft-azure",
+    "target": "langchain",
+    "type": "cloud",
+    "strength": 70,
+    "label": "クラウド基盤",
+    "description": "クラウド基盤",
+    "articles": [
+      "/topic/microsoft-azure/",
+      "/topic/langchain/"
+    ]
+  },
+  {
+    "source": "aws",
+    "target": "langchain",
+    "type": "cloud",
+    "strength": 70,
+    "label": "クラウド基盤",
+    "description": "クラウド基盤",
+    "articles": [
+      "/topic/aws/",
+      "/topic/langchain/"
+    ]
+  },
+  {
+    "source": "huggingface",
+    "target": "langchain",
+    "type": "ecosystem",
+    "strength": 70,
+    "label": "モデル配布連携",
+    "description": "モデル配布連携",
+    "articles": [
+      "/topic/huggingface/",
+      "/topic/langchain/"
+    ]
+  },
+  {
+    "source": "langchain",
+    "target": "langgraph",
+    "type": "product",
+    "strength": 70,
+    "label": "Agent Framework",
+    "description": "Agent Framework",
+    "articles": [
+      "/topic/langchain/",
+      "/topic/langgraph/"
+    ]
+  },
+  {
+    "source": "langchain",
+    "target": "dify",
+    "type": "ecosystem",
+    "strength": 70,
+    "label": "エージェント基盤連携",
+    "description": "エージェント基盤連携",
+    "articles": [
+      "/topic/langchain/",
+      "/topic/dify/"
+    ]
+  },
+  {
+    "source": "openai",
+    "target": "perplexity",
+    "type": "model",
+    "strength": 70,
+    "label": "モデル利用",
+    "description": "モデル利用",
+    "articles": [
+      "/topic/openai/",
+      "/topic/perplexity/"
+    ]
+  },
+  {
+    "source": "anthropic",
+    "target": "perplexity",
+    "type": "model",
+    "strength": 70,
+    "label": "モデル利用",
+    "description": "モデル利用",
+    "articles": [
+      "/topic/anthropic/",
+      "/topic/perplexity/"
+    ]
+  },
+  {
+    "source": "microsoft-azure",
+    "target": "cognition",
+    "type": "cloud",
+    "strength": 70,
+    "label": "クラウド基盤",
+    "description": "クラウド基盤",
+    "articles": [
+      "/topic/microsoft-azure/",
+      "/topic/cognition/"
+    ]
+  },
+  {
+    "source": "openai",
+    "target": "cognition",
+    "type": "model",
+    "strength": 70,
+    "label": "モデル利用",
+    "description": "モデル利用",
+    "articles": [
+      "/topic/openai/",
+      "/topic/cognition/"
+    ]
+  },
+  {
+    "source": "anthropic",
+    "target": "cognition",
+    "type": "model",
+    "strength": 70,
+    "label": "モデル利用",
+    "description": "モデル利用",
+    "articles": [
+      "/topic/anthropic/",
+      "/topic/cognition/"
+    ]
+  },
+  {
+    "source": "openai",
+    "target": "sierra",
+    "type": "model",
+    "strength": 70,
+    "label": "モデル利用",
+    "description": "モデル利用",
+    "articles": [
+      "/topic/openai/",
+      "/topic/sierra/"
+    ]
+  },
+  {
+    "source": "anthropic",
+    "target": "sierra",
+    "type": "model",
+    "strength": 70,
+    "label": "モデル利用",
+    "description": "モデル利用",
+    "articles": [
+      "/topic/anthropic/",
+      "/topic/sierra/"
+    ]
+  },
+  {
+    "source": "nvidia",
+    "target": "figure",
+    "type": "gpu_supply",
+    "strength": 70,
+    "label": "GPU供給",
+    "description": "GPU供給",
+    "articles": [
+      "/topic/nvidia/",
+      "/topic/figure/"
+    ]
+  },
+  {
+    "source": "nvidia",
+    "target": "jetson",
+    "type": "product",
+    "strength": 70,
+    "label": "ロボットAI基盤",
+    "description": "ロボットAI基盤",
+    "articles": [
+      "/topic/nvidia/",
+      "/topic/jetson/"
+    ]
+  },
+  {
+    "source": "nvidia",
+    "target": "isaac",
+    "type": "product",
+    "strength": 70,
+    "label": "ロボットAI基盤",
+    "description": "ロボットAI基盤",
+    "articles": [
+      "/topic/nvidia/",
+      "/topic/isaac/"
+    ]
+  },
+  {
+    "source": "jetson",
+    "target": "unitree",
+    "type": "supplier",
+    "strength": 70,
+    "label": "ロボット計算基盤",
+    "description": "ロボット計算基盤",
+    "articles": [
+      "/topic/jetson/",
+      "/topic/unitree/"
+    ]
+  },
+  {
+    "source": "isaac",
+    "target": "figure",
+    "type": "platform",
+    "strength": 70,
+    "label": "ロボット開発基盤",
+    "description": "ロボット開発基盤",
+    "articles": [
+      "/topic/isaac/",
+      "/topic/figure/"
+    ]
+  },
+  {
+    "source": "google-deepmind",
+    "target": "gemini-robotics",
+    "type": "product",
+    "strength": 70,
+    "label": "Robot AI Model",
+    "description": "Robot AI Model",
+    "articles": [
+      "/topic/google-deepmind/",
+      "/topic/gemini-robotics/"
+    ]
+  },
+  {
+    "source": "gemini-robotics",
+    "target": "apptronik",
+    "type": "partnership",
+    "strength": 70,
+    "label": "ロボットAI提携",
+    "description": "ロボットAI提携",
+    "articles": [
+      "/topic/gemini-robotics/",
+      "/topic/apptronik/"
+    ]
+  },
+  {
+    "source": "meta",
+    "target": "llama",
+    "type": "model",
+    "strength": 70,
+    "label": "モデル提供",
+    "description": "モデル提供",
+    "articles": [
+      "/topic/meta/",
+      "/topic/llama/"
+    ]
+  },
+  {
+    "source": "llama",
+    "target": "huggingface",
+    "type": "open_source",
+    "strength": 70,
+    "label": "OSS配布",
+    "description": "OSS配布",
+    "articles": [
+      "/topic/llama/",
+      "/topic/huggingface/"
+    ]
+  },
+  {
+    "source": "huggingface",
+    "target": "ollama",
+    "type": "distribution",
+    "strength": 70,
+    "label": "モデル配布",
+    "description": "モデル配布",
+    "articles": [
+      "/topic/huggingface/",
+      "/topic/ollama/"
+    ]
+  },
+  {
+    "source": "huggingface",
+    "target": "vllm",
+    "type": "distribution",
+    "strength": 70,
+    "label": "推論基盤",
+    "description": "推論基盤",
+    "articles": [
+      "/topic/huggingface/",
+      "/topic/vllm/"
+    ]
+  },
+  {
+    "source": "ollama",
+    "target": "open-webui",
+    "type": "ecosystem",
+    "strength": 70,
+    "label": "ローカルAI連携",
+    "description": "ローカルAI連携",
+    "articles": [
+      "/topic/ollama/",
+      "/topic/open-webui/"
+    ]
+  },
+  {
+    "source": "huawei-ascend",
+    "target": "huawei",
+    "type": "accelerator",
+    "strength": 70,
+    "label": "AIアクセラレータ",
+    "description": "AIアクセラレータ",
+    "articles": [
+      "/topic/huawei-ascend/",
+      "/topic/huawei/"
+    ]
+  },
+  {
+    "source": "huawei",
+    "target": "huawei-ascend",
+    "type": "product",
+    "strength": 70,
+    "label": "AIチップ",
+    "description": "AIチップ",
+    "articles": [
+      "/topic/huawei/",
+      "/topic/huawei-ascend/"
+    ]
+  },
+  {
+    "source": "huawei-ascend",
+    "target": "deepseek",
+    "type": "accelerator",
+    "strength": 70,
+    "label": "中国AI計算基盤",
+    "description": "中国AI計算基盤",
+    "articles": [
+      "/topic/huawei-ascend/",
+      "/topic/deepseek/"
+    ]
+  },
+  {
+    "source": "alibaba-cloud",
+    "target": "qwen",
+    "type": "cloud",
+    "strength": 70,
+    "label": "クラウド基盤",
+    "description": "クラウド基盤",
+    "articles": [
+      "/topic/alibaba-cloud/",
+      "/topic/qwen/"
+    ]
+  },
+  {
+    "source": "tencent-cloud",
+    "target": "hunyuan",
+    "type": "cloud",
+    "strength": 70,
+    "label": "クラウド基盤",
+    "description": "クラウド基盤",
+    "articles": [
+      "/topic/tencent-cloud/",
+      "/topic/hunyuan/"
+    ]
+  },
+  {
+    "source": "baidu-ai-cloud",
+    "target": "ernie",
+    "type": "cloud",
+    "strength": 70,
+    "label": "クラウド基盤",
+    "description": "クラウド基盤",
+    "articles": [
+      "/topic/baidu-ai-cloud/",
+      "/topic/ernie/"
+    ]
+  },
+  {
+    "source": "alibaba",
+    "target": "qwen",
+    "type": "model",
+    "strength": 70,
+    "label": "モデル提供",
+    "description": "モデル提供",
+    "articles": [
+      "/topic/alibaba/",
+      "/topic/qwen/"
+    ]
+  },
+  {
+    "source": "bytedance",
+    "target": "doubao",
+    "type": "model",
+    "strength": 70,
+    "label": "モデル提供",
+    "description": "モデル提供",
+    "articles": [
+      "/topic/bytedance/",
+      "/topic/doubao/"
+    ]
+  },
+  {
+    "source": "tencent",
+    "target": "hunyuan",
+    "type": "model",
+    "strength": 70,
+    "label": "モデル提供",
+    "description": "モデル提供",
+    "articles": [
+      "/topic/tencent/",
+      "/topic/hunyuan/"
+    ]
+  },
+  {
+    "source": "baidu",
+    "target": "ernie",
+    "type": "model",
+    "strength": 70,
+    "label": "モデル提供",
+    "description": "モデル提供",
+    "articles": [
+      "/topic/baidu/",
+      "/topic/ernie/"
+    ]
+  },
+  {
+    "source": "moonshot-ai",
+    "target": "kimi",
+    "type": "model",
+    "strength": 70,
+    "label": "モデル提供",
+    "description": "モデル提供",
+    "articles": [
+      "/topic/moonshot-ai/",
+      "/topic/kimi/"
+    ]
+  },
+  {
+    "source": "deepseek",
+    "target": "deepseek-r1",
+    "type": "model",
+    "strength": 70,
+    "label": "モデル提供",
+    "description": "モデル提供",
+    "articles": [
+      "/topic/deepseek/",
+      "/topic/deepseek-r1/"
+    ]
+  },
+  {
+    "source": "deepseek",
+    "target": "deepseek-v3",
+    "type": "model",
+    "strength": 70,
+    "label": "モデル提供",
+    "description": "モデル提供",
+    "articles": [
+      "/topic/deepseek/",
+      "/topic/deepseek-v3/"
+    ]
+  },
+  {
+    "source": "deepseek",
+    "target": "qwen",
+    "type": "competitor",
+    "strength": 70,
+    "label": "競合",
+    "description": "競合",
+    "articles": [
+      "/topic/deepseek/",
+      "/topic/qwen/"
+    ]
+  },
+  {
+    "source": "qwen",
+    "target": "hunyuan",
+    "type": "competitor",
+    "strength": 70,
+    "label": "競合",
+    "description": "競合",
+    "articles": [
+      "/topic/qwen/",
+      "/topic/hunyuan/"
+    ]
+  },
+  {
+    "source": "doubao",
+    "target": "kimi",
+    "type": "competitor",
+    "strength": 70,
+    "label": "競合",
+    "description": "競合",
+    "articles": [
+      "/topic/doubao/",
+      "/topic/kimi/"
+    ]
+  },
+  {
+    "source": "runway",
+    "target": "runway-gen",
+    "type": "product",
+    "strength": 70,
+    "label": "動画生成",
+    "description": "動画生成",
+    "articles": [
+      "/topic/runway/",
+      "/topic/runway-gen/"
+    ]
+  },
+  {
+    "source": "pika",
+    "target": "pika-product",
+    "type": "product",
+    "strength": 70,
+    "label": "動画生成",
+    "description": "動画生成",
+    "articles": [
+      "/topic/pika/",
+      "/topic/pika-product/"
+    ]
+  },
+  {
+    "source": "luma",
+    "target": "luma-dream-machine",
+    "type": "product",
+    "strength": 70,
+    "label": "動画生成",
+    "description": "動画生成",
+    "articles": [
+      "/topic/luma/",
+      "/topic/luma-dream-machine/"
+    ]
+  },
+  {
+    "source": "adobe",
+    "target": "firefly",
+    "type": "product",
+    "strength": 70,
+    "label": "画像生成",
+    "description": "画像生成",
+    "articles": [
+      "/topic/adobe/",
+      "/topic/firefly/"
+    ]
+  },
+  {
+    "source": "elevenlabs",
+    "target": "elevenlabs-voice",
+    "type": "product",
+    "strength": 70,
+    "label": "音声生成",
+    "description": "音声生成",
+    "articles": [
+      "/topic/elevenlabs/",
+      "/topic/elevenlabs-voice/"
+    ]
+  },
+  {
+    "source": "suno",
+    "target": "suno-product",
+    "type": "product",
+    "strength": 70,
+    "label": "音楽生成",
+    "description": "音楽生成",
+    "articles": [
+      "/topic/suno/",
+      "/topic/suno-product/"
+    ]
+  },
+  {
+    "source": "udio",
+    "target": "udio-product",
+    "type": "product",
+    "strength": 70,
+    "label": "音楽生成",
+    "description": "音楽生成",
+    "articles": [
+      "/topic/udio/",
+      "/topic/udio-product/"
+    ]
+  }
 ]

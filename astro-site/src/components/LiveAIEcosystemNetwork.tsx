@@ -4,20 +4,11 @@ import { AnimatePresence, motion } from 'framer-motion';
 import sectorsData from '../data/ecosystem/sectors.json';
 import companiesData from '../data/ecosystem/companies.json';
 import modelsData from '../data/ecosystem/models.json';
+import productsData from '../data/ecosystem/products.json';
 import relationsData from '../data/ecosystem/relations.json';
 import storygraphsData from '../data/ecosystem/storygraphs.json';
 
-type SectorId =
-  | 'all'
-  | 'infrastructure'
-  | 'foundation'
-  | 'agents'
-  | 'robotics'
-  | 'opensource'
-  | 'enterprise'
-  | 'video'
-  | 'voice'
-  | 'china';
+type SectorId = 'all' | string;
 
 type CompanySize = 'large' | 'medium' | 'small';
 
@@ -34,7 +25,11 @@ type RelationType =
   | 'competition'
   | 'model'
   | 'platform'
-  | 'research';
+  | 'research'
+  | 'customer'
+  | 'supplier'
+  | 'ecosystem'
+  | 'ownership';
 
 type ModelType = 'model' | 'product' | 'agent';
 
@@ -44,6 +39,7 @@ type Sector = {
   short: string;
   color: string;
   description: string;
+  hidden?: boolean;
 };
 
 type Company = {
@@ -64,9 +60,19 @@ type EcosystemModel = {
   id: string;
   name: string;
   company: string;
-  sector: Exclude<SectorId, 'all'>;
+  sector: string;
   type: ModelType;
   description: string;
+};
+
+type EcosystemProduct = {
+  id: string;
+  name: string;
+  company?: string;
+  sector?: string;
+  type?: string;
+  description?: string;
+  logoText?: string;
 };
 
 type Relation = {
@@ -100,8 +106,11 @@ type StoryGraphNode = {
 };
 
 type StoryGraphGroup = {
+  id?: string;
   group: string;
-  nodes: StoryGraphNode[];
+  label?: string;
+  nodes?: StoryGraphNode[];
+  subgroups?: StoryGraphGroup[];
   internalEdges?: StoryGraphEdge[];
   supplyChainOrder?: string[];
   hidden?: boolean;
@@ -119,9 +128,15 @@ type StoryGraphLayers = {
   supply: StoryGraphGroup[];
   center: StoryGraphNode;
   outputs: StoryGraphGroup[];
+  flow?: StoryGraphGroup[];
+  investors?: StoryGraphNode[];
   investments?: StoryGraphNode[];
   partnerships?: StoryGraphGroup[];
   distribution?: StoryGraphGroup[];
+  customers?: StoryGraphGroup[];
+  suppliers?: StoryGraphGroup[];
+  ecosystem?: StoryGraphGroup[];
+  ownership?: StoryGraphGroup[];
   competitors: StoryGraphNode[];
   edges?: StoryGraphEdge[];
 };
@@ -148,9 +163,10 @@ type RelatedArticle = {
   importance?: '重要' | '注目';
 };
 
-const SECTORS = sectorsData as Sector[];
+const SECTORS = (sectorsData as Sector[]).filter((sector) => !sector.hidden);
 const COMPANIES = companiesData as Company[];
 const MODELS = modelsData as EcosystemModel[];
+const PRODUCTS = productsData as EcosystemProduct[];
 const RELATIONS = relationsData as Relation[];
 const STORYGRAPHS = storygraphsData as StoryGraph[];
 
@@ -168,6 +184,10 @@ const relationStyle: Record<RelationType, { label: string; color: string; verb: 
   competition: { label: '競合企業', color: '#F87171', verb: '競合' },
   platform: { label: '基盤', color: '#06B6D4', verb: '基盤を提供' },
   research: { label: '研究', color: '#94A3B8', verb: '研究開発' },
+  customer: { label: '顧客', color: '#EAB308', verb: '顧客・供給先' },
+  supplier: { label: '供給元', color: '#F97316', verb: '供給元' },
+  ecosystem: { label: 'エコシステム', color: '#8B5CF6', verb: 'エコシステム連携' },
+  ownership: { label: '所有・親会社', color: '#22C55E', verb: '所有・親会社' },
 };
 const FALLBACK_COLOR = '#5CD8CE';
 const graphTone = {
@@ -280,36 +300,39 @@ export default function LiveAIEcosystemNetwork() {
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.035)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.03)_1px,transparent_1px)] bg-[size:42px_42px]" />
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_25%_20%,rgba(90,158,255,.18),transparent_32rem),radial-gradient(circle_at_82%_25%,rgba(123,97,255,.13),transparent_34rem),radial-gradient(circle_at_50%_90%,rgba(92,216,206,.1),transparent_28rem)]" />
 
-      <div className="relative mx-auto w-full max-w-[1680px] px-4">
-        <div className="mb-5 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-          <div>
+      <div className="ecosystem-container">
+        <div className="ecosystem-section-head">
+          <div className="ecosystem-title-block">
             <p className="font-mono text-[11px] font-semibold uppercase tracking-[.14em] text-[#5a9eff]">
-              AI Ecosystem Visual Intelligence
+              AI Ecosystem Map
             </p>
             <h2 className="mt-1 text-2xl font-black tracking-[-.03em] md:text-3xl">
-              AI企業の構造を一瞬で理解する
+              AI企業勢力図
             </h2>
+            <p className="ecosystem-subcopy">
+              半導体、GPU、クラウド、モデル、サービスまで。AI産業のつながりを構造で読む。
+            </p>
           </div>
-          <div className="flex flex-wrap gap-2 font-mono text-[11px] text-slate-400">
-            {(['semiconductor', 'gpu_supply', 'cloud', 'investment', 'partnership', 'distribution', 'product', 'model', 'competitor'] as RelationType[]).map((key) => {
-              const item = relationStyle[key];
-              return (
-              <span
-                key={key}
-                className="rounded-full border border-white/10 bg-white/[.035] px-3 py-1"
-                style={{ color: item.color }}
-              >
-                {item.label}
-              </span>
-              );
-            })}
+          <div className="ecosystem-stats" aria-label="データ更新情報">
+            <span className="ecosystem-stat-chip">
+              <span>Updated</span>
+              <strong>JSON</strong>
+            </span>
+            <span className="ecosystem-stat-chip">
+              <span>Companies</span>
+              <strong>{COMPANIES.length}</strong>
+            </span>
+            <span className="ecosystem-stat-chip">
+              <span>Relations</span>
+              <strong>{RELATIONS.length}</strong>
+            </span>
           </div>
         </div>
 
         <div className="grid gap-4">
           <main className="relative min-h-[760px] overflow-hidden rounded-lg border border-white/10 bg-[#080d14]/80 p-4 shadow-2xl shadow-black/30 backdrop-blur md:p-6">
-            <div className="mb-4 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-              <div className="flex items-center gap-2 rounded-full border border-white/10 bg-black/35 px-3 py-2 font-mono text-[11px] text-slate-300 backdrop-blur">
+            <div className="map-toolbar">
+              <div className="map-status-badge">
                 <span className="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_16px_rgba(74,222,128,.8)]" />
                 <span>{selectedCompany ? 'STORYGRAPH' : 'SECTOR OVERVIEW'}</span>
                 <strong className="text-[#5cd8ce]">{selectedCompany?.name || 'ALL'}</strong>
@@ -326,7 +349,7 @@ export default function LiveAIEcosystemNetwork() {
                   <a
                     href={`/company/${selectedCompany.id}/`}
                     className="company-cta"
-                    style={{ background: getSector(selectedCompany.sector).color }}
+                    style={{ background: safeColor(getSector(selectedCompany.sector).color) }}
                   >
                     ↗ 企業データベースで詳しく見る →</a>
                 </div>
@@ -385,11 +408,12 @@ function SectorOverview({
   onCompanyClick: (company: Company) => void;
 }) {
   return (
-    <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-      {SECTORS.map((sector) => {
+    <div className="sector-overview-grid">
+      {SECTORS.filter((sector) => COMPANIES.some((company) => company.sector === sector.id)).map((sector) => {
         const sectorCompanies = COMPANIES.filter((company) => company.sector === sector.id);
         const isActive = activeSector === sector.id;
         const isDimmed = activeSector !== 'all' && !isActive;
+        const color = safeColor(sector.color);
 
         return (
           <motion.section
@@ -397,29 +421,26 @@ function SectorOverview({
             layout
             animate={{ opacity: isDimmed ? 0.34 : 1, scale: isActive ? 1.025 : 1 }}
             transition={{ duration: 0.25 }}
-            className={[
-              'group relative overflow-hidden rounded-lg border bg-white/[.045] p-4 text-left transition',
-              isActive ? 'border-white/25 shadow-[0_0_38px_rgba(92,216,206,.14)]' : 'border-white/10',
-            ].join(' ')}
-            style={{ minHeight: isActive ? 280 : 224 }}
+            className={['sector-card', isActive ? 'is-active' : '', isDimmed ? 'is-dimmed' : ''].join(' ')}
+            style={{ ['--sector-color' as string]: color }}
           >
             <button type="button" onClick={() => onSectorClick(sector.id)} className="absolute inset-0 z-0" aria-label={`${sector.name}を強調`} />
             <div className="relative z-10">
-              <div className="mb-3 flex items-start justify-between gap-3">
+              <div className="sector-card-head">
                 <div>
-                  <p className="font-mono text-[10px] font-bold uppercase tracking-[.12em]" style={{ color: sector.color }}>
+                  <p className="sector-kicker">
                     {sector.short}
                   </p>
-                  <h3 className="mt-1 text-lg font-black tracking-[-.03em]">{sector.name}</h3>
+                  <h3>{sector.name}</h3>
                 </div>
-                <span className="rounded-full border border-white/10 bg-black/25 px-2 py-1 font-mono text-[10px] text-slate-400">
-                  {sectorCompanies.length} nodes
+                <span className="sector-count">
+                  {sectorCompanies.length}社
                 </span>
               </div>
 
-              <p className="mb-4 min-h-[42px] text-xs leading-6 text-slate-400">{sector.description}</p>
+              <p className="sector-description">{sector.description}</p>
 
-              <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
+              <div className="sector-company-list">
                 {sectorCompanies.slice(0, isActive ? 12 : 8).map((company) => (
                   <button
                     key={company.id}
@@ -428,16 +449,21 @@ function SectorOverview({
                       event.stopPropagation();
                       onCompanyClick(company);
                     }}
-                    className="rounded-md border border-white/10 bg-black/25 px-3 py-2 text-left transition hover:border-[#5cd8ce]/60 hover:bg-[#5cd8ce]/10"
+                    className="sector-company-chip"
                   >
-                    <span className="block font-mono text-[10px] text-slate-500">{company.logoText}</span>
-                    <span className="mt-1 block truncate text-xs font-bold text-slate-100">{company.name}</span>
+                    <span className="sector-company-logo">{company.logoText}</span>
+                    <span className="sector-company-name">{company.name}</span>
                   </button>
                 ))}
+                {sectorCompanies.length > (isActive ? 12 : 8) && (
+                  <span className="sector-company-more">
+                    +{sectorCompanies.length - (isActive ? 12 : 8)}
+                  </span>
+                )}
               </div>
             </div>
-            <div className="absolute -right-16 -top-16 h-36 w-36 rounded-full opacity-20 blur-3xl" style={{ background: sector.color }} />
-            <div className="absolute inset-x-0 top-0 h-[2px]" style={{ background: sector.color }} />
+            <div className="sector-glow" />
+            <div className="sector-topline" />
           </motion.section>
         );
       })}
@@ -451,6 +477,7 @@ type FlowMapLayer = {
   subtitle?: string;
   color: string;
   nodes: StoryGraphNode[];
+  subgroups?: StoryGraphGroup[];
   internalEdges?: StoryGraphEdge[];
   featured?: boolean;
 };
@@ -474,41 +501,23 @@ function LayeredStoryGraph({
 }) {
   const sector = getSector(company.sector);
   const sectorColor = safeColor(sector.color);
-  const finalBasisGroup = layers.supply[layers.supply.length - 1];
-  const upstreamSupply = finalBasisGroup ? layers.supply.slice(0, -1) : layers.supply;
-  const upstreamNodes = mergeStoryNodes([], upstreamSupply.flatMap((group) => visibleNodes(group.nodes)));
-  const finalBasisNodes = visibleNodes(finalBasisGroup?.nodes || []);
-  const outputNodes = mergeStoryNodes([], layers.outputs.flatMap((group) => visibleNodes(group.nodes)));
-  const relationNodes = mergeStoryNodes(
-    [],
-    [
-      ...(layers.investments || []),
-      ...flattenGroups([...(layers.partnerships || []), ...(layers.distribution || [])]),
-    ]
-  );
-  const hasBottomRelations = relationNodes.length > 0 || layers.competitors.length > 0;
+  const investorNodes = mergeStoryNodes([], layers.investors || []);
+  const investmentNodes = mergeStoryNodes([], layers.investments || []);
+  const partnershipNodes = mergeStoryNodes([], flattenGroups(layers.partnerships || []));
+  const distributionNodes = mergeStoryNodes([], flattenGroups(layers.distribution || []));
+  const ecosystemNodes = mergeStoryNodes([], flattenGroups(layers.ecosystem || []));
+  const ownershipNodes = mergeStoryNodes([], flattenGroups(layers.ownership || []));
+  const hasBottomRelations =
+    investorNodes.length > 0 ||
+    investmentNodes.length > 0 ||
+    partnershipNodes.length > 0 ||
+    distributionNodes.length > 0 ||
+    ecosystemNodes.length > 0 ||
+    ownershipNodes.length > 0 ||
+    layers.competitors.length > 0;
 
   const flowLayers: FlowMapLayer[] = [
-    upstreamNodes.length > 0
-      ? {
-          id: 'upstream',
-          title: '半導体 / GPU',
-          subtitle: '供給・技術基盤',
-          color: graphTone.supply,
-          nodes: upstreamNodes,
-          internalEdges: buildInternalEdgesFromGroups(upstreamSupply),
-        }
-      : null,
-    finalBasisNodes.length > 0
-      ? {
-          id: 'basis',
-          title: jaGroup(finalBasisGroup?.group || 'クラウド基盤'),
-          subtitle: '最終的に届く基盤',
-          color: finalBasisGroup ? groupColor(finalBasisGroup) : relationStyle.cloud.color,
-          nodes: finalBasisNodes,
-          internalEdges: finalBasisGroup?.internalEdges,
-        }
-      : null,
+    ...buildFlowColumns(layers),
     {
       id: 'selected-company',
       title: company.name,
@@ -517,17 +526,12 @@ function LayeredStoryGraph({
       nodes: [layers.center],
       featured: true,
     },
-    outputNodes.length > 0
-      ? {
-          id: 'outputs',
-          title: '製品・サービス',
-          subtitle: 'ユーザー接点',
-          color: graphTone.output,
-          nodes: outputNodes,
-          internalEdges: flattenLayerEdges(layers.outputs),
-        }
-      : null,
+    ...buildOutputColumns(layers),
   ].filter(Boolean) as FlowMapLayer[];
+  const flowNodeCount = flowLayers.reduce((total, layer) => {
+    return total + visibleNodes(layer.nodes || []).length + (layer.subgroups || []).reduce((sum, group) => sum + countGroupNodes(group), 0);
+  }, 0);
+  const denseGraph = flowNodeCount >= 18;
 
   return (
     <div className="min-h-[620px]">
@@ -549,7 +553,7 @@ function LayeredStoryGraph({
       </div>
 
       <div className="storygraph-map-shell">
-        <div className="storygraph-flow-row">
+        <div className={['storygraph-flow-row', denseGraph ? 'is-dense' : ''].join(' ')}>
           {flowLayers.map((layer, index) => (
             <React.Fragment key={layer.id}>
               <StoryGraphFlowStage
@@ -569,17 +573,57 @@ function LayeredStoryGraph({
       {hasBottomRelations && (
         <section className="storygraph-competitors">
           <div className="storygraph-logo-panels">
-            {relationNodes.length > 0 && (
+            {investorNodes.length > 0 && (
               <LogoChipPanel
-                title="出資・提携"
-                nodes={relationNodes}
+                title="出資者"
+                nodes={investorNodes}
+                tone={relationStyle.investment.color}
+                onNodeClick={onNodeClick}
+              />
+            )}
+            {investmentNodes.length > 0 && (
+              <LogoChipPanel
+                title="投資先"
+                nodes={investmentNodes}
+                tone={relationStyle.investment.color}
+                onNodeClick={onNodeClick}
+              />
+            )}
+            {partnershipNodes.length > 0 && (
+              <LogoChipPanel
+                title="提携"
+                nodes={partnershipNodes}
                 tone={relationStyle.partnership.color}
+                onNodeClick={onNodeClick}
+              />
+            )}
+            {distributionNodes.length > 0 && (
+              <LogoChipPanel
+                title="提供チャネル"
+                nodes={distributionNodes}
+                tone={relationStyle.distribution.color}
+                onNodeClick={onNodeClick}
+              />
+            )}
+            {ecosystemNodes.length > 0 && (
+              <LogoChipPanel
+                title="エコシステム"
+                nodes={ecosystemNodes}
+                tone={relationStyle.partnership.color}
+                onNodeClick={onNodeClick}
+              />
+            )}
+            {ownershipNodes.length > 0 && (
+              <LogoChipPanel
+                title="親会社・所有"
+                nodes={ownershipNodes}
+                tone={relationStyle.investment.color}
                 onNodeClick={onNodeClick}
               />
             )}
             {layers.competitors.length > 0 && (
               <LogoChipPanel
-                title="競合"
+                title="競合企業"
                 nodes={layers.competitors}
                 tone={graphTone.competitor}
                 onNodeClick={onNodeClick}
@@ -606,8 +650,12 @@ function StoryGraphFlowStage({
   onNodeClick: (node: StoryGraphNode) => void;
 }) {
   const color = safeColor(layer.color);
-  const orderedNodes = orderLayerNodes(layer.nodes, layer.internalEdges);
+  const orderedNodes = orderLayerNodes(layer.nodes || [], layer.internalEdges);
+  const subgroups = (layer.subgroups || []).filter((group) => countGroupNodes(group) > 0);
   const shouldFrame = !layer.featured && orderedNodes.length > 1;
+  const hasSubgroups = !layer.featured && subgroups.length > 0;
+  const layerNodeCount = orderedNodes.length + subgroups.reduce((total, group) => total + countGroupNodes(group), 0);
+  const denseLayer = layerNodeCount >= 6;
 
   if (layer.featured) {
     return (
@@ -623,11 +671,46 @@ function StoryGraphFlowStage({
     );
   }
 
+  if (hasSubgroups) {
+    return (
+      <section className={['flow-stage layer-frame layer-frame-subgroups', denseLayer ? 'is-dense-layer' : ''].join(' ')} style={{ ['--stage-color' as string]: color }}>
+        <div className="layer-frame-head">
+          <div>
+            <h4>{layer.title}</h4>
+            {layer.subtitle && <p>{layer.subtitle}</p>}
+          </div>
+          <span className="layer-frame-dot" />
+        </div>
+        <div className="layer-subgroup-grid">
+          {subgroups.map((group) => (
+            <div className="subgroup-card" key={group.id || group.label || group.group} style={{ ['--subgroup-color' as string]: groupColor(group) }}>
+              <p className="subgroup-title">{group.label || jaGroup(group.group)}</p>
+              <div className="subgroup-node-list">
+                {visibleNodes(group.nodes || []).map((node) => (
+                  <StoryNodeCard
+                    key={node.id}
+                    node={node}
+                    tone={groupColor(group)}
+                    compact
+                    small
+                    highlighted={hoveredNodeId === node.id}
+                    onHoverNode={onHoverNode}
+                    onNodeClick={onNodeClick}
+                  />
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+    );
+  }
+
   if (!shouldFrame) {
     const node = orderedNodes[0];
     if (!node) return null;
     return (
-      <section className="flow-stage flow-stage-single" style={{ ['--stage-color' as string]: color }}>
+      <section className={['flow-stage flow-stage-single', denseLayer ? 'is-dense-layer' : ''].join(' ')} style={{ ['--stage-color' as string]: color }}>
         <StoryNodeCard
           node={node}
           tone={color}
@@ -641,7 +724,7 @@ function StoryGraphFlowStage({
   }
 
   return (
-    <section className="flow-stage layer-frame" style={{ ['--stage-color' as string]: color }}>
+    <section className={['flow-stage layer-frame', denseLayer ? 'is-dense-layer' : ''].join(' ')} style={{ ['--stage-color' as string]: color }}>
       <div className="layer-frame-head">
         <div>
           <h4>{layer.title}</h4>
@@ -685,16 +768,25 @@ function SelectedCompanyFlowCard({
   onHoverNode: (id: string | null) => void;
   onNodeClick: (node: StoryGraphNode) => void;
 }) {
+  const company = findCompanyForNode(node);
+  const clickable = Boolean(company);
+  const logoText = node.logoText || company?.logoText || initials(node.label);
+
   return (
-    <div className="selected-flow-card">
-      <StoryNodeCard
-        node={node}
-        tone={color}
-        highlighted={hoveredNodeId === node.id}
-        onHoverNode={onHoverNode}
-        onNodeClick={onNodeClick}
-      />
-    </div>
+    <button
+      type="button"
+      disabled={!clickable}
+      onMouseEnter={() => onHoverNode(node.id)}
+      onMouseLeave={() => onHoverNode(null)}
+      onClick={() => onNodeClick(node)}
+      className={['selected-flow-card', clickable ? 'is-clickable' : '', hoveredNodeId === node.id ? 'is-highlighted' : ''].join(' ')}
+      style={{ ['--stage-color' as string]: safeColor(color) }}
+    >
+      <span className="selected-logo">
+        {node.logo ? <img src={node.logo} alt="" /> : logoText}
+      </span>
+      <span className="selected-name">{node.label}</span>
+    </button>
   );
 }
 
@@ -754,10 +846,13 @@ function LogoChip({ node, tone, onNodeClick }: { node: StoryGraphNode; tone: str
 }
 
 function flattenGroups(groups: StoryGraphGroup[]) {
-  return mergeStoryNodes([], groups.flatMap((group) => group.nodes));
+  return mergeStoryNodes([], groups.flatMap((group) => [
+    ...visibleNodes(group.nodes || []),
+    ...flattenGroups(group.subgroups || []),
+  ]));
 }
 
-function visibleNodes(nodes: StoryGraphNode[]) {
+function visibleNodes(nodes: StoryGraphNode[] = []) {
   return nodes.filter((node) => node.id && !node.hidden);
 }
 
@@ -766,19 +861,38 @@ function flattenLayerEdges(groups: StoryGraphGroup[]) {
 }
 
 function buildInternalEdgesFromGroups(groups: StoryGraphGroup[]): StoryGraphEdge[] {
-  const explicitEdges = flattenLayerEdges(groups);
-  if (explicitEdges.length > 0) return explicitEdges;
+  return flattenLayerEdges(groups);
+}
 
-  const groupNodes = groups.map((group) => firstVisibleNode(group)).filter(Boolean) as StoryGraphNode[];
-  return groupNodes.slice(0, -1).map((node, index) => {
-    const sourceGroup = groups[index];
-    return {
-      source: node.id,
-      target: groupNodes[index + 1].id,
-      type: normalizeRelationType(node.type),
-      label: sourceGroup ? connectorLabel(sourceGroup) : node.relation,
-    };
-  });
+function buildFlowColumns(layers: StoryGraphLayers): FlowMapLayer[] {
+  if (layers.flow?.length) {
+    return layers.flow.map(groupToFlowLayer).filter(Boolean) as FlowMapLayer[];
+  }
+
+  return layers.supply.map(groupToFlowLayer).filter(Boolean) as FlowMapLayer[];
+}
+
+function buildOutputColumns(layers: StoryGraphLayers): FlowMapLayer[] {
+  if (layers.flow?.length) return [];
+  return layers.outputs.map(groupToFlowLayer).filter(Boolean) as FlowMapLayer[];
+}
+
+function groupToFlowLayer(group: StoryGraphGroup, index: number): FlowMapLayer | null {
+  if (!group || group.hidden || countGroupNodes(group) === 0) return null;
+
+  return {
+    id: group.id || slugify(group.label || group.group || `layer-${index}`),
+    title: group.label || jaGroup(group.group),
+    color: groupColor(group),
+    nodes: visibleNodes(group.nodes || []),
+    subgroups: (group.subgroups || []).filter((subgroup) => countGroupNodes(subgroup) > 0),
+    internalEdges: group.internalEdges || [],
+  };
+}
+
+function countGroupNodes(group: StoryGraphGroup) {
+  return visibleNodes(group.nodes || []).length +
+    (group.subgroups || []).reduce((total, subgroup) => total + countGroupNodes(subgroup), 0);
 }
 
 function orderLayerNodes(nodes: StoryGraphNode[], edges: StoryGraphEdge[] = []) {
@@ -812,10 +926,10 @@ function relationColor(type: string | undefined, fallback: string) {
 }
 
 function flowConnectorLabel(current: FlowMapLayer, next: FlowMapLayer) {
-  if (current.id === 'outputs') return '展開';
+  if (current.id.includes('outputs') || current.id.includes('products')) return '展開';
   if (next.id === 'selected-company') return '利用企業へ';
-  if (next.id === 'outputs') return '製品化';
-  return '供給';
+  if (next.id.includes('outputs') || next.id.includes('products')) return '製品化';
+  return '接続';
 }
 function LayerHeader({ label, color }: { label: string; color: string }) {
   return (
@@ -911,9 +1025,9 @@ function LayerGroup({
   return (
     <motion.div layout className="layer-box relative overflow-hidden rounded-lg border border-white/10 bg-white/[.055] p-3 shadow-xl shadow-black/20 backdrop-blur">
       <div className="absolute inset-y-0 left-0 w-[3px]" style={{ background: tone }} />
-      <p className="mb-3 pl-1 font-mono text-[10px] font-bold uppercase tracking-[.12em] text-slate-500">{jaGroup(group.group)}</p>
+      <p className="mb-3 pl-1 font-mono text-[10px] font-bold uppercase tracking-[.12em] text-slate-500">{group.label || jaGroup(group.group)}</p>
       <div className="grid gap-2">
-        {group.nodes.map((node) => (
+        {visibleNodes(group.nodes || []).map((node) => (
           <StoryNodeCard
             key={node.id}
             node={node}
@@ -933,6 +1047,7 @@ function StoryNodeCard({
   node,
   tone,
   compact = false,
+  small = false,
   highlighted,
   onHoverNode,
   onNodeClick,
@@ -940,6 +1055,7 @@ function StoryNodeCard({
   node: StoryGraphNode;
   tone: string;
   compact?: boolean;
+  small?: boolean;
   highlighted: boolean;
   onHoverNode: (id: string | null) => void;
   onNodeClick: (node: StoryGraphNode) => void;
@@ -948,7 +1064,8 @@ function StoryNodeCard({
   const clickable = Boolean(company);
   const logoText = node.logoText || company?.logoText || initials(node.label);
   const relationType = normalizeRelationType(node.type);
-  const typeStyle = relationStyle[relationType];
+  const typeStyle = relationStyle[relationType] || { label: jaRelation(node.type || ''), color: safeColor(tone), verb: '' };
+  const typeColor = safeColor(typeStyle.color);
 
   return (
     <button
@@ -958,21 +1075,23 @@ function StoryNodeCard({
       onMouseLeave={() => onHoverNode(null)}
       onClick={() => onNodeClick(node)}
       className={[
-        'node-card group relative w-full rounded-md border bg-black/20 text-left transition',
+        'node-card group relative w-full rounded-md border bg-black/20 text-center transition',
         compact ? 'px-3 py-2' : 'px-3 py-3',
+        small ? 'is-small' : '',
         clickable ? 'cursor-pointer hover:-translate-y-0.5 hover:bg-white/[.07]' : 'cursor-default',
         highlighted ? 'border-white/30 shadow-[0_0_24px_rgba(92,216,206,.16)]' : 'border-white/10',
       ].join(' ')}
+      style={{ ['--node-tone' as string]: safeColor(tone) }}
     >
-      <div className="flex items-start gap-3">
-        <div className="grid h-8 w-8 shrink-0 place-items-center overflow-hidden rounded-md border border-white/10 bg-white/[.045] font-mono text-[10px] font-black text-white">
+      <div className="node-card-inner">
+        <div className="node-logo">
           {node.logo ? <img src={node.logo} alt="" className="h-full w-full object-contain p-1" /> : logoText}
         </div>
-        <div className="min-w-0 flex-1">
-          <p className="node-title text-sm font-black text-slate-100">{node.label}</p>
-          <div className="mt-1 flex flex-wrap items-center gap-2">
-            {node.relation && <p className="text-[11px] leading-5 text-slate-400">{jaRelation(node.relation)}</p>}
-            <span className="rounded-full px-2 py-0.5 font-mono text-[9px]" style={{ color: typeStyle.color, background: `${typeStyle.color}18` }}>
+        <div className="node-copy">
+          <p className="node-title">{node.label}</p>
+          <div className="node-meta">
+            {node.relation && <p className="node-relation">{jaRelation(node.relation)}</p>}
+            <span className="node-type-pill" style={{ color: typeColor, background: `${typeColor}18` }}>
               {typeStyle.label}
             </span>
           </div>
@@ -1151,7 +1270,8 @@ function buildStoryLayers(company: Company, detail: StoryGraph): StoryGraphLayer
       type: company.role || getSector(company.sector).name,
     },
     outputs,
-    investments: buildInvestmentNodes(company),
+    investors: buildInvestorNodes(company),
+    investments: buildInvesteeNodes(company),
     partnerships: buildRelationGroups(company, 'partnership'),
     distribution: buildRelationGroups(company, 'distribution'),
     competitors: buildCompetitors(company),
@@ -1169,10 +1289,16 @@ function sanitizeLayers(layers: StoryGraphLayers, company: Company): StoryGraphL
       type: layers.center.type || company.role || getSector(company.sector).name,
     },
     outputs: sanitizeGroups(layers.outputs),
+    flow: sanitizeGroups(layers.flow || []),
     competitors: sanitizeNodes(layers.competitors || []),
+    investors: sanitizeNodes(layers.investors || []),
     investments: sanitizeNodes(layers.investments || []),
     partnerships: sanitizeGroups(layers.partnerships || []),
     distribution: sanitizeGroups(layers.distribution || []),
+    customers: sanitizeGroups(layers.customers || []),
+    suppliers: sanitizeGroups(layers.suppliers || []),
+    ecosystem: sanitizeGroups(layers.ecosystem || []),
+    ownership: sanitizeGroups(layers.ownership || []),
     edges: layers.edges || [],
   };
 }
@@ -1180,7 +1306,8 @@ function sanitizeLayers(layers: StoryGraphLayers, company: Company): StoryGraphL
 function mergeRelationComplements(layers: StoryGraphLayers, company: Company): StoryGraphLayers {
   return {
     ...layers,
-    investments: mergeStoryNodes(layers.investments || [], buildInvestmentNodes(company)),
+    investors: mergeStoryNodes(layers.investors || [], buildInvestorNodes(company)),
+    investments: mergeStoryNodes(layers.investments || [], buildInvesteeNodes(company)),
     partnerships: mergeStoryGroups(layers.partnerships || [], buildRelationGroups(company, 'partnership')),
     distribution: mergeStoryGroups(layers.distribution || [], buildRelationGroups(company, 'distribution')),
     competitors: mergeStoryNodes(layers.competitors || [], buildCompetitors(company)),
@@ -1192,9 +1319,14 @@ function enforceStoryGraphRules(layers: StoryGraphLayers): StoryGraphLayers {
     ...layers,
     supply: stripBottomRelations(layers.supply),
     outputs: stripBottomRelations(layers.outputs),
+    investors: sanitizeNodes(layers.investors || []).map((node) => ({ ...node, type: 'investment' })),
     investments: sanitizeNodes(layers.investments || []).map((node) => ({ ...node, type: 'investment' })),
     partnerships: sanitizeGroups(layers.partnerships || []),
     distribution: sanitizeGroups(layers.distribution || []),
+    customers: sanitizeGroups(layers.customers || []),
+    suppliers: sanitizeGroups(layers.suppliers || []),
+    ecosystem: sanitizeGroups(layers.ecosystem || []),
+    ownership: sanitizeGroups(layers.ownership || []),
     competitors: sanitizeNodes(layers.competitors || []).map((node) => ({ ...node, type: 'competitor' })),
   };
 }
@@ -1203,14 +1335,18 @@ function stripBottomRelations(groups: StoryGraphGroup[]) {
   return groups
     .map((group) => ({
       ...group,
-      nodes: group.nodes.filter((node) => !isBottomRelationType(node.type)),
+      nodes: visibleNodes(group.nodes || []).filter((node) => !isBottomRelationType(node.type)),
+      subgroups: (group.subgroups || []).map((subgroup) => ({
+        ...subgroup,
+        nodes: visibleNodes(subgroup.nodes || []).filter((node) => !isBottomRelationType(node.type)),
+      })).filter((subgroup) => countGroupNodes(subgroup) > 0),
     }))
-    .filter((group) => group.nodes.length > 0);
+    .filter((group) => countGroupNodes(group) > 0);
 }
 
 function isBottomRelationType(type: string | undefined) {
   const normalized = normalizeRelationType(type);
-  return ['investment', 'partnership', 'distribution', 'competitor'].includes(normalized);
+  return ['investment', 'competitor', 'ownership', 'research'].includes(normalized);
 }
 
 function mergeStoryNodes(primary: StoryGraphNode[], supplemental: StoryGraphNode[]) {
@@ -1223,22 +1359,35 @@ function mergeStoryNodes(primary: StoryGraphNode[], supplemental: StoryGraphNode
 }
 
 function mergeStoryGroups(primary: StoryGraphGroup[], supplemental: StoryGraphGroup[]) {
-  const groups = new Map<string, StoryGraphNode[]>();
+  const groups = new Map<string, StoryGraphGroup>();
 
   [...primary, ...supplemental].forEach((group) => {
-    const existing = groups.get(group.group) || [];
-    groups.set(group.group, mergeStoryNodes(existing, group.nodes));
+    const key = group.id || group.label || group.group;
+    const existing = groups.get(key);
+    if (!existing) {
+      groups.set(key, { ...group, nodes: visibleNodes(group.nodes || []) });
+      return;
+    }
+    groups.set(key, {
+      ...existing,
+      nodes: mergeStoryNodes(visibleNodes(existing.nodes || []), visibleNodes(group.nodes || [])),
+      subgroups: [...(existing.subgroups || []), ...(group.subgroups || [])],
+    });
   });
 
-  return Array.from(groups.entries())
-    .map(([group, nodes]) => ({ group, nodes }))
-    .filter((group) => group.nodes.length > 0);
+  return Array.from(groups.values()).filter((group) => countGroupNodes(group) > 0);
 }
 
 function sanitizeGroups(groups: StoryGraphGroup[]) {
   return groups
-    .map((group) => ({ ...group, nodes: sanitizeNodes(group.nodes) }))
-    .filter((group) => group.nodes.length > 0);
+    .map((group) => ({
+      ...group,
+      group: group.group || group.label || group.id || 'Layer',
+      nodes: sanitizeNodes(group.nodes || []),
+      subgroups: sanitizeGroups(group.subgroups || []),
+      internalEdges: group.internalEdges || [],
+    }))
+    .filter((group) => countGroupNodes(group) > 0);
 }
 
 function sanitizeNodes(nodes: StoryGraphNode[]) {
@@ -1270,12 +1419,18 @@ function validateStoryGraph(detail: StoryGraph, layers: StoryGraphLayers): Story
 
 function buildVisibleNodeMap(layers: StoryGraphLayers) {
   const nodes = [
-    ...layers.supply.flatMap((group) => group.nodes),
+    ...flattenGroups(layers.flow || []),
+    ...layers.supply.flatMap((group) => flattenGroups([group])),
     layers.center,
-    ...layers.outputs.flatMap((group) => group.nodes),
+    ...layers.outputs.flatMap((group) => flattenGroups([group])),
+    ...(layers.investors || []),
     ...(layers.investments || []),
-    ...(layers.partnerships || []).flatMap((group) => group.nodes),
-    ...(layers.distribution || []).flatMap((group) => group.nodes),
+    ...(layers.partnerships || []).flatMap((group) => flattenGroups([group])),
+    ...(layers.distribution || []).flatMap((group) => flattenGroups([group])),
+    ...(layers.customers || []).flatMap((group) => flattenGroups([group])),
+    ...(layers.suppliers || []).flatMap((group) => flattenGroups([group])),
+    ...(layers.ecosystem || []).flatMap((group) => flattenGroups([group])),
+    ...(layers.ownership || []).flatMap((group) => flattenGroups([group])),
     ...layers.competitors,
   ];
 
@@ -1361,23 +1516,29 @@ function buildCompetitors(company: Company): StoryGraphNode[] {
     });
 }
 
-function buildInvestmentNodes(company: Company): StoryGraphNode[] {
+function buildInvestorNodes(company: Company): StoryGraphNode[] {
   return RELATIONS
-    .filter((relation) => relation.type === 'investment' && (relation.source === company.id || relation.target === company.id))
-    .map((relation) => relationToInvestmentNode(company, relation))
+    .filter((relation) => relation.type === 'investment' && relation.target === company.id)
+    .map((relation) => relationToInvestmentNode(relation.source, relation, '出資者'))
     .filter((node, index, nodes) => nodes.findIndex((item) => item.id === node.id) === index)
     .slice(0, 6);
 }
 
-function relationToInvestmentNode(company: Company, relation: Relation): StoryGraphNode {
-  const isInvestorView = relation.source === company.id;
-  const id = isInvestorView ? relation.target : relation.source;
+function buildInvesteeNodes(company: Company): StoryGraphNode[] {
+  return RELATIONS
+    .filter((relation) => relation.type === 'investment' && relation.source === company.id)
+    .map((relation) => relationToInvestmentNode(relation.target, relation, '投資先'))
+    .filter((node, index, nodes) => nodes.findIndex((item) => item.id === node.id) === index)
+    .slice(0, 6);
+}
+
+function relationToInvestmentNode(id: string, relation: Relation, label: '出資者' | '投資先'): StoryGraphNode {
   const relatedCompany = COMPANIES.find((item) => item.id === id);
 
   return {
     id,
     label: relatedCompany?.name || id,
-    relation: isInvestorView ? '出資先' : '出資者',
+    relation: label,
     type: 'investment',
     logo: relatedCompany?.logo,
     logoText: relatedCompany?.logoText || initials(relatedCompany?.name || id),
@@ -1438,16 +1599,18 @@ function inferOutputGroup(node: StoryGraphNode) {
 }
 
 function connectorLabel(group: StoryGraphGroup) {
-  return jaRelation(group.nodes[0]?.relation || '次へつながる');
+  const node = firstVisibleNode(group);
+  return jaRelation(node?.relation || '次へつながる');
 }
 
 function firstVisibleNode(group: StoryGraphGroup | undefined) {
-  return group?.nodes.find((node) => node.id && !node.hidden);
+  return visibleNodes(group?.nodes || [])[0] || flattenGroups(group?.subgroups || [])[0];
 }
 
 function groupColor(group: StoryGraphGroup) {
-  const firstType = normalizeRelationType(group.nodes[0]?.type);
-  if (firstType) return relationStyle[firstType].color;
+  const firstNode = firstVisibleNode(group);
+  const firstType = normalizeRelationType(firstNode?.type);
+  if (firstType) return safeColor(relationStyle[firstType]?.color);
   return graphTone.supply;
 }
 
@@ -1615,7 +1778,25 @@ function getSector(id: Exclude<SectorId, 'all'>) {
 }
 
 function getCompanyName(id: string) {
-  return COMPANIES.find((company) => company.id === id)?.name || id;
+  return getEntityName(id);
+}
+
+function getEntityName(id: string) {
+  return (
+    COMPANIES.find((company) => company.id === id)?.name ||
+    MODELS.find((model) => model.id === id)?.name ||
+    PRODUCTS.find((product) => product.id === id)?.name ||
+    id
+  );
+}
+
+function getEntityLogoText(id: string) {
+  const company = COMPANIES.find((item) => item.id === id);
+  if (company?.logoText) return company.logoText;
+  const model = MODELS.find((item) => item.id === id);
+  if (model?.name) return initials(model.name);
+  const product = PRODUCTS.find((item) => item.id === id);
+  return product?.logoText || initials(product?.name || id);
 }
 
 function findCompanyForNode(node: StoryGraphNode) {
@@ -1647,292 +1828,751 @@ function initials(value: string) {
 function StoryGraphStyles() {
   return (
     <style>{`
+      .ecosystem-shell {
+        width: 100%;
+      }
+
+      .ecosystem-container {
+        width: min(100% - 32px, 1440px);
+        max-width: 1440px;
+        margin-inline: auto;
+      }
+
+      .ecosystem-section-head {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 18px;
+        align-items: end;
+        margin-bottom: 22px;
+      }
+
+      .ecosystem-title-block {
+        min-width: 0;
+      }
+
+      .ecosystem-subcopy {
+        margin-top: 8px;
+        max-width: 720px;
+        color: #93a3b8;
+        font-size: 13px;
+        line-height: 1.8;
+      }
+
+      .ecosystem-stats {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: 8px;
+      }
+
+      .ecosystem-stat-chip {
+        display: grid;
+        gap: 2px;
+        min-width: 104px;
+        border: 1px solid rgba(255,255,255,.10);
+        border-radius: 14px;
+        background: rgba(255,255,255,.035);
+        padding: 10px 12px;
+        backdrop-filter: blur(12px);
+      }
+
+      .ecosystem-stat-chip span {
+        color: #7f8da3;
+        font-family: IBM Plex Mono, ui-monospace, monospace;
+        font-size: 9px;
+        font-weight: 800;
+        letter-spacing: .12em;
+        text-transform: uppercase;
+      }
+
+      .ecosystem-stat-chip strong {
+        color: #f8fbff;
+        font-family: IBM Plex Mono, ui-monospace, monospace;
+        font-size: 15px;
+        font-weight: 950;
+      }
+
+      .map-toolbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 18px;
+      }
+
+      .map-status-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        width: fit-content;
+        max-width: 100%;
+        border: 1px solid rgba(255,255,255,.10);
+        border-radius: 999px;
+        background: rgba(0,0,0,.35);
+        padding: 8px 12px;
+        color: #cbd5e1;
+        font-family: IBM Plex Mono, ui-monospace, monospace;
+        font-size: 11px;
+        backdrop-filter: blur(14px);
+      }
+
+      .sector-overview-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(280px, 1fr));
+        gap: 18px;
+        align-items: stretch;
+        max-width: 1180px;
+        margin: 0 auto;
+      }
+
+      .sector-card {
+        position: relative;
+        min-height: 252px;
+        overflow: hidden;
+        border: 1px solid color-mix(in srgb, var(--sector-color, #5CD8CE) 28%, rgba(255,255,255,.10));
+        border-radius: 18px;
+        background:
+          linear-gradient(180deg, color-mix(in srgb, var(--sector-color, #5CD8CE) 8%, transparent), transparent 58%),
+          rgba(255,255,255,.035);
+        padding: 18px;
+        box-shadow: 0 20px 54px rgba(0,0,0,.20);
+        backdrop-filter: blur(14px);
+        transition: transform .22s ease, border-color .22s ease, background .22s ease, box-shadow .22s ease;
+      }
+
+      .sector-card:hover,
+      .sector-card.is-active {
+        transform: translateY(-3px);
+        border-color: color-mix(in srgb, var(--sector-color, #5CD8CE) 58%, rgba(255,255,255,.18));
+        background:
+          linear-gradient(180deg, color-mix(in srgb, var(--sector-color, #5CD8CE) 13%, transparent), transparent 62%),
+          rgba(255,255,255,.045);
+        box-shadow: 0 0 40px color-mix(in srgb, var(--sector-color, #5CD8CE) 13%, transparent), 0 24px 64px rgba(0,0,0,.26);
+      }
+
+      .sector-card.is-dimmed {
+        filter: saturate(.65);
+      }
+
+      .sector-card-head {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 14px;
+        margin-bottom: 12px;
+      }
+
+      .sector-kicker {
+        color: var(--sector-color, #5CD8CE);
+        font-family: IBM Plex Mono, ui-monospace, monospace;
+        font-size: 10px;
+        font-weight: 900;
+        letter-spacing: .12em;
+        text-transform: uppercase;
+      }
+
+      .sector-card h3 {
+        margin-top: 4px;
+        color: #f7fbff;
+        font-size: 18px;
+        font-weight: 950;
+        letter-spacing: -.03em;
+      }
+
+      .sector-count {
+        flex: 0 0 auto;
+        border: 1px solid rgba(255,255,255,.10);
+        border-radius: 999px;
+        background: rgba(0,0,0,.24);
+        padding: 5px 9px;
+        color: #aebbd0;
+        font-family: IBM Plex Mono, ui-monospace, monospace;
+        font-size: 10px;
+        font-weight: 800;
+      }
+
+      .sector-description {
+        min-height: 44px;
+        margin-bottom: 15px;
+        color: #97a6bb;
+        font-size: 12px;
+        line-height: 1.8;
+      }
+
+      .sector-company-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        align-items: flex-start;
+      }
+
+      .sector-company-chip {
+        position: relative;
+        z-index: 2;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        min-width: 0;
+        flex: 1 1 136px;
+        max-width: 100%;
+        justify-content: flex-start;
+        border: 1px solid rgba(255,255,255,.10);
+        border-radius: 12px;
+        background: rgba(0,0,0,.24);
+        padding: 8px 10px;
+        color: #eef5ff;
+        transition: transform .18s ease, border-color .18s ease, background .18s ease, box-shadow .18s ease;
+      }
+
+      .sector-company-chip:hover {
+        transform: translateY(-2px);
+        border-color: color-mix(in srgb, var(--sector-color, #5CD8CE) 55%, rgba(255,255,255,.16));
+        background: color-mix(in srgb, var(--sector-color, #5CD8CE) 10%, rgba(0,0,0,.28));
+        box-shadow: 0 0 20px color-mix(in srgb, var(--sector-color, #5CD8CE) 13%, transparent);
+      }
+
+      .sector-company-logo {
+        display: grid;
+        place-items: center;
+        width: 30px;
+        height: 30px;
+        flex: 0 0 auto;
+        border: 1px solid color-mix(in srgb, var(--sector-color, #5CD8CE) 35%, rgba(255,255,255,.10));
+        border-radius: 9px;
+        background: rgba(255,255,255,.045);
+        font-family: IBM Plex Mono, ui-monospace, monospace;
+        font-size: 9px;
+        font-weight: 950;
+      }
+
+      .sector-company-name {
+        min-width: 0;
+        max-width: none;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-size: 12px;
+        font-weight: 850;
+      }
+
+      .sector-company-more {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 38px;
+        border: 1px dashed color-mix(in srgb, var(--sector-color, #5CD8CE) 42%, rgba(255,255,255,.12));
+        border-radius: 12px;
+        background: rgba(255,255,255,.026);
+        padding: 8px 11px;
+        color: color-mix(in srgb, var(--sector-color, #5CD8CE) 72%, white 12%);
+        font-family: IBM Plex Mono, ui-monospace, monospace;
+        font-size: 11px;
+        font-weight: 900;
+      }
+
+      .sector-glow {
+        position: absolute;
+        right: -56px;
+        top: -56px;
+        width: 150px;
+        height: 150px;
+        border-radius: 999px;
+        background: var(--sector-color, #5CD8CE);
+        opacity: .16;
+        filter: blur(42px);
+      }
+
+      .sector-topline {
+        position: absolute;
+        inset: 0 0 auto;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, var(--sector-color, #5CD8CE), transparent);
+        opacity: .88;
+      }
+
       .storygraph-map-shell {
+        width: 100%;
         overflow-x: auto;
         overflow-y: hidden;
         overscroll-behavior-x: contain;
-        padding: 8px 2px 18px;
+        padding: 12px 0 22px;
       }
+
       .storygraph-flow-row {
         position: relative;
         display: flex;
         align-items: center;
-        gap: 14px;
-        min-width: max-content;
-        padding: 10px 4px;
+        justify-content: center;
+        gap: 16px;
+        width: max-content;
+        min-width: min(100%, 1060px);
+        margin: 0 auto;
+        padding: 18px 18px;
       }
+
       .storygraph-flow-row::before {
         content: "";
         position: absolute;
-        left: 4px;
-        right: 4px;
+        left: 42px;
+        right: 42px;
         top: 50%;
         height: 1px;
-        background: linear-gradient(90deg, transparent, rgba(255,255,255,.08), transparent);
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,.07), transparent);
         pointer-events: none;
       }
+
       .flow-stage {
         position: relative;
         z-index: 1;
+        display: grid;
+        place-items: center;
         flex: 0 0 auto;
-        width: min(260px, 28vw);
-        min-width: 210px;
+        width: 236px;
         align-self: center;
       }
-      .flow-stage-single {
-        width: 220px;
-      }
-      .flow-stage-featured {
-        width: 250px;
-      }
+
+      .flow-stage-single { width: 212px; }
+      .flow-stage-featured { width: 236px; }
+
       .layer-frame {
         overflow: hidden;
-        border: 1px solid rgba(255,255,255,.10);
-        border-radius: 16px;
-        background: rgba(255,255,255,.035);
-        box-shadow: 0 18px 48px rgba(0,0,0,.20);
-        backdrop-filter: blur(12px);
+        border: 1px solid color-mix(in srgb, var(--stage-color, #5CD8CE) 30%, rgba(255,255,255,.10));
+        border-radius: 18px;
+        background:
+          linear-gradient(180deg, color-mix(in srgb, var(--stage-color, #5CD8CE) 8%, transparent), transparent 58%),
+          rgba(255,255,255,.035);
+        box-shadow: 0 20px 54px rgba(0,0,0,.20);
+        backdrop-filter: blur(14px);
       }
+
       .layer-frame::before {
         content: "";
         position: absolute;
         inset: 0 auto 0 0;
         width: 2px;
-        background: var(--stage-color);
-        opacity: .85;
+        background: linear-gradient(180deg, transparent, var(--stage-color, #5CD8CE), transparent);
+        opacity: .86;
       }
+
       .layer-frame-head {
         display: flex;
         align-items: flex-start;
         justify-content: space-between;
-        gap: 10px;
+        gap: 12px;
         border-bottom: 1px solid rgba(255,255,255,.08);
-        padding: 14px 15px 11px 17px;
+        padding: 15px 16px 12px 18px;
       }
+
       .layer-frame-head h4 {
         color: #f7fbff;
         font-size: 14px;
-        font-weight: 900;
+        font-weight: 950;
         letter-spacing: -.02em;
       }
+
       .layer-frame-head p {
-        margin-top: 3px;
-        color: #8492aa;
+        margin-top: 4px;
+        color: #8f9db3;
         font-size: 11px;
         line-height: 1.6;
       }
+
       .layer-frame-dot {
-        margin-top: 4px;
+        margin-top: 5px;
         width: 8px;
         height: 8px;
         flex: 0 0 auto;
         border-radius: 999px;
-        background: var(--stage-color);
-        box-shadow: 0 0 14px color-mix(in srgb, var(--stage-color) 70%, transparent);
+        background: var(--stage-color, #5CD8CE);
+        box-shadow: 0 0 14px color-mix(in srgb, var(--stage-color, #5CD8CE) 70%, transparent);
       }
+
       .layer-frame-body {
         display: grid;
-        gap: 8px;
-        padding: 13px;
-      }
-      .selected-flow-card {
-        position: relative;
-        border: 1px solid color-mix(in srgb, var(--stage-color) 50%, rgba(255,255,255,.12));
-        border-radius: 18px;
-        background:
-          radial-gradient(circle at 50% 0%, color-mix(in srgb, var(--stage-color) 18%, transparent), transparent 12rem),
-          rgba(255,255,255,.045);
-        box-shadow: 0 0 42px color-mix(in srgb, var(--stage-color) 16%, transparent), 0 18px 54px rgba(0,0,0,.24);
+        gap: 10px;
         padding: 14px;
-        backdrop-filter: blur(14px);
       }
-      .selected-flow-card .node-card {
-        border-color: color-mix(in srgb, var(--stage-color) 48%, rgba(255,255,255,.12));
+
+      .layer-subgroup-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+        padding: 14px;
+      }
+
+      .subgroup-card {
+        min-width: 0;
+        border: 1px solid color-mix(in srgb, var(--subgroup-color, #5CD8CE) 30%, rgba(255,255,255,.08));
+        border-radius: 14px;
         background: rgba(0,0,0,.18);
+        padding: 10px;
       }
-      .layer-box {
+
+      .subgroup-title {
+        margin-bottom: 8px;
+        color: color-mix(in srgb, var(--subgroup-color, #5CD8CE) 76%, white 10%);
+        font-size: 10px;
+        font-weight: 900;
+        line-height: 1.5;
+      }
+
+      .subgroup-node-list {
+        display: grid;
+        gap: 7px;
+      }
+
+      .selected-flow-card {
+        display: grid;
+        place-items: center;
+        gap: 11px;
+        width: 206px;
+        min-height: 168px;
+        border: 1px solid color-mix(in srgb, var(--stage-color, #5CD8CE) 58%, rgba(255,255,255,.14));
+        border-radius: 22px;
+        background:
+          radial-gradient(circle at 50% 0%, color-mix(in srgb, var(--stage-color, #5CD8CE) 22%, transparent), transparent 11rem),
+          linear-gradient(180deg, rgba(255,255,255,.065), rgba(255,255,255,.032));
+        color: #fff;
+        text-align: center;
+        box-shadow: 0 0 42px color-mix(in srgb, var(--stage-color, #5CD8CE) 18%, transparent), 0 22px 62px rgba(0,0,0,.30);
+        backdrop-filter: blur(16px);
+        transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+      }
+
+      .selected-flow-card.is-clickable:hover,
+      .selected-flow-card.is-highlighted {
+        transform: translateY(-3px) scale(1.015);
+        border-color: color-mix(in srgb, var(--stage-color, #5CD8CE) 78%, white 8%);
+        box-shadow: 0 0 56px color-mix(in srgb, var(--stage-color, #5CD8CE) 24%, transparent), 0 26px 74px rgba(0,0,0,.35);
+      }
+
+      .selected-logo {
+        display: grid;
+        place-items: center;
+        width: 58px;
+        height: 58px;
+        overflow: hidden;
+        border: 1px solid color-mix(in srgb, var(--stage-color, #5CD8CE) 48%, rgba(255,255,255,.16));
+        border-radius: 16px;
+        background: color-mix(in srgb, var(--stage-color, #5CD8CE) 12%, rgba(255,255,255,.045));
+        font-family: IBM Plex Mono, ui-monospace, monospace;
+        font-size: 14px;
+        font-weight: 950;
+      }
+
+      .selected-logo img {
         width: 100%;
+        height: 100%;
+        object-fit: contain;
+        padding: 10px;
       }
+
+      .selected-name {
+        max-width: 160px;
+        color: #f8fbff;
+        font-size: 18px;
+        font-weight: 950;
+        letter-spacing: -.02em;
+        line-height: 1.25;
+      }
+
       .node-card {
-        max-width: 180px;
-        justify-self: center;
+        width: 100%;
+        min-height: 92px;
+        border-color: color-mix(in srgb, var(--node-tone, #5CD8CE) 22%, rgba(255,255,255,.10));
+        border-radius: 15px;
+        background:
+          linear-gradient(180deg, color-mix(in srgb, var(--node-tone, #5CD8CE) 6%, transparent), transparent 70%),
+          rgba(0,0,0,.24);
+        box-shadow: 0 12px 30px rgba(0,0,0,.18);
       }
-      .flow-stage .node-card,
-      .layer-frame .node-card {
-        max-width: none;
-        justify-self: stretch;
+
+      .node-card:hover {
+        border-color: color-mix(in srgb, var(--node-tone, #5CD8CE) 54%, rgba(255,255,255,.18));
+        box-shadow: 0 0 24px color-mix(in srgb, var(--node-tone, #5CD8CE) 12%, transparent), 0 16px 36px rgba(0,0,0,.22);
       }
+
+      .node-card.is-small {
+        min-height: 74px;
+        padding: 8px;
+      }
+
+      .node-card.is-small .node-logo {
+        width: 30px;
+        height: 30px;
+      }
+
+      .node-card.is-small .node-title {
+        max-width: 96px;
+        font-size: 11px;
+      }
+
+      .node-card.is-small .node-relation,
+      .node-card.is-small .node-type-pill {
+        display: none;
+      }
+
+      .storygraph-flow-row.is-dense .node-card,
+      .flow-stage.is-dense-layer .node-card {
+        min-height: 58px;
+        padding: 8px;
+      }
+
+      .storygraph-flow-row.is-dense .node-card .node-copy,
+      .flow-stage.is-dense-layer .node-card .node-copy {
+        display: none;
+      }
+
+      .storygraph-flow-row.is-dense .node-logo,
+      .flow-stage.is-dense-layer .node-logo {
+        width: 36px;
+        height: 36px;
+      }
+
+      .node-card-inner {
+        display: grid;
+        place-items: center;
+        gap: 8px;
+      }
+
+      .node-logo {
+        display: grid;
+        place-items: center;
+        width: 36px;
+        height: 36px;
+        overflow: hidden;
+        border: 1px solid rgba(255,255,255,.10);
+        border-radius: 11px;
+        background: rgba(255,255,255,.045);
+        color: #fff;
+        font-family: IBM Plex Mono, ui-monospace, monospace;
+        font-size: 10px;
+        font-weight: 950;
+      }
+
+      .node-copy {
+        display: grid;
+        justify-items: center;
+        gap: 5px;
+        min-width: 0;
+      }
+
       .node-title {
         display: -webkit-box;
+        max-width: 150px;
+        overflow: hidden;
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
-        overflow: hidden;
-        line-height: 1.45;
+        color: #f3f8ff;
+        font-size: 13px;
+        font-weight: 900;
+        line-height: 1.35;
       }
-      .node-card p:not(.node-title) {
+
+      .node-meta {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 5px;
+      }
+
+      .node-relation {
         display: -webkit-box;
+        max-width: 150px;
+        overflow: hidden;
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
-        overflow: hidden;
+        color: #9aa8bd;
+        font-size: 10px;
+        line-height: 1.5;
       }
+
+      .node-type-pill {
+        display: inline-flex;
+        align-items: center;
+        border-radius: 999px;
+        padding: 3px 7px;
+        font-family: IBM Plex Mono, ui-monospace, monospace;
+        font-size: 9px;
+        font-weight: 850;
+      }
+
       .internal-flow {
         position: relative;
         display: grid;
         place-items: center;
-        min-height: 30px;
-        color: var(--internal-color);
+        min-height: 32px;
+        color: var(--internal-color, #5CD8CE);
       }
+
       .internal-line {
         width: 1px;
-        height: 28px;
-        background: linear-gradient(180deg, transparent, var(--internal-color), transparent);
-        opacity: .72;
+        height: 29px;
+        background: linear-gradient(180deg, transparent, var(--internal-color, #5CD8CE), transparent);
+        opacity: .62;
       }
+
       .internal-particle {
         position: absolute;
         top: 2px;
         width: 4px;
         height: 4px;
         border-radius: 999px;
-        background: var(--internal-color);
-        box-shadow: 0 0 10px var(--internal-color);
-        animation: ecosystemFlowY 2.1s linear infinite;
+        background: var(--internal-color, #5CD8CE);
+        box-shadow: 0 0 9px var(--internal-color, #5CD8CE);
+        animation: ecosystemFlowY 2.2s linear infinite;
       }
+
       .internal-label {
         position: absolute;
         left: calc(50% + 10px);
         top: 50%;
+        max-width: 132px;
         transform: translateY(-50%);
-        max-width: 135px;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
         border: 1px solid rgba(255,255,255,.08);
         border-radius: 999px;
-        background: rgba(7,9,13,.72);
-        padding: 2px 6px;
+        background: rgba(7,9,13,.76);
+        padding: 2px 7px;
         color: #aebbd0;
         font-size: 9px;
       }
+
       .company-cta {
         position: relative;
         display: inline-flex;
         align-items: center;
         justify-content: center;
         width: fit-content;
-        border: 1px solid rgba(255,255,255,.22);
+        border: 1px solid rgba(255,255,255,.24);
         border-radius: 999px;
-        padding: 9px 14px;
+        padding: 10px 15px;
         color: #fff;
         font-family: IBM Plex Mono, ui-monospace, monospace;
         font-size: 11px;
-        font-weight: 900;
-        box-shadow: 0 14px 34px rgba(0,0,0,.28);
+        font-weight: 950;
+        box-shadow: 0 16px 36px rgba(0,0,0,.30);
         transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
       }
+
       .company-cta:hover {
         transform: translateY(-2px);
         filter: brightness(1.08);
-        box-shadow: 0 18px 44px rgba(0,0,0,.36);
+        box-shadow: 0 20px 48px rgba(0,0,0,.38);
       }
+
       .storygraph-competitors {
-        min-width: 0;
-        margin-top: 16px;
-        border: 1px solid rgba(255,255,255,.09);
-        border-radius: 16px;
-        background: rgba(255,255,255,.035);
-        padding: 14px;
+        margin-top: 18px;
+        padding-top: 2px;
       }
+
       .storygraph-logo-panels {
         display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: repeat(4, minmax(0, 1fr));
         gap: 12px;
       }
+
       .logo-chip-panel {
         min-width: 0;
         overflow: hidden;
-        border: 1px solid rgba(255,255,255,.08);
-        border-radius: 13px;
-        background: rgba(0,0,0,.18);
-        padding: 12px;
+        border: 1px solid color-mix(in srgb, var(--chip-tone, #5CD8CE) 42%, rgba(255,255,255,.10));
+        border-radius: 16px;
+        background:
+          linear-gradient(180deg, color-mix(in srgb, var(--chip-tone, #5CD8CE) 10%, transparent), transparent 66%),
+          rgba(255,255,255,.035);
+        padding: 13px;
+        box-shadow: 0 18px 46px rgba(0,0,0,.18);
+        backdrop-filter: blur(14px);
       }
+
       .logo-chip-list {
         display: flex;
-        gap: 8px;
+        gap: 9px;
         overflow-x: auto;
         overscroll-behavior-x: contain;
-        padding: 2px 2px 8px;
+        padding: 4px 2px 8px;
         scrollbar-width: thin;
       }
+
       .logo-chip {
         display: grid;
         place-items: center;
-        width: 42px;
-        height: 42px;
+        width: 44px;
+        height: 44px;
         flex: 0 0 auto;
         overflow: hidden;
-        border: 1px solid rgba(255,255,255,.12);
-        border-radius: 12px;
-        background: rgba(255,255,255,.045);
+        border: 1px solid color-mix(in srgb, var(--chip-tone, #5CD8CE) 38%, rgba(255,255,255,.12));
+        border-radius: 13px;
+        background: rgba(0,0,0,.22);
         color: #f8fbff;
         font-family: IBM Plex Mono, ui-monospace, monospace;
         font-size: 10px;
-        font-weight: 900;
+        font-weight: 950;
         transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease, background .18s ease;
       }
+
       .logo-chip img {
         width: 100%;
         height: 100%;
         object-fit: contain;
         padding: 7px;
       }
+
       .logo-chip.is-clickable:hover {
         transform: translateY(-2px);
-        border-color: var(--chip-tone);
-        background: color-mix(in srgb, var(--chip-tone) 10%, rgba(255,255,255,.045));
-        box-shadow: 0 0 22px color-mix(in srgb, var(--chip-tone) 18%, transparent);
+        border-color: var(--chip-tone, #5CD8CE);
+        background: color-mix(in srgb, var(--chip-tone, #5CD8CE) 12%, rgba(0,0,0,.24));
+        box-shadow: 0 0 22px color-mix(in srgb, var(--chip-tone, #5CD8CE) 18%, transparent);
       }
+
       .storygraph-related {
-        margin-top: 22px;
-        border-top: 1px solid rgba(255,255,255,.1);
+        margin-top: 24px;
+        border-top: 1px solid rgba(255,255,255,.10);
         padding-top: 20px;
       }
+
       .related-article-grid {
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 12px;
       }
+
       .related-article-card {
         position: relative;
         overflow: hidden;
         min-height: 150px;
-        border: 1px solid rgba(255,255,255,.1);
-        border-radius: 12px;
+        border: 1px solid rgba(255,255,255,.10);
+        border-radius: 15px;
         background:
           radial-gradient(circle at 14% 0%, rgba(92,216,206,.12), transparent 18rem),
-          rgba(255,255,255,.045);
+          rgba(255,255,255,.038);
         padding: 16px;
         transition: transform .2s ease, border-color .2s ease, background .2s ease, box-shadow .2s ease;
       }
+
       .related-article-card:hover {
         transform: translateY(-3px);
         border-color: rgba(92,216,206,.52);
         background:
           radial-gradient(circle at 14% 0%, rgba(92,216,206,.18), transparent 18rem),
-          rgba(92,216,206,.06);
+          rgba(92,216,206,.055);
         box-shadow: 0 0 34px rgba(92,216,206,.12);
       }
+
       .related-article-card h5 {
         display: -webkit-box;
+        min-height: 48px;
+        overflow: hidden;
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
-        overflow: hidden;
-        min-height: 48px;
         color: #f3f8ff;
         font-size: 14px;
-        font-weight: 800;
+        font-weight: 850;
         line-height: 1.7;
       }
+
       .related-category,
       .related-badge {
         display: inline-flex;
@@ -1941,104 +2581,115 @@ function StoryGraphStyles() {
         padding: 4px 8px;
         font-family: IBM Plex Mono, ui-monospace, monospace;
         font-size: 10px;
-        font-weight: 800;
+        font-weight: 850;
         line-height: 1;
       }
+
       .related-category {
         border: 1px solid rgba(90,158,255,.22);
-        background: rgba(90,158,255,.1);
+        background: rgba(90,158,255,.10);
         color: #9cc8ff;
       }
-      .related-badge.is-important {
-        background: rgba(248,113,113,.12);
-        color: #fca5a5;
-      }
-      .related-badge.is-watch {
-        background: rgba(234,179,8,.12);
-        color: #fde68a;
-      }
+
+      .related-badge.is-important { background: rgba(248,113,113,.12); color: #fca5a5; }
+      .related-badge.is-watch { background: rgba(234,179,8,.12); color: #fde68a; }
+
       .flow-connector {
         position: relative;
         z-index: 1;
         display: flex;
         align-items: center;
         justify-content: center;
-        flex: 0 0 58px;
-        color: var(--flow-color);
+        flex: 0 0 62px;
+        color: var(--flow-color, #5CD8CE);
         font-family: IBM Plex Mono, ui-monospace, monospace;
         font-size: 9px;
-        font-weight: 800;
+        font-weight: 850;
         letter-spacing: .04em;
       }
-      .flow-connector-y { min-height: 34px; flex-direction: column; }
+
       .flow-connector-x {
-        width: 58px;
-        min-height: 46px;
+        width: 62px;
+        min-height: 52px;
       }
+
       .flow-line {
         display: block;
-        background: linear-gradient(90deg, transparent, var(--flow-color), transparent);
-        opacity: .66;
-        box-shadow: 0 0 10px color-mix(in srgb, var(--flow-color) 45%, transparent);
+        width: 100%;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, var(--flow-color, #5CD8CE), transparent);
+        opacity: .62;
+        box-shadow: 0 0 9px color-mix(in srgb, var(--flow-color, #5CD8CE) 42%, transparent);
       }
-      .flow-connector-x .flow-line { width: 100%; height: 1px; }
-      .flow-connector-y .flow-line {
-        width: 1px;
-        height: 28px;
-        background: linear-gradient(180deg, transparent, var(--flow-color), transparent);
-      }
+
       .flow-particle {
         position: absolute;
         width: 4px;
         height: 4px;
         border-radius: 999px;
-        background: var(--flow-color);
-        box-shadow: 0 0 10px var(--flow-color);
+        background: var(--flow-color, #5CD8CE);
+        box-shadow: 0 0 9px var(--flow-color, #5CD8CE);
+        animation: ecosystemFlowX 2.05s linear infinite;
       }
-      .flow-connector-x .flow-particle { animation: ecosystemFlowX 2s linear infinite; }
-      .flow-connector-y .flow-particle { animation: ecosystemFlowY 2s linear infinite; }
+
       .flow-label {
         position: absolute;
         left: 50%;
-        top: calc(50% + 10px);
+        top: calc(50% + 11px);
         transform: translateX(-50%);
         border: 1px solid rgba(255,255,255,.08);
         border-radius: 999px;
         background: rgba(7,9,13,.78);
-        padding: 2px 6px;
+        padding: 2px 7px;
         color: #9aa8bd;
         white-space: nowrap;
       }
-      .flow-connector-y .flow-label {
-        top: 50%;
-        left: calc(50% + 12px);
-        transform: translateY(-50%);
-      }
+
       @keyframes ecosystemFlowX {
         0% { left: 4px; opacity: 0; }
         18% { opacity: 1; }
         100% { left: calc(100% - 8px); opacity: 0; }
       }
+
       @keyframes ecosystemFlowY {
         0% { top: 2px; opacity: 0; }
         18% { opacity: 1; }
         100% { top: calc(100% - 7px); opacity: 0; }
       }
-      @media (max-width: 1024px) {
+
+      @media (max-width: 1180px) {
+        .ecosystem-section-head {
+          grid-template-columns: 1fr;
+          align-items: start;
+        }
+        .ecosystem-stats {
+          justify-content: flex-start;
+        }
+        .sector-overview-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .storygraph-logo-panels { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      }
+
+      @media (max-width: 768px) {
+        .sector-overview-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .sector-company-chip { flex-basis: 120px; }
+        .map-toolbar {
+          align-items: flex-start;
+          flex-direction: column;
+        }
         .storygraph-map-shell {
           margin-inline: -16px;
           padding-inline: 16px;
         }
         .storygraph-flow-row {
           min-width: 980px;
+          justify-content: flex-start;
         }
-        .flow-stage {
-          width: 230px;
-        }
-        .storygraph-logo-panels {
-          grid-template-columns: 1fr;
-        }
+        .storygraph-logo-panels { grid-template-columns: 1fr; }
         .related-article-grid { grid-template-columns: 1fr; }
+      }
+
+      @media (max-width: 560px) {
+        .sector-overview-grid { grid-template-columns: 1fr; }
       }
     `}</style>
   );

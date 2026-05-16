@@ -1,116 +1,69 @@
 [
   {
     "company": "nvidia",
-    "title": "NVIDIAのAIインフラ構造",
-    "summary": "NVIDIAはTSMCの製造力とCoWoS/HBMに支えられ、GPU、CUDA、DGX Cloudを通じて主要AI企業へ計算資源を供給している。",
-    "tree": [
-      "TSMC",
-      "NVIDIA",
-      "CoreWeave",
-      "OpenAI",
-      "Meta",
-      "xAI",
-      "Tesla",
-      "Figure AI"
-    ],
+    "title": "NVIDIA AIエコシステム",
+    "summary": "NVIDIAはTSMCやHBMサプライヤーに支えられ、GPU、CUDA、AIサーバー基盤を通じて主要AI企業へ計算資源を供給している。",
+    "tree": [],
     "articles": [
       {
-        "title": "NVIDIA GPU需給がAI市場全体を左右する理由",
+        "title": "NVIDIA AIエコシステムを読む",
         "href": "/topic/nvidia/"
-      },
-      {
-        "title": "TSMCとCoWoSがAIチップ供給の制約になる理由",
-        "href": "/topic/tsmc/"
-      },
-      {
-        "title": "GPUクラウドの台頭とCoreWeaveの存在感",
-        "href": "/topic/coreweave/"
       }
     ],
-    "left": [
-      {
-        "name": "TSMC",
-        "relation": "manufactures",
-        "type": "gpu_supply",
-        "description": "GPU製造と先端プロセスを担う。"
-      },
-      {
-        "name": "CoWoS / HBM",
-        "relation": "enables",
-        "type": "platform",
-        "description": "AI GPUの帯域とパッケージングを支える供給制約。"
-      }
-    ],
+    "left": [],
     "center": {
       "name": "NVIDIA"
     },
-    "right": [
-      {
-        "name": "H100",
-        "relation": "training GPU",
-        "type": "gpu_supply",
-        "description": "AI学習基盤の象徴的GPU。"
-      },
-      {
-        "name": "B200",
-        "relation": "next-gen GPU",
-        "type": "gpu_supply",
-        "description": "次世代AIインフラの中心候補。"
-      },
-      {
-        "name": "CUDA",
-        "relation": "software moat",
-        "type": "platform",
-        "description": "NVIDIAの開発者エコシステム。"
-      },
-      {
-        "name": "DGX Cloud",
-        "relation": "cloud platform",
-        "type": "platform",
-        "description": "企業向けAI計算基盤。"
-      },
-      {
-        "name": "OpenAI / xAI / Meta / Tesla / Microsoft",
-        "relation": "supplies GPUs",
-        "type": "gpu_supply",
-        "description": "主要AI企業・クラウド・ロボティクスへ計算資源を供給。"
-      }
-    ],
+    "right": [],
     "layers": {
       "supply": [
         {
-          "group": "露光装置",
-          "nodes": [
+          "id": "manufacturing_memory",
+          "group": "製造・メモリ基盤",
+          "label": "製造・メモリ基盤",
+          "nodes": [],
+          "subgroups": [
             {
-              "id": "asml",
-              "label": "ASML",
-              "relation": "露光装置を提供",
-              "type": "semiconductor",
-              "logoText": "A"
-            }
-          ]
-        },
-        {
-          "group": "半導体製造",
-          "nodes": [
+              "id": "foundry",
+              "group": "半導体製造",
+              "label": "半導体製造",
+              "nodes": [
+                {
+                  "id": "tsmc",
+                  "label": "TSMC",
+                  "relation": "",
+                  "type": "semiconductor",
+                  "logoText": "TS"
+                }
+              ]
+            },
             {
-              "id": "tsmc",
-              "label": "TSMC",
-              "relation": "先端製造",
-              "type": "semiconductor",
-              "logoText": "TS"
-            }
-          ]
-        },
-        {
-          "group": "先端パッケージング・メモリ",
-          "nodes": [
-            {
-              "id": "cowos-hbm",
-              "label": "CoWoS / HBM",
-              "relation": "パッケージング・高帯域メモリ",
-              "type": "accelerator",
-              "logoText": "CH"
+              "id": "memory",
+              "group": "HBMメモリ",
+              "label": "HBMメモリ",
+              "nodes": [
+                {
+                  "id": "sk-hynix",
+                  "label": "SK Hynix",
+                  "relation": "",
+                  "type": "supplier",
+                  "logoText": "SK"
+                },
+                {
+                  "id": "samsung-semiconductor",
+                  "label": "Samsung Semiconductor",
+                  "relation": "",
+                  "type": "supplier",
+                  "logoText": "SS"
+                },
+                {
+                  "id": "micron",
+                  "label": "Micron",
+                  "relation": "",
+                  "type": "supplier",
+                  "logoText": "MU"
+                }
+              ]
             }
           ]
         }
@@ -118,236 +71,433 @@
       "center": {
         "id": "nvidia",
         "label": "NVIDIA",
-        "type": "AIインフラ企業",
+        "relation": "",
+        "type": "company",
         "logoText": "NV"
       },
       "outputs": [
         {
-          "group": "GPU製品",
-          "nodes": [
+          "id": "outputs",
+          "group": "GPU製品・基盤",
+          "label": "GPU製品・基盤",
+          "nodes": [],
+          "subgroups": [
             {
-              "id": "h100",
-              "label": "H100",
-              "relation": "学習用GPU",
-              "type": "product",
-              "logoText": "H"
+              "id": "gpu_products",
+              "group": "GPU製品",
+              "label": "GPU製品",
+              "nodes": [
+                {
+                  "id": "h100",
+                  "label": "H100",
+                  "relation": "",
+                  "type": "product",
+                  "logoText": "H1"
+                },
+                {
+                  "id": "h200",
+                  "label": "H200",
+                  "relation": "",
+                  "type": "product",
+                  "logoText": "H2"
+                },
+                {
+                  "id": "b200",
+                  "label": "B200",
+                  "relation": "",
+                  "type": "product",
+                  "logoText": "B2"
+                },
+                {
+                  "id": "gb200",
+                  "label": "GB200",
+                  "relation": "",
+                  "type": "product",
+                  "logoText": "GB"
+                }
+              ]
             },
             {
-              "id": "b200",
-              "label": "B200",
-              "relation": "次世代AI GPU",
-              "type": "product",
-              "logoText": "B"
+              "id": "software",
+              "group": "ソフトウェア基盤",
+              "label": "ソフトウェア基盤",
+              "nodes": [
+                {
+                  "id": "cuda",
+                  "label": "CUDA",
+                  "relation": "",
+                  "type": "product",
+                  "logoText": "CU"
+                },
+                {
+                  "id": "nvidia-ai-enterprise",
+                  "label": "NVIDIA AI Enterprise",
+                  "relation": "",
+                  "type": "product",
+                  "logoText": "NV"
+                }
+              ]
+            },
+            {
+              "id": "systems",
+              "group": "AIサーバー / ネットワーク",
+              "label": "AIサーバー / ネットワーク",
+              "nodes": [
+                {
+                  "id": "dgx",
+                  "label": "DGX",
+                  "relation": "",
+                  "type": "product",
+                  "logoText": "DG"
+                },
+                {
+                  "id": "nvlink",
+                  "label": "NVLink",
+                  "relation": "",
+                  "type": "product",
+                  "logoText": "NV"
+                },
+                {
+                  "id": "spectrum-x",
+                  "label": "Spectrum-X",
+                  "relation": "",
+                  "type": "product",
+                  "logoText": "SP"
+                }
+              ]
             }
           ]
         },
         {
-          "group": "ソフトウェア基盤",
-          "nodes": [
+          "id": "customers",
+          "group": "主要顧客・供給先",
+          "label": "主要顧客・供給先",
+          "nodes": [],
+          "subgroups": [
             {
-              "id": "cuda",
-              "label": "CUDA",
-              "relation": "開発者基盤",
-              "type": "product",
-              "logoText": "C"
-            }
-          ]
-        },
-        {
-          "group": "クラウド・システム",
-          "nodes": [
-            {
-              "id": "dgx-cloud",
-              "label": "DGX Cloud",
-              "relation": "法人向けAI計算基盤",
-              "type": "cloud",
-              "logoText": "DC"
-            }
-          ]
-        },
-        {
-          "group": "供給先企業",
-          "nodes": [
-            {
-              "id": "openai",
-              "label": "OpenAI",
-              "relation": "GPUを供給",
-              "type": "gpu_supply",
-              "logoText": "O"
+              "id": "foundation",
+              "group": "Foundation Models",
+              "label": "Foundation Models",
+              "nodes": [
+                {
+                  "id": "openai",
+                  "label": "OpenAI",
+                  "relation": "",
+                  "type": "customer",
+                  "logoText": "O"
+                },
+                {
+                  "id": "anthropic",
+                  "label": "Anthropic",
+                  "relation": "",
+                  "type": "customer",
+                  "logoText": "A"
+                },
+                {
+                  "id": "xai",
+                  "label": "xAI",
+                  "relation": "",
+                  "type": "customer",
+                  "logoText": "xAI"
+                },
+                {
+                  "id": "meta",
+                  "label": "Meta",
+                  "relation": "",
+                  "type": "customer",
+                  "logoText": "M"
+                }
+              ]
             },
             {
-              "id": "xai",
-              "label": "xAI",
-              "relation": "GPUを供給",
-              "type": "gpu_supply",
-              "logoText": "xAI"
+              "id": "cloud",
+              "group": "クラウド基盤",
+              "label": "クラウド基盤",
+              "nodes": [
+                {
+                  "id": "microsoft",
+                  "label": "Microsoft",
+                  "relation": "",
+                  "type": "customer",
+                  "logoText": "MS"
+                },
+                {
+                  "id": "amazon",
+                  "label": "Amazon / AWS",
+                  "relation": "",
+                  "type": "customer",
+                  "logoText": "AWS"
+                },
+                {
+                  "id": "google",
+                  "label": "Google",
+                  "relation": "",
+                  "type": "customer",
+                  "logoText": "G"
+                },
+                {
+                  "id": "oracle",
+                  "label": "Oracle",
+                  "relation": "",
+                  "type": "customer",
+                  "logoText": "OR"
+                }
+              ]
             },
             {
-              "id": "meta",
-              "label": "Meta",
-              "relation": "GPUを供給",
-              "type": "gpu_supply",
-              "logoText": "M"
-            },
-            {
-              "id": "tesla",
-              "label": "Tesla",
-              "relation": "ロボティクス・自動運転向け計算資源",
-              "type": "gpu_supply",
-              "logoText": "TSL"
-            },
-            {
-              "id": "microsoft",
-              "label": "Microsoft",
-              "relation": "Azure向けGPU基盤",
-              "type": "gpu_supply",
-              "logoText": "MS"
+              "id": "robotics_auto",
+              "group": "Robotics / Auto",
+              "label": "Robotics / Auto",
+              "nodes": [
+                {
+                  "id": "tesla",
+                  "label": "Tesla",
+                  "relation": "",
+                  "type": "customer",
+                  "logoText": "TSL"
+                },
+                {
+                  "id": "figure",
+                  "label": "Figure AI",
+                  "relation": "",
+                  "type": "customer",
+                  "logoText": "F"
+                }
+              ]
             }
           ]
         }
       ],
-      "investments": [],
+      "investments": [
+        {
+          "id": "mistral",
+          "label": "Mistral AI",
+          "relation": "投資先",
+          "type": "investment",
+          "logoText": "MI"
+        },
+        {
+          "id": "cohere",
+          "label": "Cohere",
+          "relation": "投資先",
+          "type": "investment",
+          "logoText": "CO"
+        },
+        {
+          "id": "perplexity",
+          "label": "Perplexity",
+          "relation": "投資先",
+          "type": "investment",
+          "logoText": "PX"
+        },
+        {
+          "id": "huggingface",
+          "label": "Hugging Face",
+          "relation": "投資先",
+          "type": "investment",
+          "logoText": "HF"
+        },
+        {
+          "id": "sakana-ai",
+          "label": "Sakana AI",
+          "relation": "投資先",
+          "type": "investment",
+          "logoText": "SA"
+        },
+        {
+          "id": "runway",
+          "label": "Runway",
+          "relation": "投資先",
+          "type": "investment",
+          "logoText": "RW"
+        },
+        {
+          "id": "figure",
+          "label": "Figure AI",
+          "relation": "投資先",
+          "type": "investment",
+          "logoText": "F"
+        }
+      ],
       "partnerships": [
         {
+          "id": "partnerships",
           "group": "提携",
+          "label": "提携",
           "nodes": [
             {
               "id": "tsmc",
               "label": "TSMC",
-              "relation": "製造パートナー",
+              "relation": "",
               "type": "partnership",
               "logoText": "TS"
+            },
+            {
+              "id": "sk-hynix",
+              "label": "SK Hynix",
+              "relation": "",
+              "type": "partnership",
+              "logoText": "SK"
+            },
+            {
+              "id": "dell",
+              "label": "Dell",
+              "relation": "",
+              "type": "partnership",
+              "logoText": "DELL"
+            },
+            {
+              "id": "supermicro",
+              "label": "Supermicro",
+              "relation": "",
+              "type": "partnership",
+              "logoText": "SMCI"
             }
           ]
         }
       ],
       "distribution": [],
+      "customers": [
+        {
+          "id": "customers",
+          "group": "主要顧客・供給先",
+          "label": "主要顧客・供給先",
+          "nodes": [
+            {
+              "id": "openai",
+              "label": "OpenAI",
+              "relation": "",
+              "type": "customer",
+              "logoText": "O"
+            },
+            {
+              "id": "microsoft",
+              "label": "Microsoft",
+              "relation": "",
+              "type": "customer",
+              "logoText": "MS"
+            },
+            {
+              "id": "meta",
+              "label": "Meta",
+              "relation": "",
+              "type": "customer",
+              "logoText": "M"
+            },
+            {
+              "id": "xai",
+              "label": "xAI",
+              "relation": "",
+              "type": "customer",
+              "logoText": "xAI"
+            },
+            {
+              "id": "tesla",
+              "label": "Tesla",
+              "relation": "",
+              "type": "customer",
+              "logoText": "TSL"
+            },
+            {
+              "id": "amazon",
+              "label": "Amazon / AWS",
+              "relation": "",
+              "type": "customer",
+              "logoText": "AWS"
+            },
+            {
+              "id": "google",
+              "label": "Google",
+              "relation": "",
+              "type": "customer",
+              "logoText": "G"
+            }
+          ]
+        }
+      ],
+      "suppliers": [],
+      "ecosystem": [],
+      "ownership": [],
       "competitors": [
         {
           "id": "amd",
           "label": "AMD",
-          "relation": "AI GPUで競合",
+          "relation": "",
           "type": "competitor",
           "logoText": "AMD"
         },
         {
           "id": "intel",
           "label": "Intel",
-          "relation": "AIアクセラレータで競合",
+          "relation": "",
           "type": "competitor",
           "logoText": "IN"
         },
         {
-          "id": "broadcom",
-          "label": "Broadcom",
-          "relation": "カスタムAI ASICで競合",
+          "id": "google-tpu",
+          "label": "Google TPU",
+          "relation": "",
           "type": "competitor",
-          "logoText": "BC"
+          "logoText": "GO"
         },
         {
-          "id": "cerebras",
-          "label": "Cerebras",
-          "relation": "代替AI計算基盤で競合",
+          "id": "aws-trainium",
+          "label": "AWS Trainium",
+          "relation": "",
           "type": "competitor",
-          "logoText": "CB"
-        },
-        {
-          "id": "groq",
-          "label": "Groq",
-          "relation": "推論アクセラレータで競合",
-          "type": "competitor",
-          "logoText": "GQ"
+          "logoText": "AW"
         }
+      ],
+      "edges": [],
+      "investors": []
+    },
+    "bottomGroups": {
+      "partnership": [
+        "tsmc",
+        "sk-hynix",
+        "dell",
+        "supermicro"
+      ],
+      "competitor": [
+        "amd",
+        "intel",
+        "google-tpu",
+        "aws-trainium"
+      ],
+      "investors": [],
+      "investments": [
+        "mistral",
+        "cohere",
+        "perplexity",
+        "huggingface",
+        "sakana-ai",
+        "runway",
+        "figure"
       ]
     }
   },
   {
     "company": "openai",
-    "title": "OpenAIのAIエコシステム",
-    "summary": "OpenAIはNVIDIAのGPU、Microsoft Azureのクラウド基盤、Microsoftの資本支援を受け、ChatGPT、Sora、Codex、API、Agentsを展開している。",
-    "tree": [
-      "Microsoft",
-      "OpenAI",
-      "ChatGPT",
-      "Sora",
-      "Codex",
-      "Agents",
-      "NVIDIA",
-      "Figure AI"
-    ],
+    "title": "OpenAI エコシステム",
+    "summary": "OpenAIはMicrosoft Azureを中核のクラウド基盤として活用し、ChatGPT、API、Sora、Codex、Agentsを展開している。",
+    "tree": [],
     "articles": [
       {
-        "title": "OpenAIの競争軸はモデルからAgentsとVideoへ",
+        "title": "OpenAI エコシステムを読む",
         "href": "/topic/openai/"
-      },
-      {
-        "title": "Microsoftとの関係が商用AIを加速する",
-        "href": "/topic/microsoft/"
-      },
-      {
-        "title": "Soraが動画生成AI市場に与える影響",
-        "href": "/topic/video/"
       }
     ],
-    "left": [
-      {
-        "name": "TSMC",
-        "relation": "manufactures chips",
-        "type": "gpu_supply",
-        "description": "AIチップ製造と先端パッケージングの上流。"
-      },
-      {
-        "name": "NVIDIA",
-        "relation": "supplies GPUs",
-        "type": "gpu_supply",
-        "description": "大規模学習と推論を支えるGPU供給。"
-      },
-      {
-        "name": "Microsoft Azure",
-        "relation": "cloud / investment",
-        "type": "investment",
-        "description": "OpenAIの商用化と計算基盤を支えるクラウド・出資関係。"
-      }
-    ],
+    "left": [],
     "center": {
       "name": "OpenAI"
     },
-    "right": [
-      {
-        "name": "ChatGPT",
-        "relation": "consumer AI service",
-        "type": "model",
-        "description": "一般ユーザーが触れるOpenAI最大の入口。"
-      },
-      {
-        "name": "Sora",
-        "relation": "video generation",
-        "type": "model",
-        "description": "動画生成AIの代表的プロダクト。"
-      },
-      {
-        "name": "Codex",
-        "relation": "coding agent",
-        "type": "model",
-        "description": "開発作業を支援するAIエージェント。"
-      },
-      {
-        "name": "Agents",
-        "relation": "workflow automation",
-        "type": "platform",
-        "description": "業務自動化と操作代行の中核。"
-      },
-      {
-        "name": "OpenAI API",
-        "relation": "developer platform",
-        "type": "platform",
-        "description": "開発者と企業にモデル機能を提供。"
-      }
-    ],
+    "right": [],
     "layers": {
       "supply": [
         {
-          "group": "半導体製造",
+          "id": "semiconductor_gpu",
+          "group": "半導体 / GPU",
+          "label": "半導体 / GPU",
           "nodes": [
             {
               "id": "tsmc",
@@ -355,12 +505,7 @@
               "relation": "先端半導体を製造",
               "type": "semiconductor",
               "logoText": "TS"
-            }
-          ]
-        },
-        {
-          "group": "GPU / AIアクセラレータ",
-          "nodes": [
+            },
             {
               "id": "nvidia",
               "label": "NVIDIA",
@@ -368,17 +513,27 @@
               "type": "gpu_supply",
               "logoText": "NV"
             }
+          ],
+          "internalEdges": [
+            {
+              "source": "tsmc",
+              "target": "nvidia",
+              "label": "先端半導体を製造",
+              "type": "semiconductor"
+            }
           ]
         },
         {
+          "id": "cloud",
           "group": "クラウド基盤",
+          "label": "クラウド基盤",
           "nodes": [
             {
-              "id": "microsoft",
+              "id": "microsoft-azure",
               "label": "Microsoft Azure",
               "relation": "クラウド基盤を提供",
               "type": "cloud",
-              "logoText": "MS"
+              "logoText": "AZ"
             }
           ]
         }
@@ -386,246 +541,254 @@
       "center": {
         "id": "openai",
         "label": "OpenAI",
-        "type": "基盤モデル企業",
+        "relation": "",
+        "type": "company",
         "logoText": "O"
       },
       "outputs": [
         {
-          "group": "一般向けサービス",
-          "nodes": [
+          "id": "products",
+          "group": "製品・サービス",
+          "label": "製品・サービス",
+          "nodes": [],
+          "subgroups": [
             {
-              "id": "chatgpt",
-              "label": "ChatGPT",
-              "relation": "一般向けAIサービス",
-              "type": "product",
-              "logoText": "C"
-            }
-          ]
-        },
-        {
-          "group": "開発者向け基盤",
-          "nodes": [
-            {
-              "id": "openai-api",
-              "label": "OpenAI API",
-              "relation": "開発者向け基盤",
-              "type": "product",
-              "logoText": "OA"
+              "id": "consumer",
+              "group": "一般向けサービス",
+              "label": "一般向けサービス",
+              "nodes": [
+                {
+                  "id": "chatgpt",
+                  "label": "ChatGPT",
+                  "relation": "",
+                  "type": "product",
+                  "logoText": "CH"
+                }
+              ]
             },
             {
-              "id": "codex",
-              "label": "Codex",
-              "relation": "開発支援エージェント",
-              "type": "product",
-              "logoText": "C"
-            }
-          ]
-        },
-        {
-          "group": "クリエイティブAI",
-          "nodes": [
-            {
-              "id": "sora",
-              "label": "Sora",
-              "relation": "動画生成",
-              "type": "product",
-              "logoText": "S"
+              "id": "developer",
+              "group": "開発者向け基盤",
+              "label": "開発者向け基盤",
+              "nodes": [
+                {
+                  "id": "openai-api",
+                  "label": "OpenAI API",
+                  "relation": "",
+                  "type": "product",
+                  "logoText": "OP"
+                },
+                {
+                  "id": "codex",
+                  "label": "Codex",
+                  "relation": "",
+                  "type": "product",
+                  "logoText": "CO"
+                }
+              ]
             },
             {
-              "id": "dalle",
-              "label": "DALL-E",
-              "relation": "画像生成",
-              "type": "product",
-              "logoText": "D"
-            }
-          ]
-        },
-        {
-          "group": "法人向け・自動化",
-          "nodes": [
-            {
-              "id": "agents",
-              "label": "Agents",
-              "relation": "業務自動化",
-              "type": "product",
-              "logoText": "A"
+              "id": "creative",
+              "group": "生成AI",
+              "label": "生成AI",
+              "nodes": [
+                {
+                  "id": "sora",
+                  "label": "Sora",
+                  "relation": "",
+                  "type": "product",
+                  "logoText": "SO"
+                },
+                {
+                  "id": "dall-e",
+                  "label": "DALL-E",
+                  "relation": "",
+                  "type": "product",
+                  "logoText": "DA"
+                }
+              ]
             },
             {
-              "id": "chatgpt-enterprise",
-              "label": "ChatGPT Enterprise",
-              "relation": "法人向けAIサービス",
-              "type": "product",
-              "logoText": "CE"
+              "id": "automation",
+              "group": "エージェント",
+              "label": "エージェント",
+              "nodes": [
+                {
+                  "id": "agents",
+                  "label": "Agents",
+                  "relation": "",
+                  "type": "product",
+                  "logoText": "AG"
+                }
+              ]
             }
           ]
         }
       ],
       "investments": [
         {
-          "id": "microsoft",
-          "label": "Microsoft",
-          "relation": "出資・資本支援",
+          "id": "figure",
+          "label": "Figure AI",
+          "relation": "投資先",
           "type": "investment",
-          "logoText": "MS"
+          "logoText": "F"
         }
       ],
       "partnerships": [
         {
+          "id": "partnerships",
           "group": "提携",
+          "label": "提携",
           "nodes": [
             {
-              "id": "microsoft",
-              "label": "Microsoft",
-              "relation": "Azureと商用化で提携",
+              "id": "oracle",
+              "label": "Oracle",
+              "relation": "",
               "type": "partnership",
-              "logoText": "MS"
+              "logoText": "OR"
+            },
+            {
+              "id": "softbank",
+              "label": "SoftBank",
+              "relation": "",
+              "type": "partnership",
+              "logoText": "SB"
+            },
+            {
+              "id": "apple",
+              "label": "Apple",
+              "relation": "",
+              "type": "partnership",
+              "logoText": "AP"
             }
           ]
         }
       ],
       "distribution": [],
+      "customers": [],
+      "suppliers": [],
+      "ecosystem": [],
+      "ownership": [],
       "competitors": [
         {
           "id": "anthropic",
           "label": "Anthropic",
-          "relation": "基盤モデルで競合",
+          "relation": "",
           "type": "competitor",
           "logoText": "A"
         },
         {
-          "id": "google",
+          "id": "google-deepmind",
           "label": "Google DeepMind",
-          "relation": "モデル・エージェントで競合",
+          "relation": "",
           "type": "competitor",
-          "logoText": "G"
+          "logoText": "GDM"
         },
         {
           "id": "xai",
           "label": "xAI",
-          "relation": "基盤モデルで競合",
+          "relation": "",
           "type": "competitor",
           "logoText": "xAI"
         },
         {
           "id": "meta",
           "label": "Meta",
-          "relation": "オープンモデルで競合",
+          "relation": "",
           "type": "competitor",
           "logoText": "M"
         },
         {
           "id": "mistral",
           "label": "Mistral AI",
-          "relation": "高効率モデルで競合",
+          "relation": "",
           "type": "competitor",
           "logoText": "MI"
         }
+      ],
+      "edges": [],
+      "investors": [
+        {
+          "id": "microsoft",
+          "label": "Microsoft",
+          "relation": "出資者",
+          "type": "investment",
+          "logoText": "MS"
+        },
+        {
+          "id": "softbank",
+          "label": "SoftBank",
+          "relation": "出資者",
+          "type": "investment",
+          "logoText": "SB"
+        }
+      ]
+    },
+    "bottomGroups": {
+      "partnership": [
+        "oracle",
+        "softbank",
+        "apple"
+      ],
+      "competitor": [
+        "anthropic",
+        "google-deepmind",
+        "xai",
+        "meta",
+        "mistral"
+      ],
+      "investors": [
+        "microsoft",
+        "softbank"
+      ],
+      "investments": [
+        "figure"
       ]
     }
   },
   {
     "company": "microsoft",
-    "title": "Microsoft AI Stack",
-    "summary": "OpenAI投資、Azure、Copilot、Enterprise AIを束ねる商用AIの最大級プラットフォーム。",
-    "tree": [
-      "OpenAI",
-      "Microsoft",
-      "Azure AI",
-      "Copilot",
-      "GitHub",
-      "SAP",
-      "Salesforce",
-      "AMD"
-    ],
+    "title": "Microsoft AIプラットフォーム",
+    "summary": "MicrosoftはAzureを基盤にOpenAI、Copilot、GitHub、法人AIを統合し、AI商業化の主要プラットフォームになっている。",
+    "tree": [],
     "articles": [
       {
-        "title": "Microsoft Copilotが企業AI導入の標準口に",
+        "title": "Microsoft AIプラットフォームを読む",
         "href": "/topic/microsoft/"
-      },
-      {
-        "title": "Azure AIとGPU調達競争",
-        "href": "/topic/datacenter/"
-      },
-      {
-        "title": "OpenAI投資がMicrosoftのAI戦略を形作る",
-        "href": "/topic/openai/"
       }
     ],
-    "left": [
-      {
-        "name": "AMD",
-        "relation": "MI300X / Azure",
-        "type": "gpu_supply",
-        "description": "MicrosoftのAIクラウドにおけるGPU調達先の多様化。"
-      },
-      {
-        "name": "CoreWeave",
-        "relation": "AI cloud",
-        "type": "platform",
-        "description": "AIクラウド容量確保をめぐるMicrosoft周辺のインフラ関係。"
-      },
-      {
-        "name": "SAP",
-        "relation": "ERP + Copilot",
-        "type": "partnership",
-        "description": "ERPとMicrosoft AIスタックの企業導入関係。"
-      }
-    ],
+    "left": [],
     "center": {
       "name": "Microsoft"
     },
-    "right": [
-      {
-        "name": "Microsoft Copilot",
-        "relation": "product",
-        "type": "model",
-        "description": "Microsoft 365、Windows、GitHub、Azureを横断するAIアシスタント群。"
-      },
-      {
-        "name": "OpenAI",
-        "relation": "出資・Azure",
-        "type": "investment",
-        "description": "Microsoftの出資とAzure提供により、OpenAIの商用展開と計算基盤が拡大。"
-      }
-    ],
+    "right": [],
     "layers": {
       "supply": [
         {
-          "group": "Upstream / Partners",
+          "id": "compute",
+          "group": "クラウド / GPU基盤",
+          "label": "クラウド / GPU基盤",
           "nodes": [
+            {
+              "id": "nvidia",
+              "label": "NVIDIA",
+              "relation": "GPUを供給",
+              "type": "gpu_supply",
+              "logoText": "NV"
+            },
             {
               "id": "amd",
               "label": "AMD",
-              "relation": "MI300X / Azure",
+              "relation": "GPUを供給",
               "type": "gpu_supply",
-              "logoText": "AMD",
-              "description": "MicrosoftのAIクラウドにおけるGPU調達先の多様化。"
-            }
-          ]
-        },
-        {
-          "group": "Foundation Layer",
-          "nodes": [
+              "logoText": "AMD"
+            },
             {
-              "id": "coreweave",
-              "label": "CoreWeave",
-              "relation": "AI cloud",
-              "type": "platform",
-              "logoText": "CW",
-              "description": "AIクラウド容量確保をめぐるMicrosoft周辺のインフラ関係。"
-            }
-          ]
-        },
-        {
-          "group": "Foundation Layer",
-          "nodes": [
-            {
-              "id": "sap",
-              "label": "SAP",
-              "relation": "ERP + Copilot",
-              "type": "partnership",
-              "logoText": "SAP",
-              "description": "ERPとMicrosoft AIスタックの企業導入関係。"
+              "id": "microsoft-azure",
+              "label": "Microsoft Azure",
+              "relation": "クラウド基盤を提供",
+              "type": "cloud",
+              "logoText": "AZ"
             }
           ]
         }
@@ -633,116 +796,662 @@
       "center": {
         "id": "microsoft",
         "label": "Microsoft",
-        "type": "Enterprise AI platform and cloud provider",
+        "relation": "",
+        "type": "company",
         "logoText": "MS"
       },
       "outputs": [
         {
-          "group": "Products / Relationships",
-          "nodes": [
+          "id": "products",
+          "group": "製品・サービス",
+          "label": "製品・サービス",
+          "nodes": [],
+          "subgroups": [
             {
-              "id": "microsoft-copilot",
-              "label": "Microsoft Copilot",
-              "relation": "product",
-              "type": "model",
-              "logoText": "MC",
-              "description": "Microsoft 365、Windows、GitHub、Azureを横断するAIアシスタント群。"
+              "id": "cloud",
+              "group": "クラウド基盤",
+              "label": "クラウド基盤",
+              "nodes": [
+                {
+                  "id": "microsoft-azure",
+                  "label": "Microsoft Azure",
+                  "relation": "",
+                  "type": "product",
+                  "logoText": "AZ"
+                }
+              ]
             },
             {
-              "id": "openai",
-              "label": "OpenAI",
-              "relation": "出資・Azure",
-              "type": "investment",
-              "logoText": "O",
-              "description": "Microsoftの出資とAzure提供により、OpenAIの商用展開と計算基盤が拡大。"
+              "id": "developer",
+              "group": "開発者向け基盤",
+              "label": "開発者向け基盤",
+              "nodes": [
+                {
+                  "id": "github-copilot",
+                  "label": "github-copilot",
+                  "relation": "",
+                  "type": "product",
+                  "logoText": "GC"
+                }
+              ]
+            },
+            {
+              "id": "foundation",
+              "group": "Foundation Models",
+              "label": "Foundation Models",
+              "nodes": [
+                {
+                  "id": "openai",
+                  "label": "OpenAI",
+                  "relation": "",
+                  "type": "investment",
+                  "logoText": "O"
+                }
+              ]
             }
           ]
         }
       ],
-      "competitors": []
+      "investments": [
+        {
+          "id": "openai",
+          "label": "OpenAI",
+          "relation": "投資先",
+          "type": "investment",
+          "logoText": "O"
+        },
+        {
+          "id": "mistral",
+          "label": "Mistral AI",
+          "relation": "投資先",
+          "type": "investment",
+          "logoText": "MI"
+        },
+        {
+          "id": "figure",
+          "label": "Figure AI",
+          "relation": "投資先",
+          "type": "investment",
+          "logoText": "F"
+        }
+      ],
+      "partnerships": [
+        {
+          "id": "partnerships",
+          "group": "提携",
+          "label": "提携",
+          "nodes": [
+            {
+              "id": "nvidia",
+              "label": "NVIDIA",
+              "relation": "",
+              "type": "partnership",
+              "logoText": "NV"
+            },
+            {
+              "id": "amd",
+              "label": "AMD",
+              "relation": "",
+              "type": "partnership",
+              "logoText": "AMD"
+            },
+            {
+              "id": "oracle",
+              "label": "Oracle",
+              "relation": "",
+              "type": "partnership",
+              "logoText": "OR"
+            }
+          ]
+        }
+      ],
+      "distribution": [],
+      "customers": [],
+      "suppliers": [],
+      "ecosystem": [],
+      "ownership": [],
+      "competitors": [
+        {
+          "id": "google",
+          "label": "Google",
+          "relation": "",
+          "type": "competitor",
+          "logoText": "G"
+        },
+        {
+          "id": "amazon",
+          "label": "Amazon / AWS",
+          "relation": "",
+          "type": "competitor",
+          "logoText": "AWS"
+        },
+        {
+          "id": "oracle",
+          "label": "Oracle",
+          "relation": "",
+          "type": "competitor",
+          "logoText": "OR"
+        }
+      ],
+      "edges": [],
+      "investors": []
+    },
+    "bottomGroups": {
+      "partnership": [
+        "nvidia",
+        "amd",
+        "oracle"
+      ],
+      "competitor": [
+        "google",
+        "amazon",
+        "oracle"
+      ],
+      "investors": [],
+      "investments": [
+        "openai",
+        "mistral",
+        "figure"
+      ]
     }
   },
   {
     "company": "anthropic",
-    "title": "Anthropicの企業AI構造",
-    "summary": "AnthropicはAmazonとGoogleの出資・クラウド支援を受け、Claudeを中心に開発者向け基盤と法人向けAI市場を拡大している。",
-    "tree": [
-      "Google",
-      "Anthropic",
-      "Claude",
-      "Claude Code",
-      "LangChain",
-      "Perplexity",
-      "Salesforce"
-    ],
+    "title": "Anthropic エコシステム",
+    "summary": "AnthropicはAmazonとGoogleの出資・クラウド支援を受け、Claudeを中心に法人向けAI市場を拡大している。",
+    "tree": [],
     "articles": [
       {
-        "title": "AnthropicとAmazonのAI提携を読む",
+        "title": "Anthropic エコシステムを読む",
         "href": "/topic/anthropic/"
-      },
-      {
-        "title": "Claudeは企業AI市場でOpenAIに対抗できるか",
-        "href": "/topic/claude/"
-      },
-      {
-        "title": "Claude Codeと開発者向けAIエージェント",
-        "href": "/topic/agents/"
       }
     ],
-    "left": [
-      {
-        "name": "Google",
-        "relation": "investment / cloud support",
-        "type": "investment",
-        "description": "出資とクラウド関係でAnthropicを支える。"
-      },
-      {
-        "name": "AWS",
-        "relation": "cloud infrastructure",
-        "type": "platform",
-        "description": "企業向けAI運用の基盤。"
-      },
-      {
-        "name": "Enterprise demand",
-        "relation": "pulls adoption",
-        "type": "partnership",
-        "description": "安全性と長文処理を求める企業需要。"
-      }
-    ],
+    "left": [],
     "center": {
       "name": "Anthropic"
     },
-    "right": [
-      {
-        "name": "Claude",
-        "relation": "AI assistant",
-        "type": "model",
-        "description": "企業・個人向けAIモデル。"
-      },
-      {
-        "name": "Claude Code",
-        "relation": "coding agent",
-        "type": "model",
-        "description": "開発者向けAIエージェント。"
-      },
-      {
-        "name": "API",
-        "relation": "developer platform",
-        "type": "platform",
-        "description": "企業と開発者へモデルを提供。"
-      },
-      {
-        "name": "Enterprise AI",
-        "relation": "business workflows",
-        "type": "platform",
-        "description": "法務・金融・業務自動化へ展開。"
-      }
-    ],
+    "right": [],
     "layers": {
       "supply": [
         {
-          "group": "半導体製造",
+          "id": "accelerators",
+          "group": "AIアクセラレータ",
+          "label": "AIアクセラレータ",
+          "nodes": [],
+          "subgroups": [
+            {
+              "id": "gpu",
+              "group": "GPU",
+              "label": "GPU",
+              "nodes": [
+                {
+                  "id": "nvidia",
+                  "label": "NVIDIA",
+                  "relation": "GPUを供給",
+                  "type": "gpu_supply",
+                  "logoText": "NV"
+                }
+              ]
+            },
+            {
+              "id": "tpu_asic",
+              "group": "TPU / ASIC",
+              "label": "TPU / ASIC",
+              "nodes": [
+                {
+                  "id": "google-tpu",
+                  "label": "Google TPU",
+                  "relation": "AIアクセラレータ",
+                  "type": "accelerator",
+                  "logoText": "GO"
+                },
+                {
+                  "id": "broadcom",
+                  "label": "Broadcom",
+                  "relation": "AIアクセラレータ",
+                  "type": "accelerator",
+                  "logoText": "BC"
+                }
+              ]
+            },
+            {
+              "id": "aws_chip",
+              "group": "AWS独自チップ",
+              "label": "AWS独自チップ",
+              "nodes": [
+                {
+                  "id": "aws-trainium",
+                  "label": "AWS Trainium",
+                  "relation": "AIアクセラレータ",
+                  "type": "accelerator",
+                  "logoText": "AW"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cloud_capital",
+          "group": "クラウド / 資本基盤",
+          "label": "クラウド / 資本基盤",
           "nodes": [
+            {
+              "id": "aws",
+              "label": "AWS",
+              "relation": "クラウド基盤を提供",
+              "type": "cloud",
+              "logoText": "AWS"
+            },
+            {
+              "id": "google-cloud",
+              "label": "Google Cloud",
+              "relation": "クラウド基盤を提供",
+              "type": "cloud",
+              "logoText": "GCP"
+            }
+          ]
+        }
+      ],
+      "center": {
+        "id": "anthropic",
+        "label": "Anthropic",
+        "relation": "",
+        "type": "company",
+        "logoText": "A"
+      },
+      "outputs": [
+        {
+          "id": "products",
+          "group": "製品・サービス",
+          "label": "製品・サービス",
+          "nodes": [],
+          "subgroups": [
+            {
+              "id": "models",
+              "group": "モデル",
+              "label": "モデル",
+              "nodes": [
+                {
+                  "id": "claude",
+                  "label": "Claude",
+                  "relation": "",
+                  "type": "model",
+                  "logoText": "CL"
+                }
+              ]
+            },
+            {
+              "id": "developer",
+              "group": "開発者向け基盤",
+              "label": "開発者向け基盤",
+              "nodes": [
+                {
+                  "id": "claude-api",
+                  "label": "Claude API",
+                  "relation": "",
+                  "type": "product",
+                  "logoText": "CL"
+                },
+                {
+                  "id": "claude-code",
+                  "label": "Claude Code",
+                  "relation": "",
+                  "type": "product",
+                  "logoText": "CL"
+                }
+              ]
+            },
+            {
+              "id": "enterprise",
+              "group": "法人向けサービス",
+              "label": "法人向けサービス",
+              "nodes": [
+                {
+                  "id": "claude-for-work",
+                  "label": "Claude for Work",
+                  "relation": "",
+                  "type": "product",
+                  "logoText": "CL"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "investments": [],
+      "partnerships": [],
+      "distribution": [
+        {
+          "id": "distribution",
+          "group": "モデル配布",
+          "label": "モデル配布",
+          "nodes": [
+            {
+              "id": "amazon-bedrock",
+              "label": "Amazon Bedrock",
+              "relation": "",
+              "type": "distribution",
+              "logoText": "BR"
+            },
+            {
+              "id": "google-vertex-ai",
+              "label": "Google Vertex AI",
+              "relation": "",
+              "type": "distribution",
+              "logoText": "VX"
+            }
+          ]
+        }
+      ],
+      "customers": [],
+      "suppliers": [],
+      "ecosystem": [],
+      "ownership": [],
+      "competitors": [
+        {
+          "id": "openai",
+          "label": "OpenAI",
+          "relation": "",
+          "type": "competitor",
+          "logoText": "O"
+        },
+        {
+          "id": "google-deepmind",
+          "label": "Google DeepMind",
+          "relation": "",
+          "type": "competitor",
+          "logoText": "GDM"
+        },
+        {
+          "id": "xai",
+          "label": "xAI",
+          "relation": "",
+          "type": "competitor",
+          "logoText": "xAI"
+        },
+        {
+          "id": "meta",
+          "label": "Meta",
+          "relation": "",
+          "type": "competitor",
+          "logoText": "M"
+        },
+        {
+          "id": "mistral",
+          "label": "Mistral AI",
+          "relation": "",
+          "type": "competitor",
+          "logoText": "MI"
+        }
+      ],
+      "edges": [],
+      "investors": [
+        {
+          "id": "google",
+          "label": "Google",
+          "relation": "出資者",
+          "type": "investment",
+          "logoText": "G"
+        },
+        {
+          "id": "amazon",
+          "label": "Amazon / AWS",
+          "relation": "出資者",
+          "type": "investment",
+          "logoText": "AWS"
+        }
+      ]
+    },
+    "bottomGroups": {
+      "distribution": [
+        "amazon-bedrock",
+        "google-vertex-ai"
+      ],
+      "competitor": [
+        "openai",
+        "google-deepmind",
+        "xai",
+        "meta",
+        "mistral"
+      ],
+      "investors": [
+        "google",
+        "amazon"
+      ],
+      "investments": []
+    }
+  },
+  {
+    "company": "google",
+    "title": "Google AIエコシステム",
+    "summary": "GoogleはTPU、Google Cloud、DeepMind、Geminiを束ね、研究からクラウド、モデル提供までを垂直統合している。",
+    "tree": [],
+    "articles": [
+      {
+        "title": "Google AIエコシステムを読む",
+        "href": "/topic/google/"
+      }
+    ],
+    "left": [],
+    "center": {
+      "name": "Google"
+    },
+    "right": [],
+    "layers": {
+      "supply": [
+        {
+          "id": "accelerator_cloud",
+          "group": "AIアクセラレータ / クラウド",
+          "label": "AIアクセラレータ / クラウド",
+          "nodes": [
+            {
+              "id": "google-tpu",
+              "label": "Google TPU",
+              "relation": "AIアクセラレータ",
+              "type": "accelerator",
+              "logoText": "GO"
+            },
+            {
+              "id": "google-cloud",
+              "label": "Google Cloud",
+              "relation": "クラウド基盤を提供",
+              "type": "cloud",
+              "logoText": "GCP"
+            }
+          ]
+        }
+      ],
+      "center": {
+        "id": "google",
+        "label": "Google",
+        "relation": "",
+        "type": "company",
+        "logoText": "G"
+      },
+      "outputs": [
+        {
+          "id": "products",
+          "group": "製品・サービス",
+          "label": "製品・サービス",
+          "nodes": [],
+          "subgroups": [
+            {
+              "id": "models",
+              "group": "モデル",
+              "label": "モデル",
+              "nodes": [
+                {
+                  "id": "gemini",
+                  "label": "Gemini",
+                  "relation": "",
+                  "type": "model",
+                  "logoText": "GE"
+                },
+                {
+                  "id": "gemma",
+                  "label": "Gemma",
+                  "relation": "",
+                  "type": "model",
+                  "logoText": "GE"
+                }
+              ]
+            },
+            {
+              "id": "creative",
+              "group": "生成AI",
+              "label": "生成AI",
+              "nodes": [
+                {
+                  "id": "veo",
+                  "label": "Veo",
+                  "relation": "",
+                  "type": "model",
+                  "logoText": "VE"
+                }
+              ]
+            },
+            {
+              "id": "distribution",
+              "group": "モデル配布",
+              "label": "モデル配布",
+              "nodes": [
+                {
+                  "id": "google-vertex-ai",
+                  "label": "Google Vertex AI",
+                  "relation": "",
+                  "type": "distribution",
+                  "logoText": "VX"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "investments": [
+        {
+          "id": "anthropic",
+          "label": "Anthropic",
+          "relation": "投資先",
+          "type": "investment",
+          "logoText": "A"
+        },
+        {
+          "id": "huggingface",
+          "label": "Hugging Face",
+          "relation": "投資先",
+          "type": "investment",
+          "logoText": "HF"
+        },
+        {
+          "id": "runway",
+          "label": "Runway",
+          "relation": "投資先",
+          "type": "investment",
+          "logoText": "RW"
+        }
+      ],
+      "partnerships": [
+        {
+          "id": "partnerships",
+          "group": "提携",
+          "label": "提携",
+          "nodes": [
+            {
+              "id": "broadcom",
+              "label": "Broadcom",
+              "relation": "",
+              "type": "partnership",
+              "logoText": "BC"
+            }
+          ]
+        }
+      ],
+      "distribution": [],
+      "customers": [],
+      "suppliers": [],
+      "ecosystem": [],
+      "ownership": [],
+      "competitors": [
+        {
+          "id": "microsoft",
+          "label": "Microsoft",
+          "relation": "",
+          "type": "competitor",
+          "logoText": "MS"
+        },
+        {
+          "id": "openai",
+          "label": "OpenAI",
+          "relation": "",
+          "type": "competitor",
+          "logoText": "O"
+        },
+        {
+          "id": "amazon",
+          "label": "Amazon / AWS",
+          "relation": "",
+          "type": "competitor",
+          "logoText": "AWS"
+        },
+        {
+          "id": "meta",
+          "label": "Meta",
+          "relation": "",
+          "type": "competitor",
+          "logoText": "M"
+        }
+      ],
+      "edges": [],
+      "investors": []
+    },
+    "bottomGroups": {
+      "partnership": [
+        "broadcom"
+      ],
+      "competitor": [
+        "microsoft",
+        "openai",
+        "amazon",
+        "meta"
+      ],
+      "investors": [],
+      "investments": [
+        "anthropic",
+        "huggingface",
+        "runway"
+      ]
+    }
+  },
+  {
+    "company": "meta",
+    "title": "Meta オープンモデルエコシステム",
+    "summary": "MetaはLlamaを中心にオープンモデル戦略を推進し、研究、開発者、企業利用に影響を広げている。",
+    "tree": [],
+    "articles": [
+      {
+        "title": "Meta オープンモデルエコシステムを読む",
+        "href": "/topic/meta/"
+      }
+    ],
+    "left": [],
+    "center": {
+      "name": "Meta"
+    },
+    "right": [],
+    "layers": {
+      "supply": [
+        {
+          "id": "compute",
+          "group": "クラウド / GPU基盤",
+          "label": "クラウド / GPU基盤",
+          "nodes": [
+            {
+              "id": "nvidia",
+              "label": "NVIDIA",
+              "relation": "GPUを供給",
+              "type": "gpu_supply",
+              "logoText": "NV"
+            },
             {
               "id": "tsmc",
               "label": "TSMC",
@@ -751,659 +1460,342 @@
               "logoText": "TS"
             }
           ]
-        },
-        {
-          "group": "GPU / AIアクセラレータ",
-          "nodes": [
-            {
-              "id": "nvidia",
-              "label": "NVIDIA GPU",
-              "relation": "GPUを供給",
-              "type": "gpu_supply",
-              "logoText": "NV"
-            },
-            {
-              "id": "aws-trainium",
-              "label": "AWS Trainium",
-              "relation": "AIアクセラレータを提供",
-              "type": "accelerator",
-              "logoText": "AT"
-            },
-            {
-              "id": "google-tpu",
-              "label": "Google TPU",
-              "relation": "AIアクセラレータを提供",
-              "type": "accelerator",
-              "logoText": "TPU"
-            }
-          ]
-        },
-        {
-          "group": "クラウド基盤",
-          "nodes": [
-            {
-              "id": "amazon",
-              "label": "AWS",
-              "relation": "クラウド基盤を提供",
-              "type": "cloud",
-              "logoText": "AWS"
-            },
-            {
-              "id": "google",
-              "label": "Google Cloud",
-              "relation": "クラウド基盤を提供",
-              "type": "cloud",
-              "logoText": "G"
-            }
-          ]
-        }
-      ],
-      "center": {
-        "id": "anthropic",
-        "label": "Anthropic",
-        "type": "基盤モデル企業",
-        "logoText": "A"
-      },
-      "outputs": [
-        {
-          "group": "モデル",
-          "nodes": [
-            {
-              "id": "claude",
-              "label": "Claude",
-              "relation": "基盤モデル",
-              "type": "model",
-              "logoText": "C"
-            }
-          ]
-        },
-        {
-          "group": "開発者向け基盤",
-          "nodes": [
-            {
-              "id": "claude-api",
-              "label": "Claude API",
-              "relation": "開発者向け基盤",
-              "type": "product",
-              "logoText": "CA"
-            },
-            {
-              "id": "claude-code",
-              "label": "Claude Code",
-              "relation": "開発支援",
-              "type": "product",
-              "logoText": "CC"
-            }
-          ]
-        },
-        {
-          "group": "法人向け提供",
-          "nodes": [
-            {
-              "id": "amazon-bedrock",
-              "label": "Amazon Bedrock",
-              "relation": "法人向け提供",
-              "type": "distribution",
-              "logoText": "AB"
-            },
-            {
-              "id": "google-vertex-ai",
-              "label": "Google Vertex AI",
-              "relation": "法人向け提供",
-              "type": "distribution",
-              "logoText": "GV"
-            }
-          ]
-        }
-      ],
-      "investments": [
-        {
-          "id": "amazon",
-          "label": "Amazon",
-          "relation": "出資・資本支援",
-          "type": "investment",
-          "logoText": "AWS"
-        },
-        {
-          "id": "google",
-          "label": "Google",
-          "relation": "出資・資本支援",
-          "type": "investment",
-          "logoText": "G"
-        }
-      ],
-      "partnerships": [],
-      "distribution": [
-        {
-          "group": "提供チャネル",
-          "nodes": [
-            {
-              "id": "amazon-bedrock",
-              "label": "Amazon Bedrock",
-              "relation": "Claudeを法人向けに提供",
-              "type": "distribution",
-              "logoText": "AB"
-            },
-            {
-              "id": "google-vertex-ai",
-              "label": "Google Vertex AI",
-              "relation": "Claudeを法人向けに提供",
-              "type": "GV",
-              "logoText": "GO"
-            }
-          ]
-        }
-      ],
-      "competitors": [
-        {
-          "id": "openai",
-          "label": "OpenAI",
-          "relation": "基盤モデルで競合",
-          "type": "competitor",
-          "logoText": "O"
-        },
-        {
-          "id": "google",
-          "label": "Google DeepMind",
-          "relation": "基盤モデルで競合",
-          "type": "competitor",
-          "logoText": "G"
-        },
-        {
-          "id": "xai",
-          "label": "xAI",
-          "relation": "基盤モデルで競合",
-          "type": "competitor",
-          "logoText": "xAI"
-        },
-        {
-          "id": "meta",
-          "label": "Meta",
-          "relation": "オープンモデルで競合",
-          "type": "competitor",
-          "logoText": "M"
-        },
-        {
-          "id": "mistral",
-          "label": "Mistral AI",
-          "relation": "高効率モデルで競合",
-          "type": "competitor",
-          "logoText": "MI"
-        }
-      ]
-    }
-  },
-  {
-    "company": "google",
-    "title": "Google DeepMind Network",
-    "summary": "Gemini、TPU、Veo、検索、Workspaceを束ねる垂直統合型AIプレイヤー。",
-    "tree": [
-      "Google",
-      "Gemini",
-      "Veo",
-      "TPU",
-      "Broadcom",
-      "Anthropic",
-      "Android",
-      "Workspace"
-    ],
-    "articles": [
-      {
-        "title": "GeminiとTPU戦略がGoogle AIの軸に",
-        "href": "/topic/google/"
-      },
-      {
-        "title": "Veoが動画生成AI市場で存在感",
-        "href": "/topic/video/"
-      },
-      {
-        "title": "検索とAI回答エンジンの競争",
-        "href": "/topic/search-ai/"
-      }
-    ],
-    "left": [
-      {
-        "name": "OpenAI",
-        "relation": "GPT vs Gemini",
-        "type": "competition",
-        "description": "OpenAIとGoogle DeepMindのモデル性能・検索・動画生成をめぐる競争。"
-      },
-      {
-        "name": "Broadcom",
-        "relation": "AI ASIC",
-        "type": "gpu_supply",
-        "description": "Google TPUやAI ASIC戦略を支える半導体設計・供給関係。"
-      },
-      {
-        "name": "LangChain",
-        "relation": "Gemini tools",
-        "type": "platform",
-        "description": "Geminiとエージェント開発ツールの接続。"
-      }
-    ],
-    "center": {
-      "name": "Google"
-    },
-    "right": [
-      {
-        "name": "Gemini",
-        "relation": "model",
-        "type": "model",
-        "description": "Google DeepMindの基盤モデル群。検索、Android、Workspace、Cloudに接続される。"
-      },
-      {
-        "name": "Veo",
-        "relation": "model",
-        "type": "model",
-        "description": "Googleの動画生成モデル。YouTubeやクリエイティブツールとの接続が注目される。"
-      },
-      {
-        "name": "Gemma",
-        "relation": "model",
-        "type": "model",
-        "description": "Googleの軽量オープンモデル群。研究・開発者コミュニティへの接続を担う。"
-      },
-      {
-        "name": "Anthropic",
-        "relation": "出資・Cloud",
-        "type": "investment",
-        "description": "Anthropicに対するGoogleの出資・クラウド関係。"
-      }
-    ],
-    "layers": {
-      "supply": [
-        {
-          "group": "Upstream / Partners",
-          "nodes": [
-            {
-              "id": "openai",
-              "label": "OpenAI",
-              "relation": "GPT vs Gemini",
-              "type": "competition",
-              "logoText": "O",
-              "description": "OpenAIとGoogle DeepMindのモデル性能・検索・動画生成をめぐる競争。"
-            }
-          ]
-        },
-        {
-          "group": "Foundation Layer",
-          "nodes": [
-            {
-              "id": "broadcom",
-              "label": "Broadcom",
-              "relation": "AI ASIC",
-              "type": "gpu_supply",
-              "logoText": "BC",
-              "description": "Google TPUやAI ASIC戦略を支える半導体設計・供給関係。"
-            }
-          ]
-        },
-        {
-          "group": "Foundation Layer",
-          "nodes": [
-            {
-              "id": "langchain",
-              "label": "LangChain",
-              "relation": "Gemini tools",
-              "type": "platform",
-              "logoText": "LC",
-              "description": "Geminiとエージェント開発ツールの接続。"
-            }
-          ]
-        }
-      ],
-      "center": {
-        "id": "google",
-        "label": "Google",
-        "type": "Full-stack AI platform across models, cloud, search, and chips",
-        "logoText": "G"
-      },
-      "outputs": [
-        {
-          "group": "Products / Relationships",
-          "nodes": [
-            {
-              "id": "gemini",
-              "label": "Gemini",
-              "relation": "model",
-              "type": "model",
-              "logoText": "G",
-              "description": "Google DeepMindの基盤モデル群。検索、Android、Workspace、Cloudに接続される。"
-            },
-            {
-              "id": "veo",
-              "label": "Veo",
-              "relation": "model",
-              "type": "model",
-              "logoText": "V",
-              "description": "Googleの動画生成モデル。YouTubeやクリエイティブツールとの接続が注目される。"
-            },
-            {
-              "id": "gemma",
-              "label": "Gemma",
-              "relation": "model",
-              "type": "model",
-              "logoText": "G",
-              "description": "Googleの軽量オープンモデル群。研究・開発者コミュニティへの接続を担う。"
-            },
-            {
-              "id": "anthropic",
-              "label": "Anthropic",
-              "relation": "出資・Cloud",
-              "type": "investment",
-              "logoText": "A",
-              "description": "Anthropicに対するGoogleの出資・クラウド関係。"
-            }
-          ]
-        }
-      ],
-      "competitors": []
-    }
-  },
-  {
-    "company": "meta",
-    "title": "Open Model Flywheel",
-    "summary": "Llamaを中心に、研究者・開発者・企業利用を取り込むオープンモデルの巨大循環。",
-    "tree": [
-      "Meta",
-      "Llama",
-      "Hugging Face",
-      "Developers",
-      "Enterprise",
-      "NVIDIA",
-      "Open Source"
-    ],
-    "articles": [
-      {
-        "title": "LlamaエコシステムがAI価格競争を変える",
-        "href": "/topic/meta/"
-      },
-      {
-        "title": "Hugging Faceとオープンモデル配布",
-        "href": "/topic/huggingface/"
-      },
-      {
-        "title": "オープンソースAIの企業導入",
-        "href": "/topic/open-source/"
-      }
-    ],
-    "left": [
-      {
-        "name": "NVIDIA",
-        "relation": "Llama compute",
-        "type": "gpu_supply",
-        "description": "MetaのLlama開発とAIインフラ投資を支えるGPU需要。"
-      }
-    ],
-    "center": {
-      "name": "Meta"
-    },
-    "right": [
-      {
-        "name": "Llama",
-        "relation": "model",
-        "type": "model",
-        "description": "Metaのオープンモデル戦略の中心。企業利用、研究、ローカルAIで広く使われる。"
-      },
-      {
-        "name": "Hugging Face",
-        "relation": "Open model hub",
-        "type": "platform",
-        "description": "Llamaを中心としたオープンモデル配布・開発者エコシステム。"
-      }
-    ],
-    "layers": {
-      "supply": [
-        {
-          "group": "Upstream / Partners",
-          "nodes": [
-            {
-              "id": "nvidia",
-              "label": "NVIDIA",
-              "relation": "Llama compute",
-              "type": "gpu_supply",
-              "logoText": "NV",
-              "description": "MetaのLlama開発とAIインフラ投資を支えるGPU需要。"
-            }
-          ]
         }
       ],
       "center": {
         "id": "meta",
         "label": "Meta",
-        "type": "Open model and social AI platform",
+        "relation": "",
+        "type": "company",
         "logoText": "M"
       },
       "outputs": [
         {
-          "group": "Products / Relationships",
+          "id": "models",
+          "group": "モデル",
+          "label": "モデル",
           "nodes": [
             {
               "id": "llama",
               "label": "Llama",
-              "relation": "model",
+              "relation": "",
               "type": "model",
-              "logoText": "L",
-              "description": "Metaのオープンモデル戦略の中心。企業利用、研究、ローカルAIで広く使われる。"
+              "logoText": "LL"
+            },
+            {
+              "id": "llama-4",
+              "label": "Llama 4",
+              "relation": "",
+              "type": "model",
+              "logoText": "LL"
             },
             {
               "id": "huggingface",
               "label": "Hugging Face",
-              "relation": "Open model hub",
-              "type": "platform",
-              "logoText": "HF",
-              "description": "Llamaを中心としたオープンモデル配布・開発者エコシステム。"
+              "relation": "",
+              "type": "distribution",
+              "logoText": "HF"
             }
           ]
         }
       ],
-      "competitors": []
+      "investments": [],
+      "partnerships": [
+        {
+          "id": "partnerships",
+          "group": "提携",
+          "label": "提携",
+          "nodes": [
+            {
+              "id": "huggingface",
+              "label": "Hugging Face",
+              "relation": "",
+              "type": "partnership",
+              "logoText": "HF"
+            },
+            {
+              "id": "mistral",
+              "label": "Mistral AI",
+              "relation": "",
+              "type": "partnership",
+              "logoText": "MI"
+            }
+          ]
+        }
+      ],
+      "distribution": [],
+      "customers": [],
+      "suppliers": [],
+      "ecosystem": [],
+      "ownership": [],
+      "competitors": [
+        {
+          "id": "openai",
+          "label": "OpenAI",
+          "relation": "",
+          "type": "competitor",
+          "logoText": "O"
+        },
+        {
+          "id": "anthropic",
+          "label": "Anthropic",
+          "relation": "",
+          "type": "competitor",
+          "logoText": "A"
+        },
+        {
+          "id": "google-deepmind",
+          "label": "Google DeepMind",
+          "relation": "",
+          "type": "competitor",
+          "logoText": "GDM"
+        },
+        {
+          "id": "xai",
+          "label": "xAI",
+          "relation": "",
+          "type": "competitor",
+          "logoText": "xAI"
+        }
+      ],
+      "edges": [],
+      "investors": []
+    },
+    "bottomGroups": {
+      "partnership": [
+        "huggingface",
+        "mistral"
+      ],
+      "competitor": [
+        "openai",
+        "anthropic",
+        "google-deepmind",
+        "xai"
+      ],
+      "investors": [],
+      "investments": []
     }
   },
   {
     "company": "deepseek",
-    "title": "DeepSeek Shockwave",
-    "summary": "低コスト・高性能モデルで、米中AI競争とオープンモデル市場に衝撃を与えた中国AIの象徴。",
-    "tree": [
-      "DeepSeek",
-      "R1",
-      "V3",
-      "Hugging Face",
-      "Alibaba",
-      "ByteDance",
-      "China AI",
-      "Open Source"
-    ],
+    "title": "DeepSeek 効率モデルエコシステム",
+    "summary": "DeepSeekは高効率モデルを軸に、中国AIとオープンモデル市場で存在感を高めている。",
+    "tree": [],
     "articles": [
       {
-        "title": "DeepSeekが世界のAIコスト構造を揺らす",
+        "title": "DeepSeek 効率モデルエコシステムを読む",
         "href": "/topic/deepseek/"
-      },
-      {
-        "title": "中国AI企業の競争マップ",
-        "href": "/topic/china-ai/"
-      },
-      {
-        "title": "オープンウェイトモデルの影響",
-        "href": "/topic/open-source/"
       }
     ],
     "left": [],
     "center": {
       "name": "DeepSeek"
     },
-    "right": [
-      {
-        "name": "DeepSeek R1",
-        "relation": "model",
-        "type": "model",
-        "description": "DeepSeekの推論モデル。低コスト・高性能の象徴として世界的に注目された。"
-      },
-      {
-        "name": "DeepSeek V3",
-        "relation": "model",
-        "type": "model",
-        "description": "DeepSeekの汎用モデル。中国AIとオープンモデル競争の重要ノード。"
-      },
-      {
-        "name": "Hugging Face",
-        "relation": "Open weights",
-        "type": "platform",
-        "description": "DeepSeekモデルの世界的な開発者利用を支える配布経路。"
-      },
-      {
-        "name": "Alibaba",
-        "relation": "China LLM race",
-        "type": "competition",
-        "description": "中国基盤モデル市場における低コストモデルとクラウド大手の競争。"
-      }
-    ],
+    "right": [],
     "layers": {
-      "supply": [],
-      "center": {
-        "id": "deepseek",
-        "label": "DeepSeek",
-        "type": "Chinese model company with global open model impact",
-        "logoText": "DS"
-      },
-      "outputs": [
+      "supply": [
         {
-          "group": "Products / Relationships",
+          "id": "compute",
+          "group": "クラウド / GPU基盤",
+          "label": "クラウド / GPU基盤",
           "nodes": [
             {
-              "id": "deepseek-r1",
-              "label": "DeepSeek R1",
-              "relation": "model",
-              "type": "model",
-              "logoText": "DR",
-              "description": "DeepSeekの推論モデル。低コスト・高性能の象徴として世界的に注目された。"
+              "id": "china-ai-cloud",
+              "label": "china-ai-cloud",
+              "relation": "クラウド基盤を提供",
+              "type": "cloud",
+              "logoText": "CAC"
             },
             {
-              "id": "deepseek-v3",
-              "label": "DeepSeek V3",
-              "relation": "model",
-              "type": "model",
-              "logoText": "DV",
-              "description": "DeepSeekの汎用モデル。中国AIとオープンモデル競争の重要ノード。"
-            },
-            {
-              "id": "huggingface",
-              "label": "Hugging Face",
-              "relation": "Open weights",
-              "type": "platform",
-              "logoText": "HF",
-              "description": "DeepSeekモデルの世界的な開発者利用を支える配布経路。"
-            },
-            {
-              "id": "alibaba",
-              "label": "Alibaba",
-              "relation": "China LLM race",
-              "type": "competition",
-              "logoText": "AB",
-              "description": "中国基盤モデル市場における低コストモデルとクラウド大手の競争。"
+              "id": "nvidia",
+              "label": "NVIDIA",
+              "relation": "GPUを供給",
+              "type": "gpu_supply",
+              "logoText": "NV"
             }
           ]
         }
       ],
-      "competitors": []
+      "center": {
+        "id": "deepseek",
+        "label": "DeepSeek",
+        "relation": "",
+        "type": "company",
+        "logoText": "DS"
+      },
+      "outputs": [
+        {
+          "id": "models",
+          "group": "モデル",
+          "label": "モデル",
+          "nodes": [
+            {
+              "id": "deepseek-r1",
+              "label": "DeepSeek R1",
+              "relation": "",
+              "type": "model",
+              "logoText": "DE"
+            },
+            {
+              "id": "deepseek-v3",
+              "label": "DeepSeek V3",
+              "relation": "",
+              "type": "model",
+              "logoText": "DE"
+            },
+            {
+              "id": "huggingface",
+              "label": "Hugging Face",
+              "relation": "",
+              "type": "distribution",
+              "logoText": "HF"
+            }
+          ]
+        }
+      ],
+      "investments": [],
+      "partnerships": [],
+      "distribution": [],
+      "customers": [],
+      "suppliers": [],
+      "ecosystem": [
+        {
+          "id": "ecosystem",
+          "group": "AI投資・提携",
+          "label": "AI投資・提携",
+          "nodes": [
+            {
+              "id": "huggingface",
+              "label": "Hugging Face",
+              "relation": "",
+              "type": "ecosystem",
+              "logoText": "HF"
+            },
+            {
+              "id": "alibaba",
+              "label": "Alibaba",
+              "relation": "",
+              "type": "ecosystem",
+              "logoText": "AB"
+            },
+            {
+              "id": "tencent",
+              "label": "Tencent",
+              "relation": "",
+              "type": "ecosystem",
+              "logoText": "TC"
+            }
+          ]
+        }
+      ],
+      "ownership": [],
+      "competitors": [
+        {
+          "id": "openai",
+          "label": "OpenAI",
+          "relation": "",
+          "type": "competitor",
+          "logoText": "O"
+        },
+        {
+          "id": "anthropic",
+          "label": "Anthropic",
+          "relation": "",
+          "type": "competitor",
+          "logoText": "A"
+        },
+        {
+          "id": "google-deepmind",
+          "label": "Google DeepMind",
+          "relation": "",
+          "type": "competitor",
+          "logoText": "GDM"
+        },
+        {
+          "id": "mistral",
+          "label": "Mistral AI",
+          "relation": "",
+          "type": "competitor",
+          "logoText": "MI"
+        }
+      ],
+      "edges": [],
+      "investors": []
+    },
+    "bottomGroups": {
+      "ecosystem": [
+        "huggingface",
+        "alibaba",
+        "tencent"
+      ],
+      "competitor": [
+        "openai",
+        "anthropic",
+        "google-deepmind",
+        "mistral"
+      ],
+      "investors": [],
+      "investments": []
     }
   },
   {
     "company": "xai",
-    "title": "xAI Compute Surge",
-    "summary": "Grokと巨大GPUクラスターを軸に、SNSデータと計算資源で急成長する新興勢力。",
-    "tree": [
-      "NVIDIA",
-      "xAI",
-      "Grok",
-      "X",
-      "Colossus",
-      "Tesla",
-      "OpenAI"
-    ],
+    "title": "xAI エコシステム",
+    "summary": "xAIはTSMCとNVIDIAを上流に持ち、Colossus級AIデータセンターを通じてGrokとAPIを展開している。",
+    "tree": [],
     "articles": [
       {
-        "title": "xAIのGPUクラスター拡張",
+        "title": "xAI エコシステムを読む",
         "href": "/topic/xai/"
-      },
-      {
-        "title": "GrokとChatGPTの競争",
-        "href": "/topic/llm/"
-      },
-      {
-        "title": "TeslaとxAIの接近",
-        "href": "/topic/tesla/"
       }
     ],
-    "left": [
-      {
-        "name": "NVIDIA",
-        "relation": "Colossus GPU",
-        "type": "gpu_supply",
-        "description": "xAIの大規模GPUクラスター拡張を支える中核供給関係。"
-      },
-      {
-        "name": "OpenAI",
-        "relation": "GPT vs Grok",
-        "type": "competition",
-        "description": "GrokとChatGPTを軸にしたモデル・SNSデータ・計算資源の競争。"
-      },
-      {
-        "name": "Tesla",
-        "relation": "Embodied AI",
-        "type": "partnership",
-        "description": "Teslaのロボティクス・車両データとxAIのモデル開発が接近する構図。"
-      }
-    ],
+    "left": [],
     "center": {
       "name": "xAI"
     },
-    "right": [
-      {
-        "name": "Grok",
-        "relation": "model",
-        "type": "model",
-        "description": "xAIの基盤モデル。Xとの接続と大規模GPUクラスタを背景に急成長。"
-      }
-    ],
+    "right": [],
     "layers": {
       "supply": [
         {
-          "group": "Upstream / Partners",
+          "id": "semiconductor_gpu",
+          "group": "半導体 / GPU",
+          "label": "半導体 / GPU",
           "nodes": [
+            {
+              "id": "tsmc",
+              "label": "TSMC",
+              "relation": "先端半導体を製造",
+              "type": "semiconductor",
+              "logoText": "TS"
+            },
             {
               "id": "nvidia",
               "label": "NVIDIA",
-              "relation": "Colossus GPU",
+              "relation": "GPUを供給",
               "type": "gpu_supply",
-              "logoText": "NV",
-              "description": "xAIの大規模GPUクラスター拡張を支える中核供給関係。"
+              "logoText": "NV"
+            }
+          ],
+          "internalEdges": [
+            {
+              "source": "tsmc",
+              "target": "nvidia",
+              "label": "先端半導体を製造",
+              "type": "semiconductor"
             }
           ]
         },
         {
-          "group": "Foundation Layer",
+          "id": "ai_datacenter",
+          "group": "AIデータセンター",
+          "label": "AIデータセンター",
           "nodes": [
             {
-              "id": "openai",
-              "label": "OpenAI",
-              "relation": "GPT vs Grok",
-              "type": "competition",
-              "logoText": "O",
-              "description": "GrokとChatGPTを軸にしたモデル・SNSデータ・計算資源の競争。"
-            }
-          ]
-        },
-        {
-          "group": "Foundation Layer",
-          "nodes": [
-            {
-              "id": "tesla",
-              "label": "Tesla",
-              "relation": "Embodied AI",
-              "type": "partnership",
-              "logoText": "TSL",
-              "description": "Teslaのロボティクス・車両データとxAIのモデル開発が接近する構図。"
+              "id": "colossus",
+              "label": "Colossus",
+              "relation": "大規模計算基盤",
+              "type": "datacenter",
+              "logoText": "CO"
             }
           ]
         }
@@ -1411,25 +1803,116 @@
       "center": {
         "id": "xai",
         "label": "xAI",
-        "type": "Frontier model company connected to X and large GPU clusters",
+        "relation": "",
+        "type": "company",
         "logoText": "xAI"
       },
       "outputs": [
         {
-          "group": "Products / Relationships",
+          "id": "products",
+          "group": "製品・サービス",
+          "label": "製品・サービス",
           "nodes": [
             {
               "id": "grok",
               "label": "Grok",
-              "relation": "model",
+              "relation": "",
               "type": "model",
-              "logoText": "G",
-              "description": "xAIの基盤モデル。Xとの接続と大規模GPUクラスタを背景に急成長。"
+              "logoText": "GR"
+            },
+            {
+              "id": "xai-api",
+              "label": "xAI API",
+              "relation": "",
+              "type": "product",
+              "logoText": "XA"
             }
           ]
         }
       ],
-      "competitors": []
+      "investments": [],
+      "partnerships": [
+        {
+          "id": "partnerships",
+          "group": "提携",
+          "label": "提携",
+          "nodes": [
+            {
+              "id": "dell",
+              "label": "Dell",
+              "relation": "",
+              "type": "partnership",
+              "logoText": "DELL"
+            },
+            {
+              "id": "supermicro",
+              "label": "Supermicro",
+              "relation": "",
+              "type": "partnership",
+              "logoText": "SMCI"
+            },
+            {
+              "id": "oracle",
+              "label": "Oracle",
+              "relation": "",
+              "type": "partnership",
+              "logoText": "OR"
+            }
+          ]
+        }
+      ],
+      "distribution": [],
+      "customers": [],
+      "suppliers": [],
+      "ecosystem": [],
+      "ownership": [],
+      "competitors": [
+        {
+          "id": "openai",
+          "label": "OpenAI",
+          "relation": "",
+          "type": "competitor",
+          "logoText": "O"
+        },
+        {
+          "id": "anthropic",
+          "label": "Anthropic",
+          "relation": "",
+          "type": "competitor",
+          "logoText": "A"
+        },
+        {
+          "id": "google-deepmind",
+          "label": "Google DeepMind",
+          "relation": "",
+          "type": "competitor",
+          "logoText": "GDM"
+        },
+        {
+          "id": "meta",
+          "label": "Meta",
+          "relation": "",
+          "type": "competitor",
+          "logoText": "M"
+        }
+      ],
+      "edges": [],
+      "investors": []
+    },
+    "bottomGroups": {
+      "partnership": [
+        "dell",
+        "supermicro",
+        "oracle"
+      ],
+      "competitor": [
+        "openai",
+        "anthropic",
+        "google-deepmind",
+        "meta"
+      ],
+      "investors": [],
+      "investments": []
     }
   },
   {
@@ -1494,8 +1977,9 @@
       "center": {
         "id": "langchain",
         "label": "LangChain",
-        "type": "Agent framework and orchestration platform",
-        "logoText": "LC"
+        "type": "company",
+        "logoText": "LC",
+        "relation": ""
       },
       "outputs": [
         {
@@ -1504,7 +1988,7 @@
             {
               "id": "langgraph",
               "label": "LangGraph",
-              "relation": "agent",
+              "relation": "",
               "type": "model",
               "logoText": "L",
               "description": "複雑なエージェントワークフローを状態グラフとして構築するLangChainの中核フレームワーク。"
@@ -1536,99 +2020,169 @@
           ]
         }
       ],
-      "competitors": []
+      "competitors": [],
+      "investors": [],
+      "investments": []
+    },
+    "bottomGroups": {
+      "investors": [],
+      "investments": []
     }
   },
   {
     "company": "perplexity",
-    "title": "Search Agent Challenger",
-    "summary": "検索とLLMを融合し、Google検索とAI回答市場の間に新しい導線を作る企業。",
-    "tree": [
-      "OpenAI",
-      "Anthropic",
-      "Perplexity",
-      "Search Agents",
-      "Citations",
-      "Consumer AI"
-    ],
+    "title": "Perplexity 検索AIエコシステム",
+    "summary": "Perplexityは検索体験と生成AIを組み合わせ、回答エンジンとエージェント型検索を展開している。",
+    "tree": [],
     "articles": [
       {
-        "title": "Perplexityが検索体験を再設計",
+        "title": "Perplexity 検索AIエコシステムを読む",
         "href": "/topic/perplexity/"
-      },
-      {
-        "title": "AI検索と回答エンジンの競争",
-        "href": "/topic/search-ai/"
-      },
-      {
-        "title": "検索広告市場へのAIの影響",
-        "href": "/topic/business/"
       }
     ],
     "left": [],
     "center": {
       "name": "Perplexity"
     },
-    "right": [
-      {
-        "name": "Perplexity Answer Engine",
-        "relation": "product",
-        "type": "model",
-        "description": "検索とLLMを融合した回答エンジン。Search Agents領域を代表するプロダクト。"
-      },
-      {
-        "name": "OpenAI",
-        "relation": "Search agent model",
-        "type": "model",
-        "description": "回答エンジンと基盤モデルAPIの接続。"
-      },
-      {
-        "name": "Anthropic",
-        "relation": "Claude search",
-        "type": "model",
-        "description": "検索拡張AIにおけるClaude利用・モデル選択の関係。"
-      }
-    ],
+    "right": [],
     "layers": {
-      "supply": [],
-      "center": {
-        "id": "perplexity",
-        "label": "Perplexity",
-        "type": "AI search and answer engine company",
-        "logoText": "PX"
-      },
-      "outputs": [
+      "supply": [
         {
-          "group": "Products / Relationships",
+          "id": "model_cloud",
+          "group": "モデル / クラウド基盤",
+          "label": "モデル / クラウド基盤",
           "nodes": [
-            {
-              "id": "perplexity-answer-engine",
-              "label": "Perplexity Answer Engine",
-              "relation": "product",
-              "type": "model",
-              "logoText": "PA",
-              "description": "検索とLLMを融合した回答エンジン。Search Agents領域を代表するプロダクト。"
-            },
             {
               "id": "openai",
               "label": "OpenAI",
-              "relation": "Search agent model",
+              "relation": "",
               "type": "model",
-              "logoText": "O",
-              "description": "回答エンジンと基盤モデルAPIの接続。"
+              "logoText": "O"
             },
             {
               "id": "anthropic",
               "label": "Anthropic",
-              "relation": "Claude search",
+              "relation": "",
               "type": "model",
-              "logoText": "A",
-              "description": "検索拡張AIにおけるClaude利用・モデル選択の関係。"
+              "logoText": "A"
+            },
+            {
+              "id": "nvidia",
+              "label": "NVIDIA",
+              "relation": "GPUを供給",
+              "type": "gpu_supply",
+              "logoText": "NV"
             }
           ]
         }
       ],
-      "competitors": []
+      "center": {
+        "id": "perplexity",
+        "label": "Perplexity",
+        "relation": "",
+        "type": "company",
+        "logoText": "PX"
+      },
+      "outputs": [
+        {
+          "id": "products",
+          "group": "製品・サービス",
+          "label": "製品・サービス",
+          "nodes": [
+            {
+              "id": "perplexity-answer-engine",
+              "label": "Perplexity Answer Engine",
+              "relation": "",
+              "type": "product",
+              "logoText": "PE"
+            },
+            {
+              "id": "perplexity-sonar",
+              "label": "Sonar",
+              "relation": "",
+              "type": "model",
+              "logoText": "SO"
+            }
+          ]
+        }
+      ],
+      "investments": [],
+      "partnerships": [
+        {
+          "id": "partnerships",
+          "group": "提携",
+          "label": "提携",
+          "nodes": [
+            {
+              "id": "openai",
+              "label": "OpenAI",
+              "relation": "",
+              "type": "partnership",
+              "logoText": "O"
+            },
+            {
+              "id": "anthropic",
+              "label": "Anthropic",
+              "relation": "",
+              "type": "partnership",
+              "logoText": "A"
+            }
+          ]
+        }
+      ],
+      "distribution": [],
+      "customers": [],
+      "suppliers": [],
+      "ecosystem": [],
+      "ownership": [],
+      "competitors": [
+        {
+          "id": "google",
+          "label": "Google",
+          "relation": "",
+          "type": "competitor",
+          "logoText": "G"
+        },
+        {
+          "id": "yahoo-search",
+          "label": "yahoo-search",
+          "relation": "",
+          "type": "competitor",
+          "logoText": "YS"
+        },
+        {
+          "id": "microsoft",
+          "label": "Microsoft",
+          "relation": "",
+          "type": "competitor",
+          "logoText": "MS"
+        }
+      ],
+      "edges": [],
+      "investors": [
+        {
+          "id": "nvidia",
+          "label": "NVIDIA",
+          "relation": "出資者",
+          "type": "investment",
+          "logoText": "NV"
+        }
+      ]
+    },
+    "bottomGroups": {
+      "partnership": [
+        "openai",
+        "anthropic"
+      ],
+      "competitor": [
+        "google",
+        "yahoo-search",
+        "microsoft"
+      ],
+      "investors": [
+        "nvidia"
+      ],
+      "investments": []
     }
   },
   {
@@ -1686,8 +2240,9 @@
       "center": {
         "id": "salesforce",
         "label": "Salesforce",
-        "type": "CRM and enterprise agent platform",
-        "logoText": "SF"
+        "type": "company",
+        "logoText": "SF",
+        "relation": ""
       },
       "outputs": [
         {
@@ -1696,7 +2251,7 @@
             {
               "id": "agentforce",
               "label": "Agentforce",
-              "relation": "agent",
+              "relation": "",
               "type": "model",
               "logoText": "A",
               "description": "SalesforceのCRM向けAIエージェント構想。営業・サポートの自動化を担う。"
@@ -1720,7 +2275,39 @@
           ]
         }
       ],
-      "competitors": []
+      "competitors": [],
+      "investments": [
+        {
+          "id": "cohere",
+          "label": "Cohere",
+          "relation": "投資先",
+          "type": "investment",
+          "logoText": "CO"
+        },
+        {
+          "id": "huggingface",
+          "label": "Hugging Face",
+          "relation": "投資先",
+          "type": "investment",
+          "logoText": "HF"
+        },
+        {
+          "id": "runway",
+          "label": "Runway",
+          "relation": "投資先",
+          "type": "investment",
+          "logoText": "RW"
+        }
+      ],
+      "investors": []
+    },
+    "bottomGroups": {
+      "investors": [],
+      "investments": [
+        "cohere",
+        "huggingface",
+        "runway"
+      ]
     }
   },
   {
@@ -1778,8 +2365,9 @@
       "center": {
         "id": "databricks",
         "label": "Databricks",
-        "type": "Enterprise data and AI platform",
-        "logoText": "DB"
+        "type": "company",
+        "logoText": "DB",
+        "relation": ""
       },
       "outputs": [
         {
@@ -1788,7 +2376,7 @@
             {
               "id": "mosaic-ai",
               "label": "Mosaic AI",
-              "relation": "product",
+              "relation": "",
               "type": "model",
               "logoText": "MA",
               "description": "Databricksのデータ基盤と生成AIを接続する企業向けAIスタック。"
@@ -1804,7 +2392,7 @@
             {
               "id": "cohere",
               "label": "Cohere",
-              "relation": "RAG stack",
+              "relation": "",
               "type": "model",
               "logoText": "CO",
               "description": "企業データ基盤とRAG向けモデルの接続。"
@@ -1812,7 +2400,13 @@
           ]
         }
       ],
-      "competitors": []
+      "competitors": [],
+      "investors": [],
+      "investments": []
+    },
+    "bottomGroups": {
+      "investors": [],
+      "investments": []
     }
   },
   {
@@ -1885,8 +2479,9 @@
       "center": {
         "id": "adobe",
         "label": "Adobe",
-        "type": "Creative software platform with generative AI",
-        "logoText": "AD"
+        "type": "company",
+        "logoText": "AD",
+        "relation": ""
       },
       "outputs": [
         {
@@ -1895,7 +2490,7 @@
             {
               "id": "adobe-firefly",
               "label": "Adobe Firefly",
-              "relation": "model",
+              "relation": "",
               "type": "model",
               "logoText": "AF",
               "description": "Adobe Creative Cloudに統合される生成AIモデル群。商用利用と制作ワークフローが強み。"
@@ -1911,7 +2506,13 @@
           ]
         }
       ],
-      "competitors": []
+      "competitors": [],
+      "investors": [],
+      "investments": []
+    },
+    "bottomGroups": {
+      "investors": [],
+      "investments": []
     }
   },
   {
@@ -1969,8 +2570,9 @@
       "center": {
         "id": "runway",
         "label": "Runway",
-        "type": "Generative video and creative workflow platform",
-        "logoText": "RW"
+        "type": "company",
+        "logoText": "RW",
+        "relation": ""
       },
       "outputs": [
         {
@@ -1979,7 +2581,7 @@
             {
               "id": "runway-gen-3",
               "label": "Runway Gen-3",
-              "relation": "model",
+              "relation": "",
               "type": "model",
               "logoText": "RG",
               "description": "Runwayの動画生成モデル。映像制作向けAIツールとして注目される。"
@@ -2003,7 +2605,39 @@
           ]
         }
       ],
-      "competitors": []
+      "competitors": [],
+      "investments": [],
+      "investors": [
+        {
+          "id": "google",
+          "label": "Google",
+          "relation": "出資者",
+          "type": "investment",
+          "logoText": "G"
+        },
+        {
+          "id": "nvidia",
+          "label": "NVIDIA",
+          "relation": "出資者",
+          "type": "investment",
+          "logoText": "NV"
+        },
+        {
+          "id": "salesforce",
+          "label": "Salesforce",
+          "relation": "出資者",
+          "type": "investment",
+          "logoText": "SF"
+        }
+      ]
+    },
+    "bottomGroups": {
+      "investors": [
+        "google",
+        "nvidia",
+        "salesforce"
+      ],
+      "investments": []
     }
   },
   {
@@ -2077,8 +2711,9 @@
       "center": {
         "id": "tesla",
         "label": "Tesla",
-        "type": "Embodied AI and autonomy company",
-        "logoText": "TSL"
+        "type": "company",
+        "logoText": "TSL",
+        "relation": ""
       },
       "outputs": [
         {
@@ -2087,7 +2722,7 @@
             {
               "id": "optimus",
               "label": "Optimus",
-              "relation": "product",
+              "relation": "",
               "type": "model",
               "logoText": "O",
               "description": "Teslaのヒューマノイドロボット。製造現場と汎用ロボティクスの接点。"
@@ -2103,62 +2738,27 @@
           ]
         }
       ],
-      "competitors": []
+      "competitors": [],
+      "investors": [],
+      "investments": []
+    },
+    "bottomGroups": {
+      "investors": [],
+      "investments": []
     }
   },
   {
     "company": "huggingface",
-    "title": "Open Source AI Hub",
-    "summary": "Meta、Mistral、DeepSeekなどのモデルを開発者に届ける、オープンAIエコシステムの流通基盤。",
-    "tree": [
-      "Hugging Face",
-      "Meta",
-      "Mistral AI",
-      "DeepSeek",
-      "IBM",
-      "Developers",
-      "Open Source"
-    ],
+    "title": "Hugging Face 開発者エコシステム",
+    "summary": "Hugging Faceはオープンモデル提供元と企業AI基盤を接続し、モデル配布と開発者ツールの中心になっている。",
+    "tree": [],
     "articles": [
       {
-        "title": "Hugging Faceが担うAIモデル流通",
+        "title": "Hugging Face 開発者エコシステムを読む",
         "href": "/topic/huggingface/"
-      },
-      {
-        "title": "オープンモデルの企業導入",
-        "href": "/topic/open-source/"
-      },
-      {
-        "title": "DeepSeekとオープンウェイトの衝撃",
-        "href": "/topic/deepseek/"
       }
     ],
-    "left": [
-      {
-        "name": "Meta",
-        "relation": "Open model hub",
-        "type": "platform",
-        "description": "Llamaを中心としたオープンモデル配布・開発者エコシステム。"
-      },
-      {
-        "name": "DeepSeek",
-        "relation": "Open weights",
-        "type": "platform",
-        "description": "DeepSeekモデルの世界的な開発者利用を支える配布経路。"
-      },
-      {
-        "name": "Mistral AI",
-        "relation": "Model distribution",
-        "type": "platform",
-        "description": "Mistralのオープンモデルと開発者コミュニティの接続。"
-      },
-      {
-        "name": "IBM",
-        "relation": "Open enterprise AI",
-        "type": "platform",
-        "description": "企業AI、オープンモデル、ガバナンスを接続する関係。"
-      }
-    ],
+    "left": [],
     "center": {
       "name": "Hugging Face"
     },
@@ -2166,54 +2766,44 @@
     "layers": {
       "supply": [
         {
-          "group": "Upstream / Partners",
+          "id": "open_model_sources",
+          "group": "オープンモデル提供元",
+          "label": "オープンモデル提供元",
           "nodes": [
             {
               "id": "meta",
               "label": "Meta",
-              "relation": "Open model hub",
-              "type": "platform",
-              "logoText": "M",
-              "description": "Llamaを中心としたオープンモデル配布・開発者エコシステム。"
-            }
-          ]
-        },
-        {
-          "group": "Foundation Layer",
-          "nodes": [
+              "relation": "",
+              "type": "open_source",
+              "logoText": "M"
+            },
             {
               "id": "deepseek",
               "label": "DeepSeek",
-              "relation": "Open weights",
-              "type": "platform",
-              "logoText": "DS",
-              "description": "DeepSeekモデルの世界的な開発者利用を支える配布経路。"
-            }
-          ]
-        },
-        {
-          "group": "Foundation Layer",
-          "nodes": [
+              "relation": "",
+              "type": "open_source",
+              "logoText": "DS"
+            },
             {
               "id": "mistral",
               "label": "Mistral AI",
-              "relation": "Model distribution",
-              "type": "platform",
-              "logoText": "MI",
-              "description": "Mistralのオープンモデルと開発者コミュニティの接続。"
+              "relation": "",
+              "type": "open_source",
+              "logoText": "MI"
             }
           ]
         },
         {
-          "group": "Foundation Layer",
+          "id": "enterprise_ai_platform",
+          "group": "企業AI基盤",
+          "label": "企業AI基盤",
           "nodes": [
             {
               "id": "ibm",
               "label": "IBM",
-              "relation": "Open enterprise AI",
-              "type": "platform",
-              "logoText": "IBM",
-              "description": "企業AI、オープンモデル、ガバナンスを接続する関係。"
+              "relation": "",
+              "type": "partnership",
+              "logoText": "IBM"
             }
           ]
         }
@@ -2221,16 +2811,229 @@
       "center": {
         "id": "huggingface",
         "label": "Hugging Face",
-        "type": "Open model hub and developer platform",
+        "relation": "",
+        "type": "company",
         "logoText": "HF"
       },
       "outputs": [
         {
-          "group": "Products / Relationships",
-          "nodes": []
+          "id": "products",
+          "group": "製品・サービス",
+          "label": "製品・サービス",
+          "nodes": [],
+          "subgroups": [
+            {
+              "id": "distribution",
+              "group": "モデル配布",
+              "label": "モデル配布",
+              "nodes": [
+                {
+                  "id": "huggingface-hub",
+                  "label": "Hugging Face Hub",
+                  "relation": "",
+                  "type": "product",
+                  "logoText": "HU"
+                }
+              ]
+            },
+            {
+              "id": "tools",
+              "group": "開発者ツール",
+              "label": "開発者ツール",
+              "nodes": [
+                {
+                  "id": "transformers",
+                  "label": "Transformers",
+                  "relation": "",
+                  "type": "product",
+                  "logoText": "TR"
+                },
+                {
+                  "id": "datasets",
+                  "label": "Datasets",
+                  "relation": "",
+                  "type": "product",
+                  "logoText": "DA"
+                },
+                {
+                  "id": "spaces",
+                  "label": "Spaces",
+                  "relation": "",
+                  "type": "product",
+                  "logoText": "SP"
+                }
+              ]
+            }
+          ]
         }
       ],
-      "competitors": []
+      "investments": [],
+      "partnerships": [
+        {
+          "id": "partnerships",
+          "group": "提携",
+          "label": "提携",
+          "nodes": [
+            {
+              "id": "ibm",
+              "label": "IBM",
+              "relation": "",
+              "type": "partnership",
+              "logoText": "IBM"
+            },
+            {
+              "id": "amd",
+              "label": "AMD",
+              "relation": "",
+              "type": "partnership",
+              "logoText": "AMD"
+            },
+            {
+              "id": "microsoft",
+              "label": "Microsoft",
+              "relation": "",
+              "type": "partnership",
+              "logoText": "MS"
+            }
+          ]
+        }
+      ],
+      "distribution": [],
+      "customers": [],
+      "suppliers": [],
+      "ecosystem": [
+        {
+          "id": "ecosystem",
+          "group": "AI投資・提携",
+          "label": "AI投資・提携",
+          "nodes": [
+            {
+              "id": "meta",
+              "label": "Meta",
+              "relation": "",
+              "type": "ecosystem",
+              "logoText": "M"
+            },
+            {
+              "id": "deepseek",
+              "label": "DeepSeek",
+              "relation": "",
+              "type": "ecosystem",
+              "logoText": "DS"
+            },
+            {
+              "id": "mistral",
+              "label": "Mistral AI",
+              "relation": "",
+              "type": "ecosystem",
+              "logoText": "MI"
+            }
+          ]
+        }
+      ],
+      "ownership": [],
+      "competitors": [
+        {
+          "id": "github-copilot",
+          "label": "github-copilot",
+          "relation": "",
+          "type": "competitor",
+          "logoText": "GC"
+        },
+        {
+          "id": "databricks",
+          "label": "Databricks",
+          "relation": "",
+          "type": "competitor",
+          "logoText": "DB"
+        }
+      ],
+      "edges": [],
+      "investors": [
+        {
+          "id": "salesforce",
+          "label": "Salesforce",
+          "relation": "出資者",
+          "type": "investment",
+          "logoText": "SF"
+        },
+        {
+          "id": "google",
+          "label": "Google",
+          "relation": "出資者",
+          "type": "investment",
+          "logoText": "G"
+        },
+        {
+          "id": "amazon",
+          "label": "Amazon / AWS",
+          "relation": "出資者",
+          "type": "investment",
+          "logoText": "AWS"
+        },
+        {
+          "id": "nvidia",
+          "label": "NVIDIA",
+          "relation": "出資者",
+          "type": "investment",
+          "logoText": "NV"
+        },
+        {
+          "id": "ibm",
+          "label": "IBM",
+          "relation": "出資者",
+          "type": "investment",
+          "logoText": "IBM"
+        },
+        {
+          "id": "amd",
+          "label": "AMD",
+          "relation": "出資者",
+          "type": "investment",
+          "logoText": "AMD"
+        },
+        {
+          "id": "intel",
+          "label": "Intel",
+          "relation": "出資者",
+          "type": "investment",
+          "logoText": "IN"
+        },
+        {
+          "id": "qualcomm",
+          "label": "Qualcomm",
+          "relation": "出資者",
+          "type": "investment",
+          "logoText": "QC"
+        }
+      ]
+    },
+    "bottomGroups": {
+      "partnership": [
+        "ibm",
+        "amd",
+        "microsoft"
+      ],
+      "ecosystem": [
+        "meta",
+        "deepseek",
+        "mistral"
+      ],
+      "competitor": [
+        "github-copilot",
+        "databricks"
+      ],
+      "investors": [
+        "salesforce",
+        "google",
+        "amazon",
+        "nvidia",
+        "ibm",
+        "amd",
+        "intel",
+        "qualcomm"
+      ],
+      "investments": []
     }
   },
   {
@@ -2304,8 +3107,9 @@
       "center": {
         "id": "coreweave",
         "label": "CoreWeave",
-        "type": "Specialized GPU cloud provider",
-        "logoText": "CW"
+        "type": "company",
+        "logoText": "CW",
+        "relation": ""
       },
       "outputs": [
         {
@@ -2330,73 +3134,2004 @@
           ]
         }
       ],
-      "competitors": []
+      "competitors": [],
+      "investors": [],
+      "investments": []
+    },
+    "bottomGroups": {
+      "investors": [],
+      "investments": []
     }
   },
   {
-    "company": "amazon",
-    "title": "Amazon / AWSのAI基盤構造",
-    "summary": "AWSはTrainium、Bedrock、Anthropic連携を通じて、企業AIの計算基盤と提供チャネルを担っている。",
+    "company": "amd",
+    "title": "AMD AI GPUエコシステム",
+    "summary": "AMDはTSMC製造を基盤に、Instinct MIシリーズでクラウド、AI企業、サーバーベンダーとの協業を広げている。",
+    "tree": [],
+    "articles": [
+      {
+        "title": "AMD AI GPUエコシステムを読む",
+        "href": "/topic/amd/"
+      }
+    ],
+    "left": [],
+    "center": {
+      "name": "AMD"
+    },
+    "right": [],
+    "layers": {
+      "supply": [
+        {
+          "id": "foundry",
+          "group": "半導体製造",
+          "label": "半導体製造",
+          "nodes": [
+            {
+              "id": "tsmc",
+              "label": "TSMC",
+              "relation": "先端半導体を製造",
+              "type": "semiconductor",
+              "logoText": "TS"
+            }
+          ]
+        }
+      ],
+      "center": {
+        "id": "amd",
+        "label": "AMD",
+        "relation": "",
+        "type": "company",
+        "logoText": "AMD"
+      },
+      "outputs": [
+        {
+          "id": "gpu_products",
+          "group": "GPU製品",
+          "label": "GPU製品",
+          "nodes": [
+            {
+              "id": "mi300x",
+              "label": "MI300X",
+              "relation": "",
+              "type": "product",
+              "logoText": "MI"
+            },
+            {
+              "id": "mi325x",
+              "label": "MI325X",
+              "relation": "",
+              "type": "product",
+              "logoText": "MI"
+            },
+            {
+              "id": "mi350",
+              "label": "MI350",
+              "relation": "",
+              "type": "product",
+              "logoText": "MI"
+            },
+            {
+              "id": "mi400",
+              "label": "MI400",
+              "relation": "",
+              "type": "product",
+              "logoText": "MI"
+            }
+          ]
+        },
+        {
+          "id": "partners",
+          "group": "供給先・協業先",
+          "label": "供給先・協業先",
+          "nodes": [],
+          "subgroups": [
+            {
+              "id": "cloud",
+              "group": "クラウド基盤",
+              "label": "クラウド基盤",
+              "nodes": [
+                {
+                  "id": "microsoft-azure",
+                  "label": "Microsoft Azure",
+                  "relation": "",
+                  "type": "customer",
+                  "logoText": "AZ"
+                },
+                {
+                  "id": "oracle-oci",
+                  "label": "Oracle OCI",
+                  "relation": "",
+                  "type": "customer",
+                  "logoText": "OCI"
+                },
+                {
+                  "id": "ibm-cloud",
+                  "label": "IBM Cloud",
+                  "relation": "",
+                  "type": "customer",
+                  "logoText": "IBM"
+                }
+              ]
+            },
+            {
+              "id": "ai_companies",
+              "group": "AI企業",
+              "label": "AI企業",
+              "nodes": [
+                {
+                  "id": "openai",
+                  "label": "OpenAI",
+                  "relation": "",
+                  "type": "customer",
+                  "logoText": "O"
+                },
+                {
+                  "id": "meta",
+                  "label": "Meta",
+                  "relation": "",
+                  "type": "customer",
+                  "logoText": "M"
+                },
+                {
+                  "id": "xai",
+                  "label": "xAI",
+                  "relation": "",
+                  "type": "customer",
+                  "logoText": "xAI"
+                },
+                {
+                  "id": "huggingface",
+                  "label": "Hugging Face",
+                  "relation": "",
+                  "type": "customer",
+                  "logoText": "HF"
+                }
+              ]
+            },
+            {
+              "id": "server",
+              "group": "Server / Infra",
+              "label": "Server / Infra",
+              "nodes": [
+                {
+                  "id": "hpe",
+                  "label": "HPE",
+                  "relation": "",
+                  "type": "partnership",
+                  "logoText": "HPE"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "investments": [
+        {
+          "id": "huggingface",
+          "label": "Hugging Face",
+          "relation": "投資先",
+          "type": "investment",
+          "logoText": "HF"
+        }
+      ],
+      "partnerships": [
+        {
+          "id": "partnerships",
+          "group": "提携",
+          "label": "提携",
+          "nodes": [
+            {
+              "id": "microsoft",
+              "label": "Microsoft",
+              "relation": "",
+              "type": "partnership",
+              "logoText": "MS"
+            },
+            {
+              "id": "oracle",
+              "label": "Oracle",
+              "relation": "",
+              "type": "partnership",
+              "logoText": "OR"
+            },
+            {
+              "id": "openai",
+              "label": "OpenAI",
+              "relation": "",
+              "type": "partnership",
+              "logoText": "O"
+            },
+            {
+              "id": "meta",
+              "label": "Meta",
+              "relation": "",
+              "type": "partnership",
+              "logoText": "M"
+            },
+            {
+              "id": "xai",
+              "label": "xAI",
+              "relation": "",
+              "type": "partnership",
+              "logoText": "xAI"
+            },
+            {
+              "id": "hpe",
+              "label": "HPE",
+              "relation": "",
+              "type": "partnership",
+              "logoText": "HPE"
+            },
+            {
+              "id": "ibm",
+              "label": "IBM",
+              "relation": "",
+              "type": "partnership",
+              "logoText": "IBM"
+            }
+          ]
+        }
+      ],
+      "distribution": [],
+      "customers": [],
+      "suppliers": [],
+      "ecosystem": [],
+      "ownership": [],
+      "competitors": [
+        {
+          "id": "nvidia",
+          "label": "NVIDIA",
+          "relation": "",
+          "type": "competitor",
+          "logoText": "NV"
+        },
+        {
+          "id": "intel",
+          "label": "Intel",
+          "relation": "",
+          "type": "competitor",
+          "logoText": "IN"
+        }
+      ],
+      "edges": [],
+      "investors": []
+    },
+    "bottomGroups": {
+      "partnership": [
+        "microsoft",
+        "oracle",
+        "openai",
+        "meta",
+        "xai",
+        "hpe",
+        "ibm"
+      ],
+      "competitor": [
+        "nvidia",
+        "intel"
+      ],
+      "investors": [],
+      "investments": [
+        "huggingface"
+      ]
+    }
+  },
+  {
+    "company": "tsmc",
+    "title": "TSMC AI半導体製造ネットワーク",
+    "summary": "TSMCは製造装置・材料メーカーに支えられ、AI GPU、カスタムAIチップ、下流AI企業の成長を支える製造中核である。",
+    "tree": [],
+    "articles": [
+      {
+        "title": "TSMC AI半導体製造ネットワークを読む",
+        "href": "/topic/tsmc/"
+      }
+    ],
+    "left": [],
+    "center": {
+      "name": "TSMC"
+    },
+    "right": [],
+    "layers": {
+      "supply": [
+        {
+          "id": "equipment_materials",
+          "group": "製造装置・材料",
+          "label": "製造装置・材料",
+          "nodes": [
+            {
+              "id": "asml",
+              "label": "ASML",
+              "relation": "供給元",
+              "type": "supplier",
+              "logoText": "AS"
+            },
+            {
+              "id": "applied-materials",
+              "label": "Applied Materials",
+              "relation": "供給元",
+              "type": "supplier",
+              "logoText": "AMAT"
+            },
+            {
+              "id": "lam-research",
+              "label": "Lam Research",
+              "relation": "供給元",
+              "type": "supplier",
+              "logoText": "LAM"
+            }
+          ]
+        }
+      ],
+      "center": {
+        "id": "tsmc",
+        "label": "TSMC",
+        "relation": "",
+        "type": "company",
+        "logoText": "TS"
+      },
+      "outputs": [
+        {
+          "id": "ai_chip_customers",
+          "group": "AIチップ顧客",
+          "label": "AIチップ顧客",
+          "nodes": [],
+          "subgroups": [
+            {
+              "id": "gpu",
+              "group": "GPU",
+              "label": "GPU",
+              "nodes": [
+                {
+                  "id": "nvidia",
+                  "label": "NVIDIA",
+                  "relation": "",
+                  "type": "customer",
+                  "logoText": "NV"
+                },
+                {
+                  "id": "amd",
+                  "label": "AMD",
+                  "relation": "",
+                  "type": "customer",
+                  "logoText": "AMD"
+                },
+                {
+                  "id": "broadcom",
+                  "label": "Broadcom",
+                  "relation": "",
+                  "type": "customer",
+                  "logoText": "BC"
+                }
+              ]
+            },
+            {
+              "id": "cloud_custom",
+              "group": "クラウド / カスタムAIチップ",
+              "label": "クラウド / カスタムAIチップ",
+              "nodes": [
+                {
+                  "id": "google",
+                  "label": "Google",
+                  "relation": "",
+                  "type": "customer",
+                  "logoText": "G"
+                },
+                {
+                  "id": "amazon",
+                  "label": "Amazon / AWS",
+                  "relation": "",
+                  "type": "customer",
+                  "logoText": "AWS"
+                },
+                {
+                  "id": "microsoft",
+                  "label": "Microsoft",
+                  "relation": "",
+                  "type": "customer",
+                  "logoText": "MS"
+                }
+              ]
+            },
+            {
+              "id": "mobile_edge",
+              "group": "モバイル / エッジ",
+              "label": "モバイル / エッジ",
+              "nodes": [
+                {
+                  "id": "apple",
+                  "label": "Apple",
+                  "relation": "",
+                  "type": "customer",
+                  "logoText": "AP"
+                },
+                {
+                  "id": "qualcomm",
+                  "label": "Qualcomm",
+                  "relation": "",
+                  "type": "customer",
+                  "logoText": "QC"
+                },
+                {
+                  "id": "mediatek",
+                  "label": "MediaTek",
+                  "relation": "",
+                  "type": "customer",
+                  "logoText": "MTK"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "downstream",
+          "group": "下流AI企業",
+          "label": "下流AI企業",
+          "nodes": [
+            {
+              "id": "openai",
+              "label": "OpenAI",
+              "relation": "",
+              "type": "ecosystem",
+              "logoText": "O"
+            },
+            {
+              "id": "xai",
+              "label": "xAI",
+              "relation": "",
+              "type": "ecosystem",
+              "logoText": "xAI"
+            },
+            {
+              "id": "anthropic",
+              "label": "Anthropic",
+              "relation": "",
+              "type": "ecosystem",
+              "logoText": "A"
+            },
+            {
+              "id": "meta",
+              "label": "Meta",
+              "relation": "",
+              "type": "ecosystem",
+              "logoText": "M"
+            }
+          ]
+        }
+      ],
+      "investments": [],
+      "partnerships": [
+        {
+          "id": "partnerships",
+          "group": "提携",
+          "label": "提携",
+          "nodes": [
+            {
+              "id": "asml",
+              "label": "ASML",
+              "relation": "",
+              "type": "partnership",
+              "logoText": "AS"
+            },
+            {
+              "id": "sony-semiconductor",
+              "label": "Sony Semiconductor",
+              "relation": "",
+              "type": "partnership",
+              "logoText": "SS"
+            }
+          ]
+        }
+      ],
+      "distribution": [],
+      "customers": [
+        {
+          "id": "customers",
+          "group": "主要顧客・供給先",
+          "label": "主要顧客・供給先",
+          "nodes": [
+            {
+              "id": "nvidia",
+              "label": "NVIDIA",
+              "relation": "",
+              "type": "customer",
+              "logoText": "NV"
+            },
+            {
+              "id": "amd",
+              "label": "AMD",
+              "relation": "",
+              "type": "customer",
+              "logoText": "AMD"
+            },
+            {
+              "id": "apple",
+              "label": "Apple",
+              "relation": "",
+              "type": "customer",
+              "logoText": "AP"
+            },
+            {
+              "id": "broadcom",
+              "label": "Broadcom",
+              "relation": "",
+              "type": "customer",
+              "logoText": "BC"
+            },
+            {
+              "id": "qualcomm",
+              "label": "Qualcomm",
+              "relation": "",
+              "type": "customer",
+              "logoText": "QC"
+            }
+          ]
+        }
+      ],
+      "suppliers": [],
+      "ecosystem": [],
+      "ownership": [],
+      "competitors": [
+        {
+          "id": "samsung-semiconductor",
+          "label": "Samsung Semiconductor",
+          "relation": "",
+          "type": "competitor",
+          "logoText": "SS"
+        },
+        {
+          "id": "intel",
+          "label": "Intel",
+          "relation": "",
+          "type": "competitor",
+          "logoText": "IN"
+        },
+        {
+          "id": "globalfoundries",
+          "label": "GlobalFoundries",
+          "relation": "",
+          "type": "competitor",
+          "logoText": "GF"
+        }
+      ],
+      "edges": [],
+      "investors": []
+    },
+    "bottomGroups": {
+      "partnership": [
+        "asml",
+        "sony-semiconductor"
+      ],
+      "competitor": [
+        "samsung-semiconductor",
+        "intel",
+        "globalfoundries"
+      ],
+      "investors": [],
+      "investments": []
+    }
+  },
+  {
+    "company": "softbank",
+    "title": "SoftBank AIインフラ構想",
+    "summary": "SoftBankはArm、OpenAI、Oracle、国内通信基盤を接続し、AIインフラとサービス展開を狙っている。",
+    "tree": [],
+    "articles": [
+      {
+        "title": "SoftBank AIインフラ構想を読む",
+        "href": "/topic/softbank/"
+      }
+    ],
+    "left": [],
+    "center": {
+      "name": "SoftBank"
+    },
+    "right": [],
+    "layers": {
+      "supply": [
+        {
+          "id": "assets",
+          "group": "基盤資産",
+          "label": "基盤資産",
+          "nodes": [
+            {
+              "id": "arm",
+              "label": "Arm",
+              "relation": "供給元",
+              "type": "supplier",
+              "logoText": "ARM"
+            },
+            {
+              "id": "ntt",
+              "label": "NTT",
+              "relation": "",
+              "type": "partnership",
+              "logoText": "NTT"
+            },
+            {
+              "id": "oracle",
+              "label": "Oracle",
+              "relation": "クラウド基盤を提供",
+              "type": "cloud",
+              "logoText": "OR"
+            }
+          ]
+        }
+      ],
+      "center": {
+        "id": "softbank",
+        "label": "SoftBank",
+        "relation": "",
+        "type": "company",
+        "logoText": "SB"
+      },
+      "outputs": [
+        {
+          "id": "ecosystem",
+          "group": "AI投資・提携",
+          "label": "AI投資・提携",
+          "nodes": [
+            {
+              "id": "openai",
+              "label": "OpenAI",
+              "relation": "",
+              "type": "partnership",
+              "logoText": "O"
+            },
+            {
+              "id": "line-yahoo",
+              "label": "LINE Yahoo",
+              "relation": "",
+              "type": "ecosystem",
+              "logoText": "LY"
+            },
+            {
+              "id": "sakura-internet",
+              "label": "Sakura Internet",
+              "relation": "",
+              "type": "ecosystem",
+              "logoText": "SI"
+            }
+          ]
+        }
+      ],
+      "investments": [
+        {
+          "id": "openai",
+          "label": "OpenAI",
+          "relation": "投資先",
+          "type": "investment",
+          "logoText": "O"
+        }
+      ],
+      "partnerships": [
+        {
+          "id": "partnerships",
+          "group": "提携",
+          "label": "提携",
+          "nodes": [
+            {
+              "id": "openai",
+              "label": "OpenAI",
+              "relation": "",
+              "type": "partnership",
+              "logoText": "O"
+            },
+            {
+              "id": "oracle",
+              "label": "Oracle",
+              "relation": "",
+              "type": "partnership",
+              "logoText": "OR"
+            },
+            {
+              "id": "line-yahoo",
+              "label": "LINE Yahoo",
+              "relation": "",
+              "type": "partnership",
+              "logoText": "LY"
+            },
+            {
+              "id": "ntt",
+              "label": "NTT",
+              "relation": "",
+              "type": "partnership",
+              "logoText": "NTT"
+            }
+          ]
+        }
+      ],
+      "distribution": [],
+      "customers": [],
+      "suppliers": [],
+      "ecosystem": [],
+      "ownership": [
+        {
+          "id": "ownership",
+          "group": "親会社・所有",
+          "label": "親会社・所有",
+          "nodes": [
+            {
+              "id": "arm",
+              "label": "Arm",
+              "relation": "",
+              "type": "ownership",
+              "logoText": "ARM"
+            }
+          ]
+        }
+      ],
+      "competitors": [
+        {
+          "id": "kddi",
+          "label": "kddi",
+          "relation": "",
+          "type": "competitor",
+          "logoText": "K"
+        },
+        {
+          "id": "rakuten-ai",
+          "label": "Rakuten AI",
+          "relation": "",
+          "type": "competitor",
+          "logoText": "RA"
+        }
+      ],
+      "edges": [],
+      "investors": []
+    },
+    "bottomGroups": {
+      "partnership": [
+        "openai",
+        "oracle",
+        "line-yahoo",
+        "ntt"
+      ],
+      "ownership": [
+        "arm"
+      ],
+      "competitor": [
+        "kddi",
+        "rakuten-ai"
+      ],
+      "investors": [],
+      "investments": [
+        "openai"
+      ]
+    }
+  },
+  {
+    "company": "sakana-ai",
+    "title": "Sakana AI 日本発モデル研究",
+    "summary": "Sakana AIは日本発のAI研究企業として、効率的モデル、進化的手法、国内AIエコシステムと結びついている。",
+    "tree": [],
+    "articles": [
+      {
+        "title": "Sakana AI 日本発モデル研究を読む",
+        "href": "/topic/sakana-ai/"
+      }
+    ],
+    "left": [],
+    "center": {
+      "name": "Sakana AI"
+    },
+    "right": [],
+    "layers": {
+      "supply": [
+        {
+          "id": "research_compute",
+          "group": "研究・計算基盤",
+          "label": "研究・計算基盤",
+          "nodes": [
+            {
+              "id": "nvidia",
+              "label": "NVIDIA",
+              "relation": "GPUを供給",
+              "type": "gpu_supply",
+              "logoText": "NV"
+            },
+            {
+              "id": "preferred-networks",
+              "label": "Preferred Networks",
+              "relation": "",
+              "type": "partnership",
+              "logoText": "PFN"
+            }
+          ]
+        }
+      ],
+      "center": {
+        "id": "sakana-ai",
+        "label": "Sakana AI",
+        "relation": "",
+        "type": "company",
+        "logoText": "SA"
+      },
+      "outputs": [
+        {
+          "id": "models",
+          "group": "モデル",
+          "label": "モデル",
+          "nodes": [
+            {
+              "id": "sakana-lm",
+              "label": "Sakana AI Models",
+              "relation": "",
+              "type": "model",
+              "logoText": "EV"
+            }
+          ]
+        }
+      ],
+      "investments": [],
+      "partnerships": [
+        {
+          "id": "partnerships",
+          "group": "提携",
+          "label": "提携",
+          "nodes": [
+            {
+              "id": "nvidia",
+              "label": "NVIDIA",
+              "relation": "",
+              "type": "partnership",
+              "logoText": "NV"
+            },
+            {
+              "id": "preferred-networks",
+              "label": "Preferred Networks",
+              "relation": "",
+              "type": "partnership",
+              "logoText": "PFN"
+            }
+          ]
+        }
+      ],
+      "distribution": [],
+      "customers": [],
+      "suppliers": [],
+      "ecosystem": [],
+      "ownership": [],
+      "competitors": [
+        {
+          "id": "rinna",
+          "label": "rinna",
+          "relation": "",
+          "type": "competitor",
+          "logoText": "RI"
+        },
+        {
+          "id": "stockmark",
+          "label": "Stockmark",
+          "relation": "",
+          "type": "competitor",
+          "logoText": "SM"
+        },
+        {
+          "id": "cyberagent-ai",
+          "label": "CyberAgent AI Lab",
+          "relation": "",
+          "type": "competitor",
+          "logoText": "CY"
+        }
+      ],
+      "edges": [],
+      "investors": [
+        {
+          "id": "nvidia",
+          "label": "NVIDIA",
+          "relation": "出資者",
+          "type": "investment",
+          "logoText": "NV"
+        }
+      ]
+    },
+    "bottomGroups": {
+      "partnership": [
+        "nvidia",
+        "preferred-networks"
+      ],
+      "competitor": [
+        "rinna",
+        "stockmark",
+        "cyberagent-ai"
+      ],
+      "investors": [
+        "nvidia"
+      ],
+      "investments": []
+    }
+  },
+  {
+    "company": "preferred-networks",
+    "title": "Preferred Networks 産業AI基盤",
+    "summary": "Preferred NetworksはAI研究、産業応用、半導体・計算基盤を横断し、日本の産業AIを支える。",
+    "tree": [],
+    "articles": [
+      {
+        "title": "Preferred Networks 産業AI基盤を読む",
+        "href": "/topic/preferred-networks/"
+      }
+    ],
+    "left": [],
+    "center": {
+      "name": "Preferred Networks"
+    },
+    "right": [],
+    "layers": {
+      "supply": [
+        {
+          "id": "compute_chip",
+          "group": "計算・半導体基盤",
+          "label": "計算・半導体基盤",
+          "nodes": [
+            {
+              "id": "tsmc",
+              "label": "TSMC",
+              "relation": "先端半導体を製造",
+              "type": "semiconductor",
+              "logoText": "TS"
+            },
+            {
+              "id": "nvidia",
+              "label": "NVIDIA",
+              "relation": "GPU供給",
+              "type": "gpu_supply",
+              "logoText": "NV"
+            }
+          ]
+        }
+      ],
+      "center": {
+        "id": "preferred-networks",
+        "label": "Preferred Networks",
+        "relation": "",
+        "type": "company",
+        "logoText": "PFN"
+      },
+      "outputs": [
+        {
+          "id": "outputs",
+          "group": "GPU製品・基盤",
+          "label": "GPU製品・基盤",
+          "nodes": [
+            {
+              "id": "pfn-ca",
+              "label": "Preferred Networks AI基盤",
+              "relation": "",
+              "type": "product",
+              "logoText": "PR"
+            },
+            {
+              "id": "preferred-robotics",
+              "label": "Preferred Robotics",
+              "relation": "",
+              "type": "ecosystem",
+              "logoText": "PR"
+            },
+            {
+              "id": "fanuc",
+              "label": "FANUC",
+              "relation": "",
+              "type": "customer",
+              "logoText": "FC"
+            }
+          ]
+        }
+      ],
+      "investments": [],
+      "partnerships": [
+        {
+          "id": "partnerships",
+          "group": "提携",
+          "label": "提携",
+          "nodes": [
+            {
+              "id": "fanuc",
+              "label": "FANUC",
+              "relation": "",
+              "type": "partnership",
+              "logoText": "FC"
+            },
+            {
+              "id": "preferred-robotics",
+              "label": "Preferred Robotics",
+              "relation": "",
+              "type": "partnership",
+              "logoText": "PR"
+            },
+            {
+              "id": "nvidia",
+              "label": "NVIDIA",
+              "relation": "",
+              "type": "partnership",
+              "logoText": "NV"
+            }
+          ]
+        }
+      ],
+      "distribution": [],
+      "customers": [],
+      "suppliers": [],
+      "ecosystem": [],
+      "ownership": [],
+      "competitors": [
+        {
+          "id": "abeja",
+          "label": "ABEJA",
+          "relation": "",
+          "type": "competitor",
+          "logoText": "AB"
+        },
+        {
+          "id": "fixstars",
+          "label": "Fixstars",
+          "relation": "",
+          "type": "competitor",
+          "logoText": "FX"
+        },
+        {
+          "id": "pksha-technology",
+          "label": "PKSHA Technology",
+          "relation": "",
+          "type": "competitor",
+          "logoText": "PK"
+        }
+      ],
+      "edges": [],
+      "investors": []
+    },
+    "bottomGroups": {
+      "partnership": [
+        "fanuc",
+        "preferred-robotics",
+        "nvidia"
+      ],
+      "competitor": [
+        "abeja",
+        "fixstars",
+        "pksha-technology"
+      ],
+      "investors": [],
+      "investments": []
+    }
+  },
+  {
+    "company": "rapidus",
+    "title": "Rapidus 先端半導体エコシステム",
+    "summary": "Rapidusは日本の先端半導体製造を担う構想として、装置・材料・研究機関・下流AI企業との接続が重要になる。",
+    "tree": [],
+    "articles": [
+      {
+        "title": "Rapidus 先端半導体エコシステムを読む",
+        "href": "/topic/rapidus/"
+      }
+    ],
+    "left": [],
+    "center": {
+      "name": "Rapidus"
+    },
+    "right": [],
+    "layers": {
+      "supply": [
+        {
+          "id": "equipment",
+          "group": "製造装置・材料",
+          "label": "製造装置・材料",
+          "nodes": [
+            {
+              "id": "asml",
+              "label": "ASML",
+              "relation": "供給元",
+              "type": "supplier",
+              "logoText": "AS"
+            },
+            {
+              "id": "applied-materials",
+              "label": "Applied Materials",
+              "relation": "供給元",
+              "type": "supplier",
+              "logoText": "AMAT"
+            },
+            {
+              "id": "lam-research",
+              "label": "Lam Research",
+              "relation": "供給元",
+              "type": "supplier",
+              "logoText": "LAM"
+            }
+          ]
+        }
+      ],
+      "center": {
+        "id": "rapidus",
+        "label": "Rapidus",
+        "relation": "",
+        "type": "company",
+        "logoText": "RD"
+      },
+      "outputs": [
+        {
+          "id": "customers",
+          "group": "主要顧客・供給先",
+          "label": "主要顧客・供給先",
+          "nodes": [
+            {
+              "id": "ntt",
+              "label": "NTT",
+              "relation": "",
+              "type": "customer",
+              "logoText": "NTT"
+            },
+            {
+              "id": "fujitsu",
+              "label": "Fujitsu",
+              "relation": "",
+              "type": "customer",
+              "logoText": "FJ"
+            },
+            {
+              "id": "preferred-networks",
+              "label": "Preferred Networks",
+              "relation": "",
+              "type": "customer",
+              "logoText": "PFN"
+            }
+          ]
+        }
+      ],
+      "investments": [],
+      "partnerships": [
+        {
+          "id": "partnerships",
+          "group": "提携",
+          "label": "提携",
+          "nodes": [
+            {
+              "id": "asml",
+              "label": "ASML",
+              "relation": "",
+              "type": "partnership",
+              "logoText": "AS"
+            },
+            {
+              "id": "ibm",
+              "label": "IBM",
+              "relation": "",
+              "type": "partnership",
+              "logoText": "IBM"
+            },
+            {
+              "id": "ntt",
+              "label": "NTT",
+              "relation": "",
+              "type": "partnership",
+              "logoText": "NTT"
+            }
+          ]
+        }
+      ],
+      "distribution": [],
+      "customers": [],
+      "suppliers": [],
+      "ecosystem": [],
+      "ownership": [],
+      "competitors": [
+        {
+          "id": "tsmc",
+          "label": "TSMC",
+          "relation": "",
+          "type": "competitor",
+          "logoText": "TS"
+        },
+        {
+          "id": "samsung-semiconductor",
+          "label": "Samsung Semiconductor",
+          "relation": "",
+          "type": "competitor",
+          "logoText": "SS"
+        },
+        {
+          "id": "intel",
+          "label": "Intel",
+          "relation": "",
+          "type": "competitor",
+          "logoText": "IN"
+        }
+      ],
+      "edges": [],
+      "investors": []
+    },
+    "bottomGroups": {
+      "partnership": [
+        "asml",
+        "ibm",
+        "ntt"
+      ],
+      "competitor": [
+        "tsmc",
+        "samsung-semiconductor",
+        "intel"
+      ],
+      "investors": [],
+      "investments": []
+    }
+  },
+  {
+    "company": "sakura-internet",
+    "title": "Sakura Internet GPUクラウド",
+    "summary": "Sakura InternetはNVIDIA GPUと国内データセンターを基盤に、国産GPUクラウドと高火力サービスを展開している。",
+    "tree": [],
+    "articles": [
+      {
+        "title": "Sakura Internet GPUクラウドを読む",
+        "href": "/topic/sakura-internet/"
+      }
+    ],
+    "left": [],
+    "center": {
+      "name": "Sakura Internet"
+    },
+    "right": [],
+    "layers": {
+      "supply": [
+        {
+          "id": "gpu_cloud",
+          "group": "GPU / クラウド基盤",
+          "label": "GPU / クラウド基盤",
+          "nodes": [
+            {
+              "id": "nvidia",
+              "label": "NVIDIA",
+              "relation": "GPUを供給",
+              "type": "gpu_supply",
+              "logoText": "NV"
+            }
+          ]
+        }
+      ],
+      "center": {
+        "id": "sakura-internet",
+        "label": "Sakura Internet",
+        "relation": "",
+        "type": "company",
+        "logoText": "SI"
+      },
+      "outputs": [
+        {
+          "id": "services",
+          "group": "提供サービス",
+          "label": "提供サービス",
+          "nodes": [
+            {
+              "id": "sakura-gpu-cloud",
+              "label": "GPUクラウド",
+              "relation": "",
+              "type": "product",
+              "logoText": "GP"
+            },
+            {
+              "id": "koukaryoku",
+              "label": "高火力",
+              "relation": "",
+              "type": "product",
+              "logoText": "PF"
+            }
+          ]
+        }
+      ],
+      "investments": [],
+      "partnerships": [
+        {
+          "id": "partnerships",
+          "group": "提携",
+          "label": "提携",
+          "nodes": [
+            {
+              "id": "nvidia",
+              "label": "NVIDIA",
+              "relation": "",
+              "type": "partnership",
+              "logoText": "NV"
+            }
+          ]
+        }
+      ],
+      "distribution": [],
+      "customers": [],
+      "suppliers": [],
+      "ecosystem": [],
+      "ownership": [],
+      "competitors": [
+        {
+          "id": "gmo-gpu-cloud",
+          "label": "GMO GPU Cloud",
+          "relation": "",
+          "type": "competitor",
+          "logoText": "GM"
+        },
+        {
+          "id": "highreso",
+          "label": "Highreso",
+          "relation": "",
+          "type": "competitor",
+          "logoText": "HR"
+        },
+        {
+          "id": "aws",
+          "label": "AWS",
+          "relation": "",
+          "type": "competitor",
+          "logoText": "AWS"
+        },
+        {
+          "id": "microsoft-azure",
+          "label": "Microsoft Azure",
+          "relation": "",
+          "type": "competitor",
+          "logoText": "AZ"
+        }
+      ],
+      "edges": [],
+      "investors": []
+    },
+    "bottomGroups": {
+      "partnership": [
+        "nvidia"
+      ],
+      "competitor": [
+        "gmo-gpu-cloud",
+        "highreso",
+        "aws",
+        "microsoft-azure"
+      ],
+      "investors": [],
+      "investments": []
+    }
+  },
+  {
+    "company": "fanuc",
+    "title": "FANUCの工場AIエコシステム",
+    "summary": "CNCロボットとFIELD systemでスマート工場AIをリードする日本の産業ロボット王者。NVIDIAとPreferred Networksと連携。",
     "tree": [
       "NVIDIA",
-      "Trainium",
-      "AWS",
-      "Amazon Bedrock",
-      "Anthropic",
-      "Claude"
+      "FANUC",
+      "FIELD system",
+      "Preferred Networks",
+      "Smart Factory"
     ],
     "articles": [
       {
-        "title": "AWS Bedrockと企業AI基盤を読む",
-        "href": "/topic/aws/"
+        "title": "FANUCとスマート工場AIの未来",
+        "href": "/topic/fanuc/"
       },
       {
-        "title": "AnthropicとAmazonのAI提携を読む",
-        "href": "/topic/anthropic/"
+        "title": "産業ロボットにAIが組み込まれる時代",
+        "href": "/topic/robotics/"
+      },
+      {
+        "title": "日本製造業のAI化とグローバル競争",
+        "href": "/topic/japan-ai/"
+      }
+    ],
+    "left": [
+      {
+        "name": "NVIDIA",
+        "relation": "Isaac ROS連携",
+        "type": "partnership",
+        "description": "NVIDIA Isaac ROSと工場ロボットAIで協力。"
+      },
+      {
+        "name": "Preferred Networks",
+        "relation": "工場AIロボット共同開発",
+        "type": "partnership",
+        "description": "PFNと深層学習・ロボット制御AIを共同研究。"
+      }
+    ],
+    "center": {
+      "name": "FANUC"
+    },
+    "right": [
+      {
+        "name": "FIELD system",
+        "relation": "IoT・AIプラットフォーム",
+        "type": "product",
+        "description": "工場設備・ロボットをAIで接続するプラットフォーム。"
+      },
+      {
+        "name": "Smart Factory",
+        "relation": "展開先",
+        "type": "product",
+        "description": "製造現場のAI自動化を実現。"
       }
     ],
     "layers": {
       "supply": [
         {
-          "group": "Semiconductor / Accelerator",
+          "group": "AI技術パートナー",
           "nodes": [
             {
               "id": "nvidia",
               "label": "NVIDIA",
-              "relation": "GPU supply",
-              "type": "company",
+              "relation": "Isaac ROSロボットAI連携",
+              "type": "partnership",
               "logoText": "NV"
             },
             {
-              "id": "aws-trainium",
-              "label": "AWS Trainium",
-              "relation": "in-house AI accelerator",
-              "type": "component",
-              "logoText": "AT"
+              "id": "preferred-networks",
+              "label": "Preferred Networks",
+              "relation": "工場AI共同開発",
+              "type": "partnership",
+              "logoText": "PFN"
+            }
+          ]
+        }
+      ],
+      "center": {
+        "id": "fanuc",
+        "label": "FANUC",
+        "type": "company",
+        "logoText": "FC",
+        "relation": ""
+      },
+      "outputs": [
+        {
+          "group": "製品・プラットフォーム",
+          "nodes": [
+            {
+              "id": "field-system",
+              "label": "FIELD system",
+              "relation": "",
+              "type": "product",
+              "logoText": "FS"
             }
           ]
         },
         {
-          "group": "Cloud Infrastructure",
+          "group": "顧客",
           "nodes": [
+            {
+              "id": "toyota-research",
+              "label": "Toyota Research Institute",
+              "relation": "自動車製造向け",
+              "type": "customer",
+              "logoText": "TR"
+            },
+            {
+              "id": "denso-robotics",
+              "label": "Denso Robotics",
+              "relation": "自動車部品製造",
+              "type": "customer",
+              "logoText": "DN"
+            }
+          ]
+        }
+      ],
+      "investments": [],
+      "partnerships": [
+        {
+          "group": "研究提携",
+          "nodes": [
+            {
+              "id": "preferred-networks",
+              "label": "Preferred Networks",
+              "relation": "ロボットAI共同研究",
+              "type": "research",
+              "logoText": "PFN"
+            }
+          ]
+        }
+      ],
+      "distribution": [],
+      "competitors": [
+        {
+          "id": "yaskawa",
+          "label": "Yaskawa Electric",
+          "relation": "産業用ロボット競合",
+          "type": "competitor",
+          "logoText": "YS"
+        },
+        {
+          "id": "kawasaki-robotics",
+          "label": "Kawasaki Robotics",
+          "relation": "産業用ロボット競合",
+          "type": "competitor",
+          "logoText": "KR"
+        },
+        {
+          "id": "mujin",
+          "label": "Mujin",
+          "relation": "AIロボットプログラミング競合",
+          "type": "competitor",
+          "logoText": "MU"
+        }
+      ],
+      "investors": []
+    },
+    "bottomGroups": {
+      "investors": [],
+      "investments": []
+    }
+  },
+  {
+    "company": "sony-semiconductor",
+    "title": "Sony Semiconductor：AIセンシング基盤",
+    "summary": "CMOSイメージセンサー世界シェアNo.1として、AIカメラ・自動運転・ロボット知覚の中核を担う。",
+    "tree": [
+      "TSMC",
+      "Sony Semiconductor",
+      "AI Camera",
+      "Automotive",
+      "NVIDIA",
+      "Robotics"
+    ],
+    "articles": [
+      {
+        "title": "ソニーセミコンとAI知覚の未来",
+        "href": "/topic/sony-semiconductor/"
+      },
+      {
+        "title": "CMOSイメージセンサーが自動運転を支える",
+        "href": "/topic/robotics/"
+      },
+      {
+        "title": "日本半導体のAI産業への貢献",
+        "href": "/topic/japan-ai/"
+      }
+    ],
+    "left": [
+      {
+        "name": "TSMC",
+        "relation": "先端センサー製造",
+        "type": "semiconductor",
+        "description": "ソニーセミコンの一部センサーはTSMCとの連携を持つ。"
+      }
+    ],
+    "center": {
+      "name": "Sony Semiconductor"
+    },
+    "right": [
+      {
+        "name": "AI Camera",
+        "relation": "AIイメージセンサー",
+        "type": "product",
+        "description": "AIによるリアルタイム画像処理を実現するスマートセンサー。"
+      },
+      {
+        "name": "NVIDIA",
+        "relation": "AIセンシング連携",
+        "type": "partnership",
+        "description": "NVIDIAロボティクス・自動運転とのセンサー統合。"
+      }
+    ],
+    "layers": {
+      "supply": [
+        {
+          "group": "製造",
+          "nodes": [
+            {
+              "id": "tsmc",
+              "label": "TSMC",
+              "relation": "先端センサー製造",
+              "type": "semiconductor",
+              "logoText": "TS"
+            }
+          ]
+        }
+      ],
+      "center": {
+        "id": "sony-semiconductor",
+        "label": "Sony Semiconductor",
+        "type": "company",
+        "logoText": "SS",
+        "relation": ""
+      },
+      "outputs": [
+        {
+          "group": "製品",
+          "nodes": [
+            {
+              "id": "cmos-sensor",
+              "label": "CMOS Sensor",
+              "relation": "",
+              "type": "product",
+              "logoText": "IM"
+            },
+            {
+              "id": "starvis",
+              "label": "STARVIS",
+              "relation": "",
+              "type": "product",
+              "logoText": "SV"
+            }
+          ]
+        },
+        {
+          "group": "主要顧客",
+          "nodes": [
+            {
+              "id": "apple",
+              "label": "Apple",
+              "relation": "iPhoneカメラセンサー",
+              "type": "customer",
+              "logoText": "AP"
+            },
+            {
+              "id": "nvidia",
+              "label": "NVIDIA",
+              "relation": "AIセンシング連携",
+              "type": "partnership",
+              "logoText": "NV"
+            },
+            {
+              "id": "toyota-research",
+              "label": "Toyota Research Institute",
+              "relation": "自動運転センサー",
+              "type": "customer",
+              "logoText": "TR"
+            }
+          ]
+        }
+      ],
+      "investments": [],
+      "partnerships": [],
+      "distribution": [],
+      "competitors": [
+        {
+          "id": "samsung-semiconductor",
+          "label": "Samsung Semiconductor",
+          "relation": "イメージセンサー競合",
+          "type": "competitor",
+          "logoText": "SA"
+        },
+        {
+          "id": "renesas",
+          "label": "Renesas",
+          "relation": "車載半導体競合",
+          "type": "competitor",
+          "logoText": "RE"
+        }
+      ],
+      "investors": []
+    },
+    "bottomGroups": {
+      "investors": [],
+      "investments": []
+    }
+  },
+  {
+    "company": "ntt",
+    "title": "NTT AI・通信基盤",
+    "summary": "NTTは通信インフラ、tsuzumi、IOWN構想を軸に、国内企業向けAI基盤を展開している。",
+    "tree": [],
+    "articles": [
+      {
+        "title": "NTT AI・通信基盤を読む",
+        "href": "/topic/ntt/"
+      }
+    ],
+    "left": [],
+    "center": {
+      "name": "NTT"
+    },
+    "right": [],
+    "layers": {
+      "supply": [
+        {
+          "id": "telecom_research",
+          "group": "通信・研究基盤",
+          "label": "通信・研究基盤",
+          "nodes": [
+            {
+              "id": "ntt-data",
+              "label": "NTT DATA",
+              "relation": "提供チャネル",
+              "type": "distribution",
+              "logoText": "ND"
+            },
+            {
+              "id": "fujitsu",
+              "label": "Fujitsu",
+              "relation": "国内IT基盤",
+              "type": "partnership",
+              "logoText": "FJ"
+            }
+          ]
+        }
+      ],
+      "center": {
+        "id": "ntt",
+        "label": "NTT",
+        "relation": "",
+        "type": "company",
+        "logoText": "NTT"
+      },
+      "outputs": [
+        {
+          "id": "products",
+          "group": "製品・サービス",
+          "label": "製品・サービス",
+          "nodes": [
+            {
+              "id": "tsuzumi",
+              "label": "tsuzumi",
+              "relation": "",
+              "type": "model",
+              "logoText": "TS"
+            },
+            {
+              "id": "cotomi",
+              "label": "cotomi",
+              "relation": "",
+              "type": "model",
+              "logoText": "CO"
+            }
+          ]
+        }
+      ],
+      "investments": [],
+      "partnerships": [
+        {
+          "id": "partnerships",
+          "group": "提携",
+          "label": "提携",
+          "nodes": [
+            {
+              "id": "ntt-data",
+              "label": "NTT DATA",
+              "relation": "",
+              "type": "partnership",
+              "logoText": "ND"
+            },
+            {
+              "id": "fujitsu",
+              "label": "Fujitsu",
+              "relation": "",
+              "type": "partnership",
+              "logoText": "FJ"
+            },
+            {
+              "id": "microsoft",
+              "label": "Microsoft",
+              "relation": "",
+              "type": "partnership",
+              "logoText": "MS"
+            }
+          ]
+        }
+      ],
+      "distribution": [],
+      "customers": [],
+      "suppliers": [],
+      "ecosystem": [],
+      "ownership": [],
+      "competitors": [
+        {
+          "id": "kddi",
+          "label": "kddi",
+          "relation": "",
+          "type": "competitor",
+          "logoText": "K"
+        },
+        {
+          "id": "softbank",
+          "label": "SoftBank",
+          "relation": "",
+          "type": "competitor",
+          "logoText": "SB"
+        },
+        {
+          "id": "nec",
+          "label": "NEC",
+          "relation": "",
+          "type": "competitor",
+          "logoText": "NEC"
+        }
+      ],
+      "edges": [],
+      "investors": []
+    },
+    "bottomGroups": {
+      "partnership": [
+        "ntt-data",
+        "fujitsu",
+        "microsoft"
+      ],
+      "competitor": [
+        "kddi",
+        "softbank",
+        "nec"
+      ],
+      "investors": [],
+      "investments": []
+    }
+  },
+  {
+    "company": "line-yahoo",
+    "title": "LINE Yahoo AIサービス基盤",
+    "summary": "LINE Yahooは検索、メディア、コミュニケーション接点を持ち、一般ユーザー向けAIサービス展開の入り口になる。",
+    "tree": [],
+    "articles": [
+      {
+        "title": "LINE Yahoo AIサービス基盤を読む",
+        "href": "/topic/line-yahoo/"
+      }
+    ],
+    "left": [],
+    "center": {
+      "name": "LINE Yahoo"
+    },
+    "right": [],
+    "layers": {
+      "supply": [
+        {
+          "id": "platform",
+          "group": "検索・メディア基盤",
+          "label": "検索・メディア基盤",
+          "nodes": [
+            {
+              "id": "yahoo-search",
+              "label": "yahoo-search",
+              "relation": "基盤を提供",
+              "type": "platform",
+              "logoText": "YS"
+            },
+            {
+              "id": "softbank",
+              "label": "SoftBank",
+              "relation": "親会社・所有",
+              "type": "ownership",
+              "logoText": "SB"
+            }
+          ]
+        }
+      ],
+      "center": {
+        "id": "line-yahoo",
+        "label": "LINE Yahoo",
+        "relation": "",
+        "type": "company",
+        "logoText": "LY"
+      },
+      "outputs": [
+        {
+          "id": "services",
+          "group": "提供サービス",
+          "label": "提供サービス",
+          "nodes": [
+            {
+              "id": "line-ai-assistant",
+              "label": "LINE AI Assistant",
+              "relation": "",
+              "type": "product",
+              "logoText": "LI"
+            }
+          ]
+        }
+      ],
+      "investments": [],
+      "partnerships": [
+        {
+          "id": "partnerships",
+          "group": "提携",
+          "label": "提携",
+          "nodes": [
+            {
+              "id": "openai",
+              "label": "OpenAI",
+              "relation": "",
+              "type": "partnership",
+              "logoText": "O"
+            },
+            {
+              "id": "yahoo-search",
+              "label": "yahoo-search",
+              "relation": "",
+              "type": "partnership",
+              "logoText": "YS"
+            }
+          ]
+        }
+      ],
+      "distribution": [],
+      "customers": [],
+      "suppliers": [],
+      "ecosystem": [],
+      "ownership": [
+        {
+          "id": "ownership",
+          "group": "親会社・所有",
+          "label": "親会社・所有",
+          "nodes": [
+            {
+              "id": "softbank",
+              "label": "SoftBank",
+              "relation": "",
+              "type": "ownership",
+              "logoText": "SB"
+            }
+          ]
+        }
+      ],
+      "competitors": [
+        {
+          "id": "google",
+          "label": "Google",
+          "relation": "",
+          "type": "competitor",
+          "logoText": "G"
+        },
+        {
+          "id": "rakuten-ai",
+          "label": "Rakuten AI",
+          "relation": "",
+          "type": "competitor",
+          "logoText": "RA"
+        },
+        {
+          "id": "cyberagent-ai",
+          "label": "CyberAgent AI Lab",
+          "relation": "",
+          "type": "competitor",
+          "logoText": "CY"
+        }
+      ],
+      "edges": [],
+      "investors": []
+    },
+    "bottomGroups": {
+      "ownership": [
+        "softbank"
+      ],
+      "partnership": [
+        "openai",
+        "yahoo-search"
+      ],
+      "competitor": [
+        "google",
+        "rakuten-ai",
+        "cyberagent-ai"
+      ],
+      "investors": [],
+      "investments": []
+    }
+  },
+  {
+    "company": "amazon",
+    "title": "Amazon / AWS AIエコシステム",
+    "summary": "AmazonはAWS、Trainium、Bedrock、Anthropic出資を通じ、企業向けAI基盤を拡張している。",
+    "tree": [],
+    "articles": [
+      {
+        "title": "Amazon / AWS AIエコシステムを読む",
+        "href": "/topic/amazon/"
+      }
+    ],
+    "left": [],
+    "center": {
+      "name": "Amazon / AWS"
+    },
+    "right": [],
+    "layers": {
+      "supply": [
+        {
+          "id": "accelerator_cloud",
+          "group": "AIアクセラレータ / クラウド",
+          "label": "AIアクセラレータ / クラウド",
+          "nodes": [
+            {
+              "id": "aws-trainium",
+              "label": "AWS Trainium",
+              "relation": "AIアクセラレータ",
+              "type": "accelerator",
+              "logoText": "AW"
+            },
             {
               "id": "aws",
               "label": "AWS",
-              "relation": "global cloud platform",
-              "type": "platform",
-              "logoText": "A"
-            }
-          ]
-        },
-        {
-          "group": "Model Partners",
-          "nodes": [
-            {
-              "id": "anthropic",
-              "label": "Anthropic",
-              "relation": "strategic investment / model partner",
-              "type": "company",
-              "logoText": "A"
+              "relation": "クラウド基盤を提供",
+              "type": "cloud",
+              "logoText": "AWS"
             }
           ]
         }
@@ -2404,77 +5139,1238 @@
       "center": {
         "id": "amazon",
         "label": "Amazon / AWS",
-        "type": "Cloud and Enterprise AI Platform",
+        "relation": "",
+        "type": "company",
         "logoText": "AWS"
       },
       "outputs": [
         {
-          "group": "Enterprise AI",
+          "id": "products",
+          "group": "製品・サービス",
+          "label": "製品・サービス",
           "nodes": [
             {
               "id": "amazon-bedrock",
               "label": "Amazon Bedrock",
-              "relation": "model marketplace and enterprise distribution",
-              "type": "platform",
-              "logoText": "AB"
-            }
-          ]
-        },
-        {
-          "group": "Infrastructure",
-          "nodes": [
-            {
-              "id": "sagemaker",
-              "label": "SageMaker",
-              "relation": "AI development platform",
-              "type": "platform",
-              "logoText": "S"
+              "relation": "",
+              "type": "distribution",
+              "logoText": "BR"
             },
             {
-              "id": "trainium",
-              "label": "Trainium",
-              "relation": "AI accelerator service",
-              "type": "product",
-              "logoText": "T"
-            }
-          ]
-        },
-        {
-          "group": "Model Access",
-          "nodes": [
-            {
-              "id": "claude",
-              "label": "Claude on Bedrock",
-              "relation": "foundation model access",
-              "type": "model",
-              "logoText": "CO"
+              "id": "anthropic",
+              "label": "Anthropic",
+              "relation": "",
+              "type": "investment",
+              "logoText": "A"
             }
           ]
         }
       ],
+      "investments": [
+        {
+          "id": "anthropic",
+          "label": "Anthropic",
+          "relation": "投資先",
+          "type": "investment",
+          "logoText": "A"
+        },
+        {
+          "id": "huggingface",
+          "label": "Hugging Face",
+          "relation": "投資先",
+          "type": "investment",
+          "logoText": "HF"
+        }
+      ],
+      "partnerships": [
+        {
+          "id": "partnerships",
+          "group": "提携",
+          "label": "提携",
+          "nodes": [
+            {
+              "id": "nvidia",
+              "label": "NVIDIA",
+              "relation": "",
+              "type": "partnership",
+              "logoText": "NV"
+            },
+            {
+              "id": "amd",
+              "label": "AMD",
+              "relation": "",
+              "type": "partnership",
+              "logoText": "AMD"
+            }
+          ]
+        }
+      ],
+      "distribution": [],
+      "customers": [],
+      "suppliers": [],
+      "ecosystem": [],
+      "ownership": [],
       "competitors": [
         {
           "id": "microsoft",
-          "label": "Microsoft Azure",
-          "relation": "cloud AI competition",
-          "type": "company",
+          "label": "Microsoft",
+          "relation": "",
+          "type": "competitor",
           "logoText": "MS"
         },
         {
           "id": "google",
-          "label": "Google Cloud",
-          "relation": "cloud AI competition",
-          "type": "company",
+          "label": "Google",
+          "relation": "",
+          "type": "competitor",
           "logoText": "G"
         },
         {
           "id": "oracle",
-          "label": "Oracle OCI",
-          "relation": "AI cloud competition",
-          "type": "company",
+          "label": "Oracle",
+          "relation": "",
+          "type": "competitor",
           "logoText": "OR"
         }
+      ],
+      "edges": [],
+      "investors": []
+    },
+    "bottomGroups": {
+      "partnership": [
+        "nvidia",
+        "amd"
+      ],
+      "competitor": [
+        "microsoft",
+        "google",
+        "oracle"
+      ],
+      "investors": [],
+      "investments": [
+        "anthropic",
+        "huggingface"
       ]
+    }
+  },
+  {
+    "company": "cognition",
+    "title": "Cognition Agent Stack",
+    "summary": "Cognitionは基盤モデル、クラウド、エージェント基盤を組み合わせてAIタスク実行を提供している。",
+    "tree": [],
+    "articles": [
+      {
+        "title": "Cognition Agent Stackを読む",
+        "href": "/topic/cognition/"
+      }
+    ],
+    "left": [],
+    "center": {
+      "name": "Cognition"
+    },
+    "right": [],
+    "layers": {
+      "supply": [
+        {
+          "id": "models",
+          "group": "基盤モデル",
+          "label": "基盤モデル",
+          "nodes": [
+            {
+              "id": "openai",
+              "label": "OpenAI",
+              "relation": "モデル利用",
+              "type": "model",
+              "logoText": "O"
+            },
+            {
+              "id": "anthropic",
+              "label": "Anthropic",
+              "relation": "モデル利用",
+              "type": "model",
+              "logoText": "A"
+            }
+          ],
+          "internalEdges": []
+        },
+        {
+          "id": "framework",
+          "group": "Agent Framework",
+          "label": "Agent Framework",
+          "nodes": [
+            {
+              "id": "langchain",
+              "label": "LangChain",
+              "relation": "Agent Framework",
+              "type": "platform",
+              "logoText": "L"
+            }
+          ],
+          "internalEdges": []
+        }
+      ],
+      "center": {
+        "id": "cognition",
+        "label": "Cognition",
+        "relation": "",
+        "type": "company",
+        "logoText": "CG"
+      },
+      "outputs": [
+        {
+          "id": "products",
+          "group": "エージェント製品",
+          "label": "エージェント製品",
+          "nodes": [
+            {
+              "id": "devin",
+              "label": "Devin",
+              "relation": "",
+              "type": "product",
+              "logoText": "D"
+            }
+          ],
+          "internalEdges": []
+        }
+      ],
+      "competitors": [
+        {
+          "id": "perplexity",
+          "label": "Perplexity",
+          "relation": "",
+          "type": "competitor",
+          "logoText": "P"
+        },
+        {
+          "id": "dify",
+          "label": "Dify",
+          "relation": "",
+          "type": "competitor",
+          "logoText": "D"
+        }
+      ],
+      "investors": [],
+      "investments": [],
+      "partnerships": [],
+      "distribution": [],
+      "customers": [],
+      "suppliers": [],
+      "ecosystem": [],
+      "ownership": [],
+      "edges": []
+    },
+    "bottomGroups": {
+      "partnership": [
+        "openai",
+        "anthropic",
+        "langchain"
+      ],
+      "distribution": [],
+      "competitor": [
+        "perplexity",
+        "dify"
+      ],
+      "investors": [],
+      "investments": []
+    }
+  },
+  {
+    "company": "dify",
+    "title": "Dify Agent Stack",
+    "summary": "Difyは基盤モデル、クラウド、エージェント基盤を組み合わせてAIタスク実行を提供している。",
+    "tree": [],
+    "articles": [
+      {
+        "title": "Dify Agent Stackを読む",
+        "href": "/topic/dify/"
+      }
+    ],
+    "left": [],
+    "center": {
+      "name": "Dify"
+    },
+    "right": [],
+    "layers": {
+      "supply": [
+        {
+          "id": "models",
+          "group": "基盤モデル",
+          "label": "基盤モデル",
+          "nodes": [
+            {
+              "id": "openai",
+              "label": "OpenAI",
+              "relation": "モデル利用",
+              "type": "model",
+              "logoText": "O"
+            },
+            {
+              "id": "anthropic",
+              "label": "Anthropic",
+              "relation": "モデル利用",
+              "type": "model",
+              "logoText": "A"
+            }
+          ],
+          "internalEdges": []
+        },
+        {
+          "id": "framework",
+          "group": "Agent Framework",
+          "label": "Agent Framework",
+          "nodes": [
+            {
+              "id": "langchain",
+              "label": "LangChain",
+              "relation": "Agent Framework",
+              "type": "platform",
+              "logoText": "L"
+            }
+          ],
+          "internalEdges": []
+        }
+      ],
+      "center": {
+        "id": "dify",
+        "label": "Dify",
+        "relation": "",
+        "type": "company",
+        "logoText": "DF"
+      },
+      "outputs": [
+        {
+          "id": "products",
+          "group": "エージェント製品",
+          "label": "エージェント製品",
+          "nodes": [
+            {
+              "id": "dify-platform",
+              "label": "Dify Platform",
+              "relation": "",
+              "type": "product",
+              "logoText": "DP"
+            }
+          ],
+          "internalEdges": []
+        }
+      ],
+      "competitors": [
+        {
+          "id": "perplexity",
+          "label": "Perplexity",
+          "relation": "",
+          "type": "competitor",
+          "logoText": "P"
+        },
+        {
+          "id": "dify",
+          "label": "Dify",
+          "relation": "",
+          "type": "competitor",
+          "logoText": "D"
+        }
+      ],
+      "investors": [],
+      "investments": [],
+      "partnerships": [],
+      "distribution": [],
+      "customers": [],
+      "suppliers": [],
+      "ecosystem": [],
+      "ownership": [],
+      "edges": []
+    },
+    "bottomGroups": {
+      "partnership": [
+        "openai",
+        "anthropic",
+        "langchain"
+      ],
+      "distribution": [],
+      "competitor": [
+        "perplexity",
+        "dify"
+      ],
+      "investors": [],
+      "investments": []
+    }
+  },
+  {
+    "company": "ollama",
+    "title": "Ollama OSSローカルAI基盤",
+    "summary": "Ollamaはオープンモデルをローカル環境で簡単に実行するためのOSS基盤として利用されている。",
+    "tree": [],
+    "articles": [
+      {
+        "title": "Ollama OSSローカルAI基盤を読む",
+        "href": "/topic/ollama/"
+      }
+    ],
+    "left": [],
+    "center": {
+      "name": "Ollama"
+    },
+    "right": [],
+    "layers": {
+      "supply": [
+        {
+          "id": "model_sources",
+          "group": "モデル提供元",
+          "label": "モデル提供元",
+          "nodes": [
+            {
+              "id": "meta",
+              "label": "Meta",
+              "relation": "Llama提供",
+              "type": "model",
+              "logoText": "M"
+            },
+            {
+              "id": "mistral",
+              "label": "Mistral AI",
+              "relation": "OSSモデル提供",
+              "type": "model",
+              "logoText": "MA"
+            },
+            {
+              "id": "deepseek",
+              "label": "DeepSeek",
+              "relation": "OSSモデル提供",
+              "type": "model",
+              "logoText": "D"
+            }
+          ],
+          "internalEdges": []
+        },
+        {
+          "id": "distribution",
+          "group": "モデル配布",
+          "label": "モデル配布",
+          "nodes": [
+            {
+              "id": "huggingface",
+              "label": "Hugging Face",
+              "relation": "モデル配布",
+              "type": "distribution",
+              "logoText": "HF"
+            }
+          ],
+          "internalEdges": []
+        }
+      ],
+      "center": {
+        "id": "ollama",
+        "label": "Ollama",
+        "relation": "",
+        "type": "company",
+        "logoText": "OL"
+      },
+      "outputs": [
+        {
+          "id": "runtime",
+          "group": "ローカル推論",
+          "label": "ローカル推論",
+          "nodes": [
+            {
+              "id": "ollama-runtime",
+              "label": "Ollama Runtime",
+              "relation": "",
+              "type": "product",
+              "logoText": "OR"
+            },
+            {
+              "id": "open-webui",
+              "label": "Open WebUI",
+              "relation": "",
+              "type": "product",
+              "logoText": "OW"
+            }
+          ],
+          "internalEdges": []
+        }
+      ],
+      "competitors": [
+        {
+          "id": "lm-studio",
+          "label": "LM Studio",
+          "relation": "",
+          "type": "competitor",
+          "logoText": "LS"
+        },
+        {
+          "id": "llama-cpp",
+          "label": "llama.cpp",
+          "relation": "",
+          "type": "competitor",
+          "logoText": "L"
+        }
+      ],
+      "investors": [],
+      "investments": [],
+      "partnerships": [],
+      "distribution": [],
+      "customers": [],
+      "suppliers": [],
+      "ecosystem": [],
+      "ownership": [],
+      "edges": []
+    },
+    "bottomGroups": {
+      "partnership": [
+        "huggingface"
+      ],
+      "distribution": [],
+      "competitor": [
+        "lm-studio",
+        "llama-cpp"
+      ],
+      "investors": [],
+      "investments": []
+    }
+  },
+  {
+    "company": "unitree",
+    "title": "Unitree Robotics Stack",
+    "summary": "Unitreeはロボット本体、制御ソフトウェア、AI計算基盤を組み合わせて四足歩行・ヒューマノイドを展開している。",
+    "tree": [],
+    "articles": [
+      {
+        "title": "Unitree Robotics Stackを読む",
+        "href": "/topic/unitree/"
+      }
+    ],
+    "left": [],
+    "center": {
+      "name": "Unitree"
+    },
+    "right": [],
+    "layers": {
+      "supply": [
+        {
+          "id": "compute",
+          "group": "ロボット計算基盤",
+          "label": "ロボット計算基盤",
+          "nodes": [
+            {
+              "id": "nvidia",
+              "label": "NVIDIA",
+              "relation": "GPU/Jetson",
+              "type": "gpu_supply",
+              "logoText": "N"
+            },
+            {
+              "id": "jetson",
+              "label": "Jetson",
+              "relation": "エッジAI基盤",
+              "type": "accelerator",
+              "logoText": "J"
+            }
+          ],
+          "internalEdges": []
+        }
+      ],
+      "center": {
+        "id": "unitree",
+        "label": "Unitree",
+        "relation": "",
+        "type": "company",
+        "logoText": "UT"
+      },
+      "outputs": [
+        {
+          "id": "robots",
+          "group": "ロボット製品",
+          "label": "ロボット製品",
+          "nodes": [
+            {
+              "id": "unitree",
+              "label": "Unitree Robots",
+              "relation": "",
+              "type": "product",
+              "logoText": "UR"
+            },
+            {
+              "id": "gemini-robotics",
+              "label": "Gemini Robotics",
+              "relation": "Robot AI Model",
+              "type": "model",
+              "logoText": "GR"
+            }
+          ],
+          "internalEdges": []
+        }
+      ],
+      "competitors": [
+        {
+          "id": "figure",
+          "label": "Figure AI",
+          "relation": "",
+          "type": "competitor",
+          "logoText": "FA"
+        },
+        {
+          "id": "tesla-optimus",
+          "label": "Tesla Optimus",
+          "relation": "",
+          "type": "competitor",
+          "logoText": "TO"
+        }
+      ],
+      "investors": [],
+      "investments": [],
+      "partnerships": [],
+      "distribution": [],
+      "customers": [],
+      "suppliers": [],
+      "ecosystem": [],
+      "ownership": [],
+      "edges": []
+    },
+    "bottomGroups": {
+      "partnership": [
+        "nvidia"
+      ],
+      "distribution": [],
+      "competitor": [
+        "figure",
+        "tesla-optimus"
+      ],
+      "investors": [],
+      "investments": []
+    }
+  },
+  {
+    "company": "alibaba",
+    "title": "Alibaba Qwen AI Ecosystem",
+    "summary": "AlibabaはQwenとAlibaba Cloudを軸に、中国AIモデルとクラウド基盤を展開している。",
+    "tree": [],
+    "articles": [
+      {
+        "title": "Alibaba Qwen AI Ecosystemを読む",
+        "href": "/topic/alibaba/"
+      }
+    ],
+    "left": [],
+    "center": {
+      "name": "Alibaba"
+    },
+    "right": [],
+    "layers": {
+      "supply": [
+        {
+          "id": "cloud",
+          "group": "中国クラウド",
+          "label": "中国クラウド",
+          "nodes": [
+            {
+              "id": "alibaba-cloud",
+              "label": "Alibaba Cloud",
+              "relation": "クラウド基盤",
+              "type": "cloud",
+              "logoText": "AC"
+            }
+          ],
+          "internalEdges": []
+        },
+        {
+          "id": "accelerator",
+          "group": "中国AIアクセラレータ",
+          "label": "中国AIアクセラレータ",
+          "nodes": [
+            {
+              "id": "huawei-ascend",
+              "label": "Huawei Ascend",
+              "relation": "AIアクセラレータ",
+              "type": "accelerator",
+              "logoText": "HA"
+            }
+          ],
+          "internalEdges": []
+        }
+      ],
+      "center": {
+        "id": "alibaba",
+        "label": "Alibaba",
+        "relation": "",
+        "type": "company",
+        "logoText": "ALI"
+      },
+      "outputs": [
+        {
+          "id": "models",
+          "group": "モデル",
+          "label": "モデル",
+          "nodes": [
+            {
+              "id": "qwen",
+              "label": "Qwen",
+              "relation": "",
+              "type": "model",
+              "logoText": "Q"
+            }
+          ],
+          "internalEdges": []
+        },
+        {
+          "id": "oss",
+          "group": "OSS配布",
+          "label": "OSS配布",
+          "nodes": [
+            {
+              "id": "huggingface",
+              "label": "Hugging Face",
+              "relation": "OSS配布",
+              "type": "distribution",
+              "logoText": "HF"
+            }
+          ],
+          "internalEdges": []
+        }
+      ],
+      "competitors": [
+        {
+          "id": "tencent",
+          "label": "Tencent",
+          "relation": "",
+          "type": "competitor",
+          "logoText": "T"
+        },
+        {
+          "id": "bytedance",
+          "label": "ByteDance",
+          "relation": "",
+          "type": "competitor",
+          "logoText": "B"
+        },
+        {
+          "id": "baidu",
+          "label": "Baidu",
+          "relation": "",
+          "type": "competitor",
+          "logoText": "B"
+        }
+      ],
+      "investors": [],
+      "investments": [],
+      "partnerships": [],
+      "distribution": [],
+      "customers": [],
+      "suppliers": [],
+      "ecosystem": [],
+      "ownership": [],
+      "edges": []
+    },
+    "bottomGroups": {
+      "partnership": [],
+      "distribution": [
+        "huggingface"
+      ],
+      "competitor": [
+        "tencent",
+        "bytedance",
+        "baidu"
+      ],
+      "investors": [],
+      "investments": []
+    }
+  },
+  {
+    "company": "huawei",
+    "title": "Huawei Ascend AI Stack",
+    "summary": "HuaweiはAscend AIチップとクラウド基盤を通じて、中国AIインフラの中核を担っている。",
+    "tree": [],
+    "articles": [
+      {
+        "title": "Huawei Ascend AI Stackを読む",
+        "href": "/topic/huawei/"
+      }
+    ],
+    "left": [],
+    "center": {
+      "name": "Huawei"
+    },
+    "right": [],
+    "layers": {
+      "supply": [
+        {
+          "id": "semiconductor",
+          "group": "中国半導体 / GPU",
+          "label": "中国半導体 / GPU",
+          "nodes": [
+            {
+              "id": "biren",
+              "label": "Biren",
+              "relation": "中国GPU",
+              "type": "accelerator",
+              "logoText": "B"
+            },
+            {
+              "id": "moore-threads",
+              "label": "Moore Threads",
+              "relation": "中国GPU",
+              "type": "accelerator",
+              "logoText": "MT"
+            }
+          ],
+          "internalEdges": []
+        }
+      ],
+      "center": {
+        "id": "huawei",
+        "label": "Huawei",
+        "relation": "",
+        "type": "company",
+        "logoText": "HW"
+      },
+      "outputs": [
+        {
+          "id": "accelerator",
+          "group": "AIアクセラレータ",
+          "label": "AIアクセラレータ",
+          "nodes": [
+            {
+              "id": "huawei-ascend",
+              "label": "Huawei Ascend",
+              "relation": "",
+              "type": "product",
+              "logoText": "HA"
+            }
+          ],
+          "internalEdges": []
+        },
+        {
+          "id": "customers",
+          "group": "中国AI利用企業",
+          "label": "中国AI利用企業",
+          "nodes": [
+            {
+              "id": "deepseek",
+              "label": "DeepSeek",
+              "relation": "計算基盤",
+              "type": "customer",
+              "logoText": "D"
+            },
+            {
+              "id": "alibaba",
+              "label": "Alibaba",
+              "relation": "計算基盤",
+              "type": "customer",
+              "logoText": "A"
+            },
+            {
+              "id": "baidu",
+              "label": "Baidu",
+              "relation": "計算基盤",
+              "type": "customer",
+              "logoText": "B"
+            }
+          ],
+          "internalEdges": []
+        }
+      ],
+      "competitors": [
+        {
+          "id": "nvidia",
+          "label": "NVIDIA",
+          "relation": "",
+          "type": "competitor",
+          "logoText": "N"
+        },
+        {
+          "id": "amd",
+          "label": "AMD",
+          "relation": "",
+          "type": "competitor",
+          "logoText": "A"
+        }
+      ],
+      "investors": [],
+      "investments": [],
+      "partnerships": [],
+      "distribution": [],
+      "customers": [],
+      "suppliers": [],
+      "ecosystem": [],
+      "ownership": [],
+      "edges": []
+    },
+    "bottomGroups": {
+      "partnership": [],
+      "distribution": [],
+      "competitor": [
+        "nvidia",
+        "amd"
+      ],
+      "investors": [],
+      "investments": []
+    }
+  },
+  {
+    "company": "tencent",
+    "title": "Tencent Hunyuan AI Ecosystem",
+    "summary": "TencentはHunyuan、Tencent Cloud、WeChatなどの接点を通じ、中国AIサービスを展開している。",
+    "tree": [],
+    "articles": [
+      {
+        "title": "Tencent Hunyuan AI Ecosystemを読む",
+        "href": "/topic/tencent/"
+      }
+    ],
+    "left": [],
+    "center": {
+      "name": "Tencent"
+    },
+    "right": [],
+    "layers": {
+      "supply": [
+        {
+          "id": "cloud",
+          "group": "中国クラウド",
+          "label": "中国クラウド",
+          "nodes": [
+            {
+              "id": "tencent-cloud",
+              "label": "Tencent Cloud",
+              "relation": "クラウド基盤",
+              "type": "cloud",
+              "logoText": "TC"
+            }
+          ],
+          "internalEdges": []
+        }
+      ],
+      "center": {
+        "id": "tencent",
+        "label": "Tencent",
+        "relation": "",
+        "type": "company",
+        "logoText": "TC"
+      },
+      "outputs": [
+        {
+          "id": "models",
+          "group": "モデル",
+          "label": "モデル",
+          "nodes": [
+            {
+              "id": "hunyuan",
+              "label": "Hunyuan",
+              "relation": "",
+              "type": "model",
+              "logoText": "H"
+            }
+          ],
+          "internalEdges": []
+        },
+        {
+          "id": "consumer",
+          "group": "一般向け接点",
+          "label": "一般向け接点",
+          "nodes": [
+            {
+              "id": "wechat",
+              "label": "WeChat",
+              "relation": "ユーザー接点",
+              "type": "product",
+              "logoText": "W"
+            }
+          ],
+          "internalEdges": []
+        }
+      ],
+      "competitors": [
+        {
+          "id": "alibaba",
+          "label": "Alibaba",
+          "relation": "",
+          "type": "competitor",
+          "logoText": "A"
+        },
+        {
+          "id": "bytedance",
+          "label": "ByteDance",
+          "relation": "",
+          "type": "competitor",
+          "logoText": "B"
+        },
+        {
+          "id": "baidu",
+          "label": "Baidu",
+          "relation": "",
+          "type": "competitor",
+          "logoText": "B"
+        }
+      ],
+      "investors": [],
+      "investments": [],
+      "partnerships": [],
+      "distribution": [],
+      "customers": [],
+      "suppliers": [],
+      "ecosystem": [],
+      "ownership": [],
+      "edges": []
+    },
+    "bottomGroups": {
+      "partnership": [],
+      "distribution": [],
+      "competitor": [
+        "alibaba",
+        "bytedance",
+        "baidu"
+      ],
+      "investors": [],
+      "investments": []
+    }
+  },
+  {
+    "company": "bytedance",
+    "title": "ByteDance Doubao AI Ecosystem",
+    "summary": "ByteDanceはDoubaoと巨大なコンシューマー接点を背景に、中国AIアプリ市場で存在感を高めている。",
+    "tree": [],
+    "articles": [
+      {
+        "title": "ByteDance Doubao AI Ecosystemを読む",
+        "href": "/topic/bytedance/"
+      }
+    ],
+    "left": [],
+    "center": {
+      "name": "ByteDance"
+    },
+    "right": [],
+    "layers": {
+      "supply": [
+        {
+          "id": "cloud",
+          "group": "AI基盤",
+          "label": "AI基盤",
+          "nodes": [
+            {
+              "id": "huawei-ascend",
+              "label": "Huawei Ascend",
+              "relation": "AIアクセラレータ",
+              "type": "accelerator",
+              "logoText": "HA"
+            }
+          ],
+          "internalEdges": []
+        }
+      ],
+      "center": {
+        "id": "bytedance",
+        "label": "ByteDance",
+        "relation": "",
+        "type": "company",
+        "logoText": "BD"
+      },
+      "outputs": [
+        {
+          "id": "models",
+          "group": "モデル",
+          "label": "モデル",
+          "nodes": [
+            {
+              "id": "doubao",
+              "label": "Doubao",
+              "relation": "",
+              "type": "model",
+              "logoText": "D"
+            }
+          ],
+          "internalEdges": []
+        },
+        {
+          "id": "apps",
+          "group": "一般向け接点",
+          "label": "一般向け接点",
+          "nodes": [
+            {
+              "id": "tiktok",
+              "label": "TikTok",
+              "relation": "ユーザー接点",
+              "type": "product",
+              "logoText": "T"
+            }
+          ],
+          "internalEdges": []
+        }
+      ],
+      "competitors": [
+        {
+          "id": "alibaba",
+          "label": "Alibaba",
+          "relation": "",
+          "type": "competitor",
+          "logoText": "A"
+        },
+        {
+          "id": "tencent",
+          "label": "Tencent",
+          "relation": "",
+          "type": "competitor",
+          "logoText": "T"
+        },
+        {
+          "id": "baidu",
+          "label": "Baidu",
+          "relation": "",
+          "type": "competitor",
+          "logoText": "B"
+        }
+      ],
+      "investors": [],
+      "investments": [],
+      "partnerships": [],
+      "distribution": [],
+      "customers": [],
+      "suppliers": [],
+      "ecosystem": [],
+      "ownership": [],
+      "edges": []
+    },
+    "bottomGroups": {
+      "partnership": [],
+      "distribution": [],
+      "competitor": [
+        "alibaba",
+        "tencent",
+        "baidu"
+      ],
+      "investors": [],
+      "investments": []
+    }
+  },
+  {
+    "company": "figure",
+    "title": "Figure AI Robotics Ecosystem",
+    "summary": "Figure AIはNVIDIAの計算基盤、OpenAIとのロボティクスAI連携、Microsoftなどの支援を背景にヒューマノイドを展開している。",
+    "tree": [],
+    "articles": [
+      {
+        "title": "Figure AI Robotics Ecosystemを読む",
+        "href": "/topic/figure/"
+      }
+    ],
+    "left": [],
+    "center": {
+      "name": "Figure AI"
+    },
+    "right": [],
+    "layers": {
+      "supply": [
+        {
+          "id": "compute",
+          "group": "半導体 / GPU",
+          "label": "半導体 / GPU",
+          "nodes": [
+            {
+              "id": "nvidia",
+              "label": "NVIDIA",
+              "relation": "GPU供給",
+              "type": "gpu_supply",
+              "logoText": "N"
+            },
+            {
+              "id": "jetson",
+              "label": "Jetson",
+              "relation": "エッジAI基盤",
+              "type": "accelerator",
+              "logoText": "J"
+            }
+          ],
+          "internalEdges": []
+        },
+        {
+          "id": "models",
+          "group": "Robot AI Model",
+          "label": "Robot AI Model",
+          "nodes": [
+            {
+              "id": "openai",
+              "label": "OpenAI",
+              "relation": "ロボティクスAI提携",
+              "type": "partnership",
+              "logoText": "O"
+            }
+          ],
+          "internalEdges": []
+        }
+      ],
+      "center": {
+        "id": "figure",
+        "label": "Figure AI",
+        "relation": "",
+        "type": "company",
+        "logoText": "F"
+      },
+      "outputs": [
+        {
+          "id": "robots",
+          "group": "Humanoid Robot",
+          "label": "Humanoid Robot",
+          "nodes": [
+            {
+              "id": "figure",
+              "label": "Figure Robot",
+              "relation": "",
+              "type": "product",
+              "logoText": "FR"
+            }
+          ],
+          "internalEdges": []
+        }
+      ],
+      "competitors": [
+        {
+          "id": "tesla-optimus",
+          "label": "Tesla Optimus",
+          "relation": "",
+          "type": "competitor",
+          "logoText": "TO"
+        },
+        {
+          "id": "unitree",
+          "label": "Unitree",
+          "relation": "",
+          "type": "competitor",
+          "logoText": "U"
+        },
+        {
+          "id": "one-x",
+          "label": "1X",
+          "relation": "",
+          "type": "competitor",
+          "logoText": "1"
+        }
+      ],
+      "investors": [],
+      "investments": [],
+      "partnerships": [],
+      "distribution": [],
+      "customers": [],
+      "suppliers": [],
+      "ecosystem": [],
+      "ownership": [],
+      "edges": []
+    },
+    "bottomGroups": {
+      "partnership": [
+        "openai",
+        "nvidia"
+      ],
+      "distribution": [],
+      "competitor": [
+        "tesla-optimus",
+        "unitree",
+        "one-x"
+      ],
+      "investors": [
+        "microsoft",
+        "nvidia",
+        "openai"
+      ],
+      "investments": []
     }
   }
 ]

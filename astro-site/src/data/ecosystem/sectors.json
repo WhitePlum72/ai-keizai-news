@@ -1,12 +1,19 @@
-﻿[
+[
   {
     "id": "infrastructure",
     "name": "Infrastructure",
     "short": "Infra",
     "color": "#3B82F6",
-    "description": "GPU、半導体、クラウド、推論基盤。AI産業の土台。",
+    "description": "GPU、半導体、クラウド、データセンターなど、AI産業の土台。",
     "priority": 100,
-    "keywords": ["GPU", "Data Center", "Cloud", "Inference", "HBM", "CoWoS"]
+    "keywords": [
+      "GPU",
+      "Data Center",
+      "Cloud",
+      "Inference",
+      "HBM",
+      "CoWoS"
+    ]
   },
   {
     "id": "foundation",
@@ -15,69 +22,179 @@
     "color": "#7B61FF",
     "description": "LLM、マルチモーダル、基盤モデル競争の中心。",
     "priority": 98,
-    "keywords": ["LLM", "Reasoning", "Multimodal", "Frontier Model", "Context Window"]
+    "keywords": [
+      "LLM",
+      "Reasoning",
+      "Multimodal",
+      "Frontier Model"
+    ]
   },
   {
     "id": "agents",
     "name": "AI Agents",
     "short": "Agents",
     "color": "#22C55E",
-    "description": "検索、業務自動化、開発支援。2026年の主戦場。",
+    "description": "検索、業務自動化、開発支援など、AIがタスクを実行する領域。",
     "priority": 96,
-    "keywords": ["Agent", "Workflow", "Browser Use", "Coding Agent", "Automation"]
+    "keywords": [
+      "Agent",
+      "Workflow",
+      "Coding Agent",
+      "Automation"
+    ]
   },
   {
     "id": "robotics",
     "name": "Robotics",
     "short": "Robotics",
     "color": "#F97316",
-    "description": "ヒューマノイド、物理世界AI、産業ロボット。",
+    "description": "ヒューマノイド、産業ロボット、身体性AI、自律制御の領域。",
     "priority": 88,
-    "keywords": ["Humanoid", "Embodied AI", "Factory", "Manipulation", "Autonomy"]
+    "keywords": [
+      "Humanoid",
+      "Embodied AI",
+      "Factory",
+      "Manipulation"
+    ]
   },
   {
     "id": "opensource",
     "name": "Open Source",
     "short": "OSS",
     "color": "#06B6D4",
-    "description": "オープンモデル、配布基盤、開発者エコシステム。",
+    "description": "オープンモデル、推論基盤、開発者ツール、OSSエコシステム。",
     "priority": 86,
-    "keywords": ["Open Weights", "Model Hub", "Llama", "DeepSeek", "Community"]
+    "keywords": [
+      "Open Weights",
+      "Model Hub",
+      "Llama",
+      "DeepSeek",
+      "Community"
+    ]
   },
   {
     "id": "enterprise",
     "name": "Enterprise AI",
     "short": "Enterprise",
     "color": "#EAB308",
-    "description": "BtoB、業務AI、SaaS、企業導入。",
+    "description": "BtoB、業務AI、SaaS、企業導入、ガバナンスの領域。",
     "priority": 90,
-    "keywords": ["Copilot", "CRM", "ERP", "RAG", "Governance", "SaaS"]
+    "keywords": [
+      "Copilot",
+      "CRM",
+      "ERP",
+      "RAG",
+      "Governance"
+    ]
+  },
+  {
+    "id": "generative-ai",
+    "name": "生成AI",
+    "short": "生成AI",
+    "color": "#EC4899",
+    "description": "画像生成、動画生成、音声生成など、クリエイティブ領域の生成AI。",
+    "priority": 84,
+    "keywords": [
+      "Image Generation",
+      "Video Generation",
+      "Voice",
+      "Creative AI",
+      "Sora"
+    ]
+  },
+  {
+    "id": "china-ai",
+    "name": "China AI",
+    "short": "China",
+    "color": "#EF4444",
+    "description": "DeepSeek、Alibaba、ByteDance、Tencent、Baiduなど中国AIエコシステム。",
+    "priority": 92,
+    "keywords": [
+      "DeepSeek",
+      "Qwen",
+      "Doubao",
+      "ERNIE",
+      "China Cloud"
+    ]
+  },
+  {
+    "id": "japan-ai",
+    "name": "Japan AI",
+    "short": "Japan",
+    "color": "#2563EB",
+    "description": "日本のAI、半導体、ロボティクス、企業AI、GPUクラウド。",
+    "priority": 85,
+    "keywords": [
+      "Japan",
+      "LLM",
+      "Semiconductor",
+      "Robotics",
+      "GPU Cloud"
+    ]
+  },
+  {
+    "id": "coding",
+    "name": "Coding AI",
+    "short": "Coding",
+    "color": "#10B981",
+    "description": "コーディング支援、ソフトウェア開発AI、開発者向けエージェント。",
+    "priority": 88,
+    "keywords": [
+      "Coding",
+      "Developer",
+      "Cursor",
+      "Devin",
+      "Claude Code"
+    ]
+  },
+  {
+    "id": "search",
+    "name": "Search AI",
+    "short": "Search",
+    "color": "#F59E0B",
+    "description": "AI検索、回答エンジン、RAG、引用付き検索体験。",
+    "priority": 82,
+    "keywords": [
+      "Search",
+      "Answer Engine",
+      "RAG",
+      "Citations"
+    ]
   },
   {
     "id": "video",
     "name": "Video AI",
     "short": "Video",
     "color": "#EC4899",
-    "description": "動画生成、編集、クリエイティブAI。",
-    "priority": 84,
-    "keywords": ["Text-to-Video", "Editing", "Creative AI", "Sora", "Runway"]
+    "description": "生成AIへ統合済み。",
+    "priority": 0,
+    "hidden": true,
+    "keywords": [
+      "Video"
+    ]
   },
   {
     "id": "voice",
     "name": "Voice AI",
     "short": "Voice",
     "color": "#14B8A6",
-    "description": "音声生成、会話AI、ナレーション。",
-    "priority": 76,
-    "keywords": ["Voice", "Speech", "Audio", "Realtime", "Narration"]
+    "description": "生成AIへ統合済み。",
+    "priority": 0,
+    "hidden": true,
+    "keywords": [
+      "Voice"
+    ]
   },
   {
-    "id": "china",
-    "name": "China AI",
-    "short": "China",
-    "color": "#EF4444",
-    "description": "DeepSeek、Alibaba、ByteDanceなど中国AI勢。",
-    "priority": 92,
-    "keywords": ["DeepSeek", "Qwen", "Doubao", "ERNIE", "China Cloud"]
+    "id": "image",
+    "name": "Image AI",
+    "short": "Image",
+    "color": "#A855F7",
+    "description": "生成AIへ統合済み。",
+    "priority": 0,
+    "hidden": true,
+    "keywords": [
+      "Image"
+    ]
   }
 ]

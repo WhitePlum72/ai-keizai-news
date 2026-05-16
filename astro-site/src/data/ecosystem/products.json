@@ -1,0 +1,920 @@
+[
+  {
+    "id": "h100",
+    "name": "H100",
+    "company": "nvidia",
+    "type": "product",
+    "sector": "infrastructure",
+    "description": "H100はAI Ecosystem Mapで参照される製品・サービスです。",
+    "capabilities": [],
+    "status": "active"
+  },
+  {
+    "id": "h200",
+    "name": "H200",
+    "company": "nvidia",
+    "type": "product",
+    "sector": "infrastructure",
+    "description": "H200はAI Ecosystem Mapで参照される製品・サービスです。",
+    "capabilities": [],
+    "status": "active"
+  },
+  {
+    "id": "b200",
+    "name": "B200",
+    "company": "nvidia",
+    "type": "product",
+    "sector": "infrastructure",
+    "description": "B200はAI Ecosystem Mapで参照される製品・サービスです。",
+    "capabilities": [],
+    "status": "active"
+  },
+  {
+    "id": "gb200",
+    "name": "GB200",
+    "company": "nvidia",
+    "type": "product",
+    "sector": "infrastructure",
+    "description": "GB200はAI Ecosystem Mapで参照される製品・サービスです。",
+    "capabilities": [],
+    "status": "active"
+  },
+  {
+    "id": "cuda",
+    "name": "CUDA",
+    "company": "nvidia",
+    "type": "product",
+    "sector": "infrastructure",
+    "description": "CUDAはAI Ecosystem Mapで参照される製品・サービスです。",
+    "capabilities": [],
+    "status": "active"
+  },
+  {
+    "id": "nvidia-ai-enterprise",
+    "name": "NVIDIA AI Enterprise",
+    "company": "nvidia",
+    "type": "product",
+    "sector": "infrastructure",
+    "description": "NVIDIA AI EnterpriseはAI Ecosystem Mapで参照される製品・サービスです。",
+    "capabilities": [],
+    "status": "active"
+  },
+  {
+    "id": "dgx",
+    "name": "DGX",
+    "company": "nvidia",
+    "type": "product",
+    "sector": "infrastructure",
+    "description": "DGXはAI Ecosystem Mapで参照される製品・サービスです。",
+    "capabilities": [],
+    "status": "active"
+  },
+  {
+    "id": "nvlink",
+    "name": "NVLink",
+    "company": "nvidia",
+    "type": "product",
+    "sector": "infrastructure",
+    "description": "NVLinkはAI Ecosystem Mapで参照される製品・サービスです。",
+    "capabilities": [],
+    "status": "active"
+  },
+  {
+    "id": "spectrum-x",
+    "name": "Spectrum-X",
+    "company": "nvidia",
+    "type": "product",
+    "sector": "infrastructure",
+    "description": "Spectrum-XはAI Ecosystem Mapで参照される製品・サービスです。",
+    "capabilities": [],
+    "status": "active"
+  },
+  {
+    "id": "mi300x",
+    "name": "MI300X",
+    "company": "amd",
+    "type": "product",
+    "sector": "infrastructure",
+    "description": "MI300XはAI Ecosystem Mapで参照される製品・サービスです。",
+    "capabilities": [],
+    "status": "active"
+  },
+  {
+    "id": "mi325x",
+    "name": "MI325X",
+    "company": "amd",
+    "type": "product",
+    "sector": "infrastructure",
+    "description": "MI325XはAI Ecosystem Mapで参照される製品・サービスです。",
+    "capabilities": [],
+    "status": "active"
+  },
+  {
+    "id": "mi350",
+    "name": "MI350",
+    "company": "amd",
+    "type": "product",
+    "sector": "infrastructure",
+    "description": "MI350はAI Ecosystem Mapで参照される製品・サービスです。",
+    "capabilities": [],
+    "status": "active"
+  },
+  {
+    "id": "mi400",
+    "name": "MI400",
+    "company": "amd",
+    "type": "product",
+    "sector": "infrastructure",
+    "description": "MI400はAI Ecosystem Mapで参照される製品・サービスです。",
+    "capabilities": [],
+    "status": "active"
+  },
+  {
+    "id": "grok",
+    "name": "Grok",
+    "company": "xai",
+    "type": "product",
+    "sector": "foundation",
+    "description": "GrokはAI Ecosystem Mapで参照される製品・サービスです。",
+    "capabilities": [],
+    "status": "active"
+  },
+  {
+    "id": "xai-api",
+    "name": "xAI API",
+    "company": "xai",
+    "type": "product",
+    "sector": "foundation",
+    "description": "xAI APIはAI Ecosystem Mapで参照される製品・サービスです。",
+    "capabilities": [],
+    "status": "active"
+  },
+  {
+    "id": "colossus",
+    "name": "Colossus",
+    "company": "xai",
+    "type": "product",
+    "sector": "foundation",
+    "description": "ColossusはAI Ecosystem Mapで参照される製品・サービスです。",
+    "capabilities": [],
+    "status": "active"
+  },
+  {
+    "id": "chatgpt",
+    "name": "ChatGPT",
+    "company": "openai",
+    "type": "product",
+    "sector": "foundation",
+    "description": "ChatGPTはAI Ecosystem Mapで参照される製品・サービスです。",
+    "capabilities": [],
+    "status": "active"
+  },
+  {
+    "id": "openai-api",
+    "name": "OpenAI API",
+    "company": "openai",
+    "type": "product",
+    "sector": "foundation",
+    "description": "OpenAI APIはAI Ecosystem Mapで参照される製品・サービスです。",
+    "capabilities": [],
+    "status": "active"
+  },
+  {
+    "id": "sora",
+    "name": "Sora",
+    "company": "openai",
+    "type": "product",
+    "sector": "generative-ai",
+    "description": "SoraはAI Ecosystem Mapで参照される製品・サービスです。",
+    "capabilities": [],
+    "status": "active"
+  },
+  {
+    "id": "codex",
+    "name": "Codex",
+    "company": "openai",
+    "type": "product",
+    "sector": "foundation",
+    "description": "CodexはAI Ecosystem Mapで参照される製品・サービスです。",
+    "capabilities": [],
+    "status": "active"
+  },
+  {
+    "id": "agents",
+    "name": "Agents",
+    "company": "openai",
+    "type": "product",
+    "sector": "foundation",
+    "description": "AgentsはAI Ecosystem Mapで参照される製品・サービスです。",
+    "capabilities": [],
+    "status": "active"
+  },
+  {
+    "id": "dall-e",
+    "name": "DALL-E",
+    "company": "openai",
+    "type": "product",
+    "sector": "generative-ai",
+    "description": "DALL-EはAI Ecosystem Mapで参照される製品・サービスです。",
+    "capabilities": [],
+    "status": "active"
+  },
+  {
+    "id": "claude",
+    "name": "Claude",
+    "company": "anthropic",
+    "type": "product",
+    "sector": "foundation",
+    "description": "ClaudeはAI Ecosystem Mapで参照される製品・サービスです。",
+    "capabilities": [],
+    "status": "active"
+  },
+  {
+    "id": "claude-api",
+    "name": "Claude API",
+    "company": "anthropic",
+    "type": "product",
+    "sector": "foundation",
+    "description": "Claude APIはAI Ecosystem Mapで参照される製品・サービスです。",
+    "capabilities": [],
+    "status": "active"
+  },
+  {
+    "id": "claude-code",
+    "name": "Claude Code",
+    "company": "anthropic",
+    "type": "product",
+    "sector": "foundation",
+    "description": "Claude CodeはAI Ecosystem Mapで参照される製品・サービスです。",
+    "capabilities": [],
+    "status": "active"
+  },
+  {
+    "id": "claude-for-work",
+    "name": "Claude for Work",
+    "company": "anthropic",
+    "type": "product",
+    "sector": "foundation",
+    "description": "Claude for WorkはAI Ecosystem Mapで参照される製品・サービスです。",
+    "capabilities": [],
+    "status": "active"
+  },
+  {
+    "id": "huggingface-hub",
+    "name": "Hugging Face Hub",
+    "company": "huggingface",
+    "type": "product",
+    "sector": "opensource",
+    "description": "Hugging Face HubはAI Ecosystem Mapで参照される製品・サービスです。",
+    "capabilities": [],
+    "status": "active"
+  },
+  {
+    "id": "transformers",
+    "name": "Transformers",
+    "company": "huggingface",
+    "type": "product",
+    "sector": "opensource",
+    "description": "TransformersはAI Ecosystem Mapで参照される製品・サービスです。",
+    "capabilities": [],
+    "status": "active"
+  },
+  {
+    "id": "datasets",
+    "name": "Datasets",
+    "company": "huggingface",
+    "type": "product",
+    "sector": "opensource",
+    "description": "DatasetsはAI Ecosystem Mapで参照される製品・サービスです。",
+    "capabilities": [],
+    "status": "active"
+  },
+  {
+    "id": "spaces",
+    "name": "Spaces",
+    "company": "huggingface",
+    "type": "product",
+    "sector": "opensource",
+    "description": "SpacesはAI Ecosystem Mapで参照される製品・サービスです。",
+    "capabilities": [],
+    "status": "active"
+  },
+  {
+    "id": "google-tpu",
+    "name": "Google TPU",
+    "company": "google",
+    "type": "product",
+    "sector": "foundation",
+    "description": "Google TPUはAI Ecosystem Mapで参照される製品・サービスです。",
+    "capabilities": [],
+    "status": "active"
+  },
+  {
+    "id": "aws-trainium",
+    "name": "AWS Trainium",
+    "company": "amazon",
+    "type": "product",
+    "sector": "enterprise",
+    "description": "AWS TrainiumはAI Ecosystem Mapで参照される製品・サービスです。",
+    "capabilities": [],
+    "status": "active"
+  },
+  {
+    "id": "microsoft-azure",
+    "name": "Microsoft Azure",
+    "company": "microsoft",
+    "type": "product",
+    "sector": "enterprise",
+    "description": "Microsoft AzureはAI Ecosystem Mapで参照される製品・サービスです。",
+    "capabilities": [],
+    "status": "active"
+  },
+  {
+    "id": "oracle-oci",
+    "name": "Oracle OCI",
+    "company": "oracle",
+    "type": "product",
+    "sector": "enterprise",
+    "description": "Oracle OCIはAI Ecosystem Mapで参照される製品・サービスです。",
+    "capabilities": [],
+    "status": "active"
+  },
+  {
+    "id": "ibm-cloud",
+    "name": "IBM Cloud",
+    "company": "ibm",
+    "type": "product",
+    "sector": "enterprise",
+    "description": "IBM CloudはAI Ecosystem Mapで参照される製品・サービスです。",
+    "capabilities": [],
+    "status": "active"
+  },
+  {
+    "id": "amazon-bedrock",
+    "name": "Amazon Bedrock",
+    "company": "amazon",
+    "type": "product",
+    "sector": "enterprise",
+    "description": "Amazon BedrockはAI Ecosystem Mapで参照される製品・サービスです。",
+    "capabilities": [],
+    "status": "active"
+  },
+  {
+    "id": "google-vertex-ai",
+    "name": "Google Vertex AI",
+    "company": "google",
+    "type": "product",
+    "sector": "foundation",
+    "description": "Google Vertex AIはAI Ecosystem Mapで参照される製品・サービスです。",
+    "capabilities": [],
+    "status": "active"
+  },
+  {
+    "id": "sakura-gpu-cloud",
+    "name": "GPUクラウド",
+    "company": "sakura-internet",
+    "type": "product",
+    "sector": "japan-ai",
+    "description": "GPUクラウドはAI Ecosystem Mapで参照される製品・サービスです。",
+    "capabilities": [],
+    "status": "active"
+  },
+  {
+    "id": "koukaryoku",
+    "name": "高火力",
+    "company": "sakura-internet",
+    "type": "product",
+    "sector": "japan-ai",
+    "description": "高火力はAI Ecosystem Mapで参照される製品・サービスです。",
+    "capabilities": [],
+    "status": "active"
+  },
+  {
+    "id": "cotomi",
+    "name": "cotomi",
+    "company": "ntt",
+    "type": "product",
+    "sector": "japan-ai",
+    "description": "cotomiはAI Ecosystem Mapで参照される製品・サービスです。",
+    "capabilities": [],
+    "status": "active"
+  },
+  {
+    "id": "tsuzumi",
+    "name": "tsuzumi",
+    "company": "ntt",
+    "type": "product",
+    "sector": "japan-ai",
+    "description": "tsuzumiはAI Ecosystem Mapで参照される製品・サービスです。",
+    "capabilities": [],
+    "status": "active"
+  },
+  {
+    "id": "sakana-lm",
+    "name": "Sakana AI Models",
+    "company": "sakana-ai",
+    "type": "product",
+    "sector": "japan-ai",
+    "description": "Sakana AI ModelsはAI Ecosystem Mapで参照される製品・サービスです。",
+    "capabilities": [],
+    "status": "active"
+  },
+  {
+    "id": "pfn-ca",
+    "name": "Preferred Networks AI基盤",
+    "company": "preferred-networks",
+    "type": "product",
+    "sector": "japan-ai",
+    "description": "Preferred Networks AI基盤はAI Ecosystem Mapで参照される製品・サービスです。",
+    "capabilities": [],
+    "status": "active"
+  },
+  {
+    "id": "line-ai-assistant",
+    "name": "LINE AI Assistant",
+    "company": "line-yahoo",
+    "type": "product",
+    "sector": "japan-ai",
+    "description": "LINE AI AssistantはAI Ecosystem Mapで参照される製品・サービスです。",
+    "capabilities": [],
+    "status": "active"
+  },
+  {
+    "id": "adobe-firefly",
+    "name": "Adobe Firefly",
+    "company": "adobe",
+    "type": "product",
+    "sector": "generative-ai",
+    "description": "Adobe FireflyはAI Ecosystem Mapで参照される製品・サービスです。",
+    "capabilities": [
+      "image",
+      "creative"
+    ],
+    "status": "active"
+  },
+  {
+    "id": "runway-gen-3",
+    "name": "Runway Gen-3",
+    "company": "runway",
+    "type": "model",
+    "sector": "generative-ai",
+    "description": "Runway Gen-3はAI Ecosystem Mapで参照される製品・サービスです。",
+    "capabilities": [
+      "video generation"
+    ],
+    "status": "active"
+  },
+  {
+    "id": "cmos-sensor",
+    "name": "CMOS Sensor",
+    "company": "sony-semiconductor",
+    "type": "product",
+    "sector": "infrastructure",
+    "description": "CMOS SensorはAI Ecosystem Mapで参照される製品・サービスです。",
+    "capabilities": [
+      "image sensor"
+    ],
+    "status": "active"
+  },
+  {
+    "id": "starvis",
+    "name": "STARVIS",
+    "company": "sony-semiconductor",
+    "type": "product",
+    "sector": "infrastructure",
+    "description": "STARVISはAI Ecosystem Mapで参照される製品・サービスです。",
+    "capabilities": [
+      "image sensor"
+    ],
+    "status": "active"
+  },
+  {
+    "id": "firefly",
+    "name": "Firefly",
+    "company": "adobe",
+    "sector": "generative-ai",
+    "type": "product",
+    "description": "Fireflyは生成AI領域の製品・サービスです。",
+    "logoText": "F",
+    "capabilities": [],
+    "status": "active"
+  },
+  {
+    "id": "midjourney-product",
+    "name": "Midjourney",
+    "company": "midjourney",
+    "sector": "generative-ai",
+    "type": "product",
+    "description": "Midjourneyは生成AI領域の製品・サービスです。",
+    "logoText": "M",
+    "capabilities": [],
+    "status": "active"
+  },
+  {
+    "id": "runway-gen",
+    "name": "Runway Gen",
+    "company": "runway",
+    "sector": "generative-ai",
+    "type": "product",
+    "description": "Runway Genは生成AI領域の製品・サービスです。",
+    "logoText": "RG",
+    "capabilities": [],
+    "status": "active"
+  },
+  {
+    "id": "pika-product",
+    "name": "Pika",
+    "company": "pika",
+    "sector": "generative-ai",
+    "type": "product",
+    "description": "Pikaは生成AI領域の製品・サービスです。",
+    "logoText": "P",
+    "capabilities": [],
+    "status": "active"
+  },
+  {
+    "id": "luma-dream-machine",
+    "name": "Luma Dream Machine",
+    "company": "luma",
+    "sector": "generative-ai",
+    "type": "product",
+    "description": "Luma Dream Machineは生成AI領域の製品・サービスです。",
+    "logoText": "LD",
+    "capabilities": [],
+    "status": "active"
+  },
+  {
+    "id": "elevenlabs-voice",
+    "name": "ElevenLabs Voice",
+    "company": "elevenlabs",
+    "sector": "generative-ai",
+    "type": "product",
+    "description": "ElevenLabs Voiceは生成AI領域の製品・サービスです。",
+    "logoText": "EV",
+    "capabilities": [],
+    "status": "active"
+  },
+  {
+    "id": "suno-product",
+    "name": "Suno",
+    "company": "suno",
+    "sector": "generative-ai",
+    "type": "product",
+    "description": "Sunoは生成AI領域の製品・サービスです。",
+    "logoText": "S",
+    "capabilities": [],
+    "status": "active"
+  },
+  {
+    "id": "udio-product",
+    "name": "Udio",
+    "company": "udio",
+    "sector": "generative-ai",
+    "type": "product",
+    "description": "Udioは生成AI領域の製品・サービスです。",
+    "logoText": "U",
+    "capabilities": [],
+    "status": "active"
+  },
+  {
+    "id": "devin",
+    "name": "Devin",
+    "company": "cognition",
+    "sector": "agents",
+    "type": "product",
+    "description": "DevinはAIエージェント領域の製品・基盤です。",
+    "logoText": "D",
+    "capabilities": [],
+    "status": "active"
+  },
+  {
+    "id": "langgraph",
+    "name": "LangGraph",
+    "company": "langchain",
+    "sector": "agents",
+    "type": "product",
+    "description": "LangGraphはAIエージェント領域の製品・基盤です。",
+    "logoText": "L",
+    "capabilities": [],
+    "status": "active"
+  },
+  {
+    "id": "autogen",
+    "name": "AutoGen",
+    "company": "microsoft",
+    "sector": "agents",
+    "type": "product",
+    "description": "AutoGenはAIエージェント領域の製品・基盤です。",
+    "logoText": "A",
+    "capabilities": [],
+    "status": "active"
+  },
+  {
+    "id": "crewai-framework",
+    "name": "CrewAI",
+    "company": "crewai",
+    "sector": "agents",
+    "type": "product",
+    "description": "CrewAIはAIエージェント領域の製品・基盤です。",
+    "logoText": "C",
+    "capabilities": [],
+    "status": "active"
+  },
+  {
+    "id": "dify-platform",
+    "name": "Dify Platform",
+    "company": "dify",
+    "sector": "agents",
+    "type": "product",
+    "description": "Dify PlatformはAIエージェント領域の製品・基盤です。",
+    "logoText": "DP",
+    "capabilities": [],
+    "status": "active"
+  },
+  {
+    "id": "flowise-builder",
+    "name": "Flowise",
+    "company": "flowise",
+    "sector": "agents",
+    "type": "product",
+    "description": "FlowiseはAIエージェント領域の製品・基盤です。",
+    "logoText": "F",
+    "capabilities": [],
+    "status": "active"
+  },
+  {
+    "id": "rabbit-r1",
+    "name": "Rabbit R1",
+    "company": "rabbit",
+    "sector": "agents",
+    "type": "product",
+    "description": "Rabbit R1はAIエージェント領域の製品・基盤です。",
+    "logoText": "RR",
+    "capabilities": [],
+    "status": "active"
+  },
+  {
+    "id": "sierra-agent",
+    "name": "Sierra Agent",
+    "company": "sierra",
+    "sector": "agents",
+    "type": "product",
+    "description": "Sierra AgentはAIエージェント領域の製品・基盤です。",
+    "logoText": "SA",
+    "capabilities": [],
+    "status": "active"
+  },
+  {
+    "id": "replit-agent",
+    "name": "Replit Agent",
+    "company": "replit",
+    "sector": "agents",
+    "type": "product",
+    "description": "Replit AgentはAIエージェント領域の製品・基盤です。",
+    "logoText": "RA",
+    "capabilities": [],
+    "status": "active"
+  },
+  {
+    "id": "cursor-agent",
+    "name": "Cursor Agent",
+    "company": "cursor",
+    "sector": "agents",
+    "type": "product",
+    "description": "Cursor AgentはAIエージェント領域の製品・基盤です。",
+    "logoText": "CA",
+    "capabilities": [],
+    "status": "active"
+  },
+  {
+    "id": "windsurf-cascade",
+    "name": "Cascade",
+    "company": "windsurf",
+    "sector": "agents",
+    "type": "product",
+    "description": "CascadeはAIエージェント領域の製品・基盤です。",
+    "logoText": "C",
+    "capabilities": [],
+    "status": "active"
+  },
+  {
+    "id": "ollama-runtime",
+    "name": "Ollama Runtime",
+    "company": "ollama",
+    "sector": "opensource",
+    "type": "product",
+    "description": "Ollama RuntimeはオープンソースAIエコシステムの製品・基盤です。",
+    "logoText": "OR",
+    "capabilities": [],
+    "status": "active"
+  },
+  {
+    "id": "vllm-engine",
+    "name": "vLLM Engine",
+    "company": "vllm",
+    "sector": "opensource",
+    "type": "product",
+    "description": "vLLM EngineはオープンソースAIエコシステムの製品・基盤です。",
+    "logoText": "VE",
+    "capabilities": [],
+    "status": "active"
+  },
+  {
+    "id": "llama-cpp-runtime",
+    "name": "llama.cpp Runtime",
+    "company": "llama-cpp",
+    "sector": "opensource",
+    "type": "product",
+    "description": "llama.cpp RuntimeはオープンソースAIエコシステムの製品・基盤です。",
+    "logoText": "LR",
+    "capabilities": [],
+    "status": "active"
+  },
+  {
+    "id": "open-webui-product",
+    "name": "Open WebUI",
+    "company": "open-webui",
+    "sector": "opensource",
+    "type": "product",
+    "description": "Open WebUIはオープンソースAIエコシステムの製品・基盤です。",
+    "logoText": "OW",
+    "capabilities": [],
+    "status": "active"
+  },
+  {
+    "id": "comfyui-product",
+    "name": "ComfyUI",
+    "company": "comfyui",
+    "sector": "opensource",
+    "type": "product",
+    "description": "ComfyUIはオープンソースAIエコシステムの製品・基盤です。",
+    "logoText": "C",
+    "capabilities": [],
+    "status": "active"
+  },
+  {
+    "id": "jetson",
+    "name": "Jetson",
+    "company": "nvidia",
+    "sector": "robotics",
+    "type": "product",
+    "description": "Jetsonはロボティクス領域の製品・基盤です。",
+    "logoText": "J",
+    "capabilities": [],
+    "status": "active"
+  },
+  {
+    "id": "isaac",
+    "name": "Isaac",
+    "company": "nvidia",
+    "sector": "robotics",
+    "type": "product",
+    "description": "Isaacはロボティクス領域の製品・基盤です。",
+    "logoText": "I",
+    "capabilities": [],
+    "status": "active"
+  },
+  {
+    "id": "gemini-robotics",
+    "name": "Gemini Robotics",
+    "company": "google-deepmind",
+    "sector": "robotics",
+    "type": "product",
+    "description": "Gemini Roboticsはロボティクス領域の製品・基盤です。",
+    "logoText": "GR",
+    "capabilities": [],
+    "status": "active"
+  },
+  {
+    "id": "optimus",
+    "name": "Optimus",
+    "company": "tesla-optimus",
+    "sector": "robotics",
+    "type": "product",
+    "description": "Optimusはロボティクス領域の製品・基盤です。",
+    "logoText": "O",
+    "capabilities": [],
+    "status": "active"
+  },
+  {
+    "id": "digit",
+    "name": "Digit",
+    "company": "agility-robotics",
+    "sector": "robotics",
+    "type": "product",
+    "description": "Digitはロボティクス領域の製品・基盤です。",
+    "logoText": "D",
+    "capabilities": [],
+    "status": "active"
+  },
+  {
+    "id": "apollo-robot",
+    "name": "Apollo",
+    "company": "apptronik",
+    "sector": "robotics",
+    "type": "product",
+    "description": "Apolloはロボティクス領域の製品・基盤です。",
+    "logoText": "A",
+    "capabilities": [],
+    "status": "active"
+  },
+  {
+    "id": "neo-robot",
+    "name": "NEO",
+    "company": "one-x",
+    "sector": "robotics",
+    "type": "product",
+    "description": "NEOはロボティクス領域の製品・基盤です。",
+    "logoText": "N",
+    "capabilities": [],
+    "status": "active"
+  },
+  {
+    "id": "pi0",
+    "name": "π0",
+    "company": "physical-intelligence",
+    "sector": "robotics",
+    "type": "product",
+    "description": "π0はロボティクス領域の製品・基盤です。",
+    "logoText": "Π",
+    "capabilities": [],
+    "status": "active"
+  },
+  {
+    "id": "huawei-ascend",
+    "name": "Huawei Ascend",
+    "company": "huawei",
+    "sector": "china-ai",
+    "type": "product",
+    "description": "Huawei Ascendは中国AIエコシステムの製品・基盤です。",
+    "logoText": "HA",
+    "capabilities": [],
+    "status": "active"
+  },
+  {
+    "id": "alibaba-cloud",
+    "name": "Alibaba Cloud",
+    "company": "alibaba",
+    "sector": "china-ai",
+    "type": "product",
+    "description": "Alibaba Cloudは中国AIエコシステムの製品・基盤です。",
+    "logoText": "AC",
+    "capabilities": [],
+    "status": "active"
+  },
+  {
+    "id": "tencent-cloud",
+    "name": "Tencent Cloud",
+    "company": "tencent",
+    "sector": "china-ai",
+    "type": "product",
+    "description": "Tencent Cloudは中国AIエコシステムの製品・基盤です。",
+    "logoText": "TC",
+    "capabilities": [],
+    "status": "active"
+  },
+  {
+    "id": "baidu-ai-cloud",
+    "name": "Baidu AI Cloud",
+    "company": "baidu",
+    "sector": "china-ai",
+    "type": "product",
+    "description": "Baidu AI Cloudは中国AIエコシステムの製品・基盤です。",
+    "logoText": "BA",
+    "capabilities": [],
+    "status": "active"
+  },
+  {
+    "id": "kimi-chat",
+    "name": "Kimi Chat",
+    "company": "moonshot-ai",
+    "sector": "china-ai",
+    "type": "product",
+    "description": "Kimi Chatは中国AIエコシステムの製品・基盤です。",
+    "logoText": "KC",
+    "capabilities": [],
+    "status": "active"
+  },
+  {
+    "id": "wechat",
+    "name": "WeChat",
+    "company": "tencent",
+    "sector": "china-ai",
+    "type": "product",
+    "description": "WeChatは中国AIエコシステムの製品・基盤です。",
+    "logoText": "W",
+    "capabilities": [],
+    "status": "active"
+  },
+  {
+    "id": "tiktok",
+    "name": "TikTok",
+    "company": "bytedance",
+    "sector": "china-ai",
+    "type": "product",
+    "description": "TikTokは中国AIエコシステムの製品・基盤です。",
+    "logoText": "T",
+    "capabilities": [],
+    "status": "active"
+  }
+]

@@ -1,38 +1,888 @@
-﻿[
-  {"id":"chatgpt","name":"ChatGPT","company":"openai","sector":"foundation","type":"product","description":"OpenAIの一般向けAIアシスタント。検索、音声、画像、業務利用まで入口になる中核プロダクト。","capabilities":["chat","search","voice","image","agents"],"status":"flagship"},
-  {"id":"gpt-4o","name":"GPT-4o","company":"openai","sector":"foundation","type":"model","description":"テキスト、画像、音声を統合するOpenAIのマルチモーダル基盤モデル。","capabilities":["multimodal","voice","vision","reasoning"],"status":"active"},
-  {"id":"o3","name":"o3","company":"openai","sector":"foundation","type":"model","description":"推論能力に重点を置くOpenAIのreasoning系モデル。複雑な問題解決やエージェント用途に接続される。","capabilities":["reasoning","coding","analysis","agentic-workflows"],"status":"active"},
-  {"id":"sora","name":"Sora","company":"openai","sector":"video","type":"model","description":"OpenAIの動画生成モデル。生成AIアプリケーション領域の競争軸を大きく変えた存在。","capabilities":["text-to-video","visual-generation","creative-workflows"],"status":"active"},
-  {"id":"codex","name":"Codex","company":"openai","sector":"agents","type":"agent","description":"ソフトウェア開発支援に特化したOpenAIのエージェント系プロダクト。","capabilities":["coding","repo-analysis","automation"],"status":"active"},
-  {"id":"claude","name":"Claude","company":"anthropic","sector":"foundation","type":"model","description":"Anthropicの企業向け・長文処理・安全性に強い基盤モデル群。","capabilities":["long-context","reasoning","coding","enterprise"],"status":"active"},
-  {"id":"claude-code","name":"Claude Code","company":"anthropic","sector":"agents","type":"agent","description":"Claudeを開発ワークフローに接続するコーディングエージェント。","capabilities":["coding","terminal","repo-workflows"],"status":"active"},
-  {"id":"gemini","name":"Gemini","company":"google","sector":"foundation","type":"model","description":"Google DeepMindの基盤モデル群。検索、Android、Workspace、Cloudに接続される。","capabilities":["multimodal","search","workspace","android"],"status":"active"},
-  {"id":"veo","name":"Veo","company":"google","sector":"video","type":"model","description":"Googleの動画生成モデル。YouTubeやクリエイティブツールとの接続が注目される。","capabilities":["video-generation","creative-ai"],"status":"active"},
-  {"id":"gemma","name":"Gemma","company":"google","sector":"opensource","type":"model","description":"Googleの軽量オープンモデル群。研究・開発者コミュニティへの接続を担う。","capabilities":["open-weights","developer","research"],"status":"active"},
-  {"id":"llama","name":"Llama","company":"meta","sector":"opensource","type":"model","description":"Metaのオープンモデル戦略の中心。企業利用、研究、ローカルAIで広く使われる。","capabilities":["open-weights","fine-tuning","local-ai"],"status":"active"},
-  {"id":"grok","name":"Grok","company":"xai","sector":"foundation","type":"model","description":"xAIの基盤モデル。Xとの接続と大規模GPUクラスタを背景に急成長。","capabilities":["chat","reasoning","social-data"],"status":"active"},
-  {"id":"mistral-large","name":"Mistral Large","company":"mistral","sector":"foundation","type":"model","description":"欧州発Mistral AIの商用向け大型モデル。AI主権や欧州市場で存在感を持つ。","capabilities":["enterprise","multilingual","reasoning"],"status":"active"},
-  {"id":"le-chat","name":"Le Chat","company":"mistral","sector":"foundation","type":"product","description":"Mistral AIのチャットプロダクト。欧州ユーザーと企業導入の入口になる。","capabilities":["chat","enterprise","multilingual"],"status":"active"},
-  {"id":"command-r","name":"Command R","company":"cohere","sector":"foundation","type":"model","description":"Cohereの企業向けRAG・検索拡張に強いモデル群。","capabilities":["rag","enterprise-search","multilingual"],"status":"active"},
-  {"id":"deepseek-r1","name":"DeepSeek R1","company":"deepseek","sector":"china","type":"model","description":"DeepSeekの推論モデル。低コスト・高性能の象徴として世界的に注目された。","capabilities":["reasoning","open-weights","cost-efficiency"],"status":"active"},
-  {"id":"deepseek-v3","name":"DeepSeek V3","company":"deepseek","sector":"china","type":"model","description":"DeepSeekの汎用モデル。中国AIとオープンモデル競争の重要ノード。","capabilities":["chat","coding","open-weights"],"status":"active"},
-  {"id":"qwen","name":"Qwen","company":"alibaba","sector":"china","type":"model","description":"Alibabaの基盤モデル群。中国クラウド、EC、開発者エコシステムに接続される。","capabilities":["multilingual","coding","cloud"],"status":"active"},
-  {"id":"doubao","name":"Doubao","company":"bytedance","sector":"china","type":"product","description":"ByteDanceのAIアシスタント。消費者向けAIとコンテンツ配信の文脈で重要。","capabilities":["chat","consumer-ai","content"],"status":"active"},
-  {"id":"hunyuan","name":"Hunyuan","company":"tencent","sector":"china","type":"model","description":"Tencentの基盤モデル。WeChat、ゲーム、クラウド領域との連携が焦点。","capabilities":["chat","gaming","cloud"],"status":"active"},
-  {"id":"ernie","name":"ERNIE","company":"baidu","sector":"china","type":"model","description":"Baiduの基盤モデル。検索とAIクラウドの統合が強み。","capabilities":["search","chat","cloud"],"status":"active"},
-  {"id":"langgraph","name":"LangGraph","company":"langchain","sector":"agents","type":"agent","description":"複雑なエージェントワークフローを状態グラフとして構築するLangChainの中核フレームワーク。","capabilities":["agent-orchestration","workflow","developer"],"status":"active"},
-  {"id":"perplexity-answer-engine","name":"Perplexity Answer Engine","company":"perplexity","sector":"agents","type":"product","description":"検索とLLMを融合した回答エンジン。Search Agents領域を代表するプロダクト。","capabilities":["search","answer-engine","citations"],"status":"active"},
-  {"id":"devin-agent","name":"Devin","company":"devin","sector":"agents","type":"agent","description":"ソフトウェア開発の自律化を掲げるAIエージェント。","capabilities":["coding","autonomous-agent","developer"],"status":"active"},
-  {"id":"copilot","name":"Microsoft Copilot","company":"microsoft","sector":"enterprise","type":"product","description":"Microsoft 365、Windows、GitHub、Azureを横断するAIアシスタント群。","capabilities":["enterprise","productivity","coding","agents"],"status":"active"},
-  {"id":"agentforce","name":"Agentforce","company":"salesforce","sector":"enterprise","type":"agent","description":"SalesforceのCRM向けAIエージェント構想。営業・サポートの自動化を担う。","capabilities":["crm","workflow","enterprise-agents"],"status":"active"},
-  {"id":"mosaic-ai","name":"Mosaic AI","company":"databricks","sector":"enterprise","type":"product","description":"Databricksのデータ基盤と生成AIを接続する企業向けAIスタック。","capabilities":["data","mlops","enterprise-ai"],"status":"active"},
-  {"id":"watsonx","name":"watsonx","company":"ibm","sector":"enterprise","type":"product","description":"IBMの企業向けAI・ガバナンス・モデル運用プラットフォーム。","capabilities":["governance","enterprise","modelops"],"status":"active"},
-  {"id":"joule","name":"Joule","company":"sap","sector":"enterprise","type":"agent","description":"SAPの業務アプリケーションに組み込まれるAIアシスタント。","capabilities":["erp","workflow","enterprise"],"status":"active"},
-  {"id":"firefly","name":"Adobe Firefly","company":"adobe","sector":"video","type":"model","description":"Adobe Creative Cloudに統合される生成AIモデル群。商用利用と制作ワークフローが強み。","capabilities":["image","video","creative-cloud"],"status":"active"},
-  {"id":"gen-3","name":"Runway Gen-3","company":"runway","sector":"video","type":"model","description":"Runwayの動画生成モデル。映像制作向けAIツールとして注目される。","capabilities":["video-generation","editing","creative"],"status":"active"},
-  {"id":"pika-video","name":"Pika","company":"pika","sector":"video","type":"model","description":"短尺動画生成やSNS向けクリエイティブで注目される動画AIツール。","capabilities":["video-generation","consumer-creative"],"status":"active"},
-  {"id":"dream-machine","name":"Dream Machine","company":"luma","sector":"video","type":"model","description":"Luma AIの動画生成モデル。3D・映像生成の文脈で重要。","capabilities":["video-generation","3d","creative"],"status":"active"},
-  {"id":"eleven-voice","name":"ElevenLabs Voice AI","company":"elevenlabs","sector":"voice","type":"model","description":"音声合成、吹き替え、音声エージェントに強いElevenLabsの音声AI。","capabilities":["voice","tts","dubbing","agents"],"status":"active"},
-  {"id":"optimus","name":"Optimus","company":"tesla","sector":"robotics","type":"product","description":"Teslaのヒューマノイドロボット。製造現場と汎用ロボティクスの接点。","capabilities":["humanoid","manufacturing","embodied-ai"],"status":"developing"},
-  {"id":"figure-02","name":"Figure 02","company":"figure","sector":"robotics","type":"product","description":"Figure AIのヒューマノイドロボット。基盤モデルと物理作業を接続する象徴的存在。","capabilities":["humanoid","manufacturing","foundation-models"],"status":"developing"}
+[
+  {
+    "id": "chatgpt",
+    "name": "ChatGPT",
+    "company": "openai",
+    "sector": "foundation",
+    "type": "product",
+    "description": "OpenAIの一般向けAIアシスタント。検索、音声、画像、業務利用まで入口になる中核プロダクト。",
+    "capabilities": [
+      "chat",
+      "search",
+      "voice",
+      "image",
+      "agents"
+    ],
+    "status": "flagship"
+  },
+  {
+    "id": "gpt-4o",
+    "name": "GPT-4o",
+    "company": "openai",
+    "sector": "foundation",
+    "type": "model",
+    "description": "テキスト、画像、音声を統合するOpenAIのマルチモーダル基盤モデル。",
+    "capabilities": [
+      "multimodal",
+      "voice",
+      "vision",
+      "reasoning"
+    ],
+    "status": "active"
+  },
+  {
+    "id": "o3",
+    "name": "o3",
+    "company": "openai",
+    "sector": "foundation",
+    "type": "model",
+    "description": "推論能力に重点を置くOpenAIのreasoning系モデル。複雑な問題解決やエージェント用途に接続される。",
+    "capabilities": [
+      "reasoning",
+      "coding",
+      "analysis",
+      "agentic-workflows"
+    ],
+    "status": "active"
+  },
+  {
+    "id": "sora",
+    "name": "Sora",
+    "company": "openai",
+    "sector": "generative-ai",
+    "type": "model",
+    "description": "OpenAIの動画生成モデル。生成AIアプリケーション領域の競争軸を大きく変えた存在。",
+    "capabilities": [
+      "text-to-video",
+      "visual-generation",
+      "creative-workflows"
+    ],
+    "status": "active"
+  },
+  {
+    "id": "codex",
+    "name": "Codex",
+    "company": "openai",
+    "sector": "agents",
+    "type": "agent",
+    "description": "ソフトウェア開発支援に特化したOpenAIのエージェント系プロダクト。",
+    "capabilities": [
+      "coding",
+      "repo-analysis",
+      "automation"
+    ],
+    "status": "active"
+  },
+  {
+    "id": "claude",
+    "name": "Claude",
+    "company": "anthropic",
+    "sector": "foundation",
+    "type": "model",
+    "description": "Anthropicの企業向け・長文処理・安全性に強い基盤モデル群。",
+    "capabilities": [
+      "long-context",
+      "reasoning",
+      "coding",
+      "enterprise"
+    ],
+    "status": "active"
+  },
+  {
+    "id": "claude-code",
+    "name": "Claude Code",
+    "company": "anthropic",
+    "sector": "agents",
+    "type": "agent",
+    "description": "Claudeを開発ワークフローに接続するコーディングエージェント。",
+    "capabilities": [
+      "coding",
+      "terminal",
+      "repo-workflows"
+    ],
+    "status": "active"
+  },
+  {
+    "id": "gemini",
+    "name": "Gemini",
+    "company": "google",
+    "sector": "foundation",
+    "type": "model",
+    "description": "Google DeepMindの基盤モデル群。検索、Android、Workspace、Cloudに接続される。",
+    "capabilities": [
+      "multimodal",
+      "search",
+      "workspace",
+      "android"
+    ],
+    "status": "active"
+  },
+  {
+    "id": "veo",
+    "name": "Veo",
+    "company": "google",
+    "sector": "generative-ai",
+    "type": "model",
+    "description": "Googleの動画生成モデル。YouTubeやクリエイティブツールとの接続が注目される。",
+    "capabilities": [
+      "video-generation",
+      "creative-ai"
+    ],
+    "status": "active"
+  },
+  {
+    "id": "gemma",
+    "name": "Gemma",
+    "company": "google",
+    "sector": "opensource",
+    "type": "model",
+    "description": "Googleの軽量オープンモデル群。研究・開発者コミュニティへの接続を担う。",
+    "capabilities": [
+      "open-weights",
+      "developer",
+      "research"
+    ],
+    "status": "active"
+  },
+  {
+    "id": "llama",
+    "name": "Llama",
+    "company": "meta",
+    "sector": "opensource",
+    "type": "model",
+    "description": "Metaのオープンモデル戦略の中心。企業利用、研究、ローカルAIで広く使われる。",
+    "capabilities": [
+      "open-weights",
+      "fine-tuning",
+      "local-ai"
+    ],
+    "status": "active"
+  },
+  {
+    "id": "grok",
+    "name": "Grok",
+    "company": "xai",
+    "sector": "foundation",
+    "type": "model",
+    "description": "xAIの基盤モデル。Xとの接続と大規模GPUクラスタを背景に急成長。",
+    "capabilities": [
+      "chat",
+      "reasoning",
+      "social-data"
+    ],
+    "status": "active"
+  },
+  {
+    "id": "mistral-large",
+    "name": "Mistral Large",
+    "company": "mistral",
+    "sector": "foundation",
+    "type": "model",
+    "description": "欧州発Mistral AIの商用向け大型モデル。AI主権や欧州市場で存在感を持つ。",
+    "capabilities": [
+      "enterprise",
+      "multilingual",
+      "reasoning"
+    ],
+    "status": "active"
+  },
+  {
+    "id": "le-chat",
+    "name": "Le Chat",
+    "company": "mistral",
+    "sector": "foundation",
+    "type": "product",
+    "description": "Mistral AIのチャットプロダクト。欧州ユーザーと企業導入の入口になる。",
+    "capabilities": [
+      "chat",
+      "enterprise",
+      "multilingual"
+    ],
+    "status": "active"
+  },
+  {
+    "id": "command-r",
+    "name": "Command R",
+    "company": "cohere",
+    "sector": "foundation",
+    "type": "model",
+    "description": "Cohereの企業向けRAG・検索拡張に強いモデル群。",
+    "capabilities": [
+      "rag",
+      "enterprise-search",
+      "multilingual"
+    ],
+    "status": "active"
+  },
+  {
+    "id": "deepseek-r1",
+    "name": "DeepSeek R1",
+    "company": "deepseek",
+    "sector": "china-ai",
+    "type": "model",
+    "description": "DeepSeekの推論モデル。低コスト・高性能の象徴として世界的に注目された。",
+    "capabilities": [
+      "reasoning",
+      "open-weights",
+      "cost-efficiency"
+    ],
+    "status": "active"
+  },
+  {
+    "id": "deepseek-v3",
+    "name": "DeepSeek V3",
+    "company": "deepseek",
+    "sector": "china-ai",
+    "type": "model",
+    "description": "DeepSeekの汎用モデル。中国AIとオープンモデル競争の重要ノード。",
+    "capabilities": [
+      "chat",
+      "coding",
+      "open-weights"
+    ],
+    "status": "active"
+  },
+  {
+    "id": "qwen",
+    "name": "Qwen",
+    "company": "alibaba",
+    "sector": "china-ai",
+    "type": "model",
+    "description": "Alibabaの基盤モデル群。中国クラウド、EC、開発者エコシステムに接続される。",
+    "capabilities": [
+      "multilingual",
+      "coding",
+      "cloud"
+    ],
+    "status": "active"
+  },
+  {
+    "id": "doubao",
+    "name": "Doubao",
+    "company": "bytedance",
+    "sector": "china-ai",
+    "type": "product",
+    "description": "ByteDanceのAIアシスタント。消費者向けAIとコンテンツ配信の文脈で重要。",
+    "capabilities": [
+      "chat",
+      "consumer-ai",
+      "content"
+    ],
+    "status": "active"
+  },
+  {
+    "id": "hunyuan",
+    "name": "Hunyuan",
+    "company": "tencent",
+    "sector": "china-ai",
+    "type": "model",
+    "description": "Tencentの基盤モデル。WeChat、ゲーム、クラウド領域との連携が焦点。",
+    "capabilities": [
+      "chat",
+      "gaming",
+      "cloud"
+    ],
+    "status": "active"
+  },
+  {
+    "id": "ernie",
+    "name": "ERNIE",
+    "company": "baidu",
+    "sector": "china-ai",
+    "type": "model",
+    "description": "Baiduの基盤モデル。検索とAIクラウドの統合が強み。",
+    "capabilities": [
+      "search",
+      "chat",
+      "cloud"
+    ],
+    "status": "active"
+  },
+  {
+    "id": "langgraph",
+    "name": "LangGraph",
+    "company": "langchain",
+    "sector": "agents",
+    "type": "agent",
+    "description": "複雑なエージェントワークフローを状態グラフとして構築するLangChainの中核フレームワーク。",
+    "capabilities": [
+      "agent-orchestration",
+      "workflow",
+      "developer"
+    ],
+    "status": "active"
+  },
+  {
+    "id": "perplexity-answer-engine",
+    "name": "Perplexity Answer Engine",
+    "company": "perplexity",
+    "sector": "agents",
+    "type": "product",
+    "description": "検索とLLMを融合した回答エンジン。Search Agents領域を代表するプロダクト。",
+    "capabilities": [
+      "search",
+      "answer-engine",
+      "citations"
+    ],
+    "status": "active"
+  },
+  {
+    "id": "devin-agent",
+    "name": "Devin",
+    "company": "devin",
+    "sector": "agents",
+    "type": "agent",
+    "description": "ソフトウェア開発の自律化を掲げるAIエージェント。",
+    "capabilities": [
+      "coding",
+      "autonomous-agent",
+      "developer"
+    ],
+    "status": "active"
+  },
+  {
+    "id": "copilot",
+    "name": "Microsoft Copilot",
+    "company": "microsoft",
+    "sector": "enterprise",
+    "type": "product",
+    "description": "Microsoft 365、Windows、GitHub、Azureを横断するAIアシスタント群。",
+    "capabilities": [
+      "enterprise",
+      "productivity",
+      "coding",
+      "agents"
+    ],
+    "status": "active"
+  },
+  {
+    "id": "agentforce",
+    "name": "Agentforce",
+    "company": "salesforce",
+    "sector": "enterprise",
+    "type": "agent",
+    "description": "SalesforceのCRM向けAIエージェント構想。営業・サポートの自動化を担う。",
+    "capabilities": [
+      "crm",
+      "workflow",
+      "enterprise-agents"
+    ],
+    "status": "active"
+  },
+  {
+    "id": "mosaic-ai",
+    "name": "Mosaic AI",
+    "company": "databricks",
+    "sector": "enterprise",
+    "type": "product",
+    "description": "Databricksのデータ基盤と生成AIを接続する企業向けAIスタック。",
+    "capabilities": [
+      "data",
+      "mlops",
+      "enterprise-ai"
+    ],
+    "status": "active"
+  },
+  {
+    "id": "watsonx",
+    "name": "watsonx",
+    "company": "ibm",
+    "sector": "enterprise",
+    "type": "product",
+    "description": "IBMの企業向けAI・ガバナンス・モデル運用プラットフォーム。",
+    "capabilities": [
+      "governance",
+      "enterprise",
+      "modelops"
+    ],
+    "status": "active"
+  },
+  {
+    "id": "joule",
+    "name": "Joule",
+    "company": "sap",
+    "sector": "enterprise",
+    "type": "agent",
+    "description": "SAPの業務アプリケーションに組み込まれるAIアシスタント。",
+    "capabilities": [
+      "erp",
+      "workflow",
+      "enterprise"
+    ],
+    "status": "active"
+  },
+  {
+    "id": "firefly",
+    "name": "Adobe Firefly",
+    "company": "adobe",
+    "sector": "generative-ai",
+    "type": "model",
+    "description": "Adobe Creative Cloudに統合される生成AIモデル群。商用利用と制作ワークフローが強み。",
+    "capabilities": [
+      "image",
+      "video",
+      "creative-cloud"
+    ],
+    "status": "active"
+  },
+  {
+    "id": "gen-3",
+    "name": "Runway Gen-3",
+    "company": "runway",
+    "sector": "generative-ai",
+    "type": "model",
+    "description": "Runwayの動画生成モデル。映像制作向けAIツールとして注目される。",
+    "capabilities": [
+      "video-generation",
+      "editing",
+      "creative"
+    ],
+    "status": "active"
+  },
+  {
+    "id": "pika-video",
+    "name": "Pika",
+    "company": "pika",
+    "sector": "generative-ai",
+    "type": "model",
+    "description": "短尺動画生成やSNS向けクリエイティブで注目される動画AIツール。",
+    "capabilities": [
+      "video-generation",
+      "consumer-creative"
+    ],
+    "status": "active"
+  },
+  {
+    "id": "dream-machine",
+    "name": "Dream Machine",
+    "company": "luma",
+    "sector": "generative-ai",
+    "type": "model",
+    "description": "Luma AIの動画生成モデル。3D・映像生成の文脈で重要。",
+    "capabilities": [
+      "video-generation",
+      "3d",
+      "creative"
+    ],
+    "status": "active"
+  },
+  {
+    "id": "eleven-voice",
+    "name": "ElevenLabs Voice AI",
+    "company": "elevenlabs",
+    "sector": "generative-ai",
+    "type": "model",
+    "description": "音声合成、吹き替え、音声エージェントに強いElevenLabsの音声AI。",
+    "capabilities": [
+      "voice",
+      "tts",
+      "dubbing",
+      "agents"
+    ],
+    "status": "active"
+  },
+  {
+    "id": "optimus",
+    "name": "Optimus",
+    "company": "tesla",
+    "sector": "robotics",
+    "type": "product",
+    "description": "Teslaのヒューマノイドロボット。製造現場と汎用ロボティクスの接点。",
+    "capabilities": [
+      "humanoid",
+      "manufacturing",
+      "embodied-ai"
+    ],
+    "status": "developing"
+  },
+  {
+    "id": "figure-02",
+    "name": "Figure 02",
+    "company": "figure",
+    "sector": "robotics",
+    "type": "product",
+    "description": "Figure AIのヒューマノイドロボット。基盤モデルと物理作業を接続する象徴的存在。",
+    "capabilities": [
+      "humanoid",
+      "manufacturing",
+      "foundation-models"
+    ],
+    "status": "developing"
+  },
+  {
+    "id": "mi300x",
+    "name": "MI300X",
+    "company": "amd",
+    "sector": "infrastructure",
+    "type": "product",
+    "description": "AMDのデータセンター向けAIアクセラレータ。NVIDIAに対抗する最重要GPU製品。",
+    "capabilities": [
+      "training",
+      "inference",
+      "hpc"
+    ],
+    "status": "active"
+  },
+  {
+    "id": "mi350",
+    "name": "MI350",
+    "company": "amd",
+    "sector": "infrastructure",
+    "type": "product",
+    "description": "AMD次世代AIアクセラレータ。ROCmスタックとともにNVIDIAエコシステムへの対抗軸。",
+    "capabilities": [
+      "training",
+      "inference"
+    ],
+    "status": "developing"
+  },
+  {
+    "id": "llama-4",
+    "name": "Llama 4",
+    "company": "meta",
+    "sector": "opensource",
+    "type": "model",
+    "description": "Metaの第4世代オープンモデル。マルチモーダル対応と高い汎用性でOSS市場をリード。",
+    "capabilities": [
+      "multimodal",
+      "open-weights",
+      "fine-tuning",
+      "local-ai"
+    ],
+    "status": "active"
+  },
+  {
+    "id": "grok-3",
+    "name": "Grok 3",
+    "company": "xai",
+    "sector": "foundation",
+    "type": "model",
+    "description": "xAIの最新基盤モデル。Colossusクラスターを背景に推論・コーディング能力を強化。",
+    "capabilities": [
+      "reasoning",
+      "coding",
+      "chat",
+      "social-data"
+    ],
+    "status": "active"
+  },
+  {
+    "id": "claude-3-7",
+    "name": "Claude 3.7",
+    "company": "anthropic",
+    "sector": "foundation",
+    "type": "model",
+    "description": "Anthropicの拡張思考機能を持つ推論特化モデル。コーディングとエージェントに強い。",
+    "capabilities": [
+      "reasoning",
+      "coding",
+      "enterprise",
+      "long-context"
+    ],
+    "status": "active"
+  },
+  {
+    "id": "gemini-2-0",
+    "name": "Gemini 2.0",
+    "company": "google",
+    "sector": "foundation",
+    "type": "model",
+    "description": "Google DeepMindの最新基盤モデル。リアルタイムマルチモーダルとエージェント機能を統合。",
+    "capabilities": [
+      "multimodal",
+      "realtime",
+      "agentic",
+      "search"
+    ],
+    "status": "active"
+  },
+  {
+    "id": "o4-mini",
+    "name": "o4-mini",
+    "company": "openai",
+    "sector": "foundation",
+    "type": "model",
+    "description": "OpenAIの軽量推論モデル。コスト効率と高速推論でAPIエコシステムに広く利用される。",
+    "capabilities": [
+      "reasoning",
+      "coding",
+      "cost-efficiency"
+    ],
+    "status": "active"
+  },
+  {
+    "id": "tsuzumi",
+    "name": "tsuzumi",
+    "company": "ntt",
+    "sector": "japan-ai",
+    "type": "model",
+    "description": "NTTが開発した日本語・英語対応の軽量高性能LLM。企業・通信領域への展開を想定。",
+    "capabilities": [
+      "japanese",
+      "multilingual",
+      "enterprise",
+      "lightweight"
+    ],
+    "status": "active"
+  },
+  {
+    "id": "fugaku-llm",
+    "name": "Fugaku-LLM",
+    "company": "fujitsu",
+    "sector": "japan-ai",
+    "type": "model",
+    "description": "スーパーコンピュータ「富岳」で学習した日本語大規模言語モデル。研究・企業向け。",
+    "capabilities": [
+      "japanese",
+      "research",
+      "enterprise"
+    ],
+    "status": "active"
+  },
+  {
+    "id": "cotomi",
+    "name": "cotomi",
+    "company": "nec",
+    "sector": "japan-ai",
+    "type": "model",
+    "description": "NECが開発した企業向け日本語LLM。セキュリティと業務特化を強みとする。",
+    "capabilities": [
+      "japanese",
+      "enterprise",
+      "security"
+    ],
+    "status": "active"
+  },
+  {
+    "id": "plamo",
+    "name": "PLaMo",
+    "company": "preferred-networks",
+    "sector": "japan-ai",
+    "type": "model",
+    "description": "Preferred Networksが開発した日本語特化LLM。NTTとの共同研究から生まれた。",
+    "capabilities": [
+      "japanese",
+      "open-weights",
+      "research"
+    ],
+    "status": "active"
+  },
+  {
+    "id": "cyberagent-lm",
+    "name": "CyberAgentLM",
+    "company": "cyberagent-ai",
+    "sector": "japan-ai",
+    "type": "model",
+    "description": "CyberAgentが開発・公開した日本語オープンLLM。メディア・広告用途を念頭に設計。",
+    "capabilities": [
+      "japanese",
+      "open-weights",
+      "media"
+    ],
+    "status": "active"
+  },
+  {
+    "id": "rakuten-ai-lm",
+    "name": "Rakuten AI 7B",
+    "company": "rakuten-ai",
+    "sector": "japan-ai",
+    "type": "model",
+    "description": "楽天が開発・公開した日本語LLM。EC・金融サービス向けのファインチューニングを想定。",
+    "capabilities": [
+      "japanese",
+      "open-weights",
+      "e-commerce"
+    ],
+    "status": "active"
+  },
+  {
+    "id": "sakana-lm",
+    "name": "EvoLLM-JP",
+    "company": "sakana-ai",
+    "sector": "japan-ai",
+    "type": "model",
+    "description": "Sakana AIの進化的モデルマージ技術で生成した日本語特化LLM。",
+    "capabilities": [
+      "japanese",
+      "research",
+      "evolutionary-architecture"
+    ],
+    "status": "active"
+  },
+  {
+    "id": "rinna-lm",
+    "name": "rinna Japanese LLM",
+    "company": "rinna",
+    "sector": "japan-ai",
+    "type": "model",
+    "description": "rinnaが開発・オープンソース公開する日本語言語モデル群。研究者・開発者が広く利用。",
+    "capabilities": [
+      "japanese",
+      "open-weights",
+      "dialogue"
+    ],
+    "status": "active"
+  },
+  {
+    "id": "perplexity-sonar",
+    "name": "Sonar",
+    "company": "perplexity",
+    "sector": "agents",
+    "type": "model",
+    "description": "Perplexityの検索特化モデルAPI。Web検索と回答生成を統合するプロダクト向けAPI。",
+    "capabilities": [
+      "search",
+      "citations",
+      "api",
+      "answer-engine"
+    ],
+    "status": "active"
+  },
+  {
+    "id": "kachaka",
+    "name": "Kachaka",
+    "company": "preferred-robotics",
+    "sector": "japan-ai",
+    "type": "product",
+    "description": "Preferred Roboticsの家庭向け自律搬送ロボット。棚・荷物を自律移動する生活支援ロボット。",
+    "capabilities": [
+      "navigation",
+      "home-automation",
+      "service-robot"
+    ],
+    "status": "active"
+  },
+  {
+    "id": "arm-neoverse",
+    "name": "Arm Neoverse",
+    "company": "arm",
+    "sector": "infrastructure",
+    "type": "product",
+    "description": "クラウド・エッジ向けArmサーバーCPUプラットフォーム。AWS Graviton、AmpereなどAIワークロードに採用。",
+    "capabilities": [
+      "cloud-cpu",
+      "edge-ai",
+      "energy-efficiency"
+    ],
+    "status": "active"
+  },
+  {
+    "id": "hbm3e",
+    "name": "HBM3E",
+    "company": "sk-hynix",
+    "sector": "infrastructure",
+    "type": "product",
+    "description": "SK HynixのAI GPU向け最先端高帯域メモリ。NVIDIA H200・B200のメモリとして採用。",
+    "capabilities": [
+      "high-bandwidth",
+      "ai-memory",
+      "gpu-memory"
+    ],
+    "status": "active"
+  },
+  {
+    "id": "stockmark-lm",
+    "name": "Stockmark LLM",
+    "company": "stockmark",
+    "sector": "japan-ai",
+    "type": "model",
+    "description": "Stockmarkが開発したビジネス特化の日本語LLM。企業情報収集・分析に最適化。",
+    "capabilities": [
+      "japanese",
+      "business-intelligence",
+      "enterprise"
+    ],
+    "status": "active"
+  },
+  {
+    "id": "sakura-gpu-service",
+    "name": "高火力クラウド",
+    "company": "sakura-internet",
+    "sector": "japan-ai",
+    "type": "product",
+    "description": "さくらインターネットが提供するNVIDIA H100搭載の国産GPUクラウドサービス。",
+    "capabilities": [
+      "gpu-cloud",
+      "h100",
+      "japan-data-residency"
+    ],
+    "status": "active"
+  },
+  {
+    "id": "field-system",
+    "name": "FIELD system",
+    "company": "fanuc",
+    "sector": "japan-ai",
+    "type": "product",
+    "description": "FANUCが展開する工場向けAIプラットフォーム。ロボット・CNC・IoTデータを統合。",
+    "capabilities": [
+      "factory-ai",
+      "iot",
+      "robotics",
+      "predictive-maintenance"
+    ],
+    "status": "active"
+  },
+  {
+    "id": "motoman",
+    "name": "Motoman",
+    "company": "yaskawa",
+    "sector": "japan-ai",
+    "type": "product",
+    "description": "安川電機の産業用ロボットブランド。AI搭載でティーチング・品質検査を自動化。",
+    "capabilities": [
+      "industrial-robot",
+      "ai-vision",
+      "welding",
+      "assembly"
+    ],
+    "status": "active"
+  },
+  {
+    "id": "openai-o3",
+    "name": "o3",
+    "company": "openai",
+    "sector": "foundation",
+    "type": "model",
+    "description": "OpenAIの最上位推論モデル。科学・数学・コーディングで最高水準の性能を実現。",
+    "capabilities": [
+      "reasoning",
+      "math",
+      "science",
+      "coding"
+    ],
+    "status": "active"
+  },
+  {
+    "id": "kimi",
+    "name": "Kimi",
+    "company": "moonshot-ai",
+    "sector": "china-ai",
+    "type": "model",
+    "description": "Kimiは中国AIエコシステムのモデルです。"
+  },
+  {
+    "id": "glm",
+    "name": "GLM",
+    "company": "zhipu-ai",
+    "sector": "china-ai",
+    "type": "model",
+    "description": "GLMは中国AIエコシステムのモデルです。"
+  },
+  {
+    "id": "yi",
+    "name": "Yi",
+    "company": "01-ai",
+    "sector": "china-ai",
+    "type": "model",
+    "description": "Yiは中国AIエコシステムのモデルです。"
+  },
+  {
+    "id": "step",
+    "name": "Step",
+    "company": "stepfun",
+    "sector": "china-ai",
+    "type": "model",
+    "description": "Stepは中国AIエコシステムのモデルです。"
+  }
 ]
