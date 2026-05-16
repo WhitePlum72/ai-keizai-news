@@ -10,16 +10,18 @@ on:
 jobs:
   post-to-x:
     runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     steps:
       - name: リポジトリをチェックアウト
         uses: actions/checkout@v4
         with:
-          fetch-depth: 2  # 差分検出のために直前のコミットも取得
+          fetch-depth: 2
 
       - name: Node.js セットアップ
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '24'
 
       - name: 依存パッケージのインストール
         run: npm install twitter-api-v2 gray-matter
@@ -33,20 +35,19 @@ jobs:
           SITE_URL: ${{ secrets.SITE_URL }}
         run: |
           # 今回のpushで追加されたMDファイルを取得
-          NEW_FILES=$(git diff --name-only --diff-filter=A HEAD~1 HEAD -- 'astro-site/src/content/articles/**/*.md' 2>/dev/null || \
-                      git diff --name-only --diff-filter=A HEAD~1 HEAD | grep 'astro-site/src/content/articles/.*\.md')
-          
+          NEW_FILES=$(git diff --name-only --diff-filter=A HEAD~1 HEAD | grep 'astro-site/src/content/articles/.*\.md' || true)
+
           if [ -z "$NEW_FILES" ]; then
             echo "新しい記事ファイルはありません。スキップします。"
             exit 0
           fi
-          
+
           echo "投稿対象ファイル:"
           echo "$NEW_FILES"
-          
+
           # 各ファイルに対して投稿スクリプトを実行
           echo "$NEW_FILES" | while read FILE; do
             if [ -f "$FILE" ]; then
-              node scripts/post-to-x.mjs "$FILE"
+              node astro-site/scripts/post-to-x.mjs "$FILE"
             fi
           done
