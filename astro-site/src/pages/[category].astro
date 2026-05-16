@@ -97,6 +97,14 @@ const allArticles = await getCollection("articles");
 const articles = allArticles
   .filter(a => a.data.category_slug === cat.slug || a.id.startsWith(cat.slug + "/"))
   .sort((a, b) => (b.data.buzz_score || 0) - (a.data.buzz_score || 0));
+const articleCards = articles.map((item) => ({
+  article: item,
+  summary: (item.body || "")
+    .replace(/[#*`\[\]\n]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim()
+    .slice(0, 96),
+}));
 
 const relatedCompanies = companiesData
   .filter(company => cat.sectors.includes(company.sector))
@@ -171,7 +179,7 @@ const pageDesc = cat.description;
           <div class="empty">このカテゴリの記事は準備中です。</div>
         ) : (
           <div class="article-grid">
-            {articles.map(article => (
+            {articleCards.map(({ article, summary }) => (
               <a class="article-card" href={getArticleUrl(article)}>
                 <img src={article.data.image_url || "/ogp.png"} alt={article.data.title} loading="lazy" decoding="async" />
                 <div class="article-body">
@@ -181,7 +189,7 @@ const pageDesc = cat.description;
                     {article.data.source_label && <strong>{article.data.source_label}</strong>}
                   </div>
                   <h3>{article.data.title}</h3>
-                  <p>{(article.body || "").replace(/[#*`\[\]\n]/g, " ").replace(/\s+/g, " ").trim().slice(0, 96)}</p>
+                  <p>{summary}</p>
                   <span class="read-link">読む →</span>
                 </div>
               </a>
