@@ -89,13 +89,14 @@ const competitors = groupIds(
   (r) => (r.source === slug ? r.target : r.source)
 );
 
-const products = graph?.layers
-  ?.flatMap((layer) => [
+const graphLayers = Array.isArray(graph?.layers) ? graph.layers : [];
+const products = graphLayers
+  .flatMap((layer) => [
     ...(layer.nodes || []),
     ...((layer.subgroups || []).flatMap((subgroup) => subgroup.nodes || [])),
   ])
   .filter((id) => getEntity(id).kind !== 'company' && id !== slug)
-  .slice(0, 12) || [];
+  .slice(0, 12);
 
 const officialUrl = profile?.website || (company?.domain ? `https://${company.domain}` : null);
 const metricItems = [
