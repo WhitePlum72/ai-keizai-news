@@ -6,6 +6,12 @@ on:
       - main
     paths:
       - 'astro-site/src/content/articles/**/*.md'
+  workflow_dispatch:
+    inputs:
+      test_file:
+        description: 'テストするファイルパス'
+        required: true
+        default: 'astro-site/src/content/articles/business/test-auto-post-x-2.md'
 
 jobs:
   post-to-x:
@@ -34,15 +40,21 @@ jobs:
           TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
           SITE_URL: ${{ secrets.SITE_URL }}
         run: |
-          NEW_FILES=$(git diff --name-only --diff-filter=A HEAD~1 HEAD | grep 'astro-site/src/content/articles/.*\.md' || true)
-          if [ -z "$NEW_FILES" ]; then
-            echo "No new articles. Skipping."
-            exit 0
-          fi
-          echo "Target files:"
-          echo "$NEW_FILES"
-          echo "$NEW_FILES" | while read FILE; do
-            if [ -f "$FILE" ]; then
-              node astro-site/scripts/post-to-x.mjs "$FILE"
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            FILE="${{ github.event.inputs.test_file }}"
+            echo "Manual test: $FILE"
+            node astro-site/scripts/post-to-x.mjs "$FILE"
+          else
+            NEW_FILES=$(git diff --name-only --diff-filter=A HEAD~1 HEAD | grep 'astro-site/src/content/articles/.*\.md' || true)
+            if [ -z "$NEW_FILES" ]; then
+              echo "No new articles. Skipping."
+              exit 0
             fi
-          done
+            echo "Target files:"
+            echo "$NEW_FILES"
+            echo "$NEW_FILES" | while read FILE; do
+              if [ -f "$FILE" ]; then
+                node astro-site/scripts/post-to-x.mjs "$FILE"
+              fi
+            done
+          fi
