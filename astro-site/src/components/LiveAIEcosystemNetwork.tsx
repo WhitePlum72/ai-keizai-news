@@ -102,6 +102,9 @@ type StoryGraphNode = {
 type StoryGraphGroup = {
   group: string;
   nodes: StoryGraphNode[];
+  internalEdges?: StoryGraphEdge[];
+  supplyChainOrder?: string[];
+  hidden?: boolean;
 };
 
 type StoryGraphEdge = {
@@ -166,13 +169,17 @@ const relationStyle: Record<RelationType, { label: string; color: string; verb: 
   platform: { label: '基盤', color: '#06B6D4', verb: '基盤を提供' },
   research: { label: '研究', color: '#94A3B8', verb: '研究開発' },
 };
-
+const FALLBACK_COLOR = '#5CD8CE';
 const graphTone = {
   supply: '#5A9EFF',
   center: '#5CD8CE',
   output: '#A78BFA',
   competitor: '#F87171',
 };
+
+function safeColor(color?: string | null) {
+  return color || FALLBACK_COLOR;
+}
 
 export default function LiveAIEcosystemNetwork() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -315,15 +322,13 @@ export default function LiveAIEcosystemNetwork() {
                     onClick={() => setSelectedCompany(null)}
                     className="w-fit rounded-full border border-white/10 bg-white/[.04] px-3 py-2 font-mono text-[11px] text-slate-300 transition hover:border-[#5cd8ce]/50 hover:text-white"
                   >
-                    全セクターに戻る
-                  </button>
+                    全セクターに戻る</button>
                   <a
                     href={`/company/${selectedCompany.id}/`}
                     className="company-cta"
                     style={{ background: getSector(selectedCompany.sector).color }}
                   >
-                    ↗ 企業データベースで詳しく見る →
-                  </a>
+                    ↗ 企業データベースで詳しく見る →</a>
                 </div>
               )}
             </div>
@@ -440,6 +445,16 @@ function SectorOverview({
   );
 }
 
+type FlowMapLayer = {
+  id: string;
+  title: string;
+  subtitle?: string;
+  color: string;
+  nodes: StoryGraphNode[];
+  internalEdges?: StoryGraphEdge[];
+  featured?: boolean;
+};
+
 function LayeredStoryGraph({
   company,
   detail,
@@ -458,15 +473,67 @@ function LayeredStoryGraph({
   onNodeClick: (node: StoryGraphNode) => void;
 }) {
   const sector = getSector(company.sector);
+  const sectorColor = safeColor(sector.color);
   const finalBasisGroup = layers.supply[layers.supply.length - 1];
   const upstreamSupply = finalBasisGroup ? layers.supply.slice(0, -1) : layers.supply;
-  const finalBasisLabel = finalBasisGroup ? connectorLabel(finalBasisGroup) : '基盤を提供';
+  const upstreamNodes = mergeStoryNodes([], upstreamSupply.flatMap((group) => visibleNodes(group.nodes)));
+  const finalBasisNodes = visibleNodes(finalBasisGroup?.nodes || []);
+  const outputNodes = mergeStoryNodes([], layers.outputs.flatMap((group) => visibleNodes(group.nodes)));
+  const relationNodes = mergeStoryNodes(
+    [],
+    [
+      ...(layers.investments || []),
+      ...flattenGroups([...(layers.partnerships || []), ...(layers.distribution || [])]),
+    ]
+  );
+  const hasBottomRelations = relationNodes.length > 0 || layers.competitors.length > 0;
+
+  const flowLayers: FlowMapLayer[] = [
+    upstreamNodes.length > 0
+      ? {
+          id: 'upstream',
+          title: '半導体 / GPU',
+          subtitle: '供給・技術基盤',
+          color: graphTone.supply,
+          nodes: upstreamNodes,
+          internalEdges: buildInternalEdgesFromGroups(upstreamSupply),
+        }
+      : null,
+    finalBasisNodes.length > 0
+      ? {
+          id: 'basis',
+          title: jaGroup(finalBasisGroup?.group || 'クラウド基盤'),
+          subtitle: '最終的に届く基盤',
+          color: finalBasisGroup ? groupColor(finalBasisGroup) : relationStyle.cloud.color,
+          nodes: finalBasisNodes,
+          internalEdges: finalBasisGroup?.internalEdges,
+        }
+      : null,
+    {
+      id: 'selected-company',
+      title: company.name,
+      subtitle: '選択企業',
+      color: sectorColor,
+      nodes: [layers.center],
+      featured: true,
+    },
+    outputNodes.length > 0
+      ? {
+          id: 'outputs',
+          title: '製品・サービス',
+          subtitle: 'ユーザー接点',
+          color: graphTone.output,
+          nodes: outputNodes,
+          internalEdges: flattenLayerEdges(layers.outputs),
+        }
+      : null,
+  ].filter(Boolean) as FlowMapLayer[];
 
   return (
     <div className="min-h-[620px]">
       <div className="mb-6 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
         <div className="max-w-4xl">
-          <p className="font-mono text-[11px] font-bold uppercase tracking-[.14em]" style={{ color: sector.color }}>
+          <p className="font-mono text-[11px] font-bold uppercase tracking-[.14em]" style={{ color: sectorColor }}>
             {sector.name}
           </p>
           <h3 className="mt-2 text-3xl font-black tracking-[-.04em] md:text-4xl">{detail.title}</h3>
@@ -475,103 +542,281 @@ function LayeredStoryGraph({
         <a
           href={`/company/${company.id}/`}
           className="company-cta"
-          style={{ background: sector.color }}
+          style={{ background: sectorColor }}
         >
           ↗ 企業データベースで詳しく見る →
         </a>
       </div>
 
-      <div className="storygraph-grid">
-        <section className="storygraph-supply">
-          <LayerHeader label="上流の供給・技術基盤" color={graphTone.supply} />
-          <div className="grid gap-3">
-            {upstreamSupply.map((group, index) => {
-              const nextGroup = upstreamSupply[index + 1] || finalBasisGroup;
-              const shouldConnectToNext = Boolean(firstVisibleNode(group) && firstVisibleNode(nextGroup));
-              return (
-                <React.Fragment key={`${group.group}-${index}`}>
-                <LayerGroup
-                  group={group}
-                  tone={groupColor(group)}
-                  hoveredNodeId={hoveredNodeId}
-                  onHoverNode={onHoverNode}
-                  onNodeClick={onNodeClick}
-                />
-                {shouldConnectToNext && (
-                  <FlowConnector label={connectorLabel(group)} orientation="vertical" color={groupColor(group)} />
-                )}
-              </React.Fragment>
-              );
-            })}
-          </div>
-          </section>
-
-        <section className="storygraph-center-wrap">
-          <FinalFlowStage
-            company={company}
-            center={layers.center}
-            finalBasisGroup={finalBasisGroup}
-            finalBasisLabel={finalBasisLabel}
-            color={sector.color}
-            hoveredNodeId={hoveredNodeId}
-            onHoverNode={onHoverNode}
-            onNodeClick={onNodeClick}
-          />
-          {layers.outputs.length > 0 && <FlowConnector label="提供する" orientation="horizontal" color={graphTone.center} hideOnMobile />}
-        </section>
-
-        <section className="storygraph-output">
-          <LayerHeader label="製品・サービス・接点" color={graphTone.output} />
-          <div className="grid gap-3">
-            {layers.outputs.map((group, index) => (
-              <LayerGroup
-                key={`${group.group}-${index}`}
-                group={group}
-                tone={groupColor(group)}
+      <div className="storygraph-map-shell">
+        <div className="storygraph-flow-row">
+          {flowLayers.map((layer, index) => (
+            <React.Fragment key={layer.id}>
+              <StoryGraphFlowStage
+                layer={layer}
                 hoveredNodeId={hoveredNodeId}
                 onHoverNode={onHoverNode}
                 onNodeClick={onNodeClick}
               />
-            ))}
+              {index < flowLayers.length - 1 && (
+                <FlowConnector label={flowConnectorLabel(layer, flowLayers[index + 1])} orientation="horizontal" color={layer.color} />
+              )}
+            </React.Fragment>
+          ))}
+        </div>
+      </div>
+
+      {hasBottomRelations && (
+        <section className="storygraph-competitors">
+          <div className="storygraph-logo-panels">
+            {relationNodes.length > 0 && (
+              <LogoChipPanel
+                title="出資・提携"
+                nodes={relationNodes}
+                tone={relationStyle.partnership.color}
+                onNodeClick={onNodeClick}
+              />
+            )}
+            {layers.competitors.length > 0 && (
+              <LogoChipPanel
+                title="競合"
+                nodes={layers.competitors}
+                tone={graphTone.competitor}
+                onNodeClick={onNodeClick}
+              />
+            )}
           </div>
         </section>
+      )}
 
-        {(layers.investments?.length || layers.partnerships?.length || layers.distribution?.length || layers.competitors.length > 0) && (
-          <section className="storygraph-competitors">
-            <div className="grid gap-4 xl:grid-cols-3">
-              {Boolean(layers.investments?.length) && (
-                <BottomNodePanel
-                  title="出資・資本支援"
-                  nodes={layers.investments || []}
-                  tone={relationStyle.investment.color}
-                  hoveredNodeId={hoveredNodeId}
-                />
-              )}
-              {Boolean(layers.partnerships?.length || layers.distribution?.length) && (
-                <BottomNodePanel
-                  title="提携・提供チャネル"
-                  groups={[...(layers.partnerships || []), ...(layers.distribution || [])]}
-                  hoveredNodeId={hoveredNodeId}
-                  onHoverNode={onHoverNode}
-                  onNodeClick={onNodeClick}
-                />
-              )}
-              {layers.competitors.length > 0 && (
-                <BottomNodePanel
-                  title="競合企業"
-                  nodes={layers.competitors}
-                  tone={graphTone.competitor}
-                />
-              )}
-            </div>
-          </section>
-        )}
-      </div>
       <RelatedArticlesSection articles={relatedArticles} />
     </div>
   );
 }
 
+function StoryGraphFlowStage({
+  layer,
+  hoveredNodeId,
+  onHoverNode,
+  onNodeClick,
+}: {
+  layer: FlowMapLayer;
+  hoveredNodeId: string | null;
+  onHoverNode: (id: string | null) => void;
+  onNodeClick: (node: StoryGraphNode) => void;
+}) {
+  const color = safeColor(layer.color);
+  const orderedNodes = orderLayerNodes(layer.nodes, layer.internalEdges);
+  const shouldFrame = !layer.featured && orderedNodes.length > 1;
+
+  if (layer.featured) {
+    return (
+      <section className="flow-stage flow-stage-featured" style={{ ['--stage-color' as string]: color }}>
+        <SelectedCompanyFlowCard
+          node={orderedNodes[0]}
+          color={color}
+          hoveredNodeId={hoveredNodeId}
+          onHoverNode={onHoverNode}
+          onNodeClick={onNodeClick}
+        />
+      </section>
+    );
+  }
+
+  if (!shouldFrame) {
+    const node = orderedNodes[0];
+    if (!node) return null;
+    return (
+      <section className="flow-stage flow-stage-single" style={{ ['--stage-color' as string]: color }}>
+        <StoryNodeCard
+          node={node}
+          tone={color}
+          compact
+          highlighted={hoveredNodeId === node.id}
+          onHoverNode={onHoverNode}
+          onNodeClick={onNodeClick}
+        />
+      </section>
+    );
+  }
+
+  return (
+    <section className="flow-stage layer-frame" style={{ ['--stage-color' as string]: color }}>
+      <div className="layer-frame-head">
+        <div>
+          <h4>{layer.title}</h4>
+          {layer.subtitle && <p>{layer.subtitle}</p>}
+        </div>
+        <span className="layer-frame-dot" />
+      </div>
+      <div className="layer-frame-body">
+        {orderedNodes.map((node, index) => {
+          const nextNode = orderedNodes[index + 1];
+          const edge = nextNode ? findInternalEdge(layer.internalEdges, node.id, nextNode.id) : undefined;
+          return (
+            <React.Fragment key={node.id}>
+              <StoryNodeCard
+                node={node}
+                tone={color}
+                compact
+                highlighted={hoveredNodeId === node.id}
+                onHoverNode={onHoverNode}
+                onNodeClick={onNodeClick}
+              />
+              {edge && <InternalFlowConnector label={edge.label || node.relation || '供給'} color={relationColor(edge.type, color)} />}
+            </React.Fragment>
+          );
+        })}
+      </div>
+    </section>
+  );
+}
+
+function SelectedCompanyFlowCard({
+  node,
+  color,
+  hoveredNodeId,
+  onHoverNode,
+  onNodeClick,
+}: {
+  node: StoryGraphNode;
+  color: string;
+  hoveredNodeId: string | null;
+  onHoverNode: (id: string | null) => void;
+  onNodeClick: (node: StoryGraphNode) => void;
+}) {
+  return (
+    <div className="selected-flow-card">
+      <StoryNodeCard
+        node={node}
+        tone={color}
+        highlighted={hoveredNodeId === node.id}
+        onHoverNode={onHoverNode}
+        onNodeClick={onNodeClick}
+      />
+    </div>
+  );
+}
+
+function InternalFlowConnector({ label, color }: { label: string; color: string }) {
+  return (
+    <div className="internal-flow" style={{ ['--internal-color' as string]: safeColor(color) }}>
+      <span className="internal-line" />
+      <span className="internal-particle" />
+      <span className="internal-label">{jaRelation(label)}</span>
+    </div>
+  );
+}
+
+function LogoChipPanel({
+  title,
+  nodes,
+  tone,
+  onNodeClick,
+}: {
+  title: string;
+  nodes: StoryGraphNode[];
+  tone: string;
+  onNodeClick: (node: StoryGraphNode) => void;
+}) {
+  const color = safeColor(tone);
+  return (
+    <div className="logo-chip-panel" style={{ ['--chip-tone' as string]: color }}>
+      <LayerHeader label={title} color={color} />
+      <div className="logo-chip-list">
+        {nodes.map((node) => (
+          <LogoChip key={`${title}-${node.id}`} node={node} tone={color} onNodeClick={onNodeClick} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function LogoChip({ node, tone, onNodeClick }: { node: StoryGraphNode; tone: string; onNodeClick: (node: StoryGraphNode) => void }) {
+  const company = findCompanyForNode(node);
+  const clickable = Boolean(company);
+  const logoText = node.logoText || company?.logoText || initials(node.label);
+  const title = node.relation ? `${node.label} / ${jaRelation(node.relation)}` : node.label;
+
+  return (
+    <button
+      type="button"
+      title={title}
+      disabled={!clickable}
+      onClick={() => onNodeClick(node)}
+      className={["logo-chip", clickable ? "is-clickable" : ""].join(" ")}
+      style={{ ['--chip-tone' as string]: safeColor(tone) }}
+      aria-label={title}
+    >
+      {node.logo ? <img src={node.logo} alt="" /> : <span>{logoText}</span>}
+    </button>
+  );
+}
+
+function flattenGroups(groups: StoryGraphGroup[]) {
+  return mergeStoryNodes([], groups.flatMap((group) => group.nodes));
+}
+
+function visibleNodes(nodes: StoryGraphNode[]) {
+  return nodes.filter((node) => node.id && !node.hidden);
+}
+
+function flattenLayerEdges(groups: StoryGraphGroup[]) {
+  return groups.flatMap((group) => group.internalEdges || []);
+}
+
+function buildInternalEdgesFromGroups(groups: StoryGraphGroup[]): StoryGraphEdge[] {
+  const explicitEdges = flattenLayerEdges(groups);
+  if (explicitEdges.length > 0) return explicitEdges;
+
+  const groupNodes = groups.map((group) => firstVisibleNode(group)).filter(Boolean) as StoryGraphNode[];
+  return groupNodes.slice(0, -1).map((node, index) => {
+    const sourceGroup = groups[index];
+    return {
+      source: node.id,
+      target: groupNodes[index + 1].id,
+      type: normalizeRelationType(node.type),
+      label: sourceGroup ? connectorLabel(sourceGroup) : node.relation,
+    };
+  });
+}
+
+function orderLayerNodes(nodes: StoryGraphNode[], edges: StoryGraphEdge[] = []) {
+  const visible = visibleNodes(nodes);
+  if (edges.length === 0) return visible;
+
+  const nodeMap = new Map(visible.map((node) => [node.id, node]));
+  const targets = new Set(edges.map((edge) => edge.target));
+  const ordered: StoryGraphNode[] = [];
+  let current = edges.map((edge) => edge.source).find((source) => nodeMap.has(source) && !targets.has(source));
+
+  while (current && nodeMap.has(current) && !ordered.some((node) => node.id === current)) {
+    const node = nodeMap.get(current);
+    if (node) ordered.push(node);
+    current = edges.find((edge) => edge.source === current && nodeMap.has(edge.target))?.target;
+  }
+
+  visible.forEach((node) => {
+    if (!ordered.some((item) => item.id === node.id)) ordered.push(node);
+  });
+
+  return ordered;
+}
+
+function findInternalEdge(edges: StoryGraphEdge[] = [], source: string, target: string) {
+  return edges.find((edge) => edge.source === source && edge.target === target && !edge.hidden);
+}
+
+function relationColor(type: string | undefined, fallback: string) {
+  return safeColor(type ? relationStyle[normalizeRelationType(type)]?.color : fallback);
+}
+
+function flowConnectorLabel(current: FlowMapLayer, next: FlowMapLayer) {
+  if (current.id === 'outputs') return '展開';
+  if (next.id === 'selected-company') return '利用企業へ';
+  if (next.id === 'outputs') return '製品化';
+  return '供給';
+}
 function LayerHeader({ label, color }: { label: string; color: string }) {
   return (
     <div className="mb-3 flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[.12em] text-slate-400">
@@ -843,7 +1088,7 @@ function RelatedArticlesSection({ articles }: { articles: RelatedArticle[] }) {
           <h4 className="mt-1 text-xl font-black tracking-[-.03em]">この企業をさらに読む</h4>
         </div>
         <p className="text-xs leading-6 text-slate-500">
-          現在はStoryGraphと関係データから表示しています。今後は記事Collectionのcompany / topic IDと連携できます。
+          StoryGraphと関係データから表示しています。今後は記事collectionのcompany / topic IDと連携できます。
         </p>
       </div>
       <div className="related-article-grid">
@@ -855,7 +1100,11 @@ function RelatedArticlesSection({ articles }: { articles: RelatedArticle[] }) {
           >
             <div className="mb-3 flex flex-wrap items-center gap-2">
               <span className="related-category">{article.category}</span>
-              {article.importance && <span className={`related-badge ${article.importance === '重要' ? 'is-important' : 'is-watch'}`}>{article.importance}</span>}
+              {article.importance && (
+                <span className={`related-badge ${article.importance === '重要' ? 'is-important' : 'is-watch'}`}>
+                  {article.importance}
+                </span>
+              )}
             </div>
             <h5>{article.title}</h5>
             <div className="mt-4 flex items-center justify-between gap-3 font-mono text-[10px] text-slate-500">
@@ -868,90 +1117,14 @@ function RelatedArticlesSection({ articles }: { articles: RelatedArticle[] }) {
     </section>
   );
 }
-
-function CompanyDetail({
-  company,
-  detail,
-  relatedArticles,
-}: {
+function CompanyDetail(_props: {
   company: Company;
   detail: StoryGraph;
   relatedArticles: RelatedArticle[];
+  onNodeClick: (node: StoryGraphNode) => void;
 }) {
-  const companyModels = MODELS.filter((model) => model.company === company.id);
-  const companyRelations = RELATIONS.filter((relation) => relation.source === company.id || relation.target === company.id);
-
-  return (
-    <>
-      <div className="mb-4 flex items-start gap-3">
-        <div
-          className="grid h-12 w-12 shrink-0 place-items-center rounded-md border bg-black/30 font-mono text-sm font-black text-white"
-          style={{ borderColor: getSector(company.sector).color }}
-        >
-          {company.logo ? <img src={company.logo} alt="" className="h-full w-full object-contain p-2" /> : company.logoText}
-        </div>
-        <div>
-          <h3 className="text-xl font-black tracking-[-.02em]">{company.name}</h3>
-          <p className="font-mono text-[11px] text-slate-400">Score {company.score} · {getSector(company.sector).short}</p>
-        </div>
-      </div>
-
-      <p className="mb-5 text-sm leading-7 text-slate-300">{company.description}</p>
-
-      {companyModels.length > 0 && (
-        <div className="mb-5">
-          <p className="mb-2 font-mono text-[11px] font-bold uppercase tracking-[.12em] text-[#5a9eff]">製品・モデル</p>
-          <div className="grid gap-2">
-            {companyModels.slice(0, 6).map((model) => (
-              <div key={model.id} className="rounded-md border border-white/10 bg-black/20 p-3">
-                <p className="text-sm font-bold text-slate-100">{model.name}</p>
-                <p className="mt-1 text-xs leading-5 text-slate-500">{model.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {companyRelations.length > 0 && (
-        <div className="mb-5">
-          <p className="mb-2 font-mono text-[11px] font-bold uppercase tracking-[.12em] text-[#5a9eff]">主要な関係</p>
-          <div className="grid gap-2">
-            {companyRelations.slice(0, 5).map((relation) => {
-              const otherId = relation.source === company.id ? relation.target : relation.source;
-              const style = relationStyle[normalizeRelationType(relation.type)];
-              return (
-                <div key={`${relation.source}-${relation.target}-${relation.type}`} className="rounded-md border border-white/10 bg-black/20 p-3">
-                  <div className="flex items-center justify-between gap-3">
-                    <span className="text-sm font-bold text-slate-100">{getCompanyName(otherId)}</span>
-                    <span className="rounded-full px-2 py-1 font-mono text-[10px]" style={{ color: style.color, background: `${style.color}18` }}>
-                      {jaRelation(relation.label)}
-                    </span>
-                  </div>
-                  <p className="mt-2 text-xs leading-5 text-slate-400">{jaRelation(relation.description)}</p>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      )}
-
-      <div>
-        <p className="mb-2 font-mono text-[11px] font-bold uppercase tracking-[.12em] text-[#5a9eff]">関連記事</p>
-        <div className="grid gap-2">
-          {relatedArticles.map((article) => (
-            <a key={`${article.source}-${article.href}-${article.title}`} href={article.href} className="rounded-md border border-white/10 bg-white/[.035] p-3 transition hover:border-[#5cd8ce]/50 hover:bg-[#5cd8ce]/10">
-              <p className="text-sm font-bold leading-6 text-slate-100">{article.title}</p>
-              <p className="mt-1 font-mono text-[10px] uppercase tracking-[.1em] text-slate-500">
-                {article.source === 'relation' ? 'relations.json' : 'storygraphs.json'}
-              </p>
-            </a>
-          ))}
-        </div>
-      </div>
-    </>
-  );
+  return null;
 }
-
 function buildStoryLayers(company: Company, detail: StoryGraph): StoryGraphLayers {
   if (detail.layers) {
     return validateStoryGraph(
@@ -1158,7 +1331,6 @@ function buildOutputsFromModelsAndRelations(company: Company): StoryGraphGroup[]
 
   return groupOutputNodes([...modelNodes, ...relationNodes]);
 }
-
 function groupOutputNodes(nodes: StoryGraphNode[]): StoryGraphGroup[] {
   const groups = new Map<string, StoryGraphNode[]>();
 
@@ -1212,7 +1384,6 @@ function relationToInvestmentNode(company: Company, relation: Relation): StoryGr
     description: relation.description,
   };
 }
-
 function buildRelationGroups(company: Company, type: RelationType): StoryGraphGroup[] {
   const nodes = RELATIONS
     .filter((relation) => relation.type === type && (relation.source === company.id || relation.target === company.id))
@@ -1333,7 +1504,7 @@ function jaRelation(value: string) {
     'GPU supply': 'GPUを供給',
     'AI accelerator': 'AIアクセラレータ',
     'in-house AI accelerator': '自社AIアクセラレータ',
-    'compute': '計算資源',
+    compute: '計算資源',
     'cloud infrastructure': 'クラウド基盤を提供',
     'cloud infrastructure / investment': 'クラウド基盤・出資',
     'investment and cloud': '出資・クラウド支援',
@@ -1439,7 +1610,6 @@ function buildDefaultArticles(company: Company) {
 
   return [{ title: `${company.name} の関連記事を見る`, href: `/topic/${company.id}/` }];
 }
-
 function getSector(id: Exclude<SectorId, 'all'>) {
   return SECTORS.find((sector) => sector.id === id) || SECTORS[0];
 }
@@ -1477,52 +1647,120 @@ function initials(value: string) {
 function StoryGraphStyles() {
   return (
     <style>{`
-      .storygraph-grid {
-        display: grid;
-        grid-template-columns: 240px minmax(420px, 1fr) minmax(260px, .85fr);
-        grid-template-areas:
-          "supply center output"
-          "competitors competitors competitors";
-        gap: 24px;
-        align-items: center;
-        
+      .storygraph-map-shell {
+        overflow-x: auto;
+        overflow-y: hidden;
+        overscroll-behavior-x: contain;
+        padding: 8px 2px 18px;
       }
-      .storygraph-supply { grid-area: supply; }
-      .storygraph-output { grid-area: output; }
-      .storygraph-center-wrap {
-        grid-area: center;
+      .storygraph-flow-row {
         position: relative;
-        display: grid;
-        place-items: center;
-        min-height: 360px;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        min-width: max-content;
+        padding: 10px 4px;
       }
-      .final-flow-stage {
+      .storygraph-flow-row::before {
+        content: "";
+        position: absolute;
+        left: 4px;
+        right: 4px;
+        top: 50%;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,.08), transparent);
+        pointer-events: none;
+      }
+      .flow-stage {
         position: relative;
         z-index: 1;
-        display: grid;
-        grid-template-columns: minmax(180px, 220px) 78px minmax(190px, 240px);
-        align-items: center;
-        justify-content: center;
+        flex: 0 0 auto;
+        width: min(260px, 28vw);
+        min-width: 210px;
+        align-self: center;
+      }
+      .flow-stage-single {
+        width: 220px;
+      }
+      .flow-stage-featured {
+        width: 250px;
+      }
+      .layer-frame {
+        overflow: hidden;
+        border: 1px solid rgba(255,255,255,.10);
+        border-radius: 16px;
+        background: rgba(255,255,255,.035);
+        box-shadow: 0 18px 48px rgba(0,0,0,.20);
+        backdrop-filter: blur(12px);
+      }
+      .layer-frame::before {
+        content: "";
+        position: absolute;
+        inset: 0 auto 0 0;
+        width: 2px;
+        background: var(--stage-color);
+        opacity: .85;
+      }
+      .layer-frame-head {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
         gap: 10px;
-        width: 100%;
+        border-bottom: 1px solid rgba(255,255,255,.08);
+        padding: 14px 15px 11px 17px;
       }
-      .final-flow-stage .flow-connector-x {
+      .layer-frame-head h4 {
+        color: #f7fbff;
+        font-size: 14px;
+        font-weight: 900;
+        letter-spacing: -.02em;
+      }
+      .layer-frame-head p {
+        margin-top: 3px;
+        color: #8492aa;
+        font-size: 11px;
+        line-height: 1.6;
+      }
+      .layer-frame-dot {
+        margin-top: 4px;
+        width: 8px;
+        height: 8px;
+        flex: 0 0 auto;
+        border-radius: 999px;
+        background: var(--stage-color);
+        box-shadow: 0 0 14px color-mix(in srgb, var(--stage-color) 70%, transparent);
+      }
+      .layer-frame-body {
+        display: grid;
+        gap: 8px;
+        padding: 13px;
+      }
+      .selected-flow-card {
         position: relative;
-        top: auto;
-        width: 100%;
-        transform: none;
+        border: 1px solid color-mix(in srgb, var(--stage-color) 50%, rgba(255,255,255,.12));
+        border-radius: 18px;
+        background:
+          radial-gradient(circle at 50% 0%, color-mix(in srgb, var(--stage-color) 18%, transparent), transparent 12rem),
+          rgba(255,255,255,.045);
+        box-shadow: 0 0 42px color-mix(in srgb, var(--stage-color) 16%, transparent), 0 18px 54px rgba(0,0,0,.24);
+        padding: 14px;
+        backdrop-filter: blur(14px);
       }
-      .selected-company-card {
-        max-width: 240px;
+      .selected-flow-card .node-card {
+        border-color: color-mix(in srgb, var(--stage-color) 48%, rgba(255,255,255,.12));
+        background: rgba(0,0,0,.18);
       }
       .layer-box {
-        max-width: 220px;
         width: 100%;
-        justify-self: center;
       }
       .node-card {
         max-width: 180px;
         justify-self: center;
+      }
+      .flow-stage .node-card,
+      .layer-frame .node-card {
+        max-width: none;
+        justify-self: stretch;
       }
       .node-title {
         display: -webkit-box;
@@ -1536,6 +1774,45 @@ function StoryGraphStyles() {
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
         overflow: hidden;
+      }
+      .internal-flow {
+        position: relative;
+        display: grid;
+        place-items: center;
+        min-height: 30px;
+        color: var(--internal-color);
+      }
+      .internal-line {
+        width: 1px;
+        height: 28px;
+        background: linear-gradient(180deg, transparent, var(--internal-color), transparent);
+        opacity: .72;
+      }
+      .internal-particle {
+        position: absolute;
+        top: 2px;
+        width: 4px;
+        height: 4px;
+        border-radius: 999px;
+        background: var(--internal-color);
+        box-shadow: 0 0 10px var(--internal-color);
+        animation: ecosystemFlowY 2.1s linear infinite;
+      }
+      .internal-label {
+        position: absolute;
+        left: calc(50% + 10px);
+        top: 50%;
+        transform: translateY(-50%);
+        max-width: 135px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        border: 1px solid rgba(255,255,255,.08);
+        border-radius: 999px;
+        background: rgba(7,9,13,.72);
+        padding: 2px 6px;
+        color: #aebbd0;
+        font-size: 9px;
       }
       .company-cta {
         position: relative;
@@ -1559,12 +1836,61 @@ function StoryGraphStyles() {
         box-shadow: 0 18px 44px rgba(0,0,0,.36);
       }
       .storygraph-competitors {
-        grid-area: competitors;
-        margin-top: 14px;
-        border: 1px solid rgba(248, 113, 113, .18);
-        border-radius: 14px;
-        background: rgba(248, 113, 113, .045);
+        min-width: 0;
+        margin-top: 16px;
+        border: 1px solid rgba(255,255,255,.09);
+        border-radius: 16px;
+        background: rgba(255,255,255,.035);
         padding: 14px;
+      }
+      .storygraph-logo-panels {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+      .logo-chip-panel {
+        min-width: 0;
+        overflow: hidden;
+        border: 1px solid rgba(255,255,255,.08);
+        border-radius: 13px;
+        background: rgba(0,0,0,.18);
+        padding: 12px;
+      }
+      .logo-chip-list {
+        display: flex;
+        gap: 8px;
+        overflow-x: auto;
+        overscroll-behavior-x: contain;
+        padding: 2px 2px 8px;
+        scrollbar-width: thin;
+      }
+      .logo-chip {
+        display: grid;
+        place-items: center;
+        width: 42px;
+        height: 42px;
+        flex: 0 0 auto;
+        overflow: hidden;
+        border: 1px solid rgba(255,255,255,.12);
+        border-radius: 12px;
+        background: rgba(255,255,255,.045);
+        color: #f8fbff;
+        font-family: IBM Plex Mono, ui-monospace, monospace;
+        font-size: 10px;
+        font-weight: 900;
+        transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease, background .18s ease;
+      }
+      .logo-chip img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        padding: 7px;
+      }
+      .logo-chip.is-clickable:hover {
+        transform: translateY(-2px);
+        border-color: var(--chip-tone);
+        background: color-mix(in srgb, var(--chip-tone) 10%, rgba(255,255,255,.045));
+        box-shadow: 0 0 22px color-mix(in srgb, var(--chip-tone) 18%, transparent);
       }
       .storygraph-related {
         margin-top: 22px;
@@ -1633,29 +1959,27 @@ function StoryGraphStyles() {
       }
       .flow-connector {
         position: relative;
+        z-index: 1;
         display: flex;
         align-items: center;
         justify-content: center;
+        flex: 0 0 58px;
         color: var(--flow-color);
         font-family: IBM Plex Mono, ui-monospace, monospace;
-        font-size: 10px;
+        font-size: 9px;
         font-weight: 800;
-        letter-spacing: .1em;
-        text-transform: uppercase;
+        letter-spacing: .04em;
       }
       .flow-connector-y { min-height: 34px; flex-direction: column; }
       .flow-connector-x {
-        position: absolute;
-        top: 50%;
-        width: 76px;
-        transform: translateY(-50%);
+        width: 58px;
+        min-height: 46px;
       }
-      .storygraph-center-wrap .flow-connector-x:first-child { left: -42px; }
-      .storygraph-center-wrap .flow-connector-x:last-child { right: -42px; }
       .flow-line {
         display: block;
         background: linear-gradient(90deg, transparent, var(--flow-color), transparent);
-        box-shadow: 0 0 16px var(--flow-color);
+        opacity: .66;
+        box-shadow: 0 0 10px color-mix(in srgb, var(--flow-color) 45%, transparent);
       }
       .flow-connector-x .flow-line { width: 100%; height: 1px; }
       .flow-connector-y .flow-line {
@@ -1665,25 +1989,35 @@ function StoryGraphStyles() {
       }
       .flow-particle {
         position: absolute;
-        width: 5px;
-        height: 5px;
+        width: 4px;
+        height: 4px;
         border-radius: 999px;
         background: var(--flow-color);
-        box-shadow: 0 0 14px var(--flow-color);
+        box-shadow: 0 0 10px var(--flow-color);
       }
-      .flow-connector-x .flow-particle { animation: ecosystemFlowX 1.75s linear infinite; }
-      .flow-connector-y .flow-particle { animation: ecosystemFlowY 1.75s linear infinite; }
+      .flow-connector-x .flow-particle { animation: ecosystemFlowX 2s linear infinite; }
+      .flow-connector-y .flow-particle { animation: ecosystemFlowY 2s linear infinite; }
       .flow-label {
-        border: 1px solid rgba(255,255,255,.1);
+        position: absolute;
+        left: 50%;
+        top: calc(50% + 10px);
+        transform: translateX(-50%);
+        border: 1px solid rgba(255,255,255,.08);
         border-radius: 999px;
-        background: rgba(7,9,13,.82);
-        padding: 3px 7px;
+        background: rgba(7,9,13,.78);
+        padding: 2px 6px;
+        color: #9aa8bd;
         white-space: nowrap;
       }
+      .flow-connector-y .flow-label {
+        top: 50%;
+        left: calc(50% + 12px);
+        transform: translateY(-50%);
+      }
       @keyframes ecosystemFlowX {
-        0% { left: 0; opacity: 0; }
+        0% { left: 4px; opacity: 0; }
         18% { opacity: 1; }
-        100% { left: calc(100% - 5px); opacity: 0; }
+        100% { left: calc(100% - 8px); opacity: 0; }
       }
       @keyframes ecosystemFlowY {
         0% { top: 2px; opacity: 0; }
@@ -1691,33 +2025,19 @@ function StoryGraphStyles() {
         100% { top: calc(100% - 7px); opacity: 0; }
       }
       @media (max-width: 1024px) {
-        .storygraph-grid {
+        .storygraph-map-shell {
+          margin-inline: -16px;
+          padding-inline: 16px;
+        }
+        .storygraph-flow-row {
+          min-width: 980px;
+        }
+        .flow-stage {
+          width: 230px;
+        }
+        .storygraph-logo-panels {
           grid-template-columns: 1fr;
-          grid-template-areas:
-            "supply"
-            "center"
-            "output"
-            "competitors";
-          align-items: stretch;
         }
-        .storygraph-center-wrap { min-height: 260px; }
-        .final-flow-stage {
-          grid-template-columns: 1fr;
-          gap: 12px;
-        }
-        .final-flow-stage .flow-connector-x {
-          position: relative;
-          top: auto;
-          width: 100%;
-          min-height: 34px;
-          transform: none;
-        }
-        .layer-box,
-        .node-card,
-        .selected-company-card {
-          max-width: none;
-        }
-        .flow-hide-mobile { display: none; }
         .related-article-grid { grid-template-columns: 1fr; }
       }
     `}</style>
