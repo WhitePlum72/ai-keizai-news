@@ -5,14 +5,16 @@ source_url: "https://www.bloomberg.com/news/videos/2026-05-15/figure-ceo-says-hu
 category: "ビジネス"
 category_slug: "business"
 article_slug: "figure-humanoid-no-teleoperation-testing"
-published_at: "2026-05-16"
+published_at: "2026-05-17"
 buzz_score: 40.0
 image_url: "/images/articles/article_6041.webp"
+description: "Figure AIのCEOが、人型ロボット「Figure 02」の物流仕分け作業を生配信し、数百万回視聴される中で浮上した遠隔操作疑惑を完全否定した。搭載AIが自律的に判断・動作し、事前プログラムなしで多様な状況に適応していると説明。物流業"
 meta_description: "Figure AIのCEOが、人型ロボット「Figure 02」の物流仕分け作業を生配信し、数百万回視聴される中で浮上した遠隔操作疑惑を完全否定した。搭載AIが自律的に判断・動作し、事前プログラムなしで多様な状況に適応していると説明。物流業"
-summaryPoints: ["Figureの動きは、基盤モデル競争が性能比較だけでなく配布網や企業導入の争いになったことを示す。","モデルの価値は、API、クラウド、開発ツール、業務データと結びつくほど大きくなりやすい。","読者はベンチマークの優劣だけでなく、どの企業基盤に組み込まれるかを見る必要がある。"]
 topics_json: []
 companies_json: []
+summaryPoints: ["このニュースは、AI企業の競争が単体技術ではなく産業構造で決まり始めたことを示している。", "クラウド、GPU、データ、資本のどこを押さえるかが、今後の競争力を左右しやすい。", "読者は発表内容だけでなく、背後にある供給網や企業間関係の変化を見る必要がある。"]
 ---
+
 
 人型ロボットを開発する米フィギュアAI（Figure AI）のブレット・アドコックCEOは、同社ロボットの動作試験を巡り「遠隔操作は一切行っていない」と明言した。数百万回再生された仕分け作業のライブ配信映像に対し、一部で遠隔操作ではないかとの疑念が浮上したことを受けた反論だ。
 

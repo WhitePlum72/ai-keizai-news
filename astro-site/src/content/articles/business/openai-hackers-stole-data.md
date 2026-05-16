@@ -5,14 +5,16 @@ source_url: "https://techcrunch.com/2026/05/14/openai-says-hackers-stole-some-da
 category: "ビジネス"
 category_slug: "business"
 article_slug: "openai-hackers-stole-data"
-published_at: "2026-05-16"
+published_at: "2026-05-17"
 buzz_score: 37.5
 image_url: "https://techcrunch.com/wp-content/uploads/2026/05/openai-logo-code-background.jpg?resize=1200,798"
+description: "OpenAIが従業員端末へのハッキング被害を公表したが、ユーザーデータや本番システムへの影響はなく、中核的知的財産も無事だと明らかにした。"
 meta_description: "OpenAIが従業員端末へのハッキング被害を公表したが、ユーザーデータや本番システムへの影響はなく、中核的知的財産も無事だと明らかにした。"
-summaryPoints: ["OpenAIの事例は、AI時代の競争力がサイバー防御と供給網管理にも左右されることを示している。","製造委託先、クラウド、認証情報を含む防御体制が、AI関連企業の事業継続リスクになっている。","単発の攻撃被害ではなく、AIインフラを支える企業群全体の安全性を点検する材料になる。"]
 topics_json: ["openai"]
 companies_json: ["openai"]
+summaryPoints: ["このニュースは、AI企業の競争が単体技術ではなく産業構造で決まり始めたことを示している。", "クラウド、GPU、データ、資本のどこを押さえるかが、今後の競争力を左右しやすい。", "読者は発表内容だけでなく、背後にある供給網や企業間関係の変化を見る必要がある。"]
 ---
+
 
 OpenAIは、同社が直近で経験したコードのセキュリティ問題に関連し、ハッカーが一部の従業員の端末からデータを窃取したことを明らかにした。同社は被害が一部の従業員デバイスに限定され、ユーザーデータや本番システムへの影響はなく、中核的な知的財産も盗まれていないと説明している。
 

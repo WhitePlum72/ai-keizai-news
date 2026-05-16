@@ -1,4 +1,4 @@
-﻿"""
+"""
 記事公開モジュール
 翻訳済み記事をMarkdownファイルとして出力しGitにPushする
 """
@@ -48,6 +48,10 @@ logger = setup_logger()
 def get_articles_to_publish():
     conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
+    try:
+        cursor.execute("ALTER TABLE summaries ADD COLUMN summary_points_json TEXT")
+    except Exception:
+        pass
     cursor.execute("""
         SELECT a.id, a.url, a.source, a.buzz_score, a.published_at,
                s.title_ja, s.summary_ja, s.category, s.tweet_text,
@@ -56,7 +60,8 @@ def get_articles_to_publish():
                COALESCE(s.article_slug, '') as article_slug,
                COALESCE(s.category_slug, '') as category_slug,
                COALESCE(s.topics_json, '[]') as topics_json,
-               COALESCE(s.companies_json, '[]') as companies_json
+               COALESCE(s.companies_json, '[]') as companies_json,
+               COALESCE(s.summary_points_json, '[]') as summary_points_json
         FROM articles a
         JOIN summaries s ON a.id = s.article_id
         WHERE a.processed = 1
@@ -123,7 +128,57 @@ def make_meta_description(body):
     text = remove_output_labels(text)
     text = text.replace("#", "")
     text = re.sub(r"\s+", " ", text).strip()
-    return text[:120]
+    sentences = [s.strip() for s in text.split("。") if s.strip()]
+    desc = ""
+    for sentence in sentences:
+        candidate = f"{desc}{sentence}。"
+        if len(candidate) <= 140:
+            desc = candidate
+        else:
+            break
+    if desc:
+        return desc
+    return text[:120].rstrip("、，,. 　") + ("。" if text else "")
+
+
+def normalize_summary_points(points, meta_desc="", body=""):
+    cleaned = []
+    meta_head = (meta_desc or "")[:35]
+    body_head = re.sub(r"\s+", " ", remove_output_labels(body or "")).strip()[:35]
+
+    for point in points or []:
+        text = re.sub(r"\s+", " ", remove_output_labels(str(point))).strip()
+        parts = [p.strip() for p in re.split(r"。|．", text) if p.strip()]
+        candidates = parts if len(text) > 100 and len(parts) > 1 else [text]
+        for candidate in candidates:
+            if not candidate:
+                continue
+            candidate = candidate.rstrip("。") + "。"
+            if len(candidate) > 110:
+                continue
+            if meta_head and meta_head in candidate:
+                continue
+            if body_head and body_head in candidate:
+                continue
+            if candidate not in cleaned:
+                cleaned.append(candidate)
+            if len(cleaned) == 3:
+                break
+        if len(cleaned) == 3:
+            break
+
+    fallback = [
+        "このニュースは、AI企業の競争が単体技術ではなく産業構造で決まり始めたことを示している。",
+        "クラウド、GPU、データ、資本のどこを押さえるかが、今後の競争力を左右しやすい。",
+        "読者は発表内容だけでなく、背後にある供給網や企業間関係の変化を見る必要がある。",
+    ]
+    for point in fallback:
+        if len(cleaned) == 3:
+            break
+        if point not in cleaned:
+            cleaned.append(point)
+
+    return cleaned[:3]
 
 
 def yaml_escape(text):
@@ -135,7 +190,8 @@ def generate_markdown(article):
      title_ja, summary_ja, category, tweet_text,
      image_url, meta_description_db,
      article_slug, category_slug,
-     topics_raw, companies_raw) = article  # 15個に修正
+     topics_raw, companies_raw,
+     summary_points_raw) = article
 
     import json as _json
 
@@ -146,6 +202,7 @@ def generate_markdown(article):
         meta_desc = meta_description_db
     else:
         meta_desc = make_meta_description(body) or title
+    meta_desc = make_meta_description(meta_desc) if "。" not in meta_desc else meta_desc
 
     slug     = slugify(title, article_id, article_slug)
     cat_slug = category_slug if category_slug else "ai"
@@ -159,6 +216,13 @@ def generate_markdown(article):
         companies_list = _json.loads(companies_raw or "[]")
     except Exception:
         companies_list = []
+    try:
+        summary_points = _json.loads(summary_points_raw or "[]")
+        if not isinstance(summary_points, list):
+            summary_points = []
+    except Exception:
+        summary_points = []
+    summary_points = normalize_summary_points(summary_points, meta_desc, body)
 
     content = f"""---
 title: "{yaml_escape(title)}"
@@ -170,9 +234,11 @@ article_slug: "{yaml_escape(slug)}"
 published_at: "{today}"
 buzz_score: {buzz_score:.1f}
 image_url: "{yaml_escape(image_url)}"
+description: "{yaml_escape(meta_desc)}"
 meta_description: "{yaml_escape(meta_desc)}"
 topics_json: {_json.dumps(topics_list, ensure_ascii=False)}
 companies_json: {_json.dumps(companies_list, ensure_ascii=False)}
+summaryPoints: {_json.dumps(summary_points, ensure_ascii=False)}
 ---
 
 

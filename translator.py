@@ -1,4 +1,4 @@
-﻿"""
+"""
 翻訳・記事生成モジュール（DeepSeek公式API対応版）
 - platform.deepseek.com のAPIを使用
 - thinking無効化でトークン節約
@@ -13,6 +13,7 @@ import sys
 import re
 import time
 import requests
+import json
 from datetime import datetime
 
 try:
@@ -78,13 +79,19 @@ def init_summaries_table():
             tweet_text TEXT,
             category TEXT,
             meta_description TEXT,
+            summary_points_json TEXT,
             created_at TEXT DEFAULT CURRENT_TIMESTAMP
         )
     """)
-    try:
-        cursor.execute("ALTER TABLE summaries ADD COLUMN meta_description TEXT")
-    except Exception:
-        pass
+    for table, column, col_type in [
+        ("summaries", "meta_description", "TEXT"),
+        ("summaries", "summary_points_json", "TEXT"),
+        ("articles", "summary_points_json", "TEXT"),
+    ]:
+        try:
+            cursor.execute(f"ALTER TABLE {table} ADD COLUMN {column} {col_type}")
+        except Exception:
+            pass
     conn.commit()
     conn.close()
 
@@ -107,16 +114,17 @@ def get_articles_to_translate():
 
 def save_summary(article_id, title_ja, summary_ja, tweet_text, category,
                  meta_description="", article_slug="", category_slug="",
-                 entities: dict = None):
-    import json
+                 entities: dict = None, summary_points=None):
     conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
 
     entities = entities or {}
+    summary_points = normalize_summary_points(summary_points or [], meta_description)
     topics_json   = json.dumps(entities.get("topics",    []), ensure_ascii=False)
     companies_json = json.dumps(entities.get("companies", []), ensure_ascii=False)
     persons_json  = json.dumps(entities.get("persons",   []), ensure_ascii=False)
     tags_json     = json.dumps(entities.get("tags",      []), ensure_ascii=False)
+    summary_points_json = json.dumps(summary_points, ensure_ascii=False)
 
     primary_topic   = entities.get("topics",    [""])[0] if entities.get("topics")    else ""
     primary_company = entities.get("companies", [""])[0] if entities.get("companies") else ""
@@ -125,11 +133,11 @@ def save_summary(article_id, title_ja, summary_ja, tweet_text, category,
     cursor.execute("""
         INSERT OR REPLACE INTO summaries
             (article_id, title_ja, summary_ja, tweet_text, category,
-             meta_description, article_slug, category_slug, slug_en,
+             meta_description, summary_points_json, article_slug, category_slug, slug_en,
              topics_json, companies_json, persons_json, tags_json)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     """, (article_id, title_ja, summary_ja, tweet_text, category,
-          meta_description, article_slug, category_slug, article_slug,
+          meta_description, summary_points_json, article_slug, category_slug, article_slug,
           topics_json, companies_json, persons_json, tags_json))
 
     cursor.execute("""
@@ -138,10 +146,12 @@ def save_summary(article_id, title_ja, summary_ja, tweet_text, category,
             article_slug   = ?,
             category_slug  = ?,
             topics_json    = ?,
-            companies_json = ?
+            companies_json = ?,
+            summary_points_json = ?
         WHERE id = ?
     """, (article_slug, category_slug,
           topics_json, companies_json,
+          summary_points_json,
           article_id))
 
     conn.commit()
@@ -191,6 +201,45 @@ def make_meta_description(body):
     return desc.strip()
 
 
+def normalize_description(text, fallback=""):
+    text = remove_output_labels(clean_html(text or "")).strip()
+    text = re.sub(r"\s+", " ", text)
+    text = text.replace("。 。", "。")
+
+    if not text and fallback:
+        text = make_meta_description(fallback)
+
+    if "。" in text:
+        sentences = [s.strip() for s in text.split("。") if s.strip()]
+        desc = ""
+        for sentence in sentences:
+            candidate = f"{desc}{sentence}。"
+            if len(candidate) <= 140:
+                desc = candidate
+            else:
+                break
+        text = desc or (sentences[0].rstrip("。") + "。")
+    else:
+        text = text.rstrip("、，,. 　")
+        if text and not text.endswith("。"):
+            text += "。"
+
+    bad_endings = ("で。", "により。", "として。", "ため。", "こと。")
+    if len(text) < 80 or text.endswith(bad_endings):
+        fallback_desc = make_meta_description(fallback)
+        if fallback_desc and 50 <= len(fallback_desc) <= 160:
+            text = fallback_desc
+
+    if len(text) > 140:
+        clipped = text[:140]
+        if "。" in clipped:
+            text = clipped[:clipped.rfind("。") + 1]
+        else:
+            text = clipped.rstrip("、，,. 　") + "。"
+
+    return text.strip()
+
+
 def make_lead(body):
     sentences = re.split(r'。', body)
     lead = ""
@@ -200,6 +249,63 @@ def make_lead(body):
         else:
             break
     return lead.strip()
+
+
+def normalize_summary_points(points, fallback=""):
+    cleaned = []
+    fallback_text = remove_output_labels(clean_html(fallback or "")).strip()
+    fallback_head = fallback_text[:45]
+    for point in points or []:
+        text = remove_output_labels(clean_html(str(point))).strip()
+        text = re.sub(r"\s+", " ", text)
+        parts = [p.strip() for p in re.split(r"。|．", text) if p.strip()]
+        if len(parts) > 1 and len(text) > 100:
+            candidates = parts
+        else:
+            candidates = [text]
+        for candidate in candidates:
+            if not candidate:
+                continue
+            candidate = candidate.rstrip("。") + "。"
+            if fallback_head and fallback_head in candidate:
+                continue
+            if len(candidate) > 110:
+                continue
+            if candidate not in cleaned:
+                cleaned.append(candidate)
+            if len(cleaned) == 3:
+                break
+        if len(cleaned) == 3:
+            break
+
+    if len(cleaned) == 3:
+        return cleaned
+
+    structural_fallbacks = [
+        "このニュースは、AI企業の競争がモデル性能だけでなく基盤確保にも左右されることを示している。",
+        "GPU、クラウド、データ、販売網のどこを押さえるかが、今後のAI事業の差になりやすい。",
+        "読者は単発の発表ではなく、供給網や提携関係がどう変わるかを見る必要がある。",
+    ]
+    for point in structural_fallbacks:
+        if point not in cleaned:
+            cleaned.append(point)
+        if len(cleaned) == 3:
+            break
+
+    return cleaned[:3]
+
+
+def parse_json_object(text):
+    text = (text or "").strip()
+    text = re.sub(r"^```(?:json)?", "", text).strip()
+    text = re.sub(r"```$", "", text).strip()
+    try:
+        return json.loads(text)
+    except Exception:
+        match = re.search(r"\{.*\}", text, re.DOTALL)
+        if match:
+            return json.loads(match.group(0))
+    return {}
 
 
 # ========================
@@ -284,9 +390,53 @@ def call_deepseek(prompt: str, max_tokens: int = 2500, max_retries: int = 5) -> 
 # ========================
 # 記事生成
 # ========================
-def generate_article(title_en: str, body_en: str) -> tuple[str, str, str, str]:
+def generate_summary_points(title_ja: str, body_ja: str, meta_description: str) -> list[str]:
+    prompt = f"""あなたはAI経済新聞の編集デスクです。
+以下の記事から、記事冒頭に表示する「この記事の要約」を3項目だけ作成してください。
+これは本文要約ではなく、読者が先に理解すべき構造的ポイントです。
+
+【記事タイトル】
+{title_ja}
+
+【リード文】
+{meta_description}
+
+【本文】
+{body_ja[:1800]}
+
+【出力ルール】
+- JSONのみを返す
+- キーは summaryPoints
+- summaryPoints は必ず3項目
+- 日本語
+- 各40〜90文字程度
+- 単なる本文圧縮、事実説明、リード文の言い換えにしない
+- 読者が「この記事を読む意味」を3秒で理解できる内容にする
+- AI業界の供給網、企業関係、競争構造、投資、クラウド、GPU、モデル、エージェントの文脈を意識する
+- 誇張しすぎない、断定しすぎない
+- SNSで切り出しても意味が通る文にする
+- 文末を完結させ、必ず句点「。」で終える
+- リード文や本文冒頭と完全一致させない
+- 元記事のリード文やdescriptionを貼り付けない
+- 1項目だけの長文にしない
+- SEO目的のキーワード詰め込みはしない
+
+例:
+{{
+  "summaryPoints": [
+    "この動きは、AI企業の競争がモデル性能だけでなく計算資源の確保に移っていることを示している。",
+    "クラウド、GPU、データセンターを誰が押さえるかが、生成AIサービスの成長速度を左右し始めている。",
+    "投資や提携のニュースは、資金調達ではなくAI産業の供給網再編として読む必要がある。"
+  ]
+}}"""
+    raw = call_deepseek(prompt, max_tokens=500)
+    data = parse_json_object(raw)
+    return normalize_summary_points(data.get("summaryPoints", []), meta_description)
+
+
+def generate_article(title_en: str, body_en: str) -> tuple[str, str, str, list[str]]:
     """
-    Returns: (article_body, meta_description, slug_en, category_slug) のタプル
+    Returns: (article_body, meta_description, slug_en, summary_points) のタプル
     """
 
     # ---- 記事本文生成 ----
@@ -313,15 +463,18 @@ def generate_article(title_en: str, body_en: str) -> tuple[str, str, str, str]:
 ・金額は元の通貨のまま表記する（「1億ドル」「10億ドル」等）。日本円への換算は行わない
 
 【本文構成】
-1. リード文（2〜3文）
-   - 結論を最初の1文に凝縮する
-   - 「誰が・何を・どれだけ・なぜ重要か」を含める
-   - 120文字以内で読者を引き込む
-2. ## セクション見出し（記事内容を反映した具体的な見出し）
-3. ## セクション見出し
-4. ## セクション見出し
-5. ## セクション見出し
-6. ## セクション見出し
+1. 導入
+    - この記事の意味を一言で説明する
+    - 「誰が・何を・どれだけ・なぜ重要か」を含める
+    - SEO用リード文と同一文にしない
+2. ## 背景
+   - なぜ重要なのかを説明する
+3. ## 構造
+   - 企業・技術・市場の関係性を説明する
+4. ## 影響
+   - AI業界全体への影響を説明する
+5. ## 今後の論点
+   - 次に注目すべき点を整理する
 
 【見出しルール】
 ・各セクションの冒頭は必ず ## 見出し の形式にする
@@ -331,18 +484,27 @@ def generate_article(title_en: str, body_en: str) -> tuple[str, str, str, str]:
 【品質基準】
 ・数字にはソース感を付ける（「〇〇によると」「アナリスト予測では」等）
 ・「今後の動向に注目です」等の締めは禁止
-・日本市場・日本企業への影響を必ず1箇所含める"""
+・日本市場・日本企業への影響を必ず1箇所含める
+・本文冒頭にdescriptionや短いリード文をそのまま貼り付けない
+・AI経済新聞の方向性は、単なるニュース翻訳ではなく「AI業界の構造を日本語で分かりやすく読む」こと"""
 
     article_body = call_deepseek(article_prompt, max_tokens=2500)
     time.sleep(API_INTERVAL)
 
     # ---- meta description生成 ----
     meta_prompt = (
-        "以下の記事を120文字以内で要約してください。"
-        "文末は「。」で終わること。マークダウン禁止。\n\n"
-        f"{article_body[:1000]}"
+        "以下の記事から、SEO、OGP、記事一覧カードで使うdescriptionを1文で作成してください。\n"
+        "ルール: 日本語、80〜140字程度、必ず文として完結、句点「。」で終える、"
+        "「〜で」「〜により」「〜として」など途中で切れた形にしない、"
+        "本文冒頭と完全一致させない、マークダウン禁止。\n\n"
+        f"{article_body[:1200]}"
     )
-    meta_description = call_deepseek(meta_prompt, max_tokens=200)[:120]
+    meta_description = normalize_description(call_deepseek(meta_prompt, max_tokens=220), article_body)
+    time.sleep(API_INTERVAL)
+
+    # ---- 記事冒頭の3点要約生成 ----
+    parsed = split_generated_article(article_body, title_en)
+    summary_points = generate_summary_points(parsed["title"], parsed["body"], meta_description)
     time.sleep(API_INTERVAL)
 
     # ---- slug生成 ----
@@ -364,7 +526,7 @@ Slug:"""
     slug_raw = call_deepseek(slug_prompt, max_tokens=30)
     slug_en = re.sub(r'[^a-z0-9-]', '', slug_raw.lower().strip().replace(' ', '-'))[:80]
 
-    return article_body, meta_description, slug_en
+    return article_body, meta_description, slug_en, summary_points
 
 
 # ========================
@@ -550,7 +712,7 @@ def translate_all():
         article_id, title, summary, source, source_type, url = a
 
         try:
-            generated, meta_description, slug_en = generate_article(title, summary)
+            generated, meta_description, slug_en, summary_points = generate_article(title, summary)
             data = split_generated_article(generated, title)
             data["meta_description"] = meta_description
 
@@ -573,6 +735,7 @@ def translate_all():
                 article_slug=slug_en,
                 category_slug=category_slug,
                 entities=entities,
+                summary_points=summary_points,
             )
 
             logger.info(
