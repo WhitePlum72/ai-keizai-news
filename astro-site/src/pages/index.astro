@@ -47,7 +47,9 @@ const latestExcluded = new Set([...usedIds]);
 const latest = [...allArticles]
   .sort((a, b) => (b.data.published_at || '').localeCompare(a.data.published_at || ''))
   .filter(a => !latestExcluded.has(a.id))
-  .slice(0, 4);
+  .slice(0, 10);
+const featuredLatest = latest.slice(0, 3);
+const compactLatest = latest.slice(3, 10);
 
 const getUrl = (a) =>
   `/article/${a.data.category_slug || 'business'}/${a.data.article_slug || a.id}/`;
@@ -297,7 +299,7 @@ const jsonLd = [
 </section>
 
 <!-- ================================================================
-     §2 最新記事 — Codex式 article-grid (4カード)
+     §2 最新記事 — 画像カード3件 + タイトル一覧
      ================================================================ -->
 <section class="section" aria-labelledby="latest-title">
   <div class="w">
@@ -309,7 +311,7 @@ const jsonLd = [
       <a class="pill" href="/articles">すべての記事</a>
     </div>
     <div class="article-grid">
-      {latest.map(article => (
+      {featuredLatest.map(article => (
         <article class="article-card">
           <a href={getUrl(article)}>
             {article.data.image_url
@@ -339,6 +341,29 @@ const jsonLd = [
           </a>
         </article>
       ))}
+
+      <aside class="latest-list-card" aria-label="その他の最新記事">
+        <div class="latest-list-head">
+          <div>
+            <p class="eyebrow">More Stories</p>
+            <h3>さらに読む</h3>
+          </div>
+          <span>最新記事</span>
+        </div>
+        <div class="latest-list">
+          {compactLatest.map(article => (
+            <a class="latest-list-item" href={getUrl(article)}>
+              <span class="latest-list-meta">
+                <span style={`color:${getCatColor(article.data.category_slug)}`}>
+                  {getCatLabel(article.data.category_slug)}
+                </span>
+                <time>{fmtDate(article.data.published_at)}</time>
+              </span>
+              <strong>{article.data.title}</strong>
+            </a>
+          ))}
+        </div>
+      </aside>
     </div>
   </div>
 </section>
@@ -796,20 +821,34 @@ button{background:none;border:none;cursor:pointer;font:inherit;color:inherit;}
 .pulse-sub{font-size:10px;color:var(--dim);font-family:var(--mono);}
 
 /* §2 最新記事 article-grid */
-.article-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
-.article-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;transition:border-color .2s,transform .2s;}
+.article-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;align-items:stretch;}
+.article-card{min-height:100%;background:var(--panel);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;transition:border-color .2s,transform .2s;}
+.article-card>a{display:flex;height:100%;flex-direction:column;}
 .article-card:hover{border-color:var(--lines);transform:translateY(-2px);}
 .article-card img{width:100%;aspect-ratio:16/10;object-fit:cover;background:var(--panel2);}
 .article-img-ph{width:100%;aspect-ratio:16/10;display:flex;align-items:center;justify-content:center;font-size:32px;color:var(--lines);background:var(--panel2);}
-.article-body{padding:12px 14px 14px;display:grid;gap:8px;}
+.article-body{flex:1;padding:12px 14px 14px;display:grid;gap:8px;}
 .article-meta{display:flex;flex-wrap:wrap;gap:6px;align-items:center;}
 .category{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.06em;padding:3px 8px;border-radius:999px;color:#fff;}
 .importance{font-family:var(--mono);font-size:9px;font-weight:700;padding:3px 7px;border-radius:999px;}
 .importance.high{background:rgba(248,113,113,.12);color:var(--red);}
 .importance.med{background:rgba(230,184,74,.1);color:var(--gold);}
 .source-badge{font-family:var(--mono);font-size:9px;font-weight:700;padding:3px 7px;border-radius:999px;background:rgba(230,184,74,.1);color:var(--gold);border:1px solid rgba(230,184,74,.25);}
-.article-card h3{font-size:13px;font-weight:700;line-height:1.55;color:var(--ink);}
+.article-card h3{font-size:13px;font-weight:700;line-height:1.55;color:var(--ink);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
 .article-date{font-family:var(--mono);font-size:10px;color:var(--dim);}
+.latest-list-card{display:flex;min-height:100%;flex-direction:column;border:1px solid var(--line);border-radius:var(--r);background:linear-gradient(180deg,rgba(92,216,206,.055),rgba(255,255,255,.025)),var(--panel);padding:16px 18px;transition:border-color .2s,transform .2s,background .2s;}
+.latest-list-card:hover{transform:translateY(-2px);border-color:rgba(92,216,206,.34);background:linear-gradient(180deg,rgba(92,216,206,.08),rgba(255,255,255,.03)),var(--panel);}
+.latest-list-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:10px;padding-bottom:12px;border-bottom:1px solid var(--line);}
+.latest-list-head h3{font-size:15px;font-weight:900;letter-spacing:-.02em;line-height:1.25;}
+.latest-list-head>span{white-space:nowrap;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.035);padding:4px 8px;font-family:var(--mono);font-size:10px;color:var(--muted);}
+.latest-list{display:grid;gap:0;}
+.latest-list-item{display:block;border-bottom:1px solid rgba(255,255,255,.08);padding:10px 0;transition:border-color .15s,color .15s;}
+.latest-list-item:last-child{border-bottom:0;}
+.latest-list-item:hover{border-color:rgba(92,216,206,.24);}
+.latest-list-meta{display:flex;align-items:center;gap:8px;margin-bottom:4px;font-family:var(--mono);font-size:9px;color:var(--dim);}
+.latest-list-meta span{font-weight:800;letter-spacing:.08em;text-transform:uppercase;}
+.latest-list-item strong{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;color:#dfe8f5;font-size:13px;font-weight:800;line-height:1.62;transition:color .15s;}
+.latest-list-item:hover strong{color:var(--cyan);}
 
 /* §3 HERO */
 .hero-section{background:linear-gradient(180deg,rgba(29,110,230,.04),transparent);}
@@ -1234,7 +1273,8 @@ button{background:none;border:none;cursor:pointer;font:inherit;color:inherit;}
   .site-header .w{grid-template-columns:1fr auto;}
   .gnav{display:none;}
   .ticker-bar{display:none;}
-  .article-grid{grid-template-columns:repeat(2,1fr);}
+  .article-grid{grid-template-columns:1fr;}
+  .latest-list-card{padding:15px;}
   .breaking-grid{grid-template-columns:repeat(2,1fr);}
   .dash-grid{grid-template-columns:repeat(2,1fr);}
   .official-grid{grid-template-columns:1fr;}
