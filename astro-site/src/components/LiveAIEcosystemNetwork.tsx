@@ -310,7 +310,7 @@ export default function LiveAIEcosystemNetwork() {
   };
 
   return (
-    <section className="relative overflow-hidden border-y border-white/10 bg-[#07090d] py-10 text-slate-100">
+    <section className="relative overflow-hidden border-y border-white/10 bg-[#07090d] pt-8 pb-6 text-slate-100">
       <StoryGraphStyles />
       <canvas ref={canvasRef} className="pointer-events-none absolute inset-0 h-full w-full opacity-70" />
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.035)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.03)_1px,transparent_1px)] bg-[size:42px_42px]" />

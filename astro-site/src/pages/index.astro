@@ -7,29 +7,47 @@ import { getCollection } from 'astro:content';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import LiveAIEcosystemNetwork from '../components/LiveAIEcosystemNetwork';
+import ecosystemCompanies from '../data/ecosystem/companies.json';
 
 
 const allArticles = await getCollection('articles');
-const sorted = [...allArticles].sort(
-  (a, b) => (b.data.buzz_score || 0) - (a.data.buzz_score || 0)
+const getBuzzScore = (a) =>
+  Number(a.data.buzzScore ?? a.data.buzz_score ?? a.data.score ?? 0) || 0;
+const getPublishedValue = (a) =>
+  a.data.published_at || a.data.publishedAt || a.data.date || '';
+const getPublishedTime = (a) => {
+  const value = getPublishedValue(a);
+  const time = value ? new Date(value).getTime() : 0;
+  return Number.isFinite(time) ? time : 0;
+};
+
+const SEVEN_DAYS = 7 * 24 * 60 * 60 * 1000;
+const now = new Date();
+const recentArticles = allArticles.filter((article) => {
+  const time = getPublishedTime(article);
+  return time > 0 && time <= now.getTime() && now.getTime() - time <= SEVEN_DAYS;
+});
+
+const sorted = [...recentArticles].sort(
+  (a, b) => getBuzzScore(b) - getBuzzScore(a)
 );
 
 const hero    = sorted[0];
 const usedIds = new Set([hero?.id]);
 
-const breaking = sorted.filter(a => !usedIds.has(a.id)).slice(0, 8);
+const breaking = sorted.filter(a => !usedIds.has(a.id)).slice(0, 13);
 breaking.forEach(a => usedIds.add(a.id));
 
-const official = allArticles
+const official = recentArticles
   .filter(a => a.data.source_label && !usedIds.has(a.id))
-  .sort((a, b) => (b.data.buzz_score || 0) - (a.data.buzz_score || 0))
+  .sort((a, b) => getBuzzScore(b) - getBuzzScore(a))
   .slice(0, 6);
 official.forEach(a => usedIds.add(a.id));
 
 const byCategory = (slug, limit = 4) =>
-  allArticles
+  recentArticles
     .filter(a => a.data.category_slug === slug && !usedIds.has(a.id))
-    .sort((a, b) => (b.data.buzz_score || 0) - (a.data.buzz_score || 0))
+    .sort((a, b) => getBuzzScore(b) - getBuzzScore(a))
     .slice(0, limit);
 
 const catSections = [
@@ -40,12 +58,12 @@ const catSections = [
   { slug: 'research',       label: '研究',       url: '/research/'       },
   { slug: 'policy',         label: '政策',       url: '/policy/'         },
   { slug: 'products',       label: 'プロダクト', url: '/products/'       },
-].map(c => ({ ...c, articles: byCategory(c.slug, 4) }))
+].map(c => ({ ...c, articles: byCategory(c.slug, c.slug === 'business' ? 8 : 4) }))
  .filter(c => c.articles.length > 0);
 
 const latestExcluded = new Set([...usedIds]);
-const latest = [...allArticles]
-  .sort((a, b) => (b.data.published_at || '').localeCompare(a.data.published_at || ''))
+const latest = [...recentArticles]
+  .sort((a, b) => getPublishedTime(b) - getPublishedTime(a))
   .filter(a => !latestExcluded.has(a.id))
   .slice(0, 11);
 const featuredLatest = latest.slice(0, 2);
@@ -70,6 +88,11 @@ const getLead = (e) =>
   ((e.body || '').replace(/[#*`\[\]\n]/g,' ').replace(/\s+/g,' ').trim().slice(0, 200));
 const getArticleLead = (e) =>
   (e.data.description || e.data.summary || e.data.excerpt || getLead(e)).replace(/\s+/g, ' ').trim();
+const getWhyImportant = (e) =>
+  (e.data.whyImportant || e.data.importance || e.data.reason || e.data.lead ||
+    'このニュースが市場・企業・技術動向に与える影響を読み解きます。')
+    .replace(/\s+/g, ' ')
+    .trim();
 
 const fmtDate = (s) => {
   if (!s) return '';
@@ -142,6 +165,10 @@ const TRENDS = [
   {label:'OpenAI',       slug:'openai'},
   {label:'NVIDIA',       slug:'nvidia'},
 ];
+
+const COMPANY_RAIL = ecosystemCompanies
+  .filter((company) => company.id && company.name)
+  .slice(0, 80);
 
 // 企業ロゴデータ（SVGインライン）
 const COMPANIES = [
@@ -303,6 +330,7 @@ const jsonLd = [
 <!-- ================================================================
      §2 最新記事 — 画像カード2件 + タイトル一覧
      ================================================================ -->
+{latest.length > 0 && (
 <section class="section" aria-labelledby="latest-title">
   <div class="w">
     <div class="section-head">
@@ -327,13 +355,6 @@ const jsonLd = [
                   
                 </span>
                 <span class="pill">{article.data.source}</span>
-                {(article.data.buzz_score||0) >= 60
-                  ? <span class="importance high">重要</span>
-                  : (article.data.buzz_score||0) >= 40
-                  ? <span class="importance med">注目</span>
-                  : null
-                }
-                
                 {article.data.source_label && <span class="source-badge">一次情報</span>}
               </div>
               <h3>{article.data.title}</h3>
@@ -370,6 +391,7 @@ const jsonLd = [
     </div>
   </div>
 </section>
+)}
 
 <!-- ================================================================
      §3 HERO — 注目の最重要ニュース（なぜ重要か + 3セル要約）
@@ -391,7 +413,6 @@ const jsonLd = [
               {getCatLabel(hero.data.category_slug)}
             </span>
             {hero.data.source_label && <span class="tag tag-primary">{hero.data.source_label}</span>}
-            {(hero.data.buzz_score||0) >= 50 && <span class="tag tag-hot">🔥 注目</span>}
           </div>
 
           <h2 class="hero-title">
@@ -423,8 +444,7 @@ const jsonLd = [
                 ? `${hero.data.source}が公式に発表した一次情報です。`
                 : `${hero.data.source}が報じた、AI産業の構造変化に直結するニュースです。`
               }
-              AI業界の投資家・経営者・エンジニアが注目すべき動向として、
-              buzz_score {hero.data.buzz_score || 0} の高関連度記事として選出されました。
+              {getWhyImportant(hero)}
             </p>
           </div>
 
@@ -463,6 +483,7 @@ const jsonLd = [
 <!-- ================================================================
      §5 Breaking
      ================================================================ -->
+{breaking.length > 0 && (
 <section class="section" aria-labelledby="breaking-hd">
   <div class="w">
     <div class="section-head">
@@ -471,35 +492,75 @@ const jsonLd = [
         <h2 id="breaking-hd">注目ニュース</h2>
       </div>
     </div>
-    <div class="breaking-grid">
-      {breaking.map(e=>(
-        <a
-  class={`b-card ${
-    (e.data.buzz_score || 0) >= 70 ? 'hot' : ''
-  }`}
-  href={getUrl(e)}
->
-          <div class="b-img-wrap">
-            {e.data.image_url
-              ? <img class="b-img" src={e.data.image_url} alt={e.data.title} loading="lazy" width="320" height="180"/>
+    <div class="breaking-rank-grid">
+      {breaking[0] && (
+        <a class="rank-card rank-card-large" href={getUrl(breaking[0])}>
+          <div class="rank-media">
+            {breaking[0].data.image_url
+              ? <img src={breaking[0].data.image_url} alt={breaking[0].data.title} loading="lazy" width="640" height="360"/>
               : <div class="b-ph">◈</div>
             }
           </div>
-          <div class="b-body">
-            <span class="b-cat" style={`color:${getCatColor(e.data.category_slug)}`}>
-              {getCatLabel(e.data.category_slug)}
+          <div class="rank-body">
+            <span class="b-cat" style={`color:${getCatColor(breaking[0].data.category_slug)}`}>
+              {getCatLabel(breaking[0].data.category_slug)}
             </span>
-            <h3 class="b-title">{e.data.title}</h3>
+            <h3>{breaking[0].data.title}</h3>
+            <p>{getArticleLead(breaking[0])}</p>
             <div class="b-meta">
-              <span>{e.data.source}</span>
-              <span>{fmtDate(e.data.published_at)}</span>
+              <span>{fmtDate(breaking[0].data.published_at)}</span>
             </div>
           </div>
         </a>
-      ))}
+      )}
+
+      <div class="rank-stack">
+        {breaking.slice(1, 3).map((e) => (
+          <a class="rank-card rank-card-mid" href={getUrl(e)}>
+            <div class="rank-media">
+              {e.data.image_url
+                ? <img src={e.data.image_url} alt={e.data.title} loading="lazy" width="420" height="236"/>
+                : <div class="b-ph">◈</div>
+              }
+            </div>
+            <div class="rank-body">
+              <span class="b-cat" style={`color:${getCatColor(e.data.category_slug)}`}>
+                {getCatLabel(e.data.category_slug)}
+              </span>
+              <h3>{e.data.title}</h3>
+              <div class="b-meta">
+                <span>{fmtDate(e.data.published_at)}</span>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+
+      <div class="rank-list-card">
+        <div class="rank-list-head">
+          <p class="eyebrow">More Stories</p>
+          <span>注目記事</span>
+        </div>
+        <div class="rank-list">
+          {breaking.slice(3).map((e) => (
+            <a class="rank-list-item" href={getUrl(e)}>
+              <span class="rank-list-text">
+                <span class="latest-list-meta">
+                  <span style={`color:${getCatColor(e.data.category_slug)}`}>
+                    {getCatLabel(e.data.category_slug)}
+                  </span>
+                  <time>{fmtDate(e.data.published_at)}</time>
+                </span>
+                <strong>{e.data.title}</strong>
+              </span>
+            </a>
+          ))}
+        </div>
+      </div>
     </div>
   </div>
 </section>
+)}
 
 <!-- ================================================================
      §6 マーケットダッシュボード
@@ -564,6 +625,7 @@ const jsonLd = [
 <!-- ================================================================
      §8 テーマ別セクション — コンパクトカード + 注目記事タイトル
      ================================================================ -->
+{catSections.length > 0 && (
 <section class="section" aria-labelledby="theme-hd">
   <div class="w">
     <div class="section-head">
@@ -574,14 +636,14 @@ const jsonLd = [
     </div>
     <div class="theme-grid">
       {catSections.map(cat=>(
-        <a class="theme-card" href={cat.url} style={`--tc:${getCatColor(cat.slug)}`}>
+        <a class={`theme-card ${cat.slug === 'business' ? 'feature' : ''}`} href={cat.url} style={`--tc:${getCatColor(cat.slug)}`}>
           <div class="theme-header">
             <span class="theme-dot" style={`background:${getCatColor(cat.slug)}`}></span>
             <span class="theme-label">{cat.label}</span>
             <span class="theme-arrow">→</span>
           </div>
           <ul class="theme-articles">
-            {cat.articles.slice(0,3).map(a=>(
+            {cat.articles.slice(0, cat.slug === 'business' ? 8 : 4).map(a=>(
               <li class="theme-art-item">
                 <span class="theme-art-bullet">▸</span>
                 <span class="theme-art-title">{a.data.title}</span>
@@ -596,6 +658,7 @@ const jsonLd = [
     </div>
   </div>
 </section>
+)}
 
 <!-- ================================================================
      §9 トレンドテーマ
@@ -610,7 +673,10 @@ const jsonLd = [
     </div>
     <div class="trend-cloud">
       {TRENDS.map(t=>(
-        <a class="trend-chip" href={`/topic/${t.slug}/`}>#{t.label}</a>
+        <a class="trend-chip" href={`/topic/${t.slug}/`}>
+          <span>#{t.label}</span>
+          <em>見る →</em>
+        </a>
       ))}
     </div>
   </div>
@@ -628,23 +694,26 @@ const jsonLd = [
       </div>
       <a class="see-more" href="/company/">全企業 →</a>
     </div>
-    <div class="company-grid" id="company-grid">
-      {COMPANIES.map(c=>(
-        <button
-          class="co-card"
-          data-slug={c.slug}
-          data-name={c.name}
-          data-sub={c.sub}
-          data-desc={c.desc}
-          data-color={c.color}
-          data-url={`/company/${c.slug}/`}
-          aria-label={c.name}
-        >
-          <div class="co-logo" set:html={c.svg}></div>
-          <span class="co-name">{c.name}</span>
-          <span class="co-sub">{c.sub}</span>
-        </button>
-      ))}
+    <div class="company-marquee" aria-label="企業データベース">
+      <div class="company-rail">
+        {[...COMPANY_RAIL, ...COMPANY_RAIL].map((company)=>(
+          <a
+            class="co-rail-card"
+            href={`/company/${company.slug || company.id}/`}
+            style={`--active-color:${company.brandColor || '#5cd8ce'}`}
+            aria-label={company.name}
+          >
+            <span class="co-logo-frame">
+              {company.logo ? (
+                <img src={company.logo} alt={company.name} loading="lazy" decoding="async" />
+              ) : (
+                <span class="co-logo-fallback">{company.logoText || company.name.slice(0, 1)}</span>
+              )}
+            </span>
+            <span class="co-name">{company.name}</span>
+          </a>
+        ))}
+      </div>
     </div>
 
     <!-- 企業詳細パネル -->
@@ -828,34 +897,35 @@ button{background:none;border:none;cursor:pointer;font:inherit;color:inherit;}
 .article-card{min-height:100%;background:var(--panel);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;transition:border-color .2s,transform .2s;}
 .article-card>a{display:flex;height:100%;flex-direction:column;}
 .article-card:hover{border-color:var(--lines);transform:translateY(-2px);}
-.article-card img{width:100%;aspect-ratio:16/9;object-fit:cover;background:var(--panel2);}
-.article-img-ph{width:100%;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;font-size:32px;color:var(--lines);background:var(--panel2);}
-.article-body{flex:1;padding:12px 14px 14px;display:grid;gap:8px;}
+.article-card img{width:100%;aspect-ratio:2.15/1;object-fit:cover;background:var(--panel2);}
+.article-img-ph{width:100%;aspect-ratio:2.15/1;display:flex;align-items:center;justify-content:center;font-size:30px;color:var(--lines);background:var(--panel2);}
+.article-body{flex:1;padding:10px 12px 12px;display:grid;gap:6px;}
 .article-meta{display:flex;flex-wrap:wrap;gap:6px;align-items:center;}
 .category{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.06em;padding:3px 8px;border-radius:999px;color:#fff;}
 .importance{font-family:var(--mono);font-size:9px;font-weight:700;padding:3px 7px;border-radius:999px;}
 .importance.high{background:rgba(248,113,113,.12);color:var(--red);}
 .importance.med{background:rgba(230,184,74,.1);color:var(--gold);}
 .source-badge{font-family:var(--mono);font-size:9px;font-weight:700;padding:3px 7px;border-radius:999px;background:rgba(230,184,74,.1);color:var(--gold);border:1px solid rgba(230,184,74,.25);}
-.article-card h3{font-size:14px;font-weight:800;line-height:1.55;color:var(--ink);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
-.article-lead{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;font-size:12px;line-height:1.7;color:#9aa9bf;}
+.article-card h3{font-size:14px;font-weight:800;line-height:1.5;color:var(--ink);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.article-lead{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-size:12px;line-height:1.6;color:#9aa9bf;}
 .article-date{font-family:var(--mono);font-size:10px;color:var(--dim);}
-.latest-list-card{display:flex;min-height:100%;flex-direction:column;border:1px solid var(--line);border-radius:var(--r);background:linear-gradient(180deg,rgba(92,216,206,.055),rgba(255,255,255,.025)),var(--panel);padding:16px 18px;transition:border-color .2s,transform .2s,background .2s;}
+.latest-list-card{display:flex;min-height:100%;flex-direction:column;border:1px solid var(--line);border-radius:var(--r);background:linear-gradient(180deg,rgba(92,216,206,.055),rgba(255,255,255,.025)),var(--panel);padding:14px 16px;transition:border-color .2s,transform .2s,background .2s;}
 .latest-list-card:hover{transform:translateY(-2px);border-color:rgba(92,216,206,.34);background:linear-gradient(180deg,rgba(92,216,206,.08),rgba(255,255,255,.03)),var(--panel);}
-.latest-list-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:10px;padding-bottom:12px;border-bottom:1px solid var(--line);}
+.latest-list-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:8px;padding-bottom:10px;border-bottom:1px solid var(--line);}
 .latest-list-head h3{font-size:15px;font-weight:900;letter-spacing:-.02em;line-height:1.25;}
 .latest-list-head>span{white-space:nowrap;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.035);padding:4px 8px;font-family:var(--mono);font-size:10px;color:var(--muted);}
 .latest-list{display:grid;gap:0;}
-.latest-list-item{display:block;border-bottom:1px solid rgba(255,255,255,.08);padding:10px 0;transition:border-color .15s,color .15s;}
+.latest-list-item{display:block;border-bottom:1px solid rgba(255,255,255,.08);padding:7px 0;transition:border-color .15s,color .15s;}
 .latest-list-item:last-child{border-bottom:0;}
 .latest-list-item:hover{border-color:rgba(92,216,206,.24);}
 .latest-list-meta{display:flex;align-items:center;gap:8px;margin-bottom:4px;font-family:var(--mono);font-size:9px;color:var(--dim);}
 .latest-list-meta span{font-weight:800;letter-spacing:.08em;text-transform:uppercase;}
-.latest-list-item strong{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;color:#dfe8f5;font-size:13px;font-weight:800;line-height:1.62;transition:color .15s;}
+.latest-list-item strong{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;color:#dfe8f5;font-size:12px;font-weight:800;line-height:1.5;transition:color .15s;}
 .latest-list-item:hover strong{color:var(--cyan);}
 
 /* §3 HERO */
-.hero-section{background:linear-gradient(180deg,rgba(29,110,230,.04),transparent);}
+.hero-section{padding-bottom:24px;background:linear-gradient(180deg,rgba(29,110,230,.04),transparent);}
+.hero-section + section{padding-top:24px;}
 .hero-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(300px,.9fr);gap:32px;align-items:end;}
 .hero-copy{display:grid;gap:18px;}
 .hero-tags{display:flex;flex-wrap:wrap;gap:8px;}
@@ -1157,31 +1227,32 @@ button{background:none;border:none;cursor:pointer;font:inherit;color:inherit;}
 
 
 /* §5 Breaking */
-.breaking-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
-.b-card{display:block;background:var(--panel);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;transition:border-color .2s,transform .2s;}
-.b-card:hover{border-color:var(--lines);transform:translateY(-2px);}
-.b-img-wrap{aspect-ratio:16/9;overflow:hidden;background:var(--panel2);}
-.b-img{width:100%;height:100%;object-fit:cover;transition:transform .3s;}
-.b-card:hover .b-img{transform:scale(1.04);}
-.b-ph{width:100%;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;font-size:24px;color:var(--lines);background:var(--panel2);}
-.b-body{padding:10px 12px 12px;}
-.b-cat{display:block;font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px;}
-.b-title{font-size:12px;font-weight:700;line-height:1.55;color:var(--ink);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:5px;}
-.b-meta{display:flex;gap:6px;font-family:var(--mono);font-size:10px;color:var(--dim);}
-.b-card.hot{
-  grid-column:span 2;
-  border-color:rgba(248,113,113,.45);
-  background:linear-gradient(
-    180deg,
-    rgba(248,113,113,.06),
-    transparent
-  );
-}
-
-.b-card.hot .b-title{
-  font-size:15px;
-  line-height:1.5;
-}
+.breaking-rank-grid{display:grid;grid-template-columns:1.25fr 1fr 1.12fr;gap:12px;align-items:stretch;}
+.rank-card,.rank-list-card{border:1px solid var(--line);border-radius:var(--r);background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.018)),var(--panel);overflow:hidden;transition:border-color .2s,transform .2s,background .2s;}
+.rank-card{display:flex;height:100%;flex-direction:column;}
+.rank-card:hover,.rank-list-card:hover{transform:translateY(-2px);border-color:rgba(90,158,255,.34);background:linear-gradient(180deg,rgba(90,158,255,.055),rgba(255,255,255,.02)),var(--panel);}
+.rank-media{position:relative;aspect-ratio:16/9;overflow:hidden;background:var(--panel2);}
+.rank-card-large .rank-media{aspect-ratio:1.55/1;}
+.rank-card-mid .rank-media{aspect-ratio:2.25/1;}
+.rank-media img{width:100%;height:100%;object-fit:cover;transition:transform .35s;}
+.rank-card:hover .rank-media img{transform:scale(1.035);}
+.b-ph{width:100%;height:100%;min-height:120px;display:flex;align-items:center;justify-content:center;font-size:24px;color:var(--lines);background:var(--panel2);}
+.rank-body{display:flex;flex:1;flex-direction:column;gap:7px;padding:12px 14px 14px;}
+.rank-body h3{font-size:15px;font-weight:900;line-height:1.52;color:var(--ink);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
+.rank-card-mid .rank-body h3{-webkit-line-clamp:2;font-size:13px;}
+.rank-body p{font-size:12px;line-height:1.65;color:#9aa9bf;}
+.rank-stack{display:grid;height:100%;grid-template-rows:repeat(2,minmax(0,1fr));gap:12px;}
+.rank-list-card{height:100%;padding:13px 16px;}
+.rank-list-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px;padding-bottom:10px;border-bottom:1px solid var(--line);}
+.rank-list-head>span{white-space:nowrap;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.035);padding:4px 8px;font-family:var(--mono);font-size:10px;color:var(--muted);}
+.rank-list{display:grid;gap:0;}
+.rank-list-item{display:block;border-bottom:1px solid rgba(255,255,255,.08);padding:7px 0;transition:border-color .15s;}
+.rank-list-item:last-child{border-bottom:0;}
+.rank-list-item:hover{border-color:rgba(92,216,206,.24);}
+.rank-list-text strong{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;color:#dfe8f5;font-size:12px;font-weight:800;line-height:1.55;transition:color .15s;}
+.rank-list-item:hover strong{color:var(--cyan);}
+.b-cat{display:block;font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;}
+.b-meta{display:flex;flex-wrap:wrap;gap:8px;font-family:var(--mono);font-size:10px;color:var(--dim);}
 /* §6 Dashboard */
 .dash-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:var(--line);margin-bottom:10px;}
 .metric-card{padding:18px;background:var(--panel);}
@@ -1205,24 +1276,43 @@ button{background:none;border:none;cursor:pointer;font:inherit;color:inherit;}
 /* §8 テーマカード */
 .theme-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
 .theme-card{display:block;background:var(--panel);border:1px solid var(--line);border-top:2px solid var(--tc,var(--blue));border-radius:var(--r);padding:14px 16px;transition:background .15s,border-color .15s;}
-.theme-card:hover{background:var(--panel2);}
+.theme-card.feature{grid-column:span 2;background:linear-gradient(135deg,color-mix(in srgb,var(--tc,var(--blue)) 12%, transparent),rgba(255,255,255,.035)),var(--panel);}
+.theme-card:hover{background:linear-gradient(135deg,color-mix(in srgb,var(--tc,var(--blue)) 10%, transparent),rgba(255,255,255,.035)),var(--panel2);border-color:color-mix(in srgb,var(--tc,var(--blue)) 44%, rgba(255,255,255,.18));}
 .theme-header{display:flex;align-items:center;gap:8px;margin-bottom:12px;}
 .theme-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
 .theme-label{font-size:13px;font-weight:900;flex:1;}
 .theme-arrow{font-size:12px;color:var(--muted);transition:transform .15s;}
 .theme-card:hover .theme-arrow{transform:translateX(3px);}
 .theme-articles{list-style:none;display:grid;gap:6px;margin-bottom:10px;}
+.theme-card.feature .theme-articles{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px 14px;}
 .theme-art-item{display:flex;align-items:flex-start;gap:6px;font-size:11px;line-height:1.5;}
 .theme-art-bullet{color:var(--muted);flex-shrink:0;margin-top:1px;}
 .theme-art-title{color:var(--ink);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
 .theme-footer{font-family:var(--mono);font-size:10px;color:var(--dim);border-top:1px solid var(--line);padding-top:8px;}
 
 /* §9 Trends */
-.trend-cloud{display:flex;flex-wrap:wrap;gap:9px;}
-.trend-chip{border:1px solid var(--line);border-radius:999px;padding:7px 14px;color:#c8d4e6;background:rgba(255,255,255,.03);font-family:var(--mono);font-size:12px;transition:border-color .15s,color .15s,background .15s;}
-.trend-chip:hover{border-color:rgba(90,158,255,.5);color:var(--blue);background:rgba(90,158,255,.06);}
+.trend-cloud{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;}
+.trend-chip{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:48px;border:1px solid var(--line);border-radius:var(--r);padding:11px 13px;color:#d8e3f2;background:linear-gradient(135deg,rgba(90,158,255,.045),rgba(255,255,255,.025));font-family:var(--mono);font-size:12px;transition:border-color .15s,color .15s,background .15s,transform .15s;}
+.trend-chip em{font-style:normal;font-size:10px;color:var(--dim);transition:color .15s,transform .15s;}
+.trend-chip:hover{transform:translateY(-2px);border-color:rgba(90,158,255,.5);color:var(--blue);background:linear-gradient(135deg,rgba(90,158,255,.1),rgba(92,216,206,.035));}
+.trend-chip:hover em{color:var(--cyan);transform:translateX(2px);}
 
 /* §10 企業ロゴ */
+.company-marquee{position:relative;overflow:hidden;border:1px solid var(--line);border-radius:var(--r);background:linear-gradient(90deg,rgba(255,255,255,.035),rgba(255,255,255,.018));padding:14px 0;margin-bottom:16px;}
+.company-marquee::before,.company-marquee::after{content:"";position:absolute;top:0;bottom:0;width:80px;z-index:2;pointer-events:none;}
+.company-marquee::before{left:0;background:linear-gradient(90deg,var(--bg),transparent);}
+.company-marquee::after{right:0;background:linear-gradient(270deg,var(--bg),transparent);}
+.company-rail{display:flex;width:max-content;gap:10px;animation:company-marquee 180s linear infinite;padding:0 10px;}
+.company-marquee:hover .company-rail{animation-play-state:paused;}
+.co-rail-card{display:inline-flex;align-items:center;gap:9px;min-width:148px;border:1px solid var(--line);border-radius:var(--r);background:rgba(13,17,24,.76);padding:9px 11px;transition:transform .16s,border-color .16s,background .16s;}
+.co-rail-card:hover{transform:translateY(-2px);border-color:var(--active-color,var(--lines));background:rgba(17,24,39,.92);}
+.co-logo-frame{display:flex;align-items:center;justify-content:center;width:42px;height:42px;overflow:hidden;border:1px solid rgba(255,255,255,.1);border-radius:10px;background:rgba(255,255,255,.045);flex-shrink:0;}
+.co-logo-frame img{display:block;max-width:30px;max-height:30px;object-fit:contain;}
+.co-logo-frame .co-logo{display:flex;align-items:center;justify-content:center;}
+.co-logo-frame .co-logo svg{display:block;max-width:30px;max-height:30px;width:30px;height:30px;}
+.co-logo-fallback{font-family:var(--mono);font-size:11px;font-weight:900;color:rgba(255,255,255,.76);}
+@keyframes company-marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+@media (prefers-reduced-motion: reduce){.company-rail{animation:none;}}
 .company-grid{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px;}
 .co-card{display:grid;place-items:center;gap:6px;width:calc(10% - 9px);min-width:80px;min-height:100px;padding:12px 8px;border:1px solid var(--line);border-radius:var(--r);background:var(--panel);transition:transform .18s,border-color .18s,background .18s;}
 .co-card:hover{transform:translateY(-3px);border-color:var(--lines);background:var(--panel2);}
@@ -1256,8 +1346,11 @@ button{background:none;border:none;cursor:pointer;font:inherit;color:inherit;}
   .article-grid{grid-template-columns:repeat(2,1fr);}
   .latest-list-card{grid-column:1/-1;}
   .globe-layout{grid-template-columns:1fr 260px;gap:20px;}
+  .breaking-rank-grid{grid-template-columns:1fr 1fr;}
+  .rank-list-card{grid-column:1/-1;}
   .breaking-grid{grid-template-columns:repeat(2,1fr);}
   .theme-grid{grid-template-columns:repeat(3,1fr);}
+  .trend-cloud{grid-template-columns:repeat(3,minmax(0,1fr));}
   .co-card{width:calc(16.6% - 9px);}
 }
 @media(max-width:900px){
@@ -1281,10 +1374,15 @@ button{background:none;border:none;cursor:pointer;font:inherit;color:inherit;}
   .article-grid{grid-template-columns:1fr;}
   .latest-list-card{grid-column:auto;}
   .latest-list-card{padding:15px;}
+  .hero-section{padding-bottom:18px;}
+  .hero-section + section{padding-top:18px;}
+  .breaking-rank-grid{grid-template-columns:1fr;}
+  .rank-list-card{grid-column:auto;}
   .breaking-grid{grid-template-columns:repeat(2,1fr);}
   .dash-grid{grid-template-columns:repeat(2,1fr);}
   .official-grid{grid-template-columns:1fr;}
   .theme-grid{grid-template-columns:repeat(2,1fr);}
+  .trend-cloud{grid-template-columns:repeat(2,minmax(0,1fr));}
   .pulse-grid{grid-template-columns:repeat(4,minmax(130px,1fr));}
   .co-card{width:calc(33.3% - 7px);}
   .co-detail-inner{flex-direction:column;align-items:flex-start;gap:12px;}
@@ -1292,5 +1390,8 @@ button{background:none;border:none;cursor:pointer;font:inherit;color:inherit;}
 @media(max-width:400px){
   .article-grid{grid-template-columns:1fr;}
   .theme-grid{grid-template-columns:1fr;}
+  .theme-card.feature{grid-column:span 1;}
+  .theme-card.feature .theme-articles{grid-template-columns:1fr;}
+  .trend-cloud{grid-template-columns:1fr;}
 }
 </style>
