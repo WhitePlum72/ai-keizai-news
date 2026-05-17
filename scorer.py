@@ -5,31 +5,39 @@ from difflib import SequenceMatcher
 
 DB_PATH = "data/articles.db"
 
+SOURCE_TYPE_AUTHORITY = {
+    "official_press": 10,
+    "official_blog": 9,
+    "github_release": 8,
+    "research_paper": 8,
+    "government": 9,
+    "ir": 8,
+    "developer_blog": 7,
+    "api_release": 7,
+    "security_advisory": 8,
+    "model_release": 9,
+}
+
 SOURCE_AUTHORITY = {
-    "bloomberg":     10,
-    "reuters":       10,
-    "wsj":           10,
-    "ft.com":         9,
-    "marketwatch":    8,
-    "yahoofinance":   7,
-    "seekingalpha":   6,
-    "techcrunch":     7,
-    "venturebeat":    7,
-    "the-decoder":    7,
-    "theverge":       6,
-    "wired":          6,
-    "technologyreview": 6,
-    "artificialintelligence-news": 6,
-    "openai":         9,
-    "anthropic":      9,
-    "googleblog":     8,
-    "microsoft":      8,
-    "meta":           7,
-    "nvidia":         8,
-    "aws":            7,
-    "arxiv":          5,
-    "bair":           4,
-    "huggingface":    6,
+    "openai": 10,
+    "anthropic": 10,
+    "deepmind": 9,
+    "google": 9,
+    "microsoft": 9,
+    "meta": 9,
+    "nvidia": 10,
+    "aws": 8,
+    "amazon": 8,
+    "huggingface": 8,
+    "mistral": 8,
+    "xai": 8,
+    "arxiv": 8,
+    "nist": 9,
+    "sec": 8,
+    "meti": 9,
+    "digital agency": 8,
+    "ipa": 8,
+    "nedo": 8,
 }
 
 ECONOMIC_KEYWORDS = {
@@ -139,38 +147,31 @@ PRIMARY_SOURCE_RULES = {
     "huggingface.co/blog":        (30, "official_blog",  "公式発表",       True),
     "mistral.ai/news":            (35, "official_blog",  "公式発表",       True),
     "xai.com":                    (38, "official_blog",  "公式発表",       True),
-    "arxiv.org/abs":              (35, "arxiv",          "論文",           True),
-    "arxiv.org/pdf":              (35, "arxiv",          "論文",           True),
-    "openreview.net":             (30, "arxiv",          "論文",           True),
-    "sec.gov/Archives":           (50, "sec_filing",     "SEC",            True),
-    "sec.gov/cgi-bin":            (50, "sec_filing",     "SEC",            True),
+    "arxiv.org/abs":              (35, "research_paper", "論文",           True),
+    "arxiv.org/pdf":              (35, "research_paper", "論文",           True),
+    "openreview.net":             (30, "research_paper", "論文",           True),
+    "sec.gov/Archives":           (50, "ir",             "SEC",            True),
+    "sec.gov/cgi-bin":            (50, "ir",             "SEC",            True),
     "github.com/releases":        (30, "github_release", "GitHub",         True),
     "github.com/blob/main/CHANGELOG": (28, "github_release", "GitHub",    True),
-    "meti.go.jp":                 (50, "gov_jp",         "政府資料",       True),
-    "soumu.go.jp":                (50, "gov_jp",         "政府資料",       True),
-    "digital.go.jp":              (50, "gov_jp",         "政府資料",       True),
-    "cao.go.jp":                  (48, "gov_jp",         "政府資料",       True),
-    "nedo.go.jp":                 (48, "gov_jp",         "政府資料",       True),
-    "ipa.go.jp":                  (48, "gov_jp",         "政府資料",       True),
-    "mof.go.jp":                  (48, "gov_jp",         "政府資料",       True),
-    "tdnet.info":                 (48, "ir_tdnet",       "適時開示",       True),
-    "release.tdnet.info":         (48, "ir_tdnet",       "適時開示",       True),
-    "edinet-fsa.go.jp":           (48, "ir_tdnet",       "EDINET",         True),
-    "riken.jp":                   (40, "research_jp",    "研究機関",       True),
-    "aist.go.jp":                 (40, "research_jp",    "研究機関",       True),
-    "nii.ac.jp":                  (38, "research_jp",    "研究機関",       True),
-    "preferred.jp":               (40, "official_jp",    "企業IR",         True),
-    "softbank.co.jp/corp":        (45, "official_jp",    "企業IR",         True),
-    "ntt.com/about":              (45, "official_jp",    "企業IR",         True),
-    "kddi.com/corporate":         (45, "official_jp",    "企業IR",         True),
-    "sakura.ad.jp/news":          (40, "official_jp",    "企業IR",         True),
-    "prtimes.jp":                 (20, "press_release",  "プレスリリース", False),
-    "reuters.com":                (15, "media",          None,             False),
-    "bloomberg.com":              (15, "media",          None,             False),
-    "nikkei.com":                 (12, "media_jp",       None,             False),
-    "techcrunch.com":             (10, "media",          None,             False),
-    "theverge.com":               (10, "media",          None,             False),
-    "itmedia.co.jp":              (8,  "media_jp",       None,             False),
+    "meti.go.jp":                 (50, "government",     "政府資料",       True),
+    "soumu.go.jp":                (50, "government",     "政府資料",       True),
+    "digital.go.jp":              (50, "government",     "政府資料",       True),
+    "cao.go.jp":                  (48, "government",     "政府資料",       True),
+    "nedo.go.jp":                 (48, "government",     "政府資料",       True),
+    "ipa.go.jp":                  (48, "government",     "政府資料",       True),
+    "mof.go.jp":                  (48, "government",     "政府資料",       True),
+    "tdnet.info":                 (48, "ir",             "適時開示",       True),
+    "release.tdnet.info":         (48, "ir",             "適時開示",       True),
+    "edinet-fsa.go.jp":           (48, "ir",             "EDINET",         True),
+    "riken.jp":                   (40, "research_paper", "研究機関",       True),
+    "aist.go.jp":                 (40, "research_paper", "研究機関",       True),
+    "nii.ac.jp":                  (38, "research_paper", "研究機関",       True),
+    "preferred.jp":               (40, "official_press", "企業IR",         True),
+    "softbank.co.jp/corp":        (45, "official_press", "企業IR",         True),
+    "ntt.com/about":              (45, "official_press", "企業IR",         True),
+    "kddi.com/corporate":         (45, "official_press", "企業IR",         True),
+    "sakura.ad.jp/news":          (40, "official_press", "企業IR",         True),
 }
 
 TIER1_COMPANIES = {
@@ -323,6 +324,24 @@ AI_RELEVANCE_KEYWORDS = {
     "マルチモーダル",
 }
 BLACKLIST_DOMAINS = {
+    "bloomberg.com",
+    "reuters.com",
+    "wsj.com",
+    "nytimes.com",
+    "theinformation.com",
+    "nikkei.com",
+    "asahi.com",
+    "yomiuri.co.jp",
+    "yahoo.co.jp",
+    "yahoo.com/news",
+    "msn.com",
+    "techcrunch.com",
+    "theverge.com",
+    "venturebeat.com",
+    "wired.com",
+    "technologyreview.com",
+    "artificialintelligence-news.com",
+    "prtimes.jp",
     "finance.yahoo.com/markets/stocks",
     "investors.com",
     "seekingalpha.com/article",
@@ -354,12 +373,16 @@ def is_tier1_official(url: str, text: str) -> bool:
     return False
 
 
-def get_source_authority(source: str) -> float:
+def get_source_authority(source: str, source_type: str = "", source_authority: float = 0) -> float:
+    if source_authority:
+        return float(source_authority)
+    if source_type in SOURCE_TYPE_AUTHORITY:
+        return SOURCE_TYPE_AUTHORITY[source_type]
     source_lower = (source or "").lower()
     for key, score in SOURCE_AUTHORITY.items():
         if key in source_lower:
             return score
-    return 3
+    return 1
 
 
 def get_economic_score(text: str) -> float:
@@ -450,8 +473,18 @@ def calculate_scores():
     conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
 
+    for sql in (
+        "ALTER TABLE articles ADD COLUMN is_primary_source INTEGER DEFAULT 0",
+        "ALTER TABLE articles ADD COLUMN source_authority REAL DEFAULT 0",
+    ):
+        try:
+            cursor.execute(sql)
+        except sqlite3.OperationalError:
+            pass
+
     cursor.execute("""
-        SELECT id, title, summary, source, source_type, published_at, url
+        SELECT id, title, summary, source, source_type, published_at, url,
+               COALESCE(is_primary_source, 0), COALESCE(source_authority, 0)
         FROM articles
         WHERE processed = 0
         ORDER BY collected_at DESC
@@ -465,7 +498,7 @@ def calculate_scores():
         return
 
     scored = []
-    for article_id, title, summary, source, source_type, published_at, url in articles:
+    for article_id, title, summary, source, source_type, published_at, url, is_primary_source, source_authority in articles:
         text = (title or '') + ' ' + (summary or '')
         text_lower = text.lower()
         url_lower = (url or '').lower()
@@ -476,6 +509,8 @@ def calculate_scores():
             continue
 # AI関連性フィルター（公式ソースは除外しない）
         primary_score_check, _, _, is_official_check = get_primary_source_info(url or '')
+        if source_type in SOURCE_TYPE_AUTHORITY:
+            is_official_check = True
         if not is_official_check:
             title_lower_f   = (title or '').lower()
             summary_lower_f = (summary or '').lower()
@@ -498,7 +533,9 @@ def calculate_scores():
             ):
                 continue
 
-        authority  = get_source_authority(source or source_type or "")
+        authority  = get_source_authority(source or "", source_type or "", source_authority)
+        if is_primary_source or source_type in SOURCE_TYPE_AUTHORITY:
+            authority += 1.5
         recency    = get_recency_score(published_at)
         economic   = get_economic_score(text)
         ai_topic   = get_ai_topic_score(text)
@@ -513,6 +550,11 @@ def calculate_scores():
         )
 
         primary_score, stype, label, is_official = get_primary_source_info(url or "")
+        if not is_official and source_type in SOURCE_TYPE_AUTHORITY:
+            primary_score = max(primary_score, SOURCE_TYPE_AUTHORITY[source_type] * 4)
+            stype = source_type
+            label = label or "一次情報"
+            is_official = True
         tier1_official = is_tier1_official(url or "", text)
 
         recency_mult = get_recency_multiplier(recency)
@@ -521,7 +563,8 @@ def calculate_scores():
 
         scored.append((
             buzz, article_id, title, company,
-            primary_score, stype, label, is_official, tier1_official
+            primary_score, stype, label, is_official, tier1_official,
+            authority, 1 if (is_primary_source or is_official) else 0
         ))
 
     scored.sort(reverse=True)
@@ -532,7 +575,7 @@ def calculate_scores():
 
     for row in scored:
         buzz, article_id, title, company, \
-        primary_score, stype, label, is_official, tier1_official = row
+        primary_score, stype, label, is_official, tier1_official, _, _ = row
 
         if len(selected) >= 30:
             break
@@ -563,7 +606,7 @@ def calculate_scores():
 
     for row in selected:
         buzz, article_id, title, company, \
-        primary_score, stype, label, is_official, tier1_official = row
+        primary_score, stype, label, is_official, tier1_official, authority, primary_flag = row
 
         cursor.execute("""
             UPDATE articles
@@ -571,7 +614,9 @@ def calculate_scores():
                 primary_source_score = ?,
                 source_type          = ?,
                 source_label         = ?,
-                official_source      = ?
+                official_source      = ?,
+                is_primary_source    = ?,
+                source_authority     = ?
             WHERE id = ?
         """, (
             round(buzz, 2),
@@ -579,6 +624,8 @@ def calculate_scores():
             stype,
             label,
             1 if is_official else 0,
+            primary_flag,
+            round(authority, 2),
             article_id,
         ))
 
@@ -590,7 +637,7 @@ def calculate_scores():
 
     for row in selected:
         buzz, article_id, title, company, \
-        primary_score, stype, label, is_official, _ = row
+        primary_score, stype, label, is_official, _, _, _ = row
         tag = f"[{company}]" if company else ""
         src = f"[{label}]" if label else f"[{stype}]"
         print(f"  buzz={buzz:.1f} primary={primary_score} {src} {tag} {title[:50]}")

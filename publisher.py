@@ -9,6 +9,7 @@ import subprocess
 import logging
 import sys
 import re
+import argparse
 from datetime import datetime
 
 DB_PATH = "data/articles.db"
@@ -52,8 +53,23 @@ def get_articles_to_publish():
         cursor.execute("ALTER TABLE summaries ADD COLUMN summary_points_json TEXT")
     except Exception:
         pass
+    for sql in (
+        "ALTER TABLE articles ADD COLUMN source_label TEXT",
+        "ALTER TABLE articles ADD COLUMN official_source INTEGER DEFAULT 0",
+        "ALTER TABLE articles ADD COLUMN is_primary_source INTEGER DEFAULT 0",
+        "ALTER TABLE articles ADD COLUMN source_authority REAL DEFAULT 0",
+    ):
+        try:
+            cursor.execute(sql)
+        except Exception:
+            pass
     cursor.execute("""
-        SELECT a.id, a.url, a.source, a.buzz_score, a.published_at,
+        SELECT a.id, a.url, a.source, a.source_type,
+               COALESCE(a.source_label, '') as source_label,
+               COALESCE(a.official_source, 0) as official_source,
+               COALESCE(a.is_primary_source, 0) as is_primary_source,
+               COALESCE(a.source_authority, 0) as source_authority,
+               a.buzz_score, a.published_at,
                s.title_ja, s.summary_ja, s.category, s.tweet_text,
                COALESCE(a.image_url, '') as image_url,
                COALESCE(s.meta_description, '') as meta_description,
@@ -186,7 +202,9 @@ def yaml_escape(text):
 
 
 def generate_markdown(article):
-    (article_id, url, source, buzz_score, published_at,
+    (article_id, url, source, source_type,
+     source_label, official_source, is_primary_source, source_authority,
+     buzz_score, published_at,
      title_ja, summary_ja, category, tweet_text,
      image_url, meta_description_db,
      article_slug, category_slug,
@@ -206,6 +224,7 @@ def generate_markdown(article):
     slug     = slugify(title, article_id, article_slug)
     cat_slug = category_slug if category_slug else "ai"
     today    = datetime.now().strftime("%Y-%m-%d")
+    source_published_at = published_at or today
 
     try:
         topics_list = _json.loads(topics_raw or "[]")
@@ -227,10 +246,15 @@ def generate_markdown(article):
 title: "{yaml_escape(title)}"
 source: "{yaml_escape(source)}"
 source_url: "{yaml_escape(url)}"
+source_type: "{yaml_escape(source_type)}"
+source_label: "{yaml_escape(source_label)}"
+is_primary_source: {str(bool(is_primary_source or official_source)).lower()}
+source_authority: {float(source_authority or 0):.1f}
 category: "{yaml_escape(category)}"
 category_slug: "{yaml_escape(cat_slug)}"
 article_slug: "{yaml_escape(slug)}"
 published_at: "{today}"
+source_published_at: "{yaml_escape(source_published_at)}"
 buzz_score: {buzz_score:.1f}
 image_url: "{yaml_escape(image_url)}"
 description: "{yaml_escape(meta_desc)}"
@@ -288,22 +312,43 @@ def publish_articles():
 
 
 def git_push():
-    try:
-        root_dir = "."
+    root_dir = "."
+    today = datetime.now().strftime("%Y-%m-%d")
 
-        today = datetime.now().strftime("%Y-%m-%d")
+    try:
         subprocess.run(["git", "add", "."], cwd=root_dir, check=True)
+
+        diff = subprocess.run(["git", "diff", "--cached", "--quiet"], cwd=root_dir)
+        if diff.returncode == 0:
+            logger.info("Git commit対象の変更がありません")
+            return False
+        if diff.returncode not in (0, 1):
+            raise subprocess.CalledProcessError(diff.returncode, diff.args)
+
         subprocess.run(["git", "commit", "-m", f"Auto update {today}"], cwd=root_dir, check=True)
         subprocess.run(["git", "push", "origin", "main"], cwd=root_dir, check=True)
         logger.info("Git Push完了")
+        return True
 
     except subprocess.CalledProcessError as e:
         logger.error("Git Pushエラー: %s", str(e))
+        raise
 
 
 def main():
+    parser = argparse.ArgumentParser(description="Publish generated articles as Astro Markdown.")
+    parser.add_argument("--push", action="store_true", help="Run git add/commit/push after publishing.")
+    parser.add_argument("--push-only", action="store_true", help="Only run git add/commit/push.")
+    args = parser.parse_args()
+
+    if args.push_only:
+        git_push()
+        print("\nGit Push完了")
+        return
+
     count = publish_articles()
-    git_push()
+    if args.push:
+        git_push()
     print(f"\n公開完了: {count}件のMarkdownファイルを生成しました")
 
 

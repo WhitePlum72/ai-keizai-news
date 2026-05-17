@@ -7,249 +7,318 @@ import feedparser
 import sqlite3
 import logging
 import os
+import re
 import sys
 import requests
 from bs4 import BeautifulSoup
 from datetime import datetime
 from difflib import SequenceMatcher
 from typing import List, Dict
+from urllib.parse import urljoin, urlparse
 
 # ==================== 設定 ====================
 
+# Primary-source-only feed set.
+# The collector no longer depends on newspapers, wire services, reposts,
+# or AI-news aggregation sites.
 RSS_SOURCES = {
-    # ==================== 既存フィード（source_type修正） ====================
-    "openai": {
+    # Official company blogs / newsrooms
+    "openai_news": {
         "url": "https://openai.com/news/rss.xml",
         "type": "rss",
-        "source_type": "model",
-        "description": "OpenAI",
+        "source_type": "official_blog",
+        "description": "OpenAI News",
+        "source_authority": 10,
     },
-    "huggingface": {
-        "url": "https://huggingface.co/blog/feed.xml",
+    "anthropic_news": {
+        "url": "https://www.anthropic.com/rss.xml",
         "type": "rss",
-        "source_type": "model",
-        "description": "Hugging Face",
-    },
-    "techcrunch": {
-        "url": "https://techcrunch.com/feed/",
-        "type": "rss",
-        "source_type": "business",
-        "description": "TechCrunch",
-    },
-    "theverge_ai": {
-        "url": "https://www.theverge.com/rss/ai-artificial-intelligence/index.xml",
-        "type": "rss",
-        "source_type": "business",
-        "description": "The Verge AI",
-    },
-    "venturebeat": {
-        "url": "https://venturebeat.com/category/ai/feed/",
-        "type": "rss",
-        "source_type": "business",
-        "description": "VentureBeat AI",
-    },
-    "wired_ai": {
-        "url": "https://www.wired.com/feed/tag/ai/latest/rss",
-        "type": "rss",
-        "source_type": "business",
-        "description": "Wired AI",
-    },
-    "mit_review": {
-        "url": "https://www.technologyreview.com/feed/",
-        "type": "rss",
-        "source_type": "research",
-        "description": "MIT Technology Review",
-    },
-    "bair": {
-        "url": "https://bair.berkeley.edu/blog/feed.xml",
-        "type": "rss",
-        "source_type": "research",
-        "description": "BAIR Blog",
-    },
-    "bloomberg_tech": {
-        "url": "https://feeds.bloomberg.com/technology/news.rss",
-        "type": "rss",
-        "source_type": "stock",
-        "description": "Bloomberg Technology",
-    },
-    "reuters": {
-        "url": "https://www.reutersagency.com/feed/?best-topics=tech",
-        "type": "rss",
-        "source_type": "stock",
-        "description": "Reuters Technology",
-    },
-    "the_decoder": {
-        "url": "https://the-decoder.com/feed/",
-        "type": "rss",
-        "source_type": "model",
-        "description": "The Decoder",
-    },
-    "arxiv_cs_ai": {
-        "url": "https://arxiv.org/rss/cs.AI",
-        "type": "arxiv",
-        "source_type": "research",
-        "description": "arXiv CS.AI",
-    },
-    "arxiv_cs_cl": {
-        "url": "https://arxiv.org/rss/cs.CL",
-        "type": "arxiv",
-        "source_type": "research",
-        "description": "arXiv CS.CL",
-    },
-    "yahoo_finance": {
-        "url": "https://finance.yahoo.com/rss/topstories",
-        "type": "rss",
-        "source_type": "stock",
-        "description": "Yahoo Finance",
-    },
-    "seeking_alpha": {
-        "url": "https://seekingalpha.com/feed.xml",
-        "type": "rss",
-        "source_type": "stock",
-        "description": "Seeking Alpha",
-    },
-    "marketwatch_tech": {
-        "url": "https://feeds.marketwatch.com/marketwatch/technology/",
-        "type": "rss",
-        "source_type": "stock",
-        "description": "MarketWatch Tech",
-    },
-
-    # ==================== 新規追加：経済・株式（最優先） ====================
-    "bloomberg_markets": {
-        "url": "https://feeds.bloomberg.com/markets/news.rss",
-        "type": "rss",
-        "source_type": "stock",
-        "description": "Bloomberg Markets",
-    },
-    "wsj_tech": {
-        "url": "https://feeds.content.dowjones.io/public/rss/RSSWSJD",
-        "type": "rss",
-        "source_type": "stock",
-        "description": "WSJ Tech",
-    },
-    "ft_tech": {
-        "url": "https://feeds.ft.com/ft/technology",
-        "type": "rss",
-        "source_type": "stock",
-        "description": "Financial Times Tech",
-    },
-    "reuters_business": {
-        "url": "https://feeds.reuters.com/reuters/businessNews",
-        "type": "rss",
-        "source_type": "stock",
-        "description": "Reuters Business",
-    },
-    "cnbc_tech": {
-        "url": "https://www.cnbc.com/id/19854910/device/rss/rss.html",
-        "type": "rss",
-        "source_type": "stock",
-        "description": "CNBC Technology",
-    },
-    "cnbc_ai": {
-        "url": "https://www.cnbc.com/id/100727362/device/rss/rss.html",
-        "type": "rss",
-        "source_type": "stock",
-        "description": "CNBC AI",
-    },
-
-    # ==================== 新規追加：AI企業公式（一次情報） ====================
-    "microsoft_blog": {
-        "url": "https://blogs.microsoft.com/feed/",
-        "type": "rss",
-        "source_type": "model",
-        "description": "Microsoft Blog",
+        "source_type": "official_blog",
+        "description": "Anthropic News",
+        "source_authority": 10,
     },
     "google_ai_blog": {
         "url": "https://blog.google/technology/ai/rss/",
         "type": "rss",
-        "source_type": "model",
+        "source_type": "official_blog",
         "description": "Google AI Blog",
+        "source_authority": 9,
     },
-    "meta_ai": {
+    "deepmind_blog": {
+        "url": "https://deepmind.google/blog/rss/",
+        "type": "rss",
+        "source_type": "official_blog",
+        "description": "Google DeepMind Blog",
+        "source_authority": 9,
+    },
+    "meta_ai_blog": {
         "url": "https://ai.meta.com/blog/rss/",
         "type": "rss",
-        "source_type": "model",
+        "source_type": "official_blog",
         "description": "Meta AI Blog",
+        "source_authority": 9,
     },
     "nvidia_blog": {
         "url": "https://blogs.nvidia.com/feed/",
         "type": "rss",
-        "source_type": "model",
+        "source_type": "official_blog",
         "description": "NVIDIA Blog",
+        "source_authority": 10,
     },
-    "aws_ml": {
+    "nvidia_developer_blog": {
+        "url": "https://developer.nvidia.com/blog/feed/",
+        "type": "rss",
+        "source_type": "developer_blog",
+        "description": "NVIDIA Developer Blog",
+        "source_authority": 9,
+    },
+    "microsoft_ai_blog": {
+        "url": "https://blogs.microsoft.com/ai/feed/",
+        "type": "rss",
+        "source_type": "official_blog",
+        "description": "Microsoft AI Blog",
+        "source_authority": 9,
+    },
+    "azure_ai_blog": {
+        "url": "https://azure.microsoft.com/en-us/blog/topics/ai-machine-learning/feed/",
+        "type": "rss",
+        "source_type": "developer_blog",
+        "description": "Azure AI Blog",
+        "source_authority": 8,
+    },
+    "aws_ml_blog": {
         "url": "https://aws.amazon.com/blogs/machine-learning/feed/",
         "type": "rss",
-        "source_type": "model",
-        "description": "AWS Machine Learning",
+        "source_type": "developer_blog",
+        "description": "AWS Machine Learning Blog",
+        "source_authority": 8,
+    },
+    "huggingface_blog": {
+        "url": "https://huggingface.co/blog/feed.xml",
+        "type": "rss",
+        "source_type": "official_blog",
+        "description": "Hugging Face Blog",
+        "source_authority": 8,
+    },
+    "mistral_news": {
+        "url": "https://mistral.ai/news/rss.xml",
+        "type": "rss",
+        "source_type": "official_blog",
+        "description": "Mistral AI News",
+        "source_authority": 8,
+    },
+    "cerebras_blog": {
+        "url": "https://www.cerebras.ai/blog/rss.xml",
+        "type": "rss",
+        "source_type": "official_blog",
+        "description": "Cerebras Blog",
+        "source_authority": 8,
+    },
+    "coreweave_blog": {
+        "url": "https://www.coreweave.com/blog/rss.xml",
+        "type": "rss",
+        "source_type": "official_blog",
+        "description": "CoreWeave Blog",
+        "source_authority": 8,
     },
 
-    # ==================== 新規追加：AI専門メディア ====================
-    "ai_news": {
-        "url": "https://www.artificialintelligence-news.com/feed/",
+    # GitHub releases / OSS changelogs
+    "langchain_releases": {
+        "url": "https://github.com/langchain-ai/langchain/releases.atom",
         "type": "rss",
-        "source_type": "business",
-        "description": "AI News",
+        "source_type": "github_release",
+        "description": "LangChain GitHub Releases",
+        "source_authority": 8,
     },
-    "zdnet_ai": {
-        "url": "https://www.zdnet.com/topic/artificial-intelligence/rss.xml",
+    "vllm_releases": {
+        "url": "https://github.com/vllm-project/vllm/releases.atom",
         "type": "rss",
-        "source_type": "business",
-        "description": "ZDNet AI",
+        "source_type": "github_release",
+        "description": "vLLM GitHub Releases",
+        "source_authority": 8,
     },
-    "ars_technica": {
-        "url": "https://feeds.arstechnica.com/arstechnica/technology-lab",
+    "llamacpp_releases": {
+        "url": "https://github.com/ggerganov/llama.cpp/releases.atom",
         "type": "rss",
-        "source_type": "business",
-        "description": "Ars Technica",
+        "source_type": "github_release",
+        "description": "llama.cpp GitHub Releases",
+        "source_authority": 8,
     },
-    # ==================== 追加：一次情報強化 ====================
-"anthropic_blog": {
-    "url": "https://www.anthropic.com/rss.xml",
-    "type": "rss",
-    "source_type": "model",
-    "description": "Anthropic Blog",
-},
-"deepmind": {
-    "url": "https://deepmind.google/blog/rss/",
-    "type": "rss",
-    "source_type": "research",
-    "description": "Google DeepMind",
-},
-"arxiv_cs_lg": {
-    "url": "https://arxiv.org/rss/cs.LG",
-    "type": "arxiv",
-    "source_type": "research",
-    "description": "arXiv CS.LG",
-},
+    "ollama_releases": {
+        "url": "https://github.com/ollama/ollama/releases.atom",
+        "type": "rss",
+        "source_type": "github_release",
+        "description": "Ollama GitHub Releases",
+        "source_authority": 8,
+    },
+    "openwebui_releases": {
+        "url": "https://github.com/open-webui/open-webui/releases.atom",
+        "type": "rss",
+        "source_type": "github_release",
+        "description": "Open WebUI GitHub Releases",
+        "source_authority": 8,
+    },
+    "comfyui_releases": {
+        "url": "https://github.com/comfyanonymous/ComfyUI/releases.atom",
+        "type": "rss",
+        "source_type": "github_release",
+        "description": "ComfyUI GitHub Releases",
+        "source_authority": 8,
+    },
+    "autogen_releases": {
+        "url": "https://github.com/microsoft/autogen/releases.atom",
+        "type": "rss",
+        "source_type": "github_release",
+        "description": "AutoGen GitHub Releases",
+        "source_authority": 8,
+    },
+    "crewai_releases": {
+        "url": "https://github.com/crewAIInc/crewAI/releases.atom",
+        "type": "rss",
+        "source_type": "github_release",
+        "description": "CrewAI GitHub Releases",
+        "source_authority": 8,
+    },
 
-# ==================== 追加：国内一次情報 ====================
-"meti": {
-    "url": "https://www.meti.go.jp/rss/rss.rdf",
-    "type": "rss",
-    "source_type": "business",
-    "description": "経済産業省",
-},
-"ipa": {
-    "url": "https://www.ipa.go.jp/rss/news.rdf",
-    "type": "rss",
-    "source_type": "research",
-    "description": "IPA",
-},
-"nedo": {
-    "url": "https://www.nedo.go.jp/rss/index.xml",
-    "type": "rss",
-    "source_type": "research",
-    "description": "NEDO",
-},
-"prtimes_ai": {
-    "url": "https://prtimes.jp/rss/all.rdf",
-    "type": "rss",
-    "source_type": "business",
-    "description": "PR TIMES",
-},
+    # Research
+    "arxiv_cs_ai": {
+        "url": "https://arxiv.org/rss/cs.AI",
+        "type": "arxiv",
+        "source_type": "research_paper",
+        "description": "arXiv CS.AI",
+        "source_authority": 8,
+    },
+    "arxiv_cs_lg": {
+        "url": "https://arxiv.org/rss/cs.LG",
+        "type": "arxiv",
+        "source_type": "research_paper",
+        "description": "arXiv CS.LG",
+        "source_authority": 8,
+    },
+    "arxiv_cs_cl": {
+        "url": "https://arxiv.org/rss/cs.CL",
+        "type": "arxiv",
+        "source_type": "research_paper",
+        "description": "arXiv CS.CL",
+        "source_authority": 8,
+    },
+    "arxiv_stat_ml": {
+        "url": "https://arxiv.org/rss/stat.ML",
+        "type": "arxiv",
+        "source_type": "research_paper",
+        "description": "arXiv stat.ML",
+        "source_authority": 8,
+    },
+    "bair_blog": {
+        "url": "https://bair.berkeley.edu/blog/feed.xml",
+        "type": "rss",
+        "source_type": "research_paper",
+        "description": "BAIR Blog",
+        "source_authority": 7,
+    },
+
+    # Government / regulation
+    "nist_news": {
+        "url": "https://www.nist.gov/news-events/news/rss.xml",
+        "type": "rss",
+        "source_type": "government",
+        "description": "NIST News",
+        "source_authority": 9,
+    },
+    "ftc_press": {
+        "url": "https://www.ftc.gov/news-events/news/press-releases/rss.xml",
+        "type": "rss",
+        "source_type": "government",
+        "description": "FTC Press Releases",
+        "source_authority": 8,
+    },
+    "sec_press": {
+        "url": "https://www.sec.gov/news/pressreleases.rss",
+        "type": "rss",
+        "source_type": "government",
+        "description": "SEC Press Releases",
+        "source_authority": 8,
+    },
+    "meti": {
+        "url": "https://www.meti.go.jp/rss/rss.rdf",
+        "type": "rss",
+        "source_type": "government",
+        "description": "METI",
+        "source_authority": 9,
+    },
+    "digital_agency": {
+        "url": "https://www.digital.go.jp/rss.xml",
+        "type": "rss",
+        "source_type": "government",
+        "description": "Digital Agency",
+        "source_authority": 8,
+    },
+    "ipa": {
+        "url": "https://www.ipa.go.jp/rss/news.rdf",
+        "type": "rss",
+        "source_type": "government",
+        "description": "IPA",
+        "source_authority": 8,
+    },
+    "nedo": {
+        "url": "https://www.nedo.go.jp/rss/index.xml",
+        "type": "rss",
+        "source_type": "government",
+        "description": "NEDO",
+        "source_authority": 8,
+    },
 }
+
+OFFICIAL_PAGE_SOURCES = {
+    "xai_news": {
+        "url": "https://x.ai/news",
+        "source_type": "official_blog",
+        "description": "xAI News",
+        "source_authority": 9,
+    },
+    "amd_newsroom": {
+        "url": "https://www.amd.com/en/newsroom",
+        "source_type": "official_press",
+        "description": "AMD Newsroom",
+        "source_authority": 8,
+    },
+    "tsmc_news": {
+        "url": "https://pr.tsmc.com/english/news",
+        "source_type": "official_press",
+        "description": "TSMC News",
+        "source_authority": 9,
+    },
+    "broadcom_news": {
+        "url": "https://news.broadcom.com/",
+        "source_type": "official_press",
+        "description": "Broadcom News",
+        "source_authority": 8,
+    },
+    "groq_news": {
+        "url": "https://groq.com/news/",
+        "source_type": "official_press",
+        "description": "Groq News",
+        "source_authority": 8,
+    },
+    "figure_news": {
+        "url": "https://www.figure.ai/news",
+        "source_type": "official_press",
+        "description": "Figure News",
+        "source_authority": 8,
+    },
+    "tesla_ai": {
+        "url": "https://www.tesla.com/AI",
+        "source_type": "official_blog",
+        "description": "Tesla AI",
+        "source_authority": 8,
+    },
+}
+
+OFFICIAL_LINK_KEYWORDS = (
+    "news", "blog", "press", "release", "research", "announcement",
+    "model", "api", "ai", "gpu", "chip", "cloud", "robot", "earnings",
+    "investor", "datacenter", "data-center", "security", "benchmark",
+)
 
 ARXIV_KEYWORDS = [
     "deep learning", "neural network", "transformer", "large language model",
@@ -301,9 +370,19 @@ def init_db():
             buzz_score REAL DEFAULT 0,
             collected_at TEXT DEFAULT CURRENT_TIMESTAMP,
             processed INTEGER DEFAULT 0,
-            image_url TEXT DEFAULT ''
+            image_url TEXT DEFAULT '',
+            is_primary_source INTEGER DEFAULT 0,
+            source_authority REAL DEFAULT 0
         )
     """)
+    for sql in (
+        "ALTER TABLE articles ADD COLUMN is_primary_source INTEGER DEFAULT 0",
+        "ALTER TABLE articles ADD COLUMN source_authority REAL DEFAULT 0",
+    ):
+        try:
+            cursor.execute(sql)
+        except sqlite3.OperationalError:
+            pass
     cursor.execute("CREATE INDEX IF NOT EXISTS idx_articles_url ON articles(url)")
     cursor.execute("CREATE INDEX IF NOT EXISTS idx_articles_collected_at ON articles(collected_at)")
     conn.commit()
@@ -380,8 +459,9 @@ def save_article(article):
     try:
         cursor.execute("""
             INSERT INTO articles
-            (url, title, summary, source, source_type, author, published_at, score, image_url)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+            (url, title, summary, source, source_type, author, published_at, score, image_url,
+             is_primary_source, source_authority)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         """, (
             article["url"],
             article["title"],
@@ -392,6 +472,8 @@ def save_article(article):
             article.get("published_at", ""),
             article.get("score", 0),
             image_url,
+            1 if article.get("is_primary_source", True) else 0,
+            float(article.get("source_authority", 0) or 0),
         ))
         conn.commit()
         logger.info("記事を保存: %s [OG:%s]", article["title"][:40], "あり" if og_image else "なし")
@@ -445,8 +527,9 @@ def fetch_anthropic_news():
             title = titles[i] if i < len(titles) else path.split("/")[-1].replace("-", " ").title()
             articles.append({
                 "url": url, "title": title, "summary": "",
-                "source": "Anthropic", "source_type": "rss",
+                "source": "Anthropic News", "source_type": "official_blog",
                 "author": "", "published_at": "", "score": 0,
+                "is_primary_source": 1, "source_authority": 10,
             })
         logger.info("Anthropicスクレイピング完了: %d件", len(articles))
     except Exception as e:
@@ -465,6 +548,8 @@ def parse_generic_rss(feed, source_info: Dict) -> List[Dict]:
             "author": entry.get("author", ""),
             "published_at": entry.get("published", ""),
             "score": 0,
+            "is_primary_source": 1,
+            "source_authority": source_info.get("source_authority", 0),
         }
         if article["url"] and article["title"]:
             articles.append(article)
@@ -490,6 +575,8 @@ def parse_hn_feed(feed, source_info: Dict) -> List[Dict]:
             "author": entry.get("author", ""),
             "published_at": entry.get("published", ""),
             "score": 0,
+            "is_primary_source": 0,
+            "source_authority": 0,
         }
         if article["url"] and article["title"]:
             articles.append(article)
@@ -514,9 +601,67 @@ def parse_arxiv_feed(feed, source_info: Dict) -> List[Dict]:
             "author": ", ".join([a.get("name", "") for a in entry.get("authors", [])]),
             "published_at": entry.get("published", ""),
             "score": 0,
+            "is_primary_source": 1,
+            "source_authority": source_info.get("source_authority", 8),
         }
         if article["url"] and article["title"]:
             articles.append(article)
+    return articles
+
+
+def fetch_official_page(source_key: str, source_info: Dict) -> List[Dict]:
+    articles = []
+    base_url = source_info["url"]
+    base_host = urlparse(base_url).netloc.replace("www.", "")
+    logger.info("公式ページ取得開始: %s (%s)", source_info["description"], base_url)
+
+    try:
+        headers = {
+            "User-Agent": "Mozilla/5.0 (compatible; AIKeizaiBot/1.0; +https://aikeizai.jp/)"
+        }
+        res = requests.get(base_url, timeout=12, headers=headers)
+        res.raise_for_status()
+        soup = BeautifulSoup(res.text, "html.parser")
+        seen = set()
+
+        for link in soup.find_all("a", href=True):
+            title = re.sub(r"\s+", " ", link.get_text(" ", strip=True))
+            href = urljoin(base_url, link["href"])
+            parsed = urlparse(href)
+            host = parsed.netloc.replace("www.", "")
+
+            if host != base_host:
+                continue
+            if href in seen:
+                continue
+            if len(title) < 8 or len(title) > 160:
+                continue
+
+            haystack = f"{href} {title}".lower()
+            if not any(keyword in haystack for keyword in OFFICIAL_LINK_KEYWORDS):
+                continue
+
+            seen.add(href)
+            articles.append({
+                "url": href,
+                "title": title,
+                "summary": "",
+                "source": source_info["description"],
+                "source_type": source_info.get("source_type", "official_press"),
+                "author": "",
+                "published_at": "",
+                "score": 0,
+                "is_primary_source": 1,
+                "source_authority": source_info.get("source_authority", 8),
+            })
+
+            if len(articles) >= 20:
+                break
+
+        logger.info("公式ページ取得完了: %s - 記事数: %d", source_info["description"], len(articles))
+    except Exception as e:
+        logger.error("公式ページ取得エラー: %s - エラー: %s", source_info["description"], str(e))
+
     return articles
 
 # ==================== メイン処理 ====================
@@ -534,6 +679,13 @@ def collect_all():
             total_collected += 1
         else:
             total_duplicates += 1
+
+    for source_key, source_info in OFFICIAL_PAGE_SOURCES.items():
+        for article in fetch_official_page(source_key, source_info):
+            if save_article(article):
+                total_collected += 1
+            else:
+                total_duplicates += 1
 
     for source_key, source_info in RSS_SOURCES.items():
         articles = fetch_rss_feed(source_key, source_info)

@@ -9,6 +9,7 @@ import os
 import time
 import subprocess
 import requests
+from pathlib import Path
 from datetime import datetime
 
 from collector import collect_all
@@ -60,6 +61,13 @@ def setup_logger():
     return logger
 
 logger = setup_logger()
+
+
+def run_astro_build():
+    astro_dir = Path(__file__).resolve().parent / "astro-site"
+    logger.info("Astro build start: %s", astro_dir)
+    subprocess.run(["npm", "run", "build"], cwd=astro_dir, shell=True, check=True)
+    logger.info("Astro build completed")
 
 
 def start_comfyui():
@@ -123,15 +131,19 @@ def run_pipeline():
         stop_comfyui(comfyui_proc)
         comfyui_proc = None
 
-        # Phase3: 公開・Push
-        logger.info("[5/5] 記事公開・Git Push")
+        # Phase3: Markdown公開・Astro build・Git Push
+        logger.info("[5/7] Markdown publish")
         publish_articles()
+        logger.info("[6/7] Astro build")
+        run_astro_build()
+        logger.info("[7/7] Git Push")
         git_push()
 
         logger.info("パイプライン完了")
 
     except Exception as e:
         logger.error("パイプラインエラー: %s", str(e), exc_info=True)
+        raise
 
     finally:
         if comfyui_proc:

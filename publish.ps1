@@ -65,17 +65,17 @@ try {
     Run-Step "[3/6] 記事生成"     "translator.py"
 
     Write-Log ""
-    Write-Log ">>> [4/6] ComfyUI起動中..."
+    Write-Log ">>> [4/7] ComfyUI起動中..."
     $comfy = Start-Process python -ArgumentList $ComfyUIPath -WindowStyle Minimized -PassThru
     Write-Log "  起動待機中（20秒）..."
     Start-Sleep -Seconds 20
-    Write-Log ">>> [4/6] ComfyUI起動完了"
+    Write-Log ">>> [4/7] ComfyUI起動完了"
 
-    Run-Step "[5/6] 画像生成" "image_generator.py" -AllowFail $true
+    Run-Step "[5/7] 画像生成" "image_generator.py" -AllowFail $true
 
     if ($comfy -and -not $comfy.HasExited) { $comfy.Kill(); Write-Log "  ComfyUI停止" }
 
-    Run-Step "[6/6] 記事公開" "publisher.py"
+    Run-Step "[6/7] 記事公開" "publisher.py"
 
     Write-Log ""
     Write-Log ">>> Astroビルド中..."
@@ -85,6 +85,8 @@ try {
     if ($LASTEXITCODE -ne 0) { throw "npm run build 失敗" }
     Set-Location $ProjectDir
     Write-Log ">>> Astroビルド完了"
+
+    Run-Step "[7/7] Git Push" "publisher.py --push-only"
 
     Write-Log ""
     Write-Log "============================================================"
