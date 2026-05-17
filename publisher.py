@@ -1,4 +1,4 @@
-"""
+﻿"""
 記事公開モジュール
 翻訳済み記事をMarkdownファイルとして出力しGitにPushする
 """
@@ -15,7 +15,7 @@ DB_PATH = "data/articles.db"
 LOG_DIR = "logs"
 ASTRO_CONTENT_DIR = "astro-site/src/content/articles"
 
-LABEL_PREFIX_RE = re.compile(r'^\s*(?:[#>*\-]+\s*)?(?:見出し|本文)\s*[:：]\s*')
+LABEL_PREFIX_RE = re.compile(r"^\s*(?:[#>*\-]+\s*)?(?:要約|本文)\s*[:：]?\s*")
 MARKDOWN_HEADING_RE = re.compile(r'^\s*#+\s*')
 
 
@@ -138,7 +138,7 @@ def make_meta_description(body):
             break
     if desc:
         return desc
-    return text[:120].rstrip("、，,. 　") + ("。" if text else "")
+    return text[:120].rstrip("。、！. ") + ("。" if text else "")
 
 
 def normalize_summary_points(points, meta_desc="", body=""):
@@ -148,7 +148,7 @@ def normalize_summary_points(points, meta_desc="", body=""):
 
     for point in points or []:
         text = re.sub(r"\s+", " ", remove_output_labels(str(point))).strip()
-        parts = [p.strip() for p in re.split(r"。|．", text) if p.strip()]
+        parts = [p.strip() for p in re.split(r"。|、", text) if p.strip()]
         candidates = parts if len(text) > 100 and len(parts) > 1 else [text]
         for candidate in candidates:
             if not candidate:
@@ -168,9 +168,9 @@ def normalize_summary_points(points, meta_desc="", body=""):
             break
 
     fallback = [
-        "このニュースは、AI企業の競争が単体技術ではなく産業構造で決まり始めたことを示している。",
-        "クラウド、GPU、データ、資本のどこを押さえるかが、今後の競争力を左右しやすい。",
-        "読者は発表内容だけでなく、背後にある供給網や企業間関係の変化を見る必要がある。",
+        "このニュースは、AI業界の構造変化が単純な競争軸ではなく複雑な関係性で動まっていることを示している。",
+        "クラウド・GPU・データの三つをどこで抑えるかが、今後の業界勢力図を左右しやすい。",
+        "読者は表面の内容だけでなく、背後にある業界変化や力学・産業関係の変容を見る必要がある。",
     ]
     for point in fallback:
         if len(cleaned) == 3:
@@ -202,7 +202,6 @@ def generate_markdown(article):
         meta_desc = meta_description_db
     else:
         meta_desc = make_meta_description(body) or title
-    meta_desc = make_meta_description(meta_desc) if "。" not in meta_desc else meta_desc
 
     slug     = slugify(title, article_id, article_slug)
     cat_slug = category_slug if category_slug else "ai"
@@ -264,10 +263,13 @@ def publish_articles():
         try:
             slug, cat_slug, content = generate_markdown(article)
 
-            # カテゴリ別サブディレクトリに保存
             category_dir = os.path.join(ASTRO_CONTENT_DIR, cat_slug)
             os.makedirs(category_dir, exist_ok=True)
             filepath = os.path.join(category_dir, f"{slug}.md")
+
+            # 既存ファイルはスキップ（published_atを保持するため）
+            if os.path.exists(filepath):
+                continue
 
             with open(filepath, "w", encoding="utf-8", newline="\n") as f:
                 f.write(content)
