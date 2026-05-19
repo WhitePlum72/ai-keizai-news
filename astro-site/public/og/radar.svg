@@ -1,0 +1,13 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#07090d"/>
+  <rect x="48" y="48" width="1104" height="534" rx="30" fill="#0d1422" stroke="#263349"/>
+  <text x="82" y="118" fill="#5CD8CE" font-family="Arial, sans-serif" font-size="24" font-weight="800" letter-spacing="7">AI INDUSTRY RADAR</text>
+  <text x="82" y="250" fill="#F8FBFF" font-family="Arial, 'Noto Sans JP', sans-serif" font-size="76" font-weight="900">今週のAI産業を</text>
+  <text x="82" y="332" fill="#F8FBFF" font-family="Arial, 'Noto Sans JP', sans-serif" font-size="76" font-weight="900">構造で追う</text>
+  <text x="86" y="416" fill="#B7C4D8" font-family="Arial, 'Noto Sans JP', sans-serif" font-size="30" font-weight="700">GPU / Agent / OSS / 政策 / 日本AI</text>
+  <circle cx="928" cy="286" r="150" stroke="#5CD8CE" stroke-width="3" stroke-opacity=".35"/>
+  <circle cx="928" cy="286" r="92" stroke="#5A9EFF" stroke-width="3" stroke-opacity=".45"/>
+  <path d="M928 286L1020 166" stroke="#E6B84A" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="928" cy="286" r="16" fill="#F8FBFF"/>
+  <text x="86" y="515" fill="#5CD8CE" font-family="Arial, sans-serif" font-size="26" font-weight="800">AI経済新聞</text>
+</svg>

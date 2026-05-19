@@ -146,6 +146,8 @@ type StoryGraphLayers = {
 };
 
 type StoryGraph = {
+  id?: string;
+  slug?: string;
   company: string;
   title: string;
   summary: string;
@@ -173,6 +175,18 @@ const MODELS = modelsData as EcosystemModel[];
 const PRODUCTS = productsData as EcosystemProduct[];
 const RELATIONS = relationsData as Relation[];
 const STORYGRAPHS = storygraphsData as StoryGraph[];
+const STORYGRAPH_SLUG_COMPANIES: Record<string, string> = {
+  'nvidia-empire': 'nvidia',
+  'gpu-supply-chain': 'nvidia',
+  'openai-ecosystem': 'openai',
+  'ai-agent-wars': 'langchain',
+  'open-source-ai-ecosystem': 'huggingface',
+  'china-ai-map': 'deepseek',
+  'japan-ai': 'sakana-ai',
+  'generative-ai-services': 'runway',
+  'cloud-ai-infrastructure': 'coreweave',
+  'robotics-ai-ecosystem': 'figure',
+};
 
 const relationStyle: Record<RelationType, { label: string; color: string; verb: string }> = {
   semiconductor: { label: '半導体製造', color: '#3B82F6', verb: '先端半導体を製造' },
@@ -205,11 +219,83 @@ function safeColor(color?: string | null) {
   return color || FALLBACK_COLOR;
 }
 
+function findCompanyById(id?: string | null) {
+  if (!id) return null;
+  const normalized = id.trim().toLowerCase();
+  return COMPANIES.find((company) => company.id.toLowerCase() === normalized) || null;
+}
+
+function findStoryGraphByParam(id?: string | null) {
+  if (!id) return null;
+  const normalized = id.trim().toLowerCase();
+  const companyId = STORYGRAPH_SLUG_COMPANIES[normalized] || (normalized.endsWith('-ecosystem') ? normalized.replace(/-ecosystem$/, '') : normalized);
+  return (
+    STORYGRAPHS.find((graph) =>
+      graph.company.toLowerCase() === companyId ||
+      graph.id?.toLowerCase() === normalized ||
+      graph.slug?.toLowerCase() === normalized ||
+      `${graph.company}-ecosystem`.toLowerCase() === normalized
+    ) || null
+  );
+}
+
 export default function LiveAIEcosystemNetwork() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [activeSector, setActiveSector] = useState<SectorId>('all');
   const [selectedCompany, setSelectedCompany] = useState<Company | null>(null);
   const [hoveredNodeId, setHoveredNodeId] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const params = new URLSearchParams(window.location.search);
+    const companyParam = params.get('company');
+    const mapParam = params.get('map');
+    const sectorParam = params.get('sector');
+
+    const selectCompany = (company: Company) => {
+      if (company.sector === 'generative-ai') {
+        setSelectedCompany(null);
+        setActiveSector('generative-ai');
+        return;
+      }
+
+      setSelectedCompany(company);
+      setActiveSector(company.sector);
+    };
+
+    if (companyParam) {
+      const company = findCompanyById(companyParam);
+      if (company) selectCompany(company);
+      return;
+    }
+
+    if (mapParam) {
+      const graph = findStoryGraphByParam(mapParam);
+      const company = findCompanyById(graph?.company);
+      if (company) selectCompany(company);
+      return;
+    }
+
+    if (sectorParam) {
+      const sector = SECTORS.find((item) => item.id.toLowerCase() === sectorParam.trim().toLowerCase());
+      if (sector) {
+        setSelectedCompany(null);
+        setActiveSector(sector.id);
+      }
+    }
+  }, []);
+
+  if (!SECTORS.length || !COMPANIES.length) {
+    return (
+      <div className="live-ecosystem-network-empty">
+        <p>Industry Map</p>
+        <h3>AI企業勢力図</h3>
+        <span>
+          データを読み込めませんでした。companies.json / sectors.json を確認してください。
+        </span>
+      </div>
+    );
+  }
 
   const detail = useMemo(() => {
     if (!selectedCompany) return null;
@@ -310,29 +396,15 @@ export default function LiveAIEcosystemNetwork() {
   };
 
   return (
-    <section id="ai-ecosystem-map" className="relative overflow-hidden border-y border-white/10 bg-[#07090d] pt-8 pb-6 text-slate-100">
+    <div className="live-ecosystem-network relative overflow-hidden bg-[#07090d] pt-5 pb-5 text-slate-100">
       <StoryGraphStyles />
       <canvas ref={canvasRef} className="pointer-events-none absolute inset-0 h-full w-full opacity-70" />
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.035)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.03)_1px,transparent_1px)] bg-[size:42px_42px]" />
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_25%_20%,rgba(90,158,255,.18),transparent_32rem),radial-gradient(circle_at_82%_25%,rgba(123,97,255,.13),transparent_34rem),radial-gradient(circle_at_50%_90%,rgba(92,216,206,.1),transparent_28rem)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_25%_20%,rgba(90,158,255,.10),transparent_32rem),radial-gradient(circle_at_82%_25%,rgba(123,97,255,.08),transparent_34rem),radial-gradient(circle_at_50%_90%,rgba(92,216,206,.07),transparent_28rem)]" />
 
       <div className="ecosystem-container">
-        <div className="ecosystem-section-head">
-          <div className="ecosystem-title-block">
-            <p className="font-mono text-[11px] font-semibold uppercase tracking-[.14em] text-[#5a9eff]">
-              AI Ecosystem Map
-            </p>
-            <h2 className="mt-1 text-2xl font-black tracking-[-.03em] md:text-3xl">
-              AI企業勢力図
-            </h2>
-            <p className="ecosystem-subcopy">
-              半導体、GPU、クラウド、モデル、サービスまで。AI産業のつながりを構造で読む。
-            </p>
-          </div>
-        </div>
-
         <div className="grid gap-4">
-          <main className="relative min-h-[760px] overflow-hidden rounded-lg border border-white/10 bg-[#080d14]/80 p-4 shadow-2xl shadow-black/30 backdrop-blur md:p-6">
+          <main className="relative min-h-[760px] overflow-hidden rounded-lg bg-[#080d14]/80 p-4 shadow-2xl shadow-black/25 backdrop-blur md:p-5">
             <AnimatePresence mode="wait">
               {activeSector === 'generative-ai' ? (
                 <motion.div
@@ -382,7 +454,7 @@ export default function LiveAIEcosystemNetwork() {
           </main>
         </div>
       </div>
-    </section>
+    </div>
   );
 }
 
@@ -402,6 +474,12 @@ function SectorOverview({
         const isActive = activeSector === sector.id;
         const isDimmed = activeSector !== 'all' && !isActive;
         const color = safeColor(sector.color);
+        const sectorName = sector.id === 'generative-ai' ? 'Generative AI' : sector.name;
+        const sectorShort = sector.id === 'generative-ai' ? 'Generative' : sector.short;
+        const sectorDescription =
+          sector.id === 'generative-ai'
+            ? '画像生成、動画生成、音声生成など、クリエイティブ領域の生成AI。'
+            : sector.description;
 
         return (
           <motion.section
@@ -417,16 +495,16 @@ function SectorOverview({
               <div className="sector-card-head">
                 <div>
                   <p className="sector-kicker">
-                    {sector.short}
+                    {sectorShort}
                   </p>
-                  <h3>{sector.name}</h3>
+                  <h3>{sectorName}</h3>
                 </div>
                 <span className="sector-count">
                   {sectorCompanies.length}社
                 </span>
               </div>
 
-              <p className="sector-description">{sector.description}</p>
+              <p className="sector-description">{sectorDescription}</p>
 
               <div className="sector-company-list">
                 {sectorCompanies.slice(0, isActive ? 12 : 8).map((company) => (
@@ -916,18 +994,20 @@ function SelectedCompanyFlowCard({
   const logo = node.logo || company?.logo;
 
   return (
-    <button
-      type="button"
-      disabled={!clickable}
+    <a
+      href={company ? `/company/${company.id}/` : undefined}
       onMouseEnter={() => onHoverNode(node.id)}
       onMouseLeave={() => onHoverNode(null)}
-      onClick={() => onNodeClick(node)}
+      onClick={(event) => {
+        event.stopPropagation();
+        if (!clickable) event.preventDefault();
+      }}
       className={['selected-flow-card', clickable ? 'is-clickable' : '', hoveredNodeId === node.id ? 'is-highlighted' : ''].join(' ')}
       style={{ ['--stage-color' as string]: safeColor(color) }}
     >
       <EntityLogo logo={logo} logoText={logoText} alt={node.label} className="selected-logo" />
       <span className="selected-name">{node.label}</span>
-    </button>
+    </a>
   );
 }
 
@@ -973,17 +1053,19 @@ function LogoChip({ node, tone, onNodeClick }: { node: StoryGraphNode; tone: str
   const title = node.relation ? `${node.label} / ${jaRelation(node.relation)}` : node.label;
 
   return (
-    <button
-      type="button"
+    <a
+      href={company ? `/company/${company.id}/` : undefined}
       title={title}
-      disabled={!clickable}
-      onClick={() => onNodeClick(node)}
+      onClick={(event) => {
+        event.stopPropagation();
+        if (!clickable) event.preventDefault();
+      }}
       className={["logo-chip", clickable ? "is-clickable" : ""].join(" ")}
       style={{ ['--chip-tone' as string]: safeColor(tone) }}
       aria-label={title}
     >
       <EntityLogo logo={logo} logoText={logoText} alt={node.label} />
-    </button>
+    </a>
   );
 }
 
@@ -1211,12 +1293,14 @@ function StoryNodeCard({
   const typeColor = safeColor(typeStyle.color);
 
   return (
-    <button
-      type="button"
-      disabled={!clickable}
+    <a
+      href={company ? `/company/${company.id}/` : undefined}
       onMouseEnter={() => onHoverNode(node.id)}
       onMouseLeave={() => onHoverNode(null)}
-      onClick={() => onNodeClick(node)}
+      onClick={(event) => {
+        event.stopPropagation();
+        if (!clickable) event.preventDefault();
+      }}
       className={[
         'node-card group relative w-full rounded-md border bg-black/20 text-center transition',
         compact ? 'px-3 py-2' : 'px-3 py-3',
@@ -1239,7 +1323,7 @@ function StoryNodeCard({
         </div>
       </div>
       {clickable && <span className="absolute inset-x-3 bottom-0 h-px opacity-0 transition group-hover:opacity-100" style={{ background: tone }} />}
-    </button>
+    </a>
   );
 }
 
@@ -1987,6 +2071,83 @@ function StoryGraphStyles() {
         width: 100%;
       }
 
+      .live-ecosystem-network {
+        position: relative;
+        z-index: 2;
+        min-height: 680px;
+        overflow: hidden;
+        background: #07090d;
+        color: #f8fbff;
+        padding: 10px 0;
+      }
+
+      .live-ecosystem-network-empty {
+        position: relative;
+        z-index: 2;
+        min-height: 520px;
+        display: grid;
+        align-content: center;
+        gap: 12px;
+        border: 1px solid rgba(255,255,255,.10);
+        border-radius: 28px;
+        background: rgba(2,6,23,.88);
+        padding: 32px;
+        color: #f8fbff;
+      }
+
+      .live-ecosystem-network-empty p {
+        color: rgba(103,232,249,.72);
+        font-family: IBM Plex Mono, ui-monospace, monospace;
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: .30em;
+        text-transform: uppercase;
+      }
+
+      .live-ecosystem-network-empty h3 {
+        font-size: 26px;
+        font-weight: 900;
+        letter-spacing: -.03em;
+      }
+
+      .live-ecosystem-network-empty span {
+        max-width: 620px;
+        color: rgba(255,255,255,.62);
+        font-size: 14px;
+        line-height: 1.9;
+      }
+
+      .live-ecosystem-network > canvas,
+      .live-ecosystem-network > .pointer-events-none {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+      }
+
+      .live-ecosystem-network > canvas {
+        display: block;
+        opacity: .7;
+      }
+
+      .live-ecosystem-network > .ecosystem-container {
+        position: relative;
+        z-index: 1;
+      }
+
+      .live-ecosystem-network main {
+        position: relative;
+        min-height: 640px;
+        overflow: hidden;
+        border: 1px solid rgba(255,255,255,.055);
+        border-radius: 18px;
+        background: rgba(8,13,20,.74);
+        padding: 16px;
+        box-shadow: 0 22px 54px rgba(0,0,0,.24);
+        backdrop-filter: blur(14px);
+      }
+
       .ecosystem-container {
         width: min(100% - 32px, 1440px);
         max-width: 1440px;
@@ -2600,6 +2761,7 @@ function StoryGraphStyles() {
           linear-gradient(180deg, rgba(255,255,255,.065), rgba(255,255,255,.032));
         color: #fff;
         text-align: center;
+        text-decoration: none;
         box-shadow: 0 0 42px color-mix(in srgb, var(--stage-color, #5CD8CE) 18%, transparent), 0 22px 62px rgba(0,0,0,.30);
         backdrop-filter: blur(16px);
         transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
@@ -2646,6 +2808,7 @@ function StoryGraphStyles() {
       }
 
       .node-card {
+        display: block;
         width: 100%;
         min-height: 92px;
         border-color: color-mix(in srgb, var(--node-tone, #5CD8CE) 22%, rgba(255,255,255,.10));
@@ -2653,6 +2816,8 @@ function StoryGraphStyles() {
         background:
           linear-gradient(180deg, color-mix(in srgb, var(--node-tone, #5CD8CE) 6%, transparent), transparent 70%),
           rgba(0,0,0,.24);
+        color: #f8fbff;
+        text-decoration: none;
         box-shadow: 0 12px 30px rgba(0,0,0,.18);
       }
 
@@ -2913,6 +3078,7 @@ function StoryGraphStyles() {
         border-radius: 13px;
         background: rgba(0,0,0,.22);
         color: #f8fbff;
+        text-decoration: none;
         font-family: IBM Plex Mono, ui-monospace, monospace;
         font-size: 10px;
         font-weight: 950;

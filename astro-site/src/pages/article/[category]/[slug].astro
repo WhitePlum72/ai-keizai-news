@@ -5,6 +5,7 @@ import Footer from '../../../components/Footer.astro';
 import Sidebar from '../../../components/Sidebar.astro';
 import AlsoRead from '../../../components/AlsoRead.astro';
 import JsonLd from '../../../components/JsonLd.astro';
+import CompanyLogoChip from '../../../components/CompanyLogoChip.astro';
 import companiesData from '../../../data/ecosystem/companies.json';
 import storygraphsData from '../../../data/ecosystem/storygraphs.json';
 
@@ -91,9 +92,10 @@ const catLabels = {
 const categoryLabel = catLabels[article.data.category_slug] || article.data.category_slug || '記事';
 
 const canonicalUrl = `https://aikeizai.jp/article/${article.data.category_slug || 'business'}/${article.data.article_slug || article.id}/`;
-const ogImage = article.data.image_url
-  ? (article.data.image_url.startsWith('http') ? article.data.image_url : 'https://aikeizai.jp' + article.data.image_url)
-  : 'https://aikeizai.jp/ogp.png';
+const articleImage = article.data.image_url || article.data.image;
+const ogImage = articleImage
+  ? (articleImage.startsWith('http') ? articleImage : 'https://aikeizai.jp' + articleImage)
+  : 'https://aikeizai.jp/og/article.svg';
 const mapSlugOverrides = {
   nvidia: 'nvidia-empire',
   openai: 'openai-ecosystem',
@@ -152,8 +154,8 @@ const formatDate = (value) => {
   <meta property="og:title" content={article.data.title} />
   <meta property="og:description" content={description} />
   <meta property="og:image" content={ogImage} />
-  <meta property="og:image:width" content="1280" />
-  <meta property="og:image:height" content="720" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
   <meta property="og:image:alt" content={article.data.title} />
   <meta property="og:type" content="article" />
   <meta property="og:url" content={canonicalUrl} />
@@ -275,6 +277,11 @@ const formatDate = (value) => {
                 {article.data.published_at && <span> / 掲載: {formatDate(article.data.published_at)}</span>}
               </p>
               <p class="source-url">URL: <a href={article.data.source_url} target="_blank" rel="noopener noreferrer">{article.data.source_url}</a></p>
+              <div class="policy-links">
+                <a href="/primary-sources/">一次情報方針</a>
+                <a href="/methodology/">構造分析手法</a>
+                <a href="/editorial-policy/">編集方針</a>
+              </div>
             </div>
             <a href={article.data.source_url} target="_blank" rel="noopener noreferrer">一次情報を確認 →</a>
           </section>
@@ -287,7 +294,7 @@ const formatDate = (value) => {
             <p>企業間の供給網、出資、提携、競合関係をStoryGraphと企業データベースで確認できます。</p>
           </div>
           <div class="map-actions">
-            {primaryCompany && <a href={`/company/${primaryCompany.id}/`}>{primaryCompany.name}を見る →</a>}
+            {primaryCompany && <CompanyLogoChip company={primaryCompany} />}
             <a href={relatedGraphUrl}>構造ページへ →</a>
           </div>
         </section>
@@ -317,8 +324,8 @@ const formatDate = (value) => {
             {relatedCompanies.length > 0 && (
               <>
                 <h3>関連企業</h3>
-                <div class="link-row">
-                  {relatedCompanies.map((company) => <a href={`/company/${company.id}/`}>{company.name}</a>)}
+                <div class="company-link-row">
+                  {relatedCompanies.map((company) => <CompanyLogoChip company={company} />)}
                 </div>
               </>
             )}
@@ -348,7 +355,7 @@ const formatDate = (value) => {
         <div class="related-grid">
           {relatedArticles.map((a) => (
             <a class="related-card" href={getArticleUrl(a)}>
-              <img src={a.data.image_url || '/ogp.png'} alt={a.data.title} loading="lazy" decoding="async" />
+              <img src={a.data.image_url || '/og/article.svg'} alt={a.data.title} loading="lazy" decoding="async" />
               <div>
                 <p>{catLabels[a.data.category_slug] || a.data.category_slug || '記事'}</p>
                 <h3>{a.data.title}</h3>
@@ -448,6 +455,24 @@ const formatDate = (value) => {
     text-underline-offset: 3px;
     white-space: normal;
   }
+  .policy-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+  }
+  .source-panel .policy-links a {
+    border: 1px solid rgba(255,255,255,.10);
+    background: rgba(255,255,255,.045);
+    color: #dbe7f5;
+    padding: 7px 10px;
+    font-size: 11px;
+    white-space: normal;
+  }
+  .source-panel .policy-links a:hover {
+    border-color: rgba(92,216,206,.42);
+    color: #fff;
+  }
   .source-panel a, .map-actions a { display: inline-flex; border-radius: 999px; background: #5cd8ce; color: #07111b; padding: 10px 16px; font-size: 12px; font-weight: 900; transition: transform .16s ease; white-space: nowrap; }
   .source-panel a:hover, .map-actions a:hover { transform: translateY(-2px); }
   .map-cta { display: flex; justify-content: space-between; gap: 18px; align-items: center; margin: 0 34px 34px; border: 1px solid rgba(255,255,255,.10); border-radius: 16px; background: rgba(0,0,0,.18); padding: 18px; }
@@ -504,6 +529,11 @@ const formatDate = (value) => {
     line-height: 1.75;
   }
   .link-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .company-link-row {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;

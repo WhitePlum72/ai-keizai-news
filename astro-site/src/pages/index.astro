@@ -239,8 +239,18 @@ const COMPANIES = [
 ];
 
 const jsonLd = [
-  {'@context':'https://schema.org','@type':'WebSite',name:'AI経済新聞',url:'https://aikeizai.jp/'},
-  {'@context':'https://schema.org','@type':'NewsMediaOrganization',name:'AI経済新聞',url:'https://aikeizai.jp/',publishingPrinciples:'https://aikeizai.jp/about/'},
+  {
+    '@context':'https://schema.org',
+    '@type':'WebSite',
+    name:'AI経済新聞',
+    url:'https://aikeizai.jp/',
+    potentialAction:{
+      '@type':'SearchAction',
+      target:'https://aikeizai.jp/search/?q={search_term_string}',
+      'query-input':'required name=search_term_string',
+    },
+  },
+  {'@context':'https://schema.org','@type':'NewsMediaOrganization',name:'AI経済新聞',url:'https://aikeizai.jp/',publishingPrinciples:'https://aikeizai.jp/editorial-policy/'},
 ];
 ---
 
@@ -255,8 +265,11 @@ const jsonLd = [
 <meta property="og:type" content="website"/>
 <meta property="og:title" content="AI経済新聞 | AI産業OS"/>
 <meta property="og:description" content="AI・半導体・市場・インフラ・政策を構造で読む日本語AI業界インテリジェンスメディア。"/>
-<meta property="og:image" content="https://aikeizai.jp/ogp.png"/>
+<meta property="og:image" content="https://aikeizai.jp/og/default.svg"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
 <meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://aikeizai.jp/og/default.svg"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Serif+JP:wght@700;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
@@ -296,6 +309,8 @@ const jsonLd = [
       <a href="/infrastructure/">Infra</a>
       <a href="/policy/">Policy</a>
       <a href="/research/">Research</a>
+      <a href="/radar/">Radar</a>
+      <a href="/search/">Search</a>
     </nav>
     <div class="hright"><a class="hbtn" href="/about/">About</a></div>
   </div>
@@ -482,7 +497,29 @@ const jsonLd = [
 <!-- ================================================================
      §4 AI INDUSTRY NETWORK — Semantic Neural Sphere
      ================================================================ -->
-<LiveAIEcosystemNetwork client:only="react" />
+<section id="ai-ecosystem-map" class="storygraph-home-shell" aria-labelledby="storygraph-home-title">
+  <div class="storygraph-home-head">
+    <p class="eyebrow">Industry Map / StoryGraph</p>
+    <h2 id="storygraph-home-title">AI企業勢力図</h2>
+    <p>
+      AI業界の主要企業、モデル、クラウド、GPU供給網を構造で見るインタラクティブマップ。
+    </p>
+  </div>
+
+  <div class="storygraph-home-frame">
+    <div class="storygraph-static-fallback" aria-hidden="true">
+      <div>
+        <span>MAP READY</span>
+        <strong>AI企業勢力図を読み込んでいます...</strong>
+      </div>
+    </div>
+    <LiveAIEcosystemNetwork client:only="react">
+      <div slot="fallback" class="storygraph-loading-fallback">
+        AI企業勢力図を読み込んでいます...
+      </div>
+    </LiveAIEcosystemNetwork>
+  </div>
+</section>
 
 <!-- ================================================================
      §5 Breaking
@@ -877,6 +914,20 @@ button{background:none;border:none;cursor:pointer;font:inherit;color:inherit;}
 .see-more:hover{opacity:.7;}
 .d-up{color:var(--green);font-weight:700;}
 .d-dn{color:var(--red);font-weight:700;}
+
+/* TOP StoryGraph */
+.storygraph-home-shell{width:min(100% - 32px,var(--max));margin:80px auto 0;padding:0 0 42px;background:#07090d;scroll-margin-top:84px;}
+.storygraph-home-head{margin-bottom:28px;}
+.storygraph-home-head h2{margin-top:12px;font-size:clamp(28px,3.2vw,42px);font-weight:950;line-height:1.08;letter-spacing:-.04em;color:var(--ink);}
+.storygraph-home-head p:last-child{max-width:760px;margin-top:12px;color:#aab7cc;font-size:14px;line-height:1.9;}
+.storygraph-home-frame{position:relative;min-height:704px;overflow:hidden;border:1px solid rgba(255,255,255,.07);border-radius:28px;background:linear-gradient(180deg,rgba(255,255,255,.026),rgba(255,255,255,.012));padding:8px;box-shadow:0 24px 64px rgba(8,145,178,.08);}
+.storygraph-home-frame .live-ecosystem-network{position:relative;z-index:2;min-height:680px;border:0;border-radius:22px;background:#07090d;}
+.storygraph-static-fallback{position:absolute;inset:16px;z-index:0;display:flex;align-items:center;justify-content:center;border-radius:24px;border:1px dashed rgba(255,255,255,.12);background:linear-gradient(135deg,rgba(90,158,255,.08),rgba(92,216,206,.04));color:rgba(255,255,255,.56);text-align:center;pointer-events:none;}
+.storygraph-home-frame:has(.live-ecosystem-network) .storygraph-static-fallback{display:none;}
+.storygraph-static-fallback div{display:grid;gap:8px;}
+.storygraph-static-fallback span{font-family:var(--mono);font-size:10px;letter-spacing:.28em;color:rgba(103,232,249,.72);}
+.storygraph-static-fallback strong{font-size:14px;font-weight:700;}
+.storygraph-loading-fallback{display:flex;min-height:480px;align-items:center;justify-content:center;color:rgba(255,255,255,.56);font-size:14px;}
 
 /* PILL */
 .pill{display:inline-flex;align-items:center;border:1px solid var(--lines);border-radius:999px;padding:5px 12px;font-family:var(--mono);font-size:11px;color:var(--muted);background:rgba(255,255,255,.03);line-height:1;transition:background .15s,color .15s;}

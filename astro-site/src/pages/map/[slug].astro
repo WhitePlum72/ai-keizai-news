@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
+import CompanyLogoChip from '../../components/CompanyLogoChip.astro';
 import companiesData from '../../data/ecosystem/companies.json';
 import modelsData from '../../data/ecosystem/models.json';
 import productsData from '../../data/ecosystem/products.json';
@@ -16,6 +17,9 @@ export async function getStaticPaths() {
     huggingface: ['open-source-ai-ecosystem'],
     deepseek: ['china-ai-map'],
     'sakana-ai': ['japan-ai'],
+    runway: ['generative-ai-services'],
+    coreweave: ['cloud-ai-infrastructure'],
+    figure: ['robotics-ai-ecosystem'],
   };
 
   return storygraphsData.flatMap((graph) => {
@@ -47,10 +51,14 @@ const titleBySlug = {
   'china-ai-map': '\u4e2d\u56fdAI\u52e2\u529b\u56f3',
   'japan-ai': '\u65e5\u672cAI\u30a8\u30b3\u30b7\u30b9\u30c6\u30e0',
   'open-source-ai-ecosystem': 'Open Source AI Ecosystem',
+  'generative-ai-services': 'Generative AI Services',
+  'cloud-ai-infrastructure': 'Cloud AI Infrastructure',
+  'robotics-ai-ecosystem': 'Robotics AI Ecosystem',
 };
 const pageTitle = titleBySlug[slug] || graph.title || `${displayName} Ecosystem`;
 const pageDescription = graph.summary || `${displayName}を中心に、供給元、技術基盤、製品、顧客、競合関係を整理したAI業界構造ページです。`;
 const canonicalUrl = `https://aikeizai.jp/map/${slug}/`;
+const ogImage = 'https://aikeizai.jp/og/map.svg';
 
 const getEntity = (id) => entities.get(id) || { id, name: id, logoText: id.slice(0, 2), kind: 'unknown' };
 const nodeIdsFromGroup = (group) => [
@@ -96,6 +104,9 @@ const relatedArticles = allArticles
   .slice(0, 6);
 const graphArticles = Array.isArray(graph.articles) ? graph.articles.slice(0, 4) : [];
 const getArticleUrl = (article) => `/article/${article.data.category_slug || 'business'}/${article.data.article_slug || article.id}/`;
+const relatedTopics = Array.from(new Set(
+  relatedArticles.flatMap((article) => article.data.topics_json || [])
+)).slice(0, 10);
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -149,8 +160,12 @@ const jsonLd = {
   <meta property="og:type" content="website" />
   <meta property="og:title" content={`${pageTitle} | AI経済新聞`} />
   <meta property="og:description" content={pageDescription} />
-  <meta property="og:image" content="https://aikeizai.jp/ogp.png" />
+  <meta property="og:image" content={ogImage} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:url" content={canonicalUrl} />
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content={ogImage} />
   <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 </head>
 <body>
@@ -165,7 +180,7 @@ const jsonLd = {
         </div>
         <div class="hero-actions">
           {company?.kind === 'company' && <a class="primary-btn" href={`/company/${graph.company}/`}>{displayName}を見る →</a>}
-          <a class="ghost-btn" href="/#ai-ecosystem-map">インタラクティブ版へ →</a>
+          <a class="ghost-btn" href={`/?map=${slug}#ai-ecosystem-map`}>インタラクティブ版へ →</a>
         </div>
       </div>
     </section>
@@ -191,7 +206,7 @@ const jsonLd = {
                         {nodeIdsFromGroup(subgroup).map((id) => {
                           const entity = getEntity(id);
                           return entity.kind === 'company'
-                            ? <a href={`/company/${id}/`}>{entity.logoText || entity.name?.slice(0, 2)}<span>{entity.name || id}</span></a>
+                            ? <a href={`/company/${id}/`}><span class="inline-logo">{entity.logo ? <img src={entity.logo} alt={entity.name || id} loading="lazy" decoding="async" /> : (entity.logoText || entity.name?.slice(0, 2))}</span><span>{entity.name || id}</span></a>
                             : <span>{entity.logoText || entity.name?.slice(0, 2)}<em>{entity.name || id}</em></span>;
                         })}
                       </div>
@@ -201,7 +216,7 @@ const jsonLd = {
                   nodeIdsFromGroup(layer).map((id) => {
                     const entity = getEntity(id);
                     return entity.kind === 'company'
-                      ? <a href={`/company/${id}/`}>{entity.logoText || entity.name?.slice(0, 2)}<span>{entity.name || id}</span></a>
+                      ? <a href={`/company/${id}/`}><span class="inline-logo">{entity.logo ? <img src={entity.logo} alt={entity.name || id} loading="lazy" decoding="async" /> : (entity.logoText || entity.name?.slice(0, 2))}</span><span>{entity.name || id}</span></a>
                       : <span>{entity.logoText || entity.name?.slice(0, 2)}<em>{entity.name || id}</em></span>;
                   })
                 )}
@@ -241,7 +256,7 @@ const jsonLd = {
       </div>
       <div class="company-chip-grid">
         {relatedCompanies.map((entity) => (
-          <a href={`/company/${entity.id}/`}>{entity.logoText || entity.name?.slice(0, 2)}<span>{entity.name || entity.id}</span></a>
+          <CompanyLogoChip company={entity} />
         ))}
       </div>
     </section>
@@ -262,7 +277,7 @@ const jsonLd = {
                 {group.ids.slice(0, 18).map((id) => {
                   const entity = getEntity(id);
                   return entity.kind === 'company'
-                    ? <a href={`/company/${id}/`} title={entity.name}>{entity.logoText || entity.name?.slice(0, 2)}<span>{entity.name || id}</span></a>
+                    ? <a href={`/company/${id}/`} title={entity.name}><span class="inline-logo">{entity.logo ? <img src={entity.logo} alt={entity.name || id} loading="lazy" decoding="async" /> : (entity.logoText || entity.name?.slice(0, 2))}</span><span>{entity.name || id}</span></a>
                     : <span title={entity.name}>{entity.logoText || entity.name?.slice(0, 2)}<em>{entity.name || id}</em></span>;
                 })}
               </div>
@@ -294,6 +309,22 @@ const jsonLd = {
               <h3>{article.title}</h3>
               <span>見る →</span>
             </a>
+          ))}
+        </div>
+      </section>
+    )}
+
+    {relatedTopics.length > 0 && (
+      <section class="w related topic-links">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Related Topics</p>
+            <h2>関連Topic</h2>
+          </div>
+        </div>
+        <div class="topic-chip-row">
+          {relatedTopics.map((topic) => (
+            <a href={`/topic/${topic}/`}>#{topic}</a>
           ))}
         </div>
       </section>
@@ -374,6 +405,28 @@ const jsonLd = {
   }
   .node-list a::first-letter, .relation-grid a::first-letter { color: #5cd8ce; }
   .node-list em, .relation-grid em { font-style: normal; }
+  .inline-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    flex: 0 0 auto;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,.10);
+    border-radius: 8px;
+    background: rgba(255,255,255,.08);
+    color: #fff;
+    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+    font-size: 9px;
+    font-weight: 900;
+  }
+  .inline-logo img {
+    display: block;
+    max-width: 72%;
+    max-height: 72%;
+    object-fit: contain;
+  }
   .subgroup { width: 100%; border-top: 1px solid rgba(255,255,255,.08); padding-top: 10px; }
   .subgroup:first-child { border-top: 0; padding-top: 0; }
   .subgroup p { margin: 0 0 8px; color: #7f8da3; font-size: 11px; font-weight: 900; }
@@ -407,6 +460,26 @@ const jsonLd = {
   .article-grid p { margin: 0 0 8px; color: #5a9eff; font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 10px; }
   .article-grid h3 { margin: 0 0 10px; font-size: 14px; line-height: 1.65; }
   .article-grid span { color: #5cd8ce; font-size: 12px; font-weight: 900; }
+  .topic-links { margin-top: 14px; }
+  .topic-chip-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .topic-chip-row a {
+    border: 1px solid rgba(255,255,255,.10);
+    border-radius: 999px;
+    background: rgba(255,255,255,.045);
+    padding: 8px 12px;
+    color: #dbe7f5;
+    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+    font-size: 12px;
+    font-weight: 800;
+  }
+  .topic-chip-row a:hover {
+    border-color: rgba(92,216,206,.42);
+    color: #fff;
+  }
   @media(max-width: 900px) {
     .hero-inner { flex-direction: column; align-items: flex-start; }
     .relation-grid, .article-grid, .narrative-grid { grid-template-columns: 1fr; }

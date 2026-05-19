@@ -1,0 +1,477 @@
+---
+import { getCollection } from 'astro:content';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import CompanyLogoChip from '../components/CompanyLogoChip.astro';
+import companiesData from '../data/ecosystem/companies.json';
+import storygraphsData from '../data/ecosystem/storygraphs.json';
+
+const isArchivedArticle = (article) =>
+  article.data.noindex === true ||
+  article.data.indexable === false ||
+  article.data.source_status === 'legacy_secondary_source';
+
+const articles = (await getCollection('articles'))
+  .filter((article) => !isArchivedArticle(article))
+  .sort((a, b) => new Date(b.data.published_at || 0).getTime() - new Date(a.data.published_at || 0).getTime());
+
+const getArticleUrl = (article) =>
+  `/article/${article.data.category_slug || 'business'}/${article.data.article_slug || article.id}/`;
+
+const titleByMapSlug = {
+  'nvidia-empire': 'NVIDIA Empire',
+  'gpu-supply-chain': 'GPU供給網',
+  'openai-ecosystem': 'OpenAI Ecosystem',
+  'ai-agent-wars': 'AI Agent Wars',
+  'china-ai-map': '中国AI勢力図',
+  'japan-ai': '日本AIエコシステム',
+  'open-source-ai-ecosystem': 'Open Source AI Ecosystem',
+  'generative-ai-services': 'Generative AI Services',
+  'cloud-ai-infrastructure': 'Cloud AI Infrastructure',
+  'robotics-ai-ecosystem': 'Robotics AI Ecosystem',
+};
+const mapSlugOverrides = {
+  nvidia: ['nvidia-empire', 'gpu-supply-chain'],
+  openai: ['openai-ecosystem'],
+  langchain: ['ai-agent-wars'],
+  huggingface: ['open-source-ai-ecosystem'],
+  deepseek: ['china-ai-map'],
+  'sakana-ai': ['japan-ai'],
+  runway: ['generative-ai-services'],
+  coreweave: ['cloud-ai-infrastructure'],
+  figure: ['robotics-ai-ecosystem'],
+};
+
+const topicCounts = new Map();
+for (const article of articles) {
+  for (const topic of article.data.topics_json || []) {
+    topicCounts.set(topic, (topicCounts.get(topic) || 0) + 1);
+  }
+}
+const companyMap = new Map(companiesData.map((company) => [company.id, company]));
+const quickCompanyIds = ['openai', 'nvidia', 'anthropic', 'microsoft', 'google', 'meta', 'xai', 'tsmc', 'amd', 'huggingface'];
+const quickCompanies = quickCompanyIds.map((id) => companyMap.get(id)).filter(Boolean);
+const quickTopics = [
+  { label: 'GPU', href: '/topic/gpu/' },
+  { label: 'AIエージェント', href: '/topic/agents/' },
+  { label: '生成AI', href: '/generative-ai/' },
+  { label: '基盤モデル', href: '/model/' },
+  { label: 'OSS', href: '/topic/open-source/' },
+  { label: '日本AI', href: '/map/japan-ai/' },
+  { label: '中国AI', href: '/map/china-ai-map/' },
+  { label: 'ロボティクス', href: '/robotics/' },
+  { label: 'クラウド', href: '/topic/cloud/' },
+  { label: '半導体', href: '/topic/semiconductor/' },
+];
+const featuredMaps = [
+  { title: 'NVIDIA Empire', href: '/map/nvidia-empire/' },
+  { title: 'OpenAI Ecosystem', href: '/map/openai-ecosystem/' },
+  { title: 'GPU供給網', href: '/map/gpu-supply-chain/' },
+  { title: 'AI Agent Wars', href: '/map/ai-agent-wars/' },
+  { title: 'Cloud AI Infrastructure', href: '/map/cloud-ai-infrastructure/' },
+  { title: 'Japan AI', href: '/map/japan-ai/' },
+];
+const latestArticles = articles.slice(0, 6);
+
+const searchItems = [
+  ...articles.slice(0, 500).map((article) => ({
+    type: 'article',
+    label: 'Article',
+    title: article.data.title,
+    description: article.data.description || article.data.meta_description || article.body?.slice(0, 120) || '',
+    url: getArticleUrl(article),
+    meta: article.data.category_slug || 'article',
+    date: article.data.published_at || '',
+    tokens: [
+      article.data.title,
+      article.data.category_slug,
+      ...(article.data.topics_json || []),
+      ...(article.data.companies_json || []),
+    ].join(' '),
+  })),
+  ...companiesData.map((company) => ({
+    type: 'company',
+    label: 'Company',
+    id: company.id,
+    title: company.name || company.id,
+    description: company.description || company.role || '',
+    url: `/company/${company.id}/`,
+    meta: company.sector || 'company',
+    logo: company.logo || '',
+    logoText: company.logoText || (company.name || company.id).slice(0, 1),
+    tokens: [company.id, company.name, company.role, company.sector, ...(company.tags || []), ...(company.aliases || [])].join(' '),
+  })),
+  ...storygraphsData.flatMap((graph) => {
+    const slugs = Array.from(new Set([`${graph.company}-ecosystem`, ...(mapSlugOverrides[graph.company] || [])]));
+    return slugs.map((slug) => ({
+      type: 'map',
+      label: 'StoryGraph',
+      title: titleByMapSlug[slug] || graph.title || `${graph.company} Ecosystem`,
+      description: graph.summary || 'AI産業の供給網、競合、資本、製品関係を読む構造ページ。',
+      url: `/map/${slug}/`,
+      meta: graph.company,
+      tokens: [slug, graph.company, graph.title, graph.summary].join(' '),
+    }));
+  }),
+  ...Array.from(topicCounts.entries()).map(([topic, count]) => ({
+    type: 'topic',
+    label: 'Topic',
+    title: `#${topic}`,
+    description: `${count}本の記事で参照されているAI産業トピック。関連記事、企業、StoryGraphを横断して確認できます。`,
+    url: `/topic/${topic}/`,
+    meta: `${count} articles`,
+    tokens: topic,
+  })),
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'SearchResultsPage',
+  name: 'AI経済新聞 横断検索',
+  url: 'https://aikeizai.jp/search/',
+  inLanguage: 'ja',
+};
+const ogImage = 'https://aikeizai.jp/og/search.svg';
+---
+
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>横断検索 | AI経済新聞</title>
+  <meta name="description" content="AI経済新聞の記事、企業DB、StoryGraph、Topicを横断検索できます。" />
+  <link rel="canonical" href="https://aikeizai.jp/search/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="横断検索 | AI経済新聞" />
+  <meta property="og:description" content="記事、企業DB、StoryGraph、Topicを横断検索。" />
+  <meta property="og:image" content={ogImage} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content={ogImage} />
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+</head>
+<body>
+  <Header currentCategory="search" />
+  <main>
+    <section class="hero">
+      <div class="w">
+        <p class="eyebrow">Cross Search</p>
+        <h1>記事・企業・StoryGraphを横断検索</h1>
+        <p class="lead">AI経済新聞の一次情報記事、Company DB、構造ページ、Topicをひとつの検索窓から確認できます。</p>
+        <div class="search-box">
+          <input id="search-input" type="search" name="q" placeholder="OpenAI, GPU, Agent, 日本AI..." autocomplete="off" />
+          <span id="result-count">{searchItems.length} items</span>
+        </div>
+        <div class="filter-row" aria-label="検索種別">
+          <button type="button" data-filter="all" class="active">All</button>
+          <button type="button" data-filter="article">Article</button>
+          <button type="button" data-filter="company">Company</button>
+          <button type="button" data-filter="map">StoryGraph</button>
+          <button type="button" data-filter="topic">Topic</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="w discovery-shell" id="search-discovery">
+      <section class="discovery-panel wide">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Popular Companies</p>
+            <h2>有名企業から探す</h2>
+          </div>
+        </div>
+        <div class="quick-company-row">
+          {quickCompanies.map((company) => <CompanyLogoChip company={company} />)}
+        </div>
+      </section>
+
+      <section class="discovery-panel">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Topics</p>
+            <h2>注目トピック</h2>
+          </div>
+        </div>
+        <div class="quick-topic-row">
+          {quickTopics.map((topic) => <a href={topic.href}>#{topic.label}</a>)}
+        </div>
+      </section>
+
+      <section class="discovery-panel">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">StoryGraph</p>
+            <h2>主要構造ページ</h2>
+          </div>
+        </div>
+        <div class="quick-map-list">
+          {featuredMaps.map((map) => <a href={map.href}><span>構造ページ</span><strong>{map.title}</strong></a>)}
+        </div>
+      </section>
+
+      <section class="discovery-panel wide">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Latest Articles</p>
+            <h2>最新記事</h2>
+          </div>
+        </div>
+        <div class="latest-grid">
+          {latestArticles.map((article) => (
+            <a href={getArticleUrl(article)}>
+              <span>{article.data.category_slug || 'article'} / {article.data.published_at || ''}</span>
+              <strong>{article.data.title}</strong>
+            </a>
+          ))}
+        </div>
+      </section>
+    </section>
+
+    <section class="w results-shell">
+      <div class="section-head results-head">
+        <div>
+          <p class="eyebrow">Search Results</p>
+          <h2>検索結果</h2>
+        </div>
+      </div>
+      <div id="search-results" class="result-grid" aria-live="polite"></div>
+      <p id="empty-state" class="empty" hidden>該当する項目が見つかりませんでした。企業名、技術名、Topic名を短くして再検索してください。</p>
+    </section>
+  </main>
+  <Footer />
+  <script type="application/json" id="search-data" set:html={JSON.stringify(searchItems)} />
+  <script>
+    const data = JSON.parse(document.getElementById('search-data').textContent || '[]');
+    const input = document.getElementById('search-input');
+    const results = document.getElementById('search-results');
+    const count = document.getElementById('result-count');
+    const empty = document.getElementById('empty-state');
+    const buttons = Array.from(document.querySelectorAll('[data-filter]'));
+    const params = new URLSearchParams(window.location.search);
+    let activeFilter = 'all';
+    const escapeHtml = (value) => String(value || '').replace(/[&<>"']/g, (char) => ({
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#39;',
+    }[char]));
+
+    const render = () => {
+      const query = (input.value || '').trim().toLowerCase();
+      const terms = query.split(/\s+/).filter(Boolean);
+      const filtered = data
+        .filter((item) => activeFilter === 'all' || item.type === activeFilter)
+        .filter((item) => {
+          if (terms.length === 0) return true;
+          const haystack = `${item.title} ${item.description} ${item.meta} ${item.tokens}`.toLowerCase();
+          return terms.every((term) => haystack.includes(term));
+        })
+        .slice(0, 48);
+
+      results.innerHTML = filtered.map((item) => {
+        const label = item.type === 'map' ? '構造ページ' : item.label;
+        const logo = item.logo
+          ? `<img src="${escapeHtml(item.logo)}" alt="${escapeHtml(item.title)}" loading="lazy" decoding="async">`
+          : `<span>${escapeHtml(item.logoText || String(item.title).slice(0, 1))}</span>`;
+        const companyHead = item.type === 'company'
+          ? `<div class="result-company-head"><span class="result-logo">${logo}</span><strong>${escapeHtml(item.title)}</strong></div>`
+          : `<strong>${escapeHtml(item.title)}</strong>`;
+        const date = item.date ? ` / ${escapeHtml(item.date)}` : '';
+        return `
+          <a class="result-card ${escapeHtml(item.type)}" href="${escapeHtml(item.url)}">
+            <span>${escapeHtml(label)} / ${escapeHtml(item.meta || '')}${date}</span>
+            ${companyHead}
+            <p>${escapeHtml(item.description || '')}</p>
+          </a>
+        `;
+      }).join('');
+      count.textContent = `${filtered.length} / ${data.length} items`;
+      empty.hidden = filtered.length !== 0;
+    };
+
+    buttons.forEach((button) => {
+      button.addEventListener('click', () => {
+        activeFilter = button.dataset.filter || 'all';
+        buttons.forEach((item) => item.classList.toggle('active', item === button));
+        render();
+      });
+    });
+    input.addEventListener('input', render);
+    if (params.get('q')) input.value = params.get('q');
+    render();
+  </script>
+</body>
+</html>
+
+<style>
+  :global(body) {
+    margin: 0;
+    background:
+      radial-gradient(circle at 22% 0%, rgba(90,158,255,.14), transparent 34rem),
+      linear-gradient(180deg, rgba(14,22,40,.9), rgba(7,9,13,0) 520px),
+      #07090d;
+    color: #f0f4f8;
+    font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  :global(a) { color: inherit; text-decoration: none; }
+  .w { width: min(100% - 32px, 1440px); margin-inline: auto; }
+  .hero { border-bottom: 1px solid rgba(255,255,255,.09); padding: 52px 0 28px; }
+  .eyebrow { margin: 0; color: #5cd8ce; font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 11px; font-weight: 900; letter-spacing: .16em; text-transform: uppercase; }
+  h1 { max-width: 980px; margin: 8px 0 0; font-size: clamp(34px, 5vw, 64px); line-height: 1.08; letter-spacing: -.04em; }
+  .lead { max-width: 760px; margin: 16px 0 0; color: #b7c4d8; line-height: 1.9; }
+  .search-box {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 12px;
+    max-width: 860px;
+    margin-top: 26px;
+    border: 1px solid rgba(92,216,206,.24);
+    border-radius: 18px;
+    background: rgba(255,255,255,.055);
+    padding: 10px 12px;
+  }
+  .search-box input {
+    width: 100%;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: #fff;
+    font: inherit;
+    font-size: 18px;
+  }
+  .search-box span { color: #8a9ab8; font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 11px; white-space: nowrap; }
+  .filter-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+  .filter-row button {
+    border: 1px solid rgba(255,255,255,.10);
+    border-radius: 999px;
+    background: rgba(255,255,255,.04);
+    color: #dbe7f5;
+    padding: 8px 12px;
+    font-size: 12px;
+    font-weight: 900;
+    cursor: pointer;
+  }
+  .filter-row button.active, .filter-row button:hover { border-color: rgba(92,216,206,.42); background: rgba(92,216,206,.10); color: #fff; }
+  .discovery-shell {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    padding: 24px 0 0;
+  }
+  .discovery-panel {
+    border: 1px solid rgba(255,255,255,.10);
+    border-radius: 18px;
+    background: rgba(255,255,255,.035);
+    backdrop-filter: blur(14px);
+    padding: 22px;
+  }
+  .discovery-panel.wide { grid-column: 1 / -1; }
+  .section-head { display: flex; justify-content: space-between; gap: 16px; align-items: end; margin-bottom: 16px; }
+  .section-head h2 { margin: 4px 0 0; color: #f8fbff; font-size: 23px; letter-spacing: -.03em; }
+  .quick-company-row, .quick-topic-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+  }
+  .quick-topic-row a {
+    border: 1px solid rgba(255,255,255,.10);
+    border-radius: 999px;
+    background: rgba(255,255,255,.045);
+    padding: 8px 12px;
+    color: #dbe7f5;
+    font-size: 12px;
+    font-weight: 800;
+  }
+  .quick-topic-row a:hover {
+    border-color: rgba(92,216,206,.42);
+    color: #fff;
+  }
+  .quick-map-list {
+    display: grid;
+    gap: 8px;
+  }
+  .quick-map-list a, .latest-grid a {
+    border: 1px solid rgba(255,255,255,.09);
+    border-radius: 14px;
+    background: rgba(0,0,0,.18);
+    padding: 14px;
+    transition: border-color .16s ease, background .16s ease;
+  }
+  .quick-map-list a:hover, .latest-grid a:hover {
+    border-color: rgba(92,216,206,.36);
+    background: rgba(255,255,255,.055);
+  }
+  .quick-map-list span, .latest-grid span {
+    display: block;
+    color: #8fdcf6;
+    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+    font-size: 10px;
+    font-weight: 900;
+    text-transform: uppercase;
+  }
+  .quick-map-list strong, .latest-grid strong {
+    display: block;
+    margin-top: 8px;
+    color: #fff;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .latest-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+  }
+  .results-shell { padding: 26px 0 56px; }
+  .results-head { margin-bottom: 14px; }
+  .result-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+  .result-card {
+    min-height: 168px;
+    border: 1px solid rgba(255,255,255,.10);
+    border-radius: 16px;
+    background: rgba(255,255,255,.04);
+    padding: 18px;
+    transition: transform .16s ease, border-color .16s ease, background .16s ease;
+  }
+  .result-card:hover { transform: translateY(-2px); border-color: rgba(92,216,206,.42); background: rgba(255,255,255,.07); }
+  .result-card span { color: #8fdcf6; font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 10px; font-weight: 900; text-transform: uppercase; }
+  .result-card strong { display: block; margin-top: 12px; color: #fff; font-size: 18px; line-height: 1.55; }
+  .result-card p { margin: 10px 0 0; color: #aebbd0; font-size: 13px; line-height: 1.75; }
+  .result-company-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 12px;
+  }
+  .result-company-head strong { margin-top: 0; }
+  .result-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    flex: 0 0 auto;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,.10);
+    border-radius: 12px;
+    background: rgba(255,255,255,.08);
+    color: #fff;
+    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+    font-size: 11px;
+    font-weight: 900;
+  }
+  .result-logo img {
+    display: block;
+    max-width: 72%;
+    max-height: 72%;
+    object-fit: contain;
+  }
+  .empty { border: 1px solid rgba(255,255,255,.10); border-radius: 16px; background: rgba(255,255,255,.035); padding: 22px; color: #b7c4d8; }
+  @media (max-width: 900px) {
+    .discovery-shell, .latest-grid, .result-grid { grid-template-columns: 1fr; }
+    .discovery-panel.wide { grid-column: auto; }
+    .search-box { grid-template-columns: 1fr; }
+  }
+</style>

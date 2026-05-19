@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import Sidebar from '../../components/Sidebar.astro';
+import CompanyLogoChip from '../../components/CompanyLogoChip.astro';
 import companiesData from '../../data/ecosystem/companies.json';
 import storygraphsData from '../../data/ecosystem/storygraphs.json';
 
@@ -128,9 +129,12 @@ const jsonLd = {
   <link rel="canonical" href={canonicalUrl} />
   <meta property="og:title" content={`${topicLabel} | AI経済新聞`} />
   <meta property="og:description" content={description} />
-  <meta property="og:image" content="https://aikeizai.jp/ogp.png" />
+  <meta property="og:image" content="https://aikeizai.jp/og/default.svg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://aikeizai.jp/og/default.svg" />
   <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 </head>
 
@@ -164,12 +168,7 @@ const jsonLd = {
             <p class="eyebrow">Related Companies</p>
             <h2>関連企業</h2>
             <div class="chip-grid">
-              {relatedCompanies.map((company) => (
-                <a href={`/company/${company.id}/`}>
-                  {company.logoText || company.name.slice(0, 2)}
-                  <span>{company.name}</span>
-                </a>
-              ))}
+              {relatedCompanies.map((company) => <CompanyLogoChip company={company} />)}
             </div>
           </section>
         )}
@@ -190,7 +189,7 @@ const jsonLd = {
           <div class="article-list">
             {articles.map((article) => (
               <a class="article-card" href={getArticleUrl(article)}>
-                <img src={article.data.image_url || '/ogp.png'} alt={article.data.title} loading="lazy" decoding="async" />
+                <img src={article.data.image_url || '/og/article.svg'} alt={article.data.title} loading="lazy" decoding="async" />
                 <div class="card-body">
                   <div class="card-meta">
                     <span>{getCatLabel(article.data.category_slug)}</span>

@@ -1,0 +1,12 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#07090d"/>
+  <rect x="40" y="40" width="1120" height="550" rx="34" fill="#0d1424" stroke="#263349"/>
+  <path d="M80 468C236 389 312 421 450 350C603 271 741 147 1120 166" stroke="#5CD8CE" stroke-width="3" stroke-opacity=".42"/>
+  <path d="M80 524C266 477 390 491 553 421C733 343 823 270 1120 300" stroke="#5A9EFF" stroke-width="3" stroke-opacity=".32"/>
+  <circle cx="930" cy="178" r="90" fill="#5CD8CE" fill-opacity=".10"/>
+  <circle cx="1000" cy="356" r="128" fill="#5A9EFF" fill-opacity=".10"/>
+  <text x="84" y="116" fill="#5CD8CE" font-family="Arial, 'Noto Sans JP', sans-serif" font-size="28" font-weight="700" letter-spacing="8">AI INDUSTRY INTELLIGENCE</text>
+  <text x="82" y="248" fill="#F8FBFF" font-family="Arial, 'Noto Sans JP', sans-serif" font-size="78" font-weight="900">AI経済新聞</text>
+  <text x="86" y="318" fill="#B7C4D8" font-family="Arial, 'Noto Sans JP', sans-serif" font-size="34" font-weight="700">AI・半導体・市場・政策を構造で読む</text>
+  <text x="86" y="505" fill="#F8FBFF" font-family="Arial, 'Noto Sans JP', sans-serif" font-size="26" font-weight="700">StoryGraph / Company DB / Primary Sources</text>
+</svg>

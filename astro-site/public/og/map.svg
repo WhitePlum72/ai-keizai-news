@@ -1,0 +1,14 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#07090d"/>
+  <rect x="48" y="48" width="1104" height="534" rx="30" fill="#0d1422" stroke="#263349"/>
+  <text x="82" y="118" fill="#5CD8CE" font-family="Arial, sans-serif" font-size="24" font-weight="800" letter-spacing="7">STORYGRAPH</text>
+  <text x="82" y="248" fill="#F8FBFF" font-family="Arial, 'Noto Sans JP', sans-serif" font-size="72" font-weight="900">AI産業の関係図を</text>
+  <text x="82" y="328" fill="#F8FBFF" font-family="Arial, 'Noto Sans JP', sans-serif" font-size="72" font-weight="900">検索に読ませる</text>
+  <text x="86" y="412" fill="#B7C4D8" font-family="Arial, 'Noto Sans JP', sans-serif" font-size="30" font-weight="700">供給網 / 依存関係 / 競合 / エコシステム</text>
+  <circle cx="830" cy="220" r="42" fill="#5CD8CE"/>
+  <circle cx="1020" cy="180" r="32" fill="#5A9EFF"/>
+  <circle cx="1000" cy="380" r="50" fill="#E6B84A"/>
+  <circle cx="780" cy="420" r="34" fill="#F472B6"/>
+  <path d="M830 220L1020 180L1000 380L780 420L830 220ZM830 220L1000 380" stroke="#D9E3F1" stroke-width="5" stroke-opacity=".42"/>
+  <text x="86" y="515" fill="#5CD8CE" font-family="Arial, sans-serif" font-size="26" font-weight="800">AI経済新聞</text>
+</svg>

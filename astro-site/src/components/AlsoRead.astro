@@ -42,7 +42,7 @@ const getArticleUrl = (article) => {
       <div class="also-title">人気記事</div>
       {popularArticles.map((a) => (
         <a class="also-card" href={getArticleUrl(a)}>
-          <img src={a.data.image_url || '/ogp.png'} alt={a.data.title} loading="lazy" />
+          <img src={a.data.image_url || '/og/article.svg'} alt={a.data.title} loading="lazy" />
           <div>
             <div class="also-card-title">{a.data.title.slice(0, 36)}{a.data.title.length > 36 ? '...' : ''}</div>
             <div class="also-card-lead">{(a.body || '').replace(/[#\n]/g, ' ').slice(0, 50)}...</div>
@@ -56,7 +56,7 @@ const getArticleUrl = (article) => {
         <div class="also-empty">現在、記事がありません</div>
       ) : rankingMarkets.map((a) => (
         <a class="also-card" href={getArticleUrl(a)}>
-          <img src={a.data.image_url || '/ogp.png'} alt={a.data.title} loading="lazy" />
+          <img src={a.data.image_url || '/og/article.svg'} alt={a.data.title} loading="lazy" />
           <div>
             <div class="also-card-title">{a.data.title.slice(0, 36)}{a.data.title.length > 36 ? '...' : ''}</div>
             <div class="also-card-lead">{(a.body || '').replace(/[#\n]/g, ' ').slice(0, 50)}...</div>
@@ -70,7 +70,7 @@ const getArticleUrl = (article) => {
         <div class="also-empty">現在、記事がありません</div>
       ) : rankingModel.map((a) => (
         <a class="also-card" href={getArticleUrl(a)}>
-          <img src={a.data.image_url || '/ogp.png'} alt={a.data.title} loading="lazy" />
+          <img src={a.data.image_url || '/og/article.svg'} alt={a.data.title} loading="lazy" />
           <div>
             <div class="also-card-title">{a.data.title.slice(0, 36)}{a.data.title.length > 36 ? '...' : ''}</div>
             <div class="also-card-lead">{(a.body || '').replace(/[#\n]/g, ' ').slice(0, 50)}...</div>

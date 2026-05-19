@@ -1,0 +1,94 @@
+---
+const { company, href = company ? `/company/${company.id}/` : '#', variant = 'chip' } = Astro.props;
+const name = company?.name || company?.id || 'Company';
+const logo = company?.logo;
+const logoText = company?.logoText || name.slice(0, 1);
+---
+
+<a class={`company-logo-chip ${variant}`} href={href} title={name}>
+  <span class="company-logo-mark">
+    {logo ? (
+      <img src={logo} alt={name} loading="lazy" decoding="async" />
+    ) : (
+      <span>{logoText}</span>
+    )}
+  </span>
+  <span class="company-logo-name">{name}</span>
+  {variant === 'card' && company?.role && <em>{company.role}</em>}
+</a>
+
+<style>
+  .company-logo-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid rgba(255,255,255,.10);
+    background: rgba(255,255,255,.045);
+    color: rgba(255,255,255,.82);
+    text-decoration: none;
+    transition: border-color .16s ease, background .16s ease, color .16s ease, transform .16s ease;
+  }
+  .company-logo-chip:hover {
+    border-color: rgba(92,216,206,.42);
+    background: rgba(255,255,255,.07);
+    color: #fff;
+  }
+  .company-logo-chip.chip {
+    border-radius: 999px;
+    padding: 6px 11px 6px 6px;
+    font-size: 12px;
+    font-weight: 800;
+  }
+  .company-logo-chip.card {
+    align-items: flex-start;
+    flex-direction: column;
+    min-height: 150px;
+    border-radius: 16px;
+    padding: 16px;
+  }
+  .company-logo-chip.card:hover { transform: translateY(-2px); }
+  .company-logo-mark {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,.10);
+    background: rgba(255,255,255,.08);
+    color: #fff;
+    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+    font-size: 10px;
+    font-weight: 900;
+  }
+  .chip .company-logo-mark {
+    width: 28px;
+    height: 28px;
+    border-radius: 9px;
+  }
+  .card .company-logo-mark {
+    width: 44px;
+    height: 44px;
+    border-radius: 13px;
+  }
+  .company-logo-mark img {
+    display: block;
+    max-width: 72%;
+    max-height: 72%;
+    object-fit: contain;
+  }
+  .company-logo-name {
+    line-height: 1.35;
+  }
+  .card .company-logo-name {
+    margin-top: 4px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 900;
+  }
+  .company-logo-chip em {
+    color: #aebbd0;
+    font-size: 12px;
+    font-style: normal;
+    line-height: 1.7;
+  }
+</style>
