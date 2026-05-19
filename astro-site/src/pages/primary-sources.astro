@@ -1,0 +1,68 @@
+---
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+const canonicalUrl = "https://aikeizai.jp/primary-sources/";
+const description = "AI経済新聞が参照する一次情報ソース。企業公式発表、GitHub、arXiv、IR、SEC、政府・規制当局資料、技術文書を優先します。";
+const groups = [
+  ["企業・市場", ["企業公式発表", "プレスリリース", "決算説明会資料", "IR資料", "SEC・金融当局提出書類"]],
+  ["技術・研究", ["GitHubリポジトリ", "開発者ドキュメント", "API仕様", "arXiv", "査読済み論文", "ベンチマーク資料"]],
+  ["政策・規制", ["政府資料", "省庁発表", "規制当局ガイドライン", "議会資料", "国際機関レポート"]],
+  ["製品・運用", ["リリースノート", "技術ブログ", "モデルカード", "安全性レポート", "ステータスページ"]],
+];
+---
+
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>一次情報ソース | AI経済新聞</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonicalUrl} />
+  <meta property="og:title" content="一次情報ソース | AI経済新聞" />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content="https://aikeizai.jp/ogp.png" />
+</head>
+<body>
+  <Header />
+  <main class="w">
+    <section class="hero">
+      <p class="eyebrow">Primary Sources</p>
+      <h1>一次情報へ戻れるAI業界リファレンス</h1>
+      <p>{description}</p>
+    </section>
+    <section class="grid">
+      {groups.map(([title, items]) => (
+        <article>
+          <h2>{title}</h2>
+          <ul>{items.map((item) => <li>{item}</li>)}</ul>
+        </article>
+      ))}
+    </section>
+    <section class="panel">
+      <h2>なぜ転載しないのか</h2>
+      <p>AI経済新聞は、他媒体の記事本文を転載するのではなく、公開された一次情報を確認し、AI産業の構造、供給網、技術依存、競合関係として再構成します。読者が原典に戻れる透明性と、構造分析としての編集価値を両立させるためです。</p>
+      <a href="/editorial-policy/">編集方針を読む</a>
+    </section>
+  </main>
+  <Footer />
+</body>
+</html>
+
+<style>
+  :global(body) { margin: 0; background: radial-gradient(circle at 20% 0%, rgba(90,158,255,.13), transparent 34rem), #07090d; color: #f0f4f8; font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif; }
+  :global(a) { color: inherit; text-decoration: none; }
+  .w { width: min(100% - 32px, 1120px); margin-inline: auto; }
+  .hero { padding: 58px 0 24px; }
+  .eyebrow { margin: 0; color: #5a9eff; font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 11px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
+  h1 { max-width: 820px; margin: 8px 0 0; font-size: clamp(34px, 5vw, 62px); line-height: 1.12; letter-spacing: -.04em; }
+  .hero p, .panel p { color: #b7c4d8; line-height: 1.9; }
+  .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+  article, .panel { border: 1px solid rgba(255,255,255,.10); border-radius: 16px; background: rgba(255,255,255,.035); padding: 22px; }
+  h2 { margin: 0 0 12px; font-size: 22px; }
+  ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; }
+  li { border: 1px solid rgba(92,216,206,.14); border-radius: 999px; background: rgba(92,216,206,.055); padding: 8px 11px; color: #dff8f6; font-size: 12px; font-weight: 800; }
+  .panel { margin: 16px 0 56px; }
+  .panel a { color: #5cd8ce; font-weight: 900; }
+  @media (max-width: 760px) { .grid { grid-template-columns: 1fr; } }
+</style>

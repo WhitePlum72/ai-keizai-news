@@ -1,0 +1,75 @@
+---
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import storygraphsData from "../data/ecosystem/storygraphs.json";
+
+const canonicalUrl = "https://aikeizai.jp/storygraph/";
+const description = "StoryGraphは、AI企業、技術、製品、供給網、投資、競合関係を構造として読むためのAI経済新聞の独自フォーマットです。";
+const featured = [
+  ["NVIDIA Empire", "/map/nvidia-empire/"],
+  ["OpenAI Ecosystem", "/map/openai-ecosystem/"],
+  ["GPU供給網", "/map/gpu-supply-chain/"],
+  ["AI Agent Wars", "/map/ai-agent-wars/"],
+  ["中国AI勢力図", "/map/china-ai-map/"],
+  ["日本AIエコシステム", "/map/japan-ai/"],
+  ["Open Source AI Ecosystem", "/map/open-source-ai-ecosystem/"],
+];
+---
+
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StoryGraphとは | AI経済新聞</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonicalUrl} />
+  <meta property="og:title" content="StoryGraphとは | AI経済新聞" />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content="https://aikeizai.jp/ogp.png" />
+</head>
+<body>
+  <Header currentCategory="storygraph" />
+  <main class="w">
+    <section class="hero">
+      <p class="eyebrow">StoryGraph</p>
+      <h1>AI産業の関係性を、読める構造にする。</h1>
+      <p>{description}</p>
+    </section>
+    <section class="grid">
+      {[
+        ["供給網", "GPU、HBM、ファウンドリ、クラウド、データセンターの依存関係を整理します。"],
+        ["競合関係", "基盤モデル、AIエージェント、開発者基盤、AIクラウドの競争軸を整理します。"],
+        ["資本・提携", "出資、買収、戦略提携、販売チャネルを企業間関係として追跡します。"],
+        ["AI検索対応", "可視化だけでなく、静的HTML、ItemList、関連企業リンクとしてLLMが読める形にします。"],
+      ].map(([title, text]) => (
+        <article><h2>{title}</h2><p>{text}</p></article>
+      ))}
+    </section>
+    <section class="panel">
+      <h2>主要StoryGraph</h2>
+      <div class="links">
+        {featured.map(([title, href]) => <a href={href}>{title}</a>)}
+      </div>
+      <p>{storygraphsData.length}件のStoryGraphを企業DB、関連記事、Topicページと接続しています。</p>
+    </section>
+  </main>
+  <Footer />
+</body>
+</html>
+
+<style>
+  :global(body) { margin: 0; background: radial-gradient(circle at 20% 0%, rgba(90,158,255,.13), transparent 34rem), #07090d; color: #f0f4f8; font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif; }
+  :global(a) { color: inherit; text-decoration: none; }
+  .w { width: min(100% - 32px, 1120px); margin-inline: auto; }
+  .hero { padding: 58px 0 24px; }
+  .eyebrow { margin: 0; color: #5a9eff; font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 11px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
+  h1 { max-width: 820px; margin: 8px 0 0; font-size: clamp(34px, 5vw, 62px); line-height: 1.12; letter-spacing: -.04em; }
+  .hero p, article p, .panel p { color: #b7c4d8; line-height: 1.9; }
+  .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+  article, .panel { border: 1px solid rgba(255,255,255,.10); border-radius: 16px; background: rgba(255,255,255,.035); padding: 22px; }
+  h2 { margin: 0 0 10px; font-size: 22px; }
+  .panel { margin: 16px 0 56px; }
+  .links { display: flex; flex-wrap: wrap; gap: 9px; margin-bottom: 14px; }
+  .links a { border: 1px solid rgba(92,216,206,.22); border-radius: 999px; background: rgba(92,216,206,.07); padding: 8px 12px; color: #5cd8ce; font-size: 12px; font-weight: 900; }
+  @media (max-width: 760px) { .grid { grid-template-columns: 1fr; } }
+</style>

@@ -1,0 +1,346 @@
+---
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+const canonicalUrl = "https://aikeizai.jp/editorial-policy/";
+const description = "AI経済新聞の編集方針・一次情報ポリシー。一次情報主義、著作権、独自分析、AI支援技術、中立性、投資非推奨、訂正・更新、編集責任を定める編集綱領です。";
+const updatedAt = "2026年5月";
+
+const chapters = [
+  {
+    roman: "I",
+    id: "philosophy",
+    title: "編集理念",
+    lead: "AI経済新聞は、AI産業の構造を記録・分析・可視化するメディアである。",
+    body: [
+      "AI経済新聞は、単なるニュース速報を目的とする媒体ではない。生成AI、半導体、クラウド、AIエージェント、ロボティクス、資本市場、政策・規制が相互に影響しながら変化するAI産業を、構造として理解するための情報基盤を提供する。",
+      "当編集部は、企業公式発表、技術文書、GitHub、論文、IR資料、政府・規制当局資料などの一次情報を起点に、企業・技術・供給網・資本・政策の関係性を整理する。個別の出来事を単発の話題として消費するのではなく、その出来事がAI産業のどのレイヤーに影響し、どの企業・技術・市場構造と接続しているのかを明らかにする。",
+      "読者が自ら判断するためには、事実の列挙だけでなく、出典、文脈、関係性、制約条件が必要である。AI経済新聞は、速報性のみを競うのではなく、読者が一次情報へ戻り、構造を確認し、自身の判断を形成できる編集を行う。",
+    ],
+  },
+  {
+    roman: "II",
+    id: "primary-source",
+    title: "一次情報主義",
+    lead: "AI経済新聞は、一次情報源の直接確認を編集行為の出発点とする。",
+    body: [
+      "当編集部が重視する一次情報には、企業公式発表、プレスリリース、GitHubおよびOSSリポジトリ、APIリリースノート、製品ドキュメント、技術ブログ、論文、arXiv、査読済み論文、政府資料、規制当局の発表、議会・立法機関資料、IR資料、SECおよび金融当局への提出資料、決算説明資料、国際機関・研究機関の公式レポートが含まれる。",
+      "AI経済新聞は、新聞社・通信社・転載メディアの記事本文の転載、または二次情報の要約再配信を中心とした運営を行わない。これは他メディアの役割を否定するものではない。速報、調査報道、現地取材、専門解説など、各媒体にはそれぞれの社会的役割がある。AI経済新聞が担う役割は、一次情報から直接、AI産業の構造を読み解き、日本語で参照可能な形に整理することである。",
+      "記事内では、可能な限り原典URL、ソース種別、原文公開日、公開主体を明示する。読者が一次情報を自ら確認できる透明性は、AI経済新聞の信頼性の基盤である。一次情報が不足している場合、または事実確認が十分でない場合は、断定を避け、確認可能な範囲を明示する。",
+      "一次情報の確認は、単にURLを添えることではない。出典の性質、公開主体、公開日、文脈、更新履歴、利害関係を確認し、記事本文、企業DB、StoryGraph、業界マップに反映する。AI産業では技術発表、資本提携、規制方針が短期間で変化するため、一次情報の更新状況を継続的に確認する。",
+    ],
+  },
+  {
+    roman: "III",
+    id: "copyright",
+    title: "著作権と編集価値",
+    lead: "AI経済新聞の編集価値は、情報のコピーではなく、構造化・分析・可視化にある。",
+    body: [
+      "AI経済新聞は、元記事本文の転載を目的としない。他媒体の記事、論文本文、レポート本文、企業資料の長文引用を原則として行わず、必要な引用は最小限にとどめ、出典を明示する。公開情報を扱う場合であっても、表現、構成、図表、分析の無断複製は行わない。",
+      "企業の公式発表、論文、GitHubの更新、規制当局の資料は公開情報である。しかし、それらを読み解き、AI産業のエコシステム、供給網、競合構造、資本関係、技術依存として整理する編集行為には独自の価値がある。",
+      "StoryGraph、企業DB、業界マップ、GPU供給網の構造分析、基盤モデル競争の整理、AIエージェント市場の関係図、Open Source AI Stack、日本AI・中国AIの構造分析は、AI経済新聞およびUMEBASE編集部が一次情報を基に制作する編集著作物である。これらの無断複製、転載、スクレイピング、再配布、商用利用を禁止する。",
+      "AI経済新聞は、一次情報を尊重すると同時に、自らの編集著作物も保護する。読者による通常の引用、リンク、紹介は歓迎するが、出典表示を伴わない大量転載、構造データの複製、図解・StoryGraphの再配布は認めない。",
+    ],
+  },
+  {
+    roman: "IV",
+    id: "original-analysis",
+    title: "独自分析・可視化",
+    lead: "AI経済新聞は、AI産業を関係性の集合として分析する。",
+    body: [
+      "AI経済新聞の独自分析は、StoryGraph、企業DB、業界MAP、GPU供給網、AIエコシステム、基盤モデル競争、AIエージェント、Open Source AI Stack、日本AI、中国AIなどの構造ページを通じて公開される。",
+      "StoryGraphは、企業、製品、モデル、投資家、クラウド、半導体、政策主体の関係性を可視化する独自フォーマットである。可視化は装飾ではなく、読者が供給元、顧客、競合、資本関係、技術依存を把握するための編集手段である。",
+      "企業DBは、個別企業を孤立したプロフィールとして扱わない。AI業界内の役割、供給網上の位置、主な競合、主な顧客、関連StoryGraph、関連記事、関連Topicを接続し、企業を産業構造の中に位置づける。",
+      "業界MAPは、SNS上で見せるための視覚コンテンツであると同時に、Company、Map、Topic、Articleを循環させる中核導線である。TOPページのインタラクティブStoryGraphと、静的なMapページは役割が異なる。前者は体験型、後者は検索・AI検索向けの構造ページとして共存する。",
+    ],
+  },
+  {
+    roman: "V",
+    id: "ai-assistance",
+    title: "AI支援技術の使用",
+    lead: "AI支援技術は編集補助であり、編集責任を代替しない。",
+    body: [
+      "AI経済新聞では、調査補助、翻訳補助、要約補助、構造化補助、校正補助、データ整理補助のためにAI支援技術を使用する場合がある。ただし、AIは編集判断の主体ではない。公開判断、出典確認、構造分析、訂正対応の責任はUMEBASE編集部にある。",
+      "AI出力のみを根拠に記事化しない。AIが提示した情報、企業名、数値、技術内容、時系列、引用、URLは、一次情報または信頼できる公式資料により確認する。確認できない情報は本文に断定的に記載しない。",
+      "AI支援技術には幻覚、誤情報、文脈の欠落、古い情報の混入、過度な一般化のリスクがある。当編集部は、AI出力を素材として扱い、一次情報との照合、固有名詞の確認、時点の確認、関係性の妥当性確認を行う。",
+      "AIを用いた自動転載、自動要約の大量配信、出典確認を伴わない記事生成は行わない。AI支援を用いた場合も、編集部による確認と責任のもとで公開する。",
+    ],
+  },
+  {
+    roman: "VI",
+    id: "neutrality",
+    title: "中立性と独立性",
+    lead: "AI経済新聞は、特定企業・特定技術・特定立場の推奨を目的としない。",
+    body: [
+      "AI経済新聞は、特定企業を無条件に推奨しない。特定技術を無条件に支持しない。特定の政治的立場、政策方針、規制思想を支持または批判することを目的として編集活動を行わない。",
+      "当編集部の目的は、読者がAI産業の変化を理解するための材料を提供することである。企業の成長性、技術の優位性、政策の影響、市場の変化を扱う場合も、主張の押しつけではなく、出典に基づく構造整理を優先する。",
+      "広告と編集は分離する。スポンサードコンテンツ、広告、タイアップ、提携に基づく掲載がある場合は、その性質を明示する。広告主、スポンサー、提携先の意向が、通常編集記事の論調、掲載可否、評価に影響することはない。",
+      "編集上の利害関係が読者の判断に重要な影響を及ぼす可能性がある場合、必要に応じて開示する。透明性を保つことは、AI産業の構造分析メディアとしての最低条件である。",
+    ],
+  },
+  {
+    roman: "VII",
+    id: "investment",
+    title: "投資推奨を目的としない",
+    lead: "AI経済新聞は、投資助言、投資勧誘、売買推奨を目的としない。",
+    body: [
+      "AI経済新聞の記事、企業DB、StoryGraph、業界マップ、構造分析は、情報提供と構造理解を目的とするものであり、特定銘柄、金融商品、暗号資産、ファンド、投資行動の購入、売却、保有、応募、勧誘、助言を目的とするものではない。",
+      "株価、時価総額、資金調達、IPO、M&A、企業価値、半導体市場、クラウド投資、AIインフラ投資、公開市場・未公開市場の評価を扱う場合であっても、それらは産業構造を理解するための情報であり、投資判断の推奨ではない。",
+      "読者の投資判断、事業判断、取引判断、採用判断、政策判断は、読者自身の責任において行われるべきものである。AI経済新聞およびUMEBASE編集部は、掲載情報に基づく損失、逸失利益、将来結果について保証しない。",
+    ],
+  },
+  {
+    roman: "VIII",
+    id: "correction",
+    title: "訂正・更新方針",
+    lead: "誤りと変化に対して、透明性をもって対応する。",
+    body: [
+      "AI産業は高速に変化する。企業発表、論文、API仕様、規制方針、資本関係、製品仕様、価格、公開日、対応地域は短期間で変更されることがある。AI経済新聞は、誤りと情報更新を区別し、それぞれに誠実に対応する。",
+      "誤りが確認された場合、速やかに訂正する。重大な誤りの場合は、訂正内容、訂正日、訂正理由を記事内または関連箇所に明示する。一次情報が更新された場合、記事、企業DB、StoryGraph、業界マップの該当箇所を必要に応じて更新する。",
+      "訂正・更新の連絡は info@umebase.com で受け付ける。連絡の際は、該当URL、問題箇所、根拠となる一次情報源を添えていただきたい。一次情報源が示されている場合、確認作業を迅速に行うことができる。",
+    ],
+  },
+  {
+    roman: "IX",
+    id: "responsibility",
+    title: "編集責任",
+    lead: "公開コンテンツはUMEBASE編集部の責任で制作・管理する。",
+    body: [
+      "AI経済新聞の公開コンテンツは、UMEBASE編集部の責任において制作・管理される。編集責任とは、出典確認、一次情報への接続、構造分析、編集判断、訂正対応、透明性確保に対する責任である。",
+      "ただし、AI経済新聞は掲載情報の完全性、正確性、最新性、将来の結果、読者の個別判断の成果を保証しない。AI産業の情報は、公開後に変更、撤回、修正、補足される場合がある。読者は、重要な判断を行う際には必ず一次情報および専門家の助言を確認する必要がある。",
+      "編集責任は、読者の投資損失、事業上の損失、取引上の損失、機会損失を保証するものではない。AI経済新聞は、読者がよりよい判断を行うための情報基盤を提供するが、判断そのものを代行しない。",
+      "本編集方針は、法令、メディア環境、AI技術、検索環境、事業内容の変化に応じて必要に応じて更新する。更新は本ページへの掲載をもって告知する。",
+    ],
+  },
+];
+
+const sourceGroups = [
+  ["企業・市場", ["企業公式発表", "プレスリリース", "決算説明資料", "IR資料", "SEC・金融当局提出資料", "M&A・資金調達発表"]],
+  ["技術・研究", ["GitHub / OSS", "APIリリースノート", "製品ドキュメント", "arXiv", "査読済み論文", "モデルカード"]],
+  ["政策・規制", ["政府資料", "規制当局発表", "議会・立法資料", "省庁ガイドライン", "国際機関レポート", "安全性評価資料"]],
+];
+
+const principles = [
+  ["転載しない", "元記事本文の再配信ではなく、一次情報を確認し、独自に構造化する。"],
+  ["出典へ戻す", "読者が一次情報を確認できるよう、原典URL、公開日、ソース種別を重視する。"],
+  ["構造で読む", "企業、技術、供給網、資本、政策の関係性をStoryGraphと企業DBへ接続する。"],
+  ["推奨しない", "投資・売買・特定企業支持を目的とせず、判断材料として情報を提示する。"],
+];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: "編集方針・一次情報ポリシー | AI経済新聞",
+  description,
+  url: canonicalUrl,
+  inLanguage: "ja",
+  publisher: {
+    "@type": "Organization",
+    name: "UMEBASE",
+    url: "https://umebase.com/",
+    contactPoint: { "@type": "ContactPoint", email: "info@umebase.com" },
+  },
+  breadcrumb: {
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "ホーム", item: "https://aikeizai.jp/" },
+      { "@type": "ListItem", position: 2, name: "編集方針", item: canonicalUrl },
+    ],
+  },
+};
+---
+
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>編集方針・一次情報ポリシー | AI経済新聞</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonicalUrl} />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="編集方針・一次情報ポリシー | AI経済新聞" />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content="https://aikeizai.jp/ogp.png" />
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+</head>
+<body>
+  <Header currentCategory="editorial-policy" />
+  <main>
+    <section class="page-hero">
+      <div class="w">
+        <nav class="breadcrumb" aria-label="パンくずリスト">
+          <a href="/">ホーム</a><span>/</span><span>編集方針</span>
+        </nav>
+        <p class="eyebrow">Editorial Charter</p>
+        <h1>編集方針・一次情報ポリシー</h1>
+        <p class="lead">{description}</p>
+        <div class="hero-meta">
+          <span>制定・更新：{updatedAt}</span>
+          <span>UMEBASE編集部</span>
+          <a href="mailto:info@umebase.com">info@umebase.com</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="w principles" aria-label="重要方針">
+      {principles.map(([title, text]) => (
+        <article>
+          <h2>{title}</h2>
+          <p>{text}</p>
+        </article>
+      ))}
+    </section>
+
+    <div class="w layout">
+      <aside class="toc">
+        <div class="toc-inner">
+          <p>目次</p>
+          {chapters.map((chapter) => <a href={`#${chapter.id}`}>{chapter.roman}. {chapter.title}</a>)}
+        </div>
+      </aside>
+
+      <article class="article">
+        {chapters.map((chapter) => (
+          <section id={chapter.id} class="chapter">
+            <div class="chapter-head">
+              <span>{chapter.roman}</span>
+              <div>
+                <h2>{chapter.title}</h2>
+                <p>{chapter.lead}</p>
+              </div>
+            </div>
+            <div class="chapter-body">
+              {chapter.body.map((paragraph) => <p>{paragraph}</p>)}
+            </div>
+          </section>
+        ))}
+
+        <section class="chapter source-chapter" id="source-list">
+          <div class="chapter-head">
+            <span>SRC</span>
+            <div>
+              <h2>参照する一次情報源</h2>
+              <p>AI経済新聞は、以下の一次情報を優先的に確認し、記事・企業DB・StoryGraph・業界マップへ反映する。</p>
+            </div>
+          </div>
+          <div class="source-groups">
+            {sourceGroups.map(([title, items]) => (
+              <article>
+                <h3>{title}</h3>
+                <ul>{items.map((item) => <li>{item}</li>)}</ul>
+              </article>
+            ))}
+          </div>
+        </section>
+      </article>
+    </div>
+  </main>
+  <Footer />
+</body>
+</html>
+
+<style>
+  :global(body) {
+    margin: 0;
+    background:
+      radial-gradient(circle at 20% 0%, rgba(90,158,255,.13), transparent 34rem),
+      linear-gradient(180deg, rgba(14,22,40,.88), rgba(7,9,13,0) 520px),
+      #07090d;
+    color: #f0f4f8;
+    font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  :global(a) { color: inherit; text-decoration: none; }
+  .w { width: min(100% - 32px, 1180px); margin-inline: auto; }
+  .page-hero { border-bottom: 1px solid rgba(255,255,255,.09); padding: 42px 0 36px; }
+  .breadcrumb { display: flex; gap: 8px; margin-bottom: 26px; color: #7f8da3; font-size: 12px; }
+  .breadcrumb a:hover { color: #5cd8ce; }
+  .eyebrow {
+    margin: 0;
+    color: #5a9eff;
+    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+  }
+  h1 { max-width: 860px; margin: 8px 0 0; font-size: clamp(36px, 5vw, 68px); line-height: 1.08; letter-spacing: -.04em; }
+  .lead { max-width: 880px; color: #b7c4d8; font-size: 15px; line-height: 1.95; }
+  .hero-meta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+  .hero-meta span, .hero-meta a {
+    border: 1px solid rgba(255,255,255,.10);
+    border-radius: 999px;
+    background: rgba(255,255,255,.04);
+    padding: 7px 11px;
+    color: #dbe7f5;
+    font-size: 12px;
+  }
+  .hero-meta a { color: #5cd8ce; font-weight: 900; }
+  .principles { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; padding: 24px 0 0; }
+  .principles article, .chapter, .source-groups article {
+    border: 1px solid rgba(255,255,255,.10);
+    border-radius: 16px;
+    background: rgba(255,255,255,.035);
+    backdrop-filter: blur(14px);
+  }
+  .principles article { padding: 18px; }
+  .principles h2 { margin: 0 0 8px; font-size: 16px; }
+  .principles p { margin: 0; color: #b7c4d8; font-size: 12px; line-height: 1.8; }
+  .layout { display: grid; grid-template-columns: 260px minmax(0, 1fr); gap: 22px; padding: 24px 0 58px; }
+  .toc { align-self: start; position: sticky; top: 84px; }
+  .toc-inner {
+    border: 1px solid rgba(255,255,255,.10);
+    border-radius: 16px;
+    background: rgba(255,255,255,.035);
+    padding: 16px;
+  }
+  .toc p { margin: 0 0 12px; color: #7f8da3; font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 10px; font-weight: 900; letter-spacing: .12em; text-transform: uppercase; }
+  .toc a {
+    display: block;
+    border-top: 1px solid rgba(255,255,255,.08);
+    padding: 10px 0;
+    color: #b7c4d8;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+  .toc a:hover { color: #5cd8ce; }
+  .article { display: grid; gap: 16px; }
+  .chapter { scroll-margin-top: 90px; padding: 24px; }
+  .chapter-head { display: grid; grid-template-columns: 70px 1fr; gap: 18px; align-items: start; }
+  .chapter-head > span {
+    display: grid;
+    place-items: center;
+    width: 52px;
+    height: 52px;
+    border: 1px solid rgba(92,216,206,.24);
+    border-radius: 14px;
+    background: rgba(92,216,206,.075);
+    color: #5cd8ce;
+    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+    font-weight: 900;
+  }
+  .chapter h2 { margin: 0; color: #fff; font-size: 26px; letter-spacing: -.03em; }
+  .chapter-head p { margin: 8px 0 0; color: #dbe7f5; font-weight: 700; line-height: 1.8; }
+  .chapter-body { max-width: 78ch; margin: 20px 0 0 88px; }
+  .chapter-body p { margin: 0 0 18px; color: #b7c4d8; font-size: 15px; line-height: 2.05; }
+  .chapter-body p:last-child { margin-bottom: 0; }
+  .source-groups { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 20px; }
+  .source-groups article { padding: 16px; background: rgba(0,0,0,.18); }
+  .source-groups h3 { margin: 0 0 12px; font-size: 15px; }
+  .source-groups ul { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; margin: 0; padding: 0; }
+  .source-groups li { border: 1px solid rgba(92,216,206,.18); border-radius: 999px; background: rgba(92,216,206,.065); padding: 7px 10px; color: #dff8f6; font-size: 11px; font-weight: 800; }
+  @media (max-width: 980px) {
+    .principles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .layout { grid-template-columns: 1fr; }
+    .toc { position: static; }
+    .toc-inner { display: flex; flex-wrap: wrap; gap: 8px; }
+    .toc p { width: 100%; }
+    .toc a { border: 1px solid rgba(255,255,255,.10); border-radius: 999px; padding: 7px 10px; }
+    .chapter-body { margin-left: 0; }
+    .source-groups { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 620px) {
+    .principles { grid-template-columns: 1fr; }
+    .chapter { padding: 18px; }
+    .chapter-head { grid-template-columns: 1fr; gap: 12px; }
+  }
+</style>

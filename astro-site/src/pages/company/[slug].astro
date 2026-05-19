@@ -89,11 +89,11 @@ const supportedBy = groupIds(
   (r) => r.source
 );
 const supports = groupIds(
-  (r) => ['semiconductor', 'accelerator', 'gpu_supply', 'cloud', 'customer', 'supplier'].includes(r.type) && r.source === slug,
+  (r) => ['semiconductor', 'accelerator', 'gpu_supply', 'cloud', 'customer', 'supplier', 'platform'].includes(r.type) && r.source === slug,
   (r) => r.target
 );
 const partnerships = groupIds(
-  (r) => ['partnership', 'distribution', 'cloud', 'gpu_supply', 'customer', 'supplier'].includes(r.type),
+  (r) => ['partnership', 'distribution', 'cloud', 'gpu_supply', 'customer', 'supplier', 'platform'].includes(r.type),
   (r) => (r.source === slug ? r.target : r.source)
 );
 const competitors = groupIds(
@@ -140,6 +140,17 @@ const storyFlowGroups = graph?.layers ? [
   graph.layers.center && { id: 'center', label: displayName, nodes: [graph.layers.center] },
   ...(graph.layers.outputs || []),
 ].filter((layer) => layer && nodeIdsFromGroup(layer).length > 0) : [];
+const relatedMapLinks = Array.from(new Set([
+  graph && mapSlug,
+  slug === 'nvidia' && 'gpu-supply-chain',
+  ...(relations.flatMap((r) => r.articles || [])
+    .filter((href) => typeof href === 'string' && href.startsWith('/map/'))
+    .map((href) => href.replace('/map/', '').replace('/', ''))),
+].filter(Boolean))).slice(0, 4);
+const supplyPosition = supportedBy.length > 0 && supports.length > 0
+  ? `${displayName}は、${supportedBy.slice(0, 3).map((id) => getEntity(id).name || id).join('、')}から供給・技術基盤を受け、${supports.slice(0, 4).map((id) => getEntity(id).name || id).join('、')}へ製品・計算資源・サービスを届ける位置にあります。`
+  : `${displayName}は、${sector?.name || 'AI産業'}の中で、技術、製品、資本、顧客関係を通じて周辺企業と接続するプレイヤーです。`;
+const seoBody = `${displayName}はAI業界において${sector?.name || '主要領域'}に位置づけられる企業です。AI経済新聞では、${displayName}の事業概要だけでなく、供給網上の位置、主な競合、顧客・提携先、関連するStoryGraph、関連記事を横断して整理します。${supplyPosition}`;
 const orgSchema = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
@@ -147,6 +158,16 @@ const orgSchema = {
   url: officialUrl || `https://aikeizai.jp/company/${slug}/`,
   logo: logo ? (logo.startsWith('http') ? logo : `https://aikeizai.jp${logo}`) : undefined,
   description,
+  sameAs: officialUrl ? [officialUrl] : undefined,
+  mainEntityOfPage: `https://aikeizai.jp/company/${slug}/`,
+};
+const corpSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Corporation',
+  name: displayName,
+  url: officialUrl || `https://aikeizai.jp/company/${slug}/`,
+  description,
+  tickerSymbol: profile?.ticker,
   sameAs: officialUrl ? [officialUrl] : undefined,
   mainEntityOfPage: `https://aikeizai.jp/company/${slug}/`,
 };
@@ -174,6 +195,7 @@ const breadcrumbSchema = {
   <meta property="og:image" content="https://aikeizai.jp/ogp.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(corpSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
 </head>
 
@@ -218,6 +240,32 @@ const breadcrumbSchema = {
       </div>
     </section>
 
+    <section class="w structure-strip" aria-label="企業構造情報">
+      <article>
+        <p>Role</p>
+        <h2>AI業界内の役割</h2>
+        <span>{sector?.name || 'AI産業'}における主要プレイヤー。企業DB、関連記事、StoryGraphで関係性を追跡します。</span>
+      </article>
+      <article>
+        <p>Supply Position</p>
+        <h2>供給網上の位置</h2>
+        <span>{supplyPosition}</span>
+      </article>
+      <article>
+        <p>Competition / Customers</p>
+        <h2>競合・顧客</h2>
+        <span>
+          {competitors.length > 0 ? `競合: ${competitors.slice(0, 4).map((id) => getEntity(id).name || id).join('、')}` : '競合関係を整理中'}
+          {supports.length > 0 && ` / 関連顧客・供給先: ${supports.slice(0, 4).map((id) => getEntity(id).name || id).join('、')}`}
+        </span>
+      </article>
+      <article>
+        <p>StoryGraph</p>
+        <h2>関連するStoryGraph</h2>
+        <span>{graph ? `${displayName}の供給元、出力先、投資・提携関係を構造ページで確認できます。` : '関連StoryGraphを準備中です。'}</span>
+      </article>
+    </section>
+
     <div class="w layout">
       <main>
         {profile?.notable && (
@@ -236,6 +284,12 @@ const breadcrumbSchema = {
             {supportedBy.length > 0 && ` ${supportedBy.slice(0, 3).map((id) => getEntity(id).name || id).join('、')}などの基盤に支えられています。`}
             {supports.length > 0 && ` また、${supports.slice(0, 4).map((id) => getEntity(id).name || id).join('、')}などへ技術・基盤・サービスを届けています。`}
           </p>
+        </section>
+
+        <section class="panel notable">
+          <p class="eyebrow">SEO Summary</p>
+          <h2>{displayName}の構造分析</h2>
+          <p>{seoBody}</p>
         </section>
 
         {storyFlowGroups.length > 0 && (
@@ -318,6 +372,18 @@ const breadcrumbSchema = {
                 const entity = getEntity(id);
                 return <span>{entity.name || entity.label || id}</span>;
               })}
+            </div>
+          </section>
+        )}
+
+        {relatedMapLinks.length > 0 && (
+          <section class="panel">
+            <p class="eyebrow">Related Maps</p>
+            <h2>関連Map</h2>
+            <div class="map-link-grid">
+              {relatedMapLinks.map((map) => (
+                <a href={`/map/${map}/`}>{map.replaceAll('-', ' ')}</a>
+              ))}
             </div>
           </section>
         )}
@@ -429,6 +495,29 @@ const breadcrumbSchema = {
   }
   .metric-card p { margin: 0 0 7px; color: #7f8da3; font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 10px; }
   .metric-card strong { font-size: 18px; }
+  .structure-strip {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 10px;
+    padding-top: 12px;
+  }
+  .structure-strip article {
+    border: 1px solid rgba(255,255,255,.10);
+    border-radius: 14px;
+    background: rgba(255,255,255,.035);
+    padding: 15px;
+  }
+  .structure-strip p {
+    margin: 0 0 7px;
+    color: #5a9eff;
+    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+  .structure-strip h2 { margin: 0 0 8px; font-size: 14px; }
+  .structure-strip span { color: #b7c4d8; font-size: 12px; line-height: 1.75; }
   .layout { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 24px; padding: 24px 0 52px; }
   .panel {
     border: 1px solid rgba(255,255,255,.10);
@@ -494,6 +583,18 @@ const breadcrumbSchema = {
     font-family: 'IBM Plex Mono', ui-monospace, monospace;
     font-size: 11px;
   }
+  .map-link-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+  .map-link-grid a {
+    border: 1px solid rgba(92,216,206,.18);
+    border-radius: 999px;
+    background: rgba(92,216,206,.065);
+    padding: 8px 12px;
+    color: #dff8f6;
+    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+    font-size: 11px;
+    font-weight: 900;
+    text-transform: uppercase;
+  }
   .article-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
   .article-card {
     overflow: hidden;
@@ -520,10 +621,10 @@ const breadcrumbSchema = {
   @media (max-width: 980px) {
     .hero-inner, .identity { flex-direction: column; }
     .hero-actions { justify-content: flex-start; }
-    .metric-grid, .relation-grid, .article-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .metric-grid, .relation-grid, .article-grid, .structure-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .layout { grid-template-columns: 1fr; }
   }
   @media (max-width: 560px) {
-    .metric-grid, .relation-grid, .article-grid { grid-template-columns: 1fr; }
+    .metric-grid, .relation-grid, .article-grid, .structure-strip { grid-template-columns: 1fr; }
   }
 </style>

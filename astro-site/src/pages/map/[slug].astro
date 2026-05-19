@@ -63,6 +63,15 @@ const layers = graph.layers ? [
   graph.layers.center && { id: 'center', label: displayName, nodes: [graph.layers.center] },
   ...(graph.layers.outputs || []),
 ].filter((layer) => layer && nodeIdsFromGroup(layer).length > 0) : [];
+const layerEntities = layers.map((layer) => ({
+  label: layer.label || layer.group || displayName,
+  ids: nodeIdsFromGroup(layer),
+}));
+const allLayerEntityIds = Array.from(new Set(layerEntities.flatMap((layer) => layer.ids)));
+const relatedCompanies = allLayerEntityIds
+  .map((id) => getEntity(id))
+  .filter((entity) => entity.kind === 'company')
+  .slice(0, 18);
 
 const bottomGroups = graph.bottomGroups || {};
 const bottomLabels = {
@@ -90,21 +99,43 @@ const getArticleUrl = (article) => `/article/${article.data.category_slug || 'bu
 
 const jsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'CollectionPage',
-  name: pageTitle,
-  description: pageDescription,
-  url: canonicalUrl,
-  inLanguage: 'ja',
-  about: displayName,
-  mainEntity: {
-    '@type': 'ItemList',
-    itemListElement: layers.map((layer, index) => ({
-      '@type': 'ListItem',
-      position: index + 1,
-      name: layer.label || layer.group || `Layer ${index + 1}`,
-      item: nodeIdsFromGroup(layer).map((id) => getEntity(id).name || id).join(', '),
-    })),
-  },
+  '@graph': [
+    {
+      '@type': 'CollectionPage',
+      name: pageTitle,
+      description: pageDescription,
+      url: canonicalUrl,
+      inLanguage: 'ja',
+      about: displayName,
+      mainEntity: {
+        '@type': 'ItemList',
+        itemListElement: layers.map((layer, index) => ({
+          '@type': 'ListItem',
+          position: index + 1,
+          name: layer.label || layer.group || `Layer ${index + 1}`,
+          item: nodeIdsFromGroup(layer).map((id) => getEntity(id).name || id).join(', '),
+        })),
+      },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'ホーム', item: 'https://aikeizai.jp/' },
+        { '@type': 'ListItem', position: 2, name: 'StoryGraph', item: 'https://aikeizai.jp/storygraph/' },
+        { '@type': 'ListItem', position: 3, name: pageTitle, item: canonicalUrl },
+      ],
+    },
+    {
+      '@type': 'ItemList',
+      name: `${pageTitle}の関連企業`,
+      itemListElement: relatedCompanies.map((entity, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        name: entity.name || entity.id,
+        url: `https://aikeizai.jp/company/${entity.id}/`,
+      })),
+    },
+  ],
 };
 ---
 
@@ -182,6 +213,39 @@ const jsonLd = {
       </div>
     </section>
 
+    <section class="w narrative-panel">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Readable Structure</p>
+          <h2>構造概要</h2>
+        </div>
+      </div>
+      <p>{pageDescription}</p>
+      <p>{pageTitle}は、{displayName}を中心に、供給元、技術基盤、製品・サービス、顧客、競合関係をAI産業の構造として整理したStoryGraphです。可視化されたノードだけでなく、以下の静的HTMLリストを通じて検索エンジンやAI検索にも読み取りやすい形で公開しています。</p>
+      <div class="narrative-grid">
+        {layerEntities.map((layer) => (
+          <article>
+            <h3>{layer.label}</h3>
+            <p>{layer.ids.slice(0, 10).map((id) => getEntity(id).name || id).join('、')}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="w narrative-panel">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Players / Dependencies</p>
+          <h2>主要プレイヤー・供給元・技術依存</h2>
+        </div>
+      </div>
+      <div class="company-chip-grid">
+        {relatedCompanies.map((entity) => (
+          <a href={`/company/${entity.id}/`}>{entity.logoText || entity.name?.slice(0, 2)}<span>{entity.name || entity.id}</span></a>
+        ))}
+      </div>
+    </section>
+
     {bottomEntries.length > 0 && (
       <section class="w relation-panel">
         <div class="section-head">
@@ -234,6 +298,34 @@ const jsonLd = {
         </div>
       </section>
     )}
+
+    <section class="w related source-links">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Primary Source Policy</p>
+          <h2>一次情報リンク</h2>
+        </div>
+      </div>
+      <div class="article-grid">
+        <a href="/primary-sources/">
+          <p>PRIMARY SOURCES</p>
+          <h3>AI経済新聞が参照する一次情報ソース</h3>
+          <span>確認する →</span>
+        </a>
+        <a href="/methodology/">
+          <p>METHODOLOGY</p>
+          <h3>StoryGraphと企業DBの構造化手法</h3>
+          <span>読む →</span>
+        </a>
+        {company?.kind === 'company' && (
+          <a href={`/company/${graph.company}/`}>
+            <p>COMPANY</p>
+            <h3>{displayName}の企業DB</h3>
+            <span>見る →</span>
+          </a>
+        )}
+      </div>
+    </section>
   </main>
   <Footer />
 </body>
@@ -261,7 +353,7 @@ const jsonLd = {
   .primary-btn { background: #5cd8ce; color: #07111b; }
   .ghost-btn { border: 1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.04); color: #e8eef8; }
   .primary-btn:hover, .ghost-btn:hover { transform: translateY(-2px); }
-  .map-panel, .relation-panel, .related { margin-top: 24px; border: 1px solid rgba(255,255,255,.10); border-radius: 18px; background: rgba(255,255,255,.035); backdrop-filter: blur(14px); padding: 22px; }
+  .map-panel, .relation-panel, .related, .narrative-panel { margin-top: 24px; border: 1px solid rgba(255,255,255,.10); border-radius: 18px; background: rgba(255,255,255,.035); backdrop-filter: blur(14px); padding: 22px; }
   .section-head { display: flex; justify-content: space-between; gap: 16px; align-items: end; margin-bottom: 16px; }
   .section-head h2 { margin: 4px 0 0; font-size: 24px; letter-spacing: -.03em; }
   .flow-row { display: flex; align-items: stretch; gap: 12px; overflow-x: auto; padding-bottom: 8px; }
@@ -289,6 +381,26 @@ const jsonLd = {
   .relation-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
   .relation-grid section { border: 1px solid rgba(255,255,255,.08); border-radius: 14px; background: rgba(0,0,0,.18); padding: 14px; }
   .relation-grid h3 { margin: 0 0 10px; font-size: 14px; }
+  .narrative-panel > p { max-width: 920px; color: #b7c4d8; line-height: 1.95; }
+  .narrative-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 16px; }
+  .narrative-grid article { border: 1px solid rgba(255,255,255,.08); border-radius: 14px; background: rgba(0,0,0,.18); padding: 14px; }
+  .narrative-grid h3 { margin: 0 0 8px; font-size: 14px; }
+  .narrative-grid p { margin: 0; color: #b7c4d8; font-size: 12px; line-height: 1.8; }
+  .company-chip-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+  .company-chip-grid a {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    border: 1px solid rgba(92,216,206,.18);
+    border-radius: 999px;
+    background: rgba(92,216,206,.065);
+    padding: 7px 11px;
+    color: #dff8f6;
+    font-size: 12px;
+    font-weight: 900;
+  }
+  .company-chip-grid a::first-letter { color: #5cd8ce; }
+  .source-links { margin-bottom: 52px; }
   .article-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
   .article-grid a { border: 1px solid rgba(255,255,255,.09); border-radius: 14px; background: rgba(0,0,0,.18); padding: 14px; transition: transform .16s ease, border-color .16s ease; }
   .article-grid a:hover { transform: translateY(-2px); border-color: rgba(92,216,206,.38); }
@@ -297,6 +409,6 @@ const jsonLd = {
   .article-grid span { color: #5cd8ce; font-size: 12px; font-weight: 900; }
   @media(max-width: 900px) {
     .hero-inner { flex-direction: column; align-items: flex-start; }
-    .relation-grid, .article-grid { grid-template-columns: 1fr; }
+    .relation-grid, .article-grid, .narrative-grid { grid-template-columns: 1fr; }
   }
 </style>

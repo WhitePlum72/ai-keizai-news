@@ -3,9 +3,15 @@ import { getCollection } from 'astro:content';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import Sidebar from '../../components/Sidebar.astro';
+import companiesData from '../../data/ecosystem/companies.json';
+import storygraphsData from '../../data/ecosystem/storygraphs.json';
 
 export async function getStaticPaths() {
-  const articles = await getCollection('articles');
+  const isArchivedArticle = (article) =>
+    article.data.noindex === true ||
+    article.data.indexable === false ||
+    article.data.source_status === 'legacy_secondary_source';
+  const articles = (await getCollection('articles')).filter((article) => !isArchivedArticle(article));
   const topicMap = new Map();
 
   for (const article of articles) {
@@ -40,6 +46,36 @@ const topicNames = {
 const topicLabel = topicNames[slug] || slug.split('-').map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
 const description = `${topicLabel}に関するAI業界ニュース、企業動向、技術トレンドを構造で整理したトピックページです。`;
 const canonicalUrl = `https://aikeizai.jp/topic/${slug}/`;
+const companyMap = new Map(companiesData.map((company) => [company.id, company]));
+const companyCounts = new Map();
+for (const article of articles) {
+  for (const company of article.data.companies_json ?? []) {
+    companyCounts.set(company, (companyCounts.get(company) || 0) + 1);
+  }
+}
+const relatedCompanies = Array.from(companyCounts.entries())
+  .sort((a, b) => b[1] - a[1])
+  .map(([id]) => companyMap.get(id))
+  .filter(Boolean)
+  .slice(0, 12);
+const mapSlugOverrides = {
+  nvidia: 'nvidia-empire',
+  openai: 'openai-ecosystem',
+  gpu: 'gpu-supply-chain',
+  semiconductor: 'gpu-supply-chain',
+  agents: 'ai-agent-wars',
+  deepseek: 'china-ai-map',
+  china: 'china-ai-map',
+  japan: 'japan-ai',
+  'open-source': 'open-source-ai-ecosystem',
+};
+const topicMapSlug = mapSlugOverrides[slug] || (storygraphsData.some((graph) => graph.company === slug) ? `${slug}-ecosystem` : null);
+const relatedMaps = Array.from(new Set([
+  topicMapSlug,
+  ...relatedCompanies
+    .map((company) => storygraphsData.some((graph) => graph.company === company.id) ? `${company.id}-ecosystem` : null),
+].filter(Boolean))).slice(0, 5);
+const topicSummary = `${topicLabel}は、AI産業の中で企業戦略、技術基盤、供給網、資本市場、政策判断にまたがるテーマです。AI経済新聞では関連記事、関連企業、StoryGraphを接続し、個別ニュースを構造として追跡します。`;
 const getArticleUrl = (article) => `/article/${article.data.category_slug || 'business'}/${article.data.article_slug || article.id}/`;
 const getCatLabel = (id) => ({
   model: '基盤モデル',
@@ -55,20 +91,31 @@ const getCatLabel = (id) => ({
 }[id] || id || '記事');
 const jsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'CollectionPage',
-  name: `${topicLabel}の記事一覧`,
-  description,
-  url: canonicalUrl,
-  inLanguage: 'ja',
-  mainEntity: {
-    '@type': 'ItemList',
-    itemListElement: articles.slice(0, 20).map((article, index) => ({
-      '@type': 'ListItem',
-      position: index + 1,
-      name: article.data.title,
-      url: `https://aikeizai.jp${getArticleUrl(article)}`,
-    })),
-  },
+  '@graph': [
+    {
+      '@type': 'CollectionPage',
+      name: `${topicLabel}の記事一覧`,
+      description,
+      url: canonicalUrl,
+      inLanguage: 'ja',
+      mainEntity: {
+        '@type': 'ItemList',
+        itemListElement: articles.slice(0, 20).map((article, index) => ({
+          '@type': 'ListItem',
+          position: index + 1,
+          name: article.data.title,
+          url: `https://aikeizai.jp${getArticleUrl(article)}`,
+        })),
+      },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'ホーム', item: 'https://aikeizai.jp/' },
+        { '@type': 'ListItem', position: 2, name: topicLabel, item: canonicalUrl },
+      ],
+    },
+  ],
 };
 ---
 
@@ -101,6 +148,42 @@ const jsonLd = {
 
     <div class="w layout">
       <main>
+        <section class="topic-panel">
+          <p class="eyebrow">Topic Summary</p>
+          <h2>{topicLabel}の位置づけ</h2>
+          <p>{topicSummary}</p>
+          <div class="summary-grid">
+            <article><strong>{articles.length}</strong><span>関連記事</span></article>
+            <article><strong>{relatedCompanies.length}</strong><span>関連企業</span></article>
+            <article><strong>{relatedMaps.length}</strong><span>関連Map</span></article>
+          </div>
+        </section>
+
+        {relatedCompanies.length > 0 && (
+          <section class="topic-panel">
+            <p class="eyebrow">Related Companies</p>
+            <h2>関連企業</h2>
+            <div class="chip-grid">
+              {relatedCompanies.map((company) => (
+                <a href={`/company/${company.id}/`}>
+                  {company.logoText || company.name.slice(0, 2)}
+                  <span>{company.name}</span>
+                </a>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {relatedMaps.length > 0 && (
+          <section class="topic-panel">
+            <p class="eyebrow">Related Maps</p>
+            <h2>関連Map</h2>
+            <div class="map-grid">
+              {relatedMaps.map((map) => <a href={`/map/${map}/`}>{map.replaceAll('-', ' ')}</a>)}
+            </div>
+          </section>
+        )}
+
         {articles.length === 0 ? (
           <div class="empty">この記事に関連する記事はまだありません。</div>
         ) : (
@@ -147,6 +230,33 @@ const jsonLd = {
   .topic-hero p { max-width: 760px; color: #b7c4d8; line-height: 1.9; }
   .topic-hero span { display: inline-flex; border: 1px solid rgba(255,255,255,.10); border-radius: 999px; background: rgba(255,255,255,.04); padding: 7px 11px; color: #dbe7f5; font-size: 12px; }
   .layout { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 24px; padding: 28px 0 52px; }
+  .topic-panel {
+    border: 1px solid rgba(255,255,255,.10);
+    border-radius: 16px;
+    background: rgba(255,255,255,.035);
+    padding: 20px;
+    margin-bottom: 14px;
+  }
+  .topic-panel h2 { margin: 4px 0 10px; font-size: 22px; letter-spacing: -.03em; }
+  .topic-panel p { color: #b7c4d8; line-height: 1.9; }
+  .summary-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+  .summary-grid article { border: 1px solid rgba(255,255,255,.08); border-radius: 12px; background: rgba(0,0,0,.18); padding: 13px; }
+  .summary-grid strong { display: block; color: #5cd8ce; font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 22px; }
+  .summary-grid span { color: #b7c4d8; font-size: 12px; }
+  .chip-grid, .map-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip-grid a, .map-grid a {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    border: 1px solid rgba(92,216,206,.18);
+    border-radius: 999px;
+    background: rgba(92,216,206,.065);
+    padding: 7px 11px;
+    color: #dff8f6;
+    font-size: 12px;
+    font-weight: 900;
+  }
+  .map-grid a { font-family: 'IBM Plex Mono', ui-monospace, monospace; text-transform: uppercase; }
   .article-list { display: grid; gap: 12px; }
   .article-card { display: grid; grid-template-columns: 210px 1fr; overflow: hidden; border: 1px solid rgba(255,255,255,.10); border-radius: 16px; background: rgba(255,255,255,.035); transition: transform .16s ease, border-color .16s ease; }
   .article-card:hover { transform: translateY(-2px); border-color: rgba(92,216,206,.36); }
@@ -162,5 +272,6 @@ const jsonLd = {
     .layout { grid-template-columns: 1fr; }
     .article-card { grid-template-columns: 1fr; }
     .article-card img { aspect-ratio: 16 / 9; min-height: 0; }
+    .summary-grid { grid-template-columns: 1fr; }
   }
 </style>

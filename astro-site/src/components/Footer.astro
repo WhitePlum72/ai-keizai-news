@@ -37,6 +37,17 @@
     font-size: 12px;
   }
   .site-footer-links a:hover { color: #f0f4f8; }
+  .site-footer-operator {
+    margin-top: 14px;
+    color: #dbe7f5;
+    font-size: 12px;
+    line-height: 1.8;
+  }
+  .site-footer-operator a {
+    color: #5cd8ce;
+    font-weight: 900;
+    text-decoration: none;
+  }
   @media (max-width: 760px) {
     .site-footer-inner { grid-template-columns: 1fr; }
     .site-footer-links { justify-content: flex-start; }
@@ -48,10 +59,19 @@
     <div>
       <div class="site-footer-brand">AI経済新聞</div>
       <p>AI・半導体・市場・インフラ・政策を構造で読む日本語AI業界インテリジェンスメディア。</p>
+      <div class="site-footer-operator">
+        運営：<a href="https://umebase.com" target="_blank" rel="noopener noreferrer">UMEBASE</a><br />
+        AI・テクノロジー・産業構造を分析・可視化するメディア事業会社
+      </div>
     </div>
     <nav class="site-footer-links" aria-label="フッターナビ">
       <a href="/about/">About</a>
+      <a href="/editorial-policy/">編集方針</a>
+      <a href="/methodology/">分析手法</a>
+      <a href="/primary-sources/">一次情報</a>
+      <a href="/storygraph/">StoryGraph</a>
       <a href="/company/">企業DB</a>
+      <a href="https://umebase.com" target="_blank" rel="noopener noreferrer">運営会社</a>
       <a href="/rss.xml">RSS</a>
       <a href="/sitemap-index.xml">Sitemap</a>
     </nav>

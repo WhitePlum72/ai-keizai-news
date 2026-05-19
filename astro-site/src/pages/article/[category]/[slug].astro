@@ -68,6 +68,7 @@ const relatedArticles = visibleArticles
   .sort((a, b) => b.relevance - a.relevance || (b.article.data.buzz_score || 0) - (a.article.data.buzz_score || 0))
   .slice(0, 6)
   .map(({ article }) => article);
+const nextArticles = relatedArticles.slice(0, 3);
 
 const getArticleUrl = (a) => {
   const cat = a.data.category_slug || 'business';
@@ -104,6 +105,26 @@ const toMapSlug = (companyId) => mapSlugOverrides[companyId] || `${companyId}-ec
 const relatedGraphCompany = [...currentCompanies].find((id) => storygraphsData.some((graph) => graph.company === id));
 const relatedGraphUrl = relatedGraphCompany ? `/map/${toMapSlug(relatedGraphCompany)}/` : '/#ai-ecosystem-map';
 const primaryCompany = relatedCompanies[0];
+const relatedStructureLinks = Array.from(new Set([
+  relatedGraphCompany && relatedGraphUrl,
+  ...relatedCompanies
+    .filter((company) => storygraphsData.some((graph) => graph.company === company.id))
+    .map((company) => `/map/${toMapSlug(company.id)}/`),
+].filter(Boolean))).slice(0, 4);
+const relatedTopics = [...currentTopics].slice(0, 8);
+const sourceTypeLabels = {
+  official: '公式発表',
+  press_release: 'プレスリリース',
+  github: 'GitHub',
+  arxiv: 'arXiv',
+  paper: '論文',
+  ir: 'IR資料',
+  sec: 'SEC提出書類',
+  government: '政府資料',
+  regulation: '規制当局資料',
+  documentation: '技術文書',
+};
+const sourceTypeLabel = sourceTypeLabels[article.data.source_type] || article.data.source_type || '一次情報';
 const formatDate = (value) => {
   if (!value) return '';
   const date = new Date(value);
@@ -177,7 +198,9 @@ const formatDate = (value) => {
           <div class="meta-row">
             <span class="category-badge">{categoryLabel}</span>
             {article.data.source_label && <span class="source-badge">{article.data.source_label}</span>}
+            {article.data.source_type && <span class="source-type-badge">{sourceTypeLabel}</span>}
             <span>{article.data.source || 'AI経済新聞'}</span>
+            {article.data.source_published_at && <time>原文公開: {formatDate(article.data.source_published_at)}</time>}
             <time>掲載: {formatDate(article.data.published_at)}</time>
           </div>
           <h1>{article.data.title}</h1>
@@ -247,10 +270,11 @@ const formatDate = (value) => {
               <p class="eyebrow">Primary Source</p>
               <h2>一次情報</h2>
               <p>
-                {article.data.source_label || '一次情報'}: {article.data.source || '公式発表'}
+                種別: {sourceTypeLabel} / {article.data.source_label || '一次情報'}: {article.data.source || '公式発表'}
                 {article.data.source_published_at && <span> / 原文公開: {formatDate(article.data.source_published_at)}</span>}
                 {article.data.published_at && <span> / 掲載: {formatDate(article.data.published_at)}</span>}
               </p>
+              <p class="source-url">URL: <a href={article.data.source_url} target="_blank" rel="noopener noreferrer">{article.data.source_url}</a></p>
             </div>
             <a href={article.data.source_url} target="_blank" rel="noopener noreferrer">一次情報を確認 →</a>
           </section>
@@ -267,6 +291,47 @@ const formatDate = (value) => {
             <a href={relatedGraphUrl}>構造ページへ →</a>
           </div>
         </section>
+
+        <section class="deep-links">
+          <p class="eyebrow">Read Next</p>
+          <h2>次に読むべき3本</h2>
+          <div class="mini-grid">
+            {nextArticles.map((a) => (
+              <a href={getArticleUrl(a)}>
+                <span>{catLabels[a.data.category_slug] || a.data.category_slug || '記事'}</span>
+                <strong>{a.data.title}</strong>
+              </a>
+            ))}
+          </div>
+        </section>
+
+        {(relatedStructureLinks.length > 0 || relatedCompanies.length > 0 || relatedTopics.length > 0) && (
+          <section class="deep-links">
+            <p class="eyebrow">Structure Links</p>
+            <h2>関連する構造ページ</h2>
+            {relatedStructureLinks.length > 0 && (
+              <div class="link-row">
+                {relatedStructureLinks.map((href) => <a href={href}>StoryGraph: {href.split('/').filter(Boolean).pop()?.replaceAll('-', ' ')}</a>)}
+              </div>
+            )}
+            {relatedCompanies.length > 0 && (
+              <>
+                <h3>関連企業</h3>
+                <div class="link-row">
+                  {relatedCompanies.map((company) => <a href={`/company/${company.id}/`}>{company.name}</a>)}
+                </div>
+              </>
+            )}
+            {relatedTopics.length > 0 && (
+              <>
+                <h3>関連Topic</h3>
+                <div class="link-row">
+                  {relatedTopics.map((topic) => <a href={`/topic/${topic}/`}>#{topic}</a>)}
+                </div>
+              </>
+            )}
+          </section>
+        )}
       </article>
 
       <Sidebar />
@@ -328,9 +393,10 @@ const formatDate = (value) => {
   .breadcrumb li[aria-current="page"] { max-width: 520px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .article-hero { padding: 30px 34px 24px; }
   .meta-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; color: #7f8da3; font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 11px; }
-  .category-badge, .source-badge { display: inline-flex; align-items: center; border-radius: 999px; padding: 5px 10px; color: #fff; font-size: 10px; font-weight: 900; }
+  .category-badge, .source-badge, .source-type-badge { display: inline-flex; align-items: center; border-radius: 999px; padding: 5px 10px; color: #fff; font-size: 10px; font-weight: 900; }
   .category-badge { background: #4d8ef0; }
   .source-badge { border: 1px solid rgba(230,184,74,.3); background: rgba(230,184,74,.12); color: #e6b84a; }
+  .source-type-badge { border: 1px solid rgba(92,216,206,.28); background: rgba(92,216,206,.10); color: #9ff5ee; }
   h1 { margin: 16px 0 0; font-size: clamp(28px, 4vw, 52px); line-height: 1.22; letter-spacing: -.04em; }
   .company-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
   .company-row a { display: inline-flex; align-items: center; gap: 7px; border: 1px solid rgba(255,255,255,.10); border-radius: 999px; background: rgba(0,0,0,.20); padding: 6px 10px 6px 6px; color: #dbe7f5; font-size: 11px; font-weight: 800; }
@@ -369,11 +435,97 @@ const formatDate = (value) => {
   }
   .source-panel h2 { margin: 4px 0 6px; font-size: 18px; }
   .source-panel p { margin: 0; color: #b7c4d8; font-size: 13px; line-height: 1.8; }
+  .source-panel .source-url { margin-top: 6px; overflow-wrap: anywhere; }
+  .source-panel .source-url a {
+    display: inline;
+    border-radius: 0;
+    background: transparent;
+    color: #5cd8ce;
+    padding: 0;
+    font-size: inherit;
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    white-space: normal;
+  }
   .source-panel a, .map-actions a { display: inline-flex; border-radius: 999px; background: #5cd8ce; color: #07111b; padding: 10px 16px; font-size: 12px; font-weight: 900; transition: transform .16s ease; white-space: nowrap; }
   .source-panel a:hover, .map-actions a:hover { transform: translateY(-2px); }
   .map-cta { display: flex; justify-content: space-between; gap: 18px; align-items: center; margin: 0 34px 34px; border: 1px solid rgba(255,255,255,.10); border-radius: 16px; background: rgba(0,0,0,.18); padding: 18px; }
   .map-cta p { margin: 0; color: #aebbd0; line-height: 1.7; }
   .map-actions { display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end; }
+  .deep-links {
+    margin: 0 34px 34px;
+    border-top: 1px solid rgba(255,255,255,.10);
+    padding-top: 28px;
+  }
+  .deep-links h2 {
+    margin: 7px 0 18px;
+    color: #f8fbff;
+    font-size: 24px;
+    letter-spacing: -.03em;
+  }
+  .deep-links h3 {
+    margin: 18px 0 10px;
+    color: #dbe7f5;
+    font-size: 14px;
+  }
+  .mini-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+  }
+  .mini-grid a {
+    min-height: 150px;
+    border: 1px solid rgba(255,255,255,.10);
+    border-radius: 16px;
+    background: rgba(255,255,255,.045);
+    padding: 18px;
+    transition: transform .16s ease, border-color .16s ease, background .16s ease;
+  }
+  .mini-grid a:hover {
+    transform: translateY(-2px);
+    border-color: rgba(92,216,206,.42);
+    background: rgba(255,255,255,.07);
+  }
+  .mini-grid span {
+    display: block;
+    color: #8fdcf6;
+    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+  .mini-grid strong {
+    display: block;
+    margin-top: 12px;
+    color: #fff;
+    font-size: 15px;
+    line-height: 1.75;
+  }
+  .link-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .link-row a {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid rgba(255,255,255,.10);
+    border-radius: 999px;
+    background: rgba(255,255,255,.045);
+    padding: 8px 12px;
+    color: #dbe7f5;
+    font-size: 12px;
+    font-weight: 800;
+    line-height: 1.4;
+    transition: border-color .16s ease, color .16s ease, background .16s ease;
+  }
+  .link-row a:hover {
+    border-color: rgba(92,216,206,.42);
+    background: rgba(92,216,206,.075);
+    color: #fff;
+  }
   .related { padding: 4px 0 44px; }
   .section-head { margin-bottom: 14px; }
   .related-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
@@ -386,13 +538,14 @@ const formatDate = (value) => {
   .related-card span { color: #5cd8ce; font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 11px; font-weight: 900; }
   @media (max-width: 980px) {
     .layout { grid-template-columns: 1fr; }
-    .key-grid, .related-grid { grid-template-columns: 1fr; }
+    .key-grid, .related-grid, .mini-grid { grid-template-columns: 1fr; }
     .map-cta { align-items: flex-start; flex-direction: column; }
+    .source-panel { align-items: flex-start; flex-direction: column; }
   }
   @media (max-width: 560px) {
     .layout { padding: 16px 0; }
     .article-hero, .article-body { padding-left: 18px; padding-right: 18px; }
-    .key-box, .map-cta { margin-left: 18px; margin-right: 18px; }
+    .key-box, .map-cta, .deep-links, .source-panel { margin-left: 18px; margin-right: 18px; }
     .topic-chips { padding-left: 18px; padding-right: 18px; }
     .breadcrumb { padding-left: 18px; padding-right: 18px; }
   }

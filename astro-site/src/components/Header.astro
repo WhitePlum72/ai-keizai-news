@@ -11,6 +11,8 @@ const navItems = [
   { slug: 'research', href: '/research/', label: '研究' },
   { slug: 'policy', href: '/policy/', label: '政策' },
   { slug: 'company', href: '/company/', label: '企業DB' },
+  { slug: 'storygraph', href: '/storygraph/', label: 'StoryGraph' },
+  { slug: 'editorial-policy', href: '/editorial-policy/', label: '編集方針' },
 ];
 ---
 
@@ -134,6 +136,7 @@ const navItems = [
       {navItems.map(item => (
         <a class={currentCategory === item.slug ? 'active' : ''} href={item.href}>{item.label}</a>
       ))}
+      <a href="https://umebase.com" target="_blank" rel="noopener noreferrer">UMEBASE</a>
     </nav>
     <div class="site-date">
       {new Date().toLocaleDateString('ja-JP', { year: 'numeric', month: 'numeric', day: 'numeric' })}
