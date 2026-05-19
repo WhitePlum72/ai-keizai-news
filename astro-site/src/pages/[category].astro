@@ -5,177 +5,45 @@ import Footer from "../components/Footer.astro";
 import Sidebar from "../components/Sidebar.astro";
 import companiesData from "../data/ecosystem/companies.json";
 
-const CATEGORIES = [
-  {
-    slug: "markets",
-    label: "市場・株価",
-    eyebrow: "Market Intelligence",
-    description: "AI関連株、半導体サイクル、データセンター投資、資本市場の動きを構造で読む。",
-    topics: ["AI関連株", "半導体市況", "データセンター投資", "資金調達"],
-    sectors: ["infrastructure", "enterprise"],
-  },
-  {
-    slug: "infrastructure",
-    label: "AIインフラ",
-    eyebrow: "AI Infrastructure",
-    description: "GPU、半導体、クラウド、電力、データセンターまで、AI産業を支える土台を追う。",
-    topics: ["GPU供給網", "HBM / CoWoS", "クラウド基盤", "電力制約"],
-    sectors: ["infrastructure"],
-  },
-  {
-    slug: "model",
-    label: "基盤モデル",
-    eyebrow: "Foundation Models",
-    description: "OpenAI、Anthropic、Google、Meta、xAIなどのモデル競争と技術潮流を整理する。",
-    topics: ["推論モデル", "マルチモーダル", "オープンモデル", "モデル価格"],
-    sectors: ["foundation", "opensource", "china-ai"],
-  },
-  {
-    slug: "business",
-    label: "ビジネス",
-    eyebrow: "Business Strategy",
-    description: "AI企業の事業戦略、提携、買収、導入事例、収益化の動きを追う。",
-    topics: ["提携", "収益化", "導入事例", "企業戦略"],
-    sectors: ["enterprise", "foundation"],
-  },
-  {
-    slug: "research",
-    label: "研究",
-    eyebrow: "Research Desk",
-    description: "論文、評価手法、モデル安全性、エージェント研究など、AIの最前線を読む。",
-    topics: ["AI安全性", "評価", "ロボティクス研究", "学習手法"],
-    sectors: ["research", "foundation"],
-  },
-  {
-    slug: "policy",
-    label: "政策",
-    eyebrow: "Policy Watch",
-    description: "AI規制、輸出規制、安全保障、各国政策が企業競争へ与える影響を整理する。",
-    topics: ["AI規制", "輸出規制", "安全保障", "著作権"],
-    sectors: ["china-ai", "japan"],
-  },
-  {
-    slug: "products",
-    label: "プロダクト",
-    eyebrow: "Product Intelligence",
-    description: "ChatGPT、Claude、Gemini、生成AIアプリ、開発者向けAIツールの進化を追う。",
-    topics: ["生成AI", "開発者ツール", "AIアプリ", "エージェント"],
-    sectors: ["generative-ai", "agents", "enterprise"],
-  },
-  {
-    slug: "agents",
-    label: "AIエージェント",
-    eyebrow: "Agent Economy",
-    description: "検索、開発、業務自動化を担うAIエージェントのプレイヤーと基盤を整理する。",
-    topics: ["コーディングAI", "業務自動化", "Agent Framework", "検索エージェント"],
-    sectors: ["agents"],
-  },
-  {
-    slug: "robotics",
-    label: "ロボティクス",
-    eyebrow: "Robotics",
-    description: "ヒューマノイド、産業ロボット、ロボット基盤モデルとAI計算資源の関係を見る。",
-    topics: ["ヒューマノイド", "Robot AI", "NVIDIA Isaac", "産業ロボット"],
-    sectors: ["robotics"],
-  },
-  {
-    slug: "generative-ai",
-    label: "生成AI",
-    eyebrow: "Creative AI",
-    description: "画像生成、動画生成、音声生成、クリエイティブツールの市場構造を整理する。",
-    topics: ["画像生成", "動画生成", "音声生成", "Creative Tools"],
-    sectors: ["generative-ai"],
-  },
-];
+function getCategories() {
+  return [
+    { slug: "markets", label: "市場・株価", eyebrow: "Market Intelligence", description: "AI関連株、半導体サイクル、データセンター投資、資本市場の動きを構造で読みます。", topics: ["AI関連株", "半導体市場", "データセンター投資", "資金調達"], sectors: ["infrastructure", "enterprise"] },
+    { slug: "infrastructure", label: "AIインフラ", eyebrow: "AI Infrastructure", description: "GPU、半導体、クラウド、電力、データセンターまで、AI産業を支える基盤を追います。", topics: ["GPU供給網", "HBM / CoWoS", "クラウド基盤", "電力制約"], sectors: ["infrastructure"] },
+    { slug: "model", label: "基盤モデル", eyebrow: "Foundation Models", description: "OpenAI、Anthropic、Google、Meta、xAIなどのモデル競争と技術潮流を整理します。", topics: ["推論モデル", "マルチモーダル", "オープンモデル", "モデル価格"], sectors: ["foundation", "opensource", "china-ai"] },
+    { slug: "business", label: "ビジネス", eyebrow: "Business Strategy", description: "AI企業の事業戦略、提携、買収、導入事例、収益化の動きを追います。", topics: ["提携", "収益化", "導入事例", "企業戦略"], sectors: ["enterprise", "foundation"] },
+    { slug: "research", label: "研究", eyebrow: "Research Desk", description: "論文、評価手法、モデル安全性、エージェント研究など、AIの最前線を読みます。", topics: ["AI安全性", "評価", "ロボティクス研究", "学習手法"], sectors: ["research", "foundation"] },
+    { slug: "policy", label: "政策", eyebrow: "Policy Watch", description: "AI規制、輸出規制、安全保障、各国政策が企業競争へ与える影響を整理します。", topics: ["AI規制", "輸出規制", "安全保障", "著作権"], sectors: ["china-ai", "japan"] },
+    { slug: "products", label: "プロダクト", eyebrow: "Product Intelligence", description: "ChatGPT、Claude、Gemini、生成AIアプリ、開発者向けAIツールの進化を追います。", topics: ["生成AI", "開発者ツール", "AIアプリ", "エージェント"], sectors: ["generative-ai", "agents", "enterprise"] },
+    { slug: "agents", label: "AIエージェント", eyebrow: "Agent Economy", description: "検索、開発、業務自動化を担うAIエージェントのプレイヤーと基盤を整理します。", topics: ["コーディングAI", "業務自動化", "Agent Framework", "検索エージェント"], sectors: ["agents"] },
+    { slug: "robotics", label: "ロボティクス", eyebrow: "Robotics", description: "ヒューマノイド、産業ロボット、ロボット基盤モデルとAI計算資源の関係を見ます。", topics: ["ヒューマノイド", "Robot AI", "NVIDIA Isaac", "産業ロボット"], sectors: ["robotics"] },
+    { slug: "generative-ai", label: "生成AI", eyebrow: "Creative AI", description: "画像生成、動画生成、音声生成、クリエイティブツールの市場構造を整理します。", topics: ["画像生成", "動画生成", "音声生成", "Creative Tools"], sectors: ["generative-ai"] },
+  ];
+}
+
+const CATEGORIES = getCategories();
 
 export async function getStaticPaths() {
   const categories = [
-    {
-      slug: "markets",
-      label: "市場・株価",
-      eyebrow: "Market Intelligence",
-      description: "AI関連株、半導体サイクル、データセンター投資、資本市場の動きを構造で読む。",
-      topics: ["AI関連株", "半導体市況", "データセンター投資", "資金調達"],
-      sectors: ["infrastructure", "enterprise"],
-    },
-    {
-      slug: "infrastructure",
-      label: "AIインフラ",
-      eyebrow: "AI Infrastructure",
-      description: "GPU、半導体、クラウド、電力、データセンターまで、AI産業を支える土台を追う。",
-      topics: ["GPU供給網", "HBM / CoWoS", "クラウド基盤", "電力制約"],
-      sectors: ["infrastructure"],
-    },
-    {
-      slug: "model",
-      label: "基盤モデル",
-      eyebrow: "Foundation Models",
-      description: "OpenAI、Anthropic、Google、Meta、xAIなどのモデル競争と技術潮流を整理する。",
-      topics: ["推論モデル", "マルチモーダル", "オープンモデル", "モデル価格"],
-      sectors: ["foundation", "opensource", "china-ai"],
-    },
-    {
-      slug: "business",
-      label: "ビジネス",
-      eyebrow: "Business Strategy",
-      description: "AI企業の事業戦略、提携、買収、導入事例、収益化の動きを追う。",
-      topics: ["提携", "収益化", "導入事例", "企業戦略"],
-      sectors: ["enterprise", "foundation"],
-    },
-    {
-      slug: "research",
-      label: "研究",
-      eyebrow: "Research Desk",
-      description: "論文、評価手法、モデル安全性、エージェント研究など、AIの最前線を読む。",
-      topics: ["AI安全性", "評価", "ロボティクス研究", "学習手法"],
-      sectors: ["research", "foundation"],
-    },
-    {
-      slug: "policy",
-      label: "政策",
-      eyebrow: "Policy Watch",
-      description: "AI規制、輸出規制、安全保障、各国政策が企業競争へ与える影響を整理する。",
-      topics: ["AI規制", "輸出規制", "安全保障", "著作権"],
-      sectors: ["china-ai", "japan"],
-    },
-    {
-      slug: "products",
-      label: "プロダクト",
-      eyebrow: "Product Intelligence",
-      description: "ChatGPT、Claude、Gemini、生成AIアプリ、開発者向けAIツールの進化を追う。",
-      topics: ["生成AI", "開発者ツール", "AIアプリ", "エージェント"],
-      sectors: ["generative-ai", "agents", "enterprise"],
-    },
-    {
-      slug: "agents",
-      label: "AIエージェント",
-      eyebrow: "Agent Economy",
-      description: "検索、開発、業務自動化を担うAIエージェントのプレイヤーと基盤を整理する。",
-      topics: ["コーディングAI", "業務自動化", "Agent Framework", "検索エージェント"],
-      sectors: ["agents"],
-    },
-    {
-      slug: "robotics",
-      label: "ロボティクス",
-      eyebrow: "Robotics",
-      description: "ヒューマノイド、産業ロボット、ロボット基盤モデルとAI計算資源の関係を見る。",
-      topics: ["ヒューマノイド", "Robot AI", "NVIDIA Isaac", "産業ロボット"],
-      sectors: ["robotics"],
-    },
-    {
-      slug: "generative-ai",
-      label: "生成AI",
-      eyebrow: "Creative AI",
-      description: "画像生成、動画生成、音声生成、クリエイティブツールの市場構造を整理する。",
-      topics: ["画像生成", "動画生成", "音声生成", "Creative Tools"],
-      sectors: ["generative-ai"],
-    },
+    { slug: "markets", label: "市場・株価", eyebrow: "Market Intelligence", description: "AI関連株、半導体サイクル、データセンター投資、資本市場の動きを構造で読みます。", topics: ["AI関連株", "半導体市場", "データセンター投資", "資金調達"], sectors: ["infrastructure", "enterprise"] },
+    { slug: "infrastructure", label: "AIインフラ", eyebrow: "AI Infrastructure", description: "GPU、半導体、クラウド、電力、データセンターまで、AI産業を支える基盤を追います。", topics: ["GPU供給網", "HBM / CoWoS", "クラウド基盤", "電力制約"], sectors: ["infrastructure"] },
+    { slug: "model", label: "基盤モデル", eyebrow: "Foundation Models", description: "OpenAI、Anthropic、Google、Meta、xAIなどのモデル競争と技術潮流を整理します。", topics: ["推論モデル", "マルチモーダル", "オープンモデル", "モデル価格"], sectors: ["foundation", "opensource", "china-ai"] },
+    { slug: "business", label: "ビジネス", eyebrow: "Business Strategy", description: "AI企業の事業戦略、提携、買収、導入事例、収益化の動きを追います。", topics: ["提携", "収益化", "導入事例", "企業戦略"], sectors: ["enterprise", "foundation"] },
+    { slug: "research", label: "研究", eyebrow: "Research Desk", description: "論文、評価手法、モデル安全性、エージェント研究など、AIの最前線を読みます。", topics: ["AI安全性", "評価", "ロボティクス研究", "学習手法"], sectors: ["research", "foundation"] },
+    { slug: "policy", label: "政策", eyebrow: "Policy Watch", description: "AI規制、輸出規制、安全保障、各国政策が企業競争へ与える影響を整理します。", topics: ["AI規制", "輸出規制", "安全保障", "著作権"], sectors: ["china-ai", "japan"] },
+    { slug: "products", label: "プロダクト", eyebrow: "Product Intelligence", description: "ChatGPT、Claude、Gemini、生成AIアプリ、開発者向けAIツールの進化を追います。", topics: ["生成AI", "開発者ツール", "AIアプリ", "エージェント"], sectors: ["generative-ai", "agents", "enterprise"] },
+    { slug: "agents", label: "AIエージェント", eyebrow: "Agent Economy", description: "検索、開発、業務自動化を担うAIエージェントのプレイヤーと基盤を整理します。", topics: ["コーディングAI", "業務自動化", "Agent Framework", "検索エージェント"], sectors: ["agents"] },
+    { slug: "robotics", label: "ロボティクス", eyebrow: "Robotics", description: "ヒューマノイド、産業ロボット、ロボット基盤モデルとAI計算資源の関係を見ます。", topics: ["ヒューマノイド", "Robot AI", "NVIDIA Isaac", "産業ロボット"], sectors: ["robotics"] },
+    { slug: "generative-ai", label: "生成AI", eyebrow: "Creative AI", description: "画像生成、動画生成、音声生成、クリエイティブツールの市場構造を整理します。", topics: ["画像生成", "動画生成", "音声生成", "Creative Tools"], sectors: ["generative-ai"] },
   ];
   return categories.map(cat => ({ params: { category: cat.slug }, props: { cat } }));
 }
 
 const { cat } = Astro.props;
-const allArticles = await getCollection("articles");
+const allArticles = (await getCollection("articles")).filter((article) =>
+  article.data.noindex !== true &&
+  article.data.indexable !== false &&
+  article.data.source_status !== 'legacy_secondary_source'
+);
 const articles = allArticles
   .filter(a => a.data.category_slug === cat.slug || a.id.startsWith(cat.slug + "/"))
   .sort((a, b) => (b.data.buzz_score || 0) - (a.data.buzz_score || 0));

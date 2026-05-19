@@ -12,8 +12,11 @@ meta_description: "NVIDIAのAI半導体供給不足を受け、CoreWeave CEOがA
 summaryPoints: ["NVIDIAをめぐる動きは、AI競争の主戦場がモデルだけでなく計算資源の確保に広がったことを示す。","GPU、半導体、クラウド、電力の制約が、生成AIサービスの成長速度を左右する段階に入っている。","投資家や利用企業は、製品発表だけでなく供給網とデータセンター投資の持続性を見る必要がある。"]
 topics_json: ["amd", "datacenter", "gpu", "nvidia", "reasoning", "semiconductor"]
 companies_json: ["amd", "nvidia"]
+noindex: true
+indexable: false
+source_status: "legacy_secondary_source"
+archive_reason: "legacy_secondary_source"
 ---
-
 米GPU特化型クラウド事業者CoreWeaveのマイケル・イントレイター最高経営責任者（CEO）は、NVIDIAに対しAI向け半導体の供給能力を大幅に拡大しなければ、顧客が競合AMDのプロセッサへ大規模に流出するリスクがあると警告した。データセンターの拡張を加速させるCoreWeaveの戦略表明は、AIインフラ市場における供給逼迫の深刻さと、NVIDIA一強体制に変化が生じる可能性を浮き彫りにした。
 
 ## CoreWeaveが示すNVIDIA依存の限界点

@@ -12,8 +12,11 @@ meta_description: "マイクロソフトのAzure AI導入企業数が前年比40
 summaryPoints: ["マイクロソフトのAI導入企業数が急増の動きは、AI投資が短期のテーマ株ではなく産業インフラ再編と結びついていることを示す。","資金調達、買収、株価反応は、計算資源や販売網を押さえる競争の一部として読む必要がある。","市場評価を見る際は、成長期待だけでなく設備投資、収益化、供給制約のバランスが論点になる。"]
 topics_json: ["microsoft", "openai"]
 companies_json: ["microsoft", "openai"]
+noindex: true
+indexable: false
+source_status: "legacy_secondary_source"
+archive_reason: "legacy_secondary_source"
 ---
-
 マイクロソフトのAIエコシステムが新たな転換点を迎えた。法人向けクラウド事業AzureのAI導入企業数が前年同期比で40％以上拡大し、競合との差を明確に広げつつある。この数字は単なる利用増ではなく、企業の基幹業務にAIが本格実装され始めた構造変化を示す。
 
 ## Azure AI導入企業が前年比4割増、Fortune 500の65％が利用

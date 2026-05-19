@@ -12,8 +12,11 @@ meta_description: "OpenAIの法人向け事業が総収入の4割を占め、年
 summaryPoints: ["OpenAIの動きは、基盤モデル競争が性能比較だけでなく配布網や企業導入の争いになったことを示す。","モデルの価値は、API、クラウド、開発ツール、業務データと結びつくほど大きくなりやすい。","読者はベンチマークの優劣だけでなく、どの企業基盤に組み込まれるかを見る必要がある。"]
 topics_json: ["openai"]
 companies_json: ["openai"]
+noindex: true
+indexable: false
+source_status: "legacy_secondary_source"
+archive_reason: "legacy_secondary_source"
 ---
-
 米OpenAIの最高収益責任者（CRO）を務めるデニス・ドレッサー氏は、同社の総収入に占める法人向け事業の割合が40%に達し、2025年末までに50%へ拡大する見通しを明らかにした。生成AIの商用化が急ピッチで進むなか、企業顧客の獲得が収益構造を根本から変えつつある。
 
 ドレッサー氏は20日、Bloomberg Televisionのトム・マッケンジー記者との独占インタビューで、企業向けサービスに「信じがたいほどの勢いがある」と述べた。ChatGPT EnterpriseやAPI提供を含むB2B事業は、わずか1年前には収益の2割強に過ぎなかったとされ、この1年で構成比が倍増した計算になる。

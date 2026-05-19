@@ -12,8 +12,11 @@ meta_description: "米中首脳会談で、トランプ氏はAI安全対策とNv
 summaryPoints: ["米中首脳会談でAI規制とNvidia半導体が焦点をめぐる動きは、AI競争の主戦場がモデルだけでなく計算資源の確保に広がったことを示す。","GPU、半導体、クラウド、電力の制約が、生成AIサービスの成長速度を左右する段階に入っている。","投資家や利用企業は、製品発表だけでなく供給網とデータセンター投資の持続性を見る必要がある。"]
 topics_json: ["gpu", "nvidia", "semiconductor"]
 companies_json: ["nvidia"]
+noindex: true
+indexable: false
+source_status: "legacy_secondary_source"
+archive_reason: "legacy_secondary_source"
 ---
-
 トランプ氏が習氏との対話で明かした半導体輸出管理の行方
 
 ドナルド・トランプ米大統領は北京での2日間にわたる米中首脳会談で、中国の習近平国家主席との間で人工知能（AI）の安全対策とNvidiaの最先端半導体について協議したことを明らかにした。輸出規制の枠組みが流動化するなか、両首脳が具体的な製品名を挙げて議論した事実は、半導体サプライチェーンとAI開発競争に新たな展開をもたらす可能性がある。

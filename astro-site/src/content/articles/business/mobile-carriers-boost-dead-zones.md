@@ -13,8 +13,11 @@ meta_description: "米携帯大手3社が通信困難地帯の解消へ衛星連
 topics_json: []
 companies_json: []
 summaryPoints: ["競合3社が共通規格で手を組む背景には、端末の乱立を防ぎ市場を早期に立ち上げる狙いがある。", "この提携は単なる通信拡大ではなく、衛星直接通信を巡る企業間の陣取り再編として読むべきだ。", "日本を含む各国の通信政策や次世代サービス基盤に、米国の技術標準が影響を及ぼす構図が見える。"]
+noindex: true
+indexable: false
+source_status: "legacy_secondary_source"
+archive_reason: "legacy_secondary_source"
 ---
-
 
 AT&T、T-Mobile、ベライゾンが異例の合弁、圏外ゼロ社会へ前進する
 

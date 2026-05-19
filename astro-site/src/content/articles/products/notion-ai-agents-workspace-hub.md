@@ -13,8 +13,11 @@ meta_description: "米Notionが発表した新プラットフォーム「Notion 
 topics_json: ["agents", "coding-agent", "google", "microsoft"]
 companies_json: ["google", "microsoft", "nec"]
 summaryPoints: ["Notionが外部AIエージェントの実行基盤となることで、生産性ツールはモデル開発競争からエコシステムの開放性競争へ軸足を移し始めている。", "この発表は、企業向けソフトウェアが「人間の補助」から「エージェントの自律実行環境」へと再定義される構造転換を示す。", "特定AIベンダーに依存しない接続基盤の提供は、エージェント市場での中立プラットフォーム戦略と捉える必要がある。"]
+noindex: true
+indexable: false
+source_status: "legacy_secondary_source"
+archive_reason: "legacy_secondary_source"
 ---
-
 
 米Notionは3月5日、同社のワークスペースをAIエージェントの実行基盤として開放する新たな開発者向けプラットフォーム「Notion AI Connectors」を発表した。チームは外部のAIエージェントやカスタムコード、社内外のデータソースをNotion上で直接接続できるようになり、情報共有ツールから自律型AIのハブへと進化を遂げる第一歩となる。
 

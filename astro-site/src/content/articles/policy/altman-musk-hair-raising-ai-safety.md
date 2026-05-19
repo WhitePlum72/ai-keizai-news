@@ -12,8 +12,11 @@ meta_description: "サム・アルトマンCEOは法廷で、2017年にマスク
 summaryPoints: ["OpenAIの動きは、基盤モデル競争が性能比較だけでなく配布網や企業導入の争いになったことを示す。","モデルの価値は、API、クラウド、開発ツール、業務データと結びつくほど大きくなりやすい。","読者はベンチマークの優劣だけでなく、どの企業基盤に組み込まれるかを見る必要がある。"]
 topics_json: ["openai"]
 companies_json: ["openai"]
+noindex: true
+indexable: false
+source_status: "legacy_secondary_source"
+archive_reason: "legacy_secondary_source"
 ---
-
 OpenAIのサム・アルトマンCEOは法廷証言で、イーロン・マスク氏が2017年にOpenAIの営利子会社の完全な支配権を要求した際、「非常に不快だった」と述べた。両氏の決裂が現在のAI業界の構造に与えた影響の大きさを浮き彫りにする証言である。
 
 ## 法廷で明かされた2017年の支配権要求

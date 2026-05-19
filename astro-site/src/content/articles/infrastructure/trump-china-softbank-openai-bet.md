@@ -12,8 +12,11 @@ meta_description: "米中両政府の通商トップがソウルで会談し、9
 summaryPoints: ["OpenAIをめぐる動きは、AI競争の主戦場がモデルだけでなく計算資源の確保に広がったことを示す。","GPU、半導体、クラウド、電力の制約が、生成AIサービスの成長速度を左右する段階に入っている。","投資家や利用企業は、製品発表だけでなく供給網とデータセンター投資の持続性を見る必要がある。"]
 topics_json: ["openai", "semiconductor"]
 companies_json: ["openai", "softbank"]
+noindex: true
+indexable: false
+source_status: "legacy_secondary_source"
+archive_reason: "legacy_secondary_source"
 ---
-
 米中両政府の通商交渉トップが韓国ソウルで会談し、約10年ぶりとなる米大統領の北京訪問に向けた地ならしを進めた。ソフトバンクグループはOpenAIへの投資評価額の上昇により四半期利益が急増し、ChatGPT開発元への追加投資に自信を深めている。
 
 ## ソウルで米中通商トップが最終調整

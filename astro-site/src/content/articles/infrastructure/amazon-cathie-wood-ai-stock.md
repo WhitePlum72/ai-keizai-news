@@ -12,8 +12,11 @@ meta_description: "キャシー・ウッド氏は、AWSのクラウドと自社A
 summaryPoints: ["AWSをめぐる動きは、AI競争の主戦場がモデルだけでなく計算資源の確保に広がったことを示す。","GPU、半導体、クラウド、電力の制約が、生成AIサービスの成長速度を左右する段階に入っている。","投資家や利用企業は、製品発表だけでなく供給網とデータセンター投資の持続性を見る必要がある。"]
 topics_json: ["amazon", "anthropic", "gpu", "meta", "reasoning", "semiconductor"]
 companies_json: ["amazon"]
+noindex: true
+indexable: false
+source_status: "legacy_secondary_source"
+archive_reason: "legacy_secondary_source"
 ---
-
 アマゾン・ドット・コム（AMZN）がキャシー・ウッド率いるアーク・インベストメントの最上位AI銘柄に浮上した。アークの分析では、同社のクラウド事業AWSと生成AI基盤、そしてロボティクスを融合させた垂直統合モデルが、他のビッグテックと一線を画す競争優位性を持つ。2027年までにAI関連売上高が数百億ドル規模に達するとの予測が、この選定を裏付けている。
 
 アマゾンのAI戦略は、単なる大規模言語モデルの開発競争を超えたところにある。エヌビディア製GPUへの巨額投資に加え、自社開発のAI半導体「Trainium」と「Inferentia」をAWS上で提供することで、顧客の推論コストを最大40%削減する設計だ。このハードウェアからソフトウェアまでの一貫したスタックが、アークの投資判断における核心的な評価ポイントとなっている。

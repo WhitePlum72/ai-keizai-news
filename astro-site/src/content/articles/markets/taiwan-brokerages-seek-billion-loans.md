@@ -12,8 +12,11 @@ meta_description: "台湾の証券大手2社が、活況な株式市場を背景
 summaryPoints: ["台湾証券大手2社が9億ドル超の資金調達へをめぐる動きは、AI競争の主戦場がモデルだけでなく計算資源の確保に広がったことを示す。","GPU、半導体、クラウド、電力の制約が、生成AIサービスの成長速度を左右する段階に入っている。","投資家や利用企業は、製品発表だけでなく供給網とデータセンター投資の持続性を見る必要がある。"]
 topics_json: ["semiconductor"]
 companies_json: ["tsmc"]
+noindex: true
+indexable: false
+source_status: "legacy_secondary_source"
+archive_reason: "legacy_secondary_source"
 ---
-
 台湾の証券大手2社が、事業拡大に向けて合計で10億ドル（約1500億円）規模の融資を求めていることが、事情に詳しい複数の関係者への取材で明らかになった。世界第6位の規模に成長した株式市場の活況を背景に、個人投資家の取引参加が急増していることが資金需要の原動力となっている。
 
 ## 調達額は10億ドル近くに達する見通し

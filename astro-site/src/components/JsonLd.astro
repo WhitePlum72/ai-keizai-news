@@ -1,11 +1,8 @@
 ---
-// src/components/JsonLd.astro
-// NewsArticle + BreadcrumbList の構造化データを出力する再利用コンポーネント
+// NewsArticle + BreadcrumbList の構造化データを出力する共通コンポーネント
 
 export interface Props {
   type: "article" | "category" | "top";
-
-  // article用
   headline?: string;
   description?: string;
   url?: string;
@@ -38,13 +35,12 @@ const {
 
 const siteUrl = "https://aikeizai.jp";
 const siteName = "AI経済新聞";
-const logoUrl = `${siteUrl}/logo.png`; // ← ロゴのパスに合わせて変更
+const logoUrl = `${siteUrl}/logo.png`;
 
-// ── NewsArticle スキーマ ──────────────────────────────
 const newsArticleSchema = type === "article" ? {
   "@context": "https://schema.org",
   "@type": "NewsArticle",
-  "headline": headline?.slice(0, 110), // Google推奨: 110文字以内
+  "headline": headline?.slice(0, 110),
   "description": description,
   "url": url,
   "image": imageUrl ? {
@@ -53,8 +49,8 @@ const newsArticleSchema = type === "article" ? {
     "width": 1200,
     "height": 675,
   } : undefined,
-"datePublished": datePublished ? datePublished + "T00:00:00+09:00" : undefined,
-"dateModified": (dateModified ?? datePublished) ? (dateModified ?? datePublished) + "T00:00:00+09:00" : undefined,
+  "datePublished": datePublished ? datePublished + "T00:00:00+09:00" : undefined,
+  "dateModified": (dateModified ?? datePublished) ? (dateModified ?? datePublished) + "T00:00:00+09:00" : undefined,
   "author": {
     "@type": "Organization",
     "name": authorName,
@@ -83,7 +79,6 @@ const newsArticleSchema = type === "article" ? {
   },
 } : null;
 
-// ── BreadcrumbList スキーマ ───────────────────────────
 const buildBreadcrumbs = () => {
   const items = [
     { position: 1, name: "ホーム", item: siteUrl },

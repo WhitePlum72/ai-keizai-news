@@ -10,7 +10,11 @@ import LiveAIEcosystemNetwork from '../components/LiveAIEcosystemNetwork';
 import ecosystemCompanies from '../data/ecosystem/companies.json';
 
 
-const allArticles = await getCollection('articles');
+const isArchivedArticle = (article) =>
+  article.data.noindex === true ||
+  article.data.indexable === false ||
+  article.data.source_status === 'legacy_secondary_source';
+const allArticles = (await getCollection('articles')).filter((article) => !isArchivedArticle(article));
 const getBuzzScore = (a) =>
   Number(a.data.buzzScore ?? a.data.buzz_score ?? a.data.score ?? 0) || 0;
 const getPublishedValue = (a) =>

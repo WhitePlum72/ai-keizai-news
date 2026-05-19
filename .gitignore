@@ -7,6 +7,10 @@ __pycache__/
 *.pyc
 .env
 
+# Codex/Claude local worktrees
+.claude/
+astro-site/src/data/ecosystem/.claude/
+
 Noto_Sans_JP.zip
 *.zip
 # ログ

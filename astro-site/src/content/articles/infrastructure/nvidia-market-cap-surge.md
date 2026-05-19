@@ -12,8 +12,11 @@ meta_description: "エヌビディア株が7営業日で20%上昇し、時価総
 summaryPoints: ["エヌビディア時価総額6兆ドル視野をめぐる動きは、AI競争の主戦場がモデルだけでなく計算資源の確保に広がったことを示す。","GPU、半導体、クラウド、電力の制約が、生成AIサービスの成長速度を左右する段階に入っている。","投資家や利用企業は、製品発表だけでなく供給網とデータセンター投資の持続性を見る必要がある。"]
 topics_json: ["amd", "datacenter", "gpu", "nvidia", "semiconductor"]
 companies_json: ["amd", "nvidia", "tsmc"]
+noindex: true
+indexable: false
+source_status: "legacy_secondary_source"
+archive_reason: "legacy_secondary_source"
 ---
-
 エヌビディア株が7営業日で20％上昇し、時価総額6兆ドル突破が現実味を帯びてきた。人工知能向け半導体需要の爆発的拡大を背景に、投資資金が一極集中する構図が強まっている。同社の株価急騰は、AIインフラ投資が当面減速しないとの市場の確信を映し出す。
 
 ## 株価上昇をけん引する機関投資家の先回り買い

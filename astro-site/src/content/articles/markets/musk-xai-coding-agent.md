@@ -12,8 +12,11 @@ meta_description: "イーロン・マスク氏率いるxAIがコーディングA
 summaryPoints: ["Anthropicの動きは、基盤モデル競争が性能比較だけでなく配布網や企業導入の争いになったことを示す。","モデルの価値は、API、クラウド、開発ツール、業務データと結びつくほど大きくなりやすい。","読者はベンチマークの優劣だけでなく、どの企業基盤に組み込まれるかを見る必要がある。"]
 topics_json: ["agents", "anthropic", "coding-agent", "microsoft", "openai", "reasoning"]
 companies_json: ["anthropic", "openai", "xai"]
+noindex: true
+indexable: false
+source_status: "legacy_secondary_source"
+archive_reason: "legacy_secondary_source"
 ---
-
 米実業家イーロン・マスク氏が率いるxAIは2025年初のコーディングエージェント「Grok Build」を発表した。ソフトウエア開発の効率化を武器に、この分野で先行するAnthropicの「Claude」シリーズへ挑戦状を叩きつけた格好だ。コーディングAI市場の成長が加速するなか、生成AI各社の開発競争は新たな局面に突入したといえる。
 
 ## マスク氏が投入する独自のコーディングエージェント

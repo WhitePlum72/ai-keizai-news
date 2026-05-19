@@ -12,8 +12,11 @@ meta_description: "欧州のESGファンド上位7銘柄をMicrosoftやNvidiaな
 summaryPoints: ["Microsoftの動きは、AI投資が短期のテーマ株ではなく産業インフラ再編と結びついていることを示す。","資金調達、買収、株価反応は、計算資源や販売網を押さえる競争の一部として読む必要がある。","市場評価を見る際は、成長期待だけでなく設備投資、収益化、供給制約のバランスが論点になる。"]
 topics_json: ["amazon", "datacenter", "meta", "microsoft", "nvidia"]
 companies_json: ["amazon", "apple", "meta", "microsoft", "nvidia"]
+noindex: true
+indexable: false
+source_status: "legacy_secondary_source"
+archive_reason: "legacy_secondary_source"
 ---
-
 欧州で運用されるサステナブル投資ファンドの中核を、依然として米国の巨大テクノロジー企業が占めている実態が明らかになった。上位7銘柄すべてをMicrosoftやNvidiaなどが独占し、ESG（環境・社会・ガバナンス）投資の理念と運用実態の乖離が改めて浮き彫りとなっている。
 
 ## 運用資産上位を埋め尽くす米ハイテクの顔ぶれ

@@ -12,8 +12,11 @@ meta_description: "深センAdtekが香港IPOを検討中で、評価額は約40
 summaryPoints: ["深センAdtekが香港IPO検討をめぐる動きは、AI競争の主戦場がモデルだけでなく計算資源の確保に広がったことを示す。","GPU、半導体、クラウド、電力の制約が、生成AIサービスの成長速度を左右する段階に入っている。","投資家や利用企業は、製品発表だけでなく供給網とデータセンター投資の持続性を見る必要がある。"]
 topics_json: ["datacenter", "gpu", "reasoning"]
 companies_json: []
+noindex: true
+indexable: false
+source_status: "legacy_secondary_source"
+archive_reason: "legacy_secondary_source"
 ---
-
 深セン・アドテック・テクノロジーが香港市場での新規株式公開を検討していることが、事情に詳しい複数の関係者の話で明らかになった。データセンターや人工知能関連の中国企業による上場ラッシュに加わる動きであり、調達規模や上場時期は依然協議段階にあるものの、想定する企業評価額は約40億ドルに達する可能性がある。
 
 ## 評価額40億ドルを視野に入れるAdtekの事業基盤

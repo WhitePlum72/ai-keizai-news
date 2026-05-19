@@ -12,8 +12,11 @@ meta_description: "Anthropicが中小企業市場へ本格参入し、約3600万
 summaryPoints: ["Anthropicの動きは、基盤モデル競争が性能比較だけでなく配布網や企業導入の争いになったことを示す。","モデルの価値は、API、クラウド、開発ツール、業務データと結びつくほど大きくなりやすい。","読者はベンチマークの優劣だけでなく、どの企業基盤に組み込まれるかを見る必要がある。"]
 topics_json: ["anthropic", "coding-agent", "microsoft", "openai", "reasoning"]
 companies_json: ["anthropic", "openai"]
+noindex: true
+indexable: false
+source_status: "legacy_secondary_source"
+archive_reason: "legacy_secondary_source"
 ---
-
 人工知能（AI）スタートアップのAnthropicが新たな顧客層として中小企業を開拓し始めた。同社の最新サービス展開は、AIプラットフォーム戦争が大企業から中小企業へと主戦場を移している決定的な証左となる。米国経済の屋台骨である約3600万の中小企業が、次のユーザー獲得競争の最前線に浮上したのだ。
 
 ## フォーチュン500から街の商店へ、標的の劇的転換

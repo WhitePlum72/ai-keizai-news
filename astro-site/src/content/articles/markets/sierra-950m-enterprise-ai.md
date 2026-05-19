@@ -12,8 +12,11 @@ meta_description: "AIスタートアップのSierraが、Tiger GlobalとGV主導
 summaryPoints: ["Sierraの動きは、基盤モデル競争が性能比較だけでなく配布網や企業導入の争いになったことを示す。","モデルの価値は、API、クラウド、開発ツール、業務データと結びつくほど大きくなりやすい。","読者はベンチマークの優劣だけでなく、どの企業基盤に組み込まれるかを見る必要がある。"]
 topics_json: ["agents", "openai"]
 companies_json: ["openai", "salesforce"]
+noindex: true
+indexable: false
+source_status: "legacy_secondary_source"
+archive_reason: "legacy_secondary_source"
 ---
-
 AIスタートアップのSierraが、Tiger GlobalとGV主導の資金調達ラウンドで9億5,000万ドルを調達した。月曜日に発表されたこの調達により、ポストマネー評価額は150億ドルを超えた。同社は調達資金を「世界標準」の顧客体験AI構築に充てる方針だ。
 
 Sierraの成長は目覚ましい。数年前はわずか4社のデザインパートナーから始まったが、現在ではフォーチュン500企業の40％以上を顧客として抱える。プラットフォーム上のエージェントは、住宅ローン借り換えや保険請求処理など数十億件のやり取りを処理している。年間経常収益（ARR）は11月下旬に1億ドル、2月初旬には1億5,000万ドルと急伸している。

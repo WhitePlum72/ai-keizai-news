@@ -2,7 +2,11 @@
 import { getCollection } from 'astro:content';
 
 export async function GET(context) {
-  const articles = await getCollection('articles');
+  const articles = (await getCollection('articles')).filter((article) =>
+    article.data.noindex !== true &&
+    article.data.indexable !== false &&
+    article.data.source_status !== 'legacy_secondary_source'
+  );
   const sorted = articles
     .sort((a, b) => (b.data.published_at || '').localeCompare(a.data.published_at || ''))
     .slice(0, 50);

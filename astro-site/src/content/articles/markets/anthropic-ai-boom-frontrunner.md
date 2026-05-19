@@ -12,8 +12,11 @@ meta_description: "Anthropicは、複雑なコーディングを自動化するA
 summaryPoints: ["OpenAIの動きは、基盤モデル競争が性能比較だけでなく配布網や企業導入の争いになったことを示す。","モデルの価値は、API、クラウド、開発ツール、業務データと結びつくほど大きくなりやすい。","読者はベンチマークの優劣だけでなく、どの企業基盤に組み込まれるかを見る必要がある。"]
 topics_json: ["agents", "anthropic", "coding-agent", "google", "openai"]
 companies_json: ["anthropic", "google", "openai"]
+noindex: true
+indexable: false
+source_status: "legacy_secondary_source"
+archive_reason: "legacy_secondary_source"
 ---
-
 長年、人工知能（AI）開発競争の傍流に甘んじてきた新興企業Anthropicが、エンタープライズ（法人向け）事業とコーディング能力への特化を武器に、業界の先頭集団へと躍り出た。資金力と技術で先行するOpenAIやGoogleに対し、実用性重視の戦略が開発者と企業顧客の支持を急速に集めている。
 
 AI業界の勢力図が大きく塗り替わる転換点を迎えている。複数の市場調査によれば、Anthropicの大規模言語モデル「Claude（クロード）」シリーズは、主要クラウドプラットフォームにおける企業導入率で、2025年第2四半期に過去最高を記録したもようだ。その原動力となったのは、複雑なプログラミング作業を高精度で自動化するコーディング特化型AIの存在である。

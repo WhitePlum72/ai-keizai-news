@@ -12,8 +12,11 @@ meta_description: "ChatGPTの新機能として銀行口座連携型の個人資
 summaryPoints: ["OpenAIの事例は、AI時代の競争力がサイバー防御と供給網管理にも左右されることを示している。","製造委託先、クラウド、認証情報を含む防御体制が、AI関連企業の事業継続リスクになっている。","単発の攻撃被害ではなく、AIインフラを支える企業群全体の安全性を点検する材料になる。"]
 topics_json: ["openai"]
 companies_json: ["nec", "openai"]
+noindex: true
+indexable: false
+source_status: "legacy_secondary_source"
+archive_reason: "legacy_secondary_source"
 ---
-
 米OpenAIはChatGPTの新機能として、個人の銀行口座と直接連携し資産管理を可能にするサービスを発表した。利用者は支出やサブスクリプション管理、ポートフォリオの状況を対話型AIで一元把握できるようになり、フィンテック領域における生成AIの実用化が一気に加速する。
 
 ## 口座連携で可視化する個人の全支出

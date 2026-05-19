@@ -12,8 +12,11 @@ meta_description: "Anthropicが法律AI「Claude for Legal」を発表し、SaaS
 summaryPoints: ["Anthropicの動きは、基盤モデル競争が性能比較だけでなく配布網や企業導入の争いになったことを示す。","モデルの価値は、API、クラウド、開発ツール、業務データと結びつくほど大きくなりやすい。","読者はベンチマークの優劣だけでなく、どの企業基盤に組み込まれるかを見る必要がある。"]
 topics_json: ["agents", "anthropic", "reasoning"]
 companies_json: ["anthropic"]
+noindex: true
+indexable: false
+source_status: "legacy_secondary_source"
+archive_reason: "legacy_secondary_source"
 ---
-
 Anthropicは5月12日、AIアシスタント「Claude」を搭載した法律業務向けソフトウェア「Claude for Legal」を発表した。SaaS企業の株価が広範に下落する中、生成AIの業務特化型サービスが既存市場を揺さぶる構図が鮮明になっている。
 
 ## なぜ法律分野への参入なのか

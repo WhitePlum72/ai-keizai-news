@@ -13,8 +13,11 @@ meta_description: "信仰と人工知能が交差する令和の宗教地図 チ
 topics_json: ["google", "llm", "openai"]
 companies_json: ["deepmind", "google", "openai"]
 summaryPoints: ["LLMを活用した宗教サービスが急成長し、基盤モデル提供企業から専門アプリ、教会の現場導入に至る三層の市場構造が形成されつつある。", "信者の内面的データが営利企業の課金サービスとして収集・分析される仕組みは、宗教界との新たな摩擦と投資対象としての成長を同時に生んでいる。", "この潮流は、聖職者不足への実用的な対応策である一方、教義解釈の権威がテクノロジー企業へ移行し始める構造的な分岐点を示している。"]
+noindex: true
+indexable: false
+source_status: "legacy_secondary_source"
+archive_reason: "legacy_secondary_source"
 ---
-
 
 チャットボットは祈りを聞くのか
 

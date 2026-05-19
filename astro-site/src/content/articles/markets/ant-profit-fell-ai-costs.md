@@ -12,8 +12,11 @@ meta_description: "アントの四半期利益が79％減。AI基盤や医療分
 summaryPoints: ["アントの四半期利益79％減の動きは、基盤モデル競争が性能比較だけでなく配布網や企業導入の争いになったことを示す。","モデルの価値は、API、クラウド、開発ツール、業務データと結びつくほど大きくなりやすい。","読者はベンチマークの優劣だけでなく、どの企業基盤に組み込まれるかを見る必要がある。"]
 topics_json: ["llm", "reasoning"]
 companies_json: []
+noindex: true
+indexable: false
+source_status: "legacy_secondary_source"
+archive_reason: "legacy_secondary_source"
 ---
-
 中国の金融大手、アント・グループの四半期利益が前年同期比で79％減少した。人工知能（AI）や医療分野への積極投資が収益を圧迫し、同社が進める技術主導の構造転換がにわかに試練の様相を呈している。
 
 ## AI基盤と大規模言語モデルへ開発費が急増

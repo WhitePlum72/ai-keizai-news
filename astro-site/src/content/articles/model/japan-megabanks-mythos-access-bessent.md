@@ -12,8 +12,11 @@ meta_description: "三菱UFJ、三井住友、みずほの3メガバンクが米
 summaryPoints: ["Anthropicの事例は、AI時代の競争力がサイバー防御と供給網管理にも左右されることを示している。","製造委託先、クラウド、認証情報を含む防御体制が、AI関連企業の事業継続リスクになっている。","単発の攻撃被害ではなく、AIインフラを支える企業群全体の安全性を点検する材料になる。"]
 topics_json: ["anthropic"]
 companies_json: ["anthropic"]
+noindex: true
+indexable: false
+source_status: "legacy_secondary_source"
+archive_reason: "legacy_secondary_source"
 ---
-
 ベッセント氏来日が契機、サイバーリスク警戒も後押し
 
 三菱UFJフィナンシャル・グループ、三井住友フィナンシャルグループ、みずほフィナンシャルグループの3メガバンクが、米AI（人工知能）開発企業Anthropicの最新モデルMythosへのアクセス権を獲得する見通しであることが明らかになった。関係者によると、米ベッセント財務長官の来日を契機に実務協議が加速し、先月の限定公開で生じたサイバーセキュリティ上の懸念を逆手に取る形で、日本側が高度な防御目的での利用を提案したことが決め手となった。

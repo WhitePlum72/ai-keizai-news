@@ -1,10 +1,16 @@
 ---
 import { getCollection } from 'astro:content';
-const allArticles = await getCollection('articles');
+
+const allArticles = (await getCollection('articles')).filter((article) =>
+  article.data.noindex !== true &&
+  article.data.indexable !== false &&
+  article.data.source_status !== 'legacy_secondary_source'
+);
+
 const sorted = [...allArticles].sort((a, b) => (b.data.buzz_score || 0) - (a.data.buzz_score || 0));
 const popularArticles = sorted.slice(0, 10);
-const rankingMarkets = sorted.filter(a => a.data.category_slug === 'markets').slice(0, 5);
-const rankingModel = sorted.filter(a => a.data.category_slug === 'model').slice(0, 5);
+const rankingMarkets = sorted.filter((a) => a.data.category_slug === 'markets').slice(0, 5);
+const rankingModel = sorted.filter((a) => a.data.category_slug === 'model').slice(0, 5);
 
 const getArticleUrl = (article) => {
   const cat = article.data.category_slug || 'business';
@@ -33,7 +39,7 @@ const getArticleUrl = (article) => {
   <h2>この記事も読まれています</h2>
   <div class="also-read-grid">
     <div class="also-block">
-      <div class="also-title">🔥 人気記事</div>
+      <div class="also-title">人気記事</div>
       {popularArticles.map((a) => (
         <a class="also-card" href={getArticleUrl(a)}>
           <img src={a.data.image_url || '/ogp.png'} alt={a.data.title} loading="lazy" />
@@ -45,9 +51,9 @@ const getArticleUrl = (article) => {
       ))}
     </div>
     <div class="also-block">
-      <div class="also-title">📈 AI関連株</div>
+      <div class="also-title">市場・株価</div>
       {rankingMarkets.length === 0 ? (
-        <div class="also-empty">現在記事がありません</div>
+        <div class="also-empty">現在、記事がありません</div>
       ) : rankingMarkets.map((a) => (
         <a class="also-card" href={getArticleUrl(a)}>
           <img src={a.data.image_url || '/ogp.png'} alt={a.data.title} loading="lazy" />
@@ -59,9 +65,9 @@ const getArticleUrl = (article) => {
       ))}
     </div>
     <div class="also-block">
-      <div class="also-title">🤖 モデル</div>
+      <div class="also-title">基盤モデル</div>
       {rankingModel.length === 0 ? (
-        <div class="also-empty">現在記事がありません</div>
+        <div class="also-empty">現在、記事がありません</div>
       ) : rankingModel.map((a) => (
         <a class="also-card" href={getArticleUrl(a)}>
           <img src={a.data.image_url || '/ogp.png'} alt={a.data.title} loading="lazy" />

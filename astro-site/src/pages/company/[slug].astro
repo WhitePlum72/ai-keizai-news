@@ -12,7 +12,11 @@ import sectorsData from '../../data/ecosystem/sectors.json';
 import storygraphsData from '../../data/ecosystem/storygraphs.json';
 
 export async function getStaticPaths() {
-  const allArticles = await getCollection('articles');
+  const isArchivedArticle = (article) =>
+    article.data.noindex === true ||
+    article.data.indexable === false ||
+    article.data.source_status === 'legacy_secondary_source';
+  const allArticles = (await getCollection('articles')).filter((article) => !isArchivedArticle(article));
   const companySlugs = new Set([
     ...Object.keys(profiles),
     ...companiesData.map((company) => company.id),
@@ -50,7 +54,7 @@ const fallbackColor = '#5CD8CE';
 const safeColor = (color) => color || fallbackColor;
 const accent = safeColor(company?.brandColor || sector?.color);
 const displayName = company?.name || profile?.name || slug;
-const description = company?.description || profile?.description || `${displayName}に関するAI業界データと関連ニュース。`;
+const description = company?.description || profile?.description || `${displayName}のAI業界内での役割、関係企業、関連記事を整理します。`;
 const logo = company?.logo;
 const logoText = company?.logoText || displayName.slice(0, 2);
 

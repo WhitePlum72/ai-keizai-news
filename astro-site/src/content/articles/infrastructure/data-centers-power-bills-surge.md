@@ -13,8 +13,11 @@ meta_description: "データセンター需要で最大送電網の電力価格7
 topics_json: ["datacenter"]
 companies_json: []
 summaryPoints: ["データセンターの電力消費拡大が、AI開発の経済的制約へと変わりつつある構造を示す事例である。", "送電容量の不足は、GPU調達とは別の供給網リスクとしてクラウド事業者の立地戦略を左右し始めている。", "原子力への直接投資や長期契約の動きは、計算資源確保競争がインフラ所有競争へと進化していることを物語る。"]
+noindex: true
+indexable: false
+source_status: "legacy_secondary_source"
+archive_reason: "legacy_secondary_source"
 ---
-
 
 米最大規模の送電網を運営するPJMインターコネクションの管内で、2024年第1四半期の電力卸売価格が前年同期比76%上昇した。人工知能の普及を背景とするデータセンターの急速な拡大が主因であり、消費者と系統運用者の双方に重い課題を突きつけている。
 

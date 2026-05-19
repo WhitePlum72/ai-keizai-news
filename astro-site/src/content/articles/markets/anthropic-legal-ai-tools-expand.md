@@ -12,8 +12,11 @@ meta_description: "Anthropicが法曹向けAIツール12種を公開し、契約
 summaryPoints: ["Anthropicの動きは、基盤モデル競争が性能比較だけでなく配布網や企業導入の争いになったことを示す。","モデルの価値は、API、クラウド、開発ツール、業務データと結びつくほど大きくなりやすい。","読者はベンチマークの優劣だけでなく、どの企業基盤に組み込まれるかを見る必要がある。"]
 topics_json: ["anthropic"]
 companies_json: ["anthropic"]
+noindex: true
+indexable: false
+source_status: "legacy_secondary_source"
+archive_reason: "legacy_secondary_source"
 ---
-
 対話型AI「Claude」を開発する米スタートアップのAnthropic PBCは25日、法律業界向けの新たなAIツール群を発表した。弁護士や法学生、企業法務担当者による契約審査や法令調査を効率化する12種類のプラグインを提供開始し、法務分野への本格参入を加速させる。同社が数カ月前に限定機能を静かに導入した際にはソフトウエア株の急落を誘発しており、今回の拡充が与える市場インパクトにも注目が集まる。
 
 ## 商用契約審査を自動化する新機能

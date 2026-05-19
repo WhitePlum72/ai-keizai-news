@@ -12,8 +12,11 @@ meta_description: "マイクロソフトはOpenAIとの提携に累計1000億ド
 summaryPoints: ["OpenAIの動きは、基盤モデル競争が性能比較だけでなく配布網や企業導入の争いになったことを示す。","モデルの価値は、API、クラウド、開発ツール、業務データと結びつくほど大きくなりやすい。","読者はベンチマークの優劣だけでなく、どの企業基盤に組み込まれるかを見る必要がある。"]
 topics_json: ["google", "gpu", "microsoft", "openai"]
 companies_json: ["microsoft", "openai"]
+noindex: true
+indexable: false
+source_status: "legacy_secondary_source"
+archive_reason: "legacy_secondary_source"
 ---
-
 マイクロソフトは生成AI開発を手掛けるOpenAIとの提携に、累計で1000億ドルを超える資金を投じたことが明らかになった。クラウド基盤や研究開発支援を含む巨額投資は、AI覇権競争で同社が単なる出資者を超えた中核的存在である事実を浮き彫りにしている。
 
 OpenAIの大規模言語モデル「GPT」シリーズを支える計算資源の大半を、マイクロソフトのクラウドプラットフォーム「Azure」が提供しているためだ。今回判明した1000億ドル超という金額は、両社の関係が通常の企業提携の枠を大きく逸脱し、事実上の一体運営に近づいている様相を示している。

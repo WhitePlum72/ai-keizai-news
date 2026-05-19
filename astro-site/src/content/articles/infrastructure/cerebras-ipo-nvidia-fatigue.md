@@ -12,8 +12,11 @@ meta_description: "AI半導体のセレブラスがIPOを申請し、最大47億
 summaryPoints: ["巨大チップのセレブラスが上場へをめぐる動きは、AI競争の主戦場がモデルだけでなく計算資源の確保に広がったことを示す。","GPU、半導体、クラウド、電力の制約が、生成AIサービスの成長速度を左右する段階に入っている。","投資家や利用企業は、製品発表だけでなく供給網とデータセンター投資の持続性を見る必要がある。"]
 topics_json: ["gpu", "nvidia", "reasoning", "semiconductor"]
 companies_json: ["nvidia"]
+noindex: true
+indexable: false
+source_status: "legacy_secondary_source"
+archive_reason: "legacy_secondary_source"
 ---
-
 AI半導体市場で独自路線を突き進むセレブラス・システムズが新規株式公開（IPO）を申請し、最大47億ドルの評価額を目指している。投資家の間でエヌビディア一強への疲弊感が広がるなか、巨大チップ戦略を掲げる同社の上場は、AIインフラ投資の多様化を占う試金石となる。
 
 ## ウエハースケール技術で挑むエヌビディアの牙城

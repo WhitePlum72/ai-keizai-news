@@ -12,8 +12,11 @@ meta_description: "Xがコミュニティ機能を廃止する中、分散型プ
 summaryPoints: ["X閉鎖が急ぐ分散型コミュニティAcornの台頭の動きは、基盤モデル競争が性能比較だけでなく配布網や企業導入の争いになったことを示す。","モデルの価値は、API、クラウド、開発ツール、業務データと結びつくほど大きくなりやすい。","読者はベンチマークの優劣だけでなく、どの企業基盤に組み込まれるかを見る必要がある。"]
 topics_json: []
 companies_json: []
+noindex: true
+indexable: false
+source_status: "legacy_secondary_source"
+archive_reason: "legacy_secondary_source"
 ---
-
 旧Twitter（現X）がコミュニティ機能「Communities」の段階的廃止を進める中、創作者に主導権を委ねる新たな分散型プラットフォーム「Acorn」が産声を上げた。ブロックチェーン技術を基盤に、運営組織が独自の情報配信アルゴリズムや収益モデルを設計できる構造が特徴で、中央集権的なSNS運営に不信感を抱く層の受け皿として急速に存在感を増している。
 
 ## 創作者主権を取り戻す設計思想

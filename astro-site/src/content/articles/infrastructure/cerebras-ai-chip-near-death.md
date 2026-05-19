@@ -13,8 +13,11 @@ meta_description: "36億円調達のAI半導体企業が初期に抱えた月次
 topics_json: ["gpu", "nvidia", "semiconductor"]
 companies_json: ["nvidia", "tsmc"]
 summaryPoints: ["巨大ウェハスケールチップ開発には、技術的困難を上回る資本調達力とサプライチェーン支配が生死を分けた。", "AI半導体の競争は、純粋な性能優劣から「大口顧客との提携有無」による資金二極化へと構造転換している。", "NVIDIA独占への挑戦は、物理的制約の克服と開発者エコシステムの成熟という二段構えの難題を抱えている。"]
+noindex: true
+indexable: false
+source_status: "legacy_secondary_source"
+archive_reason: "legacy_secondary_source"
 ---
-
 
 2026年のテクノロジー分野で最大規模の新規株式公開（IPO）を果たしたAI半導体企業セレブラス・システムズ。時価総額は一時600億ドルを超え、生成AIブームの象徴的な勝者と目されている。しかし同社がIPOに至るまでの道のりは、巨額の資金調達の裏で月間800万ドルもの現金を燃やし続け、複数回にわたる存亡の危機を乗り越えた苦闘の歴史でもあった。AI半導体市場における競争の本質と、スタートアップが巨大資本と技術的困難にどう対峙するのか、その実像を明らかにする。
 

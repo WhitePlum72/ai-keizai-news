@@ -12,8 +12,11 @@ meta_description: "エヌビディアのファンCEOの2026会計年度の総報
 summaryPoints: ["エヌビディアCEO報酬27パーセント減をめぐる動きは、AI競争の主戦場がモデルだけでなく計算資源の確保に広がったことを示す。","GPU、半導体、クラウド、電力の制約が、生成AIサービスの成長速度を左右する段階に入っている。","投資家や利用企業は、製品発表だけでなく供給網とデータセンター投資の持続性を見る必要がある。"]
 topics_json: ["nvidia", "semiconductor"]
 companies_json: ["nvidia"]
+noindex: true
+indexable: false
+source_status: "legacy_secondary_source"
+archive_reason: "legacy_secondary_source"
 ---
-
 エヌビディアのジェンスン・フアン最高経営責任者の2026会計年度における総報酬額が3630万ドルと、前年から27パーセント減少した。同社が4月15日に提出した委任状説明書によると、業績連動型の株式報酬であるパフォーマンス・シェア・ユニットの評価額が縮小したことが主因だ。
 
 ## フアンCEOの報酬構成と減少の内訳

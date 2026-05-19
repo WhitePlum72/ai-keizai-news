@@ -12,8 +12,11 @@ meta_description: "半導体DRAM特化型ETFが史上最速で純資産総額650
 summaryPoints: ["半導体記憶装置ETFが6500億円到達の最速記録をめぐる動きは、AI競争の主戦場がモデルだけでなく計算資源の確保に広がったことを示す。","GPU、半導体、クラウド、電力の制約が、生成AIサービスの成長速度を左右する段階に入っている。","投資家や利用企業は、製品発表だけでなく供給網とデータセンター投資の持続性を見る必要がある。"]
 topics_json: ["datacenter", "gpu", "reasoning", "semiconductor"]
 companies_json: []
+noindex: true
+indexable: false
+source_status: "legacy_secondary_source"
+archive_reason: "legacy_secondary_source"
 ---
-
 半導体記憶装置であるDRAMに特化した上場投資信託（ETF）が、史上最速で純資産総額65億ドル（約6500億円）を突破した。半導体大手マイクロン・テクノロジーの決算発表を契機とした銘柄急騰が、個人投資家や機関投資家の資金を大量に呼び込んだ格好だ。
 
 ## DRAM専業ETFが資金吸収速度で新記録

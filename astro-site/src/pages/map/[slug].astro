@@ -25,7 +25,11 @@ export async function getStaticPaths() {
 }
 
 const { graph, slug } = Astro.props;
-const allArticles = await getCollection('articles');
+const isArchivedArticle = (article) =>
+  article.data.noindex === true ||
+  article.data.indexable === false ||
+  article.data.source_status === 'legacy_secondary_source';
+const allArticles = (await getCollection('articles')).filter((article) => !isArchivedArticle(article));
 
 const entities = new Map([
   ...companiesData.map((item) => [item.id, { ...item, kind: 'company' }]),
@@ -37,11 +41,11 @@ const company = entities.get(graph.company);
 const displayName = company?.name || graph.company;
 const titleBySlug = {
   'nvidia-empire': 'NVIDIA Empire',
-  'gpu-supply-chain': 'GPU供給網',
+  'gpu-supply-chain': 'GPU\u4f9b\u7d66\u7db2',
   'openai-ecosystem': 'OpenAI Ecosystem',
   'ai-agent-wars': 'AI Agent Wars',
-  'china-ai-map': '中国AI勢力図',
-  'japan-ai': '日本AIエコシステム',
+  'china-ai-map': '\u4e2d\u56fdAI\u52e2\u529b\u56f3',
+  'japan-ai': '\u65e5\u672cAI\u30a8\u30b3\u30b7\u30b9\u30c6\u30e0',
   'open-source-ai-ecosystem': 'Open Source AI Ecosystem',
 };
 const pageTitle = titleBySlug[slug] || graph.title || `${displayName} Ecosystem`;
@@ -62,16 +66,16 @@ const layers = graph.layers ? [
 
 const bottomGroups = graph.bottomGroups || {};
 const bottomLabels = {
-  investors: '出資者',
-  investments: '投資先',
-  investment: '出資',
-  partnership: '提携',
-  distribution: '提供チャネル',
-  competitor: '競合企業',
-  customer: '主要顧客',
-  supplier: '供給元',
-  ecosystem: 'エコシステム',
-  ownership: '所有・親会社',
+  investors: '\u51fa\u8cc7\u8005',
+  investments: '\u6295\u8cc7\u5148',
+  investment: '\u51fa\u8cc7',
+  partnership: '\u63d0\u643a',
+  distribution: '\u63d0\u4f9b\u30c1\u30e3\u30cd\u30eb',
+  competitor: '\u7af6\u5408\u4f01\u696d',
+  customer: '\u4e3b\u8981\u9867\u5ba2',
+  supplier: '\u4f9b\u7d66\u5143',
+  ecosystem: '\u30a8\u30b3\u30b7\u30b9\u30c6\u30e0',
+  ownership: '\u6240\u6709\u30fb\u89aa\u4f1a\u793e',
 };
 const bottomEntries = Object.entries(bottomGroups)
   .map(([key, ids]) => ({ key, label: bottomLabels[key] || key, ids: Array.isArray(ids) ? ids : [] }))
@@ -108,7 +112,7 @@ const jsonLd = {
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>{pageTitle} | AI業界構造マップ | AI経済新聞</title>
+  <title>{pageTitle} | AI業界マップ | AI経済新聞</title>
   <meta name="description" content={pageDescription} />
   <link rel="canonical" href={canonicalUrl} />
   <meta property="og:type" content="website" />

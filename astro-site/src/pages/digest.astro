@@ -1,282 +1,150 @@
 ---
 import { getCollection } from 'astro:content';
-const allArticles = await getCollection('articles');
-const articles = allArticles
-  .filter(a => a.data.is_digest === true)
-  .sort((a, b) => b.data.buzz_score - a.data.buzz_score);
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
 
-const popularArticles = [...allArticles]
-  .filter(a => !a.data.is_digest)
-  .sort((a, b) => b.data.buzz_score - a.data.buzz_score)
-  .slice(0, 10);
+const allArticles = (await getCollection('articles')).filter((article) =>
+  article.data.noindex !== true &&
+  article.data.indexable !== false &&
+  article.data.source_status !== 'legacy_secondary_source'
+);
 
-const rankingStocks = [...allArticles]
-  .filter(a => a.data.category === 'AI関連株')
-  .sort((a, b) => b.data.buzz_score - a.data.buzz_score)
-  .slice(0, 5);
+const digestArticles = allArticles
+  .filter((article) => article.data.is_digest === true)
+  .sort((a, b) => (b.data.buzz_score || 0) - (a.data.buzz_score || 0));
 
-const rankingBusiness = [...allArticles]
-  .filter(a => a.data.category === 'ビジネス')
-  .sort((a, b) => b.data.buzz_score - a.data.buzz_score)
-  .slice(0, 5);
+const popularArticles = allArticles
+  .filter((article) => !article.data.is_digest)
+  .sort((a, b) => (b.data.buzz_score || 0) - (a.data.buzz_score || 0))
+  .slice(0, 12);
 
-const getLead = (entry) => ((entry.body || '').replace(/[#\n]/g, ' ').slice(0, 60)) + '...';
+const articles = digestArticles.length > 0 ? digestArticles : popularArticles;
+
+const getArticleUrl = (article) => {
+  const category = article.data.category_slug || 'business';
+  const slug = article.data.article_slug || article.id;
+  return `/article/${category}/${slug}/`;
+};
+
+const getLead = (entry) =>
+  entry.data.description ||
+  entry.data.meta_description ||
+  ((entry.body || '').replace(/[#\n]/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 90) + '...');
 ---
 
+<!doctype html>
 <html lang="ja">
 <head>
-<!-- Google Analytics 4 -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-R8C9ET314H"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-R8C9ET314H');
-</script>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AIニュースまとめ | AI経済新聞</title>
-  <meta name="description" content="毎日のAIニュースをまとめてお届け。重要トピックを厳選して解説します。" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Noto Sans JP', -apple-system, sans-serif; background: #f5f5f5; color: #1a1a1a; font-size: 14px; }
-    a { color: inherit; text-decoration: none; }
-
-    /* ===== ヘッダー ===== */
-    .header-top { background: #003f88; color: white; padding: 4px 0; text-align: center; font-size: 11px; }
-    .header-main { background: #fff; border-bottom: 3px solid #003f88; padding: 10px 20px; display: flex; align-items: center; justify-content: space-between; }
-    .logo { font-size: 26px; font-weight: 900; color: #003f88; letter-spacing: -1px; text-decoration: none; }
-    .header-date { font-size: 12px; color: #666; }
-    .header-sub { background: #fff; border-bottom: 1px solid #ddd; padding: 0 20px; display: flex; overflow-x: auto; }
-    .nav-item { padding: 8px 14px; font-size: 13px; font-weight: 500; color: #333; border-bottom: 3px solid transparent; white-space: nowrap; text-decoration: none; display: block; }
-    .nav-item:hover, .nav-item.active { color: #003f88; border-bottom-color: #003f88; }
-
-    /* ===== レイアウト ===== */
-    .container { max-width: 1100px; margin: 20px auto; padding: 0 16px; }
-    .main-grid { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 20px; }
-
-    /* ===== ページタイトル ===== */
-    .page-title { font-size: 22px; font-weight: 900; margin-bottom: 4px; }
-    .page-desc { font-size: 13px; color: #666; margin-bottom: 20px; }
-
-    /* ===== 記事リスト ===== */
-    .article-list { display: flex; flex-direction: column; gap: 16px; }
-    .article-card { background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.08); display: flex; gap: 0; }
-    .article-card-img { width: 200px; height: 130px; object-fit: cover; flex-shrink: 0; }
-    .article-card-no-img { width: 200px; height: 130px; background: #e8f4fd; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 40px; }
-    .article-card-body { padding: 16px; flex: 1; }
-    .article-card-title { font-size: 16px; font-weight: 700; line-height: 1.4; margin-bottom: 8px; }
-    .article-card-title a { color: #1a1a1a; }
-    .article-card-title a:hover { color: #003f88; }
-    .article-card-lead { font-size: 13px; color: #555; line-height: 1.6; margin-bottom: 8px; }
-    .article-card-meta { font-size: 11px; color: #999; }
-    .empty { text-align: center; padding: 40px; color: #999; }
-
-    /* ===== サイドバー ===== */
-    .sidebar { position: sticky; top: 16px; height: fit-content; display: flex; flex-direction: column; gap: 12px; }
-    .side-block { background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
-    .side-title { background: #003f88; color: #fff; font-size: 12px; font-weight: 900; padding: 8px 12px; }
-    .side-card { display: flex; gap: 8px; padding: 8px 10px; border-bottom: 1px solid #f0f0f0; text-decoration: none; color: inherit; align-items: flex-start; }
-    .side-card:last-child { border-bottom: none; }
-    .side-card:hover { background: #f9f9f9; }
-    .side-card img { width: 60px !important; height: 46px !important; object-fit: cover; border-radius: 4px; flex-shrink: 0; }
-    .side-card-no-img { width: 60px; height: 46px; background: #e8f4fd; border-radius: 4px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 16px; }
-    .side-card-title { font-size: 12px; font-weight: 700; line-height: 1.4; color: #1a1a1a; }
-    .side-card-lead { font-size: 11px; color: #888; margin-top: 2px; line-height: 1.3; }
-    .side-empty { padding: 12px; font-size: 12px; color: #999; text-align: center; }
-
-    /* ===== この記事も読まれています ===== */
-    .also-read { max-width: 1100px; margin: 0 auto; padding: 0 16px 40px; }
-    .also-read h2 { font-size: 16px; font-weight: 900; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 2px solid #003f88; color: #1a1a1a; }
-    .also-read-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-    .also-block { background: #fff; border-radius: 10px; overflow: hidden; }
-    .also-title { background: #003f88; color: #fff; font-size: 12px; font-weight: 900; padding: 8px 12px; }
-    .also-card { display: flex; gap: 8px; padding: 8px 10px; border-bottom: 1px solid #f0f0f0; text-decoration: none; color: inherit; align-items: flex-start; }
-    .also-card:last-child { border-bottom: none; }
-    .also-card:hover { background: #f9f9f9; }
-    .also-card img { width: 60px !important; height: 46px !important; object-fit: cover; border-radius: 4px; flex-shrink: 0; }
-    .also-card-title { font-size: 12px; font-weight: 700; line-height: 1.4; color: #1a1a1a; }
-    .also-card-lead { font-size: 11px; color: #888; margin-top: 2px; line-height: 1.3; }
-    .also-empty { padding: 12px; font-size: 12px; color: #999; text-align: center; }
-
-    footer { background: #1a1a1a; color: #999; text-align: center; padding: 20px; font-size: 12px; margin-top: 32px; }
-
-    @media (max-width: 768px) {
-      .main-grid { grid-template-columns: 1fr; }
-      .sidebar { position: static; }
-      .also-read-grid { grid-template-columns: 1fr; }
-      .article-card { flex-direction: column; }
-      .article-card-img, .article-card-no-img { width: 100%; height: 160px; }
-    }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI業界ダイジェスト | AI経済新聞</title>
+  <meta name="description" content="AI業界の重要ニュースを、企業関係・供給網・市場構造の観点から整理したダイジェストです。" />
+  <link rel="canonical" href="https://aikeizai.jp/digest/" />
 </head>
 <body>
-
-  <div class="header-top">AIと経済の最新ニュースを毎朝配信</div>
-  <header>
-    <div class="header-main">
-      <a class="logo" href="/">AI経済新聞</a>
-      <div class="header-date">
-        {new Date().toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' })}
+  <Header />
+  <main>
+    <section class="digest-hero">
+      <div class="w">
+        <p class="eyebrow">AI Industry Digest</p>
+        <h1>AI業界ダイジェスト</h1>
+        <p class="lead">AI企業、半導体、クラウド、モデル、政策の動きをまとめて読み、業界構造の変化を短時間で把握できます。</p>
       </div>
-    </div>
-    <nav class="header-sub">
-      <a class="nav-item" href="/">すべて</a>
-      <a class="nav-item" href="/model">モデル</a>
-      <a class="nav-item" href="/business">ビジネス</a>
-      <a class="nav-item" href="/stock">AI関連株</a>
-      <a class="nav-item" href="/research">研究</a>
-      <a class="nav-item active" href="/digest">まとめ</a>
-    </nav>
-  </header>
+    </section>
 
-  <div class="container">
-    <div class="main-grid">
-
-      <main>
-        <p class="page-title">📋 AIニュースまとめ</p>
-        <p class="page-desc">毎日のAIニュースを厳選してまとめてお届けします（{articles.length}件）</p>
-        {articles.length === 0 ? (
-          <div class="empty">現在まとめ記事はありません</div>
-        ) : (
-          <div class="article-list">
-            {articles.map(article => (
-              <a class="article-card" href={`/article/${article.id}`}>
-                {article.data.image_url ? (
-                  <img class="article-card-img" src={article.data.image_url} alt={article.data.title} loading="lazy" />
-                ) : (
-                  <div class="article-card-no-img">📋</div>
-                )}
-                <div class="article-card-body">
-                  <div class="article-card-title">
-                    <a href={`/article/${article.id}`}>{article.data.title}</a>
-                  </div>
-                  <div class="article-card-lead">{getLead(article)}</div>
-                  <div class="article-card-meta">{article.data.published_at}</div>
-                </div>
-              </a>
-            ))}
-          </div>
-        )}
-      </main>
-
-      <aside class="sidebar">
-        <div class="side-block">
-          <div class="side-title">🔥 人気記事</div>
-          {popularArticles.map(a => (
-            <a class="side-card" href={`/article/${a.id}`}>
-              {a.data.image_url ? (
-                <img src={a.data.image_url} alt={a.data.title} loading="lazy" />
-              ) : (
-                <div class="side-card-no-img">📰</div>
-              )}
-              <div>
-                <div class="side-card-title">{a.data.title.slice(0, 36)}{a.data.title.length > 36 ? '...' : ''}</div>
-                <div class="side-card-lead">{getLead(a)}</div>
-              </div>
-            </a>
-          ))}
-        </div>
-
-        <div class="side-block">
-          <div class="side-title">📈 AI関連株</div>
-          {rankingStocks.length === 0 ? (
-            <div class="side-empty">現在記事がありません</div>
-          ) : rankingStocks.map(a => (
-            <a class="side-card" href={`/article/${a.id}`}>
-              {a.data.image_url ? (
-                <img src={a.data.image_url} alt={a.data.title} loading="lazy" />
-              ) : (
-                <div class="side-card-no-img">📈</div>
-              )}
-              <div>
-                <div class="side-card-title">{a.data.title.slice(0, 36)}{a.data.title.length > 36 ? '...' : ''}</div>
-                <div class="side-card-lead">{getLead(a)}</div>
-              </div>
-            </a>
-          ))}
-        </div>
-
-        <div class="side-block">
-          <div class="side-title">💼 ビジネス</div>
-          {rankingBusiness.length === 0 ? (
-            <div class="side-empty">現在記事がありません</div>
-          ) : rankingBusiness.map(a => (
-            <a class="side-card" href={`/article/${a.id}`}>
-              {a.data.image_url ? (
-                <img src={a.data.image_url} alt={a.data.title} loading="lazy" />
-              ) : (
-                <div class="side-card-no-img">💼</div>
-              )}
-              <div>
-                <div class="side-card-title">{a.data.title.slice(0, 36)}{a.data.title.length > 36 ? '...' : ''}</div>
-                <div class="side-card-lead">{getLead(a)}</div>
-              </div>
-            </a>
-          ))}
-        </div>
-      </aside>
-
-    </div>
-  </div>
-
-  <!-- ===== この記事も読まれています ===== -->
-  <section class="also-read">
-    <h2>この記事も読まれています</h2>
-    <div class="also-read-grid">
-
-      <div class="also-block">
-        <div class="also-title">🔥 人気記事</div>
-        {popularArticles.map(a => (
-          <a class="also-card" href={`/article/${a.id}`}>
-            <img src={a.data.image_url || '/ogp.png'} alt={a.data.title} />
-            <div>
-              <div class="also-card-title">{a.data.title.slice(0, 36)}{a.data.title.length > 36 ? '...' : ''}</div>
-              <div class="also-card-lead">{getLead(a)}</div>
-            </div>
-          </a>
-        ))}
-      </div>
-
-      <div class="also-block">
-        <div class="also-title">📈 AI関連株</div>
-        {rankingStocks.length === 0 ? (
-          <div class="also-empty">現在記事がありません</div>
-        ) : rankingStocks.map(a => (
-          <a class="also-card" href={`/article/${a.id}`}>
-            <img src={a.data.image_url || '/ogp.png'} alt={a.data.title} />
-            <div>
-              <div class="also-card-title">{a.data.title.slice(0, 36)}{a.data.title.length > 36 ? '...' : ''}</div>
-              <div class="also-card-lead">{getLead(a)}</div>
-            </div>
-          </a>
-        ))}
-      </div>
-
-      <div class="also-block">
-        <div class="also-title">💼 ビジネス</div>
-        {rankingBusiness.length === 0 ? (
-          <div class="also-empty">現在記事がありません</div>
-        ) : rankingBusiness.map(a => (
-          <a class="also-card" href={`/article/${a.id}`}>
-            <img src={a.data.image_url || '/ogp.png'} alt={a.data.title} />
-            <div>
-              <div class="also-card-title">{a.data.title.slice(0, 36)}{a.data.title.length > 36 ? '...' : ''}</div>
-              <div class="also-card-lead">{getLead(a)}</div>
-            </div>
-          </a>
-        ))}
-      </div>
-
-    </div>
-  </section>
-
-  <footer>
-    <p>AI経済新聞 — AIと経済の最新ニュースを毎日自動配信</p>
-  </footer>
-
+    <section class="w digest-grid" aria-label="ダイジェスト記事">
+      {articles.map((article) => (
+        <a class="digest-card" href={getArticleUrl(article)}>
+          <span>{article.data.category || article.data.category_slug || '記事'}</span>
+          <h2>{article.data.title}</h2>
+          <p>{getLead(article)}</p>
+        </a>
+      ))}
+    </section>
+  </main>
+  <Footer />
 </body>
 </html>
+
+<style>
+  :global(body) {
+    margin: 0;
+    background: #07090d;
+    color: #f3f7fb;
+    font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  :global(a) { color: inherit; text-decoration: none; }
+  .w { width: min(100% - 32px, 1200px); margin-inline: auto; }
+  .digest-hero {
+    padding: 56px 0 28px;
+    border-bottom: 1px solid rgba(255,255,255,.09);
+    background:
+      radial-gradient(circle at 20% 0%, rgba(90,158,255,.16), transparent 32rem),
+      linear-gradient(180deg, rgba(12,18,32,.92), rgba(7,9,13,0));
+  }
+  .eyebrow {
+    margin: 0;
+    color: #5cd8ce;
+    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+  }
+  h1 {
+    margin: 8px 0 0;
+    font-size: clamp(34px, 5vw, 58px);
+    line-height: 1.05;
+    letter-spacing: -.05em;
+  }
+  .lead {
+    max-width: 780px;
+    margin: 14px 0 0;
+    color: #b8c4d7;
+    line-height: 1.9;
+  }
+  .digest-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+    padding: 28px 0 56px;
+  }
+  .digest-card {
+    display: grid;
+    gap: 10px;
+    min-height: 190px;
+    border: 1px solid rgba(255,255,255,.10);
+    border-radius: 16px;
+    background: rgba(255,255,255,.035);
+    backdrop-filter: blur(14px);
+    padding: 18px;
+    transition: transform .16s ease, border-color .16s ease, background .16s ease;
+  }
+  .digest-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(92,216,206,.38);
+    background: rgba(92,216,206,.055);
+  }
+  .digest-card span {
+    color: #5a9eff;
+    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+  .digest-card h2 {
+    margin: 0;
+    font-size: 17px;
+    line-height: 1.55;
+  }
+  .digest-card p {
+    margin: 0;
+    color: #aebbd0;
+    line-height: 1.75;
+    font-size: 13px;
+  }
+  @media (max-width: 900px) {
+    .digest-grid { grid-template-columns: 1fr; }
+  }
+</style>

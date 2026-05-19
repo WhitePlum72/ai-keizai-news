@@ -23,6 +23,12 @@ export async function getStaticPaths() {
 
 const { article } = Astro.props;
 const allArticles = await getCollection('articles');
+const isArchived = (entry) =>
+  entry.data.noindex === true ||
+  entry.data.indexable === false ||
+  entry.data.source_status === 'legacy_secondary_source';
+const isArchivedArticle = isArchived(article);
+const visibleArticles = allArticles.filter((entry) => !isArchived(entry));
 const { Content } = await render(article);
 
 const currentTopics = new Set(article.data.topics_json ?? []);
@@ -40,7 +46,7 @@ const buildDescription = (text) => {
   if (text.length <= 140) return text;
   const clipped = text.slice(0, 140);
   const sentenceEnd = Math.max(clipped.lastIndexOf('。'), clipped.lastIndexOf('.'));
-  return sentenceEnd > 60 ? clipped.slice(0, sentenceEnd + 1) : `${clipped.replace(/[、，\s]+$/g, '')}。`;
+  return sentenceEnd > 60 ? clipped.slice(0, sentenceEnd + 1) : `${clipped.replace(/[、。\s]+$/g, '')}。`;
 };
 const description = buildDescription(plainText);
 const summaryPoints = Array.isArray(article.data.summaryPoints)
@@ -48,7 +54,7 @@ const summaryPoints = Array.isArray(article.data.summaryPoints)
   : [];
 const keyPoints = summaryPoints.length > 0 ? summaryPoints : (description ? [description] : []);
 
-const relatedArticles = allArticles
+const relatedArticles = visibleArticles
   .filter((a) => a.id !== article.id)
   .map((a) => {
     const aTopics = a.data.topics_json ?? [];
@@ -120,6 +126,7 @@ const formatDate = (value) => {
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{article.data.title} | AI経済新聞</title>
   <meta name="description" content={description} />
+  {isArchivedArticle && <meta name="robots" content="noindex,follow" />}
   <link rel="canonical" href={canonicalUrl} />
   <meta property="og:title" content={article.data.title} />
   <meta property="og:description" content={description} />

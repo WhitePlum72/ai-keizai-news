@@ -12,8 +12,11 @@ meta_description: "AI半導体は学習から推論へ重心が移り、TSMCが3
 summaryPoints: ["NVIDIAをめぐる動きは、AI競争の主戦場がモデルだけでなく計算資源の確保に広がったことを示す。","GPU、半導体、クラウド、電力の制約が、生成AIサービスの成長速度を左右する段階に入っている。","投資家や利用企業は、製品発表だけでなく供給網とデータセンター投資の持続性を見る必要がある。"]
 topics_json: ["amazon", "amd", "google", "microsoft", "multimodal", "nvidia", "openai", "reasoning", "semiconductor"]
 companies_json: ["amazon", "amd", "broadcom", "google", "intel", "microsoft", "nvidia", "openai", "samsung", "tsmc"]
+noindex: true
+indexable: false
+source_status: "legacy_secondary_source"
+archive_reason: "legacy_secondary_source"
 ---
-
 2025年からの大規模推論需要でファウンドリー勢力図に決定的差
 
 米国発の生成AI開発競争は、学習から推論への重心移動という新たな局面を迎えている。この転換は先端半導体製造で世界シェア6割超を握る台湾積体電路製造（TSMC）に圧倒的優位をもたらす構図だ。アナリスト予測では、2027年までにAI関連だけでTSMCの総売上高の25%に達する水準が見込まれている。
