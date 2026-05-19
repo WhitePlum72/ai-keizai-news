@@ -267,7 +267,7 @@ const jsonLd = [
 
 <!-- TICKER -->
 <div class="ticker-bar" aria-hidden="true">
-  <span class="ticker-label">MARKET</span>
+  <span class="ticker-label">SIGNALS</span>
   <div class="ticker-scroll">
     <div class="ticker-track">
       {[...TICKER,...TICKER].map(t=>(
@@ -310,7 +310,7 @@ const jsonLd = [
         <span class="eyebrow">Market Pulse</span>
         <h2 class="sec-title" id="pulse-hd">AI市場の現在地</h2>
       </div>
-      <span class="sec-note">参考値 · 随時更新</span>
+      <span class="sec-note">編集部作成の概念指標 · 実市場データではありません</span>
     </div>
     <div class="pulse-scroll">
       <div class="pulse-grid">
@@ -572,7 +572,7 @@ const jsonLd = [
         <p class="eyebrow">Market Dashboard</p>
         <h2 id="dash-hd">AI産業の温度感</h2>
       </div>
-      <span class="sec-note">※参考値 · 投資推奨ではありません</span>
+      <span class="sec-note">※編集部作成の概念指標 · 投資推奨ではありません</span>
     </div>
     <div class="dash-grid">
       {DASHBOARD.map(m=>(
@@ -587,7 +587,7 @@ const jsonLd = [
       ))}
     </div>
     <p class="dash-note">
-      データは参考値・推定値。投資判断の根拠としないでください。
+      データはAI産業の構造理解を助ける概念指標です。実市場データや投資判断の根拠ではありません。
       <a href="/about/">免責事項</a>
     </p>
   </div>

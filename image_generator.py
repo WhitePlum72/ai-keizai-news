@@ -235,7 +235,7 @@ def add_text_overlay(image_path: str, labels: list[str]) -> None:
 
         cy += th + GAP
 
-    img.convert("RGB").save(image_path, "WEBP", quality=90)
+    img.convert("RGB").save(image_path, "WEBP", quality=82, method=6)
     logger.debug("オーバーレイ完了: %s %s", image_path, labels)
 
 # ========================

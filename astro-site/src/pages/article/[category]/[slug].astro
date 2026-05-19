@@ -6,6 +6,7 @@ import Sidebar from '../../../components/Sidebar.astro';
 import AlsoRead from '../../../components/AlsoRead.astro';
 import JsonLd from '../../../components/JsonLd.astro';
 import companiesData from '../../../data/ecosystem/companies.json';
+import storygraphsData from '../../../data/ecosystem/storygraphs.json';
 
 export async function getStaticPaths() {
   const articles = await getCollection('articles');
@@ -34,7 +35,14 @@ const plainText = (seoDescription || article.body || '')
   .replace(/[#*`\[\]\n]/g, ' ')
   .replace(/\s+/g, ' ')
   .trim();
-const description = plainText.slice(0, 140);
+const buildDescription = (text) => {
+  if (!text) return '';
+  if (text.length <= 140) return text;
+  const clipped = text.slice(0, 140);
+  const sentenceEnd = Math.max(clipped.lastIndexOf('。'), clipped.lastIndexOf('.'));
+  return sentenceEnd > 60 ? clipped.slice(0, sentenceEnd + 1) : `${clipped.replace(/[、，\s]+$/g, '')}。`;
+};
+const description = buildDescription(plainText);
 const summaryPoints = Array.isArray(article.data.summaryPoints)
   ? article.data.summaryPoints.map((point) => String(point).trim()).filter(Boolean).slice(0, 3)
   : [];
@@ -79,6 +87,24 @@ const canonicalUrl = `https://aikeizai.jp/article/${article.data.category_slug |
 const ogImage = article.data.image_url
   ? (article.data.image_url.startsWith('http') ? article.data.image_url : 'https://aikeizai.jp' + article.data.image_url)
   : 'https://aikeizai.jp/ogp.png';
+const mapSlugOverrides = {
+  nvidia: 'nvidia-empire',
+  openai: 'openai-ecosystem',
+  huggingface: 'open-source-ai-ecosystem',
+  deepseek: 'china-ai-map',
+  'sakana-ai': 'japan-ai',
+};
+const toMapSlug = (companyId) => mapSlugOverrides[companyId] || `${companyId}-ecosystem`;
+const relatedGraphCompany = [...currentCompanies].find((id) => storygraphsData.some((graph) => graph.company === id));
+const relatedGraphUrl = relatedGraphCompany ? `/map/${toMapSlug(relatedGraphCompany)}/` : '/#ai-ecosystem-map';
+const primaryCompany = relatedCompanies[0];
+const formatDate = (value) => {
+  if (!value) return '';
+  const date = new Date(value);
+  return Number.isNaN(date.getTime())
+    ? value
+    : date.toLocaleDateString('ja-JP', { year: 'numeric', month: '2-digit', day: '2-digit' });
+};
 ---
 
 <html lang="ja">
@@ -115,12 +141,14 @@ const ogImage = article.data.image_url
     headline={article.data.title}
     description={article.data.meta_description ?? description}
     url={canonicalUrl}
-    imageUrl={article.data.image_url}
+    imageUrl={ogImage}
     datePublished={article.data.published_at}
     dateModified={article.data.published_at}
     categoryName={categoryLabel}
     categorySlug={article.data.category_slug}
     articleSlug={article.data.article_slug}
+    keywords={article.data.topics_json ?? []}
+    sourceUrl={article.data.source_url}
   />
 </head>
 
@@ -143,7 +171,7 @@ const ogImage = article.data.image_url
             <span class="category-badge">{categoryLabel}</span>
             {article.data.source_label && <span class="source-badge">{article.data.source_label}</span>}
             <span>{article.data.source || 'AI経済新聞'}</span>
-            <time>{article.data.published_at || ''}</time>
+            <time>掲載: {formatDate(article.data.published_at)}</time>
           </div>
           <h1>{article.data.title}</h1>
           {relatedCompanies.length > 0 && (
@@ -168,10 +196,10 @@ const ogImage = article.data.image_url
           <figure class="article-image">
             {article.data.image_url.startsWith('http') ? (
               <a href={article.data.source_url} target="_blank" rel="noopener noreferrer">
-                <img src={article.data.image_url} alt={article.data.title} loading="eager" decoding="async" />
+                <img src={article.data.image_url} alt={article.data.title} loading="eager" fetchpriority="high" decoding="async" />
               </a>
             ) : (
-              <img src={article.data.image_url} alt={article.data.title} loading="eager" decoding="async" />
+              <img src={article.data.image_url} alt={article.data.title} loading="eager" fetchpriority="high" decoding="async" />
             )}
             {article.data.image_url.startsWith('http') && (
               <figcaption>
@@ -207,20 +235,30 @@ const ogImage = article.data.image_url
         </section>
 
         {article.data.source_url && (
-          <div class="source-link">
-            <a href={article.data.source_url} target="_blank" rel="noopener noreferrer">
-              元記事を読む → {article.data.source}
-            </a>
-          </div>
+          <section class="source-panel">
+            <div>
+              <p class="eyebrow">Primary Source</p>
+              <h2>一次情報</h2>
+              <p>
+                {article.data.source_label || '一次情報'}: {article.data.source || '公式発表'}
+                {article.data.source_published_at && <span> / 原文公開: {formatDate(article.data.source_published_at)}</span>}
+                {article.data.published_at && <span> / 掲載: {formatDate(article.data.published_at)}</span>}
+              </p>
+            </div>
+            <a href={article.data.source_url} target="_blank" rel="noopener noreferrer">一次情報を確認 →</a>
+          </section>
         )}
 
         <section class="map-cta">
           <div>
             <p class="eyebrow">Industry Map</p>
             <h2>関連する業界構造を見る</h2>
-            <p>企業間の供給網、出資、提携、競合関係をStoryGraphで確認できます。</p>
+            <p>企業間の供給網、出資、提携、競合関係をStoryGraphと企業データベースで確認できます。</p>
           </div>
-          <a href="/#ai-ecosystem-map">業界マップへ →</a>
+          <div class="map-actions">
+            {primaryCompany && <a href={`/company/${primaryCompany.id}/`}>{primaryCompany.name}を見る →</a>}
+            <a href={relatedGraphUrl}>構造ページへ →</a>
+          </div>
         </section>
       </article>
 
@@ -311,11 +349,24 @@ const ogImage = article.data.image_url
   .article-body :global(p) { margin: 0 0 20px; }
   .article-body :global(a) { color: #5cd8ce; text-decoration: underline; text-underline-offset: 3px; }
   .article-body :global(hr) { border: 0; border-top: 1px solid rgba(255,255,255,.10); margin: 32px 0; }
-  .source-link { text-align: center; padding: 4px 34px 30px; }
-  .source-link a, .map-cta > a { display: inline-flex; border-radius: 999px; background: #5cd8ce; color: #07111b; padding: 10px 16px; font-size: 12px; font-weight: 900; transition: transform .16s ease; }
-  .source-link a:hover, .map-cta > a:hover { transform: translateY(-2px); }
+  .source-panel {
+    display: flex;
+    justify-content: space-between;
+    gap: 18px;
+    align-items: center;
+    margin: 0 34px 18px;
+    border: 1px solid rgba(230,184,74,.18);
+    border-radius: 16px;
+    background: rgba(230,184,74,.055);
+    padding: 18px;
+  }
+  .source-panel h2 { margin: 4px 0 6px; font-size: 18px; }
+  .source-panel p { margin: 0; color: #b7c4d8; font-size: 13px; line-height: 1.8; }
+  .source-panel a, .map-actions a { display: inline-flex; border-radius: 999px; background: #5cd8ce; color: #07111b; padding: 10px 16px; font-size: 12px; font-weight: 900; transition: transform .16s ease; white-space: nowrap; }
+  .source-panel a:hover, .map-actions a:hover { transform: translateY(-2px); }
   .map-cta { display: flex; justify-content: space-between; gap: 18px; align-items: center; margin: 0 34px 34px; border: 1px solid rgba(255,255,255,.10); border-radius: 16px; background: rgba(0,0,0,.18); padding: 18px; }
   .map-cta p { margin: 0; color: #aebbd0; line-height: 1.7; }
+  .map-actions { display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end; }
   .related { padding: 4px 0 44px; }
   .section-head { margin-bottom: 14px; }
   .related-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }

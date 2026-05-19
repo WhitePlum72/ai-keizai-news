@@ -16,6 +16,8 @@ export interface Props {
   categoryName?: string;
   categorySlug?: string;
   articleSlug?: string;
+  keywords?: string[];
+  sourceUrl?: string;
 }
 
 const {
@@ -30,6 +32,8 @@ const {
   categoryName,
   categorySlug,
   articleSlug,
+  keywords = [],
+  sourceUrl,
 } = Astro.props;
 
 const siteUrl = "https://aikeizai.jp";
@@ -69,6 +73,10 @@ const newsArticleSchema = type === "article" ? {
   },
   "isAccessibleForFree": true,
   "inLanguage": "ja",
+  "articleSection": categoryName,
+  "keywords": keywords.length > 0 ? keywords.join(", ") : undefined,
+  "citation": sourceUrl,
+  "isBasedOn": sourceUrl,
   "mainEntityOfPage": {
     "@type": "WebPage",
     "@id": url,

@@ -80,6 +80,14 @@ const relations = relationsData.filter((r) => r.source === slug || r.target === 
 const groupIds = (filterFn, mapFn) => Array.from(new Set(relations.filter(filterFn).map(mapFn).filter(Boolean)));
 const investors = groupIds((r) => r.type === 'investment' && r.target === slug, (r) => r.source);
 const investments = groupIds((r) => r.type === 'investment' && r.source === slug, (r) => r.target);
+const supportedBy = groupIds(
+  (r) => ['semiconductor', 'accelerator', 'gpu_supply', 'cloud', 'supplier'].includes(r.type) && r.target === slug,
+  (r) => r.source
+);
+const supports = groupIds(
+  (r) => ['semiconductor', 'accelerator', 'gpu_supply', 'cloud', 'customer', 'supplier'].includes(r.type) && r.source === slug,
+  (r) => r.target
+);
 const partnerships = groupIds(
   (r) => ['partnership', 'distribution', 'cloud', 'gpu_supply', 'customer', 'supplier'].includes(r.type),
   (r) => (r.source === slug ? r.target : r.source)
@@ -88,13 +96,14 @@ const competitors = groupIds(
   (r) => ['competitor', 'competition'].includes(r.type),
   (r) => (r.source === slug ? r.target : r.source)
 );
+const nodeIdsFromGroup = (group) => [
+  ...(group?.nodes || []).map((node) => typeof node === 'string' ? node : node.id),
+  ...((group?.subgroups || []).flatMap((subgroup) => nodeIdsFromGroup(subgroup))),
+].filter(Boolean);
 
-const graphLayers = Array.isArray(graph?.layers) ? graph.layers : [];
-const products = graphLayers
-  .flatMap((layer) => [
-    ...(layer.nodes || []),
-    ...((layer.subgroups || []).flatMap((subgroup) => subgroup.nodes || [])),
-  ])
+const graphOutputLayers = graph?.layers?.outputs || [];
+const products = graphOutputLayers
+  .flatMap((layer) => nodeIdsFromGroup(layer))
   .filter((id) => getEntity(id).kind !== 'company' && id !== slug)
   .slice(0, 12);
 
@@ -106,11 +115,46 @@ const metricItems = [
   { label: '関連記事', value: `${articles.length}件` },
 ].filter(Boolean);
 const relationGroups = [
+  { title: 'この企業を支える企業', ids: supportedBy },
+  { title: 'この企業が支える企業', ids: supports },
   { title: '出資者', ids: investors },
   { title: '投資先', ids: investments },
   { title: '提携・供給網', ids: partnerships },
   { title: '競合企業', ids: competitors },
 ];
+
+const mapSlugOverrides = {
+  nvidia: 'nvidia-empire',
+  openai: 'openai-ecosystem',
+  huggingface: 'open-source-ai-ecosystem',
+  deepseek: 'china-ai-map',
+  sakana: 'japan-ai',
+};
+const mapSlug = mapSlugOverrides[slug] || `${slug}-ecosystem`;
+const storyFlowGroups = graph?.layers ? [
+  ...(graph.layers.supply || []),
+  graph.layers.center && { id: 'center', label: displayName, nodes: [graph.layers.center] },
+  ...(graph.layers.outputs || []),
+].filter((layer) => layer && nodeIdsFromGroup(layer).length > 0) : [];
+const orgSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: displayName,
+  url: officialUrl || `https://aikeizai.jp/company/${slug}/`,
+  logo: logo ? (logo.startsWith('http') ? logo : `https://aikeizai.jp${logo}`) : undefined,
+  description,
+  sameAs: officialUrl ? [officialUrl] : undefined,
+  mainEntityOfPage: `https://aikeizai.jp/company/${slug}/`,
+};
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'ホーム', item: 'https://aikeizai.jp/' },
+    { '@type': 'ListItem', position: 2, name: '企業データベース', item: 'https://aikeizai.jp/company/' },
+    { '@type': 'ListItem', position: 3, name: displayName, item: `https://aikeizai.jp/company/${slug}/` },
+  ],
+};
 ---
 
 <html lang="ja">
@@ -123,6 +167,10 @@ const relationGroups = [
   <meta property="og:title" content={`${displayName} | AI経済新聞`} />
   <meta property="og:description" content={description} />
   <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://aikeizai.jp/ogp.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
 </head>
 
 <body>
@@ -149,7 +197,8 @@ const relationGroups = [
         </div>
         <div class="hero-actions">
           {officialUrl && <a class="ghost-btn" href={officialUrl} target="_blank" rel="noopener noreferrer">公式サイト →</a>}
-          <a class="primary-btn" href="/#ai-ecosystem-map">業界マップで見る →</a>
+          {graph && <a class="primary-btn" href={`/map/${mapSlug}/`}>構造ページで見る →</a>}
+          <a class="ghost-btn" href="/#ai-ecosystem-map">業界マップで見る →</a>
         </div>
       </div>
     </section>
@@ -172,6 +221,44 @@ const relationGroups = [
             <p class="eyebrow">Industry Position</p>
             <h2>AI業界内の位置づけ</h2>
             <p>{profile.notable}</p>
+          </section>
+        )}
+
+        <section class="panel notable">
+          <p class="eyebrow">AI Industry Role</p>
+          <h2>AI業界での役割</h2>
+          <p>
+            {displayName}は、{sector?.name || 'AI産業'}領域で重要な位置を占める企業です。
+            {supportedBy.length > 0 && ` ${supportedBy.slice(0, 3).map((id) => getEntity(id).name || id).join('、')}などの基盤に支えられています。`}
+            {supports.length > 0 && ` また、${supports.slice(0, 4).map((id) => getEntity(id).name || id).join('、')}などへ技術・基盤・サービスを届けています。`}
+          </p>
+        </section>
+
+        {storyFlowGroups.length > 0 && (
+          <section class="panel">
+            <div class="panel-head">
+              <div>
+                <p class="eyebrow">StoryGraph Summary</p>
+                <h2>構造で見る{displayName}</h2>
+              </div>
+              <a class="text-link" href={`/map/${mapSlug}/`}>詳しく見る →</a>
+            </div>
+            <div class="flow-summary">
+              {storyFlowGroups.map((layer, index) => (
+                <>
+                  <div class="flow-group">
+                    <h3>{layer.label || layer.group || displayName}</h3>
+                    <div>
+                      {nodeIdsFromGroup(layer).slice(0, 8).map((id) => {
+                        const entity = getEntity(id);
+                        return <span>{entity.name || entity.label || id}</span>;
+                      })}
+                    </div>
+                  </div>
+                  {index < storyFlowGroups.length - 1 && <span class="flow-arrow">→</span>}
+                </>
+              ))}
+            </div>
           </section>
         )}
 
@@ -351,6 +438,26 @@ const relationGroups = [
   .notable p:last-child { color: #b7c4d8; line-height: 1.9; margin-bottom: 0; }
   .panel-head { display: flex; justify-content: space-between; align-items: end; gap: 16px; margin-bottom: 14px; }
   .panel-head span { color: #7f8da3; font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 10px; }
+  .text-link { color: #5cd8ce; font-size: 12px; font-weight: 900; white-space: nowrap; }
+  .flow-summary { display: flex; align-items: stretch; gap: 10px; overflow-x: auto; padding-bottom: 4px; }
+  .flow-group {
+    min-width: 180px;
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 14px;
+    background: rgba(0,0,0,.18);
+    padding: 12px;
+  }
+  .flow-group h3 { margin: 0 0 10px; color: #dbe7f5; font-size: 13px; }
+  .flow-group div { display: flex; flex-wrap: wrap; gap: 6px; }
+  .flow-group span {
+    border: 1px solid rgba(255,255,255,.09);
+    border-radius: 999px;
+    background: rgba(255,255,255,.04);
+    padding: 5px 8px;
+    color: #b7c4d8;
+    font-size: 11px;
+  }
+  .flow-arrow { display: grid; place-items: center; color: #5cd8ce; font-family: 'IBM Plex Mono', ui-monospace, monospace; font-weight: 900; }
   .relation-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
   .relation-group {
     border: 1px solid rgba(255,255,255,.08);
